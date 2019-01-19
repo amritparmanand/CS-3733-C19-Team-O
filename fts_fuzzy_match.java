@@ -66,15 +66,15 @@ public class fts_fuzzy_match {
             int patternChar = patternIdx != patternLength ? pattern.charAt(patternIdx) : null;
             int strChar = str.charAt(strIdx);
 
-            var patternLower = patternChar != null ? patternChar.toLowerCase() : null;
-            var strLower = strChar.toLowerCase();
-            var strUpper = strChar.toUpperCase();
+            int patternLower = patternChar != null ? patternChar.toLowerCase() : null;
+            char strLower = strChar.toLowerCase();
+            char strUpper = strChar.toUpperCase();
 
-            var nextMatch = patternChar && patternLower == strLower;
-            var rematch = bestLetter && bestLower == strLower;
+            int nextMatch = patternChar && patternLower == strLower;
+            int rematch = bestLetter && bestLower == strLower;
 
-            var advanced = nextMatch && bestLetter;
-            var patternRepeat = bestLetter && patternChar && bestLower == patternLower;
+            int advanced = nextMatch && bestLetter;
+            int patternRepeat = bestLetter && patternChar && bestLower == patternLower;
             if (advanced || patternRepeat) {
                 score += bestLetterScore;
                 matchedIndices.push(bestLetterIdx);
@@ -90,7 +90,7 @@ public class fts_fuzzy_match {
                 // Apply penalty for each letter before the first pattern match
                 // Note: std::max because penalties are negative values. So max is smallest penalty.
                 if (patternIdx == 0) {
-                    var penalty = Math.max(strIdx * leading_letter_penalty, max_leading_letter_penalty);
+                    float penalty = Math.max(strIdx * leading_letter_penalty, max_leading_letter_penalty);
                     score += penalty;
                 }
 
@@ -148,16 +148,16 @@ public class fts_fuzzy_match {
 
         // Finish out formatted string after last pattern matched
         // Build formated string based on matched letters
-        var formattedStr = "";
-        var lastIdx = 0;
-        for (var i = 0; i < matchedIndices.length; ++i) {
-            var idx = matchedIndices[i];
+        char formattedStr = "";
+        int lastIdx = 0;
+        for (int i = 0; i < matchedIndices.length; ++i) {
+            int idx = matchedIndices[i];
             formattedStr += str.substr(lastIdx, idx - lastIdx) + "<b>" + str.charAt(idx) + "</b>";
             lastIdx = idx + 1;
         }
         formattedStr += str.substr(lastIdx, str.length - lastIdx);
 
-        var matched = patternIdx == patternLength;
+        int matched = patternIdx == patternLength;
         return [matched, score, formattedStr];
     }
 
