@@ -7,6 +7,24 @@
   -fx-text-fill: #17263d;
 }
 
+.topbar{
+  -fx-background-color: white;
+}
+
+.ttbtitle{
+  -fx-font-size: 36px;
+  -fx-fill: white;
+}
+.ttbsubtitle{
+  -fx-font-size: 12px;
+  -fx-fill: white;
+}
+
+.navheader{
+  -fx-background-color: #4A77DD;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
 .backPane{
   -fx-background-color: #f5f7fa;
 }
@@ -17,6 +35,12 @@
   -fx-background-radius: 10 10 10 10;
 }
 
+.searchContainer{
+  -fx-background-color: white;
+  -fx-background-radius: 30px;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+
 .card:hover{
   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 8, 0.0 , 0 , 1 );
 
@@ -25,6 +49,14 @@
 .labeltext{
   -fx-text-fill: #17263d;
   -fx-font-size: 12px;
+}
+
+.searchfield{
+  -fx-background-color: white;
+  -fx-border-color: #d5ddeb ;
+  -fx-border-width: 0;
+  -fx-background-radius: 5 5 5 5;
+  -fx-border-radius:5 5 5 5;
 }
 
 .textfield{
