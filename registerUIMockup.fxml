@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,11 +20,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Pane prefHeight="25.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="20.0" layoutY="5.0" prefWidth="300.0" text="Welcome, Wong Brewery!" textAlignment="RIGHT" />
-                     </children>
-                  </Pane>
+                  <Pane prefHeight="25.0" prefWidth="200.0" />
                   <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1274.0" styleClass="navheader">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
@@ -50,11 +45,6 @@
                               <Insets left="450.0" />
                            </HBox.margin>
                         </HBox>
-                        <ToolBar prefHeight="40.0" prefWidth="200.0">
-                          <items>
-                            <Button mnemonicParsing="false" text="Button" />
-                          </items>
-                        </ToolBar>
                      </children>
                   </HBox>
                </children>
@@ -90,7 +80,12 @@
                         <Font name="Book Antiqua" size="32.0" />
                      </font>
                   </Label>
-                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Agent ID">
+                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Representative ID">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Full Name">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -105,7 +100,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Real Name">
+                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Company Name">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
