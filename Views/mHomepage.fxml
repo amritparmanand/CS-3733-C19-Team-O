@@ -78,7 +78,7 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="back" mnemonicParsing="false" text="Back" />
+            <Button fx:id="back" mnemonicParsing="false" onAction="#changeScene" text="Back" />
          </children>
       </VBox>
    </children>

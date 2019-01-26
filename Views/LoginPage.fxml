@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -48,14 +49,14 @@
                               </Label>
                               <TextField promptText="Username" />
                               <PasswordField promptText="Password" />
-                              <Button mnemonicParsing="false" text="Log In">
+                              <Button fx:id="login" mnemonicParsing="false" onAction="#changeScene" text="Log In">
                                  <font>
                                     <Font name="Courier New" size="16.0" />
                                  </font>
                               </Button>
                               <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="346.0">
                                  <children>
-                                    <Button fx:id="registerAsManufacturer" alignment="BASELINE_RIGHT" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Register as Manufacturer" wrapText="true">
+                                    <Button fx:id="registerAsManufacturer" alignment="BASELINE_RIGHT" mnemonicParsing="false" onAction="#changeScene" prefHeight="42.0" prefWidth="137.0" text="Register as Manufacturer" wrapText="true">
                                     </Button>
                                  </children>
                               </HBox>
