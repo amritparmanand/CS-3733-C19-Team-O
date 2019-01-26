@@ -50,7 +50,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../TTB-logo.jpg" />
+                        <Image url="@../Icons/TTB-logo.jpg" />
                      </image>
                      <VBox.margin>
                         <Insets />

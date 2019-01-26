@@ -32,12 +32,12 @@
 .card{
   -fx-background-color: white;
   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-  -fx-background-radius: 10 10 10 10;
+  -fx-background-radius: 30 30 30 30;
 }
 
 .searchContainer{
   -fx-background-color: white;
-  -fx-background-radius: 30px;
+  -fx-background-radius: 80px;
   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
 }
 
@@ -58,6 +58,39 @@
   -fx-background-radius: 5 5 5 5;
   -fx-border-radius:5 5 5 5;
 }
+
+.formstatuspill{
+  -fx-border-width: 3;
+  -fx-background-radius: 20 20 20 20;
+  -fx-border-radius:20 20 20 20;
+}
+
+.cardtext{
+  -fx-font-size: 24;
+}
+
+.pendingstatus{
+  -fx-background-color: #fbf8e1;
+  -fx-border-color: #fdefc1;
+  -fx-text-fill: #643018;
+
+}
+
+.acceptstatus{
+  -fx-background-color: #e4f7ef;
+  -fx-border-color: #c9e9dc;
+  -fx-text-fill: #204834;
+
+}
+
+.denystatus{
+  -fx-background-color: #fcedec;
+  -fx-border-color: #f9e4e3;
+  -fx-text-fill: #521511;
+
+}
+
+
 
 .textfield{
   -fx-background-color: white;
