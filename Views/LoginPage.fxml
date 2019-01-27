@@ -42,24 +42,37 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="332.0" prefWidth="346.0">
                            <children>
-                              <Label text="Log In:">
-                                 <font>
-                                    <Font name="Courier New" size="38.0" />
-                                 </font>
-                              </Label>
-                              <TextField promptText="Username" />
-                              <PasswordField promptText="Password" />
-                              <Button fx:id="login" mnemonicParsing="false" onAction="#changeScene" text="Log In">
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <RadioButton fx:id="m" mnemonicParsing="false" onAction="#rdoBtnCheck" text="Manufacturer">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </RadioButton>
+                                    <RadioButton fx:id="a" mnemonicParsing="false" onAction="#rdoBtnCheck" text="Agent" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="username" onKeyReleased="#textFieldCheck" promptText="Username">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></TextField>
+                              <PasswordField fx:id="password" onKeyReleased="#textFieldCheck" promptText="Password">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin></PasswordField>
+                              <Button fx:id="login" disable="true" mnemonicParsing="false" onAction="#textFieldCheck" onMousePressed="#changeScene" text="Login">
                                  <font>
                                     <Font name="Courier New" size="16.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </Button>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="346.0">
-                                 <children>
-                                    <Button fx:id="registerAsManufacturer" alignment="BASELINE_RIGHT" mnemonicParsing="false" onAction="#changeScene" prefHeight="42.0" prefWidth="137.0" text="Register as Manufacturer" wrapText="true">
-                                    </Button>
-                                 </children>
-                              </HBox>
+                              <Button fx:id="register" alignment="BASELINE_RIGHT" contentDisplay="TOP" disable="true" mnemonicParsing="false" onAction="#rdoBtnCheck" onMousePressed="#changeScene" prefHeight="42.0" prefWidth="100.0" text="Register" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                         </VBox>
                      </children>
