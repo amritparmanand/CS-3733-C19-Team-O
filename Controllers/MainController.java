@@ -20,6 +20,8 @@ public class MainController {
     public void changeScene(MouseEvent event) throws IOException {
         Stage stage;
         Parent root;
+
+        // LoginPage
         if(event.getSource()==register && m.isSelected()){
             //get reference to the button's stage
             stage=(Stage) register.getScene().getWindow();
@@ -39,20 +41,50 @@ public class MainController {
             root = FXMLLoader.load(getClass().getResource("../Views/mHomepage.fxml"));
         }
 
+        // Register pages
         else if(event.getSource()==mRegister){
             stage=(Stage) mRegister.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../Views/mHomepage.fxml"));
         }
-
         else if(event.getSource()==aRegister){
             stage=(Stage) aRegister.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../Views/aHomepage.fxml"));
+        }
+
+        // The back buttons to login page
+        else if(event.getSource()==mHomepageBack){
+            stage=(Stage) mHomepageBack.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
+        }
+        else if(event.getSource()==mRegisterBack){
+            stage=(Stage) mRegisterBack.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
+        }
+        else if(event.getSource()==aHomepageBack){
+            stage=(Stage) aHomepageBack.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
+        }
+        else if(event.getSource()==aRegisterBack){
+            stage=(Stage) aRegisterBack.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
+        }
+
+        // To search page
+        else if(event.getSource()==aRegisterSearch){
+            stage=(Stage) aRegisterSearch.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("../Views/SearchPage.fxml"));
+        }
+        else if(event.getSource()==mRegisterSearch){
+            stage=(Stage) mRegisterSearch.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("../Views/SearchPage.fxml"));
         }
 
         else{
             stage=(Stage) mHomepageBack.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
         }
+
+
         //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -60,27 +92,18 @@ public class MainController {
     }
 
     /**
-     * Enables the login btn if username and password fields are filled
+     * Enables the login btn and the register btn if radio buttons select and text fields are filled.
      * Disable otherwise
      */
     @FXML
-    public void textFieldCheck() {
-        if (username.getText().isEmpty() || password.getText().isEmpty()) {
-            login.setDisable(true);
-        } else {
-            login.setDisable(false);
-        }
-    }
-
-    /**
-     * Enables the login btn and the register btn if radio buttons selected
-     * and text fields are filled.
-     * Disable otherwise
-     */
-    @FXML
-    public void rdoBtnCheck(){
+    public void validateButton(){
         if(m.isSelected() || a.isSelected()){
             register.setDisable(false);
+            if (username.getText().isEmpty() || password.getText().isEmpty()) {
+                login.setDisable(true);
+            } else {
+                login.setDisable(false);
+            }
         }
         else{
             register.setDisable(true);
@@ -109,4 +132,15 @@ public class MainController {
 
     @FXML
     Button mHomepageBack;
+    @FXML
+    Button mRegisterBack;
+    @FXML
+    Button aHomepageBack;
+    @FXML
+    Button aRegisterBack;
+
+    @FXML
+    Button mRegisterSearch;
+    @FXML
+    Button aRegisterSearch;
 }

@@ -44,23 +44,23 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <RadioButton fx:id="m" mnemonicParsing="false" onAction="#rdoBtnCheck" text="Manufacturer">
+                                    <RadioButton fx:id="m" mnemonicParsing="false" onAction="#validateButton" text="Manufacturer">
                                        <HBox.margin>
                                           <Insets right="20.0" />
                                        </HBox.margin>
                                     </RadioButton>
-                                    <RadioButton fx:id="a" mnemonicParsing="false" onAction="#rdoBtnCheck" text="Agent" />
+                                    <RadioButton fx:id="a" mnemonicParsing="false" onAction="#validateButton" text="Agent" />
                                  </children>
                               </HBox>
-                              <TextField fx:id="username" onKeyReleased="#textFieldCheck" promptText="Username">
+                              <TextField fx:id="username" onKeyReleased="#validateButton" promptText="Username">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin></TextField>
-                              <PasswordField fx:id="password" onKeyReleased="#textFieldCheck" promptText="Password">
+                              <PasswordField fx:id="password" onKeyReleased="#validateButton" promptText="Password">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin></PasswordField>
-                              <Button fx:id="login" disable="true" mnemonicParsing="false" onAction="#textFieldCheck" onMousePressed="#changeScene" text="Login">
+                              <Button fx:id="login" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#changeScene" text="Login">
                                  <font>
                                     <Font name="Courier New" size="16.0" />
                                  </font>
@@ -68,7 +68,7 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="register" alignment="BASELINE_RIGHT" contentDisplay="TOP" disable="true" mnemonicParsing="false" onAction="#rdoBtnCheck" onMousePressed="#changeScene" prefHeight="42.0" prefWidth="100.0" text="Register" wrapText="true">
+                              <Button fx:id="register" alignment="BASELINE_RIGHT" contentDisplay="TOP" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#changeScene" prefHeight="42.0" prefWidth="100.0" text="Register" wrapText="true">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
