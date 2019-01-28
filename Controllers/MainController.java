@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -92,6 +93,33 @@ public class MainController {
     }
 
     /**
+     * Pop-up windows
+     */
+    @FXML
+    private void popWindow(MouseEvent event) throws IOException {
+
+        Stage stage;
+        Parent root;
+
+        if(event.getSource()==pop)
+        {
+            stage = new Stage();
+            root = FXMLLoader.load(getClass().getResource("../Views/mortgage.fxml"));
+            stage.setScene(new Scene(root));
+            stage.setTitle("idk what to pop so here's mortgage calculator");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(pop.getScene().getWindow());
+            stage.showAndWait();
+        }
+        else
+        {
+            stage=(Stage)mHomepageBack.getScene().getWindow();
+            stage.close();
+        }
+
+    }
+
+    /**
      * Enables the login btn and the register btn if radio buttons select and text fields are filled.
      * Disable otherwise
      */
@@ -143,4 +171,7 @@ public class MainController {
     Button mRegisterSearch;
     @FXML
     Button aRegisterSearch;
+
+    @FXML
+    Button pop;
 }
