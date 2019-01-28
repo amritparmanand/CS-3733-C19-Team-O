@@ -1,4 +1,4 @@
-package Controllers;
+package UI;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,62 +27,74 @@ public class MainController {
             //get reference to the button's stage
             stage=(Stage) register.getScene().getWindow();
             //load up OTHER FXML document
-            root = FXMLLoader.load(getClass().getResource("../Views/mRegister.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/mRegister.fxml"));
         }
         else if(event.getSource()==register && a.isSelected()){
             stage=(Stage) register.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/aRegister.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/aRegister.fxml"));
         }
         else if(event.getSource()==login && a.isSelected()){
             stage=(Stage) login.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/aHomepage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/aHomepage.fxml"));
         }
         else if(event.getSource()==login && m.isSelected()){
             stage=(Stage) login.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/mHomepage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/mHomepage.fxml"));
         }
 
         // Register pages
         else if(event.getSource()==mRegister){
             stage=(Stage) mRegister.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/mHomepage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/mHomepage.fxml"));
         }
         else if(event.getSource()==aRegister){
             stage=(Stage) aRegister.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/aHomepage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/aHomepage.fxml"));
         }
 
         // The back buttons to login page
         else if(event.getSource()==mHomepageBack){
             stage=(Stage) mHomepageBack.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/LoginPage.fxml"));
         }
         else if(event.getSource()==mRegisterBack){
             stage=(Stage) mRegisterBack.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/LoginPage.fxml"));
         }
         else if(event.getSource()==aHomepageBack){
             stage=(Stage) aHomepageBack.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/LoginPage.fxml"));
         }
         else if(event.getSource()==aRegisterBack){
             stage=(Stage) aRegisterBack.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/LoginPage.fxml"));
+        }
+        else if(event.getSource()==SearchPageBack){
+            stage=(Stage) SearchPageBack.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/Views/LoginPage.fxml"));
         }
 
         // To search page
-        else if(event.getSource()==aRegisterSearch){
-            stage=(Stage) aRegisterSearch.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/SearchPage.fxml"));
+        else if(event.getSource()==LoginPageSearch){
+            stage=(Stage) LoginPageSearch.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/Views/SearchPage.fxml"));
         }
         else if(event.getSource()==mRegisterSearch){
             stage=(Stage) mRegisterSearch.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/Views/SearchPage.fxml"));
+        }
+        else if(event.getSource()==aRegisterSearch){
+            stage=(Stage) aRegisterSearch.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("/Views/SearchPage.fxml"));
+        }
+        else if(event.getSource()==mHomepageSearch){
+            stage=(Stage) mHomepageSearch.getScene().getWindow();
             root = FXMLLoader.load(getClass().getResource("../Views/SearchPage.fxml"));
         }
 
         else{
             stage=(Stage) mHomepageBack.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("../Views/LoginPage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/LoginPage.fxml"));
         }
 
 
@@ -104,9 +116,9 @@ public class MainController {
         if(event.getSource()==pop)
         {
             stage = new Stage();
-            root = FXMLLoader.load(getClass().getResource("../Views/mortgage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/Views/mortgage.fxml"));
             stage.setScene(new Scene(root));
-            stage.setTitle("idk what to pop so here's mortgage calculator");
+            stage.setTitle("idk what to pop so here's a fake mortgage calculator");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(pop.getScene().getWindow());
             stage.showAndWait();
@@ -139,6 +151,32 @@ public class MainController {
         }
     }
 
+    /**
+     * Validate manufacturer register button
+     */
+    @FXML
+    public void validatemRegister(){
+        if(repID.getText().isEmpty()){
+            mRegister.setDisable(true);
+        }
+        else if(repID.getText() != null){
+            mRegister.setDisable(false);
+        }
+    }
+
+    /**
+     * Validate manufacturer register button
+     */
+    @FXML
+    public void validateaRegister(){
+        if(agentID.getText().isEmpty()){
+            aRegister.setDisable(true);
+        }
+        else if(agentID.getText() != null){
+            aRegister.setDisable(false);
+        }
+    }
+
     @FXML
     RadioButton m;
     @FXML
@@ -150,6 +188,11 @@ public class MainController {
     TextField password;
 
     @FXML
+    TextField repID;
+    @FXML
+    TextField agentID;
+
+    @FXML
     Button register;
     @FXML
     Button mRegister;
@@ -158,6 +201,7 @@ public class MainController {
     @FXML
     Button login;
 
+    // Back buttons
     @FXML
     Button mHomepageBack;
     @FXML
@@ -166,9 +210,16 @@ public class MainController {
     Button aHomepageBack;
     @FXML
     Button aRegisterBack;
+    @FXML
+    Button SearchPageBack;
 
+    // Search buttons
+    @FXML
+    Button LoginPageSearch;
     @FXML
     Button mRegisterSearch;
+    @FXML
+    Button mHomepageSearch;
     @FXML
     Button aRegisterSearch;
 

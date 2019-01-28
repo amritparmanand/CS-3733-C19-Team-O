@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="CS-3733-C19-Team-O:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CS_3733_C19_Team_O_jar</output-path>
+    <root id="archive" name="CS-3733-C19-Team-O.jar">
+      <element id="module-output" name="CS-3733-C19-Team-O" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/CS3733/db-derby-10.14.2.0-bin/lib/derby.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/CS3733/db-derby-10.14.2.0-bin/lib/derbytools.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/CS3733/db-derby-10.14.2.0-bin/lib/derbyrun.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/CS3733/db-derby-10.14.2.0-bin/lib/derbynet.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/CS3733/db-derby-10.14.2.0-bin/lib/derbyclient.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/CS3733/db-derby-10.14.2.0-bin/lib/derbyoptionaltools.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
