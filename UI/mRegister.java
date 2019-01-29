@@ -12,6 +12,7 @@ public class mRegister {
 
     @FXML private Button mRegister;
     @FXML private Button search;
+    @FXML private Button back;
 
     /**
      * Model
@@ -25,6 +26,11 @@ public class mRegister {
         this.sm = new SceneManager();
     }
 
+    /**
+     * Change scene
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void changeScene(MouseEvent event) throws IOException {
         if(event.getSource() == mRegister){
@@ -34,6 +40,10 @@ public class mRegister {
         else if(event.getSource() == search){
             Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchPage.fxml"));
             sm.changeScene(root, search);
+        }
+        else if(event.getSource() == back){
+            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/LoginPage.fxml"));
+            sm.changeScene(root, back);
         }
     }
 }

@@ -72,7 +72,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="mRegisterBack" mnemonicParsing="false" onMousePressed="#changeScene" text="Back" />
+                  <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" text="Back" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="633.0" prefWidth="330.0" HBox.hgrow="ALWAYS">
@@ -122,7 +122,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Button fx:id="mRegister" disable="true" maxWidth="300.0" mnemonicParsing="false" onMousePressed="#changeScene" text="Register">
+                  <Button fx:id="mRegister" maxWidth="300.0" mnemonicParsing="false" onMousePressed="#changeScene" text="Register">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
