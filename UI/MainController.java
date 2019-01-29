@@ -14,6 +14,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainController {
+
+    private SceneManager sm;
+
+    public MainController(){
+        this.sm = new SceneManager();
+    }
+
     /**
      * Change scene
      */
@@ -107,49 +114,51 @@ public class MainController {
     /**
      * Pop-up windows
      */
-    @FXML
-    private void popWindow(MouseEvent event) throws IOException {
-
-        Stage stage;
-        Parent root;
-
-        if(event.getSource()==pop)
-        {
-            stage = new Stage();
-            root = FXMLLoader.load(getClass().getResource("/Views/mortgage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.setTitle("idk what to pop so here's a fake mortgage calculator");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(pop.getScene().getWindow());
-            stage.showAndWait();
-        }
-        else
-        {
-            stage=(Stage)mHomepageBack.getScene().getWindow();
-            stage.close();
-        }
-
-    }
+//    @FXML
+//    public void popWindow(MouseEvent event) throws IOException {
+//
+//        sm.popWindow();
+//
+//        Stage stage;
+//        Parent root;
+//
+//        if(event.getSource()==pop)
+//        {
+//            stage = new Stage();
+//            root = FXMLLoader.load(getClass().getResource("/UI/Views/mortgage.fxml"));
+//            stage.setScene(new Scene(root));
+//            stage.setTitle("idk what to pop so here's a fake mortgage calculator");
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            stage.initOwner(pop.getScene().getWindow());
+//            stage.showAndWait();
+//        }
+//        else
+//        {
+//            stage=(Stage)mHomepageBack.getScene().getWindow();
+//            stage.close();
+//        }
+//
+//    }
 
     /**
      * Enables the login btn and the register btn if radio buttons select and text fields are filled.
      * Disable otherwise
      */
-    @FXML
-    public void validateButton(){
-        if(m.isSelected() || a.isSelected()){
-            register.setDisable(false);
-            if (username.getText().isEmpty() || password.getText().isEmpty()) {
-                login.setDisable(true);
-            } else {
-                login.setDisable(false);
-            }
-        }
-        else{
-            register.setDisable(true);
-            login.setDisable(true);
-        }
-    }
+//    @FXML
+//    public void validateButton(){
+//        if(m.isSelected() || a.isSelected()){
+//            register.setDisable(false);
+//            if (username.getText().isEmpty() || password.getText().isEmpty()) {
+//                login.setDisable(true);
+//            } else {
+//                login.setDisable(false);
+//            }
+//        }
+//        else{
+//            register.setDisable(true);
+//            login.setDisable(true);
+//        }
+//    }
 
     /**
      * Validate manufacturer register button
