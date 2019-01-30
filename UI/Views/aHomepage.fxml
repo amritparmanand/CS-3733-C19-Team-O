@@ -54,7 +54,10 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" text="Search" />
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="searchButtonStyle" text="Search">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Button>
                     </children></HBox>
                 <HBox prefHeight="300.0" prefWidth="200.0">
                     <children>
@@ -144,7 +147,7 @@
                         </VBox>
                     </children>
                 </HBox>
-                <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" text="Back" />
+                <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="buttonStyle" text="Back" />
             </children>
         </VBox>
     </children>

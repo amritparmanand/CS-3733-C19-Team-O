@@ -15,6 +15,7 @@ public class mHomepage {
     @FXML private Button back;
     @FXML private Button search;
     @FXML private VBox newForm;
+    @FXML private VBox storage;
 
     /**
      * Model
@@ -41,6 +42,10 @@ public class mHomepage {
         else if(event.getSource() == newForm){
             Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
             sm.changeSceneWithV(root, newForm);
+        }
+        else if(event.getSource() == storage){
+            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mFormStorage.fxml"));
+            sm.changeSceneWithV(root, storage);
         }
     }
 }
