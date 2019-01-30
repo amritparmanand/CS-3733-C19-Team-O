@@ -5,11 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import org.springframework.security.crypto.bcrypt.*;
 
 import java.io.IOException;
 
 public class aRegister {
 
+    public static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @FXML private Button aRegister;
     @FXML private Button search;
     @FXML private Button back;
@@ -34,6 +36,9 @@ public class aRegister {
     @FXML
     public void changeScene(MouseEvent event) throws IOException {
         if(event.getSource() == aRegister){
+            //agent data populated here
+            //String hashedPassword = passwordEncoder.encode(//text from password field cast to CharSequence);
+            //populate the password data with that string ^^
             Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/aHomepage.fxml"));
             sm.changeScene(root, aRegister);
         }

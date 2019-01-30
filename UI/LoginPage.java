@@ -7,12 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.springframework.security.crypto.bcrypt.*;
 
 
 import java.io.IOException;
 
 public class LoginPage {
 
+    public static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @FXML private Button pop;
     @FXML private RadioButton m;
     @FXML private RadioButton a;
@@ -49,10 +51,21 @@ public class LoginPage {
 
         // Login
         else if(event.getSource() == login && m.isSelected()){
+            //this is where we check DB password hash
+            //if(passwordEncoder.matches(raw text from password field,hashFromDataBase))
+            //{
+
+            //}
             Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mHomepage.fxml"));
             sm.changeScene(root, login);
         }
         else if(event.getSource() == login && a.isSelected()){
+            //this is where we check DB password hash
+            //this is where we check DB password hash
+            //if(passwordEncoder.matches(raw text from password field,hashFromDataBase))
+            //{
+
+            //}
             Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/aHomepage.fxml"));
             sm.changeScene(root, login);
         }
