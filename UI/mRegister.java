@@ -31,6 +31,7 @@ public class mRegister {
      * @param event
      * @throws IOException
      */
+    @SuppressWarnings("Duplicates")
     @FXML
     public void changeScene(MouseEvent event) throws IOException {
         if(event.getSource() == mRegister){
