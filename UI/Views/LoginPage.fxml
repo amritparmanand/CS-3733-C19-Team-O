@@ -5,6 +5,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -57,11 +58,10 @@
                                        </HBox.margin>
                                     </Button>
                                     <RadioButton fx:id="m" mnemonicParsing="false" onAction="#validateButton" text="Manufacturer">
-                                       <HBox.margin>
-                                          <Insets right="20.0" />
-                                       </HBox.margin>
-                                    </RadioButton>
-                                    <RadioButton fx:id="a" mnemonicParsing="false" onAction="#validateButton" text="Agent" />
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="group" />
+                                       </toggleGroup></RadioButton>
+                                    <RadioButton fx:id="a" mnemonicParsing="false" onAction="#validateButton" text="Agent" toggleGroup="$group" />
                                  </children>
                               </HBox>
                               <TextField fx:id="username" onKeyReleased="#validateButton" promptText="Username">
