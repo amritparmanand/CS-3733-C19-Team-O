@@ -3,8 +3,46 @@
 
 /*lets try and get the SVG files wortking */
 *{
-  -fx-font-family: "Lucida Console";
+  -fx-font-family: "Lucida Console", "Helvetica", "Arial";
   -fx-text-fill: #17263d;
+}
+
+.toolbar{
+  -fx-background-color: white;
+  -fx-border-width: 0 1 0 0;
+  -fx-border-color: lightgrey;
+
+}
+
+.buttonStyle{
+  -fx-background-color: #4A77DD;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+  -fx-text-fill: white;
+}
+
+.buttonStyle:hover{
+  -fx-background-color:rgb(23, 58, 141);
+}
+
+.changeColorButton{
+  -fx-background-color: none;
+  -fx-text-fill: #4A77DD;
+  -fx-border-color: #4A77DD ;
+  -fx-border-width: 3;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 0, 0.0 , 0 , 0 );
+}
+
+.largeBorderRadius{
+  -fx-border-width: 3;
+  -fx-background-radius: 40;
+  -fx-border-radius:40;
+}
+
+.changeColorButton:hover{
+  -fx-background-color: #4A77DD;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+  -fx-text-fill: white;
+
 }
 
 .topbar{
