@@ -65,19 +65,6 @@ public class LoginPage {
     }
 
     /**
-     * Pop out a window
-     * @param event
-     * @throws IOException
-     */
-    @FXML
-    public void popWindow(MouseEvent event) throws IOException {
-        if(event.getSource() == pop){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mortgage.fxml"));
-            sm.popWindow(root);
-        }
-    }
-
-    /**
      * Enables the login btn and the register btn if radio buttons select and text fields are filled.
      * Disable otherwise
      */
