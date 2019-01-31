@@ -16,7 +16,7 @@ public class SceneManager {
         Stage stage;
         stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.setTitle("idk what to pop so here's a fake mortgage calculator");
+        stage.setTitle("The pop-up window");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
