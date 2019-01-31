@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Code:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Code_jar</output-path>
-    <root id="archive" name="Code.jar">
-      <element id="module-output" name="Code" />
-      <element id="dir-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib" />
-    </root>
-  </artifact>
-</component>
