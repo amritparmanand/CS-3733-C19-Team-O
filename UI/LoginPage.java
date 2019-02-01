@@ -13,7 +13,6 @@ import java.io.IOException;
 
 public class LoginPage {
 
-    @FXML private Button pop;
     @FXML private RadioButton m;
     @FXML private RadioButton a;
     @FXML private TextField username;
