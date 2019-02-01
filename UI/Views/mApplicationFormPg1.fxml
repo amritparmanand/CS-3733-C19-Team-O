@@ -3,12 +3,13 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -174,12 +175,19 @@
                                                 <Label styleClass="labeltext" text="3. Source of Product (Required)" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                     <children>
-                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Domestic">
-                                                            <HBox.margin>
-                                                                <Insets right="40.0" />
-                                                            </HBox.margin>
-                                                        </CheckBox>
-                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Imported" />
+                                          <RadioButton mnemonicParsing="false" text="Domestic">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="group" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="Imported" toggleGroup="$group">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </RadioButton>
                                                     </children>
                                                 </HBox>
                                             </children>
@@ -206,17 +214,24 @@
                                                 <Label styleClass="labeltext" text="5. Type of Product (Required)" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                     <children>
-                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Wine">
-                                                            <HBox.margin>
-                                                                <Insets right="40.0" />
-                                                            </HBox.margin>
-                                                        </CheckBox>
-                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Distilled Spirits">
-                                                            <HBox.margin>
-                                                                <Insets right="40.0" />
-                                                            </HBox.margin>
-                                                        </CheckBox>
-                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Malt Beverages" />
+                                          <RadioButton mnemonicParsing="false" text="Wine">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="g2" />
+                                             </toggleGroup>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="Distilled Spirits" toggleGroup="$g2">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="Malt Beverages" toggleGroup="$g2">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </RadioButton>
                                                     </children>
                                                 </HBox>
                                             </children>

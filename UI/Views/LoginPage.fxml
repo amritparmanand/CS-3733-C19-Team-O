@@ -66,21 +66,19 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="pop" layoutX="116.0" layoutY="289.0" mnemonicParsing="false" onMousePressed="#popWindow" text="Pop">
-                                       <HBox.margin>
-                                          <Insets right="20.0" />
-                                       </HBox.margin>
-                                    </Button>
                                     <RadioButton fx:id="m" mnemonicParsing="false" onAction="#validateButton" text="Manufacturer">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="group" />
-                                       </toggleGroup></RadioButton>
+                                       </toggleGroup>
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin></RadioButton>
                                     <RadioButton fx:id="a" mnemonicParsing="false" onAction="#validateButton" text="Agent" toggleGroup="$group" />
                                  </children>
                               </HBox>
                               <TextField fx:id="username" onKeyReleased="#validateButton" promptText="Username">
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets top="20.0" />
                                  </VBox.margin></TextField>
                               <PasswordField fx:id="password" onKeyReleased="#validateButton" promptText="Password">
                                  <VBox.margin>
