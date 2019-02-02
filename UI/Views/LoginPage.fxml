@@ -41,7 +41,7 @@
                         <Insets left="450.0" />
                      </HBox.margin>
                   </HBox>
-                  <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" text="Search" />
+                  <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" text="Search" />
                </children></HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1280.0">
                <children>
@@ -72,7 +72,7 @@
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin></PasswordField>
-                              <Button fx:id="login" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#changeScene" text="Login">
+                              <Button fx:id="login" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#login" text="Login">
                                  <font>
                                     <Font name="Courier New" size="16.0" />
                                  </font>
@@ -80,7 +80,7 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="register" alignment="BASELINE_RIGHT" contentDisplay="TOP" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#changeScene" prefHeight="42.0" prefWidth="100.0" text="Register" wrapText="true">
+                              <Button fx:id="register" alignment="BASELINE_RIGHT" contentDisplay="TOP" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#register" prefHeight="42.0" prefWidth="100.0" text="Register" wrapText="true">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
