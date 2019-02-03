@@ -45,7 +45,7 @@
                               <Insets left="450.0" />
                            </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="searchButtonStyle" text="Search">
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -76,7 +76,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="buttonStyle" text="Back" />
+                  <Button fx:id="back" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="633.0" prefWidth="330.0" HBox.hgrow="ALWAYS">
@@ -126,7 +126,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Button fx:id="mRegister" maxWidth="300.0" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="buttonStyle" text="Register">
+                  <Button fx:id="mRegister" maxWidth="300.0" mnemonicParsing="false" onMousePressed="#register" styleClass="buttonStyle" text="Register">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

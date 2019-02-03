@@ -53,7 +53,7 @@
                         <Insets left="450.0" />
                      </HBox.margin>
                   </HBox>
-                  <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="searchButtonStyle" text="Search">
+                  <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Button>
@@ -84,7 +84,7 @@
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin></PasswordField>
-                              <Button fx:id="login" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#changeScene" prefHeight="40.0" prefWidth="120.0" text="Login">
+                              <Button fx:id="login" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#login" prefHeight="40.0" prefWidth="120.0" text="Login">
                                  <font>
                                     <Font name="Courier New" size="16.0" />
                                  </font>
@@ -96,7 +96,7 @@
                                     <String fx:value="h2" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="register" alignment="BASELINE_RIGHT" contentDisplay="TOP" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#changeScene" prefHeight="42.0" prefWidth="100.0" styleClass="changeColorButton" text="Register" wrapText="true">
+                              <Button fx:id="register" alignment="BASELINE_RIGHT" contentDisplay="TOP" disable="true" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#register" prefHeight="42.0" prefWidth="100.0" styleClass="changeColorButton" text="Register" wrapText="true">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
