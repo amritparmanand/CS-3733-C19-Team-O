@@ -40,4 +40,16 @@ public class mHomepage {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM, dbM));
     }
+
+    @FXML
+    public void newForm() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM, dbM));
+    }
+
+    @FXML
+    public void storage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mFormStorage.fxml"));
+        sceneM.changeScene(loader, new mFormStorage(sceneM, cacheM, dbM));
+    }
 }
