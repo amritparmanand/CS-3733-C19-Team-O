@@ -18,14 +18,17 @@ public class Main extends Application {
         uiManager = new UIManager(primaryStage);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
-        loader.setControllerFactory(c ->
-                new LoginPage(uiManager, cacheManager, databaseManager)
-        );
 
-        Parent root = loader.load();
-        primaryStage.setTitle("UI");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        uiManager.switchScreen2(loader, new LoginPage(uiManager, cacheManager, databaseManager));
+//
+//        loader.setControllerFactory(c ->
+//                new LoginPage(uiManager, cacheManager, databaseManager)
+//        );
+//
+//        Parent root = loader.load();
+//        primaryStage.setTitle("UI");
+//        primaryStage.setScene(new Scene(root));
+//        primaryStage.show();
 
 
     }

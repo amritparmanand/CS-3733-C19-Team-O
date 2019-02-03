@@ -1,6 +1,5 @@
 package Managers;
 
-import UI.LoginPage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class UIManager {
 
@@ -17,9 +18,9 @@ public class UIManager {
         this.main = main;
     }
 
-    public void switchScreen2(FXMLLoader loader, Object sceneClass) throws Exception {
+    public void changeScene(FXMLLoader loader, Object sceneClass) throws IOException {
         loader.setControllerFactory(c -> sceneClass);
-        
+
         Parent root = loader.load();
         main.setScene(new Scene(root));
         main.show();
@@ -37,17 +38,17 @@ public class UIManager {
         stage.showAndWait();
     }
 
-    /**
-     * Change scene
-     */
-    @SuppressWarnings("Duplicates")
-    public void changeScene(Parent root, Button btn) {
-        Stage stage;
-        stage = (Stage) btn.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//    /**
+//     * Change scene
+//     */
+//    @SuppressWarnings("Duplicates")
+//    public void changeScene(Parent root, Button btn) {
+//        Stage stage;
+//        stage = (Stage) btn.getScene().getWindow();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
     /**
      * Change Scene by pressing on V box

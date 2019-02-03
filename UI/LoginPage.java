@@ -42,11 +42,8 @@ public class LoginPage {
     public void login() throws IOException {
         // Login
         if(m.isSelected()){
-            Pane root = FXMLLoader.load(getClass().getResource("/UI/Views/mHomepage.fxml"));
-
-            uiManager.switchScreen2(root);
-
-            uiManager.changeScene(root, login);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+            uiManager.changeScene(loader, new mHomepage(uiManager, cacheManager, databaseManager));
         }
         else if(a.isSelected()){
             Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/aHomepage.fxml"));
