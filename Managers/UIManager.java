@@ -3,7 +3,6 @@ package Managers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -18,6 +17,8 @@ public class UIManager {
         this.main = main;
     }
 
+
+    //WARNING: Object isn't a good thing to settle on. We will create a super class later to call here.
     public void changeScene(FXMLLoader loader, Object sceneClass) throws IOException {
         loader.setControllerFactory(c -> sceneClass);
 
@@ -25,6 +26,17 @@ public class UIManager {
         main.setScene(new Scene(root));
         main.show();
     }
+
+    //title changing overload
+    public void changeScene(FXMLLoader loader, Object sceneClass, String title) throws IOException {
+        loader.setControllerFactory(c -> sceneClass);
+
+        Parent root = loader.load();
+        main.setScene(new Scene(root));
+        main.setTitle(title);
+        main.show();
+    }
+
 
     /**
      * Pop-up windows

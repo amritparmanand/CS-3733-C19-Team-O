@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import javax.naming.directory.SearchControls;
 import java.io.IOException;
 
 public class LoginPage {
@@ -46,27 +47,28 @@ public class LoginPage {
             uiManager.changeScene(loader, new mHomepage(uiManager, cacheManager, databaseManager));
         }
         else if(a.isSelected()){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/aHomepage.fxml"));
-            uiManager.changeScene(root, login);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+            uiManager.changeScene(loader, new aHomepage(uiManager, cacheManager, databaseManager));
         }
     }
 
     @FXML
     public void register() throws IOException {
         if(m.isSelected()) {
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mRegister.fxml"));
-            uiManager.changeScene(root, register);
-        } else if (a.isSelected()) {
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/aRegister.fxml"));
-            uiManager.changeScene(root, register);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mRegister.fxml"));
+            uiManager.changeScene(loader, new mRegister(uiManager, cacheManager, databaseManager));
+        }
+        else if (a.isSelected()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aRegister.fxml"));
+            uiManager.changeScene(loader, new aRegister(uiManager, cacheManager, databaseManager));
         }
     }
 
     @FXML
     public void search() throws IOException {
         // Search
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        uiManager.changeScene(root, search);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        uiManager.changeScene(loader, new SearchPage(uiManager, cacheManager, databaseManager));
     }
 
     /**
