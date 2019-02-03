@@ -1,18 +1,22 @@
 package UI;
 
+import UI.Managers.*;
+
+import UI.Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-
 
 import java.io.IOException;
 
 public class LoginPage {
+    private SceneManager sceneM;
+    private CacheManager cacheM;
+    private DatabaseManager dbM;
 
+    @FXML private Button pop;
     @FXML private RadioButton m;
     @FXML private RadioButton a;
     @FXML private TextField username;
@@ -21,46 +25,42 @@ public class LoginPage {
     @FXML private Button login;
     @FXML private Button search;
 
-    /**
-     * Model
-     */
-    private SceneManager sm;
-
-    /**
-     * Default constructor
-     */
-    public LoginPage() {
-        this.sm = new SceneManager();
+    public LoginPage(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.dbM = dbM;
     }
 
     @FXML
-    public void changeScene(MouseEvent event) throws IOException{
-
-        // Register
-        if(event.getSource() == register && m.isSelected()){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mRegister.fxml"));
-            sm.changeScene(root, register);
-        }
-        else if(event.getSource() == register && a.isSelected()){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/aRegister.fxml"));
-            sm.changeScene(root, register);
-        }
-
+    public void login() throws IOException {
         // Login
-        else if(event.getSource() == login && m.isSelected()){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mHomepage.fxml"));
-            sm.changeScene(root, login);
+        if(m.isSelected()){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+            sceneM.changeScene(loader, new mHomepage(sceneM, cacheM, dbM));
         }
-        else if(event.getSource() == login && a.isSelected()){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/aHomepage.fxml"));
-            sm.changeScene(root, login);
+        else if(a.isSelected()){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+            sceneM.changeScene(loader, new aHomepage(sceneM, cacheM, dbM));
         }
+    }
 
-        // Search
-        else if(event.getSource() == search){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchPage.fxml"));
-            sm.changeScene(root, search);
+    @FXML
+    public void register() throws IOException {
+        if(m.isSelected()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mRegister.fxml"));
+            sceneM.changeScene(loader, new mRegister(sceneM, cacheM, dbM));
         }
+        else if (a.isSelected()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aRegister.fxml"));
+            sceneM.changeScene(loader, new aRegister(sceneM, cacheM, dbM));
+        }
+    }
+
+    @FXML
+    public void search() throws IOException {
+        // Search
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM, dbM));
     }
 
     /**

@@ -1,6 +1,6 @@
 package UI;
 
-import UI.SceneManager;
+import UI.Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

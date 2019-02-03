@@ -1,5 +1,7 @@
 package UI;
 
+import UI.Managers.SceneManager;
+
 public class mApplicationForm {
 
     /**

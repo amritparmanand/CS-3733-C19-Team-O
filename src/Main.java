@@ -1,4 +1,7 @@
-import UI.SceneManager;
+import UI.LoginPage;
+import UI.Managers.CacheManager;
+import UI.Managers.DatabaseManager;
+import UI.Managers.SceneManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -6,21 +9,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
-    SceneManager sm;
+    private SceneManager sceneM;
+    private CacheManager cacheM = new CacheManager();
+    private DatabaseManager dbM = new DatabaseManager();
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        init();
+    public void start(Stage primaryStage) throws Exception {
+        sceneM = new SceneManager(primaryStage);
 
-        Parent root = FXMLLoader.load(getClass().getResource("UI/Views/LoginPage.fxml"));
-        primaryStage.setTitle("UI");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-    }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
 
-    public void init(){
-        sm = new SceneManager();
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM, dbM), "UI");
     }
 
 
