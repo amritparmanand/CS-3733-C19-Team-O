@@ -81,7 +81,7 @@
                                                 <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                                             </HBox.margin>
                                         </VBox>
-                                        <VBox fx:id="getApp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#changeScene" prefHeight="300.0" prefWidth="300.0" styleClass="card" stylesheets="@../style/ui-mockup-stylesheet.css">
+                                        <VBox fx:id="getApp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" styleClass="card" stylesheets="@../style/ui-mockup-stylesheet.css">
                                             <children>
                                                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
