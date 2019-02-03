@@ -1,4 +1,4 @@
-package UI.Managers;
+package Managers;
 
 public class DatabaseManager {
 }

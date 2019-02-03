@@ -1,13 +1,11 @@
 package UI;
 
-import UI.Managers.CacheManager;
-import UI.Managers.DatabaseManager;
-import UI.Managers.SceneManager;
+import Managers.CacheManager;
+import Managers.DatabaseManager;
+import Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;

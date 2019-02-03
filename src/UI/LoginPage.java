@@ -1,8 +1,8 @@
 package UI;
 
-import UI.Managers.*;
+import Managers.*;
 
-import UI.Managers.SceneManager;
+import Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
