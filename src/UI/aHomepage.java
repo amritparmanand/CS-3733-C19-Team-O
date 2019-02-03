@@ -1,5 +1,7 @@
 package UI;
 
+import UI.Managers.CacheManager;
+import UI.Managers.DatabaseManager;
 import UI.Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,22 +13,19 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 public class aHomepage {
+    private SceneManager sceneM;
+    private CacheManager cacheM;
+    private DatabaseManager dbM;
+
+    public aHomepage(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.dbM = dbM;
+    }
 
     @FXML private Button back;
     @FXML private Button search;
     @FXML private VBox getApp;
-
-    /**
-     * Model
-     */
-    private SceneManager sm;
-
-    /**
-     * Default constructor
-     */
-    public aHomepage() {
-        this.sm = new SceneManager();
-    }
 
     @FXML
     public void changeScene(MouseEvent event) throws IOException {
