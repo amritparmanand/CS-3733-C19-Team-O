@@ -3,8 +3,6 @@ import Managers.*;
 import UI.LoginPage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,18 +17,7 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
 
-        uiManager.switchScreen2(loader, new LoginPage(uiManager, cacheManager, databaseManager));
-//
-//        loader.setControllerFactory(c ->
-//                new LoginPage(uiManager, cacheManager, databaseManager)
-//        );
-//
-//        Parent root = loader.load();
-//        primaryStage.setTitle("UI");
-//        primaryStage.setScene(new Scene(root));
-//        primaryStage.show();
-
-
+        uiManager.changeScene(loader, new LoginPage(uiManager, cacheManager, databaseManager), "UI");
     }
 
     public static void main(String[] args) {
