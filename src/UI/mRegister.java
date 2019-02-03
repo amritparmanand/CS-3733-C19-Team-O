@@ -27,25 +27,21 @@ public class mRegister {
     @FXML private Button search;
     @FXML private Button back;
 
-    /**
-     * Change scene
-     * @param event
-     * @throws IOException
-     */
-    @SuppressWarnings("Duplicates")
     @FXML
-    public void changeScene(MouseEvent event) throws IOException {
-        if(event.getSource() == mRegister){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mHomepage.fxml"));
-            sm.changeScene(root, mRegister);
-        }
-        else if(event.getSource() == search){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchPage.fxml"));
-            sm.changeScene(root, search);
-        }
-        else if(event.getSource() == back){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/LoginPage.fxml"));
-            sm.changeScene(root, back);
-        }
+    public void register() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM, dbM));
+    }
+
+    @FXML
+    public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM, dbM));
+    }
+
+    @FXML
+    public void search() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM, dbM));
     }
 }

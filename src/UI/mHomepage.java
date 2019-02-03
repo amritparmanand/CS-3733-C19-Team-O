@@ -30,22 +30,14 @@ public class mHomepage {
     @FXML private VBox storage;
 
     @FXML
-    public void changeScene(MouseEvent event) throws IOException {
-        if(event.getSource() == back){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/LoginPage.fxml"));
-            sm.changeScene(root, back);
-        }
-        else if(event.getSource() == search){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchPage.fxml"));
-            sm.changeScene(root, search);
-        }
-        else if(event.getSource() == newForm){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
-            sm.changeSceneWithV(root, newForm);
-        }
-        else if(event.getSource() == storage){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mFormStorage.fxml"));
-            sm.changeSceneWithV(root, storage);
-        }
+    public void search() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM, dbM));
+    }
+
+    @FXML
+    public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM, dbM));
     }
 }
