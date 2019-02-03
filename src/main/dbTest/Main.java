@@ -1,4 +1,4 @@
-package dbTest;
+package main.dbTest;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
