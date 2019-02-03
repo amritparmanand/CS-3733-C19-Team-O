@@ -1,5 +1,7 @@
 package UI;
 
+import UI.Managers.CacheManager;
+import UI.Managers.DatabaseManager;
 import UI.Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,21 +13,19 @@ import java.io.IOException;
 
 public class aRegister {
 
+    private SceneManager sceneM;
+    private CacheManager cacheM;
+    private DatabaseManager dbM;
+
+    public aRegister(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.dbM = dbM;
+    }
+
     @FXML private Button aRegister;
     @FXML private Button search;
     @FXML private Button back;
-
-    /**
-     * Model
-     */
-    private SceneManager sm;
-
-    /**
-     * Default constructor
-     */
-    public aRegister() {
-        this.sm = new SceneManager();
-    }
 
     /**
      * Change scene
