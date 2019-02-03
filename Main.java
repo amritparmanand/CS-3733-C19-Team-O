@@ -1,6 +1,6 @@
+import Managers.*;
+
 import UI.LoginPage;
-import UI.StorageManager;
-import UI.SceneManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,32 +8,29 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    StorageManager storageManager;
-    SceneManager sm;
+    private UIManager uiManager;
+    private CacheManager cacheManager = new CacheManager();
+    private DatabaseManager databaseManager = new DatabaseManager();
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        init();
+        uiManager = new UIManager(primaryStage);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
         loader.setControllerFactory(c ->
-           new LoginPage(storageManager, sm)
+                new LoginPage(uiManager, cacheManager, databaseManager)
         );
 
         Parent root = loader.load();
         primaryStage.setTitle("UI");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
 
-    public void init(){
-        sm = new SceneManager();
-    }
 
+    }
 
     public static void main(String[] args) {
         launch(args);
-
-        return;
     }
 }
