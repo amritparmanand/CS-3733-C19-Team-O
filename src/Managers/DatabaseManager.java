@@ -12,12 +12,18 @@ public class DatabaseManager {
         try {
             connection = DriverManager.getConnection("jdbc:derby:ttbDB;create=true");
             stmt = connection.createStatement();
-        } catch (SQLException e) {
-            System.out.println("Connection Failed. Check stacktrace.");
-            e.printStackTrace();
+        }
+        catch(SQLException e){
+            if (!e.getSQLState().equals("XBM0J")) {
+                System.out.println("Connection Failed. Check stacktrace.");
+                e.printStackTrace();
+            }
         }
         this.connection = connection;
         this.stmt = stmt;
+
+    }
+    public void generateTables(){
         String createRepresentative = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
                 "username varchar(20),	" +
@@ -58,22 +64,23 @@ public class DatabaseManager {
         String createUniqueAgents = "create unique index Agents_username_uindex " +
                 "on Agents (username)";
         try {
-            stmt.execute(createRepresentative);
-            stmt.execute(createAgents);
-            stmt.execute(createForms);
-            stmt.execute(createUniqueReps);
-            stmt.execute(createUniqueAgents);
-        } catch (SQLException e) {
+            this.stmt.execute(createRepresentative);
+            this.stmt.execute(createAgents);
+            this.stmt.execute(createForms);
+            this.stmt.execute(createUniqueReps);
+            this.stmt.execute(createUniqueAgents);
+        }
+        catch (SQLException e){
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
     }
 
     public Connection getConnection() {
-        return connection;
+        return this.connection;
     }
 
     public Statement getStmt() {
-        return stmt;
+        return this.stmt;
     }
 }
