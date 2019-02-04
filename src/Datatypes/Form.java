@@ -18,7 +18,7 @@ public class Form {
     private String appelation;
     private BigInteger phoneNumber;
     private String emailAddress;
-    private Date dateOfAppilcation;
+    private Date dateOfApplication;
     private String printName;
     private int beerWineSpirit;
     private double alcoholPercent;
@@ -40,7 +40,7 @@ public class Form {
         this.appelation = null;
         this.phoneNumber = null;
         this.emailAddress = null;
-        this.dateOfAppilcation = null;
+        this.dateOfApplication = null;
         this.printName = null;
         this.beerWineSpirit = 0;
         this.alcoholPercent = 0;
@@ -154,11 +154,11 @@ public class Form {
     }
 
     public Date getDateOfAppilcation() {
-        return dateOfAppilcation;
+        return dateOfApplication;
     }
 
     public void setDateOfAppilcation(Date dateOfAppilcation) {
-        this.dateOfAppilcation = dateOfAppilcation;
+        this.dateOfApplication = dateOfAppilcation;
     }
 
     public String getPrintName() {
