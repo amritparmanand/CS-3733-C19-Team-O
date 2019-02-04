@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg3">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg3">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -60,10 +60,7 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#searchPage" styleClass="searchButtonStyle" text="Search">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin></Button>
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" text="Search" />
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -81,23 +78,21 @@
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="73.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="108.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
-                                <Text layoutX="116.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 5 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="143.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                             <children>
-                                                <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
-                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
+                                                <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#changeScene" text="Previous Page" />
+                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#changeScene" text="Next Page" />
                                             </children>
                                         </HBox>
                                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Save Draft">
-                                 <styleClass>
-                                    <String fx:value="labeltext" />
-                                    <String fx:value="card" />
-                                 </styleClass>
+                                            <styleClass>
+                                                <String fx:value="labeltext" />
+                                                <String fx:value="card" />
+                                            </styleClass>
                                         </Button>
-                                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
+                                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" text="Back to homepage">
                                             <VBox.margin>
                                                 <Insets top="20.0" />
                                             </VBox.margin>

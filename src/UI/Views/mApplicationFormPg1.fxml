@@ -3,13 +3,12 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg1">
     <children>
         <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -60,10 +59,7 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#searchPage" styleClass="searchButtonStyle" text="Search">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin></Button>
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" text="Search" />
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -81,14 +77,12 @@
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="73.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="108.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
-                                <Text layoutX="116.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 5 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="143.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                             <children>
-                                                <Button disable="true" mnemonicParsing="false" styleClass="buttonStyle" text="Previous Page" />
-                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
+                                                <Button disable="true" mnemonicParsing="false" text="Previous Page" />
+                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#changeScene" text="Next Page" />
                                             </children>
                                         </HBox>
                                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Save Draft">
@@ -97,7 +91,7 @@
                                                 <String fx:value="card" />
                                             </styleClass>
                                         </Button>
-                              <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
+                              <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" text="Back to homepage">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
@@ -175,19 +169,12 @@
                                                 <Label styleClass="labeltext" text="3. Source of Product (Required)" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                     <children>
-                                          <RadioButton mnemonicParsing="false" text="Domestic">
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="group" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Imported" toggleGroup="$group">
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                          </RadioButton>
+                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Domestic">
+                                                            <HBox.margin>
+                                                                <Insets right="40.0" />
+                                                            </HBox.margin>
+                                                        </CheckBox>
+                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Imported" />
                                                     </children>
                                                 </HBox>
                                             </children>
@@ -214,24 +201,17 @@
                                                 <Label styleClass="labeltext" text="5. Type of Product (Required)" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                     <children>
-                                          <RadioButton mnemonicParsing="false" text="Wine">
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="g2" />
-                                             </toggleGroup>
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                          </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Distilled Spirits" toggleGroup="$g2">
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                          </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Malt Beverages" toggleGroup="$g2">
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                          </RadioButton>
+                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Wine">
+                                                            <HBox.margin>
+                                                                <Insets right="40.0" />
+                                                            </HBox.margin>
+                                                        </CheckBox>
+                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Distilled Spirits">
+                                                            <HBox.margin>
+                                                                <Insets right="40.0" />
+                                                            </HBox.margin>
+                                                        </CheckBox>
+                                                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Malt Beverages" />
                                                     </children>
                                                 </HBox>
                                             </children>
