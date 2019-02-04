@@ -63,7 +63,7 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="searchButtonStyle" text="Search">
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#searchPage" styleClass="searchButtonStyle" text="Search">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Button>
@@ -90,8 +90,8 @@
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                             <children>
-                                                <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="buttonStyle" text="Previous Page" />
-                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="buttonStyle" text="Next Page" />
+                                                <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
+                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                             </children>
                                         </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -126,7 +126,7 @@
                                     </Button>
                                  </children>
                               </HBox>
-                                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="changeColorButton" text="Back to homepage">
+                                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
                                             <VBox.margin>
                                                 <Insets top="20.0" />
                                             </VBox.margin>
