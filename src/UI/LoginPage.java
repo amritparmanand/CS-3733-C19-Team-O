@@ -8,12 +8,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
 
 public class LoginPage {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private BCryptPasswordEncoder passwordDecoder = new BCryptPasswordEncoder();
 
     @FXML private RadioButton m;
     @FXML private RadioButton a;
@@ -31,10 +37,36 @@ public class LoginPage {
     @FXML
     public void login() throws IOException {
         // Login
+        String hashedPassword = "";
+        String uname = "";
         if(m.isSelected()){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-            sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+            try {
+                String getData = "select * from REPRESENTATIVES where REPID =" + Integer.parseInt(id.getText());
+                ResultSet result = cacheM.getDbM().getStmt().executeQuery(getData);
+                while(result.next()){
+                    uname = result.getString("username");
+                    hashedPassword = result.getString("password");
+                    System.out.println(hashedPassword);
+                }
+
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+            if(uname.equals(username.getText()) && passwordDecoder.matches(password.getText(),hashedPassword))//get the hashed password from dataBase
+            {
+                System.out.println(password.getText());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+                sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+            }
+            else{
+                System.out.println("sup");
+                System.out.println();
+            }
         }
+
+
         else if(a.isSelected()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
             sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
