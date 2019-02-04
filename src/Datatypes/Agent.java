@@ -7,4 +7,12 @@ public class Agent extends Account {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
     }
+
+    public int getTtbID() {
+        return ttbID;
+    }
+
+    public void setTtbID(int ttbID) {
+        this.ttbID = ttbID;
+    }
 }

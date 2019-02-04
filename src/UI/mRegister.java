@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
+import org.springframework.security.crypto.bcrypt.*;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -33,19 +33,19 @@ public class mRegister {
 
 
     @FXML
+    @SuppressWarnings("Duplicates")
     public void register() throws IOException {
         Manufacturer m = new Manufacturer(username.getText(), password.getText(), fullName.getText(), email.getText(),
                 phone.getText(), Integer.parseInt(repID.getText()),companyName.getText());
 
         String createManufacturer = "INSERT INTO Representatives(repid, username, password, fullname, companyname, email, phone) " +
                 "VALUES(?,?,?,?,?,?,?)";
-        System.out.println(createManufacturer);
 
         try {
             PreparedStatement prepStmt = cacheM.getDbM().getConnection().prepareStatement(createManufacturer);
-            prepStmt.setInt(1,1);
+            prepStmt.setInt(1,m.getRepID());
             prepStmt.setString(2,m.getUsername());
-            prepStmt.setString(3,m.getPassword());
+            prepStmt.setString(3,m.getEncryptor().encode(m.getPassword()));
             prepStmt.setString(4,m.getFullName());
             prepStmt.setString(5,m.getCompanyName());
             prepStmt.setString(6,m.getEmail());

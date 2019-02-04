@@ -1,11 +1,14 @@
 package Datatypes;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 public abstract class Account {
     private String username;
     private String password;
     private String fullName;
     private String email;
     private String phone;
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public Account(String username, String password, String fullName, String email, String phone) {
         this.username = username;
@@ -50,6 +53,8 @@ public abstract class Account {
     public String getPhone() {
         return phone;
     }
+
+    public BCryptPasswordEncoder getEncryptor(){return passwordEncoder;}
 
     public void setPhone(String phone) {
         this.phone = phone;
