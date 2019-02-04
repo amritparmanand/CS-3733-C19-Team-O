@@ -55,7 +55,7 @@ public class mApplicationFormPg4 {
                 ",	" + form.getAppellation()+
                 ", " + form.getPhoneNumber()+
                 ", " + form.getEmailAddress()+
-                ",	" + form.getDateOfAppilcation()+
+                ",	" + form.getDateOfApplication()+
                 ", " + form.getPrintName()+
                 ",	" + form.getBeerWineSpirit()+
                 ", " + form.getAlcoholPercent()+

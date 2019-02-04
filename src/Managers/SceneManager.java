@@ -13,6 +13,8 @@ public class SceneManager {
 
     private Stage main;
 
+    private Scene lastScene;
+
     public SceneManager(Stage main) {
         this.main = main;
     }
@@ -28,11 +30,19 @@ public class SceneManager {
 
     //title changing overload
     public void changeScene(FXMLLoader loader, Object sceneClass, String title) throws IOException {
+        lastScene = main.getScene();
+
         loader.setControllerFactory(c -> sceneClass);
 
         Parent root = loader.load();
+
         main.setScene(new Scene(root));
         main.setTitle(title);
+        main.show();
+    }
+
+    public void backScene() {
+        main.setScene(lastScene);
         main.show();
     }
 
