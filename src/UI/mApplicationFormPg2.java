@@ -28,15 +28,15 @@ public class mApplicationFormPg2 {
 
         Form form = cacheM.getForm();
 
-        form.setPrintName("");
-        form.setMailingAddress("");
-        form.setFormula("");
-        form.setGrapeVarietal("");
+        form.setPrintName("asd");
+        form.setMailingAddress("asd");
+        form.setFormula("asd");
+        form.setGrapeVarietal("asd");
         form.setProductType(1);
-        form.setAppellation("");
-        form.setFancifulName("");
+        form.setAppellation("asd");
+        form.setFancifulName("asd");
         form.setPhoneNumber(new BigInteger("5856457291"));
-        form.setEmailAddress("");
+        form.setEmailAddress("asd");
 
         System.out.println(form.getBrandName());
         cacheM.setForm(form);

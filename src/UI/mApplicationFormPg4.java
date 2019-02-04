@@ -38,7 +38,7 @@ public class mApplicationFormPg4 {
 
         form.setDateOfApplication(new Date(1,1,1));
 //        form.setSignatureOfApplicant("");
-        form.setPrintName("");
+        form.setPrintName("asdf");
 //        form.setDateIssued("");
 
         cacheM.getDbM().insertForm(form);

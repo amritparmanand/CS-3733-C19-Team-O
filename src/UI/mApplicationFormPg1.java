@@ -30,7 +30,7 @@ public class mApplicationFormPg1 {
         form.setSerialNumber(1);
         form.setProductType(1);
         form.setBrandName("Yeet");
-        form.setFancifulName("");
+        form.setFancifulName("yoit");
 
         cacheM.setForm(form);
 

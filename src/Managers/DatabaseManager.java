@@ -78,8 +78,14 @@ public class DatabaseManager {
         }
     }
 
-    public void insertForm(Form form)
+    public void insertForm(Form form) throws SQLException
     {
+        form.setForms_pk(1);
+        form.setApplicantName("DankMEME");
+        form.setBeerWineSpirit(11);
+        form.setpHLevel(1.1);
+        form.setVintageYear(1111);
+        form.setAlcoholPercent(1000);
         String createForm = "INSERT INTO Forms VALUES(" + form.getForms_pk()+
                 ", " + form.getBrewerNumber()+
                 ",	" + form.getProductSource()+
@@ -94,20 +100,30 @@ public class DatabaseManager {
                 ",	" + form.getAppellation()+
                 ", " + form.getPhoneNumber()+
                 ", " + form.getEmailAddress()+
-                ",	" + form.getDateOfApplication()+
+                ",	" + "0000-01-01"+
                 ", " + form.getPrintName()+
                 ",	" + form.getBeerWineSpirit()+
                 ", " + form.getAlcoholPercent()+
                 ",	" + form.getVintageYear()+
-                ", " + + form.getpHLevel();
+                ", " +  form.getpHLevel() +
+                ", " + form.getForms_pk() +
+                ")";
+        String Forms1 = "INSERT INTO Forms(FORMID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, APPELLATION, PHONENUMBER, EMAILADDRESS, DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, VINTAGEYEAR, PHLEVEL) " +
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement prepStmt = connection.prepareStatement(Forms1);
 
         try {
 
+            prepStmt.setInt(1,1);
             stmt.execute(createForm);
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+    }
+    public Connection getConnection()
+    {
+        return connection;
     }
 }
