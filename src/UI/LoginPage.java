@@ -15,14 +15,13 @@ public class LoginPage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private Button pop;
     @FXML private RadioButton m;
     @FXML private RadioButton a;
-    @FXML private TextField username;
-    @FXML private TextField password;
     @FXML private Button register;
     @FXML private Button login;
-    @FXML private Button search;
+    @FXML private TextField id;
+    @FXML private TextField username;
+    @FXML private TextField password;
 
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -69,7 +68,7 @@ public class LoginPage {
     public void validateButton(){
         if(m.isSelected() || a.isSelected()){
             register.setDisable(false);
-            if (username.getText().isEmpty() || password.getText().isEmpty()) {
+            if (username.getText().isEmpty() || password.getText().isEmpty() || id.getText().isEmpty()) {
                 login.setDisable(true);
             } else {
                 login.setDisable(false);
