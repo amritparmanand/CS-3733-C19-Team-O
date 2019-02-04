@@ -91,32 +91,32 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Full Name">
+                  <TextField fx:id="fullName" alignment="TOP_LEFT" maxWidth="300.0" promptText="Full Name">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Email">
+                  <TextField fx:id="email" alignment="TOP_LEFT" maxWidth="300.0" promptText="Email">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Phone">
+                  <TextField fx:id="phone" alignment="TOP_LEFT" maxWidth="300.0" promptText="Phone">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Company Name">
+                  <TextField fx:id="companyName" alignment="TOP_LEFT" maxWidth="300.0" promptText="Company Name">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField alignment="TOP_LEFT" maxWidth="300.0" promptText="Username">
+                  <TextField fx:id="username" alignment="TOP_LEFT" maxWidth="300.0" promptText="Username">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField maxWidth="300.0" promptText="Password">
+                  <PasswordField fx:id="password" maxWidth="300.0" promptText="Password">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
