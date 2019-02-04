@@ -5,10 +5,11 @@ import java.sql.*;
 public class DatabaseManager {
     private Connection connection;
     private Statement stmt;
-    public DatabaseManager(){
+
+    public DatabaseManager() {
         Connection connection = null;
         Statement stmt = null;
-        try{
+        try {
             connection = DriverManager.getConnection("jdbc:derby:ttbDB;create=true");
             stmt = connection.createStatement();
         }
@@ -30,7 +31,7 @@ public class DatabaseManager {
                 "fullName varchar(50),	" +
                 "email varchar(20),	" +
                 "phone bigint)";
-        String createAgents ="create table Agents" +
+        String createAgents = "create table Agents" +
                 "(ttbID int	constraint Agents_pk primary key, " +
                 "username varchar(20), " +
                 "password varchar(15), " +
@@ -49,7 +50,7 @@ public class DatabaseManager {
                 "mailingAddress varchar(80), " +
                 "formula varchar(20), " +
                 "grapeVarietal varchar(20),	" +
-                "appelation varchar(20), " +
+                "appellation varchar(20), " +
                 "phoneNumber bigint, " +
                 "emailAddress varchar(30),	" +
                 "dateOfApplication date, " +
@@ -64,15 +65,10 @@ public class DatabaseManager {
                 "on Agents (username)";
         try {
             this.stmt.execute(createRepresentative);
-            System.out.println("Created Rep Table");
             this.stmt.execute(createAgents);
-            System.out.println("Created Agent Table");
             this.stmt.execute(createForms);
-            System.out.println("Created Form Table");
             this.stmt.execute(createUniqueReps);
-            System.out.println("Created Rep Constraint");
             this.stmt.execute(createUniqueAgents);
-            System.out.println("Created Agents Constraint");
         }
         catch (SQLException e){
             if (!e.getSQLState().equals("X0Y32"))

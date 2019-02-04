@@ -14,7 +14,6 @@ import java.io.IOException;
 public class LoginPage {
     private SceneManager sceneM;
     private CacheManager cacheM;
-    private DatabaseManager dbM;
 
     @FXML private Button pop;
     @FXML private RadioButton m;
@@ -25,10 +24,9 @@ public class LoginPage {
     @FXML private Button login;
     @FXML private Button search;
 
-    public LoginPage(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
+    public LoginPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        this.dbM = dbM;
     }
 
     @FXML
@@ -36,11 +34,11 @@ public class LoginPage {
         // Login
         if(m.isSelected()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-            sceneM.changeScene(loader, new mHomepage(sceneM, cacheM, dbM));
+            sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
         }
         else if(a.isSelected()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
-            sceneM.changeScene(loader, new aHomepage(sceneM, cacheM, dbM));
+            sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
         }
     }
 
@@ -48,11 +46,11 @@ public class LoginPage {
     public void register() throws IOException {
         if(m.isSelected()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mRegister.fxml"));
-            sceneM.changeScene(loader, new mRegister(sceneM, cacheM, dbM));
+            sceneM.changeScene(loader, new mRegister(sceneM, cacheM));
         }
         else if (a.isSelected()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aRegister.fxml"));
-            sceneM.changeScene(loader, new aRegister(sceneM, cacheM, dbM));
+            sceneM.changeScene(loader, new aRegister(sceneM, cacheM));
         }
     }
 
@@ -60,7 +58,7 @@ public class LoginPage {
     public void search() throws IOException {
         // Search
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM, dbM));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
 
     /**

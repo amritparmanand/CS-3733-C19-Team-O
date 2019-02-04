@@ -11,28 +11,17 @@ import java.io.IOException;
 
 public class mFormStorage {
 
-    private SceneManager sceneManager;
-    private CacheManager cacheManager;
-    private DatabaseManager databaseManager;
+    private SceneManager sceneM;
+    private CacheManager cacheM;
 
     @FXML private Button backToMHome;
     @FXML private Button search;
     @FXML private Button newForm;
     //@FXML private VBox getApp;
 
-    /**
-     * Model
-     */
-    private SceneManager sm;
-
-    /**
-     * Default constructor
-     */
-
-    public mFormStorage(SceneManager sm, CacheManager cm, DatabaseManager dm) {
-        this.sceneManager = sm;
-        this.cacheManager = cm;
-        this.databaseManager = dm;
+    public mFormStorage(SceneManager sceneM, CacheManager cacheM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
     }
 
     @FXML
@@ -44,12 +33,12 @@ public class mFormStorage {
     @FXML
     public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneManager.changeScene(loader, new SearchPage(sceneManager, cacheManager, databaseManager));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
 
     @FXML
     public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneManager.changeScene(loader, new mHomepage(sceneManager, cacheManager, databaseManager));
+        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
 }

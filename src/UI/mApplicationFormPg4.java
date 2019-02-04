@@ -1,51 +1,87 @@
 package UI;
 
-import Managers.CacheManager;
-import Managers.DatabaseManager;
-import Managers.SceneManager;
+import Datatypes.Form;
+import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.SQLException;
 
 public class mApplicationFormPg4 {
-    private SceneManager sceneManager;
-    private CacheManager cacheManager;
-    private DatabaseManager databaseManager;
+    private SceneManager sceneM;
+    private CacheManager cacheM;
 
     @FXML private Button previous;
     @FXML private Button search;
     @FXML private Button back;
     @FXML private Button submit;
 
-    public mApplicationFormPg4(SceneManager sceneManager, CacheManager cacheManager, DatabaseManager databaseManager) {
-        this.sceneManager = sceneManager;
-        this.cacheManager = cacheManager;
-        this.databaseManager = databaseManager;
+    public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
+
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
     }
 
     @FXML
     public void previousPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneManager.changeScene(loader, new mApplicationFormPg2(sceneManager, cacheManager, databaseManager));
+        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
 
 
     @FXML
     public void submit() throws IOException {
-    // Functionality here
+        Form form = cacheM.getForm();
+
+        form.setDateOfAppilcation(new Date(1,1,1));
+//        form.setSignatureOfApplicant("");
+        form.setPrintName("");
+//        form.setDateIssued("");
+
+        String createForm = "INSERT INTO Forms VALUES(" + form.getForms_pk()+
+                ", " + form.getBrewerNumber()+
+                ",	" + form.getProductSource()+
+                ",	" + form.getSerialNumber()+
+                ",	" + form.getProductType()+
+                ",	" + form.getBrandName()+
+                ", " + form.getFancifulName()+
+                ",	" + form.getApplicantName()+
+                ",	" + form.getMailingAddress()+
+                ", " + form.getFormula()+
+                ", " + form.getGrapeVarietal()+
+                ",	" + form.getAppellation()+
+                "appelation varchar(20), " +
+                "phoneNumber bigint, " +
+                "emailAddress varchar(30),	" +
+                "dateOfApplication date, " +
+                "printName varchar(40),	" +
+                "beerWineSpirit int, " +
+                "alcoholPercent double,	" +
+                "vintageYear int, " +
+                "phLevel double)";
+
+        try {
+
+            cacheM.getDbM().getStmt().execute(createForm);
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
     }
 
     @FXML
     public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneManager.changeScene(loader, new SearchPage(sceneManager, cacheManager, databaseManager));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
 
     @FXML
     public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneManager.changeScene(loader, new mHomepage(sceneManager, cacheManager, databaseManager));
+        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
 }
