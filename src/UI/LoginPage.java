@@ -35,10 +35,11 @@ public class LoginPage {
     }
 
     @FXML
+    @SuppressWarnings("Duplicates")
     public void login() throws IOException {
-        // Login
-        String hashedPassword = "";
         String uname = "";
+        String hashedPassword = "";
+
         if(m.isSelected()){
             try {
                 String getData = "select * from REPRESENTATIVES where REPID =" + Integer.parseInt(id.getText());
@@ -46,30 +47,43 @@ public class LoginPage {
                 while(result.next()){
                     uname = result.getString("username");
                     hashedPassword = result.getString("password");
-                    System.out.println(hashedPassword);
                 }
-
             } catch (SQLException e) {
                 if (!e.getSQLState().equals("X0Y32"))
                     e.printStackTrace();
             }
 
-            if(uname.equals(username.getText()) && passwordDecoder.matches(password.getText(),hashedPassword))//get the hashed password from dataBase
-            {
-                System.out.println(password.getText());
+            if(uname.equals(username.getText()) && passwordDecoder.matches(password.getText(),hashedPassword)) {
+                System.out.println("Login Successful!");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
                 sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
             }
             else{
-                System.out.println("sup");
-                System.out.println();
+                System.out.println("The username and password you entered did not match our records. Please double-check and try again.");
             }
         }
 
-
         else if(a.isSelected()){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
-            sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+            try {
+                String getData = "select * from AGENTS where TTBID =" + Integer.parseInt(id.getText());
+                ResultSet result = cacheM.getDbM().getStmt().executeQuery(getData);
+                while(result.next()){
+                    uname = result.getString("username");
+                    hashedPassword = result.getString("password");
+                }
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+            if(uname.equals(username.getText()) && passwordDecoder.matches(password.getText(),hashedPassword)) {
+                System.out.println("Login Successful!");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+                sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+            }
+            else{
+                System.out.println("The username and password you entered did not match our records. Please double-check and try again.");
+            }
         }
     }
 

@@ -23,11 +23,10 @@ public class aRegister {
     }
 
     @FXML private Button aRegister;
-    @FXML private Button search;
-    @FXML private Button back;
 
     @FXML private TextField username;
     @FXML private TextField password;
+    @FXML private TextField confirmP;
     @FXML private TextField fullName;
     @FXML private TextField email;
     @FXML private TextField phone;
@@ -49,29 +48,50 @@ public class aRegister {
     @FXML
     @SuppressWarnings("Duplicates")
     public void register() throws IOException {
-        // public Agent(String username, String password, String fullName, String email, String phone, int ttbID)
-        Agent a = new Agent(username.getText(), password.getText(), fullName.getText(), email.getText(),
-                phone.getText(), Integer.parseInt(ttbID.getText()));
+        if(password.getText().equals(confirmP.getText())){
+            Agent a = new Agent(username.getText(), password.getText(), fullName.getText(), email.getText(),
+                    phone.getText(), Integer.parseInt(ttbID.getText()));
 
-        String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone) " +
-                "VALUES(?,?,?,?,?,?)";
+            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone) " +
+                    "VALUES(?,?,?,?,?,?)";
 
-        try {
-            PreparedStatement prepStmt = cacheM.getDbM().getConnection().prepareStatement(createManufacturer);
-            prepStmt.setInt(1,a.getTtbID());
-            prepStmt.setString(2,a.getUsername());
-            prepStmt.setString(3,a.getEncryptor().encode(a.getPassword()));
-            prepStmt.setString(4,a.getFullName());
-            prepStmt.setString(5,a.getEmail());
-            prepStmt.setString(6,a.getPhone());
-            prepStmt.executeUpdate();
-            prepStmt.close();
+            try {
+                PreparedStatement prepStmt = cacheM.getDbM().getConnection().prepareStatement(createManufacturer);
+                prepStmt.setInt(1,a.getTtbID());
+                prepStmt.setString(2,a.getUsername());
+                prepStmt.setString(3,a.getEncryptor().encode(a.getPassword()));
+                prepStmt.setString(4,a.getFullName());
+                prepStmt.setString(5,a.getEmail());
+                prepStmt.setString(6,a.getPhone());
+                prepStmt.executeUpdate();
+                prepStmt.close();
 
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+            sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
         }
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+        else{
+            System.out.println("Please confirm password!");
+        }
+
+    }
+
+    @FXML
+    public void validateButton(){
+        if(username.getText().isEmpty() ||
+                password.getText().isEmpty() ||
+                confirmP.getText().isEmpty() ||
+                fullName.getText().isEmpty() ||
+                email.getText().isEmpty() ||
+                phone.getText().isEmpty() ||
+                ttbID.getText().isEmpty()){
+            aRegister.setDisable(true);
+        }
+        else{
+            aRegister.setDisable(false);
+        }
     }
 }

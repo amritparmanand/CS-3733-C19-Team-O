@@ -86,47 +86,47 @@
                         <Font name="Book Antiqua" size="32.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="repID" alignment="TOP_LEFT" maxWidth="300.0" promptText="Representative ID">
+                  <TextField fx:id="repID" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Representative ID">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="fullName" alignment="TOP_LEFT" maxWidth="300.0" promptText="Full Name">
+                  <TextField fx:id="fullName" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Full Name">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="email" alignment="TOP_LEFT" maxWidth="300.0" promptText="Email">
+                  <TextField fx:id="email" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Email">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="phone" alignment="TOP_LEFT" maxWidth="300.0" promptText="Phone">
+                  <TextField fx:id="phone" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Phone">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="companyName" alignment="TOP_LEFT" maxWidth="300.0" promptText="Company Name">
+                  <TextField fx:id="companyName" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Company Name">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="username" alignment="TOP_LEFT" maxWidth="300.0" promptText="Username">
+                  <TextField fx:id="username" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Username">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField fx:id="password" maxWidth="300.0" promptText="Password">
+                  <PasswordField fx:id="password" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Password">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <PasswordField maxWidth="300.0" promptText="Confirm Password">
+                  <PasswordField fx:id="confirmP" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Confirm Password">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Button fx:id="mRegister" maxWidth="300.0" mnemonicParsing="false" onMousePressed="#register" styleClass="buttonStyle" text="Register">
+                  <Button fx:id="register" disable="true" maxWidth="300.0" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#register" styleClass="buttonStyle" text="Register">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

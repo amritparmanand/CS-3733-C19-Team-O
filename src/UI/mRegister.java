@@ -23,8 +23,11 @@ public class mRegister {
         this.cacheM = cacheM;
     }
 
+    @FXML private Button register;
+
     @FXML private TextField username;
     @FXML private TextField password;
+    @FXML private TextField confirmP;
     @FXML private TextField fullName;
     @FXML private TextField email;
     @FXML private TextField phone;
@@ -35,32 +38,37 @@ public class mRegister {
     @FXML
     @SuppressWarnings("Duplicates")
     public void register() throws IOException {
-        Manufacturer m = new Manufacturer(username.getText(), password.getText(), fullName.getText(), email.getText(),
-                phone.getText(), Integer.parseInt(repID.getText()),companyName.getText());
+        if(password.getText().equals(confirmP.getText())){
+            Manufacturer m = new Manufacturer(username.getText(), password.getText(), fullName.getText(), email.getText(),
+                    phone.getText(), Integer.parseInt(repID.getText()),companyName.getText());
 
-        String createManufacturer = "INSERT INTO Representatives(repid, username, password, fullname, companyname, email, phone) " +
-                "VALUES(?,?,?,?,?,?,?)";
+            String createManufacturer = "INSERT INTO Representatives(repid, username, password, fullname, companyname, email, phone) " +
+                    "VALUES(?,?,?,?,?,?,?)";
 
-        try {
-            PreparedStatement prepStmt = cacheM.getDbM().getConnection().prepareStatement(createManufacturer);
-            prepStmt.setInt(1,m.getRepID());
-            prepStmt.setString(2,m.getUsername());
-            prepStmt.setString(3,m.getEncryptor().encode(m.getPassword()));
-            prepStmt.setString(4,m.getFullName());
-            prepStmt.setString(5,m.getCompanyName());
-            prepStmt.setString(6,m.getEmail());
-            prepStmt.setString(7,m.getPhone());
-            prepStmt.executeUpdate();
-            prepStmt.close();
+            try {
+                PreparedStatement prepStmt = cacheM.getDbM().getConnection().prepareStatement(createManufacturer);
+                prepStmt.setInt(1,m.getRepID());
+                prepStmt.setString(2,m.getUsername());
+                prepStmt.setString(3,m.getEncryptor().encode(m.getPassword()));
+                prepStmt.setString(4,m.getFullName());
+                prepStmt.setString(5,m.getCompanyName());
+                prepStmt.setString(6,m.getEmail());
+                prepStmt.setString(7,m.getPhone());
+                prepStmt.executeUpdate();
+                prepStmt.close();
 
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+            sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
         }
-
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+        else{
+            System.out.println("Please confirm password!");
+        }
     }
 
     @FXML
@@ -73,5 +81,22 @@ public class mRegister {
     public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+    }
+
+    @FXML
+    public void validateButton(){
+        if(username.getText().isEmpty() ||
+                password.getText().isEmpty() ||
+                confirmP.getText().isEmpty() ||
+                fullName.getText().isEmpty() ||
+                email.getText().isEmpty() ||
+                phone.getText().isEmpty() ||
+                companyName.getText().isEmpty() ||
+                repID.getText().isEmpty()){
+            register.setDisable(true);
+        }
+        else{
+            register.setDisable(false);
+        }
     }
 }
