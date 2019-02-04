@@ -2,40 +2,50 @@ package UI;
 
 import Managers.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
 public class mHomepage {
-    private UIManager uiManager;
-    private CacheManager cacheManager;
-    private DatabaseManager databaseManager;
+
+    private SceneManager sceneM;
+    private CacheManager cacheM;
+    private DatabaseManager dbM;
+
+    public mHomepage(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.dbM = dbM;
+    }
 
     @FXML private Button back;
     @FXML private Button search;
     @FXML private VBox newForm;
+    @FXML private VBox storage;
 
-    public mHomepage(UIManager uiManager, CacheManager cacheManager, DatabaseManager databaseManager) {
-        this.uiManager = uiManager;
-        this.cacheManager = cacheManager;
-        this.databaseManager = databaseManager;
+    @FXML
+    public void search() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM, dbM));
     }
 
     @FXML
-    public void changeScene(MouseEvent event) throws IOException {
-//        if(event.getSource() == back){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/LoginPage.fxml"));
-//            sm.changeScene(root, back);
-//        }
-//        else if(event.getSource() == search){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchPage.fxml"));
-//            sm.changeScene(root, search);
-//        }
-//        else if(event.getSource() == newForm){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
-//            sm.changeSceneWithV(root, newForm);
-//        }
+    public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM, dbM));
+    }
+
+    @FXML
+    public void newForm() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM, dbM));
+    }
+
+    @FXML
+    public void storage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mFormStorage.fxml"));
+        sceneM.changeScene(loader, new mFormStorage(sceneM, cacheM, dbM));
     }
 }

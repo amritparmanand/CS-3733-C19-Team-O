@@ -2,20 +2,19 @@ package UI;
 
 import Managers.*;
 
+import Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
 public class LoginPage {
-    private UIManager uiManager;
-    private CacheManager cacheManager;
-    private DatabaseManager databaseManager;
+    private SceneManager sceneM;
+    private CacheManager cacheM;
+    private DatabaseManager dbM;
 
     @FXML private Button pop;
     @FXML private RadioButton m;
@@ -26,26 +25,22 @@ public class LoginPage {
     @FXML private Button login;
     @FXML private Button search;
 
-    public LoginPage(UIManager uiManager, CacheManager cacheManager, DatabaseManager databaseManager) {
-        this.uiManager = uiManager;
-        this.cacheManager = cacheManager;
-        this.databaseManager = databaseManager;
+    public LoginPage(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.dbM = dbM;
     }
-
-    /**
-     * Default constructor
-     */
 
     @FXML
     public void login() throws IOException {
         // Login
         if(m.isSelected()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-            uiManager.changeScene(loader, new mHomepage(uiManager, cacheManager, databaseManager));
+            sceneM.changeScene(loader, new mHomepage(sceneM, cacheM, dbM));
         }
         else if(a.isSelected()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
-            uiManager.changeScene(loader, new aHomepage(uiManager, cacheManager, databaseManager));
+            sceneM.changeScene(loader, new aHomepage(sceneM, cacheM, dbM));
         }
     }
 
@@ -53,11 +48,11 @@ public class LoginPage {
     public void register() throws IOException {
         if(m.isSelected()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mRegister.fxml"));
-            uiManager.changeScene(loader, new mRegister(uiManager, cacheManager, databaseManager));
+            sceneM.changeScene(loader, new mRegister(sceneM, cacheM, dbM));
         }
         else if (a.isSelected()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aRegister.fxml"));
-            uiManager.changeScene(loader, new aRegister(uiManager, cacheManager, databaseManager));
+            sceneM.changeScene(loader, new aRegister(sceneM, cacheM, dbM));
         }
     }
 
@@ -65,20 +60,7 @@ public class LoginPage {
     public void search() throws IOException {
         // Search
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        uiManager.changeScene(loader, new SearchPage(uiManager, cacheManager, databaseManager));
-    }
-
-    /**
-     * Pop out a window
-     * @param event
-     * @throws IOException
-     */
-    @FXML
-    public void popWindow(MouseEvent event) throws IOException {
-        if(event.getSource() == pop){
-            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mortgage.fxml"));
-            uiManager.popWindow(root);
-        }
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM, dbM));
     }
 
     /**

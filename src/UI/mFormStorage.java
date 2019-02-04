@@ -1,31 +1,44 @@
 package UI;
 
-import Managers.*;
+import Managers.CacheManager;
+import Managers.DatabaseManager;
+import Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
 
-public class mApplicationFormPg1 {
+public class mFormStorage {
+
     private SceneManager sceneManager;
     private CacheManager cacheManager;
     private DatabaseManager databaseManager;
 
-    @FXML private Button next;
+    @FXML private Button backToMHome;
     @FXML private Button search;
-    @FXML private Button back;
+    @FXML private Button newForm;
+    //@FXML private VBox getApp;
 
-    public mApplicationFormPg1(SceneManager sceneManager, CacheManager cacheManager, DatabaseManager databaseManager) {
-        this.sceneManager = sceneManager;
-        this.cacheManager = cacheManager;
-        this.databaseManager = databaseManager;
+    /**
+     * Model
+     */
+    private SceneManager sm;
+
+    /**
+     * Default constructor
+     */
+
+    public mFormStorage(SceneManager sm, CacheManager cm, DatabaseManager dm) {
+        this.sceneManager = sm;
+        this.cacheManager = cm;
+        this.databaseManager = dm;
     }
 
     @FXML
-    public void nextPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
-        sceneManager.changeScene(loader, new mApplicationFormPg2(sceneManager, cacheManager, databaseManager));
+    public void newForm() throws IOException {
+        //
+        //
     }
 
     @FXML
@@ -39,5 +52,4 @@ public class mApplicationFormPg1 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneManager.changeScene(loader, new mHomepage(sceneManager, cacheManager, databaseManager));
     }
-
 }

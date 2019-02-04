@@ -2,14 +2,15 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,9 +20,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg2">
     <children>
-        <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Pane prefHeight="25.0" prefWidth="200.0" styleClass="topbar">
                     <children>
@@ -60,7 +61,7 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#searchPage" styleClass="searchButtonStyle" text="Search">
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="searchButtonStyle" text="Search">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Button>
@@ -87,21 +88,47 @@
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                             <children>
-                                                <Button disable="true" mnemonicParsing="false" styleClass="buttonStyle" text="Previous Page" />
-                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
+                                                <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="buttonStyle" text="Previous Page" />
+                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="buttonStyle" text="Next Page" />
                                             </children>
                                         </HBox>
-                                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Save Draft">
-                                            <styleClass>
-                                                <String fx:value="labeltext" />
-                                                <String fx:value="card" />
-                                            </styleClass>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" text="Accept">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                          <String fx:value="formstatuspill" />
+                                          <String fx:value="acceptstatus" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" text="Deny">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                          <String fx:value="denystatus" />
+                                          <String fx:value="formstatuspill" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" text="Save Draft">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="changeColorButton" text="Back to homepage">
+                                            <VBox.margin>
+                                                <Insets top="20.0" />
+                                            </VBox.margin>
                                         </Button>
-                              <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </Button>
                                     </children>
                                 </VBox>
                             </children>
@@ -122,7 +149,7 @@
                                                 <String fx:value="h1" />
                                             </styleClass>
                                         </Label>
-                                        <Label styleClass="h2" text="Page 1">
+                                        <Label styleClass="h2" text="Page 2">
                                             <padding>
                                                 <Insets left="20.0" />
                                             </padding>
@@ -138,7 +165,35 @@
                                         <HBox prefHeight="100.0" prefWidth="200.0" />
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
-                                                <Label styleClass="labeltext" text="1. REP. ID. NO. (If any)" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name and Address of Applicant as shown on Plant Registry, Basic Permit, or Brewer's Notice. Include Approved DBA or Tradename if Used on the Label (Required)" wrappingWidth="600.0" />
+                                                <TextField promptText="example: 123 Example Road">
+                                                    <styleClass>
+                                                        <String fx:value="textfield" />
+                                                        <String fx:value="labeltext" />
+                                                    </styleClass>
+                                                </TextField>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="labeltext" text="8a. Mailing Address if Different" />
+                                                <TextField promptText="example: 123 Example Road ">
+                                                    <styleClass>
+                                                        <String fx:value="textfield" />
+                                                        <String fx:value="labeltext" />
+                                                    </styleClass>
+                                                </TextField>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="labeltext" text="9. Formula" />
                                                 <TextField promptText="example: 123456">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
@@ -155,7 +210,7 @@
                                         </VBox>
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
-                                                <Label styleClass="labeltext" text="2. Plant Registry/Basic Permt/ Brewer's NO. (Required)" />
+                                                <Label styleClass="labeltext" text="10. Grape Variental(s) Wine Only" />
                                                 <TextField promptText="example: 123456">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
@@ -172,32 +227,7 @@
                                         </VBox>
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
-                                                <Label styleClass="labeltext" text="3. Source of Product (Required)" />
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                    <children>
-                                          <RadioButton mnemonicParsing="false" text="Domestic">
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="group" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Imported" toggleGroup="$group">
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                          </RadioButton>
-                                                    </children>
-                                                </HBox>
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Label styleClass="labeltext" text="4. Serial Number (Required)" />
+                                                <Label styleClass="labeltext" text="11. Wine Appellation (If on label)" />
                                                 <TextField promptText="example: 123456">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
@@ -211,37 +241,7 @@
                                         </VBox>
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
-                                                <Label styleClass="labeltext" text="5. Type of Product (Required)" />
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                    <children>
-                                          <RadioButton mnemonicParsing="false" text="Wine">
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="g2" />
-                                             </toggleGroup>
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                          </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Distilled Spirits" toggleGroup="$g2">
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                          </RadioButton>
-                                          <RadioButton mnemonicParsing="false" text="Malt Beverages" toggleGroup="$g2">
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                          </RadioButton>
-                                                    </children>
-                                                </HBox>
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Label styleClass="labeltext" text="6. Brand Name (Required)" />
+                                                <Label styleClass="labeltext" text="12. Phone Number" />
                                                 <TextField promptText="example: example beer company">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
@@ -255,7 +255,7 @@
                                         </VBox>
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
-                                                <Label styleClass="labeltext" text="7. Fanciful Name (If any)" />
+                                                <Label styleClass="labeltext" text="13. Email Address" />
                                                 <TextField promptText="ex: example drink">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
@@ -272,9 +272,71 @@
                             </content>
                         </ScrollPane>
                         <VBox prefHeight="720.0" prefWidth="320.0">
-                            <children>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                            </children>
+                     <children>
+                        <Accordion VBox.vgrow="ALWAYS">
+                           <panes>
+                              <TitledPane animated="false" text="Question 8 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 8 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 8a Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 8 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 9 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 9 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 10 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 10 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 11 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 11 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 12 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 12 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 13 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 13 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                           </panes>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Accordion>
+                     </children>
                         </VBox>
                     </children>
                 </HBox>

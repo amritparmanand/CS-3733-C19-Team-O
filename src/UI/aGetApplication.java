@@ -9,32 +9,25 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
-public class mRegister {
-
+public class aGetApplication {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private DatabaseManager dbM;
 
-    public mRegister(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
+    public aGetApplication(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.dbM = dbM;
     }
 
-    @FXML private Button mRegister;
+    @FXML private Button backToAHome;
     @FXML private Button search;
-    @FXML private Button back;
-
-    @FXML
-    public void register() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM, dbM));
-    }
+    //@FXML private VBox getApp;
 
     @FXML
     public void back() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
-        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM, dbM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM, dbM));
     }
 
     @FXML

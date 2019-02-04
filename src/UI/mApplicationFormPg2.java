@@ -2,13 +2,13 @@ package UI;
 
 import Managers.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
 public class mApplicationFormPg2 {
-    private UIManager uiManager;
+    private SceneManager sceneManager;
     private CacheManager cacheManager;
     private DatabaseManager databaseManager;
 
@@ -17,30 +17,34 @@ public class mApplicationFormPg2 {
     @FXML private Button search;
     @FXML private Button back;
 
-    public mApplicationFormPg2(UIManager uiManager, CacheManager cacheManager, DatabaseManager databaseManager) {
-        this.uiManager = uiManager;
+    public mApplicationFormPg2(SceneManager sceneManager, CacheManager cacheManager, DatabaseManager databaseManager) {
+        this.sceneManager = sceneManager;
         this.cacheManager = cacheManager;
         this.databaseManager = databaseManager;
     }
 
-    @SuppressWarnings("Duplicates")
     @FXML
-    public void changeScene(MouseEvent event) throws IOException {
-//        if(event.getSource() == next){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-//            sm.changeScene(root, next);
-//        }
-//        else if(event.getSource() == previous){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
-//            sm.changeScene(root, previous);
-//        }
-//        else if(event.getSource() == search){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchPage.fxml"));
-//            sm.changeScene(root, search);
-//        }
-//        else if(event.getSource() == back){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mHomepage.fxml"));
-//            sm.changeScene(root, back);
-//        }
+    public void nextPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
+        sceneManager.changeScene(loader, new mApplicationFormPg3(sceneManager, cacheManager, databaseManager));
     }
+
+    @FXML
+    public void previousPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
+        sceneManager.changeScene(loader, new mApplicationFormPg1(sceneManager, cacheManager, databaseManager));
+    }
+
+    @FXML
+    public void searchPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        sceneManager.changeScene(loader, new SearchPage(sceneManager, cacheManager, databaseManager));
+    }
+
+    @FXML
+    public void goToHomePage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+        sceneManager.changeScene(loader, new mHomepage(sceneManager, cacheManager, databaseManager));
+    }
+
 }

@@ -2,44 +2,42 @@ package UI;
 
 import Managers.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
 public class aRegister {
-    private UIManager uiManager;
-    private CacheManager cacheManager;
-    private DatabaseManager databaseManager;
+
+    private SceneManager sceneM;
+    private CacheManager cacheM;
+    private DatabaseManager dbM;
+
+    public aRegister(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.dbM = dbM;
+    }
 
     @FXML private Button aRegister;
     @FXML private Button search;
     @FXML private Button back;
 
-    public aRegister(UIManager uiManager, CacheManager cacheManager, DatabaseManager databaseManager) {
-        this.uiManager = uiManager;
-        this.cacheManager = cacheManager;
-        this.databaseManager = databaseManager;
+    @FXML
+    public void search() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM, dbM));
     }
 
-    /**
-     * Change scene
-     * @param event
-     * @throws IOException
-     */
     @FXML
-    public void changeScene(MouseEvent event) throws IOException {
-//        if(event.getSource() == aRegister){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/aHomepage.fxml"));
-//            sm.changeScene(root, aRegister);
-//        }
-//        else if(event.getSource() == search){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchPage.fxml"));
-//            sm.changeScene(root, search);
-//        }
-//        else if(event.getSource() == back){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/LoginPage.fxml"));
-//            sm.changeScene(root, back);
-//        }
+    public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM, dbM));
+    }
+
+    @FXML
+    public void register() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM, dbM));
     }
 }
