@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg4">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg4">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -254,23 +254,35 @@
                            <panes>
                               <TitledPane animated="false" text="Question 16 Comments">
                                  <content>
-                                    <TextArea prefHeight="91.0" prefWidth="298.0" />
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 16 Comment" />
                                  </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
                               </TitledPane>
                               <TitledPane animated="false" text="Question 17 Comments">
                                  <content>
-                                    <TextArea prefHeight="91.0" prefWidth="298.0" />
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 17 Comment" />
                                  </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
                               </TitledPane>
                               <TitledPane animated="false" text="Question 18 Comments">
                                  <content>
-                                    <TextArea prefHeight="91.0" prefWidth="298.0" />
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 18 Comment" />
                                  </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
                               </TitledPane>
                               <TitledPane animated="false" text="Question 19 Comments">
                                  <content>
-                                    <TextArea prefHeight="91.0" prefWidth="298.0" />
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 19 Comment" />
                                  </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
                               </TitledPane>
                            </panes>
                         </Accordion>
