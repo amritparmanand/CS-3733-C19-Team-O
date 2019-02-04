@@ -13,11 +13,16 @@ public class DatabaseManager {
             stmt = connection.createStatement();
         }
         catch(SQLException e){
-            System.out.println("Connection Failed. Check stacktrace.");
-            e.printStackTrace();
+            if (!e.getSQLState().equals("XBM0J")) {
+                System.out.println("Connection Failed. Check stacktrace.");
+                e.printStackTrace();
+            }
         }
         this.connection = connection;
         this.stmt = stmt;
+
+    }
+    public void generateTables(){
         String createRepresentative = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
                 "username varchar(20),	" +
@@ -58,11 +63,16 @@ public class DatabaseManager {
         String createUniqueAgents = "create unique index Agents_username_uindex " +
                 "on Agents (username)";
         try {
-            stmt.execute(createRepresentative);
-            stmt.execute(createAgents);
-            stmt.execute(createForms);
-            stmt.execute(createUniqueReps);
-            stmt.execute(createUniqueAgents);
+            this.stmt.execute(createRepresentative);
+            System.out.println("Created Rep Table");
+            this.stmt.execute(createAgents);
+            System.out.println("Created Agent Table");
+            this.stmt.execute(createForms);
+            System.out.println("Created Form Table");
+            this.stmt.execute(createUniqueReps);
+            System.out.println("Created Rep Constraint");
+            this.stmt.execute(createUniqueAgents);
+            System.out.println("Created Agents Constraint");
         }
         catch (SQLException e){
             if (!e.getSQLState().equals("X0Y32"))
@@ -71,10 +81,10 @@ public class DatabaseManager {
     }
 
     public Connection getConnection() {
-        return connection;
+        return this.connection;
     }
 
     public Statement getStmt() {
-        return stmt;
+        return this.stmt;
     }
 }
