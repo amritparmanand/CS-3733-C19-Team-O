@@ -3,6 +3,8 @@ package Managers;
 import java.sql.*;
 
 public class DatabaseManager {
+    private Connection connection;
+    private Statement stmt;
     public DatabaseManager(){
         Connection connection = null;
         Statement stmt = null;
@@ -14,6 +16,8 @@ public class DatabaseManager {
             System.out.println("Connection Failed. Check stacktrace.");
             e.printStackTrace();
         }
+        this.connection = connection;
+        this.stmt = stmt;
         String createRepresentative = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
                 "username varchar(20),	" +
@@ -64,5 +68,13 @@ public class DatabaseManager {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public Statement getStmt() {
+        return stmt;
     }
 }
