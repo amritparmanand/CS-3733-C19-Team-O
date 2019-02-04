@@ -5,14 +5,14 @@ import java.sql.*;
 public class DatabaseManager {
     private Connection connection;
     private Statement stmt;
-    public DatabaseManager(){
+
+    public DatabaseManager() {
         Connection connection = null;
         Statement stmt = null;
-        try{
+        try {
             connection = DriverManager.getConnection("jdbc:derby:ttbDB;create=true");
             stmt = connection.createStatement();
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("Connection Failed. Check stacktrace.");
             e.printStackTrace();
         }
@@ -25,7 +25,7 @@ public class DatabaseManager {
                 "fullName varchar(50),	" +
                 "email varchar(20),	" +
                 "phone bigint)";
-        String createAgents ="create table Agents" +
+        String createAgents = "create table Agents" +
                 "(ttbID int	constraint Agents_pk primary key, " +
                 "username varchar(20), " +
                 "password varchar(15), " +
@@ -63,8 +63,7 @@ public class DatabaseManager {
             stmt.execute(createForms);
             stmt.execute(createUniqueReps);
             stmt.execute(createUniqueAgents);
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
