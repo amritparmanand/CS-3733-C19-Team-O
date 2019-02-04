@@ -1,11 +1,13 @@
 package UI;
 
+import Datatypes.Form;
 import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class mApplicationFormPg3 {
     private SceneManager sceneM;
@@ -23,6 +25,19 @@ public class mApplicationFormPg3 {
 
     @FXML
     public void nextPage() throws IOException {
+        Form form = cacheM.getForm();
+
+//        form.setTypeOfApplication("");
+//        form.setCertificateOfApproval("");
+//        form.setCertificateOfExemptionFromLabelApproval("");
+//        form.setForSaleOnlyIn("");
+//        form.distinctiveLiquorBottleApproval("");
+//        form.setResubmissionAfterRejection("");
+//        form.setTTBID(0);
+//        form.setImage(uploadedImage);
+
+        cacheM.setForm(form);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
     }

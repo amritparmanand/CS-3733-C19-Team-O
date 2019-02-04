@@ -1,5 +1,6 @@
 package UI;
 
+import Datatypes.Form;
 import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,16 @@ public class mApplicationFormPg1 {
 
     @FXML
     public void nextPage() throws IOException {
+        Form form = cacheM.getForm();
 
+        form.setBrewerNumber(1);
+        form.setProductSource(1);
+        form.setSerialNumber(1);
+        form.setProductType(1);
+        form.setBrandName("Yeet");
+        form.setFancifulName("");
+
+        cacheM.setForm(form);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }

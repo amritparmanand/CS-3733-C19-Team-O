@@ -44,7 +44,7 @@ public class DatabaseManager {
                 "mailingAddress varchar(80), " +
                 "formula varchar(20), " +
                 "grapeVarietal varchar(20),	" +
-                "appelation varchar(20), " +
+                "appellation varchar(20), " +
                 "phoneNumber bigint, " +
                 "emailAddress varchar(30),	" +
                 "dateOfApplication date, " +

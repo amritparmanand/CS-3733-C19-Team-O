@@ -8,7 +8,7 @@ public class CacheManager {
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
-        this.form = null;
+        this.form = new Form();
     }
 
     public DatabaseManager getDbM() {
@@ -17,5 +17,9 @@ public class CacheManager {
 
     public Form getForm() {
         return form;
+    }
+
+    public void setForm(Form form) {
+         this.form = form;
     }
 }

@@ -15,7 +15,7 @@ public class Form {
     private String mailingAddress;
     private String formula;
     private String grapeVarietal;
-    private String appelation;
+    private String appellation;
     private BigInteger phoneNumber;
     private String emailAddress;
     private Date dateOfApplication;
@@ -37,7 +37,7 @@ public class Form {
         this.mailingAddress = null;
         this.formula = null;
         this.grapeVarietal = null;
-        this.appelation = null;
+        this.appellation = null;
         this.phoneNumber = null;
         this.emailAddress = null;
         this.dateOfApplication = null;
@@ -129,12 +129,12 @@ public class Form {
         this.grapeVarietal = grapeVarietal;
     }
 
-    public String getAppelation() {
-        return appelation;
+    public String getAppellation() {
+        return appellation;
     }
 
-    public void setAppelation(String appelation) {
-        this.appelation = appelation;
+    public void setAppellation(String appelation) {
+        this.appellation = appelation;
     }
 
     public BigInteger getPhoneNumber() {

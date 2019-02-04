@@ -1,11 +1,13 @@
 package UI;
 
+import Datatypes.Form;
 import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 
 public class mApplicationFormPg4 {
@@ -18,6 +20,7 @@ public class mApplicationFormPg4 {
     @FXML private Button submit;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
+
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
@@ -31,18 +34,25 @@ public class mApplicationFormPg4 {
 
     @FXML
     public void submit() throws IOException {
-        String createForm = "INSERT INTO Forms(" +
-                "formID int	constraint Forms_pk	primary key, " +
-                "brewerNumber int,	" +
-                "productSource int,	" +
-                "serialNumber int,	" +
-                "productType int,	" +
-                "brandName varchar(20),	" +
-                "fancifulName varchar(20),	" +
-                "applicantName varchar(40),	" +
-                "mailingAddress varchar(80), " +
-                "formula varchar(20), " +
-                "grapeVarietal varchar(20),	" +
+        Form form = cacheM.getForm();
+
+        form.setDateOfAppilcation(new Date(1,1,1));
+//        form.setSignatureOfApplicant("");
+        form.setPrintName("");
+//        form.setDateIssued("");
+
+        String createForm = "INSERT INTO Forms VALUES(" + form.getForms_pk()+
+                ", " + form.getBrewerNumber()+
+                ",	" + form.getProductSource()+
+                ",	" + form.getSerialNumber()+
+                ",	" + form.getProductType()+
+                ",	" + form.getBrandName()+
+                ", " + form.getFancifulName()+
+                ",	" + form.getApplicantName()+
+                ",	" + form.getMailingAddress()+
+                ", " + form.getFormula()+
+                ", " + form.getGrapeVarietal()+
+                ",	" + form.getAppellation()+
                 "appelation varchar(20), " +
                 "phoneNumber bigint, " +
                 "emailAddress varchar(30),	" +
