@@ -36,7 +36,7 @@ public class mApplicationFormPg4 {
     public void submit() throws IOException {
         Form form = cacheM.getForm();
 
-        form.setDateOfAppilcation(new Date(1,1,1));
+        form.setDateOfApplication(new Date(1,1,1));
 //        form.setSignatureOfApplicant("");
         form.setPrintName("");
 //        form.setDateIssued("");

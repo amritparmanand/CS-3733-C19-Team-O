@@ -176,12 +176,12 @@ public class Form {
         this.emailAddress = emailAddress;
     }
 
-    public Date getDateOfAppilcation() {
+    public Date getDateOfApplication() {
         return dateOfApplication;
     }
 
-    public void setDateOfAppilcation(Date dateOfAppilcation) {
-        this.dateOfApplication = dateOfAppilcation;
+    public void setDateOfApplication(Date dateOfApplication) {
+        this.dateOfApplication = dateOfApplication;
     }
 
     public String getPrintName() {
