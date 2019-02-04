@@ -3,6 +3,7 @@
 classes/
 build/
 out/
+ttbDB/
 derby.log
 *.class
 *.jar
