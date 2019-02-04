@@ -36,7 +36,7 @@ public class mApplicationFormPg4 {
     public void submit() throws IOException {
         Form form = cacheM.getForm();
 
-        form.setDateOfAppilcation(new Date(1,1,1));
+        form.setDateOfApplication(new Date(1,1,1));
 //        form.setSignatureOfApplicant("");
         form.setPrintName("");
 //        form.setDateIssued("");
@@ -53,15 +53,14 @@ public class mApplicationFormPg4 {
                 ", " + form.getFormula()+
                 ", " + form.getGrapeVarietal()+
                 ",	" + form.getAppellation()+
-                "appelation varchar(20), " +
-                "phoneNumber bigint, " +
-                "emailAddress varchar(30),	" +
-                "dateOfApplication date, " +
-                "printName varchar(40),	" +
-                "beerWineSpirit int, " +
-                "alcoholPercent double,	" +
-                "vintageYear int, " +
-                "phLevel double)";
+                ", " + form.getPhoneNumber()+
+                ", " + form.getEmailAddress()+
+                ",	" + form.getDateOfApplication()+
+                ", " + form.getPrintName()+
+                ",	" + form.getBeerWineSpirit()+
+                ", " + form.getAlcoholPercent()+
+                ",	" + form.getVintageYear()+
+                ", " + + form.getpHLevel();
 
         try {
 

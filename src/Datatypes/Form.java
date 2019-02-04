@@ -49,6 +49,29 @@ public class Form {
         this.forms_pk = 0;
     }
 
+    public Form(int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, BigInteger phoneNumber, String emailAddress, Date dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel, int forms_pk) {
+        this.brewerNumber = brewerNumber;
+        this.productSource = productSource;
+        this.serialNumber = serialNumber;
+        this.productType = productType;
+        this.brandName = brandName;
+        this.fancifulName = fancifulName;
+        this.applicantName = applicantName;
+        this.mailingAddress = mailingAddress;
+        this.formula = formula;
+        this.grapeVarietal = grapeVarietal;
+        this.appellation = appellation;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.dateOfApplication = dateOfApplication;
+        this.printName = printName;
+        this.beerWineSpirit = beerWineSpirit;
+        this.alcoholPercent = alcoholPercent;
+        this.vintageYear = vintageYear;
+        this.pHLevel = pHLevel;
+        this.forms_pk = forms_pk;
+    }
+
     public int getBrewerNumber() {
         return brewerNumber;
     }
@@ -153,12 +176,12 @@ public class Form {
         this.emailAddress = emailAddress;
     }
 
-    public Date getDateOfAppilcation() {
+    public Date getDateOfApplication() {
         return dateOfApplication;
     }
 
-    public void setDateOfAppilcation(Date dateOfAppilcation) {
-        this.dateOfApplication = dateOfAppilcation;
+    public void setDateOfApplication(Date dateOfApplication) {
+        this.dateOfApplication = dateOfApplication;
     }
 
     public String getPrintName() {
