@@ -14,11 +14,9 @@ public class CacheManager {
     public DatabaseManager getDbM() {
         return dbM;
     }
-
     public Form getForm() {
         return form;
     }
-
     public void setForm(Form form) {
          this.form = form;
     }
