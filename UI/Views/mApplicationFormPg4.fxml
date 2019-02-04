@@ -77,8 +77,6 @@
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="73.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="108.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
-                                <Text layoutX="116.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 5 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="143.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
@@ -193,7 +191,7 @@
                                                 </TextField>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <Button maxHeight="70.0" minHeight="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" text="Submit">
+                                          <Button maxHeight="70.0" minHeight="70.0" mnemonicParsing="false" onAction="#submit" prefHeight="70.0" prefWidth="170.0" text="Submit">
                                              <styleClass>
                                                 <String fx:value="labeltext" />
                                                 <String fx:value="card" />
