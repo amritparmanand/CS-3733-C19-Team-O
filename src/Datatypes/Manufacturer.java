@@ -1,5 +1,9 @@
 package Datatypes;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Manufacturer extends Account {
     private int repID;
     private String companyName;
@@ -13,16 +17,37 @@ public class Manufacturer extends Account {
     public int getRepID() {
         return repID;
     }
-
     public void setRepID(int repID) {
         this.repID = repID;
     }
-
     public String getCompanyName() {
         return companyName;
     }
-
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    @SuppressWarnings("Duplicates")
+    public void register(Connection conn) {
+        try {
+            String createManufacturer = "INSERT INTO Representatives(repid, username, password, fullname, companyname, email, phone) " +
+                    "VALUES(?,?,?,?,?,?,?)";
+
+            PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
+
+            prepStmt.setInt(1, this.getRepID());
+            prepStmt.setString(2, this.getUsername());
+            prepStmt.setString(3, this.getEncryptor().encode(this.getPassword()));
+            prepStmt.setString(4, this.getFullName());
+            prepStmt.setString(5, this.getCompanyName());
+            prepStmt.setString(6, this.getEmail());
+            prepStmt.setString(7, this.getPhone());
+            prepStmt.executeUpdate();
+            prepStmt.close();
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
     }
 }
