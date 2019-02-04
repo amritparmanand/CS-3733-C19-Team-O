@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class mRegister {
@@ -36,22 +37,28 @@ public class mRegister {
         Manufacturer m = new Manufacturer(username.getText(), password.getText(), fullName.getText(), email.getText(),
                 phone.getText(), Integer.parseInt(repID.getText()),companyName.getText());
 
-        String createManufacturer = "INSERT INTO Representatives(repid, username, password, fullname, companyname, email, phone) VALUES(" + m.getRepID()+
-                ", " + m.getUsername()+
-                ",	" + m.getPassword()+
-                ",	" + m.getFullName()+
-                ",	" + m.getCompanyName()+
-                ",	" + m.getEmail()+
-                ", " + m.getPhone() +")";
+        String createManufacturer = "INSERT INTO Representatives(repid, username, password, fullname, companyname, email, phone) " +
+                "VALUES(?,?,?,?,?,?,?)";
         System.out.println(createManufacturer);
 
         try {
-            cacheM.getDbM().getStmt().execute(createManufacturer);
+            PreparedStatement prepStmt = cacheM.getDbM().getConnection().prepareStatement(createManufacturer);
+            prepStmt.setInt(1,1);
+            prepStmt.setString(2,m.getUsername());
+            prepStmt.setString(3,m.getPassword());
+            prepStmt.setString(4,m.getFullName());
+            prepStmt.setString(5,m.getCompanyName());
+            prepStmt.setString(6,m.getEmail());
+            prepStmt.setString(7,m.getPhone());
+            prepStmt.executeUpdate();
+            prepStmt.close();
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
