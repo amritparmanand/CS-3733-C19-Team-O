@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg1">
+    <children>
+        <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Pane prefHeight="25.0" prefWidth="200.0" styleClass="topbar">
+                    <children>
+                        <Label layoutX="20.0" layoutY="5.0" prefWidth="300.0" text="Welcome, Wong Brewery!" textAlignment="RIGHT" />
+                    </children>
+                </Pane>
+                <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
+                    <children>
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Icons/TTB-logo.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets left="100.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                        </Text>
+                        <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer">
+                            <children>
+                                <TextField prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">
+                                    <HBox.margin>
+                                        <Insets left="20.0" top="5.0" />
+                                    </HBox.margin>
+                                </TextField>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="450.0" />
+                            </HBox.margin>
+                        </HBox>
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="searchButtonStyle" text="Search">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Button>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />
+                                <ProgressBar disable="true" layoutX="32.0" layoutY="10.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                                <Text layoutX="116.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
+                                <ProgressBar disable="true" layoutX="29.0" layoutY="24.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                                <Text layoutX="116.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 3 Progress" />
+                                <ProgressBar disable="true" layoutX="29.0" layoutY="73.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                                <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
+                                <ProgressBar disable="true" layoutX="29.0" layoutY="108.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                                <Text layoutX="116.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 5 Progress" />
+                                <ProgressBar disable="true" layoutX="29.0" layoutY="143.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                            <children>
+                                                <Button disable="true" mnemonicParsing="false" styleClass="buttonStyle" text="Previous Page" />
+                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="buttonStyle" text="Next Page" />
+                                            </children>
+                                        </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" text="Accept">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                          <String fx:value="formstatuspill" />
+                                          <String fx:value="acceptstatus" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" text="Deny">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                          <String fx:value="denystatus" />
+                                          <String fx:value="formstatuspill" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" text="Save Draft">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="changeColorButton" text="Back to homepage">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
+                            <content>
+                                <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
+                                    <children>
+                                        <Label text="TTB Label Form">
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                            <styleClass>
+                                                <String fx:value="labeltext" />
+                                                <String fx:value="h1" />
+                                            </styleClass>
+                                        </Label>
+                                        <Label styleClass="h2" text="Page 1">
+                                            <padding>
+                                                <Insets left="20.0" />
+                                            </padding>
+                                        </Label>
+                                        <Separator prefWidth="200.0">
+                                            <VBox.margin>
+                                                <Insets />
+                                            </VBox.margin>
+                                            <padding>
+                                                <Insets left="20.0" right="20.0" />
+                                            </padding>
+                                        </Separator>
+                                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="labeltext" text="1. REP. ID. NO. (If any)" />
+                                                <TextField promptText="example: 123456">
+                                                    <styleClass>
+                                                        <String fx:value="textfield" />
+                                                        <String fx:value="labeltext" />
+                                                    </styleClass>
+                                                </TextField>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets />
+                                            </VBox.margin>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="labeltext" text="2. Plant Registry/Basic Permt/ Brewer's NO. (Required)" />
+                                                <TextField promptText="example: 123456">
+                                                    <styleClass>
+                                                        <String fx:value="textfield" />
+                                                        <String fx:value="labeltext" />
+                                                    </styleClass>
+                                                </TextField>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets />
+                                            </VBox.margin>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="labeltext" text="3. Source of Product (Required)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                    <children>
+                                          <RadioButton mnemonicParsing="false" text="Domestic">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="group" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="Imported" toggleGroup="$group">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </RadioButton>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="labeltext" text="4. Serial Number (Required)" />
+                                                <TextField promptText="example: 123456">
+                                                    <styleClass>
+                                                        <String fx:value="textfield" />
+                                                        <String fx:value="labeltext" />
+                                                    </styleClass>
+                                                </TextField>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="labeltext" text="5. Type of Product (Required)" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                    <children>
+                                          <RadioButton mnemonicParsing="false" text="Wine">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="g2" />
+                                             </toggleGroup>
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="Distilled Spirits" toggleGroup="$g2">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </RadioButton>
+                                          <RadioButton mnemonicParsing="false" text="Malt Beverages" toggleGroup="$g2">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </RadioButton>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="labeltext" text="6. Brand Name (Required)" />
+                                                <TextField promptText="example: example beer company">
+                                                    <styleClass>
+                                                        <String fx:value="textfield" />
+                                                        <String fx:value="labeltext" />
+                                                    </styleClass>
+                                                </TextField>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="labeltext" text="7. Fanciful Name (If any)" />
+                                                <TextField promptText="ex: example drink">
+                                                    <styleClass>
+                                                        <String fx:value="textfield" />
+                                                        <String fx:value="labeltext" />
+                                                    </styleClass>
+                                                </TextField>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                        <VBox prefHeight="720.0" prefWidth="320.0">
+                     <children>
+                        <Accordion>
+                           <panes>
+                              <TitledPane animated="false" text="Question 1 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 1 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 2 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 2 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 3 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 3 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 4 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 4 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 5 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 5 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 6 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 6 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane animated="false" text="Question 7 Comments">
+                                 <content>
+                                    <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 7 Comment" />
+                                 </content>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </TitledPane>
+                           </panes>
+                        </Accordion>
+                     </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
