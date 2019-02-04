@@ -29,15 +29,16 @@ public class DatabaseManager {
                 "username varchar(20),	" +
                 "password varchar(15), 	" +
                 "fullName varchar(50),	" +
+                "companyName varchar(50),	" +
                 "email varchar(20),	" +
-                "phone bigint)";
+                "phone varchar(15))";
         String createAgents = "create table Agents" +
                 "(ttbID int	constraint Agents_pk primary key, " +
                 "username varchar(20), " +
                 "password varchar(15), " +
                 "fullName varchar(50),	" +
                 "email varchar(20),	" +
-                "phone bigint)";
+                "phone varchar(15))";
         String createForms = "create table Forms(" +
                 "formID int	constraint Forms_pk	primary key, " +
                 "brewerNumber int,	" +
@@ -51,7 +52,7 @@ public class DatabaseManager {
                 "formula varchar(20), " +
                 "grapeVarietal varchar(20),	" +
                 "appellation varchar(20), " +
-                "phoneNumber bigint, " +
+                "phoneNumber varchar(15), " +
                 "emailAddress varchar(30),	" +
                 "dateOfApplication date, " +
                 "printName varchar(40),	" +

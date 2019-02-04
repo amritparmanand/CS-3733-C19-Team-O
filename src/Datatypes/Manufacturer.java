@@ -9,4 +9,20 @@ public class Manufacturer extends Account {
         this.repID = repID;
         this.companyName = companyName;
     }
+
+    public int getRepID() {
+        return repID;
+    }
+
+    public void setRepID(int repID) {
+        this.repID = repID;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 }
