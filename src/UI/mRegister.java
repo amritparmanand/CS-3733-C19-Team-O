@@ -39,30 +39,8 @@ public class mRegister {
     @SuppressWarnings("Duplicates")
     public void register() throws IOException {
         if(password.getText().equals(confirmP.getText())){
-            Manufacturer m = new Manufacturer(username.getText(), password.getText(), fullName.getText(), email.getText(),
-                    phone.getText(), Integer.parseInt(repID.getText()),companyName.getText());
-
-            String createManufacturer = "INSERT INTO Representatives(repid, username, password, fullname, companyname, email, phone) " +
-                    "VALUES(?,?,?,?,?,?,?)";
-
-            try {
-                PreparedStatement prepStmt = cacheM.getDbM().getConnection().prepareStatement(createManufacturer);
-                prepStmt.setInt(1,m.getRepID());
-                prepStmt.setString(2,m.getUsername());
-                prepStmt.setString(3,m.getEncryptor().encode(m.getPassword()));
-                prepStmt.setString(4,m.getFullName());
-                prepStmt.setString(5,m.getCompanyName());
-                prepStmt.setString(6,m.getEmail());
-                prepStmt.setString(7,m.getPhone());
-                prepStmt.executeUpdate();
-                prepStmt.close();
-
-            } catch (SQLException e) {
-                if (!e.getSQLState().equals("X0Y32"))
-                    e.printStackTrace();
-            }
-
-
+            Manufacturer m = new Manufacturer(username.getText(), password.getText(), fullName.getText(), email.getText(), phone.getText(), Integer.parseInt(repID.getText()),companyName.getText());
+            cacheM.register(m);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
             sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
         }

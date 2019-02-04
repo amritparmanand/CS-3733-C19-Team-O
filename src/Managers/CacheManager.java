@@ -22,5 +22,15 @@ public class CacheManager {
     public void setForm(Form form) {
          this.form = form;
     }
-    
+    public Account getAcct() {
+        return acct;
+    }
+    public void setAcct(Account acct) {
+        this.acct = acct;
+    }
+
+    public void register(Account a) {
+        this.acct = a;
+        a.register(dbM.getConnection());
+    }
 }

@@ -84,4 +84,14 @@ public class DatabaseManager {
     public Statement getStmt() {
         return this.stmt;
     }
+
+    public void executeStatement(PreparedStatement ps) {
+        try {
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+    }
 }
