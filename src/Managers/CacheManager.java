@@ -11,12 +11,4 @@ public class CacheManager {
         this.sceneM = sceneM;
     }
 
-    Form activeForm;
-
-    private void sendFormToDatabase() {
-        dbM.uploadForm(activeForm);
-
-    }
-
-
 }
