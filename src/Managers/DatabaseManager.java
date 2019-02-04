@@ -27,7 +27,7 @@ public class DatabaseManager {
         String createRepresentative = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
                 "username varchar(20),	" +
-                "password varchar(15), 	" +
+                "password varchar(65), 	" +
                 "fullName varchar(50),	" +
                 "companyName varchar(50),	" +
                 "email varchar(20),	" +
@@ -35,7 +35,7 @@ public class DatabaseManager {
         String createAgents = "create table Agents" +
                 "(ttbID int	constraint Agents_pk primary key, " +
                 "username varchar(20), " +
-                "password varchar(15), " +
+                "password varchar(65), " +
                 "fullName varchar(50),	" +
                 "email varchar(20),	" +
                 "phone varchar(15))";

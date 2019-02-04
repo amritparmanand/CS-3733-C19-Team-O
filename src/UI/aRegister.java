@@ -54,7 +54,7 @@ public class aRegister {
                 phone.getText(), Integer.parseInt(ttbID.getText()));
 
         String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone) " +
-                "VALUES(?,?,?,?,?,?,?)";
+                "VALUES(?,?,?,?,?,?)";
 
         try {
             PreparedStatement prepStmt = cacheM.getDbM().getConnection().prepareStatement(createManufacturer);
@@ -62,8 +62,8 @@ public class aRegister {
             prepStmt.setString(2,a.getUsername());
             prepStmt.setString(3,a.getEncryptor().encode(a.getPassword()));
             prepStmt.setString(4,a.getFullName());
-            prepStmt.setString(6,a.getEmail());
-            prepStmt.setString(7,a.getPhone());
+            prepStmt.setString(5,a.getEmail());
+            prepStmt.setString(6,a.getPhone());
             prepStmt.executeUpdate();
             prepStmt.close();
 
