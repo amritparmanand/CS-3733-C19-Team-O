@@ -7,11 +7,16 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     private SceneManager sceneM;
-    private CacheManager cacheM = new CacheManager();
-    private DatabaseManager dbM = new DatabaseManager();
+    private CacheManager cacheM;
+    private DatabaseManager dbM;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        dbM = new DatabaseManager();
+        sceneM = new SceneManager(primaryStage);
+        cacheM = new CacheManager(dbM, sceneM);
+
+
         sceneM = new SceneManager(primaryStage);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));

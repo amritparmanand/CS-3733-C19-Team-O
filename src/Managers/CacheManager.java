@@ -3,19 +3,18 @@ package Managers;
 import Datatypes.Form;
 
 public class CacheManager {
-    DatabaseManager databaseManager;
-    UIManager uiManager;
+    DatabaseManager dbM;
+    SceneManager sceneM;
 
-    public CacheManager(DatabaseManager databaseManager, UIManager uiManager) {
-        this.databaseManager = databaseManager;
-        this.uiManager = uiManager;
+    public CacheManager(DatabaseManager dbM, SceneManager sceneM) {
+        this.dbM = dbM;
+        this.sceneM = sceneM;
     }
-
 
     Form activeForm;
 
     private void sendFormToDatabase() {
-        databaseManager.uploadForm(activeForm);
+        dbM.uploadForm(activeForm);
 
     }
 
