@@ -1,5 +1,6 @@
 package Managers;
 
+import Datatypes.Form;
 import java.sql.*;
 
 public class DatabaseManager {
@@ -77,11 +78,36 @@ public class DatabaseManager {
         }
     }
 
-    public Connection getConnection() {
-        return this.connection;
-    }
+    public void insertForm(Form form)
+    {
+        String createForm = "INSERT INTO Forms VALUES(" + form.getForms_pk()+
+                ", " + form.getBrewerNumber()+
+                ",	" + form.getProductSource()+
+                ",	" + form.getSerialNumber()+
+                ",	" + form.getProductType()+
+                ",	" + form.getBrandName()+
+                ", " + form.getFancifulName()+
+                ",	" + form.getApplicantName()+
+                ",	" + form.getMailingAddress()+
+                ", " + form.getFormula()+
+                ", " + form.getGrapeVarietal()+
+                ",	" + form.getAppellation()+
+                ", " + form.getPhoneNumber()+
+                ", " + form.getEmailAddress()+
+                ",	" + form.getDateOfApplication()+
+                ", " + form.getPrintName()+
+                ",	" + form.getBeerWineSpirit()+
+                ", " + form.getAlcoholPercent()+
+                ",	" + form.getVintageYear()+
+                ", " + + form.getpHLevel();
 
-    public Statement getStmt() {
-        return this.stmt;
+        try {
+
+            stmt.execute(createForm);
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
     }
 }

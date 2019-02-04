@@ -41,35 +41,8 @@ public class mApplicationFormPg4 {
         form.setPrintName("");
 //        form.setDateIssued("");
 
-        String createForm = "INSERT INTO Forms VALUES(" + form.getForms_pk()+
-                ", " + form.getBrewerNumber()+
-                ",	" + form.getProductSource()+
-                ",	" + form.getSerialNumber()+
-                ",	" + form.getProductType()+
-                ",	" + form.getBrandName()+
-                ", " + form.getFancifulName()+
-                ",	" + form.getApplicantName()+
-                ",	" + form.getMailingAddress()+
-                ", " + form.getFormula()+
-                ", " + form.getGrapeVarietal()+
-                ",	" + form.getAppellation()+
-                ", " + form.getPhoneNumber()+
-                ", " + form.getEmailAddress()+
-                ",	" + form.getDateOfApplication()+
-                ", " + form.getPrintName()+
-                ",	" + form.getBeerWineSpirit()+
-                ", " + form.getAlcoholPercent()+
-                ",	" + form.getVintageYear()+
-                ", " + + form.getpHLevel();
+        cacheM.getDbM().insertForm(form);
 
-        try {
-
-            cacheM.getDbM().getStmt().execute(createForm);
-
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
     }
 
     @FXML
