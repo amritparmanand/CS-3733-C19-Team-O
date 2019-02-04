@@ -87,7 +87,7 @@
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                             <children>
                                                 <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
-                                                <Button fx:id="next" disable="true" mnemonicParsing="false" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
+                                                <Button fx:id="next" disable="true" mnemonicParsing="false" styleClass="buttonStyle" text="Next Page" />
                                             </children>
                                         </HBox>
                                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Save Draft">

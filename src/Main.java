@@ -12,16 +12,17 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //backend
         dbM = new DatabaseManager();
+        //frontend
         sceneM = new SceneManager(primaryStage);
+        //middleman
         cacheM = new CacheManager(dbM, sceneM);
 
 
-        sceneM = new SceneManager(primaryStage);
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
-
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM), "UI");
+
     }
 
 
