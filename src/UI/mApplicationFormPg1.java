@@ -33,6 +33,7 @@ public class mApplicationFormPg1 {
         form.setFancifulName("");
 
         cacheM.setForm(form);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
