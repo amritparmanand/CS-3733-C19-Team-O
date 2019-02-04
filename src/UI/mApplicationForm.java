@@ -1,8 +1,6 @@
 package UI;
 
-import Managers.CacheManager;
-import Managers.DatabaseManager;
-import Managers.UIManager;
+import Managers.*;
 
 public class mApplicationForm {
     private UIManager uiManager;

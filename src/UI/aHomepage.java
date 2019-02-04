@@ -1,27 +1,21 @@
 package UI;
 
-import Managers.CacheManager;
-import Managers.DatabaseManager;
-import Managers.UIManager;
+import Managers.*;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class mHomepage {
+public class aHomepage {
     private UIManager uiManager;
     private CacheManager cacheManager;
     private DatabaseManager databaseManager;
 
     @FXML private Button back;
     @FXML private Button search;
-    @FXML private VBox newForm;
 
-    public mHomepage(UIManager uiManager, CacheManager cacheManager, DatabaseManager databaseManager) {
+    public aHomepage(UIManager uiManager, CacheManager cacheManager, DatabaseManager databaseManager) {
         this.uiManager = uiManager;
         this.cacheManager = cacheManager;
         this.databaseManager = databaseManager;
@@ -36,10 +30,6 @@ public class mHomepage {
 //        else if(event.getSource() == search){
 //            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchPage.fxml"));
 //            sm.changeScene(root, search);
-//        }
-//        else if(event.getSource() == newForm){
-//            Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
-//            sm.changeSceneWithV(root, newForm);
 //        }
     }
 }
