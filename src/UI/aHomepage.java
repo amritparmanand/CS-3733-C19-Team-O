@@ -11,12 +11,10 @@ import java.io.IOException;
 public class aHomepage {
     private SceneManager sceneM;
     private CacheManager cacheM;
-    private DatabaseManager dbM;
 
-    public aHomepage(SceneManager sceneM, CacheManager cacheM, DatabaseManager dbM) {
+    public aHomepage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        this.dbM = dbM;
     }
 
     @FXML private Button back;
@@ -26,12 +24,12 @@ public class aHomepage {
     @FXML
     public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM, dbM));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
 
     @FXML
     public void back() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
-        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM, dbM));
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }
 }

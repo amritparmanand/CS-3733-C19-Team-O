@@ -8,25 +8,23 @@ import javafx.scene.control.Button;
 import java.io.IOException;
 
 public class mApplicationFormPg4 {
-    private SceneManager sceneManager;
-    private CacheManager cacheManager;
-    private DatabaseManager databaseManager;
+    private SceneManager sceneM;
+    private CacheManager cacheM;
 
     @FXML private Button previous;
     @FXML private Button search;
     @FXML private Button back;
     @FXML private Button submit;
 
-    public mApplicationFormPg4(SceneManager sceneManager, CacheManager cacheManager, DatabaseManager databaseManager) {
-        this.sceneManager = sceneManager;
-        this.cacheManager = cacheManager;
-        this.databaseManager = databaseManager;
+    public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
     }
 
     @FXML
     public void previousPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneManager.changeScene(loader, new mApplicationFormPg2(sceneManager, cacheManager, databaseManager));
+        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
 
 
@@ -38,12 +36,12 @@ public class mApplicationFormPg4 {
     @FXML
     public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneManager.changeScene(loader, new SearchPage(sceneManager, cacheManager, databaseManager));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
 
     @FXML
     public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneManager.changeScene(loader, new mHomepage(sceneManager, cacheManager, databaseManager));
+        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
 }
