@@ -22,6 +22,7 @@ public class mApplicationFormPg1 {
 
     @FXML
     public void nextPage() throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }

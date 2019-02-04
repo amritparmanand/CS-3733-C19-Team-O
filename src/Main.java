@@ -17,7 +17,7 @@ public class Main extends Application {
         //frontend
         sceneM = new SceneManager(primaryStage);
         //middleman
-        cacheM = new CacheManager(dbM, sceneM);
+        cacheM = new CacheManager(dbM);
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));

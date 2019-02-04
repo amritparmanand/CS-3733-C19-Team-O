@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class mApplicationFormPg4 {
     private SceneManager sceneM;
@@ -30,7 +31,36 @@ public class mApplicationFormPg4 {
 
     @FXML
     public void submit() throws IOException {
-    // Functionality here
+        String createForm = "INSERT INTO Forms(" +
+                "formID int	constraint Forms_pk	primary key, " +
+                "brewerNumber int,	" +
+                "productSource int,	" +
+                "serialNumber int,	" +
+                "productType int,	" +
+                "brandName varchar(20),	" +
+                "fancifulName varchar(20),	" +
+                "applicantName varchar(40),	" +
+                "mailingAddress varchar(80), " +
+                "formula varchar(20), " +
+                "grapeVarietal varchar(20),	" +
+                "appelation varchar(20), " +
+                "phoneNumber bigint, " +
+                "emailAddress varchar(30),	" +
+                "dateOfApplication date, " +
+                "printName varchar(40),	" +
+                "beerWineSpirit int, " +
+                "alcoholPercent double,	" +
+                "vintageYear int, " +
+                "phLevel double)";
+
+        try {
+
+            cacheM.getDbM().getStmt().execute(createForm);
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
     }
 
     @FXML
