@@ -101,6 +101,21 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
     }
+    public void createSequences(){
+        String repSequence = "create sequence repIDSequence as int start with 1";
+        String formSequence = "create sequence formIDSequence as int start with 1";
+        String appSequence = "create sequence agentIDSequence as int start with 1";
+
+        try {
+            this.stmt.execute(repSequence);
+            this.stmt.execute(formSequence);
+            this.stmt.execute(appSequence);
+        }
+        catch (SQLException e){
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+    }
 
     // Find username and password for an account by its id
     public String mFindUsername(int id){
