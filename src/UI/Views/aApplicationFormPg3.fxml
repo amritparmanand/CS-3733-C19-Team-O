@@ -135,7 +135,7 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="1.0">
                             <content>
                                 <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
                                     <children>
@@ -238,13 +238,17 @@
                                         <VBox alignment="CENTER" prefHeight="700.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="15. Show Any Information That is Blown, Branded, or Embossed on the Container (e.g., net contents) Only if it Does Not Appear on the Labels Affixed Below. Also, Show Translations of Foreign Language Text Appearing on Labels." wrappingWidth="600.0" />
-                                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" styleClass="textfield">
+                                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0">
                                                     <VBox.margin>
                                                         <Insets top="10.0" />
                                                     </VBox.margin>
                                        <children>
                                           <ImageView fx:id="imagePreview" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
+                                       <styleClass>
+                                          <String fx:value="textfield" />
+                                          <String fx:value="innerShadow" />
+                                       </styleClass>
                                                 </Pane>
                                                 <Button mnemonicParsing="false" text="Upload Image" />
                                             </children>

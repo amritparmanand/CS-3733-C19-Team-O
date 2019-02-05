@@ -1,5 +1,6 @@
 
 /*UI MOCKUP CSS*/
+/*by rob*/
 
 /*lets try and get the SVG files wortking */
 *{
@@ -183,4 +184,39 @@
 .scrollpane{
   -fx-background-color: #f5f7fa;
 
+}
+
+/*radiobutton effects DELETE IF THEY MAKE IT WEIRD*/
+
+.radio-button .radio{
+  -fx-background-color: white;
+  -fx-effect: innershadow(one-pass-box, lightgray, 5, 0.3, 0, 1);
+
+}
+
+.radio-button .dot{
+  -fx-mark-highlight-color: #4A77DD ;
+  -fx-mark-color: #4A77DD ;
+
+
+}
+
+
+/*checkbox DELETE IF THEY MAKE IT WEIRD*/
+.check-box .box {
+  -fx-background-color: white;
+  -fx-effect: innershadow(one-pass-box, lightgray, 5, 0.3, 0, 1);
+}
+
+.check-box:selected .mark {
+  -fx-background-color: white;
+}
+
+.check-box:selected .box {
+  -fx-background-color: #4A77DD;
+  -fx-effect: innershadow(one-pass-box, lightgray, 5, 0, 0, 0);
+}
+
+.innerShadow{
+  -fx-effect: innershadow(three-pass-box, lightgray, 5, 0.3, 0, 1);
 }
