@@ -79,7 +79,7 @@ public class Agent extends Account {
 
     public void getAssignedForms(Connection conn){
         try {
-            String assignedForms = "SELECT * FROM FORMS WHERE AssignedAgentrepID != null";
+            String assignedForms = "SELECT * FROM FORMS WHERE AssignedAgentrepID = " + this.getTtbID();
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
