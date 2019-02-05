@@ -38,7 +38,7 @@ public class mApplicationFormPg4 {
 
 
     @FXML
-    public void submit() throws IOException {
+    public void submit() throws SQLException {
         Form form = cacheM.getForm();
 
         form.setDateOfApplication(dateOfApplication.setConverter(null);
