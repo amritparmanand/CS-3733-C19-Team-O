@@ -61,10 +61,10 @@ public class Agent extends Account {
 
                     String insertingAgentID = "UPDATE Forms SET AssignedAgentrepID = " + this.getTtbID() + " WHERE formID in (";
                     while(rs.next() && this.workingForms.size() < 3) {
-                        insertingAgentID.concat(rs.getInt("formID") + ",");
+                        insertingAgentID.concat(rs.getInt("formID") + ", ");
                         this.workingForms.add(formFromResultSet(rs));
                     }
-                    insertingAgentID = insertingAgentID.substring(0, insertingAgentID.length() - 1).concat(")");
+                    insertingAgentID = insertingAgentID.substring(0, insertingAgentID.length() - 2).concat(")");
 
                     ps = conn.prepareStatement(insertingAgentID);
                     ps.executeUpdate();
