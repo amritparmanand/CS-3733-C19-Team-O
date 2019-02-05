@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg3">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg3">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -134,7 +134,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="14. Type of Application" />
-                                                <TextField promptText="example: 123 Example Road ">
+                                                <TextField fx:id="applicationType" promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -144,7 +144,7 @@
                                                     <children>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF LABEL APPROVAL" />
+                                                                <CheckBox fx:id="certLabelApp" mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF LABEL APPROVAL" />
                                                             </children>
                                                             <FlowPane.margin>
                                                                 <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -152,11 +152,11 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
+                                                                <CheckBox fx:id="certExempLabApp" mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="&quot;For sale in " />
-                                                                        <TextField maxWidth="50.0" styleClass="textfield" />
+                                                                        <TextField fx:id="stateAbb" maxWidth="50.0" styleClass="textfield" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text=" only&quot; (Fill in state abbreviation)" />
                                                                     </children>
                                                                 </HBox>
@@ -167,11 +167,11 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
+                                                                <CheckBox fx:id="distinctLiqBottApp" mnemonicParsing="false" styleClass="labeltext" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TOTAL BOTTLE CAPACITY BEFORE CLOSURE " />
-                                                                        <TextField maxWidth="65.0" styleClass="textfield" />
+                                                                        <TextField fx:id="bottleCap" maxWidth="65.0" styleClass="textfield" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="(Fill in amount)" />
                                                                     </children>
                                                                 </HBox>
@@ -182,11 +182,11 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="RESUBMISSION AFTER REJECTION" />
+                                                                <CheckBox fx:id="resubmitAfterRej" mnemonicParsing="false" styleClass="labeltext" text="RESUBMISSION AFTER REJECTION" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TTB ID " />
-                                                                        <TextField prefWidth="300.0" styleClass="textfield" />
+                                                                        <TextField fx:id="ttbID" prefWidth="300.0" styleClass="textfield" />
                                                                     </children>
                                                                 </HBox>
                                                             </children>

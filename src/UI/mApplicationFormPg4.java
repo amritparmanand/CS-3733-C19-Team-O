@@ -5,6 +5,8 @@ import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -18,6 +20,9 @@ public class mApplicationFormPg4 {
     @FXML private Button search;
     @FXML private Button back;
     @FXML private Button submit;
+    @FXML private DatePicker dateOfApplication;
+    @FXML private TextField applicantSig;
+    @FXML private TextField applicantNamePrint;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
@@ -36,9 +41,9 @@ public class mApplicationFormPg4 {
     public void submit() throws IOException {
         Form form = cacheM.getForm();
 
-        form.setDateOfApplication(new Date(1,1,1));
-//        form.setSignatureOfApplicant("");
-        form.setPrintName("asdf");
+        form.setDateOfApplication(dateOfApplication.setConverter(null);
+       // form.setSignatureOfApplicant(applicantSig.getText());
+        form.setPrintName(applicantNamePrint.getText());
 //        form.setDateIssued("");
 
         cacheM.getDbM().insertForm(form);
