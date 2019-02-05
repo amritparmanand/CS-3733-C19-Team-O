@@ -48,7 +48,12 @@ public class mApplicationFormPg4 {
         form.setPrintName(applicantNamePrint.getText());
 //        form.setDateIssued("");
 
-        cacheM.getDbM().insertForm(form);
+        try{
+            cacheM.getDbM().insertForm(form);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
 
     }
 
