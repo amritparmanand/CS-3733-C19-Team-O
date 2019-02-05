@@ -23,7 +23,7 @@ public class Agent extends Account {
     public void register(Connection conn) {
         try {
             String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone) " +
-                    "VALUES(?,?,?,?,?,?,?)";
+                    "VALUES(?,?,?,?,?,?)";
 
             PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
             prepStmt.setInt(1, this.getTtbID());
