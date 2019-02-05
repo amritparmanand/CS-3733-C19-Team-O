@@ -90,6 +90,6 @@ public class Agent extends Account {
                         rs.getDouble("alcoholPercent"),
                         rs.getInt("vintageYear"),
                         rs.getDouble("pHLevel"),
-                        rs.getInt("forms_pk"));
+                        rs.getInt("formID"));
     }
 }
