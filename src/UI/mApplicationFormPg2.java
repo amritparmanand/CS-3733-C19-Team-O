@@ -45,8 +45,9 @@ public class mApplicationFormPg2 {
         form.setPhoneNumber(phoneNumber.getText());
         form.setEmailAddress(email.getText());
 
-        System.out.println(form.getBrandName());
         cacheM.setForm(form);
+
+        System.out.println("worked 2");
     }
 
     @FXML public void nextPage() throws IOException {

@@ -28,13 +28,22 @@ public class mApplicationFormPg4 {
     @FXML private TextField applicantNamePrint;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
+
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
-    
+
+    @FXML
+    public void previousPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
+    }
+
+
     @FXML
     public void submit() throws SQLException {
         Form form = cacheM.getForm();
+
         form.setDateOfApplication(java.sql.Date.valueOf(dateOfApplication.getValue()));
        // form.setSignatureOfApplicant(applicantSig.getText());
         form.setPrintName(applicantNamePrint.getText());
@@ -49,15 +58,14 @@ public class mApplicationFormPg4 {
 
     }
 
-    @FXML public void previousPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
-    }
-    @FXML public void searchPage() throws IOException {
+    @FXML
+    public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
-    @FXML public void goToHomePage() throws IOException {
+
+    @FXML
+    public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }

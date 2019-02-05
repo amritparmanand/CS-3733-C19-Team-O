@@ -64,6 +64,8 @@ public class mApplicationFormPg1 {
         form.setFancifulName(fancifulName.getText());
 
         cacheM.setForm(form);
+
+        System.out.println("worked 1");
     }
 
     @FXML public void nextPage() throws IOException {

@@ -38,7 +38,7 @@ public class mApplicationFormPg3 {
         this.cacheM = cacheM;
     }
 
-//    @FXML public void saveDraft{
+//    @FXML public void saveDraft(){
 //        Form form = cacheM.getForm();
 //
 //        form.setTypeOfApplication(applicationType.getText());
