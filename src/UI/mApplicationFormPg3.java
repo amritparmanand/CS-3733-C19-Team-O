@@ -1,12 +1,15 @@
 package UI;
 
 import Datatypes.Form;
+import Datatypes.LabelImage;
 import Managers.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -19,6 +22,7 @@ public class mApplicationFormPg3 {
     @FXML private Button previous;
     @FXML private Button search;
     @FXML private Button back;
+    @FXML private Button uploadImageButton;
     @FXML private TextField applicationType;
     @FXML private TextField stateAbb;
     @FXML private TextField ttbID;
@@ -27,6 +31,7 @@ public class mApplicationFormPg3 {
     @FXML private CheckBox certExempLabApp;
     @FXML private CheckBox distinctLiqBottApp;
     @FXML private CheckBox resubmitAfterRej;
+    @FXML private ImageView imagePreview;
 
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -69,4 +74,12 @@ public class mApplicationFormPg3 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
+    //Get image
+
+    @FXML
+    public void uploadImage(ActionEvent event){
+        LabelImage image = new LabelImage();
+        imagePreview.setImage(image.getImageFile());
+    }
+
 }

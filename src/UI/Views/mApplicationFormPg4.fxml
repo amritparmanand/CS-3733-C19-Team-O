@@ -105,7 +105,7 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="1.0">
                             <content>
                                 <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
                                     <children>
@@ -131,10 +131,9 @@
                                                 <Insets />
                                             </VBox.margin>
                                             <padding>
-                                                <Insets left="20.0" right="20.0" />
+                                                <Insets bottom="20.0" left="20.0" right="20.0" />
                                             </padding>
                                         </Separator>
-                                        <HBox prefHeight="100.0" prefWidth="200.0" />
                                         <TextFlow prefWidth="200.0">
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="Under the penalties of perjury, I declare: that all statements appearing on this application are true and correct to the best of my knowledge and belief; and , that the representations on the labels attached to this form, including supplemental documents, truly and correctly represent the content of the containers to which these labels will be applied. I also certify that i have read, understood, and complied with the conditions and instructions which are attatched to an original TTB F 5100.31, Certificate/Exemption of Label/Bottle Approval. I consent to the return of processed applications in the manner indicated on this application and set forth in the applicable instructions." />
@@ -194,27 +193,28 @@
                                                         <String fx:value="labeltext" />
                                                     </styleClass>
                                                 </TextField>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Button maxHeight="70.0" minHeight="70.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="170.0" text="Submit">
-                                             <styleClass>
-                                                <String fx:value="labeltext" />
-                                                <String fx:value="card" />
-                                             </styleClass>
-                                             <VBox.margin>
-                                                <Insets top="20.0" />
-                                             </VBox.margin>
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Button>
-                                       </children>
-                                    </VBox>
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                             </padding>
                                         </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button maxHeight="70.0" minHeight="70.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Submit">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="buttonStyle" />
+                                          <String fx:value="h2" />
+                                          <String fx:value="largeBorderRadius" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </VBox>
                                     </children>
                                 </VBox>
                             </content>

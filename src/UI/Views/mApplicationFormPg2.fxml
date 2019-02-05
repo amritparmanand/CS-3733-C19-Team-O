@@ -133,7 +133,6 @@
                                                 <Insets left="20.0" right="20.0" />
                                             </padding>
                                         </Separator>
-                                        <HBox prefHeight="100.0" prefWidth="200.0" />
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name and Address of Applicant as shown on Plant Registry, Basic Permit, or Brewer's Notice. Include Approved DBA or Tradename if Used on the Label (Required)" wrappingWidth="600.0" />

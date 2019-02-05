@@ -60,10 +60,7 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#searchPage" styleClass="searchButtonStyle" text="Search">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin></Button>
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#searchPage" text="Search" />
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -81,8 +78,6 @@
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="73.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="108.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
-                                <Text layoutX="116.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 5 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="143.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
@@ -92,10 +87,10 @@
                                             </children>
                                         </HBox>
                                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Save Draft">
-                                 <styleClass>
-                                    <String fx:value="labeltext" />
-                                    <String fx:value="card" />
-                                 </styleClass>
+                                            <styleClass>
+                                                <String fx:value="labeltext" />
+                                                <String fx:value="card" />
+                                            </styleClass>
                                         </Button>
                                         <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
                                             <VBox.margin>
@@ -106,7 +101,7 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="1.0">
                             <content>
                                 <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
                                     <children>
@@ -139,7 +134,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="14. Type of Application" />
-                                                <TextField fx:id="applicationType" promptText="example: 123 Example Road ">
+                                                <TextField promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -149,7 +144,7 @@
                                                     <children>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox fx:id="certLabelApp" mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF LABEL APPROVAL" />
+                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF LABEL APPROVAL" />
                                                             </children>
                                                             <FlowPane.margin>
                                                                 <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -157,11 +152,11 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox fx:id="certExampLabApp" mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
+                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="&quot;For sale in " />
-                                                                        <TextField fx:id="stateAbb" maxWidth="50.0" styleClass="textfield" />
+                                                                        <TextField maxWidth="50.0" styleClass="textfield" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text=" only&quot; (Fill in state abbreviation)" />
                                                                     </children>
                                                                 </HBox>
@@ -172,7 +167,7 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox fx:id="distinctLiqBottApp" mnemonicParsing="false" styleClass="labeltext" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
+                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TOTAL BOTTLE CAPACITY BEFORE CLOSURE " />
@@ -187,7 +182,7 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox fx:id="resubmitAfterRej" mnemonicParsing="false" styleClass="labeltext" text="RESUBMISSION AFTER REJECTION" />
+                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="RESUBMISSION AFTER REJECTION" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TTB ID " />
@@ -213,8 +208,11 @@
                                                     <VBox.margin>
                                                         <Insets top="10.0" />
                                                     </VBox.margin>
+                                       <children>
+                                          <ImageView fx:id="imagePreview" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
                                                 </Pane>
-                                                <Button mnemonicParsing="false" text="Upload Image" />
+                                                <Button fx:id="uploadImageButton" mnemonicParsing="false" onAction="#uploadImage" styleClass="buttonStyle" text="Upload Image" />
                                             </children>
                                             <VBox.margin>
                                                 <Insets />

@@ -41,32 +41,32 @@ public class mApplicationFormPg1 {
 
     @FXML
     public void nextPage() throws IOException {
-        Form form = cacheM.getForm();
-
-        // checks if domestic or imported
-        if(domestic.isSelected() == true) {
-            isDomestic = 1;
-        }else if(imported.isSelected() == true){
-            isDomestic = 0;
-        }
-        // checks if wine, distilled, or malt beverage
-        if(wine.isSelected() == true){
-            type = 0;
-        } else if(distilled.isSelected() == true){
-            type = 1;
-        } else if(malt.isSelected() == true){
-            type = 2;
-        }
-
-        form.setRepID(Integer.parseInt(repID.getText()));
-        form.setBrewerNumber(Integer.parseInt(brewerNO.getText()));
-        form.setProductSource(isDomestic);
-        form.setSerialNumber(Integer.parseInt(serialNumber.getText()));
-        form.setProductType(type);
-        form.setBrandName(brandName.getText());
-        form.setFancifulName(fancifulName.getText());
-
-        cacheM.setForm(form);
+//        Form form = cacheM.getForm();
+//
+//        // checks if domestic or imported
+//        if(domestic.isSelected() == true) {
+//            isDomestic = 1;
+//        }else if(imported.isSelected() == true){
+//            isDomestic = 0;
+//        }
+//        // checks if wine, distilled, or malt beverage
+//        if(wine.isSelected() == true){
+//            type = 0;
+//        } else if(distilled.isSelected() == true){
+//            type = 1;
+//        } else if(malt.isSelected() == true){
+//            type = 2;
+//        }
+//
+//        form.setRepID(Integer.parseInt(repID.getText()));
+//        form.setBrewerNumber(Integer.parseInt(brewerNO.getText()));
+//        form.setProductSource(isDomestic);
+//        form.setSerialNumber(Integer.parseInt(serialNumber.getText()));
+//        form.setProductType(type);
+//        form.setBrandName(brandName.getText());
+//        form.setFancifulName(fancifulName.getText());
+//
+//        cacheM.setForm(form);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));

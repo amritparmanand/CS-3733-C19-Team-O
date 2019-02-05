@@ -37,18 +37,18 @@ public class mApplicationFormPg2 {
     @FXML
     public void nextPage() throws IOException {
 
-        Form form = cacheM.getForm();
-
-        form.setPrintName(printName.getText());
-        form.setMailingAddress(mailAddress.getText());
-        form.setFormula(formula.getText());
-        form.setGrapeVarietal(grapes.getText());
-        form.setAppellation(appellation.getText());
-        form.setPhoneNumber(phoneNumber.getText());
-        form.setEmailAddress(email.getText());
-
-        System.out.println(form.getBrandName());
-        cacheM.setForm(form);
+//        Form form = cacheM.getForm();
+//
+//        form.setPrintName(printName.getText());
+//        form.setMailingAddress(mailAddress.getText());
+//        form.setFormula(formula.getText());
+//        form.setGrapeVarietal(grapes.getText());
+//        form.setAppellation(appellation.getText());
+//        form.setPhoneNumber(phoneNumber.getText());
+//        form.setEmailAddress(email.getText());
+//
+//        System.out.println(form.getBrandName());
+//        cacheM.setForm(form);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
