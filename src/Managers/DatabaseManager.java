@@ -24,7 +24,15 @@ public class DatabaseManager {
 
     }
     public void generateTables(){
-        String createRepresentative = "create table Representatives" +
+        String createApplications = "create table Applications(" +
+                "appID int constraint Applications_pk primary key," +
+                "formID int constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS," +
+                "repID int constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES," +
+                "ttbID int constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS," +
+                "dateSubmitted date," +
+                "dateApproved date," +
+                "dateRejected date)";
+        String createRepresentatives = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
                 "username varchar(20),	" +
                 "password varchar(65), 	" +
@@ -65,7 +73,8 @@ public class DatabaseManager {
         String createUniqueAgents = "create unique index Agents_username_uindex " +
                 "on Agents (username)";
         try {
-            this.stmt.execute(createRepresentative);
+            this.stmt.execute(createApplications);
+            this.stmt.execute(createRepresentatives);
             this.stmt.execute(createAgents);
             this.stmt.execute(createForms);
             this.stmt.execute(createUniqueReps);
