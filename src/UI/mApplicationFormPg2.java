@@ -35,7 +35,7 @@ public class mApplicationFormPg2 {
         form.setProductType(1);
         form.setAppellation("");
         form.setFancifulName("");
-        form.setPhoneNumber(new BigInteger("5856457291"));
+        form.setPhoneNumber("");
         form.setEmailAddress("");
 
         System.out.println(form.getBrandName());
