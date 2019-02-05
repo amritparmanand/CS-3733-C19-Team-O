@@ -22,6 +22,7 @@ public class mApplicationFormPg3 {
     @FXML private TextField applicationType;
     @FXML private TextField stateAbb;
     @FXML private TextField ttbID;
+    @FXML private TextField bottleCap; //will be int, for future reference
     @FXML private CheckBox certLabelApp;
     @FXML private CheckBox certExempLabApp;
     @FXML private CheckBox distinctLiqBottApp;
