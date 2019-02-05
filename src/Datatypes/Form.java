@@ -19,13 +19,12 @@ public class Form {
     private String appellation;
     private String phoneNumber;
     private String emailAddress;
-    private Date dateOfApplication;
+    private String dateOfApplication;
     private String printName;
     private int beerWineSpirit;
     private double alcoholPercent;
     private int vintageYear;
     private double pHLevel;
-    private int forms_pk;
 
     public Form() {
         this.repID = 0;
@@ -48,10 +47,9 @@ public class Form {
         this.alcoholPercent = 0;
         this.vintageYear = 0;
         this.pHLevel = 0;
-        this.forms_pk = 0;
     }
 
-    public Form(int repID, int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, Date dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel, int forms_pk) {
+    public Form(int repID, int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel) {
         this.repID = repID;
         this.brewerNumber = brewerNumber;
         this.productSource = productSource;
@@ -72,7 +70,6 @@ public class Form {
         this.alcoholPercent = alcoholPercent;
         this.vintageYear = vintageYear;
         this.pHLevel = pHLevel;
-        this.forms_pk = forms_pk;
     }
 
     public int getRepID(){ return repID; }
@@ -155,10 +152,10 @@ public class Form {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
-    public Date getDateOfApplication() {
+    public String getDateOfApplication() {
         return dateOfApplication;
     }
-    public void setDateOfApplication(Date dateOfApplication) {
+    public void setDateOfApplication(String dateOfApplication) {
         this.dateOfApplication = dateOfApplication;
     }
     public String getPrintName() {
@@ -190,11 +187,5 @@ public class Form {
     }
     public void setpHLevel(double pHLevel) {
         this.pHLevel = pHLevel;
-    }
-    public int getForms_pk() {
-        return forms_pk;
-    }
-    public void setForms_pk(int forms_pk) {
-        this.forms_pk = forms_pk;
     }
 }

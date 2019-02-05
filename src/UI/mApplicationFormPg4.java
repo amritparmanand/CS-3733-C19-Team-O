@@ -23,7 +23,7 @@ public class mApplicationFormPg4 {
     @FXML private Button search;
     @FXML private Button back;
     @FXML private Button submit;
-    @FXML private DatePicker dateOfApplication;
+    @FXML private TextField dateOfApplication;
     @FXML private TextField applicantSig;
     @FXML private TextField applicantNamePrint;
 
@@ -34,17 +34,10 @@ public class mApplicationFormPg4 {
     }
 
     @FXML
-    public void previousPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
-    }
-
-
-    @FXML
     public void submit() throws SQLException {
         Form form = cacheM.getForm();
 
-        form.setDateOfApplication(java.sql.Date.valueOf(dateOfApplication.getValue()));
+        form.setDateOfApplication(dateOfApplication.getText());
        // form.setSignatureOfApplicant(applicantSig.getText());
         form.setPrintName(applicantNamePrint.getText());
 //        form.setDateIssued("");
@@ -55,17 +48,20 @@ public class mApplicationFormPg4 {
             e.printStackTrace();
         }
 
+        System.out.println(form.getDateOfApplication());
+        System.out.println("hi");
 
     }
 
-    @FXML
-    public void searchPage() throws IOException {
+    @FXML public void previousPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
+    }
+    @FXML public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
-
-    @FXML
-    public void goToHomePage() throws IOException {
+    @FXML public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
