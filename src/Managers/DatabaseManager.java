@@ -86,36 +86,36 @@ public class DatabaseManager {
         form.setpHLevel(1.1);
         form.setVintageYear(1111);
         form.setAlcoholPercent(1000);
-        String createForm = "INSERT INTO Forms VALUES(" + form.getForms_pk()+
-                ", " + form.getBrewerNumber()+
-                ",	" + form.getProductSource()+
-                ",	" + form.getSerialNumber()+
-                ",	" + form.getProductType()+
-                ",	" + form.getBrandName()+
-                ", " + form.getFancifulName()+
-                ",	" + form.getApplicantName()+
-                ",	" + form.getMailingAddress()+
-                ", " + form.getFormula()+
-                ", " + form.getGrapeVarietal()+
-                ",	" + form.getAppellation()+
-                ", " + form.getPhoneNumber()+
-                ", " + form.getEmailAddress()+
-                ",	" + "0000-01-01"+
-                ", " + form.getPrintName()+
-                ",	" + form.getBeerWineSpirit()+
-                ", " + form.getAlcoholPercent()+
-                ",	" + form.getVintageYear()+
-                ", " +  form.getpHLevel() +
-                ", " + form.getForms_pk() +
-                ")";
+
         String Forms1 = "INSERT INTO Forms(FORMID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, APPELLATION, PHONENUMBER, EMAILADDRESS, DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, VINTAGEYEAR, PHLEVEL) " +
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
 
         try {
 
-            prepStmt.setInt(1,1);
-            stmt.execute(createForm);
+            prepStmt.setInt(1,form.get_Forms_pk());
+            prepStmt.setInt(2, form.getBrewerNumber());
+            prepStmt.setInt(3, form.getProductSource());
+            prepStmt.setInt(4, form.getSerialNumber());
+            prepStmt.setInt(5, form.getProductType());
+            prepStmt.setString(6, form.getBrandName());
+            prepStmt.setString(7, form.getFancifulName());
+            prepStmt.setString(8, form.getApplicantName());
+            prepStmt.setString(9, form.getMailingAddress());
+            prepStmt.setString(10, form.getFormula());
+            prepStmt.setString(11, form.getGrapeVarietal());
+            prepStmt.setString(12, form.getAppellation());
+            prepStmt.setString(13, form.getPhoneNumber());
+            prepStmt.setString(14, form.getEmailAddress());
+            prepStmt.setString(15, "0000-01-01");
+            prepStmt.setString(16, form.getPrintName());
+            prepStmt.setInt(17, form.getBeerWineSpirit());
+            prepStmt.setDouble(18, form.getAlcholPercent());
+            prepStmt.setInt(19, form.getVintageYear());
+            prepStmt.setDouble(20, form.getpHLevel());
+            prepStmt.setInt(21, forms.getForms_pk());
+            prepStmt.executeUpdate();
+            prepStmt.close();
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
