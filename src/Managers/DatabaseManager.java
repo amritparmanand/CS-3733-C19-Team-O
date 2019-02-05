@@ -90,10 +90,10 @@ public class DatabaseManager {
         String createUniqueAgents = "create unique index Agents_username_uindex " +
                 "on Agents (username)";
         try {
-            this.stmt.execute(createApplications);
             this.stmt.execute(createRepresentatives);
             this.stmt.execute(createAgents);
             this.stmt.execute(createForms);
+            this.stmt.execute(createApplications);
             this.stmt.execute(createUniqueReps);
             this.stmt.execute(createUniqueAgents);
         }
