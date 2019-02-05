@@ -49,20 +49,17 @@ public class mRegister {
         }
     }
 
-    @FXML
-    public void back() throws IOException {
+    @FXML public void back() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }
 
-    @FXML
-    public void search() throws IOException {
+    @FXML public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
 
-    @FXML
-    public void validateButton(){
+    @FXML public void validateButton(){
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||

@@ -3,6 +3,8 @@ package Managers;
 import Datatypes.Account;
 import Datatypes.Form;
 
+import java.sql.Connection;
+
 public class CacheManager {
     private DatabaseManager dbM;
     private Form form;

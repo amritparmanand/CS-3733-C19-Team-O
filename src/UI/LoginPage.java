@@ -9,12 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.io.IOException;
 
 public class LoginPage {
     private SceneManager sceneM;
@@ -37,21 +32,11 @@ public class LoginPage {
     @FXML
     @SuppressWarnings("Duplicates")
     public void login() throws IOException {
-        String uname = "";
-        String hashedPassword = "";
+        int theID = Integer.parseInt(id.getText());
 
         if(m.isSelected()){
-            try {
-                String getData = "select * from REPRESENTATIVES where REPID =" + Integer.parseInt(id.getText());
-                ResultSet result = cacheM.getDbM().getStmt().executeQuery(getData);
-                while(result.next()){
-                    uname = result.getString("username");
-                    hashedPassword = result.getString("password");
-                }
-            } catch (SQLException e) {
-                if (!e.getSQLState().equals("X0Y32"))
-                    e.printStackTrace();
-            }
+            String uname = cacheM.getDbM().mFindUsername(theID);
+            String hashedPassword = cacheM.getDbM().mFindPassword(theID);
 
             if(uname.equals(username.getText()) && passwordDecoder.matches(password.getText(),hashedPassword)) {
                 System.out.println("Login Successful!");
@@ -64,18 +49,8 @@ public class LoginPage {
         }
 
         else if(a.isSelected()){
-            try {
-                String getData = "select * from AGENTS where TTBID =" + Integer.parseInt(id.getText());
-                ResultSet result = cacheM.getDbM().getStmt().executeQuery(getData);
-                while(result.next()){
-                    uname = result.getString("username");
-                    hashedPassword = result.getString("password");
-                }
-            } catch (SQLException e) {
-                if (!e.getSQLState().equals("X0Y32"))
-                    e.printStackTrace();
-            }
-
+            String uname = cacheM.getDbM().aFindUsername(theID);
+            String hashedPassword = cacheM.getDbM().aFindPassword(theID);
             if(uname.equals(username.getText()) && passwordDecoder.matches(password.getText(),hashedPassword)) {
                 System.out.println("Login Successful!");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
@@ -87,8 +62,7 @@ public class LoginPage {
         }
     }
 
-    @FXML
-    public void register() throws IOException {
+    @FXML public void register() throws IOException {
         if(m.isSelected()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mRegister.fxml"));
             sceneM.changeScene(loader, new mRegister(sceneM, cacheM));
@@ -98,20 +72,12 @@ public class LoginPage {
             sceneM.changeScene(loader, new aRegister(sceneM, cacheM));
         }
     }
-
-    @FXML
-    public void search() throws IOException {
+    @FXML public void search() throws IOException {
         // Search
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
-
-    /**
-     * Enables the login btn and the register btn if radio buttons select and text fields are filled.
-     * Disable otherwise
-     */
-    @FXML
-    public void validateButton(){
+    @FXML public void validateButton(){
         if(m.isSelected() || a.isSelected()){
             register.setDisable(false);
             if (username.getText().isEmpty() || password.getText().isEmpty() || id.getText().isEmpty()) {

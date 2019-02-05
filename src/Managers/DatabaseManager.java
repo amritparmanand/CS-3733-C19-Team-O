@@ -7,14 +7,16 @@ public class DatabaseManager {
     private Connection connection;
     private Statement stmt;
 
+    public Connection getConnection()
+    {
+        return connection;
+    }
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
-
     public Statement getStmt() {
         return stmt;
     }
-
     public void setStmt(Statement stmt) {
         this.stmt = stmt;
     }
@@ -100,8 +102,65 @@ public class DatabaseManager {
         }
     }
 
-    public void insertForm(Form form) throws SQLException
-    {
+    // Find username and password for an account by its id
+    public String mFindUsername(int id){
+        String uname = "";
+        try {
+            String getData = "select * from REPRESENTATIVES where REPID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                uname = result.getString("username");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return uname;
+    }
+    public String mFindPassword(int id){
+        String hashedPassword = "";
+        try {
+            String getData = "select * from REPRESENTATIVES where REPID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                hashedPassword = result.getString("password");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return hashedPassword;
+    }
+    public String aFindUsername(int id){
+        String uname = "";
+        try {
+            String getData = "select * from AGENTS where TTBID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                uname = result.getString("username");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return uname;
+    }
+    public String aFindPassword(int id){
+        String hashedPassword = "";
+        try {
+            String getData = "select * from AGENTS where TTBID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                hashedPassword = result.getString("password");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return hashedPassword;
+    }
+
+    public void insertForm(Form form) throws SQLException {
         form.setForms_pk(1);
         form.setApplicantName("DankMEME");
         form.setBeerWineSpirit(11);
@@ -142,10 +201,6 @@ public class DatabaseManager {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-    }
-    public Connection getConnection()
-    {
-        return connection;
     }
 
     public void executeStatement(PreparedStatement ps) {
