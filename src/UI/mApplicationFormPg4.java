@@ -7,10 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import java.time.format.DateTimeFormatter;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class mApplicationFormPg4 {
     private SceneManager sceneM;
@@ -40,8 +43,7 @@ public class mApplicationFormPg4 {
     @FXML
     public void submit() throws SQLException {
         Form form = cacheM.getForm();
-
-        form.setDateOfApplication(dateOfApplication.setConverter(null);
+        form.setDateOfApplication(java.sql.Date.valueOf(dateOfApplication.getValue()));
        // form.setSignatureOfApplicant(applicantSig.getText());
         form.setPrintName(applicantNamePrint.getText());
 //        form.setDateIssued("");
