@@ -16,7 +16,7 @@ public class Form {
     private String formula;
     private String grapeVarietal;
     private String appellation;
-    private BigInteger phoneNumber;
+    private String phoneNumber;
     private String emailAddress;
     private Date dateOfApplication;
     private String printName;
@@ -49,7 +49,7 @@ public class Form {
         this.forms_pk = 0;
     }
 
-    public Form(int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, BigInteger phoneNumber, String emailAddress, Date dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel, int forms_pk) {
+    public Form(int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, Date dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel, int forms_pk) {
         this.brewerNumber = brewerNumber;
         this.productSource = productSource;
         this.serialNumber = serialNumber;
@@ -160,11 +160,11 @@ public class Form {
         this.appellation = appelation;
     }
 
-    public BigInteger getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(BigInteger phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
