@@ -6,9 +6,12 @@ import Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+
+import javafx.scene.paint.Color;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class LoginPage {
@@ -23,6 +26,7 @@ public class LoginPage {
     @FXML private TextField id;
     @FXML private TextField username;
     @FXML private TextField password;
+    @FXML private Label loginMessage;
 
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -44,6 +48,8 @@ public class LoginPage {
                 sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
             }
             else{
+                loginMessage.setTextFill(Color.RED);
+                loginMessage.setText("Incorrect username or password. Please try again.");
                 System.out.println("The username and password you entered did not match our records. Please double-check and try again.");
             }
         }
@@ -57,6 +63,8 @@ public class LoginPage {
                 sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
             }
             else{
+                loginMessage.setTextFill(Color.RED);
+                loginMessage.setText("Incorrect username or password. Please try again.");
                 System.out.println("The username and password you entered did not match our records. Please double-check and try again.");
             }
         }
