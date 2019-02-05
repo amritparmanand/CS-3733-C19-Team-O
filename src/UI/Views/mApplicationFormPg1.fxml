@@ -139,7 +139,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="1. REP. ID. NO. (If any)" />
-                                                <TextField promptText="example: 123456">
+                                                <TextField fx:id="repID" promptText="example: 123456">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -156,7 +156,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="2. Plant Registry/Basic Permt/ Brewer's NO. (Required)" />
-                                                <TextField promptText="example: 123456">
+                                                <TextField fx:id="brewerNO" promptText="example: 123456">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -198,7 +198,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="4. Serial Number (Required)" />
-                                                <TextField promptText="example: 123456">
+                                                <TextField fx:id="serialNumber" promptText="example: 123456">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -242,7 +242,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="6. Brand Name (Required)" />
-                                                <TextField promptText="example: example beer company">
+                                                <TextField fx:id="brandName" promptText="example: example beer company">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -256,7 +256,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="7. Fanciful Name (If any)" />
-                                                <TextField promptText="ex: example drink">
+                                                <TextField fx:id="fancifulName" promptText="ex: example drink">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
