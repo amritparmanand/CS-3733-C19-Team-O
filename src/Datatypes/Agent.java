@@ -77,6 +77,24 @@ public class Agent extends Account {
         }
     }
 
+    public void getAssignedForms(Connection conn){
+        try {
+            String assignedForms = "SELECT * FROM FORMS WHERE AssignedAgentrepID != null";
+            PreparedStatement ps = conn.prepareStatement(assignedForms);
+
+            ResultSet rs = ps.executeQuery();
+            ps.close();
+
+            while (rs.next()){
+                workingForms.add(formFromResultSet(rs));
+            }
+
+        } catch (SQLException e){
+            if (!e.getSQLState().equals("XOY32"))
+                e.printStackTrace();
+        }
+    }
+
     private Form formFromResultSet(ResultSet rs) throws SQLException {
         return new Form(rs.getInt("brewerNumber"),
                         rs.getInt("productSource"),
