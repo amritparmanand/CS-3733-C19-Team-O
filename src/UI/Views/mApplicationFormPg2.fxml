@@ -89,7 +89,7 @@
                                                 <Button fx:id="next" mnemonicParsing="false" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                             </children>
                                         </HBox>
-                                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Save Draft">
+                                        <Button mnemonicParsing="false" onMousePressed="#saveDraft" prefHeight="50.0" prefWidth="100.0" text="Save Draft">
                                             <styleClass>
                                                 <String fx:value="labeltext" />
                                                 <String fx:value="card" />

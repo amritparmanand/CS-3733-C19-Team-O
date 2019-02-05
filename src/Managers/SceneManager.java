@@ -46,7 +46,6 @@ public class SceneManager {
         main.show();
     }
 
-
     /**
      * Pop-up windows
      */
@@ -54,20 +53,9 @@ public class SceneManager {
         Stage stage;
         stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.setTitle("idk what to pop so here's a fake mortgage calculator");
+        stage.setTitle("hi");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
 
-    /**
-     * Change Scene by pressing on V box
-     */
-    @SuppressWarnings("Duplicates")
-    public void changeSceneWithV(Parent root, VBox v) {
-        Stage stage;
-        stage = (Stage) v.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }

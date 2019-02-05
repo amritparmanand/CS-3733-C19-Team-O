@@ -51,6 +51,7 @@ public class aRegister {
         if(password.getText().equals(confirmP.getText())){
             Agent a = new Agent(username.getText(), password.getText(), fullName.getText(), email.getText(), phone.getText(), Integer.parseInt(ttbID.getText()));
             cacheM.register(a);
+            cacheM.setAcct(a);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
             sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
         }

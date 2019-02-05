@@ -41,6 +41,7 @@ public class mRegister {
         if(password.getText().equals(confirmP.getText())){
             Manufacturer m = new Manufacturer(username.getText(), password.getText(), fullName.getText(), email.getText(), phone.getText(), Integer.parseInt(repID.getText()),companyName.getText());
             cacheM.register(m);
+            cacheM.setAcct(m);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
             sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
         }

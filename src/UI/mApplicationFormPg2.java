@@ -34,40 +34,34 @@ public class mApplicationFormPg2 {
         this.cacheM = cacheM;
     }
 
-    @FXML
-    public void nextPage() throws IOException {
+    @FXML public void saveDraft(){
+        Form form = cacheM.getForm();
 
-//        Form form = cacheM.getForm();
-//
-//        form.setPrintName(printName.getText());
-//        form.setMailingAddress(mailAddress.getText());
-//        form.setFormula(formula.getText());
-//        form.setGrapeVarietal(grapes.getText());
-//        form.setAppellation(appellation.getText());
-//        form.setPhoneNumber(phoneNumber.getText());
-//        form.setEmailAddress(email.getText());
-//
-//        System.out.println(form.getBrandName());
-//        cacheM.setForm(form);
+        form.setPrintName(printName.getText());
+        form.setMailingAddress(mailAddress.getText());
+        form.setFormula(formula.getText());
+        form.setGrapeVarietal(grapes.getText());
+        form.setAppellation(appellation.getText());
+        form.setPhoneNumber(phoneNumber.getText());
+        form.setEmailAddress(email.getText());
 
+        System.out.println(form.getBrandName());
+        cacheM.setForm(form);
+    }
+
+    @FXML public void nextPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
     }
-
-    @FXML
-    public void previousPage() throws IOException {
+    @FXML public void previousPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
     }
-
-    @FXML
-    public void searchPage() throws IOException {
+    @FXML public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
-
-    @FXML
-    public void goToHomePage() throws IOException {
+    @FXML public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }

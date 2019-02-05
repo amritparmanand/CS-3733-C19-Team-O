@@ -15,9 +15,6 @@ public class mApplicationFormPg1 {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private Button next;
-    @FXML private Button search;
-    @FXML private Button back;
     @FXML private TextField repID;
     @FXML private TextField brewerNO;
     @FXML private RadioButton domestic;
@@ -40,46 +37,44 @@ public class mApplicationFormPg1 {
     }
 
     @FXML
-    public void nextPage() throws IOException {
-//        Form form = cacheM.getForm();
-//
-//        // checks if domestic or imported
-//        if(domestic.isSelected() == true) {
-//            isDomestic = 1;
-//        }else if(imported.isSelected() == true){
-//            isDomestic = 0;
-//        }
-//        // checks if wine, distilled, or malt beverage
-//        if(wine.isSelected() == true){
-//            type = 0;
-//        } else if(distilled.isSelected() == true){
-//            type = 1;
-//        } else if(malt.isSelected() == true){
-//            type = 2;
-//        }
-//
-//        form.setRepID(Integer.parseInt(repID.getText()));
-//        form.setBrewerNumber(Integer.parseInt(brewerNO.getText()));
-//        form.setProductSource(isDomestic);
-//        form.setSerialNumber(Integer.parseInt(serialNumber.getText()));
-//        form.setProductType(type);
-//        form.setBrandName(brandName.getText());
-//        form.setFancifulName(fancifulName.getText());
-//
-//        cacheM.setForm(form);
+    public void saveDraft(){
+        Form form = cacheM.getForm();
 
+        // checks if domestic or imported
+        if(domestic.isSelected() == true) {
+            isDomestic = 1;
+        }else if(imported.isSelected() == true){
+            isDomestic = 0;
+        }
+        // checks if wine, distilled, or malt beverage
+        if(wine.isSelected() == true){
+            type = 0;
+        } else if(distilled.isSelected() == true){
+            type = 1;
+        } else if(malt.isSelected() == true){
+            type = 2;
+        }
+
+        form.setRepID(Integer.parseInt(repID.getText()));
+        form.setBrewerNumber(Integer.parseInt(brewerNO.getText()));
+        form.setProductSource(isDomestic);
+        form.setSerialNumber(Integer.parseInt(serialNumber.getText()));
+        form.setProductType(type);
+        form.setBrandName(brandName.getText());
+        form.setFancifulName(fancifulName.getText());
+
+        cacheM.setForm(form);
+    }
+
+    @FXML public void nextPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
-
-    @FXML
-    public void searchPage() throws IOException {
+    @FXML public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
-
-    @FXML
-    public void goToHomePage() throws IOException {
+    @FXML public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
