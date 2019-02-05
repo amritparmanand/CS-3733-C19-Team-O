@@ -20,13 +20,16 @@ public class mApplicationFormPg1 {
     @FXML private Button back;
     @FXML private TextField repID;
     @FXML private TextField brewerNO;
-    @FXML private RadioButton productSource;
+    @FXML private RadioButton domestic;
+    @FXML private RadioButton imported;
     @FXML private RadioButton wine;
     @FXML private RadioButton distilled;
     @FXML private RadioButton malt;
     @FXML private TextField serialNumber;
     @FXML private TextField brandName;
     @FXML private TextField fancifulName;
+
+
     private int isDomestic = 0; // 1 if domestic, 0 if imported
     private int type = 0; // 0 if wine, 1 if distilled beverage, 2 if malt beverage
 
@@ -41,12 +44,11 @@ public class mApplicationFormPg1 {
         Form form = cacheM.getForm();
 
         // checks if domestic or imported
-        if(productSource.isSelected() == true) {
+        if(domestic.isSelected() == true) {
             isDomestic = 1;
-        }else{
+        }else if(imported.isSelected() == true){
             isDomestic = 0;
         }
-
         // checks if wine, distilled, or malt beverage
         if(wine.isSelected() == true){
             type = 0;
@@ -55,6 +57,7 @@ public class mApplicationFormPg1 {
         } else if(malt.isSelected() == true){
             type = 2;
         }
+
         form.setRepID(Integer.parseInt(repID.getText()));
         form.setBrewerNumber(Integer.parseInt(brewerNO.getText()));
         form.setProductSource(isDomestic);
