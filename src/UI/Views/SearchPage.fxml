@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.SearchPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.SearchPage">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -46,11 +46,19 @@
                   </Text>
                   <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer">
                      <children>
-                        <TextField prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">
+                        <TextField fx:id="searchBox" prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">
                            <HBox.margin>
                               <Insets left="20.0" top="5.0" />
                            </HBox.margin>
                         </TextField>
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#loadAlcohol" prefHeight="26.0" prefWidth="118.0" styleClass="buttonStyle" text="Search">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets right="10.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                      <HBox.margin>
                         <Insets left="450.0" />
@@ -63,7 +71,7 @@
                      <children>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Beer" />
+                              <CheckBox fx:id="beerCheck" mnemonicParsing="false" text="Beer" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -74,7 +82,7 @@
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Liquor" />
+                              <CheckBox fx:id="liquorCheck" mnemonicParsing="false" text="Liquor" />
                            </children>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -82,7 +90,7 @@
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Wine" />
+                              <CheckBox fx:id="wineCheck" mnemonicParsing="false" text="Wine" />
                            </children>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -94,13 +102,13 @@
                            </padding>
                            <children>
                               <Label text="pH Level:" />
-                              <TextField prefWidth="30.0">
+                              <TextField fx:id="phLow" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
                               <Label text="to" />
-                              <TextField prefWidth="30.0" />
+                              <TextField fx:id="phHigh" prefWidth="30.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
@@ -109,13 +117,13 @@
                            </padding>
                            <children>
                               <Label text="Alcohol %" />
-                              <TextField prefWidth="30.0">
+                              <TextField fx:id="alcoholLow" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
                               <Label text="to" />
-                              <TextField prefWidth="30.0" />
+                              <TextField fx:id="alcoholHigh" prefWidth="30.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
@@ -124,23 +132,29 @@
                            </padding>
                            <children>
                               <Label text="Year" />
-                              <TextField prefWidth="30.0">
+                              <TextField fx:id="yearLow" prefWidth="30.0">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
                               <Label text="to" />
-                              <TextField prefWidth="30.0" />
+                              <TextField fx:id="yearHigh" prefWidth="30.0" />
                            </children>
                         </HBox>
-                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
+                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Back">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin></Button>
                      </children>
                   </VBox>
                   <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="1080.0">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="200.0">
                            <children>
-                              <FlowPane prefHeight="600.0" prefWidth="1080.0" />
+                              <FlowPane fx:id="searchResults" prefHeight="600.0" prefWidth="1080.0" />
                            </children>
                         </AnchorPane>
                     </content>

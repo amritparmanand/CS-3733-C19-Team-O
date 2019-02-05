@@ -51,10 +51,12 @@ public class mApplicationFormPg2 {
     }
 
     @FXML public void nextPage() throws IOException {
+        saveDraft();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
     }
     @FXML public void previousPage() throws IOException {
+        saveDraft();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
     }
