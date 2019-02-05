@@ -7,6 +7,18 @@ public class DatabaseManager {
     private Connection connection;
     private Statement stmt;
 
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
+
+    public Statement getStmt() {
+        return stmt;
+    }
+
+    public void setStmt(Statement stmt) {
+        this.stmt = stmt;
+    }
+
     public DatabaseManager() {
         Connection connection = null;
         Statement stmt = null;
@@ -24,6 +36,7 @@ public class DatabaseManager {
         this.stmt = stmt;
 
     }
+
     public void generateTables(){
         String createApplications = "create table Applications(" +
                 "appID int constraint Applications_pk primary key," +
