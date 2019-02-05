@@ -5,10 +5,15 @@ import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import java.time.format.DateTimeFormatter;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class mApplicationFormPg4 {
     private SceneManager sceneM;
@@ -18,6 +23,9 @@ public class mApplicationFormPg4 {
     @FXML private Button search;
     @FXML private Button back;
     @FXML private Button submit;
+    @FXML private DatePicker dateOfApplication;
+    @FXML private TextField applicantSig;
+    @FXML private TextField applicantNamePrint;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
@@ -33,43 +41,20 @@ public class mApplicationFormPg4 {
 
 
     @FXML
-    public void submit() throws IOException {
+    public void submit() throws SQLException {
         Form form = cacheM.getForm();
-
-        form.setDateOfApplication(new Date(1,1,1));
-//        form.setSignatureOfApplicant("");
-        form.setPrintName("");
+        form.setDateOfApplication(java.sql.Date.valueOf(dateOfApplication.getValue()));
+       // form.setSignatureOfApplicant(applicantSig.getText());
+        form.setPrintName(applicantNamePrint.getText());
 //        form.setDateIssued("");
 
-        String createForm = "INSERT INTO Forms VALUES(" + form.getForms_pk()+
-                ", " + form.getBrewerNumber()+
-                ",	" + form.getProductSource()+
-                ",	" + form.getSerialNumber()+
-                ",	" + form.getProductType()+
-                ",	" + form.getBrandName()+
-                ", " + form.getFancifulName()+
-                ",	" + form.getApplicantName()+
-                ",	" + form.getMailingAddress()+
-                ", " + form.getFormula()+
-                ", " + form.getGrapeVarietal()+
-                ",	" + form.getAppellation()+
-                ", " + form.getPhoneNumber()+
-                ", " + form.getEmailAddress()+
-                ",	" + form.getDateOfApplication()+
-                ", " + form.getPrintName()+
-                ",	" + form.getBeerWineSpirit()+
-                ", " + form.getAlcoholPercent()+
-                ",	" + form.getVintageYear()+
-                ", " + + form.getpHLevel();
-
-        try {
-
-            cacheM.getDbM().getStmt().execute(createForm);
-
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
+        try{
+            cacheM.getDbM().insertForm(form);
+        }catch(SQLException e){
+            e.printStackTrace();
         }
+
+
     }
 
     @FXML

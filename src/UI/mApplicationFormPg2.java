@@ -5,7 +5,10 @@ import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import sun.plugin.dom.core.Text;
 
+import java.awt.event.TextEvent;
 import java.io.IOException;
 import java.math.BigInteger;
 
@@ -17,6 +20,13 @@ public class mApplicationFormPg2 {
     @FXML private Button previous;
     @FXML private Button search;
     @FXML private Button back;
+    @FXML private TextField printName;
+    @FXML private TextField mailAddress;
+    @FXML private TextField formula;
+    @FXML private TextField grapes;
+    @FXML private TextField appellation;
+    @FXML private TextField phoneNumber;
+    @FXML private TextField email;
 
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -28,15 +38,13 @@ public class mApplicationFormPg2 {
 
         Form form = cacheM.getForm();
 
-        form.setPrintName("");
-        form.setMailingAddress("");
-        form.setFormula("");
-        form.setGrapeVarietal("");
-        form.setProductType(1);
-        form.setAppellation("");
-        form.setFancifulName("");
-        form.setPhoneNumber(new BigInteger("5856457291"));
-        form.setEmailAddress("");
+        form.setPrintName(printName.getText());
+        form.setMailingAddress(mailAddress.getText());
+        form.setFormula(formula.getText());
+        form.setGrapeVarietal(grapes.getText());
+        form.setAppellation(appellation.getText());
+        form.setPhoneNumber(phoneNumber.getText());
+        form.setEmailAddress(email.getText());
 
         System.out.println(form.getBrandName());
         cacheM.setForm(form);

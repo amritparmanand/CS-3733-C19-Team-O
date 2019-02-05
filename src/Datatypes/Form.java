@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Form {
 
+    private int repID;
     private int brewerNumber;
     private int productSource;
     private int serialNumber;
@@ -16,7 +17,7 @@ public class Form {
     private String formula;
     private String grapeVarietal;
     private String appellation;
-    private BigInteger phoneNumber;
+    private String phoneNumber;
     private String emailAddress;
     private Date dateOfApplication;
     private String printName;
@@ -27,6 +28,7 @@ public class Form {
     private int forms_pk;
 
     public Form() {
+        this.repID = 0;
         this.brewerNumber = 0;
         this.productSource = 0;
         this.serialNumber = 0;
@@ -49,7 +51,8 @@ public class Form {
         this.forms_pk = 0;
     }
 
-    public Form(int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, BigInteger phoneNumber, String emailAddress, Date dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel, int forms_pk) {
+    public Form(int repID, int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, Date dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel, int forms_pk) {
+        this.repID = repID;
         this.brewerNumber = brewerNumber;
         this.productSource = productSource;
         this.serialNumber = serialNumber;
@@ -71,6 +74,10 @@ public class Form {
         this.pHLevel = pHLevel;
         this.forms_pk = forms_pk;
     }
+
+    public int getRepID(){ return repID; }
+
+    public void setRepID(int repID){ this.repID = repID; }
 
     public int getBrewerNumber() {
         return brewerNumber;
@@ -160,11 +167,11 @@ public class Form {
         this.appellation = appelation;
     }
 
-    public BigInteger getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(BigInteger phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

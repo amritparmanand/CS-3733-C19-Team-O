@@ -5,6 +5,8 @@ import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -17,6 +19,14 @@ public class mApplicationFormPg3 {
     @FXML private Button previous;
     @FXML private Button search;
     @FXML private Button back;
+    @FXML private TextField applicationType;
+    @FXML private TextField stateAbb;
+    @FXML private TextField ttbID;
+    @FXML private TextField bottleCap; //will be int, for future reference
+    @FXML private CheckBox certLabelApp;
+    @FXML private CheckBox certExempLabApp;
+    @FXML private CheckBox distinctLiqBottApp;
+    @FXML private CheckBox resubmitAfterRej;
 
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -27,14 +37,14 @@ public class mApplicationFormPg3 {
     public void nextPage() throws IOException {
         Form form = cacheM.getForm();
 
-//        form.setTypeOfApplication("");
-//        form.setCertificateOfApproval("");
-//        form.setCertificateOfExemptionFromLabelApproval("");
-//        form.setForSaleOnlyIn("");
-//        form.distinctiveLiquorBottleApproval("");
-//        form.setResubmissionAfterRejection("");
-//        form.setTTBID(0);
-//        form.setImage(uploadedImage);
+//        form.setTypeOfApplication(applicationType.getText());
+////        form.setCertificateOfApproval(certLabelApp.isSelected());
+////        form.setCertificateOfExemptionFromLabelApproval(certExempLabApp.isSelected());
+////        form.setForSaleOnlyIn(stateAbb.getText());
+////        form.distinctiveLiquorBottleApproval(distinctLiqBottApp.isSelected());
+////        form.setResubmissionAfterRejection(resubmitAfterRej.isSelected());
+////        form.setTTBID(Integer.parseInt(ttbID.getText()));
+////        form.setImage(uploadedImage);
 
         cacheM.setForm(form);
 
