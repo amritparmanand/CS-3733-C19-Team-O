@@ -1,10 +1,12 @@
 package Managers;
 
+import Datatypes.Account;
 import Datatypes.Form;
 
 public class CacheManager {
     private DatabaseManager dbM;
     private Form form;
+    private Account acct;
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
@@ -19,5 +21,16 @@ public class CacheManager {
     }
     public void setForm(Form form) {
          this.form = form;
+    }
+    public Account getAcct() {
+        return acct;
+    }
+    public void setAcct(Account acct) {
+        this.acct = acct;
+    }
+
+    public void register(Account a) {
+        this.acct = a;
+        a.register(dbM.getConnection());
     }
 }
