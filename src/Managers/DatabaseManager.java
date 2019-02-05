@@ -88,12 +88,12 @@ public class DatabaseManager {
         form.setAlcoholPercent(1000);
 
         String Forms1 = "INSERT INTO Forms(FORMID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, APPELLATION, PHONENUMBER, EMAILADDRESS, DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, VINTAGEYEAR, PHLEVEL) " +
-                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
 
         try {
 
-            prepStmt.setInt(1,form.get_Forms_pk());
+            prepStmt.setInt(1,form.getForms_pk());
             prepStmt.setInt(2, form.getBrewerNumber());
             prepStmt.setInt(3, form.getProductSource());
             prepStmt.setInt(4, form.getSerialNumber());
@@ -105,15 +105,14 @@ public class DatabaseManager {
             prepStmt.setString(10, form.getFormula());
             prepStmt.setString(11, form.getGrapeVarietal());
             prepStmt.setString(12, form.getAppellation());
-            prepStmt.setString(13, form.getPhoneNumber());
+            prepStmt.setString(13, form.getPhoneNumber().toString());
             prepStmt.setString(14, form.getEmailAddress());
-            prepStmt.setString(15, "0000-01-01");
+            prepStmt.setString(15, "1999-05-05");
             prepStmt.setString(16, form.getPrintName());
             prepStmt.setInt(17, form.getBeerWineSpirit());
-            prepStmt.setDouble(18, form.getAlcholPercent());
+            prepStmt.setDouble(18, form.getAlcoholPercent());
             prepStmt.setInt(19, form.getVintageYear());
             prepStmt.setDouble(20, form.getpHLevel());
-            prepStmt.setInt(21, forms.getForms_pk());
             prepStmt.executeUpdate();
             prepStmt.close();
 
