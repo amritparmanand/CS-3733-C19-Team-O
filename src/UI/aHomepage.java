@@ -5,9 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.*;
-import javafx.scene.control.Button;
-import java.awt.event.ActionEvent;
 
 import java.io.IOException;
 
@@ -34,12 +31,5 @@ public class aHomepage {
     public void back() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
-    }
-
-
-   @FXML
-    public void getApp() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aFormStorage.fxml"));
-        sceneM.changeScene(loader, new aFormStorage(sceneM, cacheM));
     }
 }
