@@ -198,6 +198,12 @@ public class Form {
         return formID;
     }
 
+
+    // Agent also has the same method?
+
+
+    // Query the database to select applications where form ID matches this form
+    // Update the status to be approved
     @SuppressWarnings("Duplicates")
     public void approve(Connection conn) {
         String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, STATUS = 'APPROVED' WHERE FORMID ="
@@ -214,6 +220,9 @@ public class Form {
                 e.printStackTrace();
         }
     }
+
+    // Query the database to select applications where form ID matches this form
+    // Update the status to be denied
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) {
         String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED' WHERE FORMID ="

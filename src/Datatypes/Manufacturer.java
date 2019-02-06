@@ -28,6 +28,7 @@ public class Manufacturer extends Account {
         this.companyName = companyName;
     }
 
+    // Parse a manufacturer object into database
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {

@@ -14,6 +14,7 @@ public class Agent extends Account {
     private ArrayList<Form> workingForms = new ArrayList<>();
     private boolean hasFetchedForms = false;
 
+    // Why are there 2 constructors?
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
@@ -32,11 +33,11 @@ public class Agent extends Account {
     public int getTtbID() {
         return ttbID;
     }
-
     public void setTtbID(int ttbID) {
         this.ttbID = ttbID;
     }
 
+    // Parse an agent object into database
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {
@@ -59,6 +60,9 @@ public class Agent extends Account {
         }
     }
 
+    // As long as there are less than 3 forms in workingForms
+    // Query the database to select forms where ttb ID is empty
+    // Insert this agent's ID into the selected forms
     public void assignNewForms(Connection conn) {
         if (!hasFetchedForms)
             getAssignedForms(conn);
@@ -94,6 +98,8 @@ public class Agent extends Account {
         return workingForms;
     }
 
+    // Query the database to select forms where the TTB ID matches this agent's id
+    // Call formFromResultSet into object and add it into the working Forms of this agent
     public void getAssignedForms(Connection conn) {
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID = " + this.getTtbID();                ;
@@ -112,6 +118,7 @@ public class Agent extends Account {
         }
     }
 
+    // Parse a Form from database to object
     private Form formFromResultSet(ResultSet rs) throws SQLException {
         return new Form(rs.getInt("formID"),
                 rs.getInt("repID"),
