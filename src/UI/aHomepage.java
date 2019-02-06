@@ -43,8 +43,8 @@ public class aHomepage {
     @FXML
     public void assignNewForms() {
         Agent a = ((Agent) cacheM.getAcct());
-        System.out.println(a.getTtbID());
+        //System.out.println(a.getTtbID());
 
-        //a.assignNewForms(cacheM.getDbM().getConnection());
+        a.assignNewForms(cacheM.getDbM().getConnection());
     }
 }
