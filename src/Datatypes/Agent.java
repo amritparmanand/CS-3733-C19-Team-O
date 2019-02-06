@@ -117,4 +117,10 @@ public class Agent extends Account {
                         rs.getDouble("pHLevel"),
                         rs.getInt("formID"));
     }
+
+    private void displayForm(Form f){
+
+    }
+
 }
+

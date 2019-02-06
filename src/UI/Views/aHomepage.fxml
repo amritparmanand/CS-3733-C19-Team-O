@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.aHomepage">
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox onMousePressed="#getApp" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Pane prefHeight="25.0" prefWidth="200.0" styleClass="topbar">
                     <children>
@@ -81,7 +81,7 @@
                                                 <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                                             </HBox.margin>
                                         </VBox>
-                                        <VBox fx:id="getApp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" styleClass="card" stylesheets="@../style/ui-mockup-stylesheet.css">
+                                        <VBox fx:id="getApp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#getApp" prefHeight="300.0" prefWidth="300.0" styleClass="card" stylesheets="@../style/ui-mockup-stylesheet.css">
                                             <children>
                                                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -147,7 +147,7 @@
                         </VBox>
                     </children>
                 </HBox>
-                <Button fx:id="back" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
+                <Button fx:id="back" mnemonicParsing="false" styleClass="buttonStyle" text="Back" />
             </children>
         </VBox>
     </children>

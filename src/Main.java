@@ -1,6 +1,7 @@
 import Managers.*;
 
 import UI.LoginPage;
+import UI.aHomepage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -21,8 +22,8 @@ public class Main extends Application {
 
         dbM.generateTables();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
-        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM), "UI");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/aHomepage.fxml"));
+        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM), "UI");
     }
 
 
