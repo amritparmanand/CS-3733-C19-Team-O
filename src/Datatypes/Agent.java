@@ -63,10 +63,6 @@ public class Agent extends Account {
         if (!hasFetchedForms)
             getAssignedForms(conn);
 
-        for(Form i : workingForms) {
-            System.out.println(i.getApplicantName());
-        }
-
         if (this.workingForms.size() < 3) {
             try {
                 String unassignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID IS NULL";
@@ -78,15 +74,11 @@ public class Agent extends Account {
                 while (rs.next() && this.workingForms.size() < 3) {
                     insertingAgentID = insertingAgentID.concat(rs.getInt("formID") + ", ");
                     this.workingForms.add(formFromResultSet(rs));
-
-                    System.out.println(rs.getInt("formID"));
                 }
 
                 ps.close();
 
                 insertingAgentID = insertingAgentID.substring(0, insertingAgentID.length() - 2).concat(")");
-
-                System.out.println(insertingAgentID);
 
                 ps = conn.prepareStatement(insertingAgentID);
                 ps.executeUpdate();
