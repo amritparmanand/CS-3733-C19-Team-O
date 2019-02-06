@@ -48,13 +48,13 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" text="Search" />
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" text="Search" />
                     </children></HBox>
-                <FlowPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                <FlowPane fx:id="loadForms" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                 <Button fx:id="backToAHome" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" text="+ Get Forms">
+                        <Button fx:id="getFormsButton" mnemonicParsing="false" onAction="#loadForms" text="+ Get Forms">
                             <styleClass>
                                 <String fx:value="h1" />
                                 <String fx:value="changeColorButton" />

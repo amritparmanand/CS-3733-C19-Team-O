@@ -163,7 +163,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="14. Type of Application" />
-                                                <TextField promptText="example: 123 Example Road ">
+                                                <TextField fx:id="typeOfApp" promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />

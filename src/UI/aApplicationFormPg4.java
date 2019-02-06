@@ -4,9 +4,11 @@ package UI;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
+import com.sun.java.accessibility.util.java.awt.TextComponentTranslator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
@@ -17,12 +19,23 @@ public class aApplicationFormPg4 {
     public aApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        initializePg4();
     }
 
     @FXML
     private Button back;
     @FXML private Button next;
     @FXML private Button search;
+    @FXML private TextField date;
+    @FXML private TextField printName;
+
+    public void initializePg4 () {
+        Form form = cacheM.getForm();
+        //   date.setText(form.getDateOfApplication());
+        //   date.setEditable(false);
+        printName.setText(form.getPrintName());
+        printName.setEditable(false);
+    }
 
     @FXML
     public void search() throws IOException {

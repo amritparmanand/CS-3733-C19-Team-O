@@ -169,7 +169,7 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="back" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
+            <Button fx:id="back" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Log out" />
          </children>
       </VBox>
    </children>

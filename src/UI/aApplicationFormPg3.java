@@ -7,7 +7,9 @@ import Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
+import javax.xml.soap.Text;
 import java.io.IOException;
 
 public class aApplicationFormPg3 {
@@ -17,13 +19,20 @@ public class aApplicationFormPg3 {
     public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        initializePg3();
     }
 
     @FXML
     private Button back;
     @FXML private Button next;
     @FXML private Button search;
+    @FXML private TextField typeOfApp;
 
+    public void initializePg3(){
+        Form form = cacheM.getForm();
+
+
+    }
     @FXML
     public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
@@ -37,16 +46,6 @@ public class aApplicationFormPg3 {
     }
     @FXML
     public void nextPage() throws IOException {
-        Form form = cacheM.getForm();
-
-        form.setBrewerNumber(1);
-        form.setProductSource(1);
-        form.setSerialNumber(1);
-        form.setProductType(1);
-        form.setBrandName("Yeet");
-        form.setFancifulName("");
-
-        cacheM.setForm(form);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg4.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM));
