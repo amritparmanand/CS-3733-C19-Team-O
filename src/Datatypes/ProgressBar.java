@@ -13,7 +13,7 @@ public class ProgressBar {
     private int questiosn4;
 
     //rob
-
+    //super lazy
 
     public float updateProgressBar1(int questionsAnswered1){
         float percentComplete = questionsAnswered1/questions1;
