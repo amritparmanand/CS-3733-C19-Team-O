@@ -69,6 +69,7 @@ public class DatabaseManager {
                 "phone varchar(15))";
         String createForms = "create table Forms(" +
                 "formID int	constraint Forms_pk	primary key, " +
+
                 "repID int, " +
                 "brewerNumber int,	" +
                 "productSource int,	" +
