@@ -1,11 +1,13 @@
 package UI;
 
+import Datatypes.Agent;
 import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
+import java.io.Console;
 import java.io.IOException;
 
 public class aHomepage {
@@ -31,5 +33,18 @@ public class aHomepage {
     public void back() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
+    }
+
+    @FXML
+    public void getAssignedForms() {
+        ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
+    }
+
+    @FXML
+    public void assignNewForms() {
+        Agent a = ((Agent) cacheM.getAcct());
+        System.out.println(a.getTtbID());
+
+        //a.assignNewForms(cacheM.getDbM().getConnection());
     }
 }

@@ -66,6 +66,7 @@ public class DatabaseManager {
         String createForms = "create table Forms(" +
                 "formID int	constraint Forms_pk	primary key, " +
                 "repID int, " +
+                "AssignedAgentrepID int, " +
                 "brewerNumber int,	" +
                 "productSource int,	" +
                 "serialNumber int,	" +
