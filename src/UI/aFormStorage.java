@@ -88,11 +88,8 @@ public class aFormStorage {
         Agent a = ((Agent) cacheM.getAcct());
         //System.out.println(a.getTtbID());
 
-        //a.assignNewForms(cacheM.getDbM().getConnection());
-        a.getAssignedForms(cacheM.getDbM().getConnection());
-        for(Form i : a.getWorkingForms()) {
-
-        }
+        a.assignNewForms(cacheM.getDbM().getConnection());
+        //a.getAssignedForms(cacheM.getDbM().getConnection());
     }
 
 }

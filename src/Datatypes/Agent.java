@@ -63,32 +63,34 @@ public class Agent extends Account {
         if (!hasFetchedForms)
             getAssignedForms(conn);
 
+        for(Form i : workingForms) {
+            System.out.println(i.getApplicantName());
+        }
+
         if (this.workingForms.size() < 3) {
             try {
-                String sqlString = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() +
-                "WHERE TTBID is NULL AND EXISTS(SELECT 3 FROM APPLICATIONS WHERE TTBID is NULL)";
+                String unassignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID IS NULL";
+                PreparedStatement ps = conn.prepareStatement(unassignedForms);
 
-                PreparedStatement ps = conn.prepareStatement(sqlString);
+                ResultSet rs = ps.executeQuery();
+
+                String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
+                while (rs.next() && this.workingForms.size() < 3) {
+                    insertingAgentID = insertingAgentID.concat(rs.getInt("formID") + ", ");
+                    this.workingForms.add(formFromResultSet(rs));
+
+                    System.out.println(rs.getInt("formID"));
+                }
+
+                ps.close();
+
+                insertingAgentID = insertingAgentID.substring(0, insertingAgentID.length() - 2).concat(")");
+
+                System.out.println(insertingAgentID);
+
+                ps = conn.prepareStatement(insertingAgentID);
                 ps.executeUpdate();
                 ps.close();
-//                String unassignedForms = "SELECT Top " + (3 - this.workingForms.size()) + " FROM APPLICATIONS WHERE AssignedAgentID IS NULL";
-//                PreparedStatement ps = conn.prepareStatement(unassignedForms);
-//
-//                ResultSet rs = ps.executeQuery();
-//
-//                String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
-//                while (rs.next() && this.workingForms.size() < 3) {
-//                    insertingAgentID.concat(rs.getInt("formID") + ", ");
-//                    this.workingForms.add(formFromResultSet(rs));
-//                }
-//
-//                ps.close();
-//
-//                insertingAgentID = insertingAgentID.substring(0, insertingAgentID.length() - 2).concat(")");
-//
-//                ps = conn.prepareStatement(insertingAgentID);
-//                ps.executeUpdate();
-//                ps.close();
             } catch (SQLException e) {
                 if (!e.getSQLState().equals("X0Y32"))
                     e.printStackTrace();
