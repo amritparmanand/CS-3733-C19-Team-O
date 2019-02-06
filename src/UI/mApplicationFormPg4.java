@@ -34,7 +34,7 @@ public class mApplicationFormPg4 {
     }
 
     @FXML
-    public void submit() throws SQLException {
+    public void submit() throws SQLException, IOException {
         Form form = cacheM.getForm();
 
         form.setDateOfApplication(dateOfApplication.getText());
@@ -50,6 +50,7 @@ public class mApplicationFormPg4 {
 
         System.out.println(form.getDateOfApplication());
         System.out.println("hi");
+        goToHomePage();
 
     }
 

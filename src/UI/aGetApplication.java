@@ -46,6 +46,7 @@ public class aGetApplication {
     @FXML
     public void loadForms(ActionEvent event) {
         Pane formResult = null;
+        loadFormPane.getChildren().clear();
         try {
             formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
             loadFormPane.getChildren().add(formResult);
