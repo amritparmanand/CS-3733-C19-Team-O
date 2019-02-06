@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class aApplicationFormPg4 {
     private SceneManager sceneM;
@@ -24,15 +25,16 @@ public class aApplicationFormPg4 {
 
     @FXML
     private Button back;
-    @FXML private Button next;
+    @FXML private Button approve;
+    @FXML private Button deny;
     @FXML private Button search;
     @FXML private TextField date;
     @FXML private TextField printName;
 
     public void initializePg4 () {
         Form form = cacheM.getForm();
-        //   date.setText(form.getDateOfApplication());
-        //   date.setEditable(false);
+        date.setText(form.getDateOfApplication());
+        date.setEditable(false);
         printName.setText(form.getPrintName());
         printName.setEditable(false);
     }
@@ -54,6 +56,40 @@ public class aApplicationFormPg4 {
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
 
+    @FXML
+    public void approve() throws SQLException {
+
+        Form form = cacheM.getForm();
+
+       // cacheM.getDbM().approveApplication(form.getFormID);
+
+        try{
+            cacheM.getDbM().insertForm(form);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        System.out.println(form.getDateOfApplication());
+        System.out.println("hi");
+
+    }
+
+    @FXML
+    public void deny() throws SQLException {
+
+        Form form = cacheM.getForm();
+
+
+        try{
+            cacheM.getDbM().insertForm(form);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        System.out.println(form.getDateOfApplication());
+        System.out.println("hi");
+
+    }
 
 /*    @FXML
     public void nextPage() throws IOException {

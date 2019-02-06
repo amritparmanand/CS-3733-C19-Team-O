@@ -15,6 +15,7 @@ import java.io.IOException;
 public class aApplicationFormPg1 {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private Form currentForm;
 
     @FXML private Button next;
     @FXML private Button search;
@@ -31,9 +32,7 @@ public class aApplicationFormPg1 {
     @FXML private TextField fanciful;
 
 
-    public void initializePg1(){
-
-        Form form = cacheM.getForm();
+    public void initializePg1(Form form){
 
         boolean isDomestic = false;
         boolean isImported = false;
@@ -78,10 +77,15 @@ public class aApplicationFormPg1 {
     }
 
 
-    public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
+    public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        initializePg1();
+        this.currentForm = form;
+        initializePg1(form);
+    }
+    public aApplicationFormPg1(Form form) {
+        this.currentForm = form;
+        initializePg1(form);
     }
 
     @FXML

@@ -16,10 +16,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private Form form;
+
+    int i = 0;
 
     @FXML
     private FlowPane loadForms;
@@ -47,12 +51,15 @@ public class aFormStorage {
         sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
     }
 
-    @FXML
-    public void loadForms(ActionEvent event) {
+  /*  @FXML
+    public void loadForms(ActionEvent event) throws IOException {
         Pane formResult = null;
         try {
+
             formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
             loadForms.getChildren().add(formResult);
+
+
             formResult.setId("Alcoholbox");
             formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
                 @Override
@@ -71,11 +78,11 @@ public class aFormStorage {
             e.printStackTrace();
         }
     }
-
+*/
     @FXML
-    public void aApplicationFormPg1() throws IOException {
+    public void aApplicationFormControl(Form form) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM));
+        sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
 
 //    @FXML
@@ -84,8 +91,32 @@ public class aFormStorage {
 //    }
 
     @FXML
-    public void assignNewForms() {
+    public void assignNewForms() throws IOException {
         ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection());
-    }
+
+        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
+
+        for(Form form : populatedForms) {
+            Pane formResult = null;
+            try{
+                formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
+                loadForms.getChildren().add(formResult);
+                formResult.setId("Alcoholbox");
+                formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        try{
+                            aApplicationFormControl(form);
+                        }
+                        catch(IOException e){
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }}
 
 }

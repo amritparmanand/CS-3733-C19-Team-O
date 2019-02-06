@@ -305,6 +305,22 @@ public class DatabaseManager {
         }
     }
 
+    public void approveApplication(int formID) throws SQLException{
+        String Apps1 = "UPDATE CUSTOMERS\n" +
+                "SET STATUS = 'Approved'\n" +
+                "WHERE ID =" + formID + ";";
+        PreparedStatement prepStmt = connection.prepareStatement(Apps1);
+        ResultSet seqVal = null;
+        try {
+
+            prepStmt.executeUpdate();
+            prepStmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void executeStatement(PreparedStatement ps) {
         try {
             ps.executeUpdate();
