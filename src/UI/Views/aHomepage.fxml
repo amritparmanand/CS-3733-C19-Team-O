@@ -147,7 +147,7 @@
                         </VBox>
                     </children>
                 </HBox>
-                <Button fx:id="back" mnemonicParsing="false" styleClass="buttonStyle" text="Back" />
+                <Button fx:id="back" mnemonicParsing="false" onMouseClicked="#back" styleClass="buttonStyle" text="Back" />
             </children>
         </VBox>
     </children>
