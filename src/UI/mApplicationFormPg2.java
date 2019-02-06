@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import sun.plugin.dom.core.Text;
 
 import java.awt.event.TextEvent;
@@ -15,6 +17,12 @@ import java.math.BigInteger;
 public class mApplicationFormPg2 {
     private SceneManager sceneM;
     private CacheManager cacheM;
+
+    @FXML private AnchorPane mainPane;
+
+    @FXML private VBox hideBox;
+    @FXML private VBox varietalVBox;
+    @FXML private VBox appellationVBox;
 
     @FXML private Button next;
     @FXML private Button previous;
@@ -45,9 +53,21 @@ public class mApplicationFormPg2 {
         form.setPhoneNumber(phoneNumber.getText());
         form.setEmailAddress(email.getText());
 
+        if(cacheM.getForm().getBeerWineSpirit() != 0) {
+            form.setGrapeVarietal("");
+            form.setAppellation("");
+        }
+
         cacheM.setForm(form);
 
         System.out.println("worked 2");
+    }
+
+    @FXML public void wineFieldCheck(){
+        if(cacheM.getForm().getBeerWineSpirit() != 0) {
+            varietalVBox.setVisible(false);
+            appellationVBox.setVisible(false);
+        }
     }
 
     @FXML public void nextPage() throws IOException {
