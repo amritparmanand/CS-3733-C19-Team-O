@@ -152,8 +152,36 @@ public class DatabaseManager {
         }
         return hashedPassword;
     }
-    @SuppressWarnings("Duplicates")
-    public Manufacturer mCreate(int id){
+    public String aFindUsername(int id){
+        String uname = "";
+        try {
+            String getData = "select * from AGENTS where TTBID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                uname = result.getString("username");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return uname;
+    }
+    public String aFindPassword(int id){
+        String hashedPassword = "";
+        try {
+            String getData = "select * from AGENTS where TTBID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                hashedPassword = result.getString("password");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return hashedPassword;
+    }
+
+    @SuppressWarnings("Duplicates") public Manufacturer mCreate(int id){
         String uname = "";
         String pword = "";
         String fname = "";
@@ -179,21 +207,7 @@ public class DatabaseManager {
         return m;
     }
 
-    public String aFindUsername(int id){
-        String uname = "";
-        try {
-            String getData = "select * from AGENTS where TTBID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                uname = result.getString("username");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-        return uname;
-    }
-    public Agent aCreate(int id){
+    @SuppressWarnings("Duplicates") public Agent aCreate(int id){
         String uname = "";
         String pword = "";
         String fname = "";
@@ -217,20 +231,7 @@ public class DatabaseManager {
         return a;
     }
 
-    public String aFindPassword(int id){
-        String hashedPassword = "";
-        try {
-            String getData = "select * from AGENTS where TTBID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                hashedPassword = result.getString("password");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-        return hashedPassword;
-    }
+
 
     public void insertForm(Form form) throws SQLException {
         form.setApplicantName("DankMEME");
@@ -282,7 +283,7 @@ public class DatabaseManager {
     }
     public void addApp(int formID, int repID, String dateSubmitted) throws SQLException{
         String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
-                "VALUES(?,?,?,?,?,?,?)";
+                "VALUES(?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Apps1);
         ResultSet seqVal = null;
         try {
