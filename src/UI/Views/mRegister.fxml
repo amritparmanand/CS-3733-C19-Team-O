@@ -33,14 +33,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Text>
-                        <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer">
-                           <children>
-                              <TextField promptText="search" styleClass="searchfield">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                           </children>
+                        <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer" visible="false">
                            <HBox.margin>
                               <Insets left="450.0" />
                            </HBox.margin>
