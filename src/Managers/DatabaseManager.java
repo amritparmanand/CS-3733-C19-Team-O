@@ -313,4 +313,10 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
     }
+    public ResultSet getApplications() throws SQLException{
+        String retrieve = "SELECT * FROM APPLICATIONS, FORMS " +
+                "WHERE STATUS='approved'";
+        ResultSet rset = stmt.executeQuery(retrieve);
+        return rset;
+    }
 }
