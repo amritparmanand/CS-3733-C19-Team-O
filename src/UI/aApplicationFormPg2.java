@@ -47,8 +47,8 @@ public class aApplicationFormPg2 {
     private TextField email;
 
 
-    public void initialize() {
-        Form form = cacheM.getForm();
+    @FXML public void initialize() {
+        Form form = this.form;
 
         applicantName.setText(form.getPrintName());
         applicantName.setEditable(false);

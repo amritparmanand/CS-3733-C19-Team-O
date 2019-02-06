@@ -32,7 +32,8 @@ public class aApplicationFormPg1 {
     @FXML private TextField fanciful;
 
 
-    public void initialize(Form form){
+    @FXML public void initialize(){
+        Form form = this.form;
 
         boolean isDomestic = false;
         boolean isImported = false;

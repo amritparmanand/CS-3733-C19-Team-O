@@ -31,8 +31,8 @@ public class aApplicationFormPg4 {
     @FXML private TextField date;
     @FXML private TextField printName;
 
-    public void initialize () {
-        Form form = cacheM.getForm();
+    @FXML public void initialize () {
+        Form form = this.form;
         date.setText(form.getDateOfApplication());
         date.setEditable(false);
         printName.setText(form.getPrintName());

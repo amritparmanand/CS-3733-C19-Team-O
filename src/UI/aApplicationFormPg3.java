@@ -30,7 +30,7 @@ public class aApplicationFormPg3 {
     @FXML private TextField typeOfApp;
 
     public void initialize(){
-        Form form = cacheM.getForm();
+        Form form = this.form;
 
 
     }
