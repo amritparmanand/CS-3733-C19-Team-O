@@ -51,7 +51,8 @@ public class DatabaseManager {
                 "ttbID int constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS," +
                 "dateSubmitted VARCHAR(20) ," +
                 "dateApproved VARCHAR(20)," +
-                "dateRejected VARCHAR(20))";
+                "dateRejected VARCHAR(20)," +
+                "status VARCHAR(15))";
         String createRepresentatives = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
                 "username varchar(20),	" +
