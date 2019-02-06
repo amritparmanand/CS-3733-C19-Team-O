@@ -65,8 +65,10 @@ public class mApplicationFormPg2 {
 
     @FXML public void wineFieldCheck(){
         if(cacheM.getForm().getBeerWineSpirit() != 0) {
-            varietalVBox.setVisible(false);
-            appellationVBox.setVisible(false);
+            grapes.setEditable(false);
+            grapes.setPromptText("n/a");
+            appellation.setEditable(false);
+            appellation.setPromptText("n/a");
         }
     }
 

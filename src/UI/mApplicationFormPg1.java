@@ -95,10 +95,8 @@ public class mApplicationFormPg1 {
         System.out.println("worked 1");
     }
     @FXML public void hideWineFields(){
-        phLevel.setEditable(false);
-        phLevel.setPromptText("n/a");
-        vintageYear.setEditable(false);
-        vintageYear.setPromptText("n/a");
+        phVBox.setVisible(false);
+        vintageVBox.setVisible(false);
     }
     @FXML public void showWineFields(){
         phVBox.setVisible(true);
