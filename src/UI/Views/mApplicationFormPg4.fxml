@@ -12,15 +12,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg4">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg4">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
+                <Pane prefHeight="25.0" prefWidth="200.0" styleClass="topbar">
+                    <children>
+                        <Label layoutX="20.0" layoutY="5.0" prefWidth="300.0" text="Welcome, Wong Brewery!" textAlignment="RIGHT" />
+                    </children>
+                </Pane>
                 <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
                     <children>
                         <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -41,7 +47,7 @@
                                 <Insets left="5.0" />
                             </HBox.margin>
                         </Text>
-                        <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer" visible="false">
+                        <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer">
                             <children>
                                 <TextField prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">
                                     <HBox.margin>
@@ -53,10 +59,7 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#searchPage" styleClass="searchButtonStyle" text="Search">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin></Button>
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" text="Search" />
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -66,10 +69,7 @@
                                 <Insets />
                             </HBox.margin>
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin></Text>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />
                                 <ProgressBar disable="true" layoutX="32.0" layoutY="10.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="24.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
@@ -77,14 +77,12 @@
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="73.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
                                 <ProgressBar disable="true" layoutX="29.0" layoutY="108.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
-                                <Text layoutX="116.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 5 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="143.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                             <children>
-                                                <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
-                                                <Button fx:id="next" disable="true" mnemonicParsing="false" styleClass="buttonStyle" text="Next Page" />
+                                                <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#changeScene" text="Previous Page" />
+                                                <Button fx:id="next" disable="true" mnemonicParsing="false" onMousePressed="#changeScene" text="Next Page" />
                                             </children>
                                         </HBox>
                                         <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Save Draft">
@@ -93,7 +91,7 @@
                                                 <String fx:value="card" />
                                             </styleClass>
                                         </Button>
-                                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
+                                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" text="Back to homepage">
                                             <VBox.margin>
                                                 <Insets top="20.0" />
                                             </VBox.margin>
@@ -128,9 +126,10 @@
                                                 <Insets />
                                             </VBox.margin>
                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" />
+                                                <Insets left="20.0" right="20.0" />
                                             </padding>
                                         </Separator>
+                                        <HBox prefHeight="100.0" prefWidth="200.0" />
                                         <TextFlow prefWidth="200.0">
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="Under the penalties of perjury, I declare: that all statements appearing on this application are true and correct to the best of my knowledge and belief; and , that the representations on the labels attached to this form, including supplemental documents, truly and correctly represent the content of the containers to which these labels will be applied. I also certify that i have read, understood, and complied with the conditions and instructions which are attatched to an original TTB F 5100.31, Certificate/Exemption of Label/Bottle Approval. I consent to the return of processed applications in the manner indicated on this application and set forth in the applicable instructions." />
@@ -142,7 +141,12 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="16. Date of Application" />
-                                    <TextField fx:id="dateOfApplication" promptText="example: date" />
+                                                <TextField fx:id="dateOfApp" promptText="example: 123 Example Road ">
+                                                    <styleClass>
+                                                        <String fx:value="textfield" />
+                                                        <String fx:value="labeltext" />
+                                                    </styleClass>
+                                                </TextField>
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -151,7 +155,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="17. Signature of Applicant or Authorized Agent" />
-                                                <TextField fx:id="applicantSig" promptText="example: 123 Example Road ">
+                                                <TextField onAction="#signatureApplicant" promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -165,7 +169,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="18. Print Name of Applicant or Authorized Agent" />
-                                                <TextField fx:id="applicantNamePrint" promptText="example: 123 Example Road ">
+                                                <TextField onAction="#printApplicant" promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -178,35 +182,34 @@
                                         </VBox>
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
-                                                <Label text="19. Date Issued" />
+                                                <Label text="19.. Date Issued" />
                                                 <TextField promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
                                                     </styleClass>
                                                 </TextField>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Button maxHeight="70.0" minHeight="70.0" mnemonicParsing="false" onAction="#submit" prefHeight="70.0" prefWidth="170.0" text="Submit">
+                                             <styleClass>
+                                                <String fx:value="labeltext" />
+                                                <String fx:value="card" />
+                                             </styleClass>
+                                             <VBox.margin>
+                                                <Insets top="20.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                             </padding>
                                         </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Button maxHeight="70.0" minHeight="70.0" mnemonicParsing="false" onMousePressed="#submit" prefHeight="50.0" prefWidth="120.0" text="Submit">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                       <styleClass>
-                                          <String fx:value="buttonStyle" />
-                                          <String fx:value="h2" />
-                                          <String fx:value="largeBorderRadius" />
-                                       </styleClass>
-                                    </Button>
-                                 </children>
-                              </VBox>
                                     </children>
                                 </VBox>
                             </content>

@@ -36,11 +36,17 @@ public class aHomepage {
     }
 
     @FXML
+    public void getApp() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aFormStorage.fxml"));
+        sceneM.changeScene(loader, new aFormStorage(sceneM, cacheM));
+    }
+
+    //@FXML
     public void getAssignedForms() {
         ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
     }
 
-    @FXML
+    //@FXML
     public void assignNewForms() {
         Agent a = ((Agent) cacheM.getAcct());
         //System.out.println(a.getTtbID());
