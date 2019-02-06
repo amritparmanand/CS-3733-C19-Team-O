@@ -49,9 +49,11 @@ public class DatabaseManager {
                 "formID int /*constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS*/," +
                 "repID int /*constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES*/," +
                 "ttbID int /*constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS*/," +
+                "agentName VARCHAR(40)," +
                 "dateSubmitted VARCHAR(20) ," +
                 "dateApproved VARCHAR(20)," +
                 "dateRejected VARCHAR(20)," +
+                "dateExpired VARCHAR(20)," +
                 "status VARCHAR(15))";
         String createRepresentatives = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
@@ -75,16 +77,16 @@ public class DatabaseManager {
                 "productSource int,	" +
                 "serialNumber int,	" +
                 "productType int,	" +
-                "brandName varchar(20),	" +
-                "fancifulName varchar(20),	" +
-                "applicantName varchar(40),	" +
+                "brandName varchar(60),	" +
+                "fancifulName varchar(60),	" +
+                "applicantName varchar(200),	" +
                 "mailingAddress varchar(80), " +
-                "formula varchar(20), " +
-                "grapeVarietal varchar(20),	" +
-                "appellation varchar(20), " +
-                "phoneNumber varchar(15), " +
-                "emailAddress varchar(30),	" +
-                "dateOfApplication VARCHAR(20) , " +
+                "formula varchar(80), " +
+                "grapeVarietal varchar(80),	" +
+                "appellation varchar(60), " +
+                "phoneNumber varchar(20), " +
+                "emailAddress varchar(50),	" +
+                "dateOfApplication VARCHAR(30) , " +
                 "printName varchar(40),	" +
                 "beerWineSpirit int, " +
                 "alcoholPercent double,	" +
