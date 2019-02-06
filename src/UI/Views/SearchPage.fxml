@@ -62,7 +62,7 @@
                      <children>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Beer" />
+                              <CheckBox fx:id="beerCheck" mnemonicParsing="false" text="Beer" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -73,7 +73,7 @@
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Liquor" />
+                              <CheckBox fx:id="liquorCheck" mnemonicParsing="false" text="Liquor" />
                            </children>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -81,7 +81,7 @@
                         </HBox>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" text="Wine" />
+                              <CheckBox fx:id="wineCheck" mnemonicParsing="false" text="Wine" />
                            </children>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -140,7 +140,7 @@
                   </VBox>
                   <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="1080.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="200.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="200.0">
                            <children>
                               <FlowPane fx:id="searchResults" prefHeight="600.0" prefWidth="1080.0" />
                            </children>

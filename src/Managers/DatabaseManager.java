@@ -332,8 +332,8 @@ public class DatabaseManager {
         }
     }
     public ResultSet getApprovedApplications() throws SQLException{
-        String retrieve = "SELECT * FROM APPLICATIONS, FORMS " +
-                "WHERE STATUS='APPROVED'";
+        String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS" +
+                " ON FORMS.FORMID = APPLICATIONS.FORMID";
         ResultSet rset = stmt.executeQuery(retrieve);
         return rset;
     }

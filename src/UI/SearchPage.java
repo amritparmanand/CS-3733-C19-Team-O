@@ -77,6 +77,8 @@ public class SearchPage {
 
     public void search() throws SQLException {
         ResultSet rs = cacheM.getDbM().getApprovedApplications();
+        searchResults.getChildren().clear();
+        searchList.clear();
         while (rs.next()) {
             SearchResult result = new SearchResult();
 //            result.setFancifulName(rs.getString(""));
@@ -96,7 +98,35 @@ public class SearchPage {
                 result.setLiquor(false);
                 result.setAlcoholType("Beer");
             }
-            searchList.add(result);
+            if(searchBox.getText().isEmpty()) {
+                if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
+                    searchList.add(result);
+                } else {
+                    if (beerCheck.isSelected() && result.isBeer()) {
+                        searchList.add(result);
+                    } else if (beerCheck.isSelected() && !result.isBeer()) {
+                    }
+                    if (wineCheck.isSelected() && result.isWine()) {
+                        searchList.add(result);
+                    } else if (wineCheck.isSelected() && !result.isWine()) {
+                    }
+                }
+            } else if(!searchBox.getText().isEmpty() &&
+                    ((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
+                    || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){
+                if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
+                    searchList.add(result);
+                } else {
+                    if (beerCheck.isSelected() && result.isBeer()) {
+                        searchList.add(result);
+                    } else if (beerCheck.isSelected() && !result.isBeer()) {
+                    }
+                    if (wineCheck.isSelected() && result.isWine()) {
+                        searchList.add(result);
+                    } else if (wineCheck.isSelected() && !result.isWine()) {
+                    }
+                }
+            }
         }
         loadAlcohol(searchList);
     }
