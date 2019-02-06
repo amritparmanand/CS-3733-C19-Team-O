@@ -49,9 +49,11 @@ public class DatabaseManager {
                 "formID int /*constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS*/," +
                 "repID int /*constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES*/," +
                 "ttbID int /*constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS*/," +
+                "agentName VARCHAR(40)," +
                 "dateSubmitted VARCHAR(20) ," +
                 "dateApproved VARCHAR(20)," +
                 "dateRejected VARCHAR(20)," +
+                "dateExpired VARCHAR(20)," +
                 "status VARCHAR(15))";
         String createRepresentatives = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
