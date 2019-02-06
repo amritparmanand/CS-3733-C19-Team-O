@@ -109,7 +109,7 @@ public class DatabaseManager {
     public void createSequences(){
         String repSequence = "create sequence repIDSequence as int start with 1";
         String formSequence = "create sequence formIDSequence as int start with 1";
-        String appSequence = "create sequence agentIDSequence as int start with 1";
+        String appSequence = "create sequence appIDSequence as int start with 1";
 
         try {
             this.stmt.execute(repSequence);
@@ -246,9 +246,9 @@ public class DatabaseManager {
                 "VINTAGEYEAR, PHLEVEL) " +
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
-
+        ResultSet seqVal = null;
         try {
-            ResultSet seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
+            seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
             seqVal.next();
             prepStmt.setInt(1,seqVal.getInt(1));
             prepStmt.setInt(2, form.getRepID());
@@ -276,6 +276,29 @@ public class DatabaseManager {
 
         } catch (SQLException e) {
                 e.printStackTrace();
+        }
+        addApp(seqVal.getInt(1),form.getRepID(),form.getDateOfApplication());
+    }
+    public void addApp(int formID, int repID, String dateSubmitted) throws SQLException{
+        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED) " +
+                "VALUES(?,?,?,?,?,?,?)";
+        PreparedStatement prepStmt = connection.prepareStatement(Apps1);
+        ResultSet seqVal = null;
+        try {
+            seqVal = connection.prepareStatement("values (next value for appIDSequence)").executeQuery();
+            seqVal.next();
+            prepStmt.setInt(1, seqVal.getInt(1));
+            prepStmt.setInt(2,formID);
+            prepStmt.setInt(3,repID);
+            prepStmt.setNull(4, Types.INTEGER);
+            prepStmt.setString(5, dateSubmitted);
+            prepStmt.setNull(6, Types.VARCHAR);
+            prepStmt.setNull(7, Types.VARCHAR);
+            prepStmt.executeUpdate();
+            prepStmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
