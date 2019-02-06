@@ -141,7 +141,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="16. Date of Application" />
-                                                <TextField promptText="example: 123 Example Road ">
+                                                <TextField fx:id="dateOfApp" promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -155,7 +155,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="17. Signature of Applicant or Authorized Agent" />
-                                                <TextField promptText="example: 123 Example Road ">
+                                                <TextField onAction="#signatureApplicant" promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -169,7 +169,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="18. Print Name of Applicant or Authorized Agent" />
-                                                <TextField promptText="example: 123 Example Road ">
+                                                <TextField onAction="#printApplicant" promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />

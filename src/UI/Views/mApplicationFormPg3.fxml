@@ -134,7 +134,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="14. Type of Application" />
-                                                <TextField promptText="example: 123 Example Road ">
+                                                <TextField fx:id="applicationID" promptText="example: 123 Example Road ">
                                                     <styleClass>
                                                         <String fx:value="textfield" />
                                                         <String fx:value="labeltext" />
@@ -144,7 +144,7 @@
                                                     <children>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF LABEL APPROVAL" />
+                                                                <CheckBox fx:id="certLabelApproval" mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF LABEL APPROVAL" />
                                                             </children>
                                                             <FlowPane.margin>
                                                                 <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -152,7 +152,7 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
+                                                                <CheckBox fx:id="certExemption" mnemonicParsing="false" styleClass="labeltext" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="&quot;For sale in " />
@@ -167,11 +167,11 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
+                                                                <CheckBox fx:id="distinctApproval" mnemonicParsing="false" styleClass="labeltext" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TOTAL BOTTLE CAPACITY BEFORE CLOSURE " />
-                                                                        <TextField maxWidth="65.0" styleClass="textfield" />
+                                                                        <TextField fx:id="capBeforeClosure" maxWidth="65.0" styleClass="textfield" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="(Fill in amount)" />
                                                                     </children>
                                                                 </HBox>
@@ -182,11 +182,11 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                                <CheckBox mnemonicParsing="false" styleClass="labeltext" text="RESUBMISSION AFTER REJECTION" />
+                                                                <CheckBox fx:id="resubmission" mnemonicParsing="false" styleClass="labeltext" text="RESUBMISSION AFTER REJECTION" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TTB ID " />
-                                                                        <TextField prefWidth="300.0" styleClass="textfield" />
+                                                                        <TextField fx:id="ttbID" prefWidth="300.0" styleClass="textfield" />
                                                                     </children>
                                                                 </HBox>
                                                             </children>
@@ -204,7 +204,7 @@
                                         <VBox alignment="CENTER" prefHeight="700.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="15. Show Any Information That is Blown, Branded, or Embossed on the Container (e.g., net contents) Only if it Does Not Appear on the Labels Affixed Below. Also, Show Translations of Foreign Language Text Appearing on Labels." wrappingWidth="600.0" />
-                                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" styleClass="textfield">
+                                                <Pane fx:id="onContainer" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" styleClass="textfield">
                                                     <VBox.margin>
                                                         <Insets top="10.0" />
                                                     </VBox.margin>
