@@ -1,21 +1,27 @@
 package UI;
 
-import Managers.*;
+import Managers.CacheManager;
+import Managers.SceneManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.*;
-import javafx.scene.control.Button;
-import java.awt.event.ActionEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-public class aHomepage {
+public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    public aHomepage(SceneManager sceneM, CacheManager cacheM) {
+    @FXML
+    private FlowPane loadForms;
+    @FXML
+    private Button getFormsButton;
+
+    public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
@@ -36,10 +42,17 @@ public class aHomepage {
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }
 
+    @FXML
+    public void loadForms(ActionEvent event) {
+        Pane formResult = null;
+        try {
+            System.out.println("hi");
+            formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
+            loadForms.getChildren().add(formResult);
 
-   @FXML
-    public void getApp() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aFormStorage.fxml"));
-        sceneM.changeScene(loader, new aFormStorage(sceneM, cacheM));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 }

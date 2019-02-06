@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.aHomepage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.aFormStorage">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -56,7 +56,7 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#changeScene" text="Search" />
+                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" text="Search" />
                     </children></HBox>
             <HBox prefWidth="1280.0" VBox.vgrow="ALWAYS">
                <children>
@@ -66,7 +66,7 @@
                         <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Approved" />
                         <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Pending" />
                         <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Denied" />
-                            <Button fx:id="back" mnemonicParsing="false" onMousePressed="#changeScene" styleClass="buttonStyle" text="Back" />
+                            <Button fx:id="back" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -77,7 +77,7 @@
                         <FlowPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" text="+ Get Forms">
+                              <Button mnemonicParsing="false" onMousePressed="#loadForms" text="+ Get Forms">
                                  <styleClass>
                                     <String fx:value="h1" />
                                     <String fx:value="changeColorButton" />
