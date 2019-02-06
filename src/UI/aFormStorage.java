@@ -1,6 +1,7 @@
 package UI;
 
 
+import Datatypes.Agent;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import javafx.event.ActionEvent;
@@ -41,8 +42,8 @@ public class aFormStorage {
 
     @FXML
     public void back() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
-        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
     }
 
     @FXML
@@ -73,6 +74,19 @@ public class aFormStorage {
     public void aApplicationFormPg1() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM));
+    }
+
+    @FXML
+    public void getAssignedForms() {
+        ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
+    }
+
+    @FXML
+    public void assignNewForms() {
+        Agent a = ((Agent) cacheM.getAcct());
+        //System.out.println(a.getTtbID());
+
+        a.assignNewForms(cacheM.getDbM().getConnection());
     }
 
 }
