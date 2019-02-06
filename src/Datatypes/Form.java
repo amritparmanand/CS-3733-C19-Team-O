@@ -49,7 +49,6 @@ public class Form {
         this.pHLevel = 0;
     }
 
-
     public Form(int repID, int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel) {
         this.repID = repID;
         this.brewerNumber = brewerNumber;
@@ -141,11 +140,9 @@ public class Form {
     public void setAppellation(String appelation) {
         this.appellation = appelation;
     }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
