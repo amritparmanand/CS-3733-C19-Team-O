@@ -1,5 +1,6 @@
 package UI;
 
+import Datatypes.SearchResult;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
@@ -13,7 +14,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class SearchPage {
     private SceneManager sceneM;
@@ -23,6 +26,8 @@ public class SearchPage {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
+
+    ArrayList<SearchResult> searchList = new ArrayList<SearchResult>();
 
     @FXML private Button back;
     @FXML private TextField searchBox;
@@ -55,8 +60,24 @@ public class SearchPage {
         }
 
     }
-    @FXML
-    public void search(ActionEvent event) throws SQLException {
-//        cacheM.getDbM().
+
+    public void search() throws SQLException {
+        ResultSet rs = cacheM.getDbM().getApplications();
+        while (rs.next()) {
+            SearchResult result = new SearchResult();
+//            result.setFancifulName(rs.getString(""));
+            result.setFancifulName(rs.getString("FANCIFULNAME"));
+            result.setCompanyName(rs.getString("BRANDNAME"));
+            result.setPhLevel(rs.getDouble("PHLEVEL"));
+            result.setAlcohol(rs.getDouble("ALCOHOLPERCENT"));
+            result.setYear(rs.getInt("VINTAGEYEAR"));
+            if(rs.getInt("BEERWINESPIRIT") == 0){
+                result.setWine(true);
+                result.setBeer(false);
+                result.setLiquor(false);
+
+            }
+        }
+
     }
 }

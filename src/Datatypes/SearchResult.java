@@ -27,6 +27,20 @@ public class SearchResult {
 
     }
 
+    public SearchResult()
+    {
+        this.fancifulName = null;
+        this.companyName = null;
+        this.alcoholType = null;
+        this.isBeer = false;
+        this.isLiquor = false;
+        this.isWine = false;
+        this.phLevel = 0;
+        this.alcohol = 0;
+        this.year = 0;
+
+    }
+
     public String getFancifulName() {
         return fancifulName;
     }

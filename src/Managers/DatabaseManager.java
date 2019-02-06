@@ -315,7 +315,7 @@ public class DatabaseManager {
     }
     public ResultSet getApplications() throws SQLException{
         String retrieve = "SELECT * FROM APPLICATIONS, FORMS " +
-                "WHERE STATUS='approved'";
+                "WHERE STATUS='APPROVED'";
         ResultSet rset = stmt.executeQuery(retrieve);
         return rset;
     }
