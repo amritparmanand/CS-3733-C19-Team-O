@@ -36,7 +36,6 @@ public class mApplicationFormPg2 {
 
     @FXML public void saveDraft(){
         Form form = cacheM.getForm();
-
         form.setPrintName(printName.getText());
         form.setMailingAddress(mailAddress.getText());
         form.setFormula(formula.getText());
