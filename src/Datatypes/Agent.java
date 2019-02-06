@@ -1,6 +1,5 @@
 package Datatypes;
 
-import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,8 +47,6 @@ public class Agent extends Account {
     }
 
     public void assignNewForms(Connection conn) {
-        System.out.println("OOGA");
-        if (true) return;
         if(!hasFetchedForms) {
             getAssignedForms(conn);
         } else {

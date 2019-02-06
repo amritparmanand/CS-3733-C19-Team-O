@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -26,16 +27,18 @@ public class mApplicationFormPg1 {
     @FXML private TextField brandName;
     @FXML private TextField fancifulName;
     @FXML private TextField alcoholPercentage;
-    @FXML private TextField pHLevel;
+    @FXML private TextField phLevel;
     @FXML private TextField vintageYear;
     @FXML private RadioButton wine2;
     @FXML private RadioButton spirits2;
     @FXML private RadioButton beer2;
-
+    @FXML private VBox phVBox;
+    @FXML private VBox vintageVBox;
 
 
     private int isDomestic = 0; // 1 if domestic, 0 if imported
     private int type = 0; // 0 if wine, 1 if distilled beverage, 2 if malt beverage
+    private int type2 = 0;
 
 
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
@@ -48,19 +51,27 @@ public class mApplicationFormPg1 {
         Form form = cacheM.getForm();
 
         // checks if domestic or imported
-        if(domestic.isSelected() == true) {
+        if(domestic.isSelected()) {
             isDomestic = 1;
-        }else if(imported.isSelected() == true){
+        }else if(imported.isSelected()){
             isDomestic = 0;
         }
         // checks if wine, distilled, or malt beverage
-        if(wine.isSelected() == true){
+        if(wine.isSelected())
             type = 0;
-        } else if(distilled.isSelected() == true){
+        else if(distilled.isSelected())
             type = 1;
-        } else if(malt.isSelected() == true){
+        else if(malt.isSelected())
             type = 2;
-        }
+
+
+        if(wine2.isSelected())
+            type2 = 0;
+        else if(spirits2.isSelected())
+            type2 = 1;
+        else if(beer2.isSelected())
+            type2 = 2;
+
 
         form.setRepID(Integer.parseInt(repID.getText()));
         form.setBrewerNumber(Integer.parseInt(brewerNO.getText()));
@@ -69,10 +80,27 @@ public class mApplicationFormPg1 {
         form.setProductType(type);
         form.setBrandName(brandName.getText());
         form.setFancifulName(fancifulName.getText());
+        form.setBeerWineSpirit(type2);
+        form.setAlcoholPercent(Double.parseDouble(alcoholPercentage.getText()));
+        if(type2 == 0) {
+            form.setpHLevel(Double.parseDouble(phLevel.getText()));
+            form.setVintageYear(Integer.parseInt(vintageYear.getText()));
+        }else{
+            form.setpHLevel(0);
+            form.setVintageYear(0);
+        }
 
         cacheM.setForm(form);
 
         System.out.println("worked 1");
+    }
+    @FXML public void hideWineFields(){
+        phVBox.setVisible(false);
+        vintageVBox.setVisible(false);
+    }
+    @FXML public void showWineFields(){
+        phVBox.setVisible(true);
+        vintageVBox.setVisible(true);
     }
 
     @FXML public void nextPage() throws IOException {

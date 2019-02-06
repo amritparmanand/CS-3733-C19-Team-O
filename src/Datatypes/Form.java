@@ -25,7 +25,6 @@ public class Form {
     private double alcoholPercent;
     private int vintageYear;
     private double pHLevel;
-    private int formID;
 
     public Form() {
         this.repID = 0;
@@ -48,10 +47,9 @@ public class Form {
         this.alcoholPercent = 0;
         this.vintageYear = 0;
         this.pHLevel = 0;
-        this.formID = 0;
     }
 
-    public Form(int repID, int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel, int formID) {
+    public Form(int repID, int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel) {
         this.repID = repID;
         this.brewerNumber = brewerNumber;
         this.productSource = productSource;
@@ -72,7 +70,6 @@ public class Form {
         this.alcoholPercent = alcoholPercent;
         this.vintageYear = vintageYear;
         this.pHLevel = pHLevel;
-        this.formID = formID;
     }
 
     public int getRepID(){ return repID; }
