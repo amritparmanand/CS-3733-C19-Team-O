@@ -54,8 +54,9 @@ public class mApplicationFormPg4 {
     }
 
     @FXML public void previousPage() throws IOException {
+        System.out.println("trying");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
     }
     @FXML public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
