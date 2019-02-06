@@ -13,6 +13,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class SearchPage {
     private SceneManager sceneM;
@@ -55,7 +56,7 @@ public class SearchPage {
 
     }
     @FXML
-    public void search(ActionEvent event){
-
+    public void search(ActionEvent event) throws SQLException {
+//        cacheM.getDbM().
     }
 }
