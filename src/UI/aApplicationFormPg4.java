@@ -4,7 +4,6 @@ package UI;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
-import com.sun.java.accessibility.util.java.awt.TextComponentTranslator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -16,11 +15,12 @@ import java.sql.SQLException;
 public class aApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private Form form;
 
-    public aApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
+    public aApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        initializePg4();
+        this.form = form;
     }
 
     @FXML
@@ -31,8 +31,8 @@ public class aApplicationFormPg4 {
     @FXML private TextField date;
     @FXML private TextField printName;
 
-    public void initializePg4 () {
-        Form form = cacheM.getForm();
+    @FXML public void initialize () {
+        Form form = this.form;
         date.setText(form.getDateOfApplication());
         date.setEditable(false);
         printName.setText(form.getPrintName());
@@ -57,54 +57,13 @@ public class aApplicationFormPg4 {
     }
 
     @FXML
-    public void approve() throws SQLException {
-
-        Form form = cacheM.getForm();
-
-       // cacheM.getDbM().approveApplication(form.getFormID);
-
-        try{
-            cacheM.getDbM().insertForm(form);
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-
-        System.out.println(form.getDateOfApplication());
-        System.out.println("hi");
-
+    public void acceptForm() throws IOException {
+        form.approve(cacheM.getDbM().getConnection());
     }
+
 
     @FXML
-    public void deny() throws SQLException {
-
-        Form form = cacheM.getForm();
-
-
-        try{
-            cacheM.getDbM().insertForm(form);
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-
-        System.out.println(form.getDateOfApplication());
-        System.out.println("hi");
-
+    public void denyForm() throws IOException {
+        form.deny(cacheM.getDbM().getConnection());
     }
-
-/*    @FXML
-    public void nextPage() throws IOException {
-        Form form = cacheM.getForm();
-
-        form.setBrewerNumber(1);
-        form.setProductSource(1);
-        form.setSerialNumber(1);
-        form.setProductType(1);
-        form.setBrandName("Yeet");
-        form.setFancifulName("");
-
-        cacheM.setForm(form);
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg4.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM));
-    } */
 }

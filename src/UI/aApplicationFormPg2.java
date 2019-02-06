@@ -15,29 +15,40 @@ import javax.xml.soap.Text;
 import java.io.IOException;
 
 public class aApplicationFormPg2 {
-        private SceneManager sceneM;
-        private CacheManager cacheM;
+    private SceneManager sceneM;
+    private CacheManager cacheM;
+    private Form form;
 
-        public aApplicationFormPg2(SceneManager sceneM, CacheManager cacheM) {
-            this.sceneM = sceneM;
-            this.cacheM = cacheM;
-            initializePg2();
-        }
+    public aApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
 
-        @FXML private Button back;
-        @FXML private Button next;
-        @FXML private Button search;
-        @FXML private TextField applicantName;
-        @FXML private TextField mailAddress;
-        @FXML private TextField formula;
-        @FXML private TextField grapes;
-        @FXML private TextField appellation;
-        @FXML private TextField phoneNumber;
-        @FXML private TextField email;
+    @FXML
+    private Button back;
+    @FXML
+    private Button next;
+    @FXML
+    private Button search;
+    @FXML
+    private TextField applicantName;
+    @FXML
+    private TextField mailAddress;
+    @FXML
+    private TextField formula;
+    @FXML
+    private TextField grapes;
+    @FXML
+    private TextField appellation;
+    @FXML
+    private TextField phoneNumber;
+    @FXML
+    private TextField email;
 
 
-    public void initializePg2 (){
-        Form form = cacheM.getForm();
+    @FXML public void initialize() {
+        Form form = this.form;
 
         applicantName.setText(form.getPrintName());
         applicantName.setEditable(false);
@@ -57,21 +68,33 @@ public class aApplicationFormPg2 {
 
     }
 
-        @FXML
-        public void search() throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-            sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-        }
+    @FXML
+    public void search() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+    }
 
-        @FXML
-        public void back() throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
-            sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
-        }
+    @FXML
+    public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
+    }
+
     @FXML
     public void nextPage() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM));
+        sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form));
     }
+
+    @FXML
+    public void acceptForm() throws IOException {
+        form.approve(cacheM.getDbM().getConnection());
     }
+
+
+    @FXML
+    public void denyForm() throws IOException {
+        form.deny(cacheM.getDbM().getConnection());
+    }
+}

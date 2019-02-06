@@ -2,6 +2,7 @@
 .idea/
 classes/
 build/
+lib/
 out/
 ttbDB/
 derby.log
@@ -9,3 +10,4 @@ derby.log
 *.jar
 *.lock
 *.iml
+.DS_Store

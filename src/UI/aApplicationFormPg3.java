@@ -15,11 +15,12 @@ import java.io.IOException;
 public class aApplicationFormPg3 {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private Form form;
 
-    public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM) {
+    public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        initializePg3();
+        this.form = form;
     }
 
     @FXML
@@ -28,8 +29,8 @@ public class aApplicationFormPg3 {
     @FXML private Button search;
     @FXML private TextField typeOfApp;
 
-    public void initializePg3(){
-        Form form = cacheM.getForm();
+    public void initialize(){
+        Form form = this.form;
 
 
     }
@@ -48,12 +49,23 @@ public class aApplicationFormPg3 {
     public void nextPage() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg4.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM));
+        sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM, form));
     }
     @FXML
     public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
+    @FXML
+    public void acceptForm() throws IOException {
+        form.approve(cacheM.getDbM().getConnection());
+    }
+
+
+    @FXML
+    public void denyForm() throws IOException {
+        form.deny(cacheM.getDbM().getConnection());
+    }
+
 
 }
