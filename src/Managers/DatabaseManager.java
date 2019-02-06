@@ -1,6 +1,10 @@
 package Managers;
 
+import Datatypes.Account;
+import Datatypes.Agent;
 import Datatypes.Form;
+import Datatypes.Manufacturer;
+
 import java.sql.*;
 
 public class DatabaseManager {
@@ -147,6 +151,33 @@ public class DatabaseManager {
         }
         return hashedPassword;
     }
+    @SuppressWarnings("Duplicates")
+    public Manufacturer mCreate(int id){
+        String uname = "";
+        String pword = "";
+        String fname = "";
+        String email = "";
+        String phone = "";
+        String cname = "";
+        try {
+            String getData = "select * from REPRESENTATIVES where REPID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                uname = result.getString("username");
+                pword = result.getString("password");
+                fname = result.getString("fullName");
+                email = result.getString("email");
+                phone = result.getString("phone");
+                cname = result.getString("companyName");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        Manufacturer m = new Manufacturer(uname,pword,fname,email,phone,id,cname);
+        return m;
+    }
+
     public String aFindUsername(int id){
         String uname = "";
         try {
@@ -161,6 +192,30 @@ public class DatabaseManager {
         }
         return uname;
     }
+    public Agent aCreate(int id){
+        String uname = "";
+        String pword = "";
+        String fname = "";
+        String email = "";
+        String phone = "";
+        try {
+            String getData = "select * from AGENTS where TTBID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                uname = result.getString("username");
+                pword = result.getString("password");
+                fname = result.getString("fullName");
+                email = result.getString("email");
+                phone = result.getString("phone");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        Agent a = new Agent(uname,pword,fname,email,phone,id);
+        return a;
+    }
+
     public String aFindPassword(int id){
         String hashedPassword = "";
         try {
