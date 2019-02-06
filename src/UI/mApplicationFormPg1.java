@@ -1,6 +1,7 @@
 package UI;
 
 import Datatypes.Form;
+import Datatypes.ProgressBar;
 import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -116,5 +117,13 @@ public class mApplicationFormPg1 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
+
+    //PROGRESSBAR 1
+    //GET THIS DATA FROM CACHE
+    @FXML public void updateProgressBar(int questions1){
+        ProgressBar progressBar1 = new ProgressBar();
+        progressBar1.updateProgressBar1(questions1);
+    }
+
 
 }
