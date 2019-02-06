@@ -110,9 +110,9 @@ public class DatabaseManager {
         }
     }
     public void createSequences(){
-        String repSequence = "create sequence repIDSequence as int start with 1 increment by 1";
-        String formSequence = "create sequence formIDSequence as int start with 1 increment by 1";
-        String appSequence = "create sequence appIDSequence as int start with 1 increment by 1";
+        String repSequence = "create sequence repIDSequence as int start with 800 increment by 1";
+        String formSequence = "create sequence formIDSequence as int start with 800 increment by 1";
+        String appSequence = "create sequence appIDSequence as int start with 800 increment by 1";
 
         try {
             this.stmt.execute(repSequence);
@@ -275,13 +275,13 @@ public class DatabaseManager {
             prepStmt.setDouble(19, form.getAlcoholPercent());
             prepStmt.setInt(20, form.getVintageYear());
             prepStmt.setDouble(21, form.getpHLevel());
+            addApp(seqVal.getInt(1),form.getRepID(),form.getDateOfApplication());
             prepStmt.executeUpdate();
             prepStmt.close();
 
         } catch (SQLException e) {
                 e.printStackTrace();
         }
-        addApp(seqVal.getInt(1),form.getRepID(),form.getDateOfApplication());
     }
     public void addApp(int formID, int repID, String dateSubmitted) throws SQLException{
         String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
@@ -298,7 +298,7 @@ public class DatabaseManager {
             prepStmt.setString(5, dateSubmitted);
             prepStmt.setNull(6, Types.VARCHAR);
             prepStmt.setNull(7, Types.VARCHAR);
-            prepStmt.setString(8, "pending");
+            prepStmt.setString(8, "PENDING");
             prepStmt.executeUpdate();
             prepStmt.close();
 
