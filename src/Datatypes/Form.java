@@ -1,6 +1,9 @@
 package Datatypes;
 
 import java.math.BigInteger;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Form {
@@ -25,6 +28,7 @@ public class Form {
     private double alcoholPercent;
     private int vintageYear;
     private double pHLevel;
+    private int formID;
 
     public Form() {
         this.repID = 0;
@@ -49,7 +53,8 @@ public class Form {
         this.pHLevel = 0;
     }
 
-    public Form(int repID, int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel) {
+    public Form(int formID, int repID, int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel) {
+        this.formID = formID;
         this.repID = repID;
         this.brewerNumber = brewerNumber;
         this.productSource = productSource;
@@ -187,5 +192,41 @@ public class Form {
     }
     public void setpHLevel(double pHLevel) {
         this.pHLevel = pHLevel;
+    }
+
+    public int getFormID() {
+        return formID;
+    }
+
+    @SuppressWarnings("Duplicates")
+    public void approve(Connection conn) {
+        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, STATUS = 'APPROVED' WHERE FORMID ="
+                + this.formID;
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(SQL);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+    }
+    @SuppressWarnings("Duplicates")
+    public void deny(Connection conn) {
+        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED' WHERE FORMID ="
+                + this.formID;
+        try {
+            PreparedStatement ps = conn.prepareStatement(SQL);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
     }
 }

@@ -113,7 +113,8 @@ public class Agent extends Account {
     }
 
     private Form formFromResultSet(ResultSet rs) throws SQLException {
-        return new Form(rs.getInt("repID"),
+        return new Form(rs.getInt("formID"),
+                rs.getInt("repID"),
                 rs.getInt("brewerNumber"),
                 rs.getInt("productSource"),
                 rs.getInt("serialNumber"),

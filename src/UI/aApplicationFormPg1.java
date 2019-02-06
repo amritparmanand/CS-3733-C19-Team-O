@@ -15,7 +15,7 @@ import java.io.IOException;
 public class aApplicationFormPg1 {
     private SceneManager sceneM;
     private CacheManager cacheM;
-    private Form currentForm;
+    private Form form;
 
     @FXML private Button next;
     @FXML private Button search;
@@ -80,14 +80,14 @@ public class aApplicationFormPg1 {
     public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        this.currentForm = form;
+        this.form = form;
     }
 
     @FXML
     public void nextPage() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg2.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM));
+        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form));
 
     }
 
@@ -103,6 +103,16 @@ public class aApplicationFormPg1 {
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
 
+    @FXML
+    public void acceptForm() throws IOException {
+        form.approve(cacheM.getDbM().getConnection());
+    }
+
+
+    @FXML
+    public void denyForm() throws IOException {
+        form.deny(cacheM.getDbM().getConnection());
+    }
 
 }
 
