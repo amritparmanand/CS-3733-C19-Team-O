@@ -4,17 +4,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class Agent extends Account {
     private int ttbID;
-    private Set workingForms;
+    private ArrayList<Form> workingForms = new ArrayList<>();
     private boolean hasFetchedForms = false;
 
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
+    }
+
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms) {
+        super(username, password, fullName, email, phone);
+        this.ttbID = ttbID;
+        this.hasFetchedForms = hasFetchedForms;
+
+        if(this.hasFetchedForms) {
+            this.getWorkingForms();
+        }
     }
 
     public int getTtbID() {
@@ -84,18 +96,21 @@ public class Agent extends Account {
         }
     }
 
+    public ArrayList<Form> getWorkingForms() {
+        return workingForms;
+    }
+
     public void getAssignedForms(Connection conn) {
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID = " + this.getTtbID();                ;
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
-            ps.close();
 
             while (rs.next() && this.workingForms.size() < 3) { //extraneous < 3 because only three will ever be assigned
                 workingForms.add(formFromResultSet(rs));
             }
-
+            ps.close();
             this.hasFetchedForms = true;
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))

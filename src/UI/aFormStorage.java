@@ -2,6 +2,7 @@ package UI;
 
 
 import Datatypes.Agent;
+import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import javafx.event.ActionEvent;
@@ -86,7 +87,11 @@ public class aFormStorage {
         Agent a = ((Agent) cacheM.getAcct());
         //System.out.println(a.getTtbID());
 
-        a.assignNewForms(cacheM.getDbM().getConnection());
+        //a.assignNewForms(cacheM.getDbM().getConnection());
+        a.getAssignedForms(cacheM.getDbM().getConnection());
+        for(Form i : a.getWorkingForms()) {
+
+        }
     }
 
 }
