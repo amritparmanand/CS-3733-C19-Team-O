@@ -47,7 +47,17 @@
 
 .searchButtonStyle{
   -fx-background-color: #f5f7fa;
-  -fx-text-fill: black;
+  -fx-text-fill: #4A77DD;
+  -fx-font-weight: 800;
+  -fx-background-radius: 30;
+
+}
+
+.searchButtonStyle:hover{
+  -fx-background-color: #4A77DD;
+  -fx-text-fill: #f5f7fa;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+
 }
 
 .changeColorButton{
