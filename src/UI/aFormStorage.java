@@ -85,11 +85,7 @@ public class aFormStorage {
 
     @FXML
     public void assignNewForms() {
-        Agent a = ((Agent) cacheM.getAcct());
-        //System.out.println(a.getTtbID());
-
-        a.assignNewForms(cacheM.getDbM().getConnection());
-        //a.getAssignedForms(cacheM.getDbM().getConnection());
+        ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection());
     }
 
 }
