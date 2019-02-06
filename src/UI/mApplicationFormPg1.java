@@ -25,6 +25,13 @@ public class mApplicationFormPg1 {
     @FXML private TextField serialNumber;
     @FXML private TextField brandName;
     @FXML private TextField fancifulName;
+    @FXML private TextField alcoholPercentage;
+    @FXML private TextField pHLevel;
+    @FXML private TextField vintageYear;
+    @FXML private RadioButton wine2;
+    @FXML private RadioButton spirits2;
+    @FXML private RadioButton beer2;
+
 
 
     private int isDomestic = 0; // 1 if domestic, 0 if imported
