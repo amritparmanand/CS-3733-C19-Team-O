@@ -19,7 +19,6 @@ public class aApplicationFormPg3 {
     public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        initializePg3();
     }
 
     @FXML
@@ -28,7 +27,7 @@ public class aApplicationFormPg3 {
     @FXML private Button search;
     @FXML private TextField typeOfApp;
 
-    public void initializePg3(){
+    public void initialize(){
         Form form = cacheM.getForm();
 
 

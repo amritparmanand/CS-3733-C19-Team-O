@@ -32,7 +32,7 @@ public class aApplicationFormPg1 {
     @FXML private TextField fanciful;
 
 
-    public void initializePg1(Form form){
+    public void initialize(Form form){
 
         boolean isDomestic = false;
         boolean isImported = false;
@@ -81,11 +81,6 @@ public class aApplicationFormPg1 {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.currentForm = form;
-        initializePg1(form);
-    }
-    public aApplicationFormPg1(Form form) {
-        this.currentForm = form;
-        initializePg1(form);
     }
 
     @FXML

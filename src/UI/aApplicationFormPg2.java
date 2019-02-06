@@ -21,7 +21,6 @@ public class aApplicationFormPg2 {
         public aApplicationFormPg2(SceneManager sceneM, CacheManager cacheM) {
             this.sceneM = sceneM;
             this.cacheM = cacheM;
-            initializePg2();
         }
 
         @FXML private Button back;
@@ -36,7 +35,7 @@ public class aApplicationFormPg2 {
         @FXML private TextField email;
 
 
-    public void initializePg2 (){
+    public void initialize(){
         Form form = cacheM.getForm();
 
         applicantName.setText(form.getPrintName());

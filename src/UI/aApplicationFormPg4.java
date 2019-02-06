@@ -20,7 +20,6 @@ public class aApplicationFormPg4 {
     public aApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        initializePg4();
     }
 
     @FXML
@@ -31,7 +30,7 @@ public class aApplicationFormPg4 {
     @FXML private TextField date;
     @FXML private TextField printName;
 
-    public void initializePg4 () {
+    public void initialize () {
         Form form = cacheM.getForm();
         date.setText(form.getDateOfApplication());
         date.setEditable(false);
