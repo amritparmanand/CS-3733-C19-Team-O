@@ -54,6 +54,7 @@ public class aRegister {
             cacheM.setAcct(a);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
             sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+
         }
         else{
             System.out.println("Please confirm password!");
