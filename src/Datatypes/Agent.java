@@ -47,7 +47,7 @@ public class Agent extends Account {
     public void assignNewForms(Connection conn) {
         if(this.workingForms.size() < 3) {
             try {
-                String unassignedForms = "SELECT * FROM FORMS WHERE AssignedAgentrepID = null";
+                String unassignedForms = "SELECT * FROM FORMS WHERE repID = null";
                 PreparedStatement ps = conn.prepareStatement(unassignedForms);
 
                 ResultSet rs = ps.executeQuery();

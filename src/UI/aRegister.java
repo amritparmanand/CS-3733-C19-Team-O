@@ -52,7 +52,7 @@ public class aRegister {
             Agent a = new Agent(username.getText(), password.getText(), fullName.getText(), email.getText(), phone.getText(), Integer.parseInt(ttbID.getText()));
             cacheM.register(a);
             cacheM.setAcct(a);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
             sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
         }
         else{
