@@ -3,9 +3,11 @@ package UI;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
@@ -46,13 +48,30 @@ public class aFormStorage {
     public void loadForms(ActionEvent event) {
         Pane formResult = null;
         try {
-            System.out.println("hi");
             formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
             loadForms.getChildren().add(formResult);
+            formResult.setId("Alcoholbox");
+            formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    try{
+                        aApplicationFormPg1();
+                    }
+                    catch(IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            });
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void aApplicationFormPg1() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
+        sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM));
     }
 
 }

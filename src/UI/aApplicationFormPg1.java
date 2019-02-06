@@ -23,7 +23,7 @@ public class aApplicationFormPg1 {
 
     @FXML
     public void nextPage() throws IOException {
-        Form form = cacheM.getForm();
+/*        Form form = cacheM.getForm();
 
         form.setBrewerNumber(1);
         form.setProductSource(1);
@@ -32,10 +32,10 @@ public class aApplicationFormPg1 {
         form.setBrandName("Yeet");
         form.setFancifulName("");
 
-        cacheM.setForm(form);
+        cacheM.setForm(form);*/
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg2.fxml"));
+        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM));
     }
 
     @FXML
