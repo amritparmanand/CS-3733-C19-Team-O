@@ -142,7 +142,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="200.0">
                            <children>
-                              <FlowPane prefHeight="600.0" prefWidth="1080.0" />
+                              <FlowPane fx:id="searchResults" prefHeight="600.0" prefWidth="1080.0" />
                            </children>
                         </AnchorPane>
                     </content>

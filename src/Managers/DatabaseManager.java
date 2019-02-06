@@ -46,12 +46,14 @@ public class DatabaseManager {
     public void generateTables(){
         String createApplications = "create table Applications(" +
                 "appID int constraint Applications_pk primary key," +
-                "formID int constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS," +
-                "repID int constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES," +
-                "ttbID int constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS," +
+                "formID int /*constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS*/," +
+                "repID int /*constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES*/," +
+                "ttbID int /*constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS*/," +
+                "agentName VARCHAR(40)," +
                 "dateSubmitted VARCHAR(20) ," +
                 "dateApproved VARCHAR(20)," +
                 "dateRejected VARCHAR(20)," +
+                "dateExpired VARCHAR(20)," +
                 "status VARCHAR(15))";
         String createRepresentatives = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
@@ -75,16 +77,16 @@ public class DatabaseManager {
                 "productSource int,	" +
                 "serialNumber int,	" +
                 "productType int,	" +
-                "brandName varchar(20),	" +
-                "fancifulName varchar(20),	" +
-                "applicantName varchar(40),	" +
+                "brandName varchar(60),	" +
+                "fancifulName varchar(60),	" +
+                "applicantName varchar(200),	" +
                 "mailingAddress varchar(80), " +
-                "formula varchar(20), " +
-                "grapeVarietal varchar(20),	" +
-                "appellation varchar(20), " +
-                "phoneNumber varchar(15), " +
-                "emailAddress varchar(30),	" +
-                "dateOfApplication VARCHAR(20) , " +
+                "formula varchar(80), " +
+                "grapeVarietal varchar(80),	" +
+                "appellation varchar(60), " +
+                "phoneNumber varchar(20), " +
+                "emailAddress varchar(50),	" +
+                "dateOfApplication VARCHAR(30) , " +
                 "printName varchar(40),	" +
                 "beerWineSpirit int, " +
                 "alcoholPercent double,	" +
@@ -108,9 +110,9 @@ public class DatabaseManager {
         }
     }
     public void createSequences(){
-        String repSequence = "create sequence repIDSequence as int start with 1";
-        String formSequence = "create sequence formIDSequence as int start with 1";
-        String appSequence = "create sequence appIDSequence as int start with 1";
+        String repSequence = "create sequence repIDSequence as int start with 1 increment by 1";
+        String formSequence = "create sequence formIDSequence as int start with 1 increment by 1";
+        String appSequence = "create sequence appIDSequence as int start with 1 increment by 1";
 
         try {
             this.stmt.execute(repSequence);
@@ -328,5 +330,11 @@ public class DatabaseManager {
         } catch (SQLException e) {
                 e.printStackTrace();
         }
+    }
+    public ResultSet getApprovedApplications() throws SQLException{
+        String retrieve = "SELECT * FROM APPLICATIONS, FORMS " +
+                "WHERE STATUS='APPROVED'";
+        ResultSet rset = stmt.executeQuery(retrieve);
+        return rset;
     }
 }
