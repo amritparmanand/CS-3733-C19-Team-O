@@ -281,7 +281,7 @@ public class DatabaseManager {
         addApp(seqVal.getInt(1),form.getRepID(),form.getDateOfApplication());
     }
     public void addApp(int formID, int repID, String dateSubmitted) throws SQLException{
-        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED) " +
+        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
                 "VALUES(?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Apps1);
         ResultSet seqVal = null;
@@ -295,6 +295,7 @@ public class DatabaseManager {
             prepStmt.setString(5, dateSubmitted);
             prepStmt.setNull(6, Types.VARCHAR);
             prepStmt.setNull(7, Types.VARCHAR);
+            prepStmt.setString(8, "pending");
             prepStmt.executeUpdate();
             prepStmt.close();
 
