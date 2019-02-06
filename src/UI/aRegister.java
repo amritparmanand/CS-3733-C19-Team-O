@@ -53,7 +53,7 @@ public class aRegister {
             cacheM.register(a);
             cacheM.setAcct(a);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
-            sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+            sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
 
         }
         else{
