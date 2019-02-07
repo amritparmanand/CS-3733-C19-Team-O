@@ -53,8 +53,8 @@ public class aApplicationFormPg3 {
     }
     @FXML
     public void goToHomePage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
     }
     @FXML
     public void acceptForm() throws IOException {
