@@ -50,8 +50,8 @@ public class aRegister {
     public void register() throws IOException {
         if(password.getText().equals(confirmP.getText())){
             Agent a = new Agent(username.getText(), password.getText(), fullName.getText(), email.getText(), phone.getText(), Integer.parseInt(ttbID.getText()));
-            cacheM.register(a);
             cacheM.setAcct(a);
+            cacheM.register(a);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
             sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
 
