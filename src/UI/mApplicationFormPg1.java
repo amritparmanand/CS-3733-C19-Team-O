@@ -17,6 +17,11 @@ public class mApplicationFormPg1 {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
+    public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+    }
+
     @FXML private TextField repID;
     @FXML private TextField brewerNO;
     @FXML private RadioButton domestic;
@@ -36,19 +41,18 @@ public class mApplicationFormPg1 {
     @FXML private VBox phVBox;
     @FXML private VBox vintageVBox;
 
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(10, new callableFunction() {
+        @Override
+        public void callFunction() {
+            System.out.println("test thread");
+        }
+    });
 
     private int isDomestic = 0; // 1 if domestic, 0 if imported
     private int type = 0; // 0 if wine, 1 if distilled beverage, 2 if malt beverage
     private int type2 = 0;
 
-
-    public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
-        this.sceneM = sceneM;
-        this.cacheM = cacheM;
-    }
-
-    @FXML
-    public void saveDraft(){
+    @FXML public void saveDraft(){
         Form form = cacheM.getForm();
 
         // checks if domestic or imported
@@ -95,6 +99,7 @@ public class mApplicationFormPg1 {
 
         System.out.println("worked 1");
     }
+
     @FXML public void hideWineFields(){
         phVBox.setVisible(false);
         vintageVBox.setVisible(false);
@@ -106,6 +111,7 @@ public class mApplicationFormPg1 {
 
     @FXML public void nextPage() throws IOException {
         saveDraft();
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
@@ -124,6 +130,7 @@ public class mApplicationFormPg1 {
         ProgressBar progressBar1 = new ProgressBar();
         progressBar1.updateProgressBar1(questions1);
     }
+
 
 
 }
