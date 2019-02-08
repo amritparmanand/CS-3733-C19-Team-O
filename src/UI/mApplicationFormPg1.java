@@ -17,15 +17,10 @@ public class mApplicationFormPg1{
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
-        this.sceneM = sceneM;
-        this.cacheM = cacheM;
-    }
-
-    @FXML public TextField repID;
-    @FXML public TextField brewerNO;
-    @FXML public RadioButton domestic;
-    @FXML public RadioButton imported;
+    @FXML private TextField repID;
+    @FXML private TextField brewerNO;
+    @FXML private RadioButton domestic;
+    @FXML private RadioButton imported;
     @FXML private TextField serialNumber;
     @FXML private RadioButton wine;
     @FXML private RadioButton distilled;
@@ -38,6 +33,11 @@ public class mApplicationFormPg1{
     @FXML private RadioButton wine2;
     @FXML private RadioButton spirits2;
     @FXML private RadioButton beer2;
+
+    public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+    }
 
     @FXML public void saveDraft(){
         Form form = cacheM.getForm();
@@ -107,25 +107,19 @@ public class mApplicationFormPg1{
         System.out.println("Pg1 saved!");
     }
 
+    callableFunction cf = new callableFunction() {
+        @Override
+        @FXML
+        public void call() {
+            Form form = cacheM.getForm();
+            System.out.println(form.getRepID());
+            cacheM.setForm(form);
+            System.out.println("hi");
+        }
+    };
 
     @FXML
-    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(3, new callableFunction() {
-            @Override
-            @FXML
-            public void call() {
-                Form form = cacheM.getForm();
-                if (domestic.isSelected() || imported.isSelected()) {
-                    if(domestic.isSelected()) {
-                        form.setProductSource("domestic");
-                    }
-                    else if(imported.isSelected()){
-                        form.setProductSource("imported");
-                    }
-                }
-                cacheM.setForm(form);
-                System.out.println("hi");
-            }
-    });
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(3, cf);
 
     @FXML private VBox phVBox;
     @FXML private VBox vintageVBox;
