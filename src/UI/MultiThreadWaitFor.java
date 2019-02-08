@@ -1,6 +1,7 @@
 package UI;
 
 import UI.callableFunction;
+import javafx.fxml.FXML;
 
 public class MultiThreadWaitFor implements Runnable{
     private Thread thread;
@@ -16,6 +17,7 @@ public class MultiThreadWaitFor implements Runnable{
     }
 
     @Override
+    @FXML
     public void run() {
         try{
             while(isRunning == true){

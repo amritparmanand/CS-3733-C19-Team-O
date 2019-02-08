@@ -21,7 +21,7 @@ public class Main extends Application {
 
         dbM.generateTables();
         dbM.createSequences();
-        dbM.insertSamples();
+//        dbM.insertSamples();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM), "UI");

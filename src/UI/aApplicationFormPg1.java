@@ -40,7 +40,7 @@ public class aApplicationFormPg1 {
         boolean isWine = false;
         boolean isSpirit = false;
         boolean isMalt = false;
-        if(form.getProductSource() == 1){
+        if(form.getProductSource() == "domestic"){
             isDomestic = true;
             isImported = false;
         }else{

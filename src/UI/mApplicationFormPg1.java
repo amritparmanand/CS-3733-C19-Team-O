@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class mApplicationFormPg1 {
+public class mApplicationFormPg1{
     private SceneManager sceneM;
     private CacheManager cacheM;
 
@@ -26,10 +26,10 @@ public class mApplicationFormPg1 {
     @FXML public TextField brewerNO;
     @FXML public RadioButton domestic;
     @FXML public RadioButton imported;
+    @FXML private TextField serialNumber;
     @FXML private RadioButton wine;
     @FXML private RadioButton distilled;
     @FXML private RadioButton malt;
-    @FXML private TextField serialNumber;
     @FXML private TextField brandName;
     @FXML private TextField fancifulName;
     @FXML private TextField alcoholPercentage;
@@ -38,12 +38,6 @@ public class mApplicationFormPg1 {
     @FXML private RadioButton wine2;
     @FXML private RadioButton spirits2;
     @FXML private RadioButton beer2;
-    @FXML private VBox phVBox;
-    @FXML private VBox vintageVBox;
-
-    private int isDomestic = 0; // 1 if domestic, 0 if imported
-    private int type = 0; // 0 if wine, 1 if distilled beverage, 2 if malt beverage
-    private int type2 = 0;
 
     @FXML public void saveDraft(){
         Form form = cacheM.getForm();
@@ -51,28 +45,27 @@ public class mApplicationFormPg1 {
         // checks if domestic or imported
         if (domestic.isSelected() || imported.isSelected()) {
             if(domestic.isSelected()) {
-                isDomestic = 1;
-                form.setProductSource(1);
+                form.setProductSource("domestic");
             }
             else if(imported.isSelected()){
-                isDomestic = 0;
-                form.setProductSource(0);
+                form.setProductSource("imported");
             }
         }
 
         // checks if wine, distilled, or malt beverage
         if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
-            if(wine.isSelected())
-                type = 0;
-            else if(distilled.isSelected())
-                type = 1;
-            else if(malt.isSelected())
-                type = 2;
-
-            form.setProductType(type);
+            if(wine.isSelected()){
+                form.setProductType("wine");
+            }
+            else if(distilled.isSelected()){
+                form.setProductType("distilled");
+            }
+            else if(malt.isSelected()) {
+                form.setProductType("malt");
+            }
         }
 
-
+        int type2 = 0;
         if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
             if(wine2.isSelected())
                 type2 = 0;
@@ -114,6 +107,28 @@ public class mApplicationFormPg1 {
         System.out.println("Pg1 saved!");
     }
 
+
+    @FXML
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(3, new callableFunction() {
+            @Override
+            @FXML
+            public void call() {
+                Form form = cacheM.getForm();
+                if (domestic.isSelected() || imported.isSelected()) {
+                    if(domestic.isSelected()) {
+                        form.setProductSource("domestic");
+                    }
+                    else if(imported.isSelected()){
+                        form.setProductSource("imported");
+                    }
+                }
+                cacheM.setForm(form);
+                System.out.println("hi");
+            }
+    });
+
+    @FXML private VBox phVBox;
+    @FXML private VBox vintageVBox;
     @FXML public void hideWineFields(){
         phVBox.setVisible(false);
         vintageVBox.setVisible(false);
@@ -121,17 +136,6 @@ public class mApplicationFormPg1 {
     @FXML public void showWineFields(){
         phVBox.setVisible(true);
         vintageVBox.setVisible(true);
-    }
-
-    // Triggers every 10 seconds
-    MultiThreadWaitFor multiThreadWaitFor;
-    {
-        multiThreadWaitFor = new MultiThreadWaitFor(3, new callableFunction() {
-            @Override
-            public void call() {
-                saveDraft();
-            }
-        });
     }
 
     @FXML public void nextPage() throws IOException {

@@ -10,9 +10,9 @@ public class Form {
 
     private int repID;
     private int brewerNumber;
-    private int productSource;
+    private String productSource;
     private int serialNumber;
-    private int productType;
+    private String productType;
     private String brandName;
     private String fancifulName;
     private String applicantName;
@@ -33,9 +33,9 @@ public class Form {
     public Form() {
         this.repID = 0;
         this.brewerNumber = 0;
-        this.productSource = 0;
+        this.productSource = null;
         this.serialNumber = 0;
-        this.productType = 0;
+        this.productType = null;
         this.brandName = null;
         this.fancifulName = null;
         this.applicantName = null;
@@ -53,7 +53,7 @@ public class Form {
         this.pHLevel = 0;
     }
 
-    public Form(int formID, int repID, int brewerNumber, int productSource, int serialNumber, int productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel) {
+    public Form(int formID, int repID, int brewerNumber, String productSource, int serialNumber, String productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel) {
         this.formID = formID;
         this.repID = repID;
         this.brewerNumber = brewerNumber;
@@ -85,10 +85,10 @@ public class Form {
     public void setBrewerNumber(int brewerNumber) {
         this.brewerNumber = brewerNumber;
     }
-    public int getProductSource() {
+    public String getProductSource() {
         return productSource;
     }
-    public void setProductSource(int productSource) {
+    public void setProductSource(String productSource) {
         this.productSource = productSource;
     }
     public int getSerialNumber() {
@@ -97,10 +97,10 @@ public class Form {
     public void setSerialNumber(int serialNumber) {
         this.serialNumber = serialNumber;
     }
-    public int getProductType() {
+    public String getProductType() {
         return productType;
     }
-    public void setProductType(int productType) {
+    public void setProductType(String productType) {
         this.productType = productType;
     }
     public String getBrandName() {
