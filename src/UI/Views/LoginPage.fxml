@@ -78,7 +78,7 @@
                                     <RadioButton fx:id="a" mnemonicParsing="false" onAction="#validateButton" text="Agent" toggleGroup="$group" />
                                  </children>
                               </HBox>
-                              <JFXTextField fx:id="ID" />
+                              <JFXTextField fx:id="id" />
                               <TextField fx:id="username" onKeyReleased="#validateButton" promptText="Username">
                                  <VBox.margin>
                                     <Insets top="10.0" />
