@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -61,7 +62,7 @@
                </children></HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1280.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="300.0" prefWidth="951.0" HBox.hgrow="ALWAYS">
+                  <HBox fx:id="id" alignment="CENTER" prefHeight="300.0" prefWidth="951.0" HBox.hgrow="ALWAYS">
                      <children>
                         <VBox alignment="CENTER" prefHeight="332.0" prefWidth="346.0">
                            <children>
@@ -77,7 +78,7 @@
                                     <RadioButton fx:id="a" mnemonicParsing="false" onAction="#validateButton" text="Agent" toggleGroup="$group" />
                                  </children>
                               </HBox>
-                              <TextField fx:id="id" onKeyReleased="#validateButton" promptText="ID" />
+                              <JFXTextField fx:id="id" />
                               <TextField fx:id="username" onKeyReleased="#validateButton" promptText="Username">
                                  <VBox.margin>
                                     <Insets top="10.0" />
