@@ -62,7 +62,7 @@
                </children></HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1280.0">
                <children>
-                  <HBox fx:id="id" alignment="CENTER" prefHeight="300.0" prefWidth="951.0" HBox.hgrow="ALWAYS">
+                  <HBox fx:id="ID" alignment="CENTER" prefHeight="300.0" prefWidth="951.0" HBox.hgrow="ALWAYS">
                      <children>
                         <VBox alignment="CENTER" prefHeight="332.0" prefWidth="346.0">
                            <children>
@@ -78,7 +78,7 @@
                                     <RadioButton fx:id="a" mnemonicParsing="false" onAction="#validateButton" text="Agent" toggleGroup="$group" />
                                  </children>
                               </HBox>
-                              <JFXTextField fx:id="id" />
+                              <JFXTextField fx:id="ID" />
                               <TextField fx:id="username" onKeyReleased="#validateButton" promptText="Username">
                                  <VBox.margin>
                                     <Insets top="10.0" />
