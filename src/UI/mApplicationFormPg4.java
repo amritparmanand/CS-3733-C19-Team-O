@@ -2,6 +2,7 @@ package UI;
 
 import Datatypes.Form;
 import Managers.*;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -23,9 +24,9 @@ public class mApplicationFormPg4 {
     @FXML private Button search;
     @FXML private Button back;
     @FXML private Button submit;
-    @FXML private TextField dateOfApplication;
-    @FXML private TextField applicantSig;
-    @FXML private TextField applicantNamePrint;
+    @FXML private JFXTextField dateOfApplication;
+    @FXML private JFXTextField applicantSig;
+    @FXML private JFXTextField applicantNamePrint;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 

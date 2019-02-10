@@ -2,6 +2,7 @@ package UI;
 
 import Datatypes.Form;
 import Managers.*;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -29,13 +30,13 @@ public class mApplicationFormPg2 {
     @FXML private Button search;
     @FXML private Button back;
 
-    @FXML private TextField printName;
-    @FXML private TextField mailAddress;
-    @FXML private TextField formula;
-    @FXML private TextField grapes;
-    @FXML private TextField appellation;
-    @FXML private TextField phoneNumber;
-    @FXML private TextField email;
+    @FXML private JFXTextField printName;
+    @FXML private JFXTextField mailAddress;
+    @FXML private JFXTextField formula;
+    @FXML private JFXTextField grapes;
+    @FXML private JFXTextField appellation;
+    @FXML private JFXTextField phoneNumber;
+    @FXML private JFXTextField email;
 
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;

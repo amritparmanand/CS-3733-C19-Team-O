@@ -4,6 +4,7 @@ import Managers.*;
 
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -28,7 +29,7 @@ public class LoginPage {
     @FXML private JFXButton login;
     @FXML private JFXTextField id;
     @FXML private JFXTextField username;
-    @FXML private JFXTextField password;
+    @FXML private JFXPasswordField password;
     @FXML private Label loginMessage;
 
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {

@@ -3,6 +3,7 @@ package UI;
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Managers.*;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,10 +24,10 @@ public class mApplicationFormPg3 {
     @FXML private Button search;
     @FXML private Button back;
     @FXML private Button uploadImageButton;
-    @FXML private TextField applicationType;
-    @FXML private TextField stateAbb;
-    @FXML private TextField ttbID;
-    @FXML private TextField bottleCap; //will be int, for future reference
+    @FXML private JFXTextField applicationType;
+    @FXML private JFXTextField stateAbb;
+    @FXML private JFXTextField ttbID;
+    @FXML private JFXTextField bottleCap; //will be int, for future reference
     @FXML private CheckBox certLabelApp;
     @FXML private CheckBox certExempLabApp;
     @FXML private CheckBox distinctLiqBottApp;

@@ -109,7 +109,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </JFXPasswordField>
-                  <JFXPasswordField fx:id="confirmP" maxWidth="300.0" promptText="Confirm Password">
+                  <JFXPasswordField fx:id="confirmP" maxWidth="300.0" onAction="#validateButton" onKeyReleased="#validateButton" promptText="Confirm Password">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

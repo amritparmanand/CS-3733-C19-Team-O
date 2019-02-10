@@ -4,6 +4,8 @@ import Datatypes.Manufacturer;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -26,17 +28,14 @@ public class mRegister {
 
     @FXML private Button register;
 
-    @FXML private TextField username;
-    @FXML private TextField password;
-    @FXML private TextField confirmP;
-    @FXML private TextField fullName;
-    @FXML private TextField email;
-    @FXML private TextField phone;
-    @FXML private TextField repID;
-    @FXML private TextField companyName;
-
-
-
+    @FXML private JFXTextField username;
+    @FXML private JFXPasswordField password;
+    @FXML private JFXPasswordField confirmP;
+    @FXML private JFXTextField fullName;
+    @FXML private JFXTextField email;
+    @FXML private JFXTextField phone;
+    @FXML private JFXTextField repID;
+    @FXML private JFXTextField companyName;
 
     @FXML
     @SuppressWarnings("Duplicates")
@@ -72,7 +71,7 @@ public class mRegister {
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
                 companyName.getText().isEmpty() ||
-                repID.getText().isEmpty() || !this.validManuPhone()){
+                repID.getText().isEmpty()){
             register.setDisable(true);
         }
         else{
