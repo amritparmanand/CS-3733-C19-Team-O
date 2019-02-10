@@ -3,6 +3,10 @@ package UI;
 import Managers.*;
 
 import Managers.SceneManager;
+import com.fazecast.jSerialComm.SerialPort;
+import com.fazecast.jSerialComm.SerialPortDataListener;
+import com.fazecast.jSerialComm.SerialPortEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -10,15 +14,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.util.EventListener;
 
 import javafx.scene.paint.Color;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class LoginPage {
+public class LoginPage implements SerialPortDataListener {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private BCryptPasswordEncoder passwordDecoder = new BCryptPasswordEncoder();
-
+    SerialPort ports[] = SerialPort.getCommPorts();
+    SerialPort serialPort = ports[ports.length - 1];
     @FXML private RadioButton m;
     @FXML private RadioButton a;
     @FXML private Button register;
@@ -28,9 +34,47 @@ public class LoginPage {
     @FXML private TextField password;
     @FXML private Label loginMessage;
 
+
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        serialPort.openPort();
+        serialPort.addDataListener(new SerialPortDataListener() {
+            @Override
+            public int getListeningEvents() {
+                return SerialPort.LISTENING_EVENT_DATA_AVAILABLE;
+            }
+
+            @Override
+            public void serialEvent(SerialPortEvent serialPortEvent) {
+                if (serialPortEvent.getEventType() != SerialPort.LISTENING_EVENT_DATA_AVAILABLE)
+                    return;
+                byte[] newData = new byte[serialPort.bytesAvailable()];
+                serialPort.readBytes(newData, newData.length);
+                String buf = new String(newData);
+                buf = buf.trim();
+                int id = Integer.parseInt(buf);
+                System.out.println(id);
+                cacheM.setAcct(cacheM.getDbM().aCreate(id));
+                System.out.println("Login Successful!");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+                Platform.runLater(() -> {
+                    try {
+                        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return;
+                });
+            }
+        });
+    }
+
+    @Override
+    public int getListeningEvents() { return 0;}
+    @Override
+    public void serialEvent(SerialPortEvent event)
+    {
     }
 
     @FXML
