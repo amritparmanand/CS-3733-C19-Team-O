@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mRegister">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mRegister">
    <children>
       <AnchorPane layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css">
          <children>
@@ -74,46 +74,46 @@
                         <Font name="Book Antiqua" size="32.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="repID" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Representative ID">
+                  <JFXTextField fx:id="repID" maxWidth="300.0" promptText="Representative ID">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="fullName" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Full Name">
+                  </JFXTextField>
+                  <JFXTextField fx:id="fullName" maxWidth="300.0" promptText="Full Name">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="email" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Email">
+                  </JFXTextField>
+                  <JFXTextField fx:id="email" maxWidth="300.0" promptText="Email">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="phone" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Phone">
+                  </JFXTextField>
+                  <JFXTextField fx:id="phone" maxWidth="300.0" promptText="Phone">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="companyName" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Company Name">
+                  </JFXTextField>
+                  <JFXTextField fx:id="companyName" maxWidth="300.0" promptText="Company Name">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="username" alignment="TOP_LEFT" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Username">
+                  </JFXTextField>
+                  <JFXTextField fx:id="username" maxWidth="300.0" promptText="Username">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
-                  </TextField>
-                  <PasswordField fx:id="password" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Password">
+                  </JFXTextField>
+                  <JFXPasswordField fx:id="password" maxWidth="300.0" promptText="Password">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
-                  </PasswordField>
-                  <PasswordField fx:id="confirmP" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Confirm Password">
+                  </JFXPasswordField>
+                  <JFXPasswordField fx:id="confirmP" maxWidth="300.0" promptText="Confirm Password">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" />
                      </VBox.margin>
-                  </PasswordField>
+                  </JFXPasswordField>
                   <Button fx:id="register" disable="true" maxWidth="300.0" mnemonicParsing="false" onAction="#validateButton" onMousePressed="#register" styleClass="buttonStyle" text="Register">
                      <VBox.margin>
                         <Insets top="10.0" />

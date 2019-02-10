@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -99,7 +100,7 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="1.0">
                             <content>
                                 <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
                                     <children>
@@ -131,12 +132,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name and Address of Applicant as shown on Plant Registry, Basic Permit, or Brewer's Notice. Include Approved DBA or Tradename if Used on the Label (Required)" wrappingWidth="600.0" />
-                                                <TextField fx:id="printName" promptText="example: 123 Example Road">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="printName" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -145,12 +141,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="8a. Mailing Address if Different" />
-                                                <TextField fx:id="mailAddress" promptText="example: 123 Example Road ">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="mailAddress" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -159,12 +150,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="9. Formula" />
-                                                <TextField fx:id="formula" promptText="example: 123456">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="formula" />
                                             </children>
                                             <VBox.margin>
                                                 <Insets />
@@ -176,12 +162,7 @@
                                         <VBox fx:id="varietalVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="10. Grape Variental(s) Wine Only" />
-                                                <TextField fx:id="grapes" promptText="example: 123456">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="grapes" />
                                             </children>
                                             <VBox.margin>
                                                 <Insets />
@@ -193,12 +174,7 @@
                                         <VBox fx:id="appellationVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="11. Wine Appellation (If on label)" />
-                                                <TextField fx:id="appellation" promptText="example: 123456">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="appellation" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -207,12 +183,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="12. Phone Number" />
-                                                <TextField fx:id="phoneNumber" promptText="example: example beer company">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="phoneNumber" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -221,12 +192,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="13. Email Address" />
-                                                <TextField fx:id="email" promptText="ex: example drink">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="email" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
