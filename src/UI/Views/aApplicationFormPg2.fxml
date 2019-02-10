@@ -61,9 +61,9 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
                             <HBox.margin>
-                                <Insets />
+                                <Insets top="20.0" />
                             </HBox.margin>
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />

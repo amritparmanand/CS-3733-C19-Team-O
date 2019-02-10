@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -36,23 +35,15 @@
                                 <Insets left="5.0" />
                             </HBox.margin>
                         </Text>
-                        <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer">
-                            <children>
-                                <TextField prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">
-                                    <HBox.margin>
-                                        <Insets left="20.0" top="5.0" />
-                                    </HBox.margin>
-                                </TextField>
-                            </children>
-                            <HBox.margin>
-                                <Insets left="450.0" />
-                            </HBox.margin>
-                        </HBox>
-                  <JFXButton fx:id="search" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
-                     <HBox.margin>
-                        <Insets left="10.0" right="20.0" />
-                     </HBox.margin>
-                  </JFXButton>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="873.0">
+                     <children>
+                        <JFXButton fx:id="search" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
+                           <HBox.margin>
+                              <Insets left="10.0" right="20.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                     </children></HBox>
                 <HBox prefHeight="300.0" prefWidth="200.0">
                     <children>

@@ -230,3 +230,16 @@
 .innerShadow{
   -fx-effect: innershadow(three-pass-box, lightgray, 5, 0.3, 0, 1);
 }
+
+.jfx-text-field{
+  -fx-background-color: white;
+  -jfx-unfocus-color: #17263d;
+  -jfx-disable-animation: false;
+  -jfx-focus-color: #4A77DD;
+}
+.jfx-password-field{
+  -fx-background-color: white;
+  -jfx-focus-color: #4A77DD;
+  -jfx-unfocus-color: #17263d;
+
+}

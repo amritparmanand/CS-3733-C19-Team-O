@@ -64,9 +64,9 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox fx:id="pg4Progress" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0">
+                        <VBox fx:id="pg4Progress" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
                             <HBox.margin>
-                                <Insets />
+                                <Insets top="20.0" />
                             </HBox.margin>
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />
@@ -259,12 +259,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="7. Fanciful Name (If any)" />
-                                    <JFXTextField fx:id="fanciful">
-                                       <styleClass>
-                                          <String fx:value="textfield" />
-                                          <String fx:value="labeltext" />
-                                       </styleClass>
-                                    </JFXTextField>
+                                    <JFXTextField fx:id="fanciful" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -312,12 +307,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="Alcohol Percentage" />
-                                    <JFXTextField fx:id="alcoholPercentage">
-                                       <styleClass>
-                                          <String fx:value="textfield" />
-                                          <String fx:value="labeltext" />
-                                       </styleClass>
-                                    </JFXTextField>
+                                    <JFXTextField fx:id="alcoholPercentage" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
