@@ -78,11 +78,24 @@ public class aRegister {
                 fullName.getText().isEmpty() ||
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
-                ttbID.getText().isEmpty()){
+                ttbID.getText().isEmpty() || !this.validAgentPhone() ){
             aRegister.setDisable(true);
         }
         else{
             aRegister.setDisable(false);
         }
+    }
+
+    /**
+     * @Author Clay Oshiro-Leavitt
+     * checks the agent phone number for Agent Registration form
+     * will only accept US phone numbers
+     * @return true if is valid number, false if not
+     */
+    @FXML
+    public boolean validAgentPhone(){
+        if(phone.getText().matches("^(\\+0?1\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$\n")){
+            return true;
+        }else return false;
     }
 }

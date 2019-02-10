@@ -1,6 +1,8 @@
 package Datatypes;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import java.util.regex.*;
+
 
 /**
  * @author Sam Silver
@@ -54,4 +56,5 @@ public abstract class Account implements IAccount{
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }

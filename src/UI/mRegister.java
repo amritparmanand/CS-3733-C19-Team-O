@@ -23,6 +23,7 @@ public class mRegister {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
+
     public mRegister(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -38,6 +39,8 @@ public class mRegister {
     @FXML private TextField phone;
     @FXML private TextField repID;
     @FXML private TextField companyName;
+
+
 
 
     @FXML
@@ -74,11 +77,25 @@ public class mRegister {
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
                 companyName.getText().isEmpty() ||
-                repID.getText().isEmpty()){
+                repID.getText().isEmpty() || !this.validManuPhone()){
             register.setDisable(true);
         }
         else{
             register.setDisable(false);
         }
+    }
+
+    /**
+     * @Author Clay Oshiro-Leavitt
+     * checks the manufacturer phone number for Manufacturer Registration form
+     * will accept US and international phone numbers
+     * @return true if is valid number, false if not
+     */
+    @FXML
+    public boolean validManuPhone(){
+        if(phone.getText().matches("/(\\+\\d{1,3}\\s?)?((\\(\\d{3}\\)\\s?)|(\\d{3})(\\s|-?))(\\d{3}(\\s|-?))(\\d{4})(\\s?(([E|e]xt[:|.|]?)|x|X)(\\s?\\d+))?/g\n")){
+            return true;
+        }else return false;
+
     }
 }

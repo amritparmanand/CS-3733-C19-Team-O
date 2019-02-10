@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -100,7 +101,7 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="0.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
                             <content>
                                 <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
                                     <children>
@@ -140,7 +141,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="16. Date of Application" />
-                                    <TextField fx:id="dateOfApplication" promptText="example: date" />
+                                    <JFXTextField fx:id="dateOfApplication" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -149,12 +150,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="17. Signature of Applicant or Authorized Agent" />
-                                                <TextField fx:id="applicantSig" promptText="example: 123 Example Road ">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="applicantSig" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -163,12 +159,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="18. Print Name of Applicant or Authorized Agent" />
-                                                <TextField fx:id="applicantNamePrint" promptText="example: 123 Example Road ">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="applicantNamePrint" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -177,12 +168,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="19. Date Issued" />
-                                                <TextField promptText="example: 123 Example Road ">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
