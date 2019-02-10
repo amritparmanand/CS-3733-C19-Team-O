@@ -46,6 +46,7 @@ public class SearchPage {
     @FXML private TextField yearHigh;
     @FXML private FlowPane searchResults;
     @FXML private Button searchButton;
+
     @FXML
     public void back() throws IOException {
         //sceneM.backScene();

@@ -1,5 +1,7 @@
 package UI;
 
+import Fuzzy.FuzzyContext;
+import Fuzzy.Levenshtein;
 import Managers.*;
 
 import Managers.SceneManager;
@@ -10,9 +12,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javafx.scene.paint.Color;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.imageio.IIOException;
 
 public class LoginPage {
     private SceneManager sceneM;
@@ -100,5 +106,10 @@ public class LoginPage {
             register.setDisable(true);
             login.setDisable(true);
         }
+    }
+
+    @FXML private TextField fuzzy;
+    @FXML public void fuzzy() {
+        
     }
 }

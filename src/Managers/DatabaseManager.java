@@ -4,6 +4,9 @@ import Datatypes.Account;
 import Datatypes.Agent;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
+import Fuzzy.FuzzyContext;
+import Fuzzy.Levenshtein;
+import javafx.fxml.FXML;
 
 import java.sql.*;
 
@@ -44,6 +47,22 @@ public class DatabaseManager {
     }
 
     // Got connected, codes start here
+
+    public void fuzzySearch(String input){
+        String brandName = "";
+        try {
+            String getData = "select BRANDNAME from FORMS where BRANDNAME = " + input;
+            ResultSet result = this.stmt.executeQuery(getData);
+            while(result.next()){
+                brandName = result.getString("brandName");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        System.out.println(brandName);
+    }
 
     // Generate the tables in database and create the sequences for ids
     public void generateTables(){
@@ -358,4 +377,6 @@ public class DatabaseManager {
 //                e.printStackTrace();
 //        }
 //    }
+
+
 }
