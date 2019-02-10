@@ -1,0 +1,23 @@
+-- create and populate the table
+drop table xxx_names;
+create table xxx_names (
+name varchar2(100)
+);
+
+insert into xxx_names(name) values('PATRICK NOR');
+insert into xxx_names(name) values('ORVILLE ALEX');
+insert into xxx_names(name) values('OWEN TRISTAN');
+insert into xxx_names(name) values('OKEN TRIST');
+insert into xxx_names(name) values('OKENOR SAD');
+insert into xxx_names(name) values('OKENEAR TRUST');
+insert into xxx_names(name) values('bitch');
+
+-- This is Levenshtein
+SELECT UTL_MATCH.EDIT_DISTANCE('hi', 'hi') FROM DUAL;
+
+-- These are wildcards
+select * from xxx_names where name like 'OKEN%';
+select * from xxx_names where name like 'bitc_';
+
+select name, utl_match.edit_distance('OKEN', name) as dis from xxx_names;
+select * from xxx_names where utl_match.edit_distance('OKEN', name) < 9;
