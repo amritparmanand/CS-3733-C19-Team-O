@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
@@ -57,10 +58,7 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin></Button>
+                  <JFXButton fx:id="search" onMousePressed="#search" styleClass="searchButtonStyle" text="Search" />
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -71,60 +69,62 @@
                             </HBox.margin>
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />
-                                <ProgressBar disable="true" layoutX="32.0" layoutY="10.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                        <JFXProgressBar />
                                 <Text layoutX="116.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="24.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                        <JFXProgressBar />
                                 <Text layoutX="116.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 3 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="73.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                        <JFXProgressBar />
                                 <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="108.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                        <JFXProgressBar />
                                 <Text layoutX="116.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 5 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="143.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
+                        <JFXProgressBar />
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                             <children>
-                                                <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton fx:id="previous" onMousePressed="#back" styleClass="buttonStyle" text="Previous Page" />
                                                 <Button fx:id="next" disable="true" mnemonicParsing="false" styleClass="buttonStyle" text="Next Page" />
                                             </children>
                                         </HBox>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                            <children>
-                                                <Button fx:id="acceptForm" mnemonicParsing="false" onMousePressed="#acceptForm" prefHeight="50.0" prefWidth="75.0" text="Accept">
-                                                    <styleClass>
-                                                        <String fx:value="labeltext" />
-                                                        <String fx:value="card" />
-                                                        <String fx:value="formstatuspill" />
-                                                        <String fx:value="acceptstatus" />
-                                                    </styleClass>
-                                                    <HBox.margin>
-                                                        <Insets right="20.0" />
-                                                    </HBox.margin>
-                                                </Button>
-                                                <Button fx:id="denyForm" mnemonicParsing="false" onMousePressed="#denyForm" prefHeight="50.0" prefWidth="75.0" text="Deny">
-                                                    <styleClass>
-                                                        <String fx:value="labeltext" />
-                                                        <String fx:value="card" />
-                                                        <String fx:value="denystatus" />
-                                                        <String fx:value="formstatuspill" />
-                                                    </styleClass>
-                                                </Button>
-                                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" text="Save Draft">
-                                                    <styleClass>
-                                                        <String fx:value="labeltext" />
-                                                        <String fx:value="card" />
-                                                    </styleClass>
-                                                    <HBox.margin>
-                                                        <Insets left="20.0" />
-                                                    </HBox.margin>
-                                                </Button>
-                                            </children>
+                                 <children>
+                                    <JFXButton fx:id="acceptForm" onMousePressed="#acceptForm" prefHeight="50.0" prefWidth="75.0" text="Accept">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                          <String fx:value="formstatuspill" />
+                                          <String fx:value="acceptstatus" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton fx:id="denyForm" onMousePressed="#denyForm" prefHeight="50.0" prefWidth="75.0" text="Deny">
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" />
+                                       </padding>
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                          <String fx:value="denystatus" />
+                                          <String fx:value="formstatuspill" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton fx:id="saveDraft" onMousePressed="#saveDraft" prefHeight="50.0" prefWidth="75.0" text="Save Draft">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
                                         </HBox>
-                                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
-                                            <VBox.margin>
-                                                <Insets top="20.0" />
-                                            </VBox.margin>
-                                        </Button>
+                              <JFXButton fx:id="homePage" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to Homepage" />
                                     </children>
                                 </VBox>
                             </children>
@@ -169,12 +169,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="16. Date of Application" />
-                                                <TextField fx:id="date" promptText="example: 123 Example Road ">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="dateOfApplication" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -183,12 +178,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="17. Signature of Applicant or Authorized Agent" />
-                                                <TextField fx:id="signature" promptText="example: 123 Example Road ">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="signature" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -197,12 +187,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="18. Print Name of Applicant or Authorized Agent" />
-                                                <TextField fx:id="printName" promptText="example: 123 Example Road ">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="printName" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -211,12 +196,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="19.. Date Issued" />
-                                                <TextField promptText="example: 123 Example Road ">
-                                                    <styleClass>
-                                                        <String fx:value="textfield" />
-                                                        <String fx:value="labeltext" />
-                                                    </styleClass>
-                                                </TextField>
+                                    <JFXTextField fx:id="dateIssued" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -224,19 +204,13 @@
                                         </VBox>
                                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="600.0">
                                             <children>
-                                                <Button maxHeight="70.0" minHeight="70.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" text="Submit">
-                                                    <VBox.margin>
-                                                        <Insets top="20.0" />
-                                                    </VBox.margin>
-                                                    <font>
-                                                        <Font size="24.0" />
-                                                    </font>
-                                                    <styleClass>
-                                                        <String fx:value="buttonStyle" />
-                                                        <String fx:value="largeBorderRadius" />
-                                                        <String fx:value="h2" />
-                                                    </styleClass>
-                                                </Button>
+                                    <JFXButton fx:id="submit" maxHeight="70.0" minHeight="70.0" prefHeight="50.0" prefWidth="120.0" text="Submit">
+                                       <styleClass>
+                                          <String fx:value="buttonStyle" />
+                                          <String fx:value="largeBorderRadius" />
+                                          <String fx:value="h2" />
+                                       </styleClass>
+                                    </JFXButton>
                                             </children>
                                         </VBox>
                                     </children>
@@ -248,36 +222,36 @@
                                 <Accordion>
                                     <panes>
                                         <TitledPane animated="false" text="Question 16 Comments">
-                                            <content>
-                                                <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 16 Comment" />
-                                            </content>
                                             <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                             </padding>
+                                 <content>
+                                    <JFXTextArea fx:id="Q16Comment" />
+                                 </content>
                                         </TitledPane>
                                         <TitledPane animated="false" text="Question 17 Comments">
-                                            <content>
-                                                <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 17 Comment" />
-                                            </content>
                                             <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                             </padding>
+                                 <content>
+                                    <JFXTextArea fx:id="Q17Comment" />
+                                 </content>
                                         </TitledPane>
                                         <TitledPane animated="false" text="Question 18 Comments">
-                                            <content>
-                                                <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 18 Comment" />
-                                            </content>
                                             <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                             </padding>
+                                 <content>
+                                    <JFXTextArea fx:id="Q18Comment" />
+                                 </content>
                                         </TitledPane>
                                         <TitledPane animated="false" text="Question 19 Comments">
-                                            <content>
-                                                <TextArea prefHeight="91.0" prefWidth="298.0" promptText="Question 19 Comment" />
-                                            </content>
                                             <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                             </padding>
+                                 <content>
+                                    <JFXTextArea fx:id="Q19Comment" />
+                                 </content>
                                         </TitledPane>
                                     </panes>
                                 </Accordion>

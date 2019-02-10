@@ -4,6 +4,9 @@ package UI;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -23,18 +26,25 @@ public class aApplicationFormPg4 {
         this.form = form;
     }
 
-    @FXML
-    private Button back;
-    @FXML private Button approve;
-    @FXML private Button deny;
-    @FXML private Button search;
-    @FXML private TextField date;
-    @FXML private TextField printName;
+    @FXML private JFXButton acceptForm;
+    @FXML private JFXButton denyForm;
+    @FXML private JFXButton search;
+    @FXML private JFXButton homePage;
+    @FXML private JFXButton previous;
+    @FXML private JFXButton submit;
+    @FXML private JFXTextField dateOfApplication;
+    @FXML private JFXTextField dateIssued;
+    @FXML private JFXTextField signature;
+    @FXML private JFXTextField printName;
+    @FXML private JFXTextArea Q16Comment;
+    @FXML private JFXTextArea Q17Comment;
+    @FXML private JFXTextArea Q18Comment;
+    @FXML private JFXTextArea Q19Comment;
 
     @FXML public void initialize () {
         Form form = this.form;
-        date.setText(form.getDateOfApplication());
-        date.setEditable(false);
+        dateOfApplication.setText(form.getDateOfApplication());
+        dateOfApplication.setEditable(false);
         printName.setText(form.getPrintName());
         printName.setEditable(false);
     }
@@ -65,5 +75,10 @@ public class aApplicationFormPg4 {
     @FXML
     public void denyForm() throws IOException {
         form.deny(cacheM.getDbM().getConnection());
+    }
+
+    @FXML
+    public void saveDraft() throws IOException{
+
     }
 }

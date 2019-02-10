@@ -3,6 +3,9 @@ package UI;
 
 import Datatypes.Form;
 import Managers.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,19 +20,29 @@ public class aApplicationFormPg1 {
     private CacheManager cacheM;
     private Form form;
 
-    @FXML private Button next;
-    @FXML private Button search;
-    @FXML private Button back;
-    @FXML private TextField repID;
-    @FXML private TextField brewerNO;
+    @FXML private JFXButton acceptForm;
+    @FXML private JFXButton denyForm;
+    @FXML private JFXButton saveDraft;
+    @FXML private JFXButton homePage;
+    @FXML private JFXTextField repID;
+    @FXML private JFXTextField brewerNO;
     @FXML private RadioButton domestic;
     @FXML private RadioButton imported;
     @FXML private RadioButton wine;
     @FXML private RadioButton spirits;
     @FXML private RadioButton malt;
-    @FXML private TextField serialNO;
-    @FXML private TextField brand;
-    @FXML private TextField fanciful;
+    @FXML private JFXTextField serialNO;
+    @FXML private JFXTextField brand;
+    @FXML private JFXTextField fanciful;
+    @FXML private JFXTextArea Q1Comment;
+    @FXML private JFXTextArea Q2Comment;
+    @FXML private JFXTextArea Q3Comment;
+    @FXML private JFXTextArea Q4Comment;
+    @FXML private JFXTextArea Q5Comment;
+    @FXML private JFXTextArea Q6Comment;
+    @FXML private JFXTextArea Q7Comment;
+
+
 
 
     @FXML public void initialize(){
@@ -113,6 +126,11 @@ public class aApplicationFormPg1 {
     @FXML
     public void denyForm() throws IOException {
         form.deny(cacheM.getDbM().getConnection());
+    }
+
+    @FXML
+    public void saveDraft() throws IOException{
+
     }
 
 }

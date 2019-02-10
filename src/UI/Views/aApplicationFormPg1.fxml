@@ -88,38 +88,44 @@
                                             </children>
                                         </HBox>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                            <children>
-                                                <Button fx:id="acceptForm" mnemonicParsing="false" onMousePressed="#acceptForm" prefHeight="50.0" prefWidth="75.0" text="Accept">
-                                                    <styleClass>
-                                                        <String fx:value="labeltext" />
-                                                        <String fx:value="card" />
-                                                        <String fx:value="formstatuspill" />
-                                                        <String fx:value="acceptstatus" />
-                                                    </styleClass>
-                                                    <HBox.margin>
-                                                        <Insets right="20.0" />
-                                                    </HBox.margin>
-                                                </Button>
-                                                <Button fx:id="denyForm" mnemonicParsing="false" onMouseClicked="#denyForm" prefHeight="50.0" prefWidth="75.0" text="Deny">
-                                                    <styleClass>
-                                                        <String fx:value="labeltext" />
-                                                        <String fx:value="card" />
-                                                        <String fx:value="denystatus" />
-                                                        <String fx:value="formstatuspill" />
-                                                    </styleClass>
-                                                </Button>
-                                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="75.0" text="Save Draft">
-                                                    <styleClass>
-                                                        <String fx:value="labeltext" />
-                                                        <String fx:value="card" />
-                                                    </styleClass>
-                                                    <HBox.margin>
-                                                        <Insets left="20.0" />
-                                                    </HBox.margin>
-                                                </Button>
-                                            </children>
+                                 <children>
+                                    <JFXButton fx:id="acceptForm" onMousePressed="#acceptForm" prefHeight="50.0" prefWidth="75.0" text="Accept">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                          <String fx:value="formstatuspill" />
+                                          <String fx:value="acceptstatus" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton fx:id="denyForm" onMousePressed="#denyForm" prefHeight="50.0" prefWidth="75.0" text="Deny">
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" />
+                                       </padding>
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                          <String fx:value="denystatus" />
+                                          <String fx:value="formstatuspill" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton fx:id="saveDraft" onMousePressed="#saveDraft" prefHeight="50.0" prefWidth="75.0" text="Save Draft">
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="card" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
                                         </HBox>
-                              <JFXButton fx:id="back" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage" />
+                              <JFXButton fx:id="homePage" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to Homepage" />
                                     </children>
                                 </VBox>
                             </children>

@@ -4,6 +4,9 @@ package UI;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -23,11 +26,18 @@ public class aApplicationFormPg3 {
         this.form = form;
     }
 
-    @FXML
-    private Button back;
-    @FXML private Button next;
-    @FXML private Button search;
-    @FXML private TextField typeOfApp;
+
+    @FXML private JFXButton acceptForm;
+    @FXML private JFXButton denyForm;
+    @FXML private JFXButton saveDraft;
+    @FXML private JFXButton homePage;
+    @FXML private JFXButton previous;
+    @FXML private JFXButton next;
+    @FXML private JFXButton search;
+    @FXML private JFXTextField typeOfApp;
+    @FXML private JFXButton uploadImage;
+    @FXML private JFXTextArea Q14Comment;
+    @FXML private JFXTextArea Q15Comment;
 
     public void initialize(){
         Form form = this.form;
@@ -42,8 +52,8 @@ public class aApplicationFormPg3 {
 
     @FXML
     public void back() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
-        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg2.fxml"));
+        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form));
     }
     @FXML
     public void nextPage() throws IOException {
@@ -67,5 +77,13 @@ public class aApplicationFormPg3 {
         form.deny(cacheM.getDbM().getConnection());
     }
 
+    @FXML
+    public void saveDraft() throws IOException{
+
+    }
+    @FXML
+    public void uploadImage() throws IOException{
+
+    }
 
 }

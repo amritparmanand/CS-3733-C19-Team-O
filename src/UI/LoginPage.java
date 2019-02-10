@@ -3,6 +3,9 @@ package UI;
 import Managers.*;
 
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -19,13 +22,13 @@ public class LoginPage {
     private CacheManager cacheM;
     private BCryptPasswordEncoder passwordDecoder = new BCryptPasswordEncoder();
 
-    @FXML private RadioButton m;
-    @FXML private RadioButton a;
-    @FXML private Button register;
-    @FXML private Button login;
-    @FXML private TextField id;
-    @FXML private TextField username;
-    @FXML private TextField password;
+    @FXML private JFXRadioButton m;
+    @FXML private JFXRadioButton a;
+    @FXML private JFXButton register;
+    @FXML private JFXButton login;
+    @FXML private JFXTextField id;
+    @FXML private JFXTextField username;
+    @FXML private JFXTextField password;
     @FXML private Label loginMessage;
 
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
