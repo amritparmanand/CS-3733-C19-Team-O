@@ -14,7 +14,10 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+/**
+ * @Author Clay Oshiro-Leavitt
+ * Controller for aApplicationFormPg4 of UI
+ */
 public class aApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;

@@ -3,6 +3,9 @@ package UI;
 import Datatypes.Agent;
 import Datatypes.Manufacturer;
 import Managers.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -22,15 +25,15 @@ public class aRegister {
         this.cacheM = cacheM;
     }
 
-    @FXML private Button aRegister;
-
-    @FXML private TextField username;
-    @FXML private TextField password;
-    @FXML private TextField confirmP;
-    @FXML private TextField fullName;
-    @FXML private TextField email;
-    @FXML private TextField phone;
-    @FXML private TextField ttbID;
+    @FXML private JFXButton aRegister;
+    @FXML private JFXButton back;
+    @FXML private JFXTextField username;
+    @FXML private JFXPasswordField password;
+    @FXML private JFXPasswordField confirmP;
+    @FXML private JFXTextField fullName;
+    @FXML private JFXTextField email;
+    @FXML private JFXTextField phone;
+    @FXML private JFXTextField ttbID;
 
 
     @FXML

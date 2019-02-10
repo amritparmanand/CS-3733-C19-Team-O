@@ -14,7 +14,10 @@ import javafx.scene.control.TextField;
 
 import javax.xml.soap.Text;
 import java.io.IOException;
-
+/**
+ * @Author Clay Oshiro-Leavitt
+ * Controller for aApplicationFormPg3 of UI
+ */
 public class aApplicationFormPg3 {
     private SceneManager sceneM;
     private CacheManager cacheM;

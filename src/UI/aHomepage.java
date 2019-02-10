@@ -1,6 +1,7 @@
 package UI;
 
 import Managers.*;
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -17,8 +18,8 @@ public class aHomepage {
         this.cacheM = cacheM;
     }
 
-    @FXML private Button back;
-    @FXML private Button search;
+    @FXML private JFXButton logout;
+    @FXML private JFXButton search;
     @FXML private VBox getApp;
 
     @FXML
@@ -28,7 +29,7 @@ public class aHomepage {
     }
 
     @FXML
-    public void back() throws IOException {
+    public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }

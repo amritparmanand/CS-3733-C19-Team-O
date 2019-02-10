@@ -3,6 +3,7 @@ package UI;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,15 +22,11 @@ public class aGetApplication {
         this.cacheM = cacheM;
     }
 
-    @FXML
-    private Button backToAHome;
-    @FXML
-    private Button search;
+    @FXML private JFXButton back;
+    @FXML private JFXButton search;
+    @FXML private JFXButton getFormsButton;
     //@FXML private VBox getApp;
-    @FXML
-    private FlowPane loadFormPane;
-    @FXML
-    private Button getFormsButton;
+    @FXML private FlowPane loadFormPane;
 
     @FXML
     public void back() throws IOException {

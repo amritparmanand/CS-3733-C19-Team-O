@@ -5,6 +5,7 @@ import Datatypes.Agent;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,19 +28,16 @@ public class aFormStorage {
 
     int i = 0;
 
-    @FXML
-    private FlowPane loadForms;
-    @FXML
-    private Button getFormsButton;
+    @FXML private FlowPane loadForms;
+    @FXML private JFXButton getFormsButton;
+    @FXML private JFXButton back;
+    @FXML private JFXButton search;
+    @FXML private VBox getApp;
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
-
-    @FXML private Button back;
-    @FXML private Button search;
-    @FXML private VBox getApp;
 
     @FXML
     public void search() throws IOException {

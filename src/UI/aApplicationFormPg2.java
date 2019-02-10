@@ -17,6 +17,10 @@ import javafx.scene.layout.VBox;
 import javax.xml.soap.Text;
 import java.io.IOException;
 
+/**
+ * @Author Clay Oshiro-Leavitt
+ * Controller for aApplicationFormPg2 of UI
+ */
 public class aApplicationFormPg2 {
     private SceneManager sceneM;
     private CacheManager cacheM;

@@ -4,6 +4,7 @@ package UI;
 import Datatypes.Form;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -15,6 +16,10 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+/**
+ * @Author Clay Oshiro-Leavitt
+ * Controller for aApplicationFormPg1 of UI
+ */
 public class aApplicationFormPg1 {
     private SceneManager sceneM;
     private CacheManager cacheM;
@@ -26,11 +31,11 @@ public class aApplicationFormPg1 {
     @FXML private JFXButton homePage;
     @FXML private JFXTextField repID;
     @FXML private JFXTextField brewerNO;
-    @FXML private RadioButton domestic;
-    @FXML private RadioButton imported;
-    @FXML private RadioButton wine;
-    @FXML private RadioButton spirits;
-    @FXML private RadioButton malt;
+    @FXML private JFXRadioButton domestic;
+    @FXML private JFXRadioButton imported;
+    @FXML private JFXRadioButton wine;
+    @FXML private JFXRadioButton spirits;
+    @FXML private JFXRadioButton malt;
     @FXML private JFXTextField serialNO;
     @FXML private JFXTextField brand;
     @FXML private JFXTextField fanciful;
