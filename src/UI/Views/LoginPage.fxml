@@ -91,7 +91,7 @@
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin></JFXTextField>
-                              <JFXPasswordField fx:id="password" promptText="Password">
+                              <JFXPasswordField fx:id="password" onKeyReleased="#validateButton" promptText="Password">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
