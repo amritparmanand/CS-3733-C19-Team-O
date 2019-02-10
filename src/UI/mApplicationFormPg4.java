@@ -16,8 +16,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 /**
- * @author Amrit Parmanand
- * @version It 1
+ * @author Amrit Parmanand & Elizabeth Del Monaco
+ * @version It 2
  * Controller for mApplicationFormPg4 of UI
  */
 public class mApplicationFormPg4 {

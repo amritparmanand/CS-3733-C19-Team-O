@@ -18,7 +18,7 @@ import javax.xml.soap.Text;
 import java.io.IOException;
 
 /**
- * @author Clay Oshiro-Leavitt
+ * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
  * @version It 2
  * Controller for aApplicationFormPg2 of UI
  */

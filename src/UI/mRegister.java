@@ -16,8 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * @author Percy Jiang & Gabe Entov
- * @version It 1
+ * @author Percy Jiang & Gabe Entov & Elizabeth Del Monaco
+ * @version It 2
  * Controller for mRegister of UI
  */
 public class mRegister {

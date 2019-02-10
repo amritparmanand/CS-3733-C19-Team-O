@@ -14,8 +14,8 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 /**
- * @author Amrit Parmanand
- * @version It 1
+ * @author Amrit Parmanand & Elizabeth Del Monaco
+ * @version It 2
  * Controller for mApplicationFormPg1 of UI
  */
 public class mApplicationFormPg1{

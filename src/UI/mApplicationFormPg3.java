@@ -15,8 +15,8 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.math.BigInteger;
 /**
- * @author Amrit Parmanand
- * @version It 1
+ * @author Amrit Parmanand & Elizabeth Del Monaco
+ * @version It 2
  * Controller for mApplicationFormPg3 of UI
  */
 public class mApplicationFormPg3 {

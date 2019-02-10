@@ -18,8 +18,8 @@ import java.io.IOException;
 import javafx.scene.paint.Color;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
- * @author Percy Jiang
- * @version It 1
+ * @author Percy Jiang & Elizabeth Del Monaco
+ * @version It 2
  * Controller for LoginPage of UI
  */
 public class LoginPage {

@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.sql.SQLException;
 /**
- * @author Clay Oshiro-Leavitt
+ * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
  * @version It 2
  * Controller for aApplicationFormPg4 of UI
  */
