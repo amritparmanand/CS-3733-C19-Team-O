@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * @author Percy Jiang & Gabe Entov
+ * @version It 1
+ * Class for an agent account
+ */
 public class Agent extends Account {
     private int ttbID;
     private ArrayList<Form> workingForms = new ArrayList<>();

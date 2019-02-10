@@ -5,7 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
-
+/**
+ * @author Harry James
+ * @version It 1
+ * object to hold information in a form
+ */
 public class Form {
 
     private int repID;

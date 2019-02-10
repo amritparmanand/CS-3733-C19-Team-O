@@ -1,5 +1,9 @@
 package Datatypes;
-
+/**
+ * @author Robert Rinearson & Percy Jiang
+ * @version It 1
+ * Container for search results
+ */
 public class SearchResult {
     private String fancifulName;
     private String companyName;
@@ -11,7 +15,6 @@ public class SearchResult {
     private double alcohol;
     private int year;
 
-    // 2 constructors?
 
     public SearchResult(String fancifulName, String companyName, String alcoholType,
                         boolean isBeer, boolean isLiquor, boolean isWine, double phLevel,

@@ -9,6 +9,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * @author Percy Jiang
+ * @version It 1
+ * Manager to deal with changing scenes
+ */
 public class SceneManager {
 
     private Stage main;

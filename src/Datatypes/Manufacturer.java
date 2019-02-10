@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ * @author Percy Jiang & Gabe Entov
+ * @version It 1
+ * Class for a manufacturer account
+ */
 public class Manufacturer extends Account {
     private int repID;
     private String companyName;

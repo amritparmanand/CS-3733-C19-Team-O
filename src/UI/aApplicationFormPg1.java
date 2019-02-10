@@ -17,7 +17,8 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 /**
- * @Author Clay Oshiro-Leavitt
+ * @author Clay Oshiro-Leavitt
+ * @version It 2
  * Controller for aApplicationFormPg1 of UI
  */
 public class aApplicationFormPg1 {

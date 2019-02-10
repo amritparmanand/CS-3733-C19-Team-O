@@ -2,7 +2,11 @@ package UI;
 
 import UI.callableFunction;
 import javafx.fxml.FXML;
-
+/**
+ * @author Percy Jiang
+ * @version It 2
+ * Auto save in progress forms function
+ */
 public class MultiThreadWaitFor implements Runnable{
     private Thread thread;
     public int secs;

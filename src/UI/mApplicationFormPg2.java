@@ -13,7 +13,11 @@ import sun.plugin.dom.core.Text;
 import java.awt.event.TextEvent;
 import java.io.IOException;
 import java.math.BigInteger;
-
+/**
+ * @author Amrit Parmanand
+ * @version It 1
+ * Controller for mApplicationFormPg2 of UI
+ */
 public class mApplicationFormPg2 {
     private SceneManager sceneM;
     private CacheManager cacheM;
