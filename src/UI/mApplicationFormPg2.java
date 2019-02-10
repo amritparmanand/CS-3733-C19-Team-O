@@ -63,7 +63,10 @@ public class mApplicationFormPg2 {
         System.out.println("worked 2");
     }
 
-    @FXML public void wineFieldCheck(){
+    //Rob, change winefieldcheck to initialize NICE
+
+    @FXML public void initialize(){
+        System.out.println("hey initialize!");
         if(cacheM.getForm().getBeerWineSpirit() != 0) {
             grapes.setEditable(false);
             grapes.setPromptText("n/a");
@@ -71,6 +74,16 @@ public class mApplicationFormPg2 {
             appellation.setPromptText("n/a");
         }
     }
+
+
+//    @FXML public void wineFieldCheck(){
+//        if(cacheM.getForm().getBeerWineSpirit() != 0) {
+//            grapes.setEditable(false);
+//            grapes.setPromptText("n/a");
+//            appellation.setEditable(false);
+//            appellation.setPromptText("n/a");
+//        }
+//    }
 
     @FXML public void nextPage() throws IOException {
         saveDraft();
