@@ -17,7 +17,11 @@ import java.io.IOException;
 
 import javafx.scene.paint.Color;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+/**
+ * @author Percy Jiang
+ * @version It 1
+ * Controller for LoginPage of UI
+ */
 public class LoginPage {
     private SceneManager sceneM;
     private CacheManager cacheM;

@@ -4,8 +4,12 @@ import javafx.scene.image.Image;
 import javafx.stage.*;
 
 import java.io.File;
+/**
+ * @author Robert Rinearson & Clay Oshiro-Leavitt
+ * @version It 1
+ * Image for label
+ */
 
-//by Rob and Clay
 
 public class LabelImage {
 

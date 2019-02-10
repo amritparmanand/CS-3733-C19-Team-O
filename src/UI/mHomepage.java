@@ -7,7 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-
+/**
+ * @author Percy Jiang
+ * @version It 1
+ * Controller for mHomePage of UI
+ */
 public class mHomepage {
 
     private SceneManager sceneM;

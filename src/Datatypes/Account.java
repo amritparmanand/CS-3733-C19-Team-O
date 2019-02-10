@@ -4,6 +4,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.regex.*;
 
 
+/**
+ * @author Sam Silver
+ * @version It 1
+ * Abstract class for shared data from manufacturer and agent classes
+ */
 public abstract class Account implements IAccount{
     private String username;
     private String password;

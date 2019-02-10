@@ -12,7 +12,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-
+/**
+ * @author Sam Silver & Jonathan Luna
+ * @version It 1
+ * Controller for aGetApplication of UI
+ */
 public class aGetApplication {
     private SceneManager sceneM;
     private CacheManager cacheM;

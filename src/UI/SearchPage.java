@@ -20,7 +20,11 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ * @author Amrit Parmanand & Robert Rinearson
+ * @version It 1
+ * Controller for SearchPage of UI
+ */
 public class SearchPage {
     private SceneManager sceneM;
     private CacheManager cacheM;

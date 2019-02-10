@@ -20,7 +20,11 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * @author Sam Silver (?)
+ * @version It 1
+ * Controller for aFormStorage of UI
+ */
 public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
@@ -51,44 +55,11 @@ public class aFormStorage {
         sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
     }
 
-  /*  @FXML
-    public void loadForms(ActionEvent event) throws IOException {
-        Pane formResult = null;
-        try {
-
-            formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
-            loadForms.getChildren().add(formResult);
-
-
-            formResult.setId("Alcoholbox");
-            formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    try{
-                        aApplicationFormPg1();
-
-                    }
-                    catch(IOException e){
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-*/
     @FXML
     public void aApplicationFormControl(Form form) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
-
-//    @FXML
-//    public void getAssignedForms() {
-//        ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
-//    }
 
     @FXML
     public void assignNewForms() throws IOException {

@@ -13,7 +13,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-
+/**
+ * @author Amrit Parmanand
+ * @version It 1
+ * Controller for mApplicationFormPg1 of UI
+ */
 public class mApplicationFormPg1{
     private SceneManager sceneM;
     private CacheManager cacheM;

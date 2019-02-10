@@ -4,7 +4,11 @@ import Datatypes.Account;
 import Datatypes.Form;
 
 import java.sql.Connection;
-
+/**
+ * @author Sam Silver
+ * @version It 1
+ * manages the cache, provides access to cached info
+ */
 public class CacheManager {
     private DatabaseManager dbM;
     private Form form;

@@ -6,7 +6,11 @@ import Datatypes.Form;
 import Datatypes.Manufacturer;
 
 import java.sql.*;
-
+/**
+ * @author Amrit Parmanand
+ * @version It 1
+ * Manages the database, handles accessing and inserting data
+ */
 public class DatabaseManager {
     private Connection connection;
     private Statement stmt;

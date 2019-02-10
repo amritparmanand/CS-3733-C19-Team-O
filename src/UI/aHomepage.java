@@ -8,7 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-
+/**
+ * @author Percy Jiang
+ * @version It 1
+ * Controller for aHomepage of UI
+ */
 public class aHomepage {
     private SceneManager sceneM;
     private CacheManager cacheM;

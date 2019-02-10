@@ -8,7 +8,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
-
+/**
+ * @author Amrit Parmanand & Robert Rinearson
+ * @version It 1
+ * Search box on agent's page that takes to forms
+ */
 public class alcBox {
     private SceneManager sceneM;
     private CacheManager cacheM;
