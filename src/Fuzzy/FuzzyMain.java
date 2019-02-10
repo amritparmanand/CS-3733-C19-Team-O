@@ -1,3 +1,8 @@
+package Fuzzy;
+
+import Fuzzy.Damerau_Levenshtein;
+import Fuzzy.FuzzyContext;
+
 /**
  * @author Percy
  * Reference: http://scarcitycomputing.blogspot.com/2013/04/damerau-levenshtein-edit-distance.html

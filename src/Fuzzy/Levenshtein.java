@@ -1,8 +1,12 @@
+package Fuzzy;
+
+import Fuzzy.IFuzzy;
+
 /**
  * @author Percy
  * @version It2
  */
-public class Levenshtein implements IFuzzy{
+public class Levenshtein implements IFuzzy {
 
     private int min3(int a,int b, int c){
         int x = Math.min(a, b);

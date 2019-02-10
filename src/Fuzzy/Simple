@@ -12,7 +12,7 @@ insert into xxx_names(name) values('OKENOR SAD');
 insert into xxx_names(name) values('OKENEAR TRUST');
 insert into xxx_names(name) values('bitch');
 
--- This is Levenshtein
+-- This is Fuzzy.Levenshtein
 SELECT UTL_MATCH.EDIT_DISTANCE('hi', 'hi') FROM DUAL;
 
 -- These are wildcards

@@ -1,3 +1,5 @@
+package Fuzzy;
+
 /**
  * @author Percy
  * @version It2
