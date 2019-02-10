@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -59,10 +60,13 @@ public class SearchPage {
                 alcResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                 Node vbox = alcResult.getChildren().get(0);
                 if (vbox instanceof VBox) {
+                    Node labelPic = ((VBox) vbox).getChildren().get(0);
                     Node fName = ((VBox) vbox).getChildren().get(1);
                     Node bName = ((VBox) vbox).getChildren().get(2);
                     Node aType = ((VBox) vbox).getChildren().get(3);
 
+                    //rob
+                    //((ImageView) labelPic).setImage(GET IMAGE FROM DATABASE);
                     ((Label) fName).setText(result.getFancifulName());
                     ((Label) bName).setText(result.getCompanyName());
                     ((Label) aType).setText(result.getAlcoholType());
