@@ -78,7 +78,7 @@ public class aRegister {
                 fullName.getText().isEmpty() ||
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
-                ttbID.getText().isEmpty() || !this.validAgentPhone() ){
+                ttbID.getText().isEmpty() ){
             aRegister.setDisable(true);
         }
         else{
