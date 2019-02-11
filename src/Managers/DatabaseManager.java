@@ -93,6 +93,13 @@ public class DatabaseManager {
                 "appellation varchar(60), " +
                 "phoneNumber varchar(20), " +
                 "emailAddress varchar(50),	" +
+                "certificateOfApproval boolean," +   //begin new
+                "certificateOfExemption boolean," +
+                "onlyState varchar(2)," +
+                "distinctiveLiquor boolean," +
+                "bottleCapacity VARCHAR(5)," +
+                "resubmission boolean," +
+                "ttbID varchar(10)," + //end new
                 "dateOfApplication VARCHAR(30) , " +
                 "printName varchar(40),	" +
                 "beerWineSpirit varchar(60), " +

@@ -26,6 +26,12 @@ public class Form {
     private String appellation;
     private String phoneNumber;
     private String emailAddress;
+    private Boolean certificateOfApproval;
+    private Boolean certificateOfExemption;
+    private String onlyState;
+    private Boolean distinctiveLiquor;
+    private Boolean resubmission;
+    private String ttbID;
     private String dateOfApplication;
     private String printName;
     private String beerWineSpirit;
@@ -55,30 +61,12 @@ public class Form {
         this.alcoholPercent = null;
         this.vintageYear = null;
         this.pHLevel = null;
-    }
-
-    public Form(int formID, int repID, String brewerNumber, String productSource, String serialNumber, String productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, String beerWineSpirit, String alcoholPercent, String vintageYear, String pHLevel) {
-        this.formID = formID;
-        this.repID = repID;
-        this.brewerNumber = brewerNumber;
-        this.productSource = productSource;
-        this.serialNumber = serialNumber;
-        this.productType = productType;
-        this.brandName = brandName;
-        this.fancifulName = fancifulName;
-        this.applicantName = applicantName;
-        this.mailingAddress = mailingAddress;
-        this.formula = formula;
-        this.grapeVarietal = grapeVarietal;
-        this.appellation = appellation;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
-        this.dateOfApplication = dateOfApplication;
-        this.printName = printName;
-        this.beerWineSpirit = beerWineSpirit;
-        this.alcoholPercent = alcoholPercent;
-        this.vintageYear = vintageYear;
-        this.pHLevel = pHLevel;
+        this.certificateOfApproval = null;
+        this.certificateOfExemption = null;
+        this.onlyState = null;
+        this.distinctiveLiquor = null;
+        this.resubmission = null;
+        this.ttbID = null;
     }
 
     public int getRepID(){ return repID; }
@@ -198,12 +186,62 @@ public class Form {
         this.pHLevel = pHLevel;
     }
 
+    public Boolean getCertificateOfApproval() {
+        return certificateOfApproval;
+    }
+
+    public void setCertificateOfApproval(Boolean certificateOfApproval) {
+        this.certificateOfApproval = certificateOfApproval;
+    }
+
+    public Boolean getCertificateOfExemption() {
+        return certificateOfExemption;
+    }
+
+    public void setCertificateOfExemption(Boolean certificateOfExemption) {
+        this.certificateOfExemption = certificateOfExemption;
+    }
+
+    public String getOnlyState() {
+        return onlyState;
+    }
+
+    public void setOnlyState(String onlyState) {
+        this.onlyState = onlyState;
+    }
+
+    public Boolean getDistinctiveLiquor() {
+        return distinctiveLiquor;
+    }
+
+    public void setDistinctiveLiquor(Boolean distinctiveLiquor) {
+        this.distinctiveLiquor = distinctiveLiquor;
+    }
+
+    public Boolean getResubmission() {
+        return resubmission;
+    }
+
+    public void setResubmission(Boolean resubmission) {
+        this.resubmission = resubmission;
+    }
+
+    public String getTtbID() {
+        return ttbID;
+    }
+
+    public void setTtbID(String ttbID) {
+        this.ttbID = ttbID;
+    }
+
+    public void setFormID(int formID) {
+        this.formID = formID;
+    }
+
     public int getFormID() {
         return formID;
     }
 
-
-    // Agent also has the same method?
 
 
     // Query the database to select applications where form ID matches this form
