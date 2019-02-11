@@ -38,6 +38,16 @@ public class mApplicationFormPg4 {
         this.cacheM = cacheM;
     }
 
+    @FXML public void initialize(){
+        Form form = cacheM.getForm();
+
+        System.out.println("starting");
+        dateOfApplication.setText(form.getDateOfApplication());
+        //applicantSig.setText(form.getApplicantSignature);
+        applicantNamePrint.setText(form.getApplicantName());
+
+    }
+
     @FXML
     public void submit() throws SQLException, IOException {
         Form form = cacheM.getForm();
