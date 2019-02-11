@@ -110,6 +110,9 @@ public class LoginPage {
 
     @FXML private TextField fuzzy;
     @FXML public void fuzzy() {
-        
+        System.out.println("sup bitch");
+        System.out.println(cacheM.getDbM().fuzzy1(fuzzy.getText()));
+        System.out.println(cacheM.getDbM().fuzzy2(fuzzy.getText()));
+        System.out.println(cacheM.getDbM().fuzzy3(fuzzy.getText()));
     }
 }

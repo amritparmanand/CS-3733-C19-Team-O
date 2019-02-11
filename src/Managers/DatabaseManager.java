@@ -4,7 +4,9 @@ import Datatypes.Account;
 import Datatypes.Agent;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
+import Fuzzy.Damerau_Levenshtein;
 import Fuzzy.FuzzyContext;
+import Fuzzy.FuzzyMain;
 import Fuzzy.Levenshtein;
 import javafx.fxml.FXML;
 
@@ -48,20 +50,76 @@ public class DatabaseManager {
 
     // Got connected, codes start here
 
-    public void fuzzySearch(String input){
+    // The one using sql command with wildcard
+    public String fuzzy1(String input){
         String brandName = "";
         try {
-            String getData = "select BRANDNAME from FORMS where BRANDNAME = " + input;
+            String getData = "select USERNAME from REPRESENTATIVES where USERNAME like '" + input + "%'";
             ResultSet result = this.stmt.executeQuery(getData);
             while(result.next()){
-                brandName = result.getString("brandName");
+                brandName = result.getString("username");
             }
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+        return brandName;
+    }
 
-        System.out.println(brandName);
+    // The one using Levenshtein
+    public String fuzzy2(String input){
+        String best = "";
+        String itrator = "";
+
+        for(int i = 1; i <= 2; i++){
+            try {
+                String getData = "select USERNAME from REPRESENTATIVES where REPID = " + i;
+                ResultSet result = this.stmt.executeQuery(getData);
+                while(result.next()){
+                    itrator = result.getString("username");
+                }
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+            FuzzyContext fc = new FuzzyContext();
+            fc.setF(new Levenshtein());
+            if(fc.fuzzy(input,itrator) <= fc.fuzzy(input,best)){
+                best = itrator;
+            }
+
+        }
+
+        return best;
+    }
+
+    // The one using Damerau_Levenshtein
+    public String fuzzy3(String input){
+        String best = "";
+        String itrator = "";
+
+        for(int i = 1; i <= 2; i++){
+            try {
+                String getData = "select USERNAME from REPRESENTATIVES where REPID = " + i;
+                ResultSet result = this.stmt.executeQuery(getData);
+                while(result.next()){
+                    itrator = result.getString("username");
+                }
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+            FuzzyContext fc = new FuzzyContext();
+            fc.setF(new Damerau_Levenshtein());
+            if(fc.fuzzy(input,itrator) <= fc.fuzzy(input,best)){
+                best = itrator;
+            }
+
+        }
+
+        return best;
     }
 
     // Generate the tables in database and create the sequences for ids

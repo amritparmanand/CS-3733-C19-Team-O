@@ -66,7 +66,7 @@
                         <VBox alignment="CENTER" prefHeight="332.0" prefWidth="346.0">
                            <children>
                               <TextField fx:id="fuzzy" />
-                              <Button mnemonicParsing="false" onMousePressed="#fuzzySearch" text="Button" />
+                              <Button mnemonicParsing="false" onMousePressed="#fuzzy" text="Button" />
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
                                     <RadioButton fx:id="m" mnemonicParsing="false" onAction="#validateButton" text="Manufacturer">
