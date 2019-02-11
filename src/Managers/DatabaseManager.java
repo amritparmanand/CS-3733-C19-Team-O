@@ -7,6 +7,7 @@ import Datatypes.Manufacturer;
 import Fuzzy.Damerau_Levenshtein;
 import Fuzzy.FuzzyContext;
 import Fuzzy.Levenshtein;
+import Fuzzy.hiddenScore;
 
 import java.sql.*;
 /**
@@ -385,7 +386,7 @@ public class DatabaseManager {
 
     // The one using Levenshtein
     public String fuzzy2(String input){
-        String best = "";
+        String best = "COMPLETEANDUTTERGARBAGE";
         String itrator = "";
         int size = 0;
 
@@ -399,13 +400,15 @@ public class DatabaseManager {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+        System.out.println(size);
 
-        for(int i = 800; i <= size + 800; i++){
+        for(int i = 1; i <= size; i++){
             try {
                 String getData = "select BRANDNAME from FORMS where FORMID = " + i;
                 ResultSet result = this.stmt.executeQuery(getData);
                 while(result.next()){
                     itrator = result.getString("brandName");
+                    System.out.println(itrator);
                 }
             } catch (SQLException e) {
                 if (!e.getSQLState().equals("X0Y32"))
@@ -440,7 +443,7 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
 
-        for(int i = 800; i <= 800 + size; i++){
+        for(int i = 1; i <= size; i++){
             try {
                 String getData = "select BRANDNAME from FORMS where FORMID = " + i;
                 ResultSet result = this.stmt.executeQuery(getData);
@@ -455,6 +458,46 @@ public class DatabaseManager {
             FuzzyContext fc = new FuzzyContext();
             fc.setF(new Damerau_Levenshtein());
             if(fc.fuzzy(input,itrator) <= fc.fuzzy(input,best)){
+                best = itrator;
+            }
+
+        }
+
+        return best;
+    }
+
+    // Sublime fuzzy algorithm
+    public String sublime(String input){
+        String best = "";
+        String itrator = "";
+        int size = 0;
+
+        try {
+            String getSize = "select count(*) as size from FORMS";
+            ResultSet r1 = this.stmt.executeQuery(getSize);
+            while(r1.next()){
+                size = r1.getInt("size");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        for(int i = 1; i <= size; i++){
+            try {
+                String getData = "select BRANDNAME from FORMS where FORMID = " + i;
+                ResultSet result = this.stmt.executeQuery(getData);
+                while(result.next()){
+                    itrator = result.getString("brandName");
+                }
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+            FuzzyContext fc = new FuzzyContext();
+            fc.setF(new hiddenScore());
+            if(fc.fuzzy(input,itrator) >= fc.fuzzy(input,best)){
                 best = itrator;
             }
 

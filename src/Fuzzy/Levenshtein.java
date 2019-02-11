@@ -9,6 +9,9 @@ public class Levenshtein implements IFuzzy{
 
     @Override
     public int fuzzy(String source, String target) {
+        source = source.toLowerCase();
+        target = target.toLowerCase();
+
         int[][] Table = new int[source.length()+1][target.length()+1];
 
         for(int i=0; i<source.length()+1; i++){
