@@ -4,6 +4,9 @@ import Datatypes.Account;
 import Datatypes.Agent;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
+import Fuzzy.Damerau_Levenshtein;
+import Fuzzy.FuzzyContext;
+import Fuzzy.Levenshtein;
 
 import java.sql.*;
 /**
@@ -99,7 +102,7 @@ public class DatabaseManager {
                 "distinctiveLiquor boolean," +
                 "bottleCapacity VARCHAR(5)," +
                 "resubmission boolean," +
-                "ttbID varchar(10)," + //end new
+                "ttbID int ," + //end new
                 "dateOfApplication VARCHAR(30) , " +
                 "printName varchar(40),	" +
                 "beerWineSpirit varchar(60), " +
@@ -356,4 +359,106 @@ public class DatabaseManager {
 //                e.printStackTrace();
 //        }
 //    }
+
+    /**
+     * The 3 ways of fuzzy search
+     * @param input
+     * @return a suggested string according to input
+     */
+    // The one using sql command with wildcard
+    public String fuzzy1(String input){
+        String brandName = "";
+        try {
+            String getData = "select BRANDNAME from FORMS where BRANDNAME like '" + input + "%'";
+            ResultSet result = this.stmt.executeQuery(getData);
+            while(result.next()){
+                brandName = result.getString("brandName");
+                System.out.println(brandName);
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return brandName;
+    }
+
+    // The one using Levenshtein
+    public String fuzzy2(String input){
+        String best = "";
+        String itrator = "";
+        int size = 0;
+
+        try {
+            String getSize = "select count(*) as size from FORMS";
+            ResultSet r1 = this.stmt.executeQuery(getSize);
+            while(r1.next()){
+                size = r1.getInt("size");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        for(int i = 800; i <= size + 800; i++){
+            try {
+                String getData = "select BRANDNAME from FORMS where FORMID = " + i;
+                ResultSet result = this.stmt.executeQuery(getData);
+                while(result.next()){
+                    itrator = result.getString("brandName");
+                }
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+            FuzzyContext fc = new FuzzyContext();
+            fc.setF(new Levenshtein());
+            if(fc.fuzzy(input,itrator) <= fc.fuzzy(input,best)){
+                best = itrator;
+            }
+
+        }
+
+        return best;
+    }
+
+    // The one using Damerau_Levenshtein
+    public String fuzzy3(String input){
+        String best = "";
+        String itrator = "";
+        int size = 0;
+
+        try {
+            String getSize = "select count(*) as size from FORMS";
+            ResultSet r1 = this.stmt.executeQuery(getSize);
+            while(r1.next()){
+                size = r1.getInt("size");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        for(int i = 800; i <= 800 + size; i++){
+            try {
+                String getData = "select BRANDNAME from FORMS where FORMID = " + i;
+                ResultSet result = this.stmt.executeQuery(getData);
+                while(result.next()){
+                    itrator = result.getString("brandName");
+                }
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+            FuzzyContext fc = new FuzzyContext();
+            fc.setF(new Damerau_Levenshtein());
+            if(fc.fuzzy(input,itrator) <= fc.fuzzy(input,best)){
+                best = itrator;
+            }
+
+        }
+
+        return best;
+    }
 }

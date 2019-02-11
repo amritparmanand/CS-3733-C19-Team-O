@@ -98,17 +98,18 @@ public class SearchPage {
             result.setPhLevel(rs.getDouble("PHLEVEL"));
             result.setAlcohol(rs.getDouble("ALCOHOLPERCENT"));
             result.setYear(rs.getInt("VINTAGEYEAR"));
-            if(rs.getInt("PRODUCTTYPE") == 0){
+            if(rs.getString("PRODUCTTYPE") == "WINE"){
                 result.setWine(true);
                 result.setBeer(false);
                 result.setLiquor(false);
                 result.setAlcoholType("Wine");
-            }else if(rs.getInt("PRODUCTTYPE") == 1){
+            }else if(rs.getString("PRODUCTTYPE") == "BEER"){
                 result.setWine(false);
                 result.setBeer(true);
                 result.setLiquor(false);
                 result.setAlcoholType("Beer");
             }
+
             if(searchBox.getText().isEmpty()) {
                 if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
                     searchList.add(result);
@@ -122,12 +123,14 @@ public class SearchPage {
                     } else if (wineCheck.isSelected() && !result.isWine()) {
                     }
                 }
-            } else if(!searchBox.getText().isEmpty() &&
+            }
+            else if(!searchBox.getText().isEmpty() &&
                     ((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
                     || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){
                 if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
                     searchList.add(result);
-                } else {
+                }
+                else {
                     if (beerCheck.isSelected() && result.isBeer()) {
                         searchList.add(result);
                     } else if (beerCheck.isSelected() && !result.isBeer()) {
