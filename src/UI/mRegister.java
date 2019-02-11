@@ -88,7 +88,7 @@ public class mRegister {
     }
 
     /**
-     * @Author Clay Oshiro-Leavitt
+     * @author Clay Oshiro-Leavitt
      * checks the manufacturer phone number for Manufacturer Registration form
      * will accept US number with the following conditions
      * 1 prefix optional
