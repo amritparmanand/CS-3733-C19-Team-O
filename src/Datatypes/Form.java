@@ -1,5 +1,6 @@
 package Datatypes;
 
+import java.io.FileInputStream;
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,6 +34,7 @@ public class Form {
     private Boolean distinctiveLiquor;
     private Boolean resubmission;
     private int ttbID;
+    private FileInputStream fis = null;
     private String dateOfApplication;
     private String printName;
     private String beerWineSpirit;
@@ -289,7 +291,13 @@ public class Form {
         return formID;
     }
 
+    public FileInputStream getFis() {
+        return fis;
+    }
 
+    public void setFis(FileInputStream fis) {
+        this.fis = fis;
+    }
 
     // Query the database to select applications where form ID matches this form
     // Update the status to be approved
