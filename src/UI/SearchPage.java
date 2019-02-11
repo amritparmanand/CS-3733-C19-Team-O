@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.Initializable;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +31,10 @@ import java.util.ArrayList;
 public class SearchPage {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    boolean SQL = false;
+    boolean Levi = false;
+    boolean DLevi = false;
+    boolean Sublime = true;
 
     public SearchPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -52,12 +57,47 @@ public class SearchPage {
     @FXML private TextField yearHigh;
     @FXML private FlowPane searchResults;
     @FXML private Button searchButton;
-    @FXML private RadioButton sql;
-    @FXML private RadioButton levenshtein;
-    @FXML private RadioButton damerau;
-    @FXML private RadioButton sublime;
     @FXML private Label searchSuggest;
     @FXML private Label didYouMean;
+    @FXML private MenuItem sqlSearch;
+    @FXML private MenuItem lSearch;
+    @FXML private MenuItem dlSearch;
+    @FXML private MenuItem sublime;
+    @FXML private MenuButton algChoose;
+
+
+    @FXML
+    public void searchSQL() throws IOException {
+        SQL = true;
+        Levi = false;
+        DLevi = false;
+        Sublime = false;
+        algChoose.setText("SQL");
+    }
+    @FXML
+    public void searchLevi() throws IOException {
+        SQL = false;
+        Levi = true;
+        DLevi = false;
+        Sublime = false;
+        algChoose.setText("Levenshtein");
+    }
+    @FXML
+    public void searchDLevi() throws IOException {
+        SQL = false;
+        Levi = false;
+        DLevi = true;
+        Sublime = false;
+        algChoose.setText("Damerau-Levenshtein");
+    }
+    @FXML
+    public void searchSublime() throws IOException {
+        SQL = false;
+        Levi = false;
+        DLevi = false;
+        Sublime = true;
+        algChoose.setText("Sublime");
+    }
 
     @FXML public void back() throws IOException {
         //sceneM.backScene();
@@ -100,19 +140,21 @@ public class SearchPage {
     }
 
     @FXML public void search() throws SQLException {
+        //menubutton set text SQL
+
 
         // Perform fuzzy search based on user's choice
         String suggestion = "";
-        if(sql.isSelected()){
+        if(SQL){
             suggestion = cacheM.getDbM().fuzzy1(searchBox.getText());
         }
-        else if(levenshtein.isSelected()){
+        else if(Levi){
             suggestion = cacheM.getDbM().fuzzy2(searchBox.getText());
         }
-        else if(damerau.isSelected()){
+        else if(DLevi){
             suggestion = cacheM.getDbM().fuzzy3(searchBox.getText());
         }
-        else if(sublime.isSelected()){
+        else if(Sublime){
             suggestion = cacheM.getDbM().sublime(searchBox.getText());
         }
 
