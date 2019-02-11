@@ -151,7 +151,7 @@
             </HBox>
          </children>
       </VBox>
-      <Label fx:id="searchSuggest" layoutX="175.0" layoutY="-7.0" prefHeight="49.0" prefWidth="187.0" translateX="925.0" translateY="680.0" />
-      <Label fx:id="didYouMean" layoutX="185.0" layoutY="3.0" prefHeight="49.0" prefWidth="187.0" translateX="700.0" translateY="670.0" />
+      <Label fx:id="searchSuggest" layoutX="175.0" layoutY="-7.0" onMousePressed="#searchSuggest" prefHeight="49.0" prefWidth="187.0" style="-fx-font-weight: bold; -fx-text-fill: blue; -fx-font-style: italic;" translateX="925.0" translateY="680.0" />
+      <Label fx:id="didYouMean" layoutX="264.0" layoutY="3.0" prefHeight="49.0" prefWidth="108.0" translateX="700.0" translateY="670.0" />
    </children>
 </AnchorPane>
