@@ -262,6 +262,7 @@ font-face {
   -jfx-disable-animation: false;
   -jfx-focus-color: #4A77DD;
   -fx-background-radius: 3;
+  -jfx-label-float: true;
 }
 
 .input-line{

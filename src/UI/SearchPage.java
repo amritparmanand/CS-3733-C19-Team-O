@@ -89,83 +89,86 @@ public class SearchPage {
 //        search();
 //    }
 
-    @FXML 
+    @FXML
+    public void searchSuggest() throws SQLException {
+        searchBox.setText(searchSuggest.getText());
+        search();
+    }
 
+    @FXML
     public void search() throws SQLException {
 
-//]        String search = searchBox.getText().toUpperCase();
-        String suggestion = cacheM.getDbM().fuzzy2(searchBox.getText());
-        didYouMean.setText("Did you mean: ");
-        searchSuggest.setText(suggestion);
+//        String suggestion = cacheM.getDbM().sublime(searchBox.getText());
+//        didYouMean.setText("Did you mean: ");
+//        searchSuggest.setText(suggestion);
+        String suggestion = cacheM.getDbM().sublime(searchBox.getText());
+        ResultSet rs = getApprovedApplications();
+        searchResults.getChildren().clear();
+        searchList.clear();
+        while (rs.next()) {
+            SearchResult result = new SearchResult();
+//            result.setFancifulName(rs.getString(""));
+            result.setFancifulName(rs.getString("FANCIFULNAME"));
+            result.setCompanyName(rs.getString("BRANDNAME"));
+            result.setPhLevel(rs.getDouble("PHLEVEL"));
+            result.setAlcohol(rs.getDouble("ALCOHOLPERCENT"));
+            result.setYear(rs.getInt("VINTAGEYEAR"));
+            if(rs.getString("PRODUCTTYPE") == "WINE"){
+                result.setWine(true);
+                result.setBeer(false);
+                result.setLiquor(false);
+                result.setAlcoholType("Wine");
+            }else if(rs.getString("PRODUCTTYPE") == "BEER"){
+                result.setWine(false);
+                result.setBeer(true);
+                result.setLiquor(false);
+                result.setAlcoholType("Beer");
+            }
 
-//        ResultSet rs = getApprovedApplications();
-//        searchResults.getChildren().clear();
-//        searchList.clear();
-//        while (rs.next()) {
-//            SearchResult result = new SearchResult();
-////            result.setFancifulName(rs.getString(""));
-//            result.setFancifulName(rs.getString("FANCIFULNAME"));
-//            result.setCompanyName(rs.getString("BRANDNAME"));
-//            result.setPhLevel(rs.getDouble("PHLEVEL"));
-//            result.setAlcohol(rs.getDouble("ALCOHOLPERCENT"));
-//            result.setYear(rs.getInt("VINTAGEYEAR"));
-//            if(rs.getString("PRODUCTTYPE") == "WINE"){
-//                result.setWine(true);
-//                result.setBeer(false);
-//                result.setLiquor(false);
-//                result.setAlcoholType("Wine");
-//            }else if(rs.getString("PRODUCTTYPE") == "BEER"){
-//                result.setWine(false);
-//                result.setBeer(true);
-//                result.setLiquor(false);
-//                result.setAlcoholType("Beer");
-//            }
-//
-//            if(searchBox.getText().isEmpty()) {
-//                System.out.println("foo");
-//                if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
-//                    searchList.add(result);
-//                } else {
-//                    if (beerCheck.isSelected() && result.isBeer()) {
-//                        searchList.add(result);
-//                    } else if (beerCheck.isSelected() && !result.isBeer()) {
-//                    }
-//                    if (wineCheck.isSelected() && result.isWine()) {
-//                        searchList.add(result);
-//                    } else if (wineCheck.isSelected() && !result.isWine()) {
-//                    }
-//                }
-//            }
-//            else if(!searchBox.getText().isEmpty() &&
-//                    ((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
-//                    || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){
-//                //if ^^ this is not empty, we do a fuzzy search, and check if it's empty again
-//                //see if fuzzy returns anything
-//                //if it does: set did you mean to "Did you Mean"
-//                //set the searchSuggest to return value
-//                System.out.println("bar");
-//                if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
-//                    searchList.add(result);
-//                }
-//                else {
-//                    if (beerCheck.isSelected() && result.isBeer()) {
-//                        searchList.add(result);
-//                    } else if (beerCheck.isSelected() && !result.isBeer()) {
-//                    }
-//                    if (wineCheck.isSelected() && result.isWine()) {
-//                        searchList.add(result);
-//                    } else if (wineCheck.isSelected() && !result.isWine()) {
-//                    }
-//                }
-//            }
-//            else{
-//                //System.out.println("nanana");
-//                didYouMean.setText("Did you mean:");
-//                searchSuggest.setText(suggestion);
-//                System.out.println(suggestion);
-//            }
-//        }
-//        loadAlcohol(searchList);
+            if(searchBox.getText().isEmpty()) {
+                System.out.println("foo");
+                if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
+                    searchList.add(result);
+                } else {
+                    if (beerCheck.isSelected() && result.isBeer()) {
+                        searchList.add(result);
+                    } else if (beerCheck.isSelected() && !result.isBeer()) {
+                    }
+                    if (wineCheck.isSelected() && result.isWine()) {
+                        searchList.add(result);
+                    } else if (wineCheck.isSelected() && !result.isWine()) {
+                    }
+                }
+            }
+            else if(!searchBox.getText().isEmpty() &&
+                    ((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
+                    || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){
+                //if ^^ this is not empty, we do a fuzzy search, and check if it's empty again
+                //see if fuzzy returns anything
+                //if it does: set did you mean to "Did you Mean"
+                //set the searchSuggest to return value
+                System.out.println("bar");
+                if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
+                    searchList.add(result);
+                }
+                else {
+                    if (beerCheck.isSelected() && result.isBeer()) {
+                        searchList.add(result);
+                    } else if (beerCheck.isSelected() && !result.isBeer()) {
+                    }
+                    if (wineCheck.isSelected() && result.isWine()) {
+                        searchList.add(result);
+                    } else if (wineCheck.isSelected() && !result.isWine()) {
+                    }
+                }
+            }
+            else{
+                System.out.println("wtf man");
+                didYouMean.setText("Did you mean: ");
+                searchSuggest.setText(suggestion);
+            }
+        }
+        loadAlcohol(searchList);
     }
 
     public ResultSet getApprovedApplications() throws SQLException{
