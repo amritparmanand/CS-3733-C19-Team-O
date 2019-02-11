@@ -65,8 +65,22 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="332.0" prefWidth="346.0">
                            <children>
+                              <HBox prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <Label minWidth="86.0" prefHeight="35.0" prefWidth="168.0" text="Did you mean:">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="suggest" prefHeight="35.0" prefWidth="177.0" underline="true">
+                                       <font>
+                                          <Font name="System Bold Italic" size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
                               <TextField fx:id="fuzzy" />
-                              <Button mnemonicParsing="false" onMousePressed="#fuzzy" text="Button" />
+                              <Button mnemonicParsing="false" onMousePressed="#provideSuggest" text="Button" />
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
                                     <RadioButton fx:id="m" mnemonicParsing="false" onAction="#validateButton" text="Manufacturer">

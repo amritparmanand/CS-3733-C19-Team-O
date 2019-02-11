@@ -58,6 +58,7 @@ public class DatabaseManager {
             ResultSet result = this.stmt.executeQuery(getData);
             while(result.next()){
                 brandName = result.getString("username");
+                System.out.println(brandName);
             }
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
