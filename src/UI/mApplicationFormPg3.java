@@ -42,6 +42,27 @@ public class mApplicationFormPg3 {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
+//
+//    @FXML public void initialize(){
+//        boolean isCertLabelApp = false;
+//        boolean isCertExempLabApp = false;
+//        boolean isDistinctLiqBottApp = false;
+//        boolean isResubmitAfterRej = false;
+//        boolean isMalt = false;
+//        if(form.getProductSource() == "DOMESTIC"){
+//            isDomestic = true;
+//            isImported = false;
+//        }
+//        Form form = cacheM.getForm();
+//        applicationType.setText(form.getPrintName());
+//        stateAbb.setText(form.getMailingAddress());
+//        ttbID.setText(form.getFormula());
+//        bottleCap.setText(form.getGrapeVarietal());
+//        certLabelApp.setText(form.getAppellation());
+//        phoneNumber.setText(form.getPhoneNumber());
+//        email.setText(form.getEmailAddress());
+//
+//    }
 
 //    @FXML public void saveDraft(){
 //        Form form = cacheM.getForm();

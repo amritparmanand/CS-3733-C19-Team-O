@@ -242,11 +242,6 @@ public class DatabaseManager {
 
     // Insert a form from Manufacturer side into database
     public void insertForm(Form form) throws SQLException {
-        form.setApplicantName("DankMEME");
-        form.setBeerWineSpirit(11);
-        form.setpHLevel(1.1);
-        form.setVintageYear(1111);
-        form.setAlcoholPercent(1000);
 
         String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
                 "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +
@@ -260,9 +255,9 @@ public class DatabaseManager {
             seqVal.next();
             prepStmt.setInt(1,seqVal.getInt(1));
             prepStmt.setInt(2, form.getRepID());
-            prepStmt.setInt(3, form.getBrewerNumber());
+            prepStmt.setString(3, form.getBrewerNumber());
             prepStmt.setString(4, form.getProductSource());
-            prepStmt.setInt(5, form.getSerialNumber());
+            prepStmt.setString(5, form.getSerialNumber());
             prepStmt.setString(6, form.getProductType());
             prepStmt.setString(7, form.getBrandName());
             prepStmt.setString(8, form.getFancifulName());
@@ -275,10 +270,10 @@ public class DatabaseManager {
             prepStmt.setString(15, form.getEmailAddress());
             prepStmt.setString(16, form.getDateOfApplication());
             prepStmt.setString(17, form.getPrintName());
-            prepStmt.setInt(18, form.getBeerWineSpirit());
-            prepStmt.setDouble(19, form.getAlcoholPercent());
-            prepStmt.setInt(20, form.getVintageYear());
-            prepStmt.setDouble(21, form.getpHLevel());
+            prepStmt.setString(18, form.getBeerWineSpirit());
+            prepStmt.setString(19, form.getAlcoholPercent());
+            prepStmt.setString(20, form.getVintageYear());
+            prepStmt.setString(21, form.getpHLevel());
             addApp(seqVal.getInt(1),form.getRepID(),form.getDateOfApplication());
             prepStmt.executeUpdate();
             prepStmt.close();
@@ -315,21 +310,21 @@ public class DatabaseManager {
 
     // Unused?
     // Agent calls this method to approve an Application
-    public void approveApplication(int formID) throws SQLException{
-        String Apps1 = "UPDATE CUSTOMERS\n" +
-                "SET STATUS = 'Approved'\n" +
-                "WHERE ID =" + formID + ";";
-        PreparedStatement prepStmt = connection.prepareStatement(Apps1);
-        ResultSet seqVal = null;
-        try {
-
-            prepStmt.executeUpdate();
-            prepStmt.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void approveApplication(int formID) throws SQLException{
+//        String Apps1 = "UPDATE CUSTOMERS\n" +
+//                "SET STATUS = 'Approved'\n" +
+//                "WHERE ID =" + formID + ";";
+//        PreparedStatement prepStmt = connection.prepareStatement(Apps1);
+//        ResultSet seqVal = null;
+//        try {
+//
+//            prepStmt.executeUpdate();
+//            prepStmt.close();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     // ???
     public void executeStatement(PreparedStatement ps) {
@@ -341,16 +336,8 @@ public class DatabaseManager {
         }
     }
 
-    // No where statement, need to fix!!!
-    // Get the Forms in the database with status sat to approved
-    public ResultSet getApprovedApplications() throws SQLException{
-        String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS" +
-                " ON FORMS.FORMID = APPLICATIONS.FORMID";
-        ResultSet rset = stmt.executeQuery(retrieve);
-        return rset;
-    }
 
-    // Insert the sample data for Iteration 1
+//     Insert the sample data for Iteration 1
 //    public void insertSamples() throws SQLException{
 //        String formSamples = "INSERT INTO FORMS VALUES (1,81,81,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1812 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,13.95,2010,13.95), (2,81,81,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1813 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,11,2010,11), (3,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1814 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.9,2010,14.9), (4,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1815 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.9,2010,14.9), (5,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1816 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.7,2010,14.7), (6,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1817 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.7,2010,14.7), (7,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1818 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.7,2010,14.7), (8,641,641,1,120009,0,'\"REUNION\"','MOONSHINE','TIGER JUICE LLC','1819 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-02-18 00:00:00','Harrison James',41,40,2010,40), (9,88,88,1,120009,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1820 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.9,2010,14.9), (10,88,88,1,120010,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1821 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.9,2010,14.9), (11,88,88,1,120011,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1822 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.7,2010,14.7), (12,88,88,1,120012,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1823 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.6,2010,14.6), (13,88,88,1,120013,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1824 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,15.3,2010,15.3), (14,88,88,1,120014,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1825 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,15,2010,15), (15,88,88,1,120015,1,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1826 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,15.9,2010,15.9), (16,88,88,1,120016,1,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','13455 SAN PASQUAL RD','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,15.2,2010,15.2), (17,81,81,1,120017,1,'ORFILA VINEYARDS AND WINERY','MOONSHINE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','13456 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,11.9,2010,11.9), (18,88,88,1,120009,1,'MOSHIN VINEYARDS','MOONSHINE','MOSHIN VINEYARDS, MOSHIN VINEYARDS, INC.','13457 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.8,2009,14.8), (19,81,81,1,120001,1,'ACKERMANN','MOONSHINE','CHATEAU BARNABY, CHATEAU BARNABY, LLC','13458 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-17 00:00:00','Harrison James',53,8.5,2009,8.5), (20,88,88,1,120009,1,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','13459 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.5,2009,14.5), (21,80,80,0,120009,1,'DOMAINE CHEVROT','MOONSHINE','JOLI VIN IMPORTS, GARY ROSHKE','13460 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',51,12.5,2009,12.5), (22,80,80,0,122865,1,'DOMAINE CHEVROT','MOONSHINE','GOLDEN STATE WINE CO., G.S.W.C., INC.','13461 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',51,13,2009,13), (23,80,80,0,120001,1,'DOMAINE CHEVROT','MOONSHINE','FLEISCHER INTERNATIONAL TRADING, INC.','13462 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-17 00:00:00','Harrison James',52,13.3,2009,13.3), (24,85,85,0,120001,1,'DOMAINE CHEVROT','MOONSHINE','ROUND 8, LLC','13463 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-19 00:00:00','Harrison James',52,1,2009,13), (25,301,301,0,120001,1,'DOMAINE CHEVROT','MOONSHINE','SMUGGLERS'' NOTCH DISTILLERY, LLC','13464 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-19 00:00:00','Harrison James',46,40,2009,40), (26,902,902,0,120001,1,'DOMAINE CHEVROT','MOONSHINE','FOUR CORNERS GRILLE AND FLYING GOOSE BREW PUB, TJM ENTERPRISES, INC.','13465 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-05 00:00:00','Harrison James',33,1,2009,13), (27,80,80,0,120009,1,'DOMAINE CHEVROT','MOONSHINE','TASTY WINE COMPANY, A.B. COMPANY OF WISCONSIN INC.','13466 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,12.5,2009,12.5), (28,902,902,0,120009,1,'DOMAINE CHEVROT','MOONSHINE','ROHRBACH BREWING COMPANY, RAILROAD STREET BREWING COMPANY INC.','13467 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-18 00:00:00','Harrison James',2,1,2009,13), (29,906,906,0,120009,1,'DOMAINE CHEVROT','MOONSHINE','CITY STEAM BREWERY, THOMAS HOOKER BREWING COMPANY, LLC','13468 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-06 00:00:00','Harrison James',14,5.9,2009,5.9)";
 //        String appSamples = "INSERT INTO APPLICATIONS VALUES (1,1,81,1,'HARRISON','1999-01-01 00:00:00','.','.','.','APPROVED'), (2,2,81,3,'AMRIT','1999-01-02 00:00:00','.','.','.','DENIED'), (3,3,88,5,'PERCY','1999-01-03 00:00:00','.','.','.','APPROVED'), (4,4,88,7,'LIZ','1999-01-04 00:00:00','.','.','.','DENIED'), (5,5,88,9,'TREVOR','1999-01-05 00:00:00','.','.','.','APPROVED'), (6,6,88,11,'ROBERT','1999-01-06 00:00:00','.','.','.','DENIED'), (7,7,88,13,'JOHN','1999-01-07 00:00:00','.','.','.','APPROVED'), (8,8,641,15,'GABE','1999-01-08 00:00:00','.','.','.','DENIED'), (9,9,88,17,'SRI','1999-01-09 00:00:00','.','.','.','APPROVED'), (10,10,88,19,'SAM','1999-01-10 00:00:00','.','.','.','DENIED'), (11,11,88,21,'CLAY','1999-01-11 00:00:00','.','.','.','APPROVED'), (12,12,88,23,'HARRISON','1999-01-12 00:00:00','.','.','.','DENIED'), (13,13,88,25,'AMRIT','1999-01-13 00:00:00','.','.','.','APPROVED'), (14,14,88,27,'PERCY','1999-01-14 00:00:00','.','.','.','DENIED'), (15,15,88,29,'LIZ','1999-01-15 00:00:00','.','.','.','APPROVED'), (16,16,88,31,'TREVOR','1999-01-16 00:00:00','.','.','.','DENIED'), (17,17,81,33,'ROBERT','1999-01-17 00:00:00','.','.','.','APPROVED'), (18,18,88,35,'JOHN','1999-01-18 00:00:00','.','.','.','DENIED'), (19,19,81,37,'GABE','1999-01-19 00:00:00','.','.','.','APPROVED'), (20,20,88,39,'SRI','1999-01-20 00:00:00','.','.','.','DENIED'), (21,21,80,41,'SAM','1999-01-21 00:00:00','.','.','.','APPROVED'), (22,22,80,43,'CLAY','1999-01-22 00:00:00','.','.','.','DENIED'), (23,23,80,45,'HARRISON','1999-01-23 00:00:00','.','.','.','APPROVED'), (24,24,85,47,'AMRIT','1999-01-24 00:00:00','.','.','.','DENIED'), (25,25,301,49,'PERCY','1999-01-25 00:00:00','.','.','.','APPROVED'), (26,26,902,51,'LIZ','1999-01-26 00:00:00','.','.','.','DENIED'), (27,27,80,53,'TREVOR','1999-01-27 00:00:00','.','.','.','APPROVED'), (28,28,902,55,'ROBERT','1999-01-28 00:00:00','.','.','.','DENIED'), (29,29,906,57,'JOHN','1999-01-29 00:00:00','.','.','.','APPROVED')";

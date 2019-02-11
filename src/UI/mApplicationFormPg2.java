@@ -47,6 +47,18 @@ public class mApplicationFormPg2 {
         this.cacheM = cacheM;
     }
 
+    @FXML public void initialize(){
+        Form form = cacheM.getForm();
+        printName.setText(form.getPrintName());
+        mailAddress.setText(form.getMailingAddress());
+        formula.setText(form.getFormula());
+        grapes.setText(form.getGrapeVarietal());
+        appellation.setText(form.getAppellation());
+        phoneNumber.setText(form.getPhoneNumber());
+        email.setText(form.getEmailAddress());
+
+    }
+
     @FXML public void saveDraft(){
         Form form = cacheM.getForm();
 
@@ -58,7 +70,7 @@ public class mApplicationFormPg2 {
         form.setPhoneNumber(phoneNumber.getText());
         form.setEmailAddress(email.getText());
 
-        if(cacheM.getForm().getBeerWineSpirit() != 0) {
+        if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
             form.setGrapeVarietal("");
             form.setAppellation("");
         }
@@ -69,7 +81,7 @@ public class mApplicationFormPg2 {
     }
 
     @FXML public void wineFieldCheck(){
-        if(cacheM.getForm().getBeerWineSpirit() != 0) {
+        if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
             grapes.setEditable(false);
             grapes.setPromptText("n/a");
             appellation.setEditable(false);

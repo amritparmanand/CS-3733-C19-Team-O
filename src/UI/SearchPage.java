@@ -87,7 +87,7 @@ public class SearchPage {
     }
 
     public void search() throws SQLException {
-        ResultSet rs = cacheM.getDbM().getApprovedApplications();
+        ResultSet rs = getApprovedApplications();
         searchResults.getChildren().clear();
         searchList.clear();
         while (rs.next()) {
@@ -140,5 +140,12 @@ public class SearchPage {
             }
         }
         loadAlcohol(searchList);
+    }
+    public ResultSet getApprovedApplications() throws SQLException{
+        String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS " +
+                "ON FORMS.FORMID = APPLICATIONS.FORMID " +
+                "WHERE APPLICATIONS.STATUS='APPROVED'";
+        ResultSet rset = cacheM.getDbM().getStmt().executeQuery(retrieve);
+        return rset;
     }
 }

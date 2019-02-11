@@ -122,13 +122,13 @@ public class Agent extends Account {
         }
     }
 
-    // Parse a Form from database to object
+//    // Parse a Form from database to object
     private Form formFromResultSet(ResultSet rs) throws SQLException {
         return new Form(rs.getInt("formID"),
                 rs.getInt("repID"),
-                rs.getInt("brewerNumber"),
+                rs.getString("brewerNumber"),
                 rs.getString("productSource"),
-                rs.getInt("serialNumber"),
+                rs.getString("serialNumber"),
                 rs.getString("productType"),
                 rs.getString("brandName"),
                 rs.getString("fancifulName"),
@@ -141,9 +141,9 @@ public class Agent extends Account {
                 rs.getString("emailAddress"),
                 rs.getString("dateOfApplication"),
                 rs.getString("printName"),
-                rs.getInt("beerWineSpirit"),
-                rs.getDouble("alcoholPercent"),
-                rs.getInt("vintageYear"),
-                rs.getDouble("pHLevel"));
+                rs.getString("beerWineSpirit"),
+                rs.getString("alcoholPercent"),
+                rs.getString("vintageYear"),
+                rs.getString("pHLevel"));
     }
 }

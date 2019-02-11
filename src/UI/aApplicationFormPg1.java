@@ -59,32 +59,32 @@ public class aApplicationFormPg1 {
         boolean isWine = false;
         boolean isSpirit = false;
         boolean isMalt = false;
-        if(form.getProductSource() == "domestic"){
+        if(form.getProductSource() == "DOMESTIC"){
             isDomestic = true;
             isImported = false;
         }else{
             isDomestic = false;
             isImported = true;
         }
-        if(form.getBeerWineSpirit() == 0){
+        if(form.getBeerWineSpirit() == "WINE"){
             isWine = true;
             isSpirit = false;
             isMalt = false;
-        }else if(form.getBeerWineSpirit() == 1){
+        }else if(form.getBeerWineSpirit() == "SPIRITS"){
             isWine = false;
             isSpirit = true;
             isMalt = false;
-        }else if(form.getBeerWineSpirit() == 2){
+        }else if(form.getBeerWineSpirit() == "BEER"){
             isWine = false;
             isSpirit = false;
             isMalt = true;
         }
         System.out.println("starting");
-        brewerNO.setText(Integer.toString(form.getBrewerNumber()));
+        brewerNO.setText(form.getBrewerNumber());
         brewerNO.setEditable(false);
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
-        serialNO.setText(Integer.toString(form.getSerialNumber()));
+        serialNO.setText(form.getSerialNumber());
         serialNO.setEditable(false);
         wine.setSelected(isWine);
         spirits.setSelected(isSpirit);

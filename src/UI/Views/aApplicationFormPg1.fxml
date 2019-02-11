@@ -76,8 +76,6 @@
                         <JFXProgressBar fx:id="pg3Progress" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
                         <JFXProgressBar progress="0.0" />
-                                <Text layoutX="116.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 5 Progress" />
-                        <JFXProgressBar fx:id="pg5Progress" progress="0.0" />
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
@@ -124,7 +122,7 @@
                                     </JFXButton>
                                  </children>
                                         </HBox>
-                              <JFXButton fx:id="homePage" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to Homepage" />
+                              <JFXButton fx:id="homePage" onMousePressed="#goToHomePage" prefHeight="57.0" prefWidth="135.0" styleClass="changeColorButton" text="Back to Homepage" />
                                     </children>
                                 </VBox>
                             </children>

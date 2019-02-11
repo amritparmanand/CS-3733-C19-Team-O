@@ -13,9 +13,9 @@ import java.util.Date;
 public class Form {
 
     private int repID;
-    private int brewerNumber;
+    private String brewerNumber;
     private String productSource;
-    private int serialNumber;
+    private String serialNumber;
     private String productType;
     private String brandName;
     private String fancifulName;
@@ -28,17 +28,17 @@ public class Form {
     private String emailAddress;
     private String dateOfApplication;
     private String printName;
-    private int beerWineSpirit;
-    private double alcoholPercent;
-    private int vintageYear;
-    private double pHLevel;
+    private String beerWineSpirit;
+    private String alcoholPercent;
+    private String vintageYear;
+    private String pHLevel;
     private int formID;
 
     public Form() {
         this.repID = 0;
-        this.brewerNumber = 0;
+        this.brewerNumber = null;
         this.productSource = null;
-        this.serialNumber = 0;
+        this.serialNumber = null;
         this.productType = null;
         this.brandName = null;
         this.fancifulName = null;
@@ -51,13 +51,13 @@ public class Form {
         this.emailAddress = null;
         this.dateOfApplication = null;
         this.printName = null;
-        this.beerWineSpirit = 0;
-        this.alcoholPercent = 0;
-        this.vintageYear = 0;
-        this.pHLevel = 0;
+        this.beerWineSpirit = null;
+        this.alcoholPercent = null;
+        this.vintageYear = null;
+        this.pHLevel = null;
     }
 
-    public Form(int formID, int repID, int brewerNumber, String productSource, int serialNumber, String productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, int beerWineSpirit, double alcoholPercent, int vintageYear, double pHLevel) {
+    public Form(int formID, int repID, String brewerNumber, String productSource, String serialNumber, String productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, String beerWineSpirit, String alcoholPercent, String vintageYear, String pHLevel) {
         this.formID = formID;
         this.repID = repID;
         this.brewerNumber = brewerNumber;
@@ -83,10 +83,10 @@ public class Form {
 
     public int getRepID(){ return repID; }
     public void setRepID(int repID){ this.repID = repID; }
-    public int getBrewerNumber() {
+    public String getBrewerNumber() {
         return brewerNumber;
     }
-    public void setBrewerNumber(int brewerNumber) {
+    public void setBrewerNumber(String brewerNumber) {
         this.brewerNumber = brewerNumber;
     }
     public String getProductSource() {
@@ -95,10 +95,10 @@ public class Form {
     public void setProductSource(String productSource) {
         this.productSource = productSource;
     }
-    public int getSerialNumber() {
+    public String getSerialNumber() {
         return serialNumber;
     }
-    public void setSerialNumber(int serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
     public String getProductType() {
@@ -173,28 +173,28 @@ public class Form {
     public void setPrintName(String printName) {
         this.printName = printName;
     }
-    public int getBeerWineSpirit() {
+    public String getBeerWineSpirit() {
         return beerWineSpirit;
     }
-    public void setBeerWineSpirit(int beerWineSpirit) {
+    public void setBeerWineSpirit(String beerWineSpirit) {
         this.beerWineSpirit = beerWineSpirit;
     }
-    public double getAlcoholPercent() {
+    public String getAlcoholPercent() {
         return alcoholPercent;
     }
-    public void setAlcoholPercent(double alcoholPercent) {
+    public void setAlcoholPercent(String alcoholPercent) {
         this.alcoholPercent = alcoholPercent;
     }
-    public int getVintageYear() {
+    public String getVintageYear() {
         return vintageYear;
     }
-    public void setVintageYear(int vintageYear) {
+    public void setVintageYear(String vintageYear) {
         this.vintageYear = vintageYear;
     }
-    public double getpHLevel() {
+    public String getpHLevel() {
         return pHLevel;
     }
-    public void setpHLevel(double pHLevel) {
+    public void setpHLevel(String pHLevel) {
         this.pHLevel = pHLevel;
     }
 

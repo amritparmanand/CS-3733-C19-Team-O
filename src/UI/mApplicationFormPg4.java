@@ -53,14 +53,11 @@ public class mApplicationFormPg4 {
             e.printStackTrace();
         }
 
-        System.out.println(form.getDateOfApplication());
-        System.out.println("hi");
         goToHomePage();
 
     }
 
     @FXML public void previousPage() throws IOException {
-        System.out.println("trying");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
     }
