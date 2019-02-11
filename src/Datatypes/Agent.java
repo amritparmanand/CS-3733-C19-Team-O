@@ -29,7 +29,7 @@ public class Agent extends Account {
         this.ttbID = ttbID;
         this.hasFetchedForms = hasFetchedForms;
 
-        if(this.hasFetchedForms) {
+        if (this.hasFetchedForms) {
             this.getWorkingForms();
         }
     }
@@ -37,6 +37,7 @@ public class Agent extends Account {
     public int getTtbID() {
         return ttbID;
     }
+
     public void setTtbID(int ttbID) {
         this.ttbID = ttbID;
     }
@@ -106,7 +107,8 @@ public class Agent extends Account {
     // Call formFromResultSet into object and add it into the working Forms of this agent
     public void getAssignedForms(Connection conn) {
         try {
-            String assignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID = " + this.getTtbID();                ;
+            String assignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID = " + this.getTtbID();
+            ;
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
@@ -122,28 +124,31 @@ public class Agent extends Account {
         }
     }
 
-//    // Parse a Form from database to object
+    //    // Parse a Form from database to object
     private Form formFromResultSet(ResultSet rs) throws SQLException {
-        return new Form(rs.getInt("formID"),
-                rs.getInt("repID"),
-                rs.getString("brewerNumber"),
-                rs.getString("productSource"),
-                rs.getString("serialNumber"),
-                rs.getString("productType"),
-                rs.getString("brandName"),
-                rs.getString("fancifulName"),
-                rs.getString("applicantName"),
-                rs.getString("mailingAddress"),
-                rs.getString("formula"),
-                rs.getString("grapeVarietal"),
-                rs.getString("appellation"),
-                rs.getString("phoneNumber"),
-                rs.getString("emailAddress"),
-                rs.getString("dateOfApplication"),
-                rs.getString("printName"),
-                rs.getString("beerWineSpirit"),
-                rs.getString("alcoholPercent"),
-                rs.getString("vintageYear"),
-                rs.getString("pHLevel"));
+        Form f = new Form();
+        f.setFormID(rs.getInt("formID"));
+        f.setRepID(rs.getInt("repID"));
+        f.setBrewerNumber(rs.getString("brewerNumber"));
+        f.setProductSource(rs.getString("productSource"));
+        f.setSerialNumber(rs.getString("serialNumber"));
+        f.setProductType(rs.getString("productType"));
+        f.setBrandName(rs.getString("brandName"));
+        f.setFancifulName(rs.getString("fancifulName"));
+        f.setApplicantName(rs.getString("applicantName"));
+        f.setMailingAddress(rs.getString("mailingAddress"));
+        f.setFormula(rs.getString("formula"));
+        f.setGrapeVarietal(rs.getString("grapeVarietal"));
+        f.setAppellation(rs.getString("appellation"));
+        f.setPhoneNumber(rs.getString("phoneNumber"));
+        f.setEmailAddress(rs.getString("emailAddress"));
+        f.setDateOfApplication(rs.getString("dateOfApplication"));
+        f.setPrintName(rs.getString("printName"));
+        f.setBeerWineSpirit(rs.getString("beerWineSpirit"));
+        f.setAlcoholPercent(rs.getString("alcoholPercent"));
+        f.setVintageYear(rs.getString("vintageYear"));
+        f.setpHLevel(rs.getString("pHLevel"));
+
+        return f;
     }
 }
