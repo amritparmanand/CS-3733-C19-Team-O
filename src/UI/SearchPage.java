@@ -99,14 +99,13 @@ public class SearchPage {
         algChoose.setText("Sublime");
     }
 
-    @FXML
-    public void back() throws IOException {
+    @FXML public void back() throws IOException {
         //sceneM.backScene();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }
-    @FXML
-    public void loadAlcohol(ArrayList<SearchResult> searchList) {
+
+    @FXML public void loadAlcohol(ArrayList<SearchResult> searchList) {
         Pane alcResult = null;
         for(SearchResult result: searchList) {
             try {
@@ -133,8 +132,7 @@ public class SearchPage {
 //        search();
 //    }
 
-    @FXML
-    public void searchSuggest() throws SQLException {
+    @FXML public void searchSuggest() throws SQLException {
         searchBox.setText(searchSuggest.getText());
         search();
         didYouMean.setText("");
@@ -177,27 +175,38 @@ public class SearchPage {
                 result.setBeer(false);
                 result.setLiquor(false);
                 result.setAlcoholType("Wine");
-            }else if(rs.getString("PRODUCTTYPE") == "BEER"){
+            }
+            else if(rs.getString("PRODUCTTYPE") == "BEER"){
                 result.setWine(false);
                 result.setBeer(true);
                 result.setLiquor(false);
                 result.setAlcoholType("Beer");
             }
+            else if(rs.getString("PRODUCTTYPE") == "LIQUOR"){
+                result.setWine(false);
+                result.setBeer(false);
+                result.setLiquor(true);
+                result.setAlcoholType("Liquor");
+            }
 
             if(searchBox.getText().isEmpty()) {
                 System.out.println("foo");
-                if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
+                if (!beerCheck.isSelected() && !wineCheck.isSelected() && !liquorCheck.isSelected()) {
                     searchList.add(result);
-                } else {
+                }
+                else {
                     if (beerCheck.isSelected() && result.isBeer()) {
                         searchList.add(result);
                     }
                     else if (wineCheck.isSelected() && result.isWine()) {
                         searchList.add(result);
                     }
+                    else if (liquorCheck.isSelected() && result.isLiquor()) {
+                        searchList.add(result);
+                    }
                 }
-                continue;
             }
+
             else if(!searchBox.getText().isEmpty() &&
                     ((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
                     || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){
@@ -214,6 +223,9 @@ public class SearchPage {
                         searchList.add(result);
                     }
                     else if (wineCheck.isSelected() && result.isWine()) {
+                        searchList.add(result);
+                    }
+                    else if (liquorCheck.isSelected() && result.isLiquor()) {
                         searchList.add(result);
                     }
                 }
