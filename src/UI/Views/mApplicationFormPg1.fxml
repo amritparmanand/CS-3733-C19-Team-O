@@ -102,7 +102,7 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="0.78">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="1.0">
                             <content>
                                 <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
                                     <children>
@@ -285,34 +285,16 @@
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                  </padding>
                               </VBox>
-                              <VBox fx:id="phVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0" visible="false">
+                              <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                  <children>
-                                    <Label styleClass="labeltext" text="pH Level (Wine Only)" />
-                                    <TextField fx:id="phLevel" promptText="14">
-                                       <styleClass>
-                                          <String fx:value="textfield" />
-                                          <String fx:value="labeltext" />
-                                       </styleClass>
-                                    </TextField>
+                                    <Label styleClass="labeltext" text="pH Level" />
+                                    <JFXTextField fx:id="phLevel" />
                                  </children>
                                  <padding>
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                  </padding>
                               </VBox>
-                              <VBox fx:id="vintageVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0" visible="false">
-                                 <children>
-                                    <Label styleClass="labeltext" text="Vintage Year (Wine Only)" />
-                                    <TextField fx:id="vintageYear" promptText="1781">
-                                       <styleClass>
-                                          <String fx:value="textfield" />
-                                          <String fx:value="labeltext" />
-                                       </styleClass>
-                                    </TextField>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                              </VBox>
+
                                     </children>
                                 </VBox>
                             </content>
