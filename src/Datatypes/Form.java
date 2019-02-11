@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 /**
- * @author Harry James
- * @version It 1
+ * @author Harry James and Gabriel Entov
+ * @version It 2
  * object to hold information in a form
  */
 public class Form {
@@ -20,6 +20,7 @@ public class Form {
     private String brandName;
     private String fancifulName;
     private String applicantName;
+    private String typeOfApplication;
     private String mailingAddress;
     private String formula;
     private String grapeVarietal;
@@ -38,6 +39,34 @@ public class Form {
     private String alcoholPercent;
     private String vintageYear;
     private String pHLevel;
+//    "formID int	constraint Forms_pk	primary key, " +
+//                "repID int, " +
+//                "brewerNumber varchar(60),	" +
+//                "productSource varchar(60),	" +
+//                "serialNumber varchar(60),	" +
+//                "productType varchar(60),	" +
+//                "brandName varchar(60),	" +
+//                "fancifulName varchar(60),	" +
+//                "applicantName varchar(200),	" +
+//                "mailingAddress varchar(80), " +
+//                "formula varchar(80), " +
+//                "grapeVarietal varchar(80),	" +
+//                "appellation varchar(60), " +
+//                "phoneNumber varchar(20), " +
+//                "emailAddress varchar(50),	" +
+//                "certificateOfApproval boolean," +   //begin new
+//                "certificateOfExemption boolean," +
+//                "onlyState varchar(2)," +
+//                "distinctiveLiquor boolean," +
+//                "bottleCapacity VARCHAR(5)," +
+//                "resubmission boolean," +
+//                "ttbID varchar(10)," + //end new
+//                "dateOfApplication VARCHAR(30) , " +
+//                "printName varchar(40),	" +
+//                "beerWineSpirit varchar(60), " +
+//                "alcoholPercent varchar(60),	" +
+//                "vintageYear varchar(60), " +
+//                "phLevel varchar(60))";
     private int formID;
 
     public Form() {
@@ -97,6 +126,13 @@ public class Form {
     }
     public String getBrandName() {
         return brandName;
+    }
+    public String getTypeOfApplication() {
+        return typeOfApplication;
+    }
+
+    public void setTypeOfApplication(String typeOfApplication) {
+        this.typeOfApplication = typeOfApplication;
     }
     public void setBrandName(String brandName) {
         this.brandName = brandName;

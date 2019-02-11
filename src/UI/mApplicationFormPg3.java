@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.math.BigInteger;
 /**
- * @author Amrit Parmanand & Elizabeth Del Monaco
+ * @author Amrit Parmanand, Elizabeth Del Monaco, & Gabriel Entov
  * @version It 2
  * Controller for mApplicationFormPg3 of UI
  */
@@ -43,41 +43,41 @@ public class mApplicationFormPg3 {
         this.cacheM = cacheM;
     }
 //
-//    @FXML public void initialize(){
-//        boolean isCertLabelApp = false;
-//        boolean isCertExempLabApp = false;
-//        boolean isDistinctLiqBottApp = false;
-//        boolean isResubmitAfterRej = false;
-//        boolean isMalt = false;
-//        if(form.getProductSource() == "DOMESTIC"){
-//            isDomestic = true;
-//            isImported = false;
-//        }
-//        Form form = cacheM.getForm();
-//        applicationType.setText(form.getPrintName());
-//        stateAbb.setText(form.getMailingAddress());
-//        ttbID.setText(form.getFormula());
-//        bottleCap.setText(form.getGrapeVarietal());
-//        certLabelApp.setText(form.getAppellation());
-//        phoneNumber.setText(form.getPhoneNumber());
-//        email.setText(form.getEmailAddress());
-//
-//    }
+    @FXML public void initialize(){
+        Form form = cacheM.getForm();
+        boolean isCertLabelApp = false;
+        boolean isCertExempLabApp = false;
+        boolean isDistinctLiqBottApp = false;
+        boolean isResubmitAfterRej = false;
+        boolean isMalt = false;
+        if(form.getProductSource() == "DOMESTIC"){
+            isDomestic = true;
+            isImported = false;
+        }
+        applicationType.setText(form.getPrintName());
+        stateAbb.setText(form.getMailingAddress());
+        ttbID.setText(form.getFormula());
+        bottleCap.setText(form.getGrapeVarietal());
+        certLabelApp.setText(form.getAppellation());
+        phoneNumber.setText(form.getPhoneNumber());
+        email.setText(form.getEmailAddress());
 
-//    @FXML public void saveDraft(){
-//        Form form = cacheM.getForm();
-//
-//        form.setTypeOfApplication(applicationType.getText());
-//        form.setCertificateOfApproval(certLabelApp.isSelected());
-//        form.setCertificateOfExemptionFromLabelApproval(certExempLabApp.isSelected());
-//        form.setForSaleOnlyIn(stateAbb.getText());
-//        form.distinctiveLiquorBottleApproval(distinctLiqBottApp.isSelected());
-//        form.setResubmissionAfterRejection(resubmitAfterRej.isSelected());
-//        form.setTTBID(Integer.parseInt(ttbID.getText()));
-//        form.setImage(uploadedImage);
-//
-//        cacheM.setForm(form);
-//    }
+    }
+
+    @FXML public void saveDraft(){
+        Form form = cacheM.getForm();
+
+        form.setTypeOfApplication(applicationType.getText());
+        form.setCertificateOfApproval(certLabelApp.isSelected());
+        form.setCertificateOfExemption(certExempLabApp.isSelected());
+        form.setOnlyState(stateAbb.getText());
+        form.setDistinctiveLiquor(distinctLiqBottApp.isSelected());
+        form.setResubmission(resubmitAfterRej.isSelected());
+        form.setTtbID(ttbID.getText());
+        //form.setImage(uploadedImage);//need to store as a binary and put in DB
+
+        cacheM.setForm(form);
+    }
 
     @FXML public void nextPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
