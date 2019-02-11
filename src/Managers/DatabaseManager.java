@@ -384,7 +384,7 @@ public class DatabaseManager {
 
     // The one using Levenshtein
     public String fuzzy2(String input){
-        String best = "";
+        String best = "COMPLETEANDUTTERGARBAGE";
         String itrator = "";
         int size = 0;
 
@@ -398,13 +398,15 @@ public class DatabaseManager {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+        System.out.println(size);
 
-        for(int i = 800; i <= size + 800; i++){
+        for(int i = 1; i <= size; i++){
             try {
                 String getData = "select BRANDNAME from FORMS where FORMID = " + i;
                 ResultSet result = this.stmt.executeQuery(getData);
                 while(result.next()){
                     itrator = result.getString("brandName");
+                    System.out.println(itrator);
                 }
             } catch (SQLException e) {
                 if (!e.getSQLState().equals("X0Y32"))
@@ -439,7 +441,7 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
 
-        for(int i = 800; i <= 800 + size; i++){
+        for(int i = 1; i <= size; i++){
             try {
                 String getData = "select BRANDNAME from FORMS where FORMID = " + i;
                 ResultSet result = this.stmt.executeQuery(getData);
