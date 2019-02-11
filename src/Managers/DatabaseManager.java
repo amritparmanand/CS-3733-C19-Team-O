@@ -80,17 +80,10 @@ public class DatabaseManager {
         String createForms = "create table Forms(" +
                 "formID int	constraint Forms_pk	primary key, " +
                 "repID int, " +
-<<<<<<< Updated upstream
-                "brewerNumber int,	" +
-                "productSource varchar(30),	" +
-                "serialNumber int,	" +
-                "productType varchar(30),	" +
-=======
                 "brewerNumber varchar(60),	" +
                 "productSource varchar(60),	" +
                 "serialNumber varchar(60),	" +
                 "productType varchar(60),	" +
->>>>>>> Stashed changes
                 "brandName varchar(60),	" +
                 "fancifulName varchar(60),	" +
                 "applicantName varchar(200),	" +

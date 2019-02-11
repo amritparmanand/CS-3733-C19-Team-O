@@ -3,8 +3,30 @@
 /*by rob*/
 
 /*lets try and get the SVG files wortking */
+font-face {
+  font-family: Roboto;
+  src: url("../font/roboto/Roboto-Regular.ttf");
+  -fx-text-fill: #17263d;
+}
+@font-face {
+  font-family: "Roboto Medium";
+  src: url("../font/roboto/Roboto-Medium.ttf");
+  -fx-text-fill: #17263d;
+}
+
+@font-face {
+  font-family: "Roboto Light";
+  src: url("../font/roboto/Roboto-Light.ttf");
+  -fx-text-fill: #17263d;
+}
+
+@font-face {
+  font-family: "Roboto Bold";
+  src: url("../font/roboto/Roboto-Bold.ttf");
+  -fx-text-fill: #17263d;
+}
 *{
-  -fx-font-family: "Helvetica", "Arial";
+  -fx-font-family: "Roboto", "Arial";
   -fx-text-fill: #17263d;
 }
 
@@ -39,6 +61,7 @@
   -fx-background-color: #4A77DD;
   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
   -fx-text-fill: white;
+  -fx-background-radius: 3;
 }
 
 .buttonStyle:hover{
@@ -65,6 +88,8 @@
   -fx-text-fill: #4A77DD;
   -fx-border-color: #4A77DD ;
   -fx-border-width: 3;
+  -fx-background-radius: 3;
+  -fx-border-radius: 3;
   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 0, 0.0 , 0 , 0 );
 }
 
@@ -236,10 +261,22 @@
   -jfx-unfocus-color: #17263d;
   -jfx-disable-animation: false;
   -jfx-focus-color: #4A77DD;
+  -fx-background-radius: 3;
 }
+
+.input-line{
+  -fx-opacity:0;
+}
+
+
 .jfx-password-field{
   -fx-background-color: white;
   -jfx-focus-color: #4A77DD;
   -jfx-unfocus-color: #17263d;
+
+}
+
+.jfx-radio-button{
+  -jfx-selected-color: #4A77DD;
 
 }

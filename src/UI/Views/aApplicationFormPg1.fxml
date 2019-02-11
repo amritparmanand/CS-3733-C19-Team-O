@@ -9,7 +9,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -23,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.aApplicationFormPg1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.aApplicationFormPg1">
     <children>
         <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -70,15 +69,15 @@
                             </HBox.margin>
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />
-                        <JFXProgressBar fx:id="pg1Progress" />
+                        <JFXProgressBar fx:id="pg1Progress" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
-                        <JFXProgressBar fx:id="pg2Progress" />
+                        <JFXProgressBar fx:id="pg2Progress" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 3 Progress" />
-                        <JFXProgressBar fx:id="pg3Progress" />
+                        <JFXProgressBar fx:id="pg3Progress" progress="0.0" />
                                 <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
-                        <JFXProgressBar />
+                        <JFXProgressBar progress="0.0" />
                                 <Text layoutX="116.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 5 Progress" />
-                        <JFXProgressBar fx:id="pg5Progress" />
+                        <JFXProgressBar fx:id="pg5Progress" progress="0.0" />
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
@@ -130,7 +129,7 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="1.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
                             <content>
                                 <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
                                     <children>
@@ -187,21 +186,17 @@
                                             <children>
                                                 <Label styleClass="labeltext" text="3. Source of Product (Required)" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
-                                                    <children>
+                                       <children>
                                           <JFXRadioButton fx:id="domestic" text="Domestic">
+                                             <padding>
+                                                <Insets right="20.0" />
+                                             </padding>
                                              <toggleGroup>
-                                                <ToggleGroup fx:id="domOrImport" />
+                                                <ToggleGroup fx:id="DI" />
                                              </toggleGroup>
-                                             <HBox.margin>
-                                                <Insets left="10.0" right="10.0" />
-                                             </HBox.margin>
                                           </JFXRadioButton>
-                                          <JFXRadioButton fx:id="imported" text="Imported">
-                                             <HBox.margin>
-                                                <Insets left="10.0" right="10.0" />
-                                             </HBox.margin>
-                                          </JFXRadioButton>
-                                                    </children>
+                                          <JFXRadioButton fx:id="imported" text="Imported" toggleGroup="$DI" />
+                                       </children>
                                                 </HBox>
                                             </children>
                                             <padding>
@@ -277,28 +272,28 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="5. Type of Product (Again)" />
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                    <children>
-                                                        <RadioButton fx:id="wine2" mnemonicParsing="false" text="Wine">
-                                                            <toggleGroup>
-                                                                <ToggleGroup fx:id="g21" />
-                                                            </toggleGroup>
-                                                            <HBox.margin>
-                                                                <Insets left="20.0" />
-                                                            </HBox.margin>
-                                                        </RadioButton>
-                                                        <RadioButton fx:id="spirits2" mnemonicParsing="false" text="Spirits" toggleGroup="$g21">
-                                                            <HBox.margin>
-                                                                <Insets left="20.0" />
-                                                            </HBox.margin>
-                                                        </RadioButton>
-                                                        <RadioButton fx:id="beer2" mnemonicParsing="false" text="Beer" toggleGroup="$g21">
-                                                            <HBox.margin>
-                                                                <Insets left="20.0" />
-                                                            </HBox.margin>
-                                                        </RadioButton>
-                                                    </children>
-                                                </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <JFXRadioButton fx:id="wine2" text="Wine">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="WDM1" />
+                                             </toggleGroup>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </JFXRadioButton>
+                                          <JFXRadioButton fx:id="spirits2" text="Liquor" toggleGroup="$WDM1">
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </JFXRadioButton>
+                                          <JFXRadioButton fx:id="malt2" text="Beer" toggleGroup="$WDM1">
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </JFXRadioButton>
+                                       </children>
+                                    </HBox>
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
