@@ -93,6 +93,8 @@ public class SearchPage {
     public void searchSuggest() throws SQLException {
         searchBox.setText(searchSuggest.getText());
         search();
+        didYouMean.setText("");
+        searchSuggest.setText("");
     }
 
     @FXML
@@ -105,6 +107,7 @@ public class SearchPage {
         ResultSet rs = getApprovedApplications();
         searchResults.getChildren().clear();
         searchList.clear();
+        //for each of the approved applications
         while (rs.next()) {
             SearchResult result = new SearchResult();
 //            result.setFancifulName(rs.getString(""));
@@ -132,13 +135,12 @@ public class SearchPage {
                 } else {
                     if (beerCheck.isSelected() && result.isBeer()) {
                         searchList.add(result);
-                    } else if (beerCheck.isSelected() && !result.isBeer()) {
                     }
-                    if (wineCheck.isSelected() && result.isWine()) {
+                    else if (wineCheck.isSelected() && result.isWine()) {
                         searchList.add(result);
-                    } else if (wineCheck.isSelected() && !result.isWine()) {
                     }
                 }
+                continue;
             }
             else if(!searchBox.getText().isEmpty() &&
                     ((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
@@ -154,18 +156,20 @@ public class SearchPage {
                 else {
                     if (beerCheck.isSelected() && result.isBeer()) {
                         searchList.add(result);
-                    } else if (beerCheck.isSelected() && !result.isBeer()) {
                     }
-                    if (wineCheck.isSelected() && result.isWine()) {
+                    else if (wineCheck.isSelected() && result.isWine()) {
                         searchList.add(result);
-                    } else if (wineCheck.isSelected() && !result.isWine()) {
                     }
                 }
+                continue;
             }
-            else{
-                System.out.println("wtf man");
+            //I added a conditional else so that the else doesn't always print stuff... I know it's ugly
+            else if(!searchBox.getText().isEmpty() &&
+                    !((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
+                            || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){ //a bunch of approved forms go into this else because they don't pass the first two conditions
                 didYouMean.setText("Did you mean: ");
                 searchSuggest.setText(suggestion);
+                continue;
             }
         }
         loadAlcohol(searchList);

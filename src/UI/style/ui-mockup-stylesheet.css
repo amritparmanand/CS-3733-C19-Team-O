@@ -281,3 +281,8 @@ font-face {
   -jfx-selected-color: #4A77DD;
 
 }
+
+.suggestText{
+-fx-font-weight: bold;
+-fx-font-style: italic;
+}
