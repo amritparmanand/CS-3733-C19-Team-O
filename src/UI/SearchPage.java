@@ -52,6 +52,10 @@ public class SearchPage {
     @FXML private TextField yearHigh;
     @FXML private FlowPane searchResults;
     @FXML private Button searchButton;
+    @FXML private RadioButton sql;
+    @FXML private RadioButton levenshtein;
+    @FXML private RadioButton damerau;
+    @FXML private RadioButton sublime;
     @FXML private Label searchSuggest;
     @FXML private Label didYouMean;
 
@@ -97,20 +101,30 @@ public class SearchPage {
         searchSuggest.setText("");
     }
 
-    @FXML
-    public void search() throws SQLException {
+    @FXML public void search() throws SQLException {
 
-//        String suggestion = cacheM.getDbM().sublime(searchBox.getText());
-//        didYouMean.setText("Did you mean: ");
-//        searchSuggest.setText(suggestion);
-        String suggestion = cacheM.getDbM().sublime(searchBox.getText());
+        // Perform fuzzy search based on user's choice
+        String suggestion = "";
+        if(sql.isSelected()){
+            suggestion = cacheM.getDbM().fuzzy1(searchBox.getText());
+        }
+        else if(levenshtein.isSelected()){
+            suggestion = cacheM.getDbM().fuzzy2(searchBox.getText());
+        }
+        else if(damerau.isSelected()){
+            suggestion = cacheM.getDbM().fuzzy3(searchBox.getText());
+        }
+        else if(sublime.isSelected()){
+            suggestion = cacheM.getDbM().sublime(searchBox.getText());
+        }
+
         ResultSet rs = getApprovedApplications();
         searchResults.getChildren().clear();
         searchList.clear();
-        //for each of the approved applications
+
+        // For each of the approved applications
         while (rs.next()) {
             SearchResult result = new SearchResult();
-//            result.setFancifulName(rs.getString(""));
             result.setFancifulName(rs.getString("FANCIFULNAME"));
             result.setCompanyName(rs.getString("BRANDNAME"));
             result.setPhLevel(rs.getDouble("PHLEVEL"));

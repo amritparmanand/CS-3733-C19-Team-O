@@ -102,7 +102,7 @@ public class mApplicationFormPg3 {
         form.setOnlyState(stateAbb.getText());
         form.setDistinctiveLiquor(distinctLiqBottApp.isSelected());
         form.setResubmission(resubmitAfterRej.isSelected());
-        form.setTtbID(ttbID.getText());
+        form.setTtbID(Integer.parseInt(ttbID.getText()));
         form.setBottleCapacity(bottleCapacity.getText());
         //form.setImage(uploadedImage);//need to store as a binary and put in DB
 
