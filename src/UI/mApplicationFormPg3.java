@@ -31,7 +31,6 @@ public class mApplicationFormPg3 {
     @FXML private Button search;
     @FXML private Button back;
     @FXML private Button uploadImageButton;
-    @FXML private JFXTextField applicationType;
     @FXML private JFXTextField stateAbb;
     @FXML private JFXTextField ttbID;
     @FXML private JFXTextField bottleCapacity; //will be int, for future reference
@@ -45,61 +44,18 @@ public class mApplicationFormPg3 {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
-//
-//    @FXML public void initialize(){
-//        Form form = cacheM.getForm();
-//        boolean isCertLabelApp = false;
-//        boolean isCertExempLabApp = false;
-//        boolean isDistinctLiqBottApp = false;
-//        boolean isResubmitAfterRej = false;
-//
-//        //change get formula to actual stuff
-//        if(form.getFormula() == "CERTLABEL"){
-//            isCertLabelApp = true;
-//        }
-//
-//        if(form.getFormula() == "CERTLABEL"){
-//            isCertExempLabApp = true;
-//        }
-//
-//        if(form.getFormula() == "CERTLABEL"){
-//            isDistinctLiqBottApp = true;
-//        }
-//
-//        if(form.getFormula() == "CERTLABEL"){
-//            isResubmitAfterRej = true;
-//        }
-//
-//        if(form.getProductSource() == "DOMESTIC"){
-//          isDomestic = true;
-//          isImported = false;
-//          }
-//        applicationType.setText(form.getTypeOfApplication());
-//        bottleCapacity.setText(form.getBottleCapacity());
-//        certLabelApp.setSelected(isCertLabelApp);
-//        certExempLabApp.setSelected(isCertExempLabApp);
-//        distinctLiqBottApp.setSelected(isDistinctLiqBottApp);
-//        resubmitAfterRej.setSelected(isResubmitAfterRej);
-//        //email.setText(form.getEmailAddress());
-//        //paul blart image stuff
-//
-//    boolean isMalt = false;
 
-//        applicationType.setText(form.getPrintName());
-//        stateAbb.setText(form.getMailingAddress());
-//        ttbID.setText(form.getFormula());
-//        bottleCap.setText(form.getGrapeVarietal());
-//        certLabelApp.setText(form.getAppellation());
-//        phoneNumber.setText(form.getPhoneNumber());
-//        email.setText(form.getEmailAddress());
-//    }
+    @FXML public void initialize() {
+        Form form = cacheM.getForm();
 
-   // }
+    }
+
+
+
 
     @FXML public void saveDraft(){
         Form form = cacheM.getForm();
 
-        form.setTypeOfApplication(applicationType.getText());
         form.setCertificateOfApproval(certLabelApp.isSelected());
         form.setCertificateOfExemption(certExempLabApp.isSelected());
         form.setOnlyState(stateAbb.getText());

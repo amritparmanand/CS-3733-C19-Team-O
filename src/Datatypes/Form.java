@@ -15,6 +15,7 @@ import java.util.Date;
 public class Form {
 
     private int repID;
+
     private String brewerNumber;
     private String productSource;
     private String serialNumber;
@@ -22,7 +23,6 @@ public class Form {
     private String brandName;
     private String fancifulName;
     private String applicantName;
-    private String typeOfApplication;
     private String mailingAddress;
     private String formula;
     private String grapeVarietal;
@@ -43,6 +43,7 @@ public class Form {
     private String vintageYear;
     private String pHLevel;
     private String bottleCapacity;
+    private int formID;
 //    "formID int	constraint Forms_pk	primary key, " +
 //                "repID int, " +
 //                "brewerNumber varchar(60),	" +
@@ -71,10 +72,11 @@ public class Form {
 //                "alcoholPercent varchar(60),	" +
 //                "vintageYear varchar(60), " +
 //                "phLevel varchar(60))";
-    private int formID;
+
 
     public Form() {
         this.repID = 0;
+        this.formID = 0;
         this.brewerNumber = null;
         this.productSource = null;
         this.serialNumber = null;
@@ -132,13 +134,6 @@ public class Form {
     }
     public String getBrandName() {
         return brandName;
-    }
-    public String getTypeOfApplication() {
-        return typeOfApplication;
-    }
-
-    public void setTypeOfApplication(String typeOfApplication) {
-        this.typeOfApplication = typeOfApplication;
     }
     public void setBrandName(String brandName) {
         this.brandName = brandName;

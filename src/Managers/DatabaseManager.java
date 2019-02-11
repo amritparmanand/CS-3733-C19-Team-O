@@ -338,16 +338,6 @@ public class DatabaseManager {
 //        }
 //    }
 
-    // ???
-    public void executeStatement(PreparedStatement ps) {
-        try {
-            ps.executeUpdate();
-            ps.close();
-        } catch (SQLException e) {
-                e.printStackTrace();
-        }
-    }
-
 
 //     Insert the sample data for Iteration 1
 //    public void insertSamples() throws SQLException{
