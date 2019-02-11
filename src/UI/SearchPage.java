@@ -8,13 +8,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+<<<<<<< Updated upstream
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+=======
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+>>>>>>> Stashed changes
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -36,6 +41,7 @@ public class SearchPage {
 
     ArrayList<SearchResult> searchList = new ArrayList<SearchResult>();
 
+    @FXML private ScrollPane scroll;
     @FXML private Button back;
     @FXML private TextField searchBox;
     @FXML private CheckBox beerCheck;
@@ -77,6 +83,10 @@ public class SearchPage {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML public void initialize() throws SQLException{
+        search();
     }
 
     public void search() throws SQLException {

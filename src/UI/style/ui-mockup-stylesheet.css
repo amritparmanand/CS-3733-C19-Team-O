@@ -22,15 +22,15 @@
     -fx-text-fill: white;
 }
 
-.titled-pane > .title 
+.titled-pane > .title
 {
 -fx-background-color: #4A77DD;
 -fx-font-size: 16;
 
-  
+
 }
 
-.titled-pane > .title > .arrow-button .arrow 
+.titled-pane > .title > .arrow-button .arrow
 {
 -fx-background-color: white;
 }

@@ -75,15 +75,22 @@ public class DatabaseManager {
                 "username varchar(20), " +
                 "password varchar(65), " +
                 "fullName varchar(50),	" +
-                "email varchar(20),	" +
+                "email varchar(60),	" +
                 "phone varchar(15))";
         String createForms = "create table Forms(" +
                 "formID int	constraint Forms_pk	primary key, " +
                 "repID int, " +
+<<<<<<< Updated upstream
                 "brewerNumber int,	" +
                 "productSource varchar(30),	" +
                 "serialNumber int,	" +
                 "productType varchar(30),	" +
+=======
+                "brewerNumber varchar(60),	" +
+                "productSource varchar(60),	" +
+                "serialNumber varchar(60),	" +
+                "productType varchar(60),	" +
+>>>>>>> Stashed changes
                 "brandName varchar(60),	" +
                 "fancifulName varchar(60),	" +
                 "applicantName varchar(200),	" +
@@ -95,10 +102,10 @@ public class DatabaseManager {
                 "emailAddress varchar(50),	" +
                 "dateOfApplication VARCHAR(30) , " +
                 "printName varchar(40),	" +
-                "beerWineSpirit int, " +
-                "alcoholPercent double,	" +
-                "vintageYear int, " +
-                "phLevel double)";
+                "beerWineSpirit varchar(60), " +
+                "alcoholPercent varchar(60),	" +
+                "vintageYear varchar(60), " +
+                "phLevel varchar(60))";
         String createUniqueReps = "create unique index Representatives_username_uindex " +
                 "on Representatives (username)";
         String createUniqueAgents = "create unique index Agents_username_uindex " +
