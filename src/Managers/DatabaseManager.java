@@ -256,7 +256,7 @@ public class DatabaseManager {
 
         String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
                 "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +
-                "APPELLATION, PHONENUMBER, EMAILADDRESS, DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, " +
+                "APPELLATION, PHONENUMBER, EMAILADDRESS, /* insert pg 3 things,*/ DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, " +
                 "VINTAGEYEAR, PHLEVEL) " +
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
@@ -279,6 +279,7 @@ public class DatabaseManager {
             prepStmt.setString(13, form.getAppellation());
             prepStmt.setString(14, form.getPhoneNumber());
             prepStmt.setString(15, form.getEmailAddress());
+            //page3  args goes here
             prepStmt.setString(16, form.getDateOfApplication());
             prepStmt.setString(17, form.getPrintName());
             prepStmt.setString(18, form.getBeerWineSpirit());

@@ -1,5 +1,6 @@
 package Datatypes;
 
+import java.io.FileInputStream;
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,7 +33,8 @@ public class Form {
     private String onlyState;
     private Boolean distinctiveLiquor;
     private Boolean resubmission;
-    private String ttbID;
+    private int ttbID;
+    private FileInputStream fis = null;
     private String dateOfApplication;
     private String printName;
     private String beerWineSpirit;
@@ -96,7 +98,7 @@ public class Form {
         this.onlyState = null;
         this.distinctiveLiquor = null;
         this.resubmission = null;
-        this.ttbID = null;
+        this.ttbID = 0;
         this.bottleCapacity = null;
 
     }
@@ -273,11 +275,11 @@ public class Form {
         this.resubmission = resubmission;
     }
 
-    public String getTtbID() {
+    public int getTtbID() {
         return ttbID;
     }
 
-    public void setTtbID(String ttbID) {
+    public void setTtbID(int ttbID) {
         this.ttbID = ttbID;
     }
 
@@ -289,7 +291,13 @@ public class Form {
         return formID;
     }
 
+    public FileInputStream getFis() {
+        return fis;
+    }
 
+    public void setFis(FileInputStream fis) {
+        this.fis = fis;
+    }
 
     // Query the database to select applications where form ID matches this form
     // Update the status to be approved
