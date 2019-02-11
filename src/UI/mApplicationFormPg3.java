@@ -31,7 +31,7 @@ public class mApplicationFormPg3 {
     @FXML private JFXTextField applicationType;
     @FXML private JFXTextField stateAbb;
     @FXML private JFXTextField ttbID;
-    @FXML private JFXTextField bottleCap; //will be int, for future reference
+    @FXML private JFXTextField bottleCapacity; //will be int, for future reference
     @FXML private CheckBox certLabelApp;
     @FXML private CheckBox certExempLabApp;
     @FXML private CheckBox distinctLiqBottApp;
@@ -45,7 +45,6 @@ public class mApplicationFormPg3 {
 //
 //    @FXML public void initialize(){
 //        Form form = cacheM.getForm();
-//
 //        boolean isCertLabelApp = false;
 //        boolean isCertExempLabApp = false;
 //        boolean isDistinctLiqBottApp = false;
@@ -68,7 +67,12 @@ public class mApplicationFormPg3 {
 //            isResubmitAfterRej = true;
 //        }
 //
-//        //bottleCap.setText(form.getBottleCap());
+//        if(form.getProductSource() == "DOMESTIC"){
+//          isDomestic = true;
+//          isImported = false;
+//          }
+//        applicationType.setText(form.getTypeOfApplication());
+//        bottleCapacity.setText(form.getBottleCapacity());
 //        certLabelApp.setSelected(isCertLabelApp);
 //        certExempLabApp.setSelected(isCertExempLabApp);
 //        distinctLiqBottApp.setSelected(isDistinctLiqBottApp);
@@ -76,17 +80,8 @@ public class mApplicationFormPg3 {
 //        //email.setText(form.getEmailAddress());
 //        //paul blart image stuff
 //
-
-//    Form form = cacheM.getForm();
-//    boolean isCertLabelApp = false;
-//    boolean isCertExempLabApp = false;
-//    boolean isDistinctLiqBottApp = false;
-//    boolean isResubmitAfterRej = false;
 //    boolean isMalt = false;
-//        if(form.getProductSource() == "DOMESTIC"){
-//        isDomestic = true;
-//        isImported = false;
-//    }
+
 //        applicationType.setText(form.getPrintName());
 //        stateAbb.setText(form.getMailingAddress());
 //        ttbID.setText(form.getFormula());
@@ -108,6 +103,7 @@ public class mApplicationFormPg3 {
         form.setDistinctiveLiquor(distinctLiqBottApp.isSelected());
         form.setResubmission(resubmitAfterRej.isSelected());
         form.setTtbID(ttbID.getText());
+        form.setBottleCapacity(bottleCapacity.getText());
         //form.setImage(uploadedImage);//need to store as a binary and put in DB
 
         cacheM.setForm(form);

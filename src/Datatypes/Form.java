@@ -39,6 +39,7 @@ public class Form {
     private String alcoholPercent;
     private String vintageYear;
     private String pHLevel;
+    private String bottleCapacity;
 //    "formID int	constraint Forms_pk	primary key, " +
 //                "repID int, " +
 //                "brewerNumber varchar(60),	" +
@@ -96,6 +97,8 @@ public class Form {
         this.distinctiveLiquor = null;
         this.resubmission = null;
         this.ttbID = null;
+        this.bottleCapacity = null;
+
     }
 
     public int getRepID(){ return repID; }
@@ -244,6 +247,14 @@ public class Form {
 
     public void setOnlyState(String onlyState) {
         this.onlyState = onlyState;
+    }
+
+    public String getBottleCapacity() {
+        return bottleCapacity;
+    }
+
+    public void setBottleCapacity(String bottleCapacity) {
+        this.bottleCapacity = bottleCapacity;
     }
 
     public Boolean getDistinctiveLiquor() {
