@@ -52,6 +52,9 @@ public class SearchPage {
     @FXML private TextField yearHigh;
     @FXML private FlowPane searchResults;
     @FXML private Button searchButton;
+    @FXML private Label searchSuggest;
+    @FXML private Label didYouMean;
+
     @FXML
     public void back() throws IOException {
         //sceneM.backScene();
@@ -111,6 +114,7 @@ public class SearchPage {
             }
 
             if(searchBox.getText().isEmpty()) {
+                System.out.println("foo");
                 if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
                     searchList.add(result);
                 } else {
@@ -127,6 +131,11 @@ public class SearchPage {
             else if(!searchBox.getText().isEmpty() &&
                     ((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
                     || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){
+                //if ^^ this is not empty, we do a fuzzy search, and check if it's empty again
+                //see if fuzzy returns anything
+                //if it does: set did you mean to "Did you Mean"
+                //set the searchSuggest to return value
+                System.out.println("bar");
                 if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
                     searchList.add(result);
                 }
@@ -141,9 +150,15 @@ public class SearchPage {
                     }
                 }
             }
+            else{
+                System.out.println("nanana");
+                didYouMean.setText("Did you mean:");
+                //searchSuggest.setText(cacheM.getDbM().fuzzy2(searchBox.getText()));
+            }
         }
         loadAlcohol(searchList);
     }
+
     public ResultSet getApprovedApplications() throws SQLException{
         String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
