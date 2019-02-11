@@ -61,6 +61,12 @@ public class aFormStorage {
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
 
+    /**
+     * @author Sam Silver
+     * @version It 1
+     * populates aFormStorage Screen with forms that need to be assigned to an agent
+     * @throws IOException
+     */
     @FXML
     public void assignNewForms() throws IOException {
         ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection());

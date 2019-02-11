@@ -24,6 +24,7 @@ public class aRegister {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private String phoneNumber;
 
     public aRegister(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -72,13 +73,16 @@ public class aRegister {
 
     @FXML
     public void validateButton(){
+        phoneNumber = phone.getText();
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||
                 fullName.getText().isEmpty() ||
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
-                ttbID.getText().isEmpty() ){
+                ttbID.getText().isEmpty() ||
+                validAgentPhone(phoneNumber)
+        ){
             aRegister.setDisable(true);
         }
         else{
@@ -93,9 +97,12 @@ public class aRegister {
      * @return true if is valid number, false if not
      */
     @FXML
-    public boolean validAgentPhone(){
-        if(phone.getText().matches("^(\\+0?1\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$\n")){
+    public boolean validAgentPhone(String phoneNumber){
+        if(phoneNumber.matches("^(\\+0?1\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$\n")){
+            System.out.println("valid Number");
             return true;
-        }else return false;
+        }else
+            System.out.println("invalid number");
+        return false;
     }
 }
