@@ -1,5 +1,6 @@
 package Datatypes;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigInteger;
 import java.sql.Connection;
@@ -34,7 +35,7 @@ public class Form {
     private Boolean distinctiveLiquor;
     private Boolean resubmission;
     private int ttbID;
-    private FileInputStream fis = null;
+    private File labelImage = null;
     private String dateOfApplication;
     private String printName;
     private String beerWineSpirit;
@@ -291,12 +292,12 @@ public class Form {
         return formID;
     }
 
-    public FileInputStream getFis() {
-        return fis;
+    public File getLabelImage() {
+        return labelImage;
     }
 
-    public void setFis(FileInputStream fis) {
-        this.fis = fis;
+    public void setLabelImage(File labelImage) {
+        this.labelImage = labelImage;
     }
 
     // Query the database to select applications where form ID matches this form
