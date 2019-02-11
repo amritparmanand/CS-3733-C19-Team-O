@@ -3,9 +3,11 @@ package UI;
 
 import Datatypes.Agent;
 import Datatypes.Form;
+import Datatypes.NumberAssigned;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -37,6 +39,7 @@ public class aFormStorage {
     @FXML private JFXButton back;
     @FXML private JFXButton search;
     @FXML private VBox getApp;
+    @FXML private JFXTextField formLimit;
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -63,6 +66,10 @@ public class aFormStorage {
 
     @FXML
     public void assignNewForms() throws IOException {
+
+        NumberAssigned object = NumberAssigned.getInstance();
+        object.setNum(Integer.parseInt(formLimit.getText()));
+
         ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection());
 
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
@@ -99,6 +106,7 @@ public class aFormStorage {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }}
+        }
+    }
 
 }

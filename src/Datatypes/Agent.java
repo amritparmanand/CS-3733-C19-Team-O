@@ -37,10 +37,12 @@ public class Agent extends Account {
     public int getTtbID() {
         return ttbID;
     }
-
     public void setTtbID(int ttbID) {
         this.ttbID = ttbID;
     }
+
+    NumberAssigned object = NumberAssigned.getInstance();
+    public int limit = object.getNum();
 
     // Parse an agent object into database
     @SuppressWarnings("Duplicates")
@@ -72,7 +74,7 @@ public class Agent extends Account {
         if (!hasFetchedForms)
             getAssignedForms(conn);
 
-        if (this.workingForms.size() < 3) {
+        if (this.workingForms.size() < limit) {
             try {
                 String unassignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID IS NULL";
                 PreparedStatement ps = conn.prepareStatement(unassignedForms);
@@ -113,7 +115,7 @@ public class Agent extends Account {
 
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next() && this.workingForms.size() < 3) { //extraneous < 3 because only three will ever be assigned
+            while (rs.next() && this.workingForms.size() < limit) { //extraneous < 3 because only three will ever be assigned
                 workingForms.add(formFromResultSet(rs));
             }
             ps.close();
