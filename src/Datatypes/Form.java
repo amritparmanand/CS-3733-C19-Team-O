@@ -32,7 +32,7 @@ public class Form {
     private String onlyState;
     private Boolean distinctiveLiquor;
     private Boolean resubmission;
-    private String ttbID;
+    private int ttbID;
     private String dateOfApplication;
     private String printName;
     private String beerWineSpirit;
@@ -96,7 +96,7 @@ public class Form {
         this.onlyState = null;
         this.distinctiveLiquor = null;
         this.resubmission = null;
-        this.ttbID = null;
+        this.ttbID = 0;
         this.bottleCapacity = null;
 
     }
@@ -273,11 +273,11 @@ public class Form {
         this.resubmission = resubmission;
     }
 
-    public String getTtbID() {
+    public int getTtbID() {
         return ttbID;
     }
 
-    public void setTtbID(String ttbID) {
+    public void setTtbID(int ttbID) {
         this.ttbID = ttbID;
     }
 
