@@ -57,29 +57,6 @@ public class Form {
         this.pHLevel = null;
     }
 
-    public Form(int formID, int repID, String brewerNumber, String productSource, String serialNumber, String productType, String brandName, String fancifulName, String applicantName, String mailingAddress, String formula, String grapeVarietal, String appellation, String phoneNumber, String emailAddress, String dateOfApplication, String printName, String beerWineSpirit, String alcoholPercent, String vintageYear, String pHLevel) {
-        this.formID = formID;
-        this.repID = repID;
-        this.brewerNumber = brewerNumber;
-        this.productSource = productSource;
-        this.serialNumber = serialNumber;
-        this.productType = productType;
-        this.brandName = brandName;
-        this.fancifulName = fancifulName;
-        this.applicantName = applicantName;
-        this.mailingAddress = mailingAddress;
-        this.formula = formula;
-        this.grapeVarietal = grapeVarietal;
-        this.appellation = appellation;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
-        this.dateOfApplication = dateOfApplication;
-        this.printName = printName;
-        this.beerWineSpirit = beerWineSpirit;
-        this.alcoholPercent = alcoholPercent;
-        this.vintageYear = vintageYear;
-        this.pHLevel = pHLevel;
-    }
 
     public int getRepID(){ return repID; }
     public void setRepID(int repID){ this.repID = repID; }
@@ -198,6 +175,9 @@ public class Form {
         this.pHLevel = pHLevel;
     }
 
+    public void setFormID(int formID) {
+        this.formID = formID;
+    }
     public int getFormID() {
         return formID;
     }
