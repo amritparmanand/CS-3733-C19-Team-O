@@ -7,6 +7,7 @@ import Datatypes.Manufacturer;
 import Fuzzy.Damerau_Levenshtein;
 import Fuzzy.FuzzyContext;
 import Fuzzy.Levenshtein;
+import Fuzzy.hiddenScore;
 
 import java.sql.*;
 /**
@@ -456,6 +457,46 @@ public class DatabaseManager {
             FuzzyContext fc = new FuzzyContext();
             fc.setF(new Damerau_Levenshtein());
             if(fc.fuzzy(input,itrator) <= fc.fuzzy(input,best)){
+                best = itrator;
+            }
+
+        }
+
+        return best;
+    }
+
+    // Sublime fuzzy algorithm
+    public String sublime(String input){
+        String best = "";
+        String itrator = "";
+        int size = 0;
+
+        try {
+            String getSize = "select count(*) as size from FORMS";
+            ResultSet r1 = this.stmt.executeQuery(getSize);
+            while(r1.next()){
+                size = r1.getInt("size");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        for(int i = 1; i <= size; i++){
+            try {
+                String getData = "select BRANDNAME from FORMS where FORMID = " + i;
+                ResultSet result = this.stmt.executeQuery(getData);
+                while(result.next()){
+                    itrator = result.getString("brandName");
+                }
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+            FuzzyContext fc = new FuzzyContext();
+            fc.setF(new hiddenScore());
+            if(fc.fuzzy(input,itrator) >= fc.fuzzy(input,best)){
                 best = itrator;
             }
 
