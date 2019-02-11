@@ -89,6 +89,8 @@ public class SearchPage {
 //        search();
 //    }
 
+    @FXML 
+
     public void search() throws SQLException {
 
 //]        String search = searchBox.getText().toUpperCase();
