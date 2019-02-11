@@ -10,8 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 /**
@@ -22,7 +25,7 @@ import java.math.BigInteger;
 public class mApplicationFormPg3 {
     private SceneManager sceneM;
     private CacheManager cacheM;
-
+    private LabelImage image = new LabelImage();
     @FXML private Button next;
     @FXML private Button previous;
     @FXML private Button search;
@@ -102,9 +105,9 @@ public class mApplicationFormPg3 {
         form.setOnlyState(stateAbb.getText());
         form.setDistinctiveLiquor(distinctLiqBottApp.isSelected());
         form.setResubmission(resubmitAfterRej.isSelected());
-        form.setTtbID(ttbID.getText());
+        form.setTtbID(Integer.parseInt(ttbID.getText()));
         form.setBottleCapacity(bottleCapacity.getText());
-        //form.setImage(uploadedImage);//need to store as a binary and put in DB
+        form.setLabelImage(image.getFile());
 
         cacheM.setForm(form);
     }
@@ -128,8 +131,8 @@ public class mApplicationFormPg3 {
 
     @FXML
     public void uploadImage(ActionEvent event){
-        LabelImage image = new LabelImage();
-        imagePreview.setImage(image.getImageFile());
+        image.getFile();
+        imagePreview.setImage(image.getLabelImage());
     }
 
 }

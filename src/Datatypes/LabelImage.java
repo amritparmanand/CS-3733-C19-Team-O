@@ -12,21 +12,45 @@ import java.io.File;
 
 
 public class LabelImage {
+    private File labelFile;
+    private Image labelImage;
 
-    //Image selecting method
-    public Image getImageFile(){
+    public LabelImage(){
+        this.labelFile = null;
+        this.labelImage = null;
+    }
+//    Image selecting method
+    public File getFile(){
         //Create a file chooser
         FileChooser fileChooser = new FileChooser();
         //Select the extentions we allow for the files
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg"));
         //Actually get the label file
-        File labelFile = fileChooser.showOpenDialog(null);
+        this.labelFile = fileChooser.showOpenDialog(null);
         //Make the file into an image
-        Image labelImage = new Image(labelFile.toURI().toString());
+        this.labelImage = new Image(labelFile.toURI().toString());
         //WARNING: need to add to database! HEREREREEEEEEE
-        return labelImage;
+        return labelFile;
 
     }
+
+    public File getLabelFile() {
+        return labelFile;
+    }
+
+    public void setLabelFile(File labelFile) {
+        this.labelFile = labelFile;
+    }
+
+    public Image getLabelImage() {
+        return labelImage;
+    }
+
+    public void setLabelImage(Image labelImage) {
+        this.labelImage = labelImage;
+    }
+
+
 
 }
