@@ -361,7 +361,7 @@ public class DatabaseManager {
     public String fuzzy1(String input){
         String brandName = "";
         try {
-            String getData = "select BRANDNAME from FORMS where BRANDNAME like '" + input + "%'";
+            String getData = "select BRANDNAME from FORMS where BRANDNAME like '%" + input + "%'";
             ResultSet result = this.stmt.executeQuery(getData);
             while(result.next()){
                 brandName = result.getString("brandName");

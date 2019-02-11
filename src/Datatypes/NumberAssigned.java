@@ -1,7 +1,7 @@
 package Datatypes;
 
 public class NumberAssigned {
-    private int num;
+    private int num=5;
 
     private static NumberAssigned instance = new NumberAssigned();
 

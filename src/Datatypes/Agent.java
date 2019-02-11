@@ -71,6 +71,8 @@ public class Agent extends Account {
     // Query the database to select forms where ttb ID is empty
     // Insert this agent's ID into the selected forms
     public void assignNewForms(Connection conn) {
+        System.out.println(limit);
+
         if (!hasFetchedForms)
             getAssignedForms(conn);
 
@@ -82,7 +84,7 @@ public class Agent extends Account {
                 ResultSet rs = ps.executeQuery();
 
                 String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
-                while (rs.next() && this.workingForms.size() < 3) {
+                while (rs.next() && this.workingForms.size() < limit) {
                     insertingAgentID = insertingAgentID.concat(rs.getInt("formID") + ", ");
                     this.workingForms.add(formFromResultSet(rs));
                 }

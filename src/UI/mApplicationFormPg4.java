@@ -63,6 +63,8 @@ public class mApplicationFormPg4 {
             e.printStackTrace();
         }
 
+        Form cleanForm = new Form();
+        cacheM.setForm(cleanForm);
         goToHomePage();
 
     }

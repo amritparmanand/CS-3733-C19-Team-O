@@ -68,7 +68,9 @@ public class aFormStorage {
     public void assignNewForms() throws IOException {
 
         NumberAssigned object = NumberAssigned.getInstance();
-        object.setNum(Integer.parseInt(formLimit.getText()));
+        if(!formLimit.getText().isEmpty()){
+            object.setNum(Integer.parseInt(formLimit.getText()));
+        }
 
         ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection());
 
