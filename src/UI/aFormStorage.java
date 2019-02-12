@@ -64,15 +64,14 @@ public class aFormStorage {
 
     @FXML public void assignNewForms() throws IOException {
 
+        // Initialize the instance of the Singleton class
         NumberAssigned object = NumberAssigned.getInstance();
         if(!formLimit.getText().isEmpty()){
             object.setNum(Integer.parseInt(formLimit.getText()));
         }
         int limit = object.getNum();
-        System.out.println(limit);
 
         ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
-
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
 
         for(Form form : populatedForms) {

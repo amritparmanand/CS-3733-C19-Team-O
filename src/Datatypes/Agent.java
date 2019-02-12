@@ -72,8 +72,6 @@ public class Agent extends Account {
         if (!hasFetchedForms)
             getAssignedForms(conn);
 
-        System.out.println(limit);
-
         if (this.workingForms.size() < limit) {
             try {
                 String unassignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID IS NULL";
@@ -89,6 +87,7 @@ public class Agent extends Account {
 
                 ps.close();
 
+                // Get rid of the comma and space
                 insertingAgentID = insertingAgentID.substring(0, insertingAgentID.length() - 2).concat(")");
 
                 ps = conn.prepareStatement(insertingAgentID);
