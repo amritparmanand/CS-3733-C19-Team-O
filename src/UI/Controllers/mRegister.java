@@ -8,6 +8,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -29,7 +31,9 @@ public class mRegister {
     }
 
     @FXML private Button register;
-
+    @FXML private Label IDMessage;
+    @FXML private Label emailMessage;
+    @FXML private Label phoneMessage;
     @FXML private JFXTextField username;
     @FXML private JFXPasswordField password;
     @FXML private JFXPasswordField confirmP;
@@ -78,6 +82,10 @@ public class mRegister {
                 repID.getText().isEmpty() ||
                 !validManuPhone(phoneNumber)){
             register.setDisable(true);
+            if(!validManuPhone(phoneNumber)){
+                phoneMessage.setTextFill(Color.RED);
+                phoneMessage.setText("Invalid Phone Number. Please Try again.");
+            }
         }
         else{
             register.setDisable(false);

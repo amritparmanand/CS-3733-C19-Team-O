@@ -86,6 +86,10 @@ public class aRegister {
                 ttbID.getText().isEmpty() ||
                 !validAgentPhone(phoneNumber)
         ){
+            if(!validAgentPhone(phoneNumber)){
+                phoneMessage.setTextFill(Color.RED);
+                phoneMessage.setText("Invalid Phone Number. Please Try again.");
+            }
             aRegister.setDisable(true);
         }
         else{
@@ -111,13 +115,10 @@ public class aRegister {
     public boolean validAgentPhone(String phoneNumber){
         if(phoneNumber.matches("^[0]{8,20}$")){
             return false;
-        } else if(phoneNumber.matches("^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$")){
-            System.out.println("valid Number");
+        } else if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){
+            //System.out.println("valid number");
             return true;
         }else
-            phoneMessage.setTextFill(Color.RED);
-        phoneMessage.setText("Invalid Phone Number. Please Try again.");
-            System.out.println("invalid number");
         return false;
     }
 
