@@ -14,7 +14,7 @@ public class FuzzyContext {
         this.f = f;
     }
 
-    public String fuzzy(String input){
-        return f.fuzzy(input);
+    public int fuzzy(String source, String target){
+        return f.fuzzy(source,target);
     }
 }

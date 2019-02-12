@@ -1,5 +1,5 @@
 package Fuzzy;
 
 public interface IFuzzy {
-    String fuzzy(String input);
+    int fuzzy(String source, String target);
 }

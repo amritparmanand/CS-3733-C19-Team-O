@@ -86,7 +86,7 @@
                      </VBox.margin></JFXButton>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" prefHeight="633.0" prefWidth="330.0" HBox.hgrow="ALWAYS">
+                <VBox alignment="CENTER" prefHeight="633.0" prefWidth="330.0" spacing="10.0" HBox.hgrow="ALWAYS">
                     <children>
                         <Label text="Agent Registration">
                             <font>
@@ -108,7 +108,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="phone" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Phone">
+                  <JFXTextField fx:id="phone" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Phone (U.S Number Only)">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

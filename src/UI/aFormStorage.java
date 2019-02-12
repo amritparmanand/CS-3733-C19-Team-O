@@ -86,7 +86,7 @@ public class aFormStorage {
 
                     ((Label) fName).setText(form.getFancifulName());
                     ((Label) bName).setText(form.getBrandName());
-                    ((Label) aType).setText("Wine");
+                    ((Label) aType).setText(form.getProductType());
                 }
                 loadForms.getChildren().add(formResult);
                 formResult.setId("Alcoholbox");
@@ -106,7 +106,6 @@ public class aFormStorage {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-    }
+        }}
 
 }
