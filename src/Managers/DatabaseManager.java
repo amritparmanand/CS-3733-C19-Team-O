@@ -12,8 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.*;
 /**
- * @author Amrit Parmanand
- * @version It 1
+ * @author Amrit Parmanand & Percy
+ * @version It 2
+ * @since It 1
  * Manages the database, handles accessing and inserting data
  */
 public class DatabaseManager {

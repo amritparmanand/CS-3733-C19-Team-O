@@ -193,75 +193,57 @@ public class Form {
     public void setpHLevel(String pHLevel) {
         this.pHLevel = pHLevel;
     }
-
     public Boolean getCertificateOfApproval() {
         return certificateOfApproval;
     }
-
     public void setCertificateOfApproval(Boolean certificateOfApproval) {
         this.certificateOfApproval = certificateOfApproval;
     }
-
     public Boolean getCertificateOfExemption() {
         return certificateOfExemption;
     }
-
     public void setCertificateOfExemption(Boolean certificateOfExemption) {
         this.certificateOfExemption = certificateOfExemption;
     }
-
     public String getOnlyState() {
         return onlyState;
     }
-
     public void setOnlyState(String onlyState) {
         this.onlyState = onlyState;
     }
-
     public String getBottleCapacity() {
         return bottleCapacity;
     }
-
     public void setBottleCapacity(String bottleCapacity) {
         this.bottleCapacity = bottleCapacity;
     }
-
     public Boolean getDistinctiveLiquor() {
         return distinctiveLiquor;
     }
-
     public void setDistinctiveLiquor(Boolean distinctiveLiquor) {
         this.distinctiveLiquor = distinctiveLiquor;
     }
-
     public Boolean getResubmission() {
         return resubmission;
     }
-
     public void setResubmission(Boolean resubmission) {
         this.resubmission = resubmission;
     }
-
     public int getTtbID() {
         return ttbID;
     }
-
     public void setTtbID(int ttbID) {
         this.ttbID = ttbID;
     }
-
     public void setFormID(int formID) {
         this.formID = formID;
     }
-
     public int getFormID() {
         return formID;
     }
-
     public LabelImage getLabel() {
         return label;
     }
-
     public void setLabel(LabelImage label) {
         this.label = label;
     }

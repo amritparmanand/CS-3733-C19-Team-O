@@ -49,7 +49,8 @@ public class mRegister {
             Manufacturer m = new Manufacturer(username.getText(), password.getText(), fullName.getText(),
                     email.getText(), phone.getText(), Integer.parseInt(repID.getText()),companyName.getText());
             cacheM.setAcct(m);
-            cacheM.register(m);
+            cacheM.getAcct().register(cacheM.getDbM().getConnection());
+            System.out.println("Registration Successful! Welcome!");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
             sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
         }
