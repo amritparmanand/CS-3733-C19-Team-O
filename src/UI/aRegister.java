@@ -17,7 +17,7 @@ import java.sql.SQLException;
 
 /**
  * @author Percy Jiang & Gabe Entov
- * @version It 1
+ * @version It 2
  * Controller for aRegister of UI
  */
 public class aRegister {
