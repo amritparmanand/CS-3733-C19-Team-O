@@ -5,6 +5,7 @@ import Fuzzy.*;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,9 +48,9 @@ public class SearchPage {
     @FXML private ScrollPane scroll;
     @FXML private Button back;
     @FXML private TextField searchBox;
-    @FXML private CheckBox beerCheck;
-    @FXML private CheckBox liquorCheck;
-    @FXML private CheckBox wineCheck;
+    @FXML private JFXCheckBox beerCheck;
+    @FXML private JFXCheckBox liquorCheck;
+    @FXML private JFXCheckBox wineCheck;
     @FXML private TextField phLow;
     @FXML private TextField phHigh;
     @FXML private TextField alcoholLow;
@@ -148,7 +149,7 @@ public class SearchPage {
         String suggestion = "";
         FuzzyContext fc = new FuzzyContext();
         if(SQL){
-            fc.setF(new SQL());
+            fc.setF(    new SQL());
         }
         else if(Levi){
             fc.setF(new Levenshtein());
