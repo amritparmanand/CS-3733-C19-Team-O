@@ -86,7 +86,7 @@
                      </VBox.margin></JFXButton>
                     </children>
                 </VBox>
-                <VBox alignment="CENTER" prefHeight="633.0" prefWidth="330.0" HBox.hgrow="ALWAYS">
+                <VBox alignment="CENTER" prefHeight="633.0" prefWidth="330.0" spacing="10.0" HBox.hgrow="ALWAYS">
                     <children>
                         <Label text="Agent Registration">
                             <font>

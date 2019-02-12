@@ -70,7 +70,7 @@ public class mRegister {
     }
 
     @FXML public void validateButton(){
-        phoneNumber = phone.getText();
+        phoneNumber = phone.getText().trim();
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||
@@ -89,6 +89,8 @@ public class mRegister {
 
     /**
      * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param phoneNumber phone number to be checked
      * checks the manufacturer phone number for Manufacturer Registration form
      * will accept US number with the following conditions
      * 1 prefix optional
