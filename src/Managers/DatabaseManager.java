@@ -8,6 +8,7 @@ import Fuzzy.Damerau_Levenshtein;
 import Fuzzy.FuzzyContext;
 import Fuzzy.Levenshtein;
 import Fuzzy.hiddenScore;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.*;
 /**
@@ -18,6 +19,7 @@ import java.sql.*;
 public class DatabaseManager {
     private Connection connection;
     private Statement stmt;
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public Connection getConnection()
     {
@@ -351,6 +353,21 @@ public class DatabaseManager {
 //                e.printStackTrace();
 //        }
 //    }
+
+    public void insertDefault() throws SQLException{
+        String mPassword = this.passwordEncoder.encode("manu");
+        String aPassword = this.passwordEncoder.encode("ttb");
+
+        String mDefault = "insert into REPRESENTATIVES values (0, 'manu', '" + mPassword + "', 'manu', 'manu', 'manu', 'manu')";
+        String aDefault = "insert into AGENTS values (0, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb')";
+        try {
+            this.stmt.execute(mDefault);
+            this.stmt.execute(aDefault);
+        }catch(SQLException e){
+            if (!e.getSQLState().equals("23505"))
+                e.printStackTrace();
+        }
+    }
 
     /**
      * The 3 ways of fuzzy search
