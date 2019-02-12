@@ -47,10 +47,10 @@ public class LoginPage implements SerialPortDataListener {
 
             @Override
             public void serialEvent(SerialPortEvent serialPortEvent) {
-                if (serialPortEvent.getEventType() != SerialPort.LISTENING_EVENT_DATA_AVAILABLE)
-                    return;
-                byte[] newData = new byte[serialPort.bytesAvailable()];
-                serialPort.readBytes(newData, newData.length);
+//                if (serialPortEvent.getEventType() != SerialPort.LISTENING_EVENT_DATA_AVAILABLE)
+//                    return;
+                byte [] newData = new byte[8];
+                serialPort.readBytes(newData, 8);
                 String buf = new String(newData);
                 buf = buf.trim();
                 System.out.println(buf);
