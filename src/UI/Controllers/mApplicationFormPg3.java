@@ -129,7 +129,7 @@ public class mApplicationFormPg3 {
         saveDraft();
         System.out.println("on to page 4");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
     }
     @FXML public void previousPage() throws IOException {
         System.out.println("back to page 2");
