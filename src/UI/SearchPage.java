@@ -261,6 +261,8 @@ public class SearchPage {
 
             PrintWriter writer = new PrintWriter("search-results.csv", "UTF-8");
 
+            writer.println("FANCIFUL NAME,COMPANY NAME,ALCOHOL TYPE,ALCOHOL TYPE2,PH LEVEL,ALCOHOL PERCENT,YEAR");
+
             for(SearchResult s : searchList){
                 //holder variable to hold the type of alcohol for printing
                 String alcoholType = "";
