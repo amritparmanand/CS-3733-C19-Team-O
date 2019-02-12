@@ -1,5 +1,7 @@
 package Fuzzy;
 
+import java.sql.Connection;
+
 public class FuzzyContext {
 
     private IFuzzy f;
@@ -14,7 +16,7 @@ public class FuzzyContext {
         this.f = f;
     }
 
-    public String fuzzy(String input){
-        return f.fuzzy(input);
+    public String fuzzy(String input, Connection conn){
+        return f.fuzzy(input, conn);
     }
 }

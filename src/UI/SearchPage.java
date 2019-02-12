@@ -141,25 +141,27 @@ public class SearchPage {
     }
 
     @FXML public void search() throws SQLException {
-        //menubutton set text SQL
-
-
         // Perform fuzzy search based on user's choice
         String suggestion = "";
         FuzzyContext fc = new FuzzyContext();
         if(SQL){
             fc.setF(new SQL());
+            System.out.println("sql chosen");
         }
         else if(Levi){
             fc.setF(new Levenshtein());
+            System.out.println("levenshtein chosen");
         }
         else if(DLevi){
             fc.setF(new Damerau_Levenshtein());
+            System.out.println("d-l chosen");
         }
         else if(hiddenS){
             fc.setF(new hiddenScore());
+            System.out.println("hidden score chosen");
         }
-        suggestion = fc.fuzzy(searchBox.getText());
+        suggestion = fc.fuzzy(searchBox.getText(),cacheM.getDbM().getConnection());
+        System.out.println(suggestion);
 
         ResultSet rs = getApprovedApplications();
         searchResults.getChildren().clear();
@@ -239,8 +241,12 @@ public class SearchPage {
                     !((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
                             || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){ //a bunch of approved forms go into this else because they don't pass the first two conditions
                 didYouMean.setText("Did you mean: ");
+                System.out.println(suggestion);
                 searchSuggest.setText(suggestion);
                 continue;
+            }
+            else{
+                System.out.println("fuck!!!");
             }
         }
         loadAlcohol(searchList);
