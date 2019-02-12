@@ -1,15 +1,14 @@
-package UI;
+package UI.Controllers;
 
 import Datatypes.Form;
 import Datatypes.ProgressBar;
 import Managers.*;
+import UI.MultiThreadWaitFor;
+import UI.callableFunction;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;

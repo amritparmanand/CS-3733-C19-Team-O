@@ -1,13 +1,11 @@
-package UI;
+package UI.Controllers;
 
 import Managers.CacheManager;
-import Managers.DatabaseManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 

@@ -2,10 +2,7 @@ package Testing;
 
 import Managers.CacheManager;
 import Managers.SceneManager;
-import UI.mRegister;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import UI.Controllers.mRegister;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import static org.junit.Assert.assertTrue;

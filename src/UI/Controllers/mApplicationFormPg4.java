@@ -1,4 +1,4 @@
-package UI;
+package UI.Controllers;
 
 import Datatypes.Form;
 import Managers.*;
@@ -6,15 +6,10 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import java.time.format.DateTimeFormatter;
-import javafx.util.StringConverter;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
+
 /**
  * @author Amrit Parmanand & Elizabeth Del Monaco
  * @version It 2

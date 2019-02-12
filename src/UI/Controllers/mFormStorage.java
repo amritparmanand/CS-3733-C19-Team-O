@@ -1,19 +1,13 @@
-package UI;
+package UI.Controllers;
 
-import Datatypes.Agent;
-import Datatypes.Form;
 import Managers.CacheManager;
-import Managers.DatabaseManager;
 import Managers.SceneManager;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 /**
  * @author ???
  * @version It 1

@@ -1,4 +1,4 @@
-package UI;
+package UI.Controllers;
 
 import Datatypes.Form;
 import Managers.CacheManager;

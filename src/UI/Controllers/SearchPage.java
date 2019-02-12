@@ -1,26 +1,21 @@
-package UI;
+package UI.Controllers;
 
 import Datatypes.SearchResult;
 import Fuzzy.*;
 import Managers.CacheManager;
-import Managers.DatabaseManager;
 import Managers.SceneManager;
+import UI.Controllers.LoginPage;
 import com.jfoenix.controls.JFXCheckBox;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.fxml.Initializable;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;

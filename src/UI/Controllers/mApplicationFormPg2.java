@@ -1,20 +1,15 @@
-package UI;
+package UI.Controllers;
 
 import Datatypes.Form;
 import Managers.*;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import sun.plugin.dom.core.Text;
 
-import java.awt.event.TextEvent;
 import java.io.IOException;
-import java.math.BigInteger;
+
 /**
  * @author Amrit Parmanand & Elizabeth Del Monaco
  * @version It 2

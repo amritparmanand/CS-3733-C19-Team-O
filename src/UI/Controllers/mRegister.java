@@ -1,19 +1,15 @@
-package UI;
+package UI.Controllers;
 
 import Datatypes.Manufacturer;
 import Managers.CacheManager;
-import Managers.DatabaseManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import org.springframework.security.crypto.bcrypt.*;
+
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 /**
  * @author Percy Jiang & Gabe Entov & Elizabeth Del Monaco
