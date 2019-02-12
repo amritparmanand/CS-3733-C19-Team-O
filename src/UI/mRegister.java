@@ -94,13 +94,13 @@ public class mRegister {
      * 1 prefix optional
      * area code is required
      * delimiters between number groups are optional
-     * if delimiters are used, can use spaces, dashes as dividers between number groups
+     * if delimiters are used, can use spaces, dashes, back slashes as dividers between number groups
      * alphanumeric format is allowed after area code
      * @return true if is valid number, false if not
      */
     @FXML
     public boolean validManuPhone(String phoneNumber){
-        if(phoneNumber.matches("^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$")){
+        if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){
             //System.out.println("valid number");
             return true;
         }else

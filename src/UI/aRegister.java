@@ -103,7 +103,7 @@ public class aRegister {
      */
     @FXML
     public boolean validAgentPhone(String phoneNumber){
-        if(phoneNumber.matches("^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$")){
+        if(phoneNumber.matches("^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$")){
             //System.out.println("valid Number");
             return true;
         }else
