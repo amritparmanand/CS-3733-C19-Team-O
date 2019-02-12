@@ -24,6 +24,7 @@ public class aRegister {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private String phoneNumber;
 
     public aRegister(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -72,13 +73,16 @@ public class aRegister {
 
     @FXML
     public void validateButton(){
+        phoneNumber = phone.getText().trim();
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||
                 fullName.getText().isEmpty() ||
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
-                ttbID.getText().isEmpty() ){
+                ttbID.getText().isEmpty() ||
+                !validAgentPhone(phoneNumber)
+        ){
             aRegister.setDisable(true);
         }
         else{
@@ -87,15 +91,27 @@ public class aRegister {
     }
 
     /**
-     * @Author Clay Oshiro-Leavitt
-     * checks the agent phone number for Agent Registration form
-     * will only accept US phone numbers
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param phoneNumber phone number to be checked
+     * checks the manufacturer phone number for Agent Registration form
+     * will accept US number with the following conditions
+     * 1 prefix optional
+     * area code is required
+     * delimiters between number groups are optional
+     * if delimiters are used, can use spaces, dashes as dividers between number groups
+     * alphanumeric format is allowed after area code
      * @return true if is valid number, false if not
      */
     @FXML
-    public boolean validAgentPhone(){
-        if(phone.getText().matches("^(\\+0?1\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$\n")){
+    public boolean validAgentPhone(String phoneNumber){
+        if(phoneNumber.matches("^[0]{8,20}$")){
+            return false;
+        } else if(phoneNumber.matches("^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$")){
+            //System.out.println("valid Number");
             return true;
-        }else return false;
+        }else
+       //     System.out.println("invalid number");
+        return false;
     }
 }

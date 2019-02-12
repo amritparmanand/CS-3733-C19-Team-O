@@ -16,6 +16,7 @@ public class FuzzyContext {
         this.f = f;
     }
 
+
     public String fuzzy(String input, Connection conn){
         return f.fuzzy(input, conn);
     }

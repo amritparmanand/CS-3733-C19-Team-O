@@ -5,6 +5,8 @@ import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,9 +27,11 @@ public class mFormStorage {
     private CacheManager cacheM;
 
     @FXML private Button backToMHome;
-    @FXML private Button search;
-    @FXML private Button newForm;
-    //@FXML private VBox getApp;
+    @FXML private JFXButton search;
+    @FXML private JFXButton newForm;
+    @FXML private JFXCheckBox approved;
+    @FXML private JFXCheckBox pending;
+    @FXML private JFXCheckBox denied;
 
     public mFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -36,8 +40,8 @@ public class mFormStorage {
 
     @FXML
     public void newForm() throws IOException {
-        //
-        //
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
     }
 
     /*  @FXML

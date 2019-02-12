@@ -1,5 +1,6 @@
 package Fuzzy;
 
+
 import Managers.DatabaseManager;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class hiddenScore implements IFuzzy {
      * @param str
      * @return int
      */
-    public int hiddenScore(String pattern, String str) {
+    public int fuzzy(String pattern, String str) {
 
         int score = 0;
 
@@ -140,7 +141,6 @@ public class hiddenScore implements IFuzzy {
 
         return score;
     }
-
 
     @Override
     public String fuzzy(String input, Connection conn) {

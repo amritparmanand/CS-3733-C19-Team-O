@@ -13,7 +13,8 @@ public class Levenshtein implements IFuzzy{
         return Math.min(x, c);
     }
 
-    public int Levenshtein(String source, String target) {
+    @Override
+    public int fuzzy(String source, String target) {
         source = source.toLowerCase();
         target = target.toLowerCase();
 
