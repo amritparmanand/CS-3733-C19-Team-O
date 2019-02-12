@@ -149,7 +149,7 @@ public class SearchPage {
         String suggestion = "";
         FuzzyContext fc = new FuzzyContext();
         if(SQL){
-            fc.setF(    new SQL());
+            fc.setF(new SQL());
         }
         else if(Levi){
             fc.setF(new Levenshtein());
@@ -160,7 +160,7 @@ public class SearchPage {
         else if(hiddenS){
             fc.setF(new hiddenScore());
         }
-        suggestion = fc.fuzzy(searchBox.getText());
+        suggestion = fc.fuzzy(searchBox.getText(), cacheM.getDbM().getConnection());
 
         ResultSet rs = getApprovedApplications();
         searchResults.getChildren().clear();
