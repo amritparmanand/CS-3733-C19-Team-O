@@ -1,6 +1,12 @@
 package Fuzzy;
 
+import Managers.DatabaseManager;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class hiddenScore implements IFuzzy {
+    private DatabaseManager dbM;
 
     /**
      * Returns the hidden score
@@ -9,7 +15,7 @@ public class hiddenScore implements IFuzzy {
      * @param str
      * @return int
      */
-    public int fuzzy(String pattern, String str) {
+    public int hiddenScore(String pattern, String str) {
 
         int score = 0;
 
@@ -134,5 +140,43 @@ public class hiddenScore implements IFuzzy {
 
         return score;
     }
-    
+
+
+    @Override
+    public String fuzzy(String input) {
+        String best = "this is complete garbage";
+        String iterator = "";
+        int size = 0;
+
+        try {
+            String getSize = "select count(*) as size from FORMS";
+            ResultSet r1 = dbM.getStmt().executeQuery(getSize);
+            while(r1.next()){
+                size = r1.getInt("size");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        for(int i = 1; i <= size; i++){
+            try {
+                String q = "select BRANDNAME from FORMS where FORMID = " + i;
+                ResultSet r2 = dbM.getStmt().executeQuery(q);
+                while(r2.next()){
+                    iterator = r2.getString("brandName");
+                }
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+
+            if(hiddenScore(input,iterator) >= hiddenScore(input,best)){
+                best = iterator;
+            }
+
+        }
+
+        return best;
+    }
 }

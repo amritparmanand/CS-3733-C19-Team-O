@@ -1,6 +1,7 @@
 package UI;
 
 import Datatypes.SearchResult;
+import Fuzzy.*;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
@@ -34,7 +35,7 @@ public class SearchPage {
     boolean SQL = false;
     boolean Levi = false;
     boolean DLevi = false;
-    boolean Sublime = true;
+    boolean hiddenS = true;
 
     public SearchPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -62,7 +63,7 @@ public class SearchPage {
     @FXML private MenuItem sqlSearch;
     @FXML private MenuItem lSearch;
     @FXML private MenuItem dlSearch;
-    @FXML private MenuItem sublime;
+    @FXML private MenuItem hiddenScore;
     @FXML private MenuButton algChoose;
 
 
@@ -71,7 +72,7 @@ public class SearchPage {
         SQL = true;
         Levi = false;
         DLevi = false;
-        Sublime = false;
+        hiddenS = false;
         algChoose.setText("SQL");
     }
     @FXML
@@ -79,7 +80,7 @@ public class SearchPage {
         SQL = false;
         Levi = true;
         DLevi = false;
-        Sublime = false;
+        hiddenS = false;
         algChoose.setText("Levenshtein");
     }
     @FXML
@@ -87,15 +88,15 @@ public class SearchPage {
         SQL = false;
         Levi = false;
         DLevi = true;
-        Sublime = false;
+        hiddenS = false;
         algChoose.setText("Damerau-Levenshtein");
     }
     @FXML
-    public void searchSublime() throws IOException {
+    public void searchHiddenS() throws IOException {
         SQL = false;
         Levi = false;
         DLevi = false;
-        Sublime = true;
+        hiddenS = true;
         algChoose.setText("Sublime");
     }
 
@@ -145,18 +146,20 @@ public class SearchPage {
 
         // Perform fuzzy search based on user's choice
         String suggestion = "";
+        FuzzyContext fc = new FuzzyContext();
         if(SQL){
-            suggestion = cacheM.getDbM().fuzzy1(searchBox.getText());
+            fc.setF(new SQL());
         }
         else if(Levi){
-            suggestion = cacheM.getDbM().fuzzy2(searchBox.getText());
+            fc.setF(new Levenshtein());
         }
         else if(DLevi){
-            suggestion = cacheM.getDbM().fuzzy3(searchBox.getText());
+            fc.setF(new Damerau_Levenshtein());
         }
-        else if(Sublime){
-            suggestion = cacheM.getDbM().sublime(searchBox.getText());
+        else if(hiddenS){
+            fc.setF(new hiddenScore());
         }
+        suggestion = fc.fuzzy(searchBox.getText());
 
         ResultSet rs = getApprovedApplications();
         searchResults.getChildren().clear();
