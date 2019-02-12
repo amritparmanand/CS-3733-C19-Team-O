@@ -15,6 +15,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.sql.Statement;
 import java.util.EventListener;
 
 import javafx.scene.paint.Color;
@@ -25,7 +26,8 @@ public class LoginPage implements SerialPortDataListener {
     private CacheManager cacheM;
     private BCryptPasswordEncoder passwordDecoder = new BCryptPasswordEncoder();
     SerialPort ports[] = SerialPort.getCommPorts();
-    SerialPort serialPort = ports[ports.length - 1];
+    SerialPort serialPort = null;
+
     @FXML
     private RadioButton m;
     @FXML
@@ -47,48 +49,56 @@ public class LoginPage implements SerialPortDataListener {
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        serialPort.openPort();
-        serialPort.addDataListener(new SerialPortDataListener() {
-            @Override
-            public int getListeningEvents() {
-                return SerialPort.LISTENING_EVENT_DATA_AVAILABLE;
-            }
+    }
 
-            @Override
-            public void serialEvent(SerialPortEvent serialPortEvent) {
-//                if (serialPortEvent.getEventType() != SerialPort.LISTENING_EVENT_DATA_AVAILABLE)
-//                    return;
-                byte[] newData = new byte[8];
-                serialPort.readBytes(newData, 8);
-                String buf = new String(newData);
-                buf = buf.trim();
-                System.out.println(buf);
-                if ((buf != null && !(buf.length() < 2))) {
+    @FXML
+    public void initialize() {
+        if (ports.length > 0) {
+            this.serialPort = ports[ports.length - 1];
+            this.serialPort.openPort();
+
+            serialPort.addDataListener(new SerialPortDataListener() {
+                @Override
+                public int getListeningEvents() {
+                    return SerialPort.LISTENING_EVENT_DATA_AVAILABLE;
+                }
+
+                @Override
+                public synchronized void serialEvent(SerialPortEvent serialPortEvent) {
+                    byte[] newData = new byte[8];
+                    serialPort.readBytes(newData, 8);
+
+                    String buf = new String(newData);
                     buf = buf.trim();
-                    int loginID = Integer.parseInt(buf);
-                    String uname = cacheM.getDbM().aFindUsername(loginID);
-                    String hashedPassword = cacheM.getDbM().aFindPassword(loginID);
-                    id.setText(String.valueOf(loginID));
-                    username.setText(uname);
-                    password.setText(hashedPassword);
-                    if ((uname != null) && (uname != "")) {
-                        cacheM.setAcct(cacheM.getDbM().aCreate(loginID));
-                        System.out.println("Login Successful!");
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
-                        Platform.runLater(() -> {
-                            try {
-                                sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            serialPort.closePort();
-                            return;
 
-                        });
+                    System.out.println(buf);
+                    if ((buf != null && !(buf.length() < 2))) {
+
+                        int loginID = Integer.parseInt(buf);
+                        String uname = cacheM.getDbM().aFindUsername(loginID);
+                        String hashedPassword = cacheM.getDbM().aFindPassword(loginID);
+                        id.setText(String.valueOf(loginID));
+                        username.setText(uname);
+                        password.setText(hashedPassword);
+                        if ((uname != null) && (uname != "")) {
+                            cacheM.setAcct(cacheM.getDbM().aCreate(loginID));
+                            System.out.println("Login Successful!");
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+                            Platform.runLater(() -> {
+                                try {
+                                    sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                serialPort.closePort();
+                                return;
+
+                            });
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     }
 
     @Override
