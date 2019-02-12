@@ -1,5 +1,11 @@
 package Fuzzy;
 
+import Managers.DatabaseManager;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class hiddenScore implements IFuzzy {
 
     /**
@@ -9,7 +15,7 @@ public class hiddenScore implements IFuzzy {
      * @param str
      * @return int
      */
-    public int fuzzy(String pattern, String str) {
+    public int hiddenScore(String pattern, String str) {
 
         int score = 0;
 
@@ -134,5 +140,33 @@ public class hiddenScore implements IFuzzy {
 
         return score;
     }
-    
+
+
+    @Override
+    public String fuzzy(String input, Connection conn) {
+        String best = "this is complete garbage";
+        String brandI = "";
+        String fanciI = "";
+        int size = 0;
+
+        try {
+            String getEverything = "select * from FORMS";
+            ResultSet r1 = conn.createStatement().executeQuery(getEverything);
+            while(r1.next()){
+                brandI = r1.getString("brandName");
+                fanciI = r1.getString("fancifulName");
+                if(hiddenScore(input,brandI) >= hiddenScore(input,best)){
+                    best = brandI;
+                }
+                if(hiddenScore(input,fanciI) >= hiddenScore(input,best)){
+                    best = fanciI;
+                }
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        return best;
+    }
 }

@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#wineFieldCheck" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg2">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#wineFieldCheck" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg2">
     <children>
         <VBox onMouseEntered="#wineFieldCheck" onMouseMoved="#wineFieldCheck" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -61,46 +61,36 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0">
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                            <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin></Text>
-                                <ProgressBar disable="true" layoutX="32.0" layoutY="10.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
-                                <Text layoutX="116.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="24.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
-                                <Text layoutX="116.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 3 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="73.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
-                                <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
-                                <ProgressBar disable="true" layoutX="29.0" layoutY="108.0" prefHeight="35.0" prefWidth="283.0" progress="0.0" />
-                                <VBox fx:id="hideBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                    <children>
-                                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                                            <children>
-                                                <Button fx:id="previous" mnemonicParsing="false" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
-                                                <Button fx:id="next" mnemonicParsing="false" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
-                                            </children>
-                                        </HBox>
-                                        <Button mnemonicParsing="false" onMousePressed="#saveDraft" prefHeight="50.0" prefWidth="100.0" text="Save Draft">
-                                            <styleClass>
-                                                <String fx:value="labeltext" />
-                                                <String fx:value="card" />
-                                            </styleClass>
-                                        </Button>
-                                        <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
-                                            <VBox.margin>
-                                                <Insets top="20.0" />
-                                            </VBox.margin>
-                                        </Button>
-                                    </children>
-                                </VBox>
-                            </children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />
+                        <JFXProgressBar fx:id="pg1Progress" progress="0.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
+                        <JFXProgressBar fx:id="pg2Progress" progress="0.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 3 Progress" />
+                        <JFXProgressBar fx:id="pg3Progress" progress="0.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
+                        <JFXProgressBar progress="0.0" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
+                                 <children>
+                                    <JFXButton fx:id="previous1" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton fx:id="next1" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
+                              <JFXButton onMousePressed="#saveDraft" prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
+                              <Button fx:id="back1" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="1.0">
+                     </children>
+                  </VBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
                             <content>
                                 <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
                                     <children>

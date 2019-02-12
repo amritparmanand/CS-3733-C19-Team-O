@@ -35,10 +35,4 @@ public class CacheManager {
     public void setAcct(Account acct) {
         this.acct = acct;
     }
-
-    // Register function
-    // Calls the register method in account
-    public void register(Account a) {
-        a.register(dbM.getConnection());
-    }
 }

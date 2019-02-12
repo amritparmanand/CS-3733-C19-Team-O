@@ -1,5 +1,11 @@
 package Fuzzy;
 
+import Managers.DatabaseManager;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Levenshtein implements IFuzzy{
 
     private int min3(int a,int b, int c){
@@ -7,8 +13,7 @@ public class Levenshtein implements IFuzzy{
         return Math.min(x, c);
     }
 
-    @Override
-    public int fuzzy(String source, String target) {
+    public int Levenshtein(String source, String target) {
         source = source.toLowerCase();
         target = target.toLowerCase();
 
@@ -33,5 +38,33 @@ public class Levenshtein implements IFuzzy{
         }
 
         return Table[source.length()][target.length()];
+    }
+
+    @Override
+    public String fuzzy(String input, Connection conn) {
+        String best = "this is complete garbage";
+        String brandI = "";
+        String fanciI = "";
+        int size = 0;
+
+        try {
+            String getEverything = "select * from FORMS";
+            ResultSet r1 = conn.createStatement().executeQuery(getEverything);
+            while(r1.next()){
+                brandI = r1.getString("brandName");
+                fanciI = r1.getString("fancifulName");
+                if(Levenshtein(input,brandI) <= Levenshtein(input,best)){
+                    best = brandI;
+                }
+                if(Levenshtein(input,fanciI) <= Levenshtein(input,best)){
+                    best = fanciI;
+                }
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        return best;
     }
 }
