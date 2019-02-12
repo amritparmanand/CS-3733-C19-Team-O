@@ -108,7 +108,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="phone" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Phone">
+                  <JFXTextField fx:id="phone" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Phone (U.S Number Only)">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>

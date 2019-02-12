@@ -33,7 +33,7 @@ public class Tests {
     public static Collection<Object[]> phoneNumbers() {
         return Arrays.asList(new Object[][] {
                 {"123-456-7890", true}, {"(123) 456-7890", true}, { "123 456 7890", true}, { "1234567890", true}, {"(123)4567890", true}, { "(123)-456-7890", true }, {"1-800-ALPHNUM", true },
-                {"1-(123)-123-1234", true}, {"1.123.123.1234", true}, {"1/123/123/1234", true}, {"(123)-1234-123", false}, /*{"0000000000", false}, {"00000000000", false}*/
+                {"1-(123)-123-1234", true}, {"1.123.123.1234", true}, {"1/123/123/1234", true}, {"(123)-1234-123", false}, {"0000000000", false}, {"00000000000", false}
         });
     }
     @Parameterized.Parameter
