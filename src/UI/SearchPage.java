@@ -97,7 +97,7 @@ public class SearchPage {
         Levi = false;
         DLevi = false;
         hiddenS = true;
-        algChoose.setText("Sublime");
+        algChoose.setText("Hidden Score");
     }
 
     @FXML public void back() throws IOException {
