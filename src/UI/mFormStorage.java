@@ -36,8 +36,8 @@ public class mFormStorage {
 
     @FXML
     public void newForm() throws IOException {
-        //
-        //
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
     }
 
     /*  @FXML
