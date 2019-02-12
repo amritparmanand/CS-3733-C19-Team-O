@@ -5,6 +5,7 @@ import Fuzzy.*;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -159,7 +160,7 @@ public class SearchPage {
         else if(hiddenS){
             fc.setF(new hiddenScore());
         }
-        suggestion = fc.fuzzy(searchBox.getText());
+        suggestion = fc.fuzzy(searchBox.getText(), cacheM.getDbM().getConnection());
 
         ResultSet rs = getApprovedApplications();
         searchResults.getChildren().clear();
