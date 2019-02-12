@@ -1,4 +1,4 @@
-package UI;
+package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Form;

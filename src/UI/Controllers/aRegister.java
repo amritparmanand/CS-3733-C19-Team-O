@@ -7,6 +7,8 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;

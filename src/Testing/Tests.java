@@ -2,8 +2,8 @@ package Testing;
 
 import Managers.CacheManager;
 import Managers.SceneManager;
-import UI.aRegister;
-import UI.mRegister;
+import UI.Controllers.aRegister;
+import UI.Controllers.mRegister;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
