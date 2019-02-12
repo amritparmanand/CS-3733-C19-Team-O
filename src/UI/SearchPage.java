@@ -254,6 +254,10 @@ public class SearchPage {
         return rset;
     }
 
+    /**
+     * @author Jonathan Luna and Liz Del Monaco
+     * downloads all searches from a query into a csv file
+     */
     public void download(){
         System.out.println(";)");
 
