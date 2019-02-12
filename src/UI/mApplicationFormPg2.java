@@ -22,6 +22,7 @@ import java.math.BigInteger;
 public class mApplicationFormPg2 {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private String phoneNumberString;
 
     @FXML private AnchorPane mainPane;
 
@@ -50,12 +51,19 @@ public class mApplicationFormPg2 {
     @FXML public void saveDraft(){
         Form form = cacheM.getForm();
 
+        phoneNumberString = phoneNumber.getText().trim();
+
         form.setPrintName(printName.getText());
         form.setMailingAddress(mailAddress.getText());
         form.setFormula(formula.getText());
         form.setGrapeVarietal(grapes.getText());
         form.setAppellation(appellation.getText());
-        form.setPhoneNumber(phoneNumber.getText());
+        if(validFormPhone(phoneNumberString)) {
+            form.setPhoneNumber(phoneNumberString);
+            System.out.println("vaild phone number");
+        }else{
+            System.out.println("invalid phone number");
+        }
         form.setEmailAddress(email.getText());
 
         if(cacheM.getForm().getBeerWineSpirit() != 0) {
@@ -65,7 +73,7 @@ public class mApplicationFormPg2 {
 
         cacheM.setForm(form);
 
-        System.out.println("worked 2");
+        System.out.println("save Draft executed");
     }
 
     @FXML public void wineFieldCheck(){
@@ -99,7 +107,7 @@ public class mApplicationFormPg2 {
      * @author Clay Oshiro-Leavitt
      * @version It 2
      * @param phoneNumber phone number to be checked
-     * checks the manufacturer phone number for Manufacturer Registration form
+     * checks the manufacturer phone number for Manufacturer Application form
      * will accept US number with the following conditions
      * 1 prefix optional
      * area code is required
@@ -109,12 +117,10 @@ public class mApplicationFormPg2 {
      * @return true if is valid number, false if not
      */
     @FXML
-    public boolean validManuPhone(String phoneNumber){
+    public boolean validFormPhone(String phoneNumber){
         if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){
-            //System.out.println("valid number");
             return true;
         }else
-            // System.out.println("invalid number");
             return false;
 
     }
