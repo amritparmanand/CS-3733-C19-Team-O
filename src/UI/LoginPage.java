@@ -77,14 +77,14 @@ public class LoginPage implements SerialPortDataListener {
                         int loginID = Integer.parseInt(buf);
                         String uname = cacheM.getDbM().aFindUsername(loginID);
                         String hashedPassword = cacheM.getDbM().aFindPassword(loginID);
-                        id.setText(String.valueOf(loginID));
-                        username.setText(uname);
-                        password.setText(hashedPassword);
                         if ((uname != null) && (uname != "")) {
-                            cacheM.setAcct(cacheM.getDbM().aCreate(loginID));
                             System.out.println("Login Successful!");
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
                             Platform.runLater(() -> {
+                                id.setText(String.valueOf(loginID));
+                                username.setText(uname);
+                                password.setText(hashedPassword);
+                                cacheM.setAcct(cacheM.getDbM().aCreate(loginID));
                                 try {
                                     sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
                                 } catch (IOException e) {
@@ -95,6 +95,24 @@ public class LoginPage implements SerialPortDataListener {
 
                             });
                         }
+                        else{
+                            Platform.runLater(() -> {
+                                loginMessage.setTextFill(Color.RED);
+                                loginMessage.setText("Badge cannot be authenticated. Access Denied!");
+                                return;
+
+                            });
+
+                        }
+                    }
+                    else
+                    {
+                        Platform.runLater(() -> {
+                            loginMessage.setTextFill(Color.RED);
+                            loginMessage.setText("Badge has not yet been progammed.");
+                            return;
+
+                        });
                     }
                 }
             });
