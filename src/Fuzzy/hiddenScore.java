@@ -2,11 +2,11 @@ package Fuzzy;
 
 import Managers.DatabaseManager;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class hiddenScore implements IFuzzy {
-    private DatabaseManager dbM;
 
     /**
      * Returns the hidden score
@@ -143,38 +143,28 @@ public class hiddenScore implements IFuzzy {
 
 
     @Override
-    public String fuzzy(String input) {
+    public String fuzzy(String input, Connection conn) {
         String best = "this is complete garbage";
-        String iterator = "";
+        String brandI = "";
+        String fanciI = "";
         int size = 0;
 
         try {
-            String getSize = "select count(*) as size from FORMS";
-            ResultSet r1 = dbM.getStmt().executeQuery(getSize);
+            String getEverything = "select * from FORMS";
+            ResultSet r1 = conn.createStatement().executeQuery(getEverything);
             while(r1.next()){
-                size = r1.getInt("size");
+                brandI = r1.getString("brandName");
+                fanciI = r1.getString("fancifulName");
+                if(hiddenScore(input,brandI) >= hiddenScore(input,best)){
+                    best = brandI;
+                }
+                if(hiddenScore(input,fanciI) >= hiddenScore(input,best)){
+                    best = fanciI;
+                }
             }
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
-        }
-
-        for(int i = 1; i <= size; i++){
-            try {
-                String q = "select BRANDNAME from FORMS where FORMID = " + i;
-                ResultSet r2 = dbM.getStmt().executeQuery(q);
-                while(r2.next()){
-                    iterator = r2.getString("brandName");
-                }
-            } catch (SQLException e) {
-                if (!e.getSQLState().equals("X0Y32"))
-                    e.printStackTrace();
-            }
-
-            if(hiddenScore(input,iterator) >= hiddenScore(input,best)){
-                best = iterator;
-            }
-
         }
 
         return best;
