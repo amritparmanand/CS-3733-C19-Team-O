@@ -35,7 +35,7 @@ public class Form {
     private Boolean distinctiveLiquor;
     private Boolean resubmission;
     private int ttbID;
-    private File labelImage = null;
+    private LabelImage label;
     private String dateOfApplication;
     private String printName;
     private String beerWineSpirit;
@@ -44,34 +44,6 @@ public class Form {
     private String pHLevel;
     private String bottleCapacity;
     private int formID;
-//    "formID int	constraint Forms_pk	primary key, " +
-//                "repID int, " +
-//                "brewerNumber varchar(60),	" +
-//                "productSource varchar(60),	" +
-//                "serialNumber varchar(60),	" +
-//                "productType varchar(60),	" +
-//                "brandName varchar(60),	" +
-//                "fancifulName varchar(60),	" +
-//                "applicantName varchar(200),	" +
-//                "mailingAddress varchar(80), " +
-//                "formula varchar(80), " +
-//                "grapeVarietal varchar(80),	" +
-//                "appellation varchar(60), " +
-//                "phoneNumber varchar(20), " +
-//                "emailAddress varchar(50),	" +
-//                "certificateOfApproval boolean," +   //begin new
-//                "certificateOfExemption boolean," +
-//                "onlyState varchar(2)," +
-//                "distinctiveLiquor boolean," +
-//                "bottleCapacity VARCHAR(5)," +
-//                "resubmission boolean," +
-//                "ttbID varchar(10)," + //end new
-//                "dateOfApplication VARCHAR(30) , " +
-//                "printName varchar(40),	" +
-//                "beerWineSpirit varchar(60), " +
-//                "alcoholPercent varchar(60),	" +
-//                "vintageYear varchar(60), " +
-//                "phLevel varchar(60))";
 
 
     public Form() {
@@ -103,7 +75,6 @@ public class Form {
         this.resubmission = null;
         this.ttbID = 0;
         this.bottleCapacity = null;
-
     }
 
     public int getRepID(){ return repID; }
@@ -287,16 +258,15 @@ public class Form {
         return formID;
     }
 
-    public File getLabelImage() {
-        return labelImage;
+    public LabelImage getLabel() {
+        return label;
     }
 
-    public void setLabelImage(File labelImage) {
-        this.labelImage = labelImage;
+    public void setLabel(LabelImage label) {
+        this.label = label;
     }
 
-    // Query the database to select applications where form ID matches this form
-    // Update the status to be approved
+
     @SuppressWarnings("Duplicates")
     public void approve(Connection conn) {
         String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, STATUS = 'APPROVED' WHERE FORMID ="

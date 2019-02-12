@@ -289,3 +289,15 @@ font-face {
 .jfx-check-box{
   -jfx-checked-color: #4A77DD;
 }
+.menu-item:focused{
+  -fx-background-color: #4A77DD;
+}
+.menu-button .label{
+  -fx-text-fill: white;
+}
+.menu-item .label{
+  -fx-text-fill: black;
+}
+.menu-item:hover .label{
+  -fx-text-fill: white;
+}

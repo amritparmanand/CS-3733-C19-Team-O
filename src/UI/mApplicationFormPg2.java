@@ -2,6 +2,7 @@ package UI;
 
 import Datatypes.Form;
 import Managers.*;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,11 +29,6 @@ public class mApplicationFormPg2 {
     @FXML private VBox hideBox;
     @FXML private VBox varietalVBox;
     @FXML private VBox appellationVBox;
-
-    @FXML private Button next;
-    @FXML private Button previous;
-    @FXML private Button search;
-    @FXML private Button back;
 
     @FXML private JFXTextField printName;
     @FXML private JFXTextField mailAddress;

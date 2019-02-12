@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg3">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.mApplicationFormPg3">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -74,12 +74,13 @@
                         <JFXProgressBar progress="0.0" />
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                              <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
                                  <children>
                                     <JFXButton fx:id="previous1" styleClass="buttonStyle" text="Previous Page" />
                                     <JFXButton fx:id="next1" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
+                              <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
                               <JFXButton onMousePressed="#saveDraft" prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
                               <Button fx:id="back1" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
                                  <VBox.margin>
@@ -93,7 +94,7 @@
                         <Insets top="20.0" />
                      </HBox.margin>
                   </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0" vvalue="0.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
                             <content>
                                 <VBox prefHeight="900.0" prefWidth="640.0" styleClass="backPane">
                                     <children>
@@ -130,7 +131,7 @@
                                                     <children>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                <JFXCheckBox text="CERTIFICATE OF LABEL APPROVAL" />
+                                                <JFXCheckBox fx:id="certificateOfApproval" text="CERTIFICATE OF LABEL APPROVAL" />
                                                             </children>
                                                             <FlowPane.margin>
                                                                 <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -138,11 +139,11 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                <JFXCheckBox text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
+                                                <JFXCheckBox fx:id="certificateOfExemption" onMouseClicked="#validateStateField" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="&quot;For sale in " />
-                                                      <JFXTextField prefHeight="26.0" prefWidth="45.0" />
+                                                      <JFXTextField fx:id="onlyState" prefHeight="26.0" prefWidth="45.0" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text=" only&quot; (Fill in state abbreviation)" />
                                                                     </children>
                                                                 </HBox>
@@ -153,11 +154,11 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                <JFXCheckBox text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
+                                                <JFXCheckBox fx:id="DistinctiveLiquor" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
                                                                 <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="484.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TOTAL BOTTLE CAPACITY BEFORE CLOSURE " />
-                                                      <JFXTextField prefHeight="26.0" prefWidth="94.0" />
+                                                      <JFXTextField fx:id="bottleCapacity" editable="false" prefHeight="26.0" prefWidth="94.0" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="(Fill in amount)" />
                                                                     </children>
                                                                 </HBox>
@@ -168,11 +169,11 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                <JFXCheckBox text="RESUBMISSION AFTER REJECTION" />
+                                                <JFXCheckBox fx:id="resubmission" text="RESUBMISSION AFTER REJECTION" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TTB ID " />
-                                                      <JFXTextField fx:id="ttbID" />
+                                                      <JFXTextField fx:id="ttbID" editable="false" />
                                                                     </children>
                                                                 </HBox>
                                                             </children>
@@ -202,7 +203,7 @@
                                           <String fx:value="innerShadow" />
                                        </styleClass>
                                                 </Pane>
-                                                <Button fx:id="uploadImageButton" mnemonicParsing="false" onAction="#uploadImage" styleClass="buttonStyle" text="Upload Image" />
+                                    <JFXButton fx:id="uploadImageButton" onMouseReleased="#uploadImage" styleClass="buttonStyle" text="Upload" />
                                             </children>
                                             <VBox.margin>
                                                 <Insets />

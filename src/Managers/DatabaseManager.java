@@ -336,5 +336,4 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
     }
-
 }
