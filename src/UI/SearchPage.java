@@ -19,7 +19,10 @@ import javafx.scene.layout.VBox;
 import javafx.fxml.Initializable;
 
 import javax.swing.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -249,5 +252,35 @@ public class SearchPage {
                 "WHERE APPLICATIONS.STATUS='APPROVED'";
         ResultSet rset = cacheM.getDbM().getStmt().executeQuery(retrieve);
         return rset;
+    }
+
+    public void download(){
+        System.out.println(";)");
+
+        try {
+
+            PrintWriter writer = new PrintWriter("search-results.txt", "UTF-8");
+
+            for(SearchResult s : searchList){
+                //holder variable to hold the type of alcohol for printing
+                String alcoholType = "";
+                if (s.isBeer()){alcoholType = "beer";}
+                else if (s.isLiquor()){alcoholType = "liquor";}
+                else if (s.isWine()){alcoholType = "wine";}
+
+                writer.println(s.getFancifulName() + ";" + s.getCompanyName()+ ";" + s.getAlcoholType() + ";" + alcoholType + ";" + s.getPhLevel() + ";" + s.getAlcohol() + ";" + s.getYear());
+            }
+            writer.close();
+        }
+
+        catch(FileNotFoundException e){
+            System.out.println("File not found.");
+            e.printStackTrace();
+        }
+
+        catch(UnsupportedEncodingException e){
+            System.out.println("Unsupported encoding exception.");
+            e.printStackTrace();
+        }
     }
 }
