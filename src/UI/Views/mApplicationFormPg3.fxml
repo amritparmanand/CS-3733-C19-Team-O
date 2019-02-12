@@ -154,7 +154,7 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                <JFXCheckBox fx:id="DistinctiveLiquor" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
+                                                <JFXCheckBox fx:id="DistinctiveLiquor" onMouseClicked="#validateBottleCapacity" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
                                                                 <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="484.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TOTAL BOTTLE CAPACITY BEFORE CLOSURE " />
@@ -169,7 +169,7 @@
                                                         </VBox>
                                                         <VBox prefWidth="400.0">
                                                             <children>
-                                                <JFXCheckBox fx:id="resubmission" text="RESUBMISSION AFTER REJECTION" />
+                                                <JFXCheckBox fx:id="resubmission" onMouseClicked="#validateTTBID" text="RESUBMISSION AFTER REJECTION" />
                                                                 <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TTB ID " />
@@ -203,7 +203,7 @@
                                           <String fx:value="innerShadow" />
                                        </styleClass>
                                                 </Pane>
-                                    <JFXButton fx:id="uploadImageButton" onMouseReleased="#uploadImage" styleClass="buttonStyle" text="Upload" />
+                                    <JFXButton fx:id="uploadImageButton" onMouseClicked="#uploadImage" onMouseReleased="#uploadImage" styleClass="buttonStyle" text="Upload" />
                                             </children>
                                             <VBox.margin>
                                                 <Insets />
