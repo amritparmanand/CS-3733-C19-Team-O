@@ -29,6 +29,11 @@ public class mApplicationFormPg3 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private LabelImage image = new LabelImage();
+//    @FXML private JFXButton next;
+//    @FXML private JFXButton previous;
+//    @FXML private JFXButton search;
+//    @FXML private JFXButton back;
+//    @FXML private JFXButton uploadImageButton;
     @FXML private JFXTextField onlyState;
     @FXML private JFXTextField ttbID;
     @FXML private JFXTextField bottleCapacity; //will be int, for future reference
@@ -62,9 +67,6 @@ public class mApplicationFormPg3 {
             resubmission.setSelected(false);
         else if(form.getResubmission())
             resubmission.setSelected(true);
-        validateStateField();
-        validateBottleCapacity();
-        validateTTBID();
 //        if(!(form.getLabel().getLabelImage() == null))
 //            imagePreview.setImage(form.getLabel().getLabelImage());
     }
@@ -143,7 +145,7 @@ public class mApplicationFormPg3 {
     }
 
     @FXML
-    public void uploadImage(){
+    public void uploadImage(ActionEvent event){
         image.getFile();
         imagePreview.setImage(image.getLabelImage());
     }
