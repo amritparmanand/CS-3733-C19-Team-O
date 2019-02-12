@@ -95,7 +95,7 @@
                             <MenuItem fx:id="sqlSearch" mnemonicParsing="false" onAction="#searchSQL" text="SQL" />
                             <MenuItem fx:id="lSearch" mnemonicParsing="false" onAction="#searchLevi" text="Levenshtein" />
                               <MenuItem fx:id="dlSearch" mnemonicParsing="false" onAction="#searchDLevi" text="Damerau-Levenshtein" />
-                              <MenuItem fx:id="sublime" mnemonicParsing="false" onAction="#searchSublime" text="Sublime" />
+                              <MenuItem fx:id="hiddenScore" mnemonicParsing="false" onAction="#searchHiddenS" text="Hidden Score" />
                           </items>
                            <VBox.margin>
                               <Insets left="20.0" top="10.0" />

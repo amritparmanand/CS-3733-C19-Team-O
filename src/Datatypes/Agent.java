@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Set;
 /**
  * @author Percy Jiang & Gabe Entov
- * @version It 1
+ * @version It 2
+ * @since It 1
  * Class for an agent account
  */
 public class Agent extends Account {
@@ -41,9 +42,6 @@ public class Agent extends Account {
         this.ttbID = ttbID;
     }
 
-    NumberAssigned object = NumberAssigned.getInstance();
-    public int limit = object.getNum();
-
     // Parse an agent object into database
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
@@ -70,9 +68,7 @@ public class Agent extends Account {
     // As long as there are less than 3 forms in workingForms
     // Query the database to select forms where ttb ID is empty
     // Insert this agent's ID into the selected forms
-    public void assignNewForms(Connection conn) {
-        System.out.println(limit);
-
+    public void assignNewForms(Connection conn, int limit) {
         if (!hasFetchedForms)
             getAssignedForms(conn);
 
@@ -91,6 +87,7 @@ public class Agent extends Account {
 
                 ps.close();
 
+                // Get rid of the comma and space
                 insertingAgentID = insertingAgentID.substring(0, insertingAgentID.length() - 2).concat(")");
 
                 ps = conn.prepareStatement(insertingAgentID);
@@ -117,7 +114,7 @@ public class Agent extends Account {
 
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next() && this.workingForms.size() < limit) { //extraneous < 3 because only three will ever be assigned
+            while (rs.next()) {
                 workingForms.add(formFromResultSet(rs));
             }
             ps.close();
