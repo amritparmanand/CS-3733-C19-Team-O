@@ -23,16 +23,14 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.util.ArrayList;
 /**
- * @author Sam Silver (?)
- * @version It 1
+ * @author Sam Silver & Percy Jiang
+ * @since It 1
+ * @version It 2
  * Controller for aFormStorage of UI
  */
 public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
-    private Form form;
-
-    int i = 0;
 
     @FXML private FlowPane loadForms;
     @FXML private JFXButton getFormsButton;
@@ -64,15 +62,16 @@ public class aFormStorage {
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
 
-    @FXML
-    public void assignNewForms() throws IOException {
+    @FXML public void assignNewForms() throws IOException {
 
         NumberAssigned object = NumberAssigned.getInstance();
         if(!formLimit.getText().isEmpty()){
             object.setNum(Integer.parseInt(formLimit.getText()));
         }
+        int limit = object.getNum();
+        System.out.println(limit);
 
-        ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection());
+        ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
 
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
 
