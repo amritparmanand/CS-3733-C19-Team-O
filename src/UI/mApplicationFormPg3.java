@@ -3,12 +3,15 @@ package UI;
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Managers.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,19 +29,20 @@ public class mApplicationFormPg3 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private LabelImage image = new LabelImage();
-    @FXML private Button next;
-    @FXML private Button previous;
-    @FXML private Button search;
-    @FXML private Button back;
-    @FXML private Button uploadImageButton;
-    @FXML private JFXTextField stateAbb;
+//    @FXML private JFXButton next;
+//    @FXML private JFXButton previous;
+//    @FXML private JFXButton search;
+//    @FXML private JFXButton back;
+//    @FXML private JFXButton uploadImageButton;
+    @FXML private JFXTextField onlyState;
     @FXML private JFXTextField ttbID;
     @FXML private JFXTextField bottleCapacity; //will be int, for future reference
-    @FXML private CheckBox certLabelApp;
-    @FXML private CheckBox certExempLabApp;
-    @FXML private CheckBox distinctLiqBottApp;
-    @FXML private CheckBox resubmitAfterRej;
+    @FXML private JFXCheckBox certificateOfApproval;
+    @FXML private JFXCheckBox certificateOfExemption;
+    @FXML private JFXCheckBox DistinctiveLiquor;
+    @FXML private JFXCheckBox resubmission;
     @FXML private ImageView imagePreview;
+    @FXML private Label errorLabel;
 
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -47,30 +51,85 @@ public class mApplicationFormPg3 {
 
     @FXML public void initialize() {
         Form form = cacheM.getForm();
-
+        if(form.getCertificateOfApproval() == null)
+            certificateOfApproval.setSelected(false);
+        else if(form.getCertificateOfApproval())
+            certificateOfApproval.setSelected(true);
+        if(form.getCertificateOfExemption() == null)
+            certificateOfExemption.setSelected(false);
+        else if(form.getCertificateOfExemption())
+            certificateOfExemption.setSelected(true);
+        if(form.getDistinctiveLiquor() == null)
+            DistinctiveLiquor.setSelected(false);
+        else if(form.getDistinctiveLiquor())
+            DistinctiveLiquor.setSelected(true);
+        if(form.getResubmission() == null)
+            resubmission.setSelected(false);
+        else if(form.getResubmission())
+            resubmission.setSelected(true);
+//        if(!(form.getLabel().getLabelImage() == null))
+//            imagePreview.setImage(form.getLabel().getLabelImage());
     }
 
 
+    @FXML public void validateStateField() {
+        if(!certificateOfExemption.isSelected()) {
+            onlyState.setText("");
+            onlyState.setDisable(true);
+        }else {
+            onlyState.setDisable(false);
+        }
+    }
+    @FXML public void validateBottleCapacity() {
+        if(!certificateOfExemption.isSelected()) {
+            onlyState.setText("");
+            onlyState.setDisable(true);
+        }else {
+            onlyState.setDisable(false);
+        }
+    }
+    @FXML public void validateTTBID() {
+        if(!resubmission.isSelected()) {
+            ttbID.setText("");
+            ttbID.setDisable(true);
+        }else {
+            ttbID.setDisable(false);
+        }
+    }
 
-
-    @FXML public void saveDraft(){
+    @FXML public boolean saveDraft(){
+        if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
+                !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
+            errorLabel.setText("Please select a type of application.");
+            return false;
+        }
         Form form = cacheM.getForm();
 
-        form.setCertificateOfApproval(certLabelApp.isSelected());
-        form.setCertificateOfExemption(certExempLabApp.isSelected());
-        form.setOnlyState(stateAbb.getText());
-        form.setDistinctiveLiquor(distinctLiqBottApp.isSelected());
-        form.setResubmission(resubmitAfterRej.isSelected());
-        form.setTtbID(Integer.parseInt(ttbID.getText()));
+        form.setCertificateOfApproval(certificateOfApproval.isSelected());
+        form.setCertificateOfExemption(certificateOfExemption.isSelected());
+        if(certificateOfExemption.isSelected()) {
+            form.setOnlyState(onlyState.getText());
+        }else {
+            form.setOnlyState(null);
+        }
+        form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
+        form.setResubmission(resubmission.isSelected());
+        if(!resubmission.isSelected())
+            form.setTtbID(0);
+        else
+            form.setTtbID(Integer.parseInt(ttbID.getText()));
         form.setBottleCapacity(bottleCapacity.getText());
-        form.setLabelImage(image.getFile());
-
+        form.setLabel(image);
+        errorLabel.setText(" ");
         cacheM.setForm(form);
+        return true;
     }
 
     @FXML public void nextPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
+        if(saveDraft()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
+            sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
+        }
     }
     @FXML public void previousPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
