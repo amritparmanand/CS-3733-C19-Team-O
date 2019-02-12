@@ -410,7 +410,6 @@ public class DatabaseManager {
             if(fc.fuzzy(input,itrator) <= fc.fuzzy(input,best)){
                 best = itrator;
             }
-
         }
 
         return best;

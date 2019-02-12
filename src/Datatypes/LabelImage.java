@@ -13,11 +13,11 @@ import java.io.File;
 
 public class LabelImage {
     private File labelFile;
-    private Image labelImage;
+    private Image image;
 
     public LabelImage(){
         this.labelFile = null;
-        this.labelImage = null;
+        this.image = null;
     }
 //    Image selecting method
     public File getFile(){
@@ -29,7 +29,7 @@ public class LabelImage {
         //Actually get the label file
         this.labelFile = fileChooser.showOpenDialog(null);
         //Make the file into an image
-        this.labelImage = new Image(labelFile.toURI().toString());
+        this.image = new Image(labelFile.toURI().toString());
         //WARNING: need to add to database! HEREREREEEEEEE
         return labelFile;
 
@@ -44,11 +44,11 @@ public class LabelImage {
     }
 
     public Image getLabelImage() {
-        return labelImage;
+        return image;
     }
 
     public void setLabelImage(Image labelImage) {
-        this.labelImage = labelImage;
+        this.image = labelImage;
     }
 
 
