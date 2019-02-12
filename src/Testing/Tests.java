@@ -18,7 +18,8 @@ import java.util.Collection;
 
 /**
  * @author Clay Oshiro-Leavitt
- * Testing Class for Phone Numbers
+ * @version It 2
+ * Testing for Phone Numbers
  */
 @RunWith(Parameterized.class)
 public class Tests {
