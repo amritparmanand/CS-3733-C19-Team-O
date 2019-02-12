@@ -109,7 +109,7 @@ public class LoginPage implements SerialPortDataListener {
                     {
                         Platform.runLater(() -> {
                             loginMessage.setTextFill(Color.RED);
-                            loginMessage.setText("Badge has not yet been progammed.");
+                            loginMessage.setText("Badge has not yet been programmed.");
                             return;
 
                         });
