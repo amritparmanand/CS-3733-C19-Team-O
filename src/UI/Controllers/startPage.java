@@ -1,8 +1,7 @@
-package UI;
+package UI.Controllers;
 
 import Managers.CacheManager;
 import Managers.SceneManager;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

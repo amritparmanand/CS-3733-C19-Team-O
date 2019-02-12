@@ -1,4 +1,4 @@
-package UI;
+package UI.Controllers;
 
 import Managers.*;
 import javafx.fxml.FXML;

@@ -1,25 +1,17 @@
-package UI;
+package UI.Controllers;
 
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Managers.*;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
 
-import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
+
 /**
  * @author Amrit Parmanand, Elizabeth Del Monaco, & Gabriel Entov
  * @version It 2

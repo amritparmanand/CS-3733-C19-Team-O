@@ -1,4 +1,4 @@
-package UI;
+package UI.Controllers;
 
 
 import Datatypes.Form;
@@ -9,10 +9,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 
-import javax.xml.soap.Text;
 import java.io.IOException;
 /**
  * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco

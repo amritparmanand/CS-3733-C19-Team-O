@@ -1,6 +1,6 @@
 import Managers.*;
 
-import UI.LoginPage;
+import UI.Controllers.LoginPage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
