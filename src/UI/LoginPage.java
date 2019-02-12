@@ -53,19 +53,31 @@ public class LoginPage implements SerialPortDataListener {
                 serialPort.readBytes(newData, newData.length);
                 String buf = new String(newData);
                 buf = buf.trim();
-                int id = Integer.parseInt(buf);
-                System.out.println(id);
-                cacheM.setAcct(cacheM.getDbM().aCreate(id));
-                System.out.println("Login Successful!");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
-                Platform.runLater(() -> {
-                    try {
-                        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return;
-                });
+                System.out.println(buf);
+                if((buf != null && !(buf.length() < 2))) {
+                    buf = buf.trim();
+                    int loginID = Integer.parseInt(buf);
+                    String uname = cacheM.getDbM().aFindUsername(loginID);
+                    String hashedPassword = cacheM.getDbM().aFindPassword(loginID);
+                    id.setText(String.valueOf(loginID));
+                    username.setText(uname);
+                    password.setText(hashedPassword);
+                    if((uname != null) && (uname != "")) {
+                    cacheM.setAcct(cacheM.getDbM().aCreate(loginID));
+                    System.out.println("Login Successful!");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+                    Platform.runLater(() -> {
+                        try {
+                            sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        serialPort.closePort();
+                        return;
+
+                    });
+                }
+                }
             }
         });
     }
