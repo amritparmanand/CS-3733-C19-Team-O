@@ -20,8 +20,8 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(Parameterized.class)
 public class FuzzyTests {
-    private FuzzyContext fc;
-    private FuzzyContext fc_Damerau;
+    private Levenshtein fc;
+    private Damerau_Levenshtein fc_Damerau;
     private FuzzyContext fc_hiddenScore;
 
     @Parameterized.Parameters
@@ -45,15 +45,13 @@ public class FuzzyTests {
 
     @Test
     public void LevenshteinTest(){
-        fc = new FuzzyContext();
-        fc.setF(new Levenshtein());
-        assertEquals(expectedDistance, fc.fuzzy(string1, string2));
+        fc = new Levenshtein();
+        assertEquals(expectedDistance, fc.Levenshtein(string1, string2));
     }
     @Test
     public void Damerau_LevenshteinTest(){
-        fc_Damerau = new FuzzyContext();
-        fc_Damerau.setF(new Damerau_Levenshtein());
-        assertEquals(expectedSwap, fc_Damerau.fuzzy(string1,string2));
+        fc_Damerau = new Damerau_Levenshtein();
+        assertEquals(expectedSwap, fc_Damerau.Damerau_Levenshtein(string1,string2));
     }
   /*  @Test
     public void hiddenScore(){

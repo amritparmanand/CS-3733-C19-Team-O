@@ -16,8 +16,6 @@ public class Damerau_Levenshtein implements IFuzzy {
     }
 
     public int Damerau_Levenshtein(String source, String target) {
-    @Override
-    public int fuzzy(String source, String target) {
         source = source.toLowerCase();
         target = target.toLowerCase();
 

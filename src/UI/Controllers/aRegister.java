@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * @author Percy Jiang & Gabe Entov
@@ -35,6 +37,9 @@ public class aRegister {
     @FXML private JFXTextField email;
     @FXML private JFXTextField phone;
     @FXML private JFXTextField ttbID;
+    @FXML private Label phoneMessage;
+    @FXML private Label emailMessage;
+    @FXML private Label IDMessage;
 
 
     @FXML
@@ -89,6 +94,7 @@ public class aRegister {
     /**
      * @author Clay Oshiro-Leavitt
      * @version It 2
+     * @since It 2
      * @param phoneNumber phone number to be checked
      * checks the manufacturer phone number for Agent Registration form
      * will accept US number with the following conditions
@@ -104,10 +110,15 @@ public class aRegister {
         if(phoneNumber.matches("^[0]{8,20}$")){
             return false;
         } else if(phoneNumber.matches("^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$")){
-            //System.out.println("valid Number");
+            System.out.println("valid Number");
             return true;
         }else
-       //     System.out.println("invalid number");
+            phoneMessage.setTextFill(Color.RED);
+        phoneMessage.setText("Invalid Phone Number. Please Try again.");
+            System.out.println("invalid number");
         return false;
     }
+
+    //@FXML
+    //public boolean valid
 }
