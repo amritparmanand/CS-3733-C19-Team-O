@@ -261,7 +261,8 @@ public class SearchPage {
 
             PrintWriter writer = new PrintWriter("search-results.csv", "UTF-8");
 
-            writer.println("FANCIFUL NAME,COMPANY NAME,ALCOHOL TYPE,ALCOHOL TYPE2,PH LEVEL,ALCOHOL PERCENT,YEAR");
+            writer.println("sep=;");
+            writer.println("FANCIFUL NAME;COMPANY NAME;ALCOHOL TYPE;ALCOHOL TYPE2;PH LEVEL;ALCOHOL PERCENT;YEAR");
 
             for(SearchResult s : searchList){
                 //holder variable to hold the type of alcohol for printing
@@ -270,7 +271,7 @@ public class SearchPage {
                 else if (s.isLiquor()){alcoholType = "liquor";}
                 else if (s.isWine()){alcoholType = "wine";}
 
-                writer.println(s.getFancifulName() + "," + s.getCompanyName()+ "," + s.getAlcoholType() + "," + alcoholType + "," + s.getPhLevel() + "," + s.getAlcohol() + "," + s.getYear());
+                writer.println(s.getFancifulName() + ";" + s.getCompanyName()+ ";" + s.getAlcoholType() + ";" + alcoholType + ";" + s.getPhLevel() + ";" + s.getAlcohol() + ";" + s.getYear());
             }
             writer.close();
         }
