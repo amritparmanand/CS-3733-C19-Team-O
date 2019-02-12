@@ -145,16 +145,21 @@ public class hiddenScore implements IFuzzy {
     @Override
     public String fuzzy(String input, Connection conn) {
         String best = "this is complete garbage";
-        String iterator = "";
+        String brandI = "";
+        String fanciI = "";
         int size = 0;
 
         try {
             String getEverything = "select * from FORMS";
             ResultSet r1 = conn.createStatement().executeQuery(getEverything);
             while(r1.next()){
-                iterator = r1.getString("brandName");
-                if(hiddenScore(input,iterator) >= hiddenScore(input,best)){
-                    best = iterator;
+                brandI = r1.getString("brandName");
+                fanciI = r1.getString("fancifulName");
+                if(hiddenScore(input,brandI) >= hiddenScore(input,best)){
+                    best = brandI;
+                }
+                if(hiddenScore(input,fanciI) >= hiddenScore(input,best)){
+                    best = fanciI;
                 }
             }
         } catch (SQLException e) {

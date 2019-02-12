@@ -61,16 +61,21 @@ public class Damerau_Levenshtein implements IFuzzy {
     @Override
     public String fuzzy(String input, Connection conn) {
         String best = "this is complete garbage";
-        String iterator = "";
+        String brandI = "";
+        String fanciI = "";
         int size = 0;
 
         try {
             String getEverything = "select * from FORMS";
             ResultSet r1 = conn.createStatement().executeQuery(getEverything);
             while(r1.next()){
-                iterator = r1.getString("brandName");
-                if(Damerau_Levenshtein(input,iterator) <= Damerau_Levenshtein(input,best)){
-                    best = iterator;
+                brandI = r1.getString("brandName");
+                fanciI = r1.getString("fancifulName");
+                if(Damerau_Levenshtein(input,brandI) <= Damerau_Levenshtein(input,best)){
+                    best = brandI;
+                }
+                if(Damerau_Levenshtein(input,fanciI) <= Damerau_Levenshtein(input,best)){
+                    best = fanciI;
                 }
             }
         } catch (SQLException e) {

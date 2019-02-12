@@ -13,7 +13,7 @@ public class SQL implements IFuzzy {
     public String fuzzy(String input, Connection conn) {
         String suggestion = "";
         try {
-            String q = "select BRANDNAME from FORMS where BRANDNAME like '%" + input + "%'";
+            String q = "select * from FORMS where BRANDNAME like '%" + input + "%'";
             ResultSet r = conn.createStatement().executeQuery(q);
             while(r.next()){
                 suggestion = r.getString("brandName");
@@ -21,6 +21,18 @@ public class SQL implements IFuzzy {
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
+        }
+        if(suggestion == ""){
+            try {
+                String q = "select * from FORMS where FANCIFULNAME like '%" + input + "%'";
+                ResultSet r = conn.createStatement().executeQuery(q);
+                while(r.next()){
+                    suggestion = r.getString("fancifulName");
+                }
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
         }
         return suggestion;
     }
