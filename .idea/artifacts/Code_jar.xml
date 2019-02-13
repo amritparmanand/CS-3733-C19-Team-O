@@ -1,0 +1,47 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Code:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Code_jar</output-path>
+    <root id="archive" name="Code.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="Code" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-aspects-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-cas-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-acl-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-crypto-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-ldap-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-openid-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-config-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-remoting-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-taglibs-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-core-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/spring-security-web-3.2.5.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Spring-4.3.18.RELEASE" />
+      <element id="library" level="project" name="Spring Security-3.2.5" />
+      <element id="library" level="project" name="Spring Security-3.2.5 (2)" />
+      <element id="module-source" name="Code" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derby.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derby.war" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyclient.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_cs.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_de_DE.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_es.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_fr.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_hu.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_it.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_ja_JP.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_ko_KR.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_pl.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_pt_BR.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_ru.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_zh_CN.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyLocale_zh_TW.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbynet.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyoptionaltools.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbyrun.jar" />
+      <element id="file-copy" path="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derbytools.jar" />
+    </root>
+  </artifact>
+</component>

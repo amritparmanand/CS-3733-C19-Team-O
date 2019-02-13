@@ -2,6 +2,7 @@ package Managers;
 
 import Datatypes.Account;
 import Datatypes.Form;
+import Datatypes.SearchResult;
 import Fuzzy.FuzzyContext;
 
 import java.io.FileNotFoundException;
@@ -15,31 +16,20 @@ import java.sql.SQLException;
  * manages the cache, provides access to cached info
  */
 public class CacheManager {
-    private Connection dbConn;
     private DatabaseManager dbM;
     private Form form;
     private Account acct;
+    private SearchResult selectedResult;
     private int formLimit;
+    private String passer;
+    private String receiver;
 
     public CacheManager(DatabaseManager dbM) {
-        this.dbConn = dbConn;
         this.dbM = dbM;
         this.form = new Form();
     }
 
-//    public CacheManager(Connection dbConn) {
-//        this.dbConn = dbConn;
-//        this.form = new Form();
-//    }
-//
-
     // Getters and Setters
-    public Connection getDbConn() {
-        return dbConn;
-    }
-    public void setDbConn(Connection dbConn) {
-        this.dbConn = dbConn;
-    }
     public DatabaseManager getDbM() {
         return dbM;
     }
@@ -55,7 +45,32 @@ public class CacheManager {
     public void setAcct(Account acct) {
         this.acct = acct;
     }
+    public int getFormLimit() {
+        return formLimit;
+    }
+    public void setFormLimit(int formLimit) {
+        this.formLimit = formLimit;
+    }
+    public String getPasser() {
+        return passer;
+    }
+    public void setPasser(String passer) {
+        this.passer = passer;
+    }
+    public String getReceiver() {
+        return receiver;
+    }
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
 
+    public SearchResult getSelectedResult() {
+        return selectedResult;
+    }
+
+    public void setSelectedResult(SearchResult selectedResult) {
+        this.selectedResult = selectedResult;
+    }
 
     // Facade stuff
 
@@ -71,6 +86,12 @@ public class CacheManager {
     }
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
         return form.getApprovedApplications(conn);
+    }
+    public void passForm(Connection connection, String passer) throws SQLException{
+        form.passForm(connection, passer);
+    }
+    public void receiveForm(Connection connection, String passer, String receiver) throws SQLException{
+        form.receiveForm(connection,passer,receiver);
     }
 
 }

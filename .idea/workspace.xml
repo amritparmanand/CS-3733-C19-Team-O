@@ -1,0 +1,1364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Code:jar2" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2fc365b8-d639-4093-96ed-31e7e0bb3b72" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/aopalliance-1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/commons-logging-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jSerialComm-2.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jfoenix-8.0.8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-aop-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-aspects-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-beans-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-context-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-context-support-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-core-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-expression-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-instrument-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-instrument-tomcat-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-jdbc-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-jms-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-messaging-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-orm-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-oxm-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-acl-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-aspects-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-cas-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-config-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-core-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-crypto-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-ldap-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-openid-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-remoting-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-taglibs-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-security-web-3.2.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-test-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/spring-tx-4.3.18.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Datatypes/Account.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Datatypes/Agent.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Datatypes/Form.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Datatypes/IAccount.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Datatypes/LabelImage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Datatypes/Manufacturer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Datatypes/NumberAssigned.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Datatypes/ProgressBar.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Datatypes/SearchResult.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Fuzzy/Damerau_Levenshtein.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Fuzzy/FuzzyContext.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Fuzzy/IFuzzy.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Fuzzy/Levenshtein.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Fuzzy/SQL.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Fuzzy/hiddenScore.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/META-INF/CS-3733-C19-Team-O-Iteration-1.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Managers/CacheManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Managers/DatabaseManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Managers/SceneManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/Testing/Tests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/LoginPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/SearchPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/aApplicationFormPg1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/aApplicationFormPg2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/aApplicationFormPg3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/aApplicationFormPg4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/aFormStorage$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/aFormStorage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/aGetApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/aHomepage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/aRegister.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/alcBox.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/mApplicationFormPg1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/mApplicationFormPg1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/mApplicationFormPg2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/mApplicationFormPg3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/mApplicationFormPg4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/mFormStorage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/mHomepage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/mRegister.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Controllers/startPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/Envelope-Mail-PNG-Picture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/TTB-logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/TTB-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/document.ai" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/myforms.ai" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/myforms.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/myforms.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/newform.ai" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/newform.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Icons/newform.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/MultiThreadWaitFor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/LoginPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/SearchPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/aApplicationFormPg1.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/aApplicationFormPg2.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/aApplicationFormPg3.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/aApplicationFormPg4.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/aFormStorage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/aGetApplication.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/aHomepage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/aRegister.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/alcBox.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/mApplicationFormPg1.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/mApplicationFormPg2.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/mApplicationFormPg3.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/mApplicationFormPg4.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/mFormStorage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/mHomepage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/mRegister.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/settingPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/Views/startPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/callableFunction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-Black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-BlackItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-BoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-LightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-MediumItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-Thin.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/Roboto-ThinItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/RobotoCondensed-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/RobotoCondensed-BoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/RobotoCondensed-Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/RobotoCondensed-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/RobotoCondensed-LightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/font/roboto/RobotoCondensed-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-alert.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-button.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-check-box.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-chip-view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-color-picker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-combo-box.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-date-picker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-dialog-layout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-drawer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-password-field.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-progress-bar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-radio-button.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-slider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-spinner.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-tab-pane.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-text-area.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-text-field.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-time-picker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-toggle-button.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-toggle-node.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-tree-table-view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/controls/jfx-tree-view-path.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/jfoenix-design.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/jfoenix-fonts.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CS-3733-C19-Team-O-Iteration-1/UI/style/ui-mockup-stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Datatypes/Account.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Datatypes/Agent.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Datatypes/Form.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Datatypes/IAccount.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Datatypes/LabelImage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Datatypes/Manufacturer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Datatypes/NumberAssigned.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Datatypes/ProgressBar.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Datatypes/SearchResult.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Fuzzy/Damerau_Levenshtein.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Fuzzy/FuzzyContext.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Fuzzy/IFuzzy.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Fuzzy/Levenshtein.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Fuzzy/SQL.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Fuzzy/hiddenScore.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/META-INF/iteration2.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Managers/CacheManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Managers/DatabaseManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Managers/SceneManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/Testing/Tests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/Envelope-Mail-PNG-Picture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/TTB-logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/TTB-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/document.ai" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/myforms.ai" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/myforms.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/myforms.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/newform.ai" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/newform.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Icons/newform.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/LoginPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/MultiThreadWaitFor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/SearchPage$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/SearchPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/SearchResultPopup.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/LoginPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/SearchPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/SearchResultPopup.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/aApplicationFormPg1.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/aApplicationFormPg2.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/aApplicationFormPg3.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/aApplicationFormPg4.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/aFormStorage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/aGetApplication.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/aHomepage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/aRegister.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/alcBox.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/mApplicationFormPg1.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/mApplicationFormPg2.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/mApplicationFormPg3.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/mApplicationFormPg4.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/mFormStorage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/mHomepage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/mRegister.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/settingPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/Views/startPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/aApplicationFormPg1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/aApplicationFormPg2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/aApplicationFormPg3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/aApplicationFormPg4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/aFormStorage$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/aFormStorage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/aGetApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/aHomepage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/aRegister.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/alcBox.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/callableFunction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-Black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-BlackItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-BoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-LightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-MediumItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-Thin.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/Roboto-ThinItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/RobotoCondensed-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/RobotoCondensed-BoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/RobotoCondensed-Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/RobotoCondensed-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/RobotoCondensed-LightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/font/roboto/RobotoCondensed-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/mApplicationFormPg1$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/mApplicationFormPg1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/mApplicationFormPg2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/mApplicationFormPg3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/mApplicationFormPg4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/mFormStorage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/mHomepage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/mRegister.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/startPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-alert.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-button.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-check-box.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-chip-view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-color-picker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-combo-box.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-date-picker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-dialog-layout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-drawer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-password-field.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-progress-bar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-radio-button.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-slider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-spinner.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-tab-pane.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-text-area.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-text-field.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-time-picker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-toggle-button.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-toggle-node.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-tree-table-view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/controls/jfx-tree-view-path.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/jfoenix-design.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/jfoenix-fonts.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/iteration2/UI/style/ui-mockup-stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/ApplicationsXLSX.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/DifferenttTTBDB.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/numbers" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/numbers.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/ttb2012-20142.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/SearchResultPopup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/Views/SearchResultPopup.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/README_DO_NOT_TOUCH_FILES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/db.lck" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/dbex.lck" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/log/README_DO_NOT_TOUCH_FILES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/log/log.ctrl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/log/log2.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/log/log4.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/log/logmirror.ctrl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/README_DO_NOT_TOUCH_FILES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c10.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c101.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c111.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c121.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c130.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c141.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c150.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c161.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c171.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c180.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c191.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c1a1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c1b1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c1c0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c1d1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c1e0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c1f1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c20.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c200.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c211.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c221.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c230.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c241.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c251.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c260.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c271.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c281.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c290.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c2a1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c2b1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c2c1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c2d0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c2e1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c2f0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c300.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c31.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c311.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c321.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c331.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c340.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c351.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c361.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c371.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c380.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c391.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c3a1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c3b1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c3c0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c3d1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c3e1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c3f1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c400.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c41.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c411.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c421.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c430.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c441.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c451.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c461.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c470.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c481.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c490.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c4a1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c4b0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c4c1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c4d0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c4e1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c4f0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c501.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c51.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c510.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c511.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c521.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c530.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c541.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c60.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c71.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c81.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/c90.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/ca1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/cb1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/cc0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/cd1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/ce1.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/cf0.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/d530.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/seg0/d550.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ttbDB/service.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Datatypes/Form.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Datatypes/Form.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Managers/CacheManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Managers/CacheManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Managers/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Managers/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/SearchPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/SearchPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/aHomepage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/aHomepage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/aRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/aRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Views/aApplicationFormPg1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Views/aApplicationFormPg1.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Views/mApplicationFormPg1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Views/mApplicationFormPg1.fxml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Code$Main.ic" NAME="Main Coverage Results" MODIFIED="1549990849006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="201" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ttbDB [2]" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ttbDB [2]" type="feb32156:DbDataSourceImpl" />
+        <item name="APP: schema" type="12aa88c4:DerbyImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ttbDB [2]" type="feb32156:DbDataSourceImpl" />
+        <item name="APP: schema" type="12aa88c4:DerbyImplModel$Schema" />
+        <item name="AGENTS: table" type="7a557cd6:DerbyImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ttbDB [2]" type="feb32156:DbDataSourceImpl" />
+        <item name="APP: schema" type="12aa88c4:DerbyImplModel$Schema" />
+        <item name="APPLICATIONS: table" type="7a557cd6:DerbyImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ttbDB [2]" type="feb32156:DbDataSourceImpl" />
+        <item name="APP: schema" type="12aa88c4:DerbyImplModel$Schema" />
+        <item name="FORMS: table" type="7a557cd6:DerbyImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Managers/DatabaseManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5849">
+              <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+              <folding>
+                <element signature="e#902#903#0" expanded="true" />
+                <element signature="e#935#936#0" expanded="true" />
+                <element signature="e#990#991#0" expanded="true" />
+                <element signature="e#1034#1035#0" expanded="true" />
+                <element signature="e#1067#1068#0" expanded="true" />
+                <element signature="e#1094#1095#0" expanded="true" />
+                <element signature="e#1136#1137#0" expanded="true" />
+                <element signature="e#1168#1169#0" expanded="true" />
+                <element signature="e#14148#14179#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/SearchResultPopup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/Controllers/SearchPage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3903">
+              <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg4.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="31">
+              <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Managers/CacheManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Datatypes/Agent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="683">
+              <caret line="180" column="48" selection-start-line="180" selection-start-column="48" selection-end-line="181" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="46" column="35" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="35" />
+              <folding>
+                <element signature="e#1443#1474#0" expanded="true" />
+                <element signature="e#6613#6739#0" expanded="true" />
+                <element signature="e#6738#6739#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+              <folding>
+                <element signature="e#1772#1803#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Datatypes/LabelImage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+              <folding>
+                <element signature="e#1250#1251#0" expanded="true" />
+                <element signature="e#1289#1290#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>/edu/wpi/cs3733c19/teamO</find>
+      <find>\</find>
+      <find>scrollpane</find>
+      <find>initialize</find>
+      <find>ttbid</find>
+      <find>type</find>
+      <find>typeofapplication</find>
+      <find>application</find>
+      <find>check</find>
+      <find>executeStatement</find>
+      <find>formid</find>
+      <find>labelim</find>
+      <find>Button</find>
+      <find>getlabel</find>
+      <find>jf</find>
+      <find>next</find>
+      <find>jfx</find>
+      <find>jfxbutton</find>
+      <find>parse</find>
+      <find>get</find>
+      <find>getfile</find>
+      <find>controller</find>
+      <find>nex</find>
+      <find>form.set</find>
+      <find>save</find>
+      <find>form.</find>
+      <find>addapp</find>
+      <find>formfr</find>
+      <find>deny</find>
+      <find>formFrom</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>&quot;</replace>
+      <replace />
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Main.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/97514dd3-7532-4d0d-aa50-be4c5f02fb05/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/97514dd3-7532-4d0d-aa50-be4c5f02fb05/console_1.sql" />
+        <option value="$PROJECT_DIR$/../tablegen.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/97514dd3-7532-4d0d-aa50-be4c5f02fb05/console_2.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4781b5ed-79e7-448b-84e0-00e6d97c8638/console_1.sql" />
+        <option value="$PROJECT_DIR$/src/Datatypes/Account.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4781b5ed-79e7-448b-84e0-00e6d97c8638/console_2.sql" />
+        <option value="$PROJECT_DIR$/src/UI/mApplicationFormPg1.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4781b5ed-79e7-448b-84e0-00e6d97c8638/console_5.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4781b5ed-79e7-448b-84e0-00e6d97c8638/console_3.sql" />
+        <option value="$PROJECT_DIR$/src/Datatypes/SearchResult.java" />
+        <option value="$PROJECT_DIR$/src/UI/Views/SearchPage.fxml" />
+        <option value="$PROJECT_DIR$/src/UI/Views/alcBox.fxml" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4781b5ed-79e7-448b-84e0-00e6d97c8638/console_6.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4781b5ed-79e7-448b-84e0-00e6d97c8638/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/edu/wpi/cs3733c19/teamO/Managers/DatabaseManager.java" />
+        <option value="$PROJECT_DIR$/src/edu/wpi/cs3733c19/teamO/Main.java" />
+        <option value="$PROJECT_DIR$/src/edu/wpi/cs3733c19/teamO/UI/aApplicationFormPg1.java" />
+        <option value="$PROJECT_DIR$/src/UI/aFormStorage.java" />
+        <option value="$PROJECT_DIR$/src/UI/aGetApplication.java" />
+        <option value="$PROJECT_DIR$/src/UI/style/JFX-stylesheet.css" />
+        <option value="$PROJECT_DIR$/src/UI/style/controls/jfx-text-field.css" />
+        <option value="$PROJECT_DIR$/src/UI/style/ui-mockup-stylesheet.css" />
+        <option value="$PROJECT_DIR$/src/UI/SearchPage.java" />
+        <option value="$PROJECT_DIR$/src/UI/Views/aApplicationFormPg2.fxml" />
+        <option value="$PROJECT_DIR$/src/Datatypes/LabelImage.java" />
+        <option value="$PROJECT_DIR$/src/UI/mApplicationFormPg2.java" />
+        <option value="$PROJECT_DIR$/src/UI/mApplicationFormPg4.java" />
+        <option value="$PROJECT_DIR$/src/UI/mApplicationFormPg3.java" />
+        <option value="$PROJECT_DIR$/src/Fuzzy/Damerau_Levenshtein.java" />
+        <option value="$PROJECT_DIR$/src/UI/Controllers/mHomepage.java" />
+        <option value="$PROJECT_DIR$/src/UI/Views/mApplicationFormPg4.fxml" />
+        <option value="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg3.java" />
+        <option value="$PROJECT_DIR$/src/Managers/CacheManager.java" />
+        <option value="$PROJECT_DIR$/src/Datatypes/Form.java" />
+        <option value="$PROJECT_DIR$/src/Datatypes/Agent.java" />
+        <option value="$PROJECT_DIR$/src/Managers/DatabaseManager.java" />
+        <option value="$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg1.java" />
+        <option value="$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg1.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Datatypes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Managers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="derby" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550039450124" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/UI" />
+      <recent name="$PROJECT_DIR$/src/UI/style" />
+      <recent name="$PROJECT_DIR$/src/UI/Views" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Code" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2fc365b8-d639-4093-96ed-31e7e0bb3b72" name="Default Changelist" comment="" />
+      <created>1549224921033</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1549224921033</updated>
+      <workItem from="1549224925953" duration="9644000" />
+      <workItem from="1549314395655" duration="50243000" />
+      <workItem from="1549833736477" duration="31534000" />
+      <workItem from="1550010212003" duration="16672000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="108093000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26466382" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Image Layers" order="6" />
+      <window_info anchor="bottom" id="Spring" order="0" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3299363" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49928468" visible="true" weight="0.3299363" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Database Console" order="8" weight="0.3299363" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3299363" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007153" side_tool="true" weight="0.3299363" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3299363" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24964234" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.29685265" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.3297568" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Testing/Tests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/LoginPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-402">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/java/lang/reflect/Field.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="763" selection-start-line="763" selection-end-line="763" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Views/aApplicationFormPg1.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/style/ui-mockup-stylesheet.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="296" column="1" selection-start-line="296" selection-start-column="1" selection-end-line="296" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Views/aApplicationFormPg2.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="104" column="41" selection-start-line="104" selection-start-column="38" selection-end-line="104" selection-end-column="41" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/SearchPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1255#1269#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Views/mApplicationFormPg3.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-816">
+          <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Views/mApplicationFormPg1.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Views/mApplicationFormPg2.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="134" column="39" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="39" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/mApplicationFormPg1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1957">
+          <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Managers/SceneManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/aApplicationFormPg1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1201">
+          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/mApplicationFormPg2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="96" column="31" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/mApplicationFormPg3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/mApplicationFormPg4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="45" column="63" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Views/aGetApplication.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/aGetApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/aFormStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fuzzy/SQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fuzzy/hiddenScore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Testing/FuzzyTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/aApplicationFormPg4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-249">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/aApplicationFormPg3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-599">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fuzzy/FuzzyMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fuzzy/FuzzyContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fuzzy/Damerau_Levenshtein.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="76" column="89" selection-start-line="76" selection-start-column="89" selection-end-line="76" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/mHomepage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/mRegister.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="47" column="71" selection-start-line="47" selection-start-column="71" selection-end-line="47" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datatypes/Manufacturer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Views/mApplicationFormPg4.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="701">
+          <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="das://4781b5ed-79e7-448b-84e0-00e6d97c8638/schema/APP/table/APPLICATIONS">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://4781b5ed-79e7-448b-84e0-00e6d97c8638/schema/APP/table/FORMS">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1148">
+          <caret line="92" column="49" selection-start-line="92" selection-start-column="49" selection-end-line="92" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datatypes/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/startPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/LoginPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="44" column="43" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datatypes/Form.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <folding>
+            <element signature="e#3689#3690#0" expanded="true" />
+            <element signature="e#3741#3742#0" expanded="true" />
+            <element signature="e#4361#4362#0" expanded="true" />
+            <element signature="e#4407#4408#0" expanded="true" />
+            <element signature="e#5083#5084#0" expanded="true" />
+            <element signature="e#5135#5136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datatypes/IAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Managers/CacheManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datatypes/LabelImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+          <folding>
+            <element signature="e#1250#1251#0" expanded="true" />
+            <element signature="e#1289#1290#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/java/awt/Image.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Datatypes/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="683">
+          <caret line="180" column="48" selection-start-line="180" selection-start-column="48" selection-end-line="181" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/SearchResultPopup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/SearchPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3903">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Managers/DatabaseManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5849">
+          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <folding>
+            <element signature="e#902#903#0" expanded="true" />
+            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#990#991#0" expanded="true" />
+            <element signature="e#1034#1035#0" expanded="true" />
+            <element signature="e#1067#1068#0" expanded="true" />
+            <element signature="e#1094#1095#0" expanded="true" />
+            <element signature="e#1136#1137#0" expanded="true" />
+            <element signature="e#1168#1169#0" expanded="true" />
+            <element signature="e#14148#14179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/mApplicationFormPg1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="46" column="35" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="35" />
+          <folding>
+            <element signature="e#1443#1474#0" expanded="true" />
+            <element signature="e#6613#6739#0" expanded="true" />
+            <element signature="e#6738#6739#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UI/Controllers/aApplicationFormPg1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+          <folding>
+            <element signature="e#1772#1803#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor>
+            <show-content>
+              <type id="artifact" />
+              <type id="library" />
+            </show-content>
+          </artifact-editor>
+          <last-edited>Code:jar2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Code</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Spring Security-3.2.5</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

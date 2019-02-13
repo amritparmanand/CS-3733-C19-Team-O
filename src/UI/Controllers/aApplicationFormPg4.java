@@ -70,17 +70,13 @@ public class aApplicationFormPg4 {
 
     @FXML
     public void acceptForm() throws IOException {
-        form.approve(cacheM.getDbM().getConnection());
+        cacheM.approveForm(cacheM.getDbM().getConnection());
     }
 
 
     @FXML
     public void denyForm() throws IOException {
-        form.deny(cacheM.getDbM().getConnection());
+        cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
-    @FXML
-    public void saveDraft() throws IOException{
-
-    }
 }

@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 
+import Datatypes.Agent;
 import Datatypes.Form;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
@@ -36,6 +38,12 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextField serialNO;
     @FXML private JFXTextField brand;
     @FXML private JFXTextField fanciful;
+    @FXML private JFXRadioButton wine2;
+    @FXML private JFXRadioButton spirits2;
+    @FXML private JFXRadioButton beer2;
+    @FXML private JFXTextField alcoholPercentage;
+    @FXML private JFXTextField phLevel;
+    @FXML private JFXTextField vintageYear;
     @FXML private JFXTextArea Q1Comment;
     @FXML private JFXTextArea Q2Comment;
     @FXML private JFXTextArea Q3Comment;
@@ -43,10 +51,9 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextArea Q5Comment;
     @FXML private JFXTextArea Q6Comment;
     @FXML private JFXTextArea Q7Comment;
+    @FXML private JFXTextField receiver;
 
-
-
-
+    @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         Form form = cacheM.getForm();
         boolean isDomestic = false;
@@ -83,10 +90,10 @@ public class aApplicationFormPg1 {
         imported.setSelected(isImported);
         serialNO.setText(form.getSerialNumber());
         wine.setSelected(isWine);
-        distilled.setSelected(isSpirit);
+        spirits.setSelected(isSpirit);
         malt.setSelected(isMalt);
-        brandName.setText(form.getBrandName());
-        fancifulName.setText(form.getFancifulName());
+        brand.setText(form.getBrandName());
+        fanciful.setText(form.getFancifulName());
         wine2.setSelected(isWine);
         spirits2.setSelected(isSpirit);
         beer2.setSelected(isMalt);
@@ -94,7 +101,6 @@ public class aApplicationFormPg1 {
         phLevel.setText(form.getpHLevel());
         vintageYear.setText(form.getVintageYear());
     }
-
 
     public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -124,18 +130,18 @@ public class aApplicationFormPg1 {
 
     @FXML
     public void acceptForm() throws IOException {
-        form.approve(cacheM.getDbM().getConnection());
+        cacheM.approveForm(cacheM.getDbM().getConnection());
     }
-
 
     @FXML
     public void denyForm() throws IOException {
-        form.deny(cacheM.getDbM().getConnection());
+        cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
-    @FXML
-    public void saveDraft() throws IOException{
-
+    @FXML public void passForm() throws IOException, SQLException {
+        cacheM.setPasser(cacheM.getAcct().getUsername());
+        cacheM.setReceiver(receiver.getText());
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
     }
 
 }
