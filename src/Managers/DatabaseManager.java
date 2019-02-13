@@ -264,13 +264,12 @@ public class DatabaseManager {
         }
     }
 
-    public void generateTablesForms()
-    {
+    public void generateTablesForms() {
         try {
 
             // Create an object of filereader
             // class with CSV file as a parameter.
-            FileReader filereader = new FileReader("src/resources/DifferenttTTBDB.csv");
+            FileReader filereader = new FileReader("src/resources/forPresentation.csv");
 
             // create csvReader object passing
             // file reader as a parameter
@@ -289,53 +288,42 @@ public class DatabaseManager {
 
                     String[] splitRecord = nextRecord[i].split("!");
 
-                    for(int j = 0; j < splitRecord.length; j++)
-                    {
+                    for (int j = 0; j < splitRecord.length; j++) {
 
 
-                        if(counter == 0)
-                        {
+                        if (counter == 0) {
                             output += splitRecord[j] + ",'";
-                        }
-                        else if(counter == 27)
-                        {
-                            output += splitRecord[j] + "', null)";
+                        } else if (counter == 27) {
+                            output += splitRecord[j] + "', NULL)";
                             break;
 
-                        }
-                        else if(counter == 14)
-                        {
+                        } else if (counter == 14 || counter == 17 || counter == 19) {
                             output += splitRecord[j] + "',";
-                        }
-                        else if(counter == 15)
-                        {
+                        } else if (counter == 15) {
                             output += splitRecord[j] + ",";
 
-                        }
-                        else if(counter == 16)
-                        {
+                        } else if (counter == 16 || counter == 18 || counter == 20) {
                             output += splitRecord[j] + ",'";
 
-                        }
-                        else {
+                        } else {
                             output += splitRecord[j] + "','";
-                            if(output.charAt(2)!='1' && output.charAt(2)!='2' && output.charAt(2)!='3') {
+                            if (output.charAt(1) != '1' && output.charAt(1) != '2' && output.charAt(1) != '3') {
                                 break;
                             }
                         }
 
                         counter++;
-                        if(counter>27)
-                        {
+                        if (counter > 27) {
                             counter = 0;
                             output = "";
                             break;
                         }
+
                     }
 
                 }
 
-                if(counter == 27) {
+                if (counter == 27) {
 
 //                    || output.charAt(2) == 2 || output.charAt(2) == 3
                     if (numOfOutput < 999) {
@@ -350,11 +338,9 @@ public class DatabaseManager {
 
 
                 }
-                if(numOfOutput == 1000)
-                {
+                if (numOfOutput == 1000) {
                     System.out.println(numOfSqlExecute);
-                    if(numOfSqlExecute==0)
-                    {
+                    if (numOfSqlExecute == 0) {
                         System.out.println(bigString);
                     }
                     stmt.executeUpdate(bigString);
@@ -366,8 +352,7 @@ public class DatabaseManager {
                 }
 
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
