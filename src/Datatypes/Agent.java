@@ -19,7 +19,6 @@ public class Agent extends Account {
     private ArrayList<Form> workingForms = new ArrayList<>();
     private boolean hasFetchedForms = false;
 
-    // Why are there 2 constructors?
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
@@ -33,6 +32,30 @@ public class Agent extends Account {
         if (this.hasFetchedForms) {
             this.getWorkingForms();
         }
+    }
+
+    public Agent(int id, Connection conn) {
+        super("","","","","");
+
+        try {
+            String getData = "SELECT * FROM AGENTS WHERE TTBID = " + id;
+            PreparedStatement stmt = conn.prepareStatement(getData);
+
+            ResultSet result = stmt.executeQuery();
+
+            result.next();
+            super.setUsername(result.getString("username"));
+            super.setPassword(result.getString("password"));
+            super.setFullName(result.getString("fullName"));
+            super.setEmail(result.getString("email"));
+            super.setPhone(result.getString("phone"));
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        this.ttbID = id;
     }
 
     public int getTtbID() {
@@ -109,7 +132,6 @@ public class Agent extends Account {
     public void getAssignedForms(Connection conn) {
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID = " + this.getTtbID();
-            ;
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();

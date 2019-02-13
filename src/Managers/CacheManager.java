@@ -6,9 +6,12 @@ import Datatypes.SearchResult;
 import Fuzzy.FuzzyContext;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
- * @author Sam Silver
- * @version It 1
+ * @author Sam Silver & Percy
+ * @version It 2
  * manages the cache, provides access to cached info
  */
 public class CacheManager {
@@ -16,12 +19,15 @@ public class CacheManager {
     private Form form;
     private Account acct;
     private SearchResult selectedResult;
+    private int formLimit;
+    private int receiver;
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
         this.form = new Form();
     }
 
+    // Getters and Setters
     public DatabaseManager getDbM() {
         return dbM;
     }
@@ -45,4 +51,24 @@ public class CacheManager {
     public void setSelectedResult(SearchResult selectedResult) {
         this.selectedResult = selectedResult;
     }
+
+    // Facade stuff
+
+    // Form
+    public void approveForm(Connection conn){
+        form.approve(conn);
+    }
+    public void denyForm(Connection conn){
+        form.deny(conn);
+    }
+    public void insertApp(Connection connection) throws SQLException {
+        form.addApp(connection);
+    }
+    public void insertForm(Connection connection) throws SQLException{
+        form.insert(connection);
+    }
+    public ResultSet getApprovedApplications(Connection conn) throws SQLException{
+        return form.getApprovedApplications(conn);
+    }
+
 }

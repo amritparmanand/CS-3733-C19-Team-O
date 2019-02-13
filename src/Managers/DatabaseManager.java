@@ -54,9 +54,71 @@ public class DatabaseManager {
 
     }
 
-    // Got connected, codes start here
+    /**
+     * Find username and password for an account by its id
+     * @param id
+     * @return the username or password
+     */
+    public String mFindUsername(int id){
+        String uname = "";
+        try {
+            String getData = "select * from REPRESENTATIVES where REPID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                uname = result.getString("username");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return uname;
+    }
+    public String mFindPassword(int id){
+        String hashedPassword = "";
+        try {
+            String getData = "select * from REPRESENTATIVES where REPID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                hashedPassword = result.getString("password");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return hashedPassword;
+    }
+    public String aFindUsername(int id){
+        String uname = "";
+        try {
+            String getData = "select * from AGENTS where TTBID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                uname = result.getString("username");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return uname;
+    }
+    public String aFindPassword(int id){
+        String hashedPassword = "";
+        try {
+            String getData = "select * from AGENTS where TTBID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                hashedPassword = result.getString("password");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        return hashedPassword;
+    }
 
-    // Generate the tables in database and create the sequences for ids
+    /**
+     * Generate the tables in database and create the sequences for ids
+     */
     public void generateTables(){
         String createApplications = "create table Applications(" +
                 "appID int constraint Applications_pk primary key," +
@@ -146,183 +208,10 @@ public class DatabaseManager {
         }
     }
 
-    // Find username and password for an account by its id
-    public String mFindUsername(int id){
-        String uname = "";
-        try {
-            String getData = "select * from REPRESENTATIVES where REPID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                uname = result.getString("username");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-        return uname;
-    }
-    public String mFindPassword(int id){
-        String hashedPassword = "";
-        try {
-            String getData = "select * from REPRESENTATIVES where REPID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                hashedPassword = result.getString("password");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-        return hashedPassword;
-    }
-    public String aFindUsername(int id){
-        String uname = "";
-        try {
-            String getData = "select * from AGENTS where TTBID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                uname = result.getString("username");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-        return uname;
-    }
-    public String aFindPassword(int id){
-        String hashedPassword = "";
-        try {
-            String getData = "select * from AGENTS where TTBID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                hashedPassword = result.getString("password");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-        return hashedPassword;
-    }
-
-    // Create an instance of an account once logged in
-    @SuppressWarnings("Duplicates") public Manufacturer mCreate(int id){
-        String uname = "";
-        String pword = "";
-        String fname = "";
-        String email = "";
-        String phone = "";
-        String cname = "";
-        try {
-            String getData = "select * from REPRESENTATIVES where REPID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                uname = result.getString("username");
-                pword = result.getString("password");
-                fname = result.getString("fullName");
-                email = result.getString("email");
-                phone = result.getString("phone");
-                cname = result.getString("companyName");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-        Manufacturer m = new Manufacturer(uname,pword,fname,email,phone,id,cname);
-        return m;
-    }
-    @SuppressWarnings("Duplicates") public Agent aCreate(int id){
-        String uname = "";
-        String pword = "";
-        String fname = "";
-        String email = "";
-        String phone = "";
-        try {
-            String getData = "select * from AGENTS where TTBID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                uname = result.getString("username");
-                pword = result.getString("password");
-                fname = result.getString("fullName");
-                email = result.getString("email");
-                phone = result.getString("phone");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-        Agent a = new Agent(uname,pword,fname,email,phone,id);
-        return a;
-    }
-
-    // Insert a form from Manufacturer side into database
-    public void insertForm(Form form) throws SQLException {
-
-        String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
-                "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +
-                "APPELLATION, PHONENUMBER, EMAILADDRESS, /* insert pg 3 things,*/ DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, " +
-                "VINTAGEYEAR, PHLEVEL) " +
-                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement prepStmt = connection.prepareStatement(Forms1);
-        ResultSet seqVal = null;
-        try {
-            seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
-            seqVal.next();
-            prepStmt.setInt(1,seqVal.getInt(1));
-            prepStmt.setInt(2, form.getRepID());
-            prepStmt.setString(3, form.getBrewerNumber());
-            prepStmt.setString(4, form.getProductSource());
-            prepStmt.setString(5, form.getSerialNumber());
-            prepStmt.setString(6, form.getProductType());
-            prepStmt.setString(7, form.getBrandName());
-            prepStmt.setString(8, form.getFancifulName());
-            prepStmt.setString(9, form.getApplicantName());
-            prepStmt.setString(10, form.getMailingAddress());
-            prepStmt.setString(11, form.getFormula());
-            prepStmt.setString(12, form.getGrapeVarietal());
-            prepStmt.setString(13, form.getAppellation());
-            prepStmt.setString(14, form.getPhoneNumber());
-            prepStmt.setString(15, form.getEmailAddress());
-            //page3  args goes here
-            prepStmt.setString(16, form.getDateOfApplication());
-            prepStmt.setString(17, form.getPrintName());
-            prepStmt.setString(18, form.getBeerWineSpirit());
-            prepStmt.setString(19, form.getAlcoholPercent());
-            prepStmt.setString(20, form.getVintageYear());
-            prepStmt.setString(21, form.getpHLevel());
-            addApp(seqVal.getInt(1),form.getRepID(),form.getDateOfApplication());
-            prepStmt.executeUpdate();
-            prepStmt.close();
-
-        } catch (SQLException e) {
-                e.printStackTrace();
-        }
-    }
-
-    // Automatically generates and inserts an Application into database when Form is inserted
-    public void addApp(int formID, int repID, String dateSubmitted) throws SQLException{
-        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
-                "VALUES(?,?,?,?,?,?,?,?)";
-        PreparedStatement prepStmt = connection.prepareStatement(Apps1);
-        ResultSet seqVal = null;
-        try {
-            seqVal = connection.prepareStatement("values (next value for appIDSequence)").executeQuery();
-            seqVal.next();
-            prepStmt.setInt(1, seqVal.getInt(1));
-            prepStmt.setInt(2,formID);
-            prepStmt.setInt(3,repID);
-            prepStmt.setNull(4, Types.INTEGER);
-            prepStmt.setString(5, dateSubmitted);
-            prepStmt.setNull(6, Types.VARCHAR);
-            prepStmt.setNull(7, Types.VARCHAR);
-            prepStmt.setString(8, "PENDING");
-            prepStmt.executeUpdate();
-            prepStmt.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Insert the default manufacturer and agent
+     * @throws SQLException
+     */
     public void insertDefault() throws SQLException{
         String mPassword = this.passwordEncoder.encode("manu");
         String aPassword = this.passwordEncoder.encode("ttb");
