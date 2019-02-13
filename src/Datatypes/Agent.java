@@ -34,6 +34,30 @@ public class Agent extends Account {
         }
     }
 
+    public Agent(int id, Connection conn) {
+        super("","","","","");
+
+        try {
+            String getData = "SELECT * FROM AGENTS WHERE TTBID = " + id;
+            PreparedStatement stmt = conn.prepareStatement(getData);
+
+            ResultSet result = stmt.executeQuery();
+
+            result.next();
+            super.setUsername(result.getString("username"));
+            super.setPassword(result.getString("password"));
+            super.setFullName(result.getString("fullName"));
+            super.setEmail(result.getString("email"));
+            super.setPhone(result.getString("phone"));
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        this.ttbID = id;
+    }
+
     public int getTtbID() {
         return ttbID;
     }

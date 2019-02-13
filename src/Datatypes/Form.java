@@ -358,4 +358,12 @@ public class Form {
             e.printStackTrace();
         }
     }
+
+    public ResultSet getApprovedApplications(Connection conn) throws SQLException{
+        String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS " +
+                "ON FORMS.FORMID = APPLICATIONS.FORMID " +
+                "WHERE APPLICATIONS.STATUS='APPROVED'";
+        ResultSet rset = conn.createStatement().executeQuery(retrieve);
+        return rset;
+    }
 }
