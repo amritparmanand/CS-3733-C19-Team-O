@@ -47,11 +47,11 @@ public class agentEmailTest {
     // Testing Email Validation Systems
 
     // agent email validation
-    @Test
-    public void agentEmailValidation(){
-        dummyAgent = new aRegister(dummysceneM, dummycacheM);
-        assertEquals(agentExpected, dummyAgent.validAgentEmail(email));
-    }
+//    @Test
+//    public void agentEmailValidation(){
+//        dummyAgent = new aRegister(dummysceneM, dummycacheM);
+//        assertEquals(agentExpected, dummyAgent.validAgentEmail(email));
+//    }
 
     @Test
     public void manufacturerEmailVerification(){

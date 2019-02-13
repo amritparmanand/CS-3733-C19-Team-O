@@ -54,11 +54,11 @@ public class Tests {
     }
 
     // agent phone number
-    @Test
-    public void agentPhoneValidation(){
-        dummyAgent = new aRegister(dummysceneM, dummycacheM);
-      //  System.out.println(phoneNumber);
-
-        assertEquals(expected, dummyAgent.validAgentPhone(phoneNumber));
-    }
+//    @Test
+//    public void agentPhoneValidation(){
+//        dummyAgent = new aRegister(dummysceneM, dummycacheM);
+//      //  System.out.println(phoneNumber);
+//
+//        assertEquals(expected, dummyAgent.validAgentPhone(phoneNumber));
+//    }
 }
