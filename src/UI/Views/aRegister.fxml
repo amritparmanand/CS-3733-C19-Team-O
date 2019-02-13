@@ -93,15 +93,15 @@
                                 <Font name="Book Antiqua" size="32.0" />
                             </font>
                         </Label>
-                  <JFXTextField fx:id="ttbID" maxWidth="300.0" onKeyReleased="#validateButton" promptText="TTB ID">
+                  <JFXTextField fx:id="ttbID" maxWidth="300.0" promptText="TTB ID">
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets bottom="5.0" top="20.0" />
                      </VBox.margin>
                   </JFXTextField>
                   <Label fx:id="IDMessage" />
                   <JFXTextField fx:id="fullName" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Full Name">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="15.0" />
                      </VBox.margin>
                   </JFXTextField>
                   <JFXTextField fx:id="email" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Email">
@@ -112,7 +112,7 @@
                   <Label fx:id="emailMessage" />
                   <JFXTextField fx:id="phone" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Phone (U.S Number Only)">
                      <VBox.margin>
-                        <Insets bottom="5.0" top="10.0" />
+                        <Insets bottom="5.0" top="12.0" />
                      </VBox.margin>
                   </JFXTextField>
                   <Label fx:id="phoneMessage" />

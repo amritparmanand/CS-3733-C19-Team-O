@@ -25,6 +25,7 @@ public class aRegister {
     private CacheManager cacheM;
     private String phoneNumber;
     private String agentEmail;
+    private String ID;
 
     public aRegister(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -79,6 +80,7 @@ public class aRegister {
     public void validateButton(){
         phoneNumber = phone.getText().trim();
         agentEmail = email.getText().trim();
+        ID = ttbID.getText().trim();
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||
@@ -88,7 +90,7 @@ public class aRegister {
                 ttbID.getText().isEmpty() ||
                 !validAgentPhone(phoneNumber) ||
                 !validAgentEmail(agentEmail) ||
-                (Integer.parseInt(ttbID.getText()) < 0)
+                invalidID(ID)
         ){
             if(!validAgentPhone(phoneNumber) && !phoneNumber.isEmpty()){
                 phoneMessage.setTextFill(Color.RED);
@@ -98,9 +100,9 @@ public class aRegister {
                 emailMessage.setTextFill(Color.RED);
                 emailMessage.setText("Invalid Email. Must be a .gov Address");
             }
-            if(Integer.parseInt(ttbID.getText()) < 0){
+            if(invalidID(ID)){
                 IDMessage.setTextFill(Color.RED);
-                IDMessage.setText("ID cannot be negative");
+                IDMessage.setText("Invalid ID");
             } else{
                 IDMessage.setText("");
             }
@@ -156,5 +158,13 @@ public class aRegister {
         if(email.matches("^([a-zA-Z0-9_\\-\\.]+)@+([a-zA-Z]+).gov$")){
             return true;
         }else return false;
+    }
+    @FXML
+    public boolean invalidID(String ID){
+        if(ID.matches("[a-zA-Z]") || Integer.parseInt(ID) < 0) {
+            return true;
+        }else{
+            return false;
+        }
     }
 }
