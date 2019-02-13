@@ -2,6 +2,8 @@ package UI.Controllers;
 
 import Datatypes.Form;
 import Managers.*;
+import UI.MultiThreadWaitFor;
+import UI.callableFunction;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +58,9 @@ public class mApplicationFormPg2 {
     }
 
     @FXML public void saveDraft(){
-        Form form = cacheM.getForm();
+        if (printName!=null && mailAddress!=null && formula!=null && grapes!=null && appellation!=null && phoneNumber!=null && email!=null) {
+            Form form = cacheM.getForm();
+
 
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
@@ -78,12 +82,10 @@ public class mApplicationFormPg2 {
         }else{
             System.out.println("invalid email");
         }
-
-        if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
-            form.setGrapeVarietal("");
-            form.setAppellation("");
-        }
-
+            if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
+                form.setGrapeVarietal("");
+                form.setAppellation("");
+            }
         if(!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)){
             System.out.println("Unable to save. Invalid fields entered");
             saveDraftMessage.setTextFill(Color.RED);
@@ -93,6 +95,7 @@ public class mApplicationFormPg2 {
             cacheM.setForm(form);
 
             System.out.println("save Draft executed");
+
         }
     }
 
@@ -105,21 +108,38 @@ public class mApplicationFormPg2 {
         }
     }
 
+    /**
+     * The multi-thread function
+     * Saves draft every 5 seconds
+     */
+    callableFunction cf = new callableFunction() {
+        @Override
+        @FXML
+        public void call() {
+            saveDraft();
+        }
+    };
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
+
     @FXML public void nextPage() throws IOException {
         saveDraft();
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
     }
     @FXML public void previousPage() throws IOException {
         saveDraft();
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
     }
     @FXML public void searchPage() throws IOException {
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
     @FXML public void goToHomePage() throws IOException {
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }

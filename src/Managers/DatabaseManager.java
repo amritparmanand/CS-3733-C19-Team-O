@@ -8,8 +8,13 @@ import Fuzzy.Damerau_Levenshtein;
 import Fuzzy.FuzzyContext;
 import Fuzzy.Levenshtein;
 import Fuzzy.hiddenScore;
+import com.opencsv.CSVReader;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.sql.*;
 /**
  * @author Amrit Parmanand & Percy
@@ -54,99 +59,11 @@ public class DatabaseManager {
 
     }
 
-    // Got connected, codes start here
-
-    // Generate the tables in database and create the sequences for ids
-    public void generateTables(){
-        String createApplications = "create table Applications(" +
-                "appID int constraint Applications_pk primary key," +
-                "formID int /*constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS*/," +
-                "repID int /*constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES*/," +
-                "ttbID int /*constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS*/," +
-                "agentName VARCHAR(40)," +
-                "dateSubmitted VARCHAR(20) ," +
-                "dateApproved VARCHAR(20)," +
-                "dateRejected VARCHAR(20)," +
-                "dateExpired VARCHAR(20)," +
-                "status VARCHAR(15))";
-        String createRepresentatives = "create table Representatives" +
-                "(repID int constraint Representatives_pk	primary key, " +
-                "username varchar(20),	" +
-                "password varchar(65), 	" +
-                "fullName varchar(50),	" +
-                "companyName varchar(50),	" +
-                "email varchar(20),	" +
-                "phone varchar(15))";
-        String createAgents = "create table Agents" +
-                "(ttbID int	constraint Agents_pk primary key, " +
-                "username varchar(20), " +
-                "password varchar(65), " +
-                "fullName varchar(50),	" +
-                "email varchar(60),	" +
-                "phone varchar(15))";
-        String createForms = "create table Forms(" +
-                "formID int	constraint Forms_pk	primary key, " +
-                "repID int, " +
-                "brewerNumber varchar(60),	" +
-                "productSource varchar(60),	" +
-                "serialNumber varchar(60),	" +
-                "productType varchar(60),	" +
-                "brandName varchar(60),	" +
-                "fancifulName varchar(60),	" +
-                "applicantName varchar(200),	" +
-                "mailingAddress varchar(80), " +
-                "formula varchar(80), " +
-                "grapeVarietal varchar(80),	" +
-                "appellation varchar(60), " +
-                "phoneNumber varchar(20), " +
-                "emailAddress varchar(50),	" +
-                "certificateOfApproval boolean," +   //begin new
-                "certificateOfExemption boolean," +
-                "onlyState varchar(2)," +
-                "distinctiveLiquor boolean," +
-                "bottleCapacity VARCHAR(5)," +
-                "resubmission boolean," +
-                "ttbID int ," + //end new
-                "dateOfApplication VARCHAR(30) , " +
-                "printName varchar(40),	" +
-                "beerWineSpirit varchar(60), " +
-                "alcoholPercent varchar(60),	" +
-                "vintageYear varchar(60), " +
-                "phLevel varchar(60))";
-        String createUniqueReps = "create unique index Representatives_username_uindex " +
-                "on Representatives (username)";
-        String createUniqueAgents = "create unique index Agents_username_uindex " +
-                "on Agents (username)";
-        try {
-            this.stmt.execute(createRepresentatives);
-            this.stmt.execute(createAgents);
-            this.stmt.execute(createForms);
-            this.stmt.execute(createApplications);
-            this.stmt.execute(createUniqueReps);
-            this.stmt.execute(createUniqueAgents);
-        }
-        catch (SQLException e){
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-    }
-    public void createSequences(){
-        String repSequence = "create sequence repIDSequence as int start with 800 increment by 1";
-        String formSequence = "create sequence formIDSequence as int start with 800 increment by 1";
-        String appSequence = "create sequence appIDSequence as int start with 800 increment by 1";
-
-        try {
-            this.stmt.execute(repSequence);
-            this.stmt.execute(formSequence);
-            this.stmt.execute(appSequence);
-        }
-        catch (SQLException e){
-            if (!e.getSQLState().equals("X0Y68"))
-                e.printStackTrace();
-        }
-    }
-
-    // Find username and password for an account by its id
+    /**
+     * Find username and password for an account by its id
+     * @param id
+     * @return the username or password
+     */
     public String mFindUsername(int id){
         String uname = "";
         try {
@@ -204,125 +121,133 @@ public class DatabaseManager {
         return hashedPassword;
     }
 
-    // Create an instance of an account once logged in
-    @SuppressWarnings("Duplicates") public Manufacturer mCreate(int id){
-        String uname = "";
-        String pword = "";
-        String fname = "";
-        String email = "";
-        String phone = "";
-        String cname = "";
+    /**
+     * Generate the tables in database and create the sequences for ids
+     */
+    public void generateTables(){
+        String createApplications = "create table Applications(" +
+                "appID int constraint Applications_pk primary key," +
+                "formID bigint /*constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS*/," +
+                "repID int /*constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES*/," +
+                "ttbID int /*constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS*/," +
+                "agentName VARCHAR(40)," +
+                "dateSubmitted VARCHAR(20) ," +
+                "dateApproved VARCHAR(20)," +
+                "dateRejected VARCHAR(20)," +
+                "dateExpired VARCHAR(20)," +
+                "status VARCHAR(15))";
+        String createRepresentatives = "create table Representatives" +
+                "(repID int constraint Representatives_pk	primary key, " +
+                "username varchar(20),	" +
+                "password varchar(65), 	" +
+                "fullName varchar(50),	" +
+                "companyName varchar(50),	" +
+                "email varchar(20),	" +
+                "phone varchar(15))";
+        String createAgents = "create table Agents" +
+                "(ttbID int	constraint Agents_pk primary key, " +
+                "username varchar(20), " +
+                "password varchar(65), " +
+                "fullName varchar(50),	" +
+                "email varchar(60),	" +
+                "phone varchar(15))";
+//        String createForms = "create table Forms(" +
+//                "formID int	constraint Forms_pk	primary key, " +
+//                "repID int, " +
+//                "brewerNumber varchar(60),	" +
+//                "productSource varchar(60),	" +
+//                "serialNumber varchar(60),	" +
+//                "productType varchar(60),	" +
+//                "brandName varchar(60),	" +
+//                "fancifulName varchar(60),	" +
+//                "applicantName varchar(200),	" +
+//                "mailingAddress varchar(80), " +
+//                "formula varchar(80), " +
+//                "grapeVarietal varchar(80),	" +
+//                "appellation varchar(60), " +
+//                "phoneNumber varchar(20), " +
+//                "emailAddress varchar(50),	" +
+//                "certificateOfApproval boolean," +   //begin new
+//                "certificateOfExemption boolean," +
+//                "onlyState varchar(2)," +
+//                "distinctiveLiquor boolean," +
+//                "bottleCapacity VARCHAR(5)," +
+//                "resubmission boolean," +
+//                "ttbID int ," + //end new
+//                "dateOfApplication VARCHAR(30) , " +
+//                "printName varchar(40),	" +
+//                "beerWineSpirit varchar(60), " +
+//                "alcoholPercent varchar(60),	" +
+//                "vintageYear varchar(60), " +
+//                "phLevel varchar(60))";
+
+
+        String createForms = "create table Forms(" +
+                "formID bigint   constraint Forms_pk primary key, " +
+                "repID varchar (20), " +
+                "brewerNumber varchar(60), " +
+                "productSource varchar(60),    " +
+                "serialNumber varchar(60), " +
+                "productType varchar(100),  " +
+                "brandName varchar(100),    " +
+                "fancifulName varchar(100), " +
+                "applicantName varchar(200),   " +
+                "mailingAddress varchar(120), " +
+                "formula varchar(120), " +
+                "grapeVarietal varchar(200),    " +
+                "appellation varchar(200), " +
+                "phoneNumber varchar(20), " +
+                "emailAddress varchar(50), " +
+                "certificateOfApproval BOOLEAN," +   //begin new
+                "certificateOfExemption BOOLEAN," +
+                "onlyState varchar(2)," +
+                "distinctiveLiquor BOOLEAN," +
+                "bottleCapacity VARCHAR(300)," +
+                "resubmission BOOLEAN," +
+                "ttbID varchar (20)," + //end new
+                "dateOfApplication VARCHAR(30) , " +
+                "printName varchar(40),    " +
+                "beerWineSpirit varchar(60), " +
+                "alcoholPercent varchar(60),   " +
+                "vintageYear varchar(60), " +
+                "phLevel varchar(60)) ";
+        String createUniqueReps = "create unique index Representatives_username_uindex " +
+                "on Representatives (username)";
+        String createUniqueAgents = "create unique index Agents_username_uindex " +
+                "on Agents (username)";
         try {
-            String getData = "select * from REPRESENTATIVES where REPID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                uname = result.getString("username");
-                pword = result.getString("password");
-                fname = result.getString("fullName");
-                email = result.getString("email");
-                phone = result.getString("phone");
-                cname = result.getString("companyName");
-            }
-        } catch (SQLException e) {
+            this.stmt.execute(createRepresentatives);
+            this.stmt.execute(createAgents);
+            this.stmt.execute(createForms);
+            this.stmt.execute(createApplications);
+            this.stmt.execute(createUniqueReps);
+            this.stmt.execute(createUniqueAgents);
+        }
+        catch (SQLException e){
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-        Manufacturer m = new Manufacturer(uname,pword,fname,email,phone,id,cname);
-        return m;
     }
-    @SuppressWarnings("Duplicates") public Agent aCreate(int id){
-        String uname = "";
-        String pword = "";
-        String fname = "";
-        String email = "";
-        String phone = "";
+    public void createSequences(){
+        String repSequence = "create sequence repIDSequence as int start with 800 increment by 1";
+        String formSequence = "create sequence formIDSequence as int start with 800 increment by 1";
+        String appSequence = "create sequence appIDSequence as int start with 800 increment by 1";
+
         try {
-            String getData = "select * from AGENTS where TTBID = " + id;
-            ResultSet result = this.getStmt().executeQuery(getData);
-            while(result.next()){
-                uname = result.getString("username");
-                pword = result.getString("password");
-                fname = result.getString("fullName");
-                email = result.getString("email");
-                phone = result.getString("phone");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
+            this.stmt.execute(repSequence);
+            this.stmt.execute(formSequence);
+            this.stmt.execute(appSequence);
         }
-        Agent a = new Agent(uname,pword,fname,email,phone,id);
-        return a;
-    }
-
-    // Insert a form from Manufacturer side into database
-    public void insertForm(Form form) throws SQLException {
-
-        String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
-                "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +
-                "APPELLATION, PHONENUMBER, EMAILADDRESS, /* insert pg 3 things,*/ DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, " +
-                "VINTAGEYEAR, PHLEVEL) " +
-                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement prepStmt = connection.prepareStatement(Forms1);
-        ResultSet seqVal = null;
-        try {
-            seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
-            seqVal.next();
-            prepStmt.setInt(1,seqVal.getInt(1));
-            prepStmt.setInt(2, form.getRepID());
-            prepStmt.setString(3, form.getBrewerNumber());
-            prepStmt.setString(4, form.getProductSource());
-            prepStmt.setString(5, form.getSerialNumber());
-            prepStmt.setString(6, form.getProductType());
-            prepStmt.setString(7, form.getBrandName());
-            prepStmt.setString(8, form.getFancifulName());
-            prepStmt.setString(9, form.getApplicantName());
-            prepStmt.setString(10, form.getMailingAddress());
-            prepStmt.setString(11, form.getFormula());
-            prepStmt.setString(12, form.getGrapeVarietal());
-            prepStmt.setString(13, form.getAppellation());
-            prepStmt.setString(14, form.getPhoneNumber());
-            prepStmt.setString(15, form.getEmailAddress());
-            //page3  args goes here
-            prepStmt.setString(16, form.getDateOfApplication());
-            prepStmt.setString(17, form.getPrintName());
-            prepStmt.setString(18, form.getBeerWineSpirit());
-            prepStmt.setString(19, form.getAlcoholPercent());
-            prepStmt.setString(20, form.getVintageYear());
-            prepStmt.setString(21, form.getpHLevel());
-            addApp(seqVal.getInt(1),form.getRepID(),form.getDateOfApplication());
-            prepStmt.executeUpdate();
-            prepStmt.close();
-
-        } catch (SQLException e) {
+        catch (SQLException e){
+            if (!e.getSQLState().equals("X0Y68"))
                 e.printStackTrace();
         }
     }
 
-    // Automatically generates and inserts an Application into database when Form is inserted
-    public void addApp(int formID, int repID, String dateSubmitted) throws SQLException{
-        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
-                "VALUES(?,?,?,?,?,?,?,?)";
-        PreparedStatement prepStmt = connection.prepareStatement(Apps1);
-        ResultSet seqVal = null;
-        try {
-            seqVal = connection.prepareStatement("values (next value for appIDSequence)").executeQuery();
-            seqVal.next();
-            prepStmt.setInt(1, seqVal.getInt(1));
-            prepStmt.setInt(2,formID);
-            prepStmt.setInt(3,repID);
-            prepStmt.setNull(4, Types.INTEGER);
-            prepStmt.setString(5, dateSubmitted);
-            prepStmt.setNull(6, Types.VARCHAR);
-            prepStmt.setNull(7, Types.VARCHAR);
-            prepStmt.setString(8, "PENDING");
-            prepStmt.executeUpdate();
-            prepStmt.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Insert the default manufacturer and agent
+     * @throws SQLException
+     */
     public void insertDefault() throws SQLException{
         String mPassword = this.passwordEncoder.encode("manu");
         String aPassword = this.passwordEncoder.encode("ttb");
@@ -337,4 +262,199 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
     }
+
+    public void generateTablesForms()
+    {
+        try {
+
+            // Create an object of filereader
+            // class with CSV file as a parameter.
+            FileReader filereader = new FileReader("src/resources/DifferenttTTBDB.csv");
+
+            // create csvReader object passing
+            // file reader as a parameter
+            CSVReader csvReader = new CSVReader(filereader);
+            String[] nextRecord;
+            String bigString = "INSERT INTO FORMS VALUES";
+            int numOfOutput = 1;
+            int numOfSqlExecute = 0;
+            nextRecord = csvReader.readNext();
+            // we are going to read data line by line
+            while ((nextRecord = csvReader.readNext()) != null) {
+
+                String output = "(";
+                int counter = 0;
+                for (int i = 0; i < nextRecord.length; i++) {
+
+                    String[] splitRecord = nextRecord[i].split("!");
+
+                    for(int j = 0; j < splitRecord.length; j++)
+                    {
+
+
+                        if(counter == 0)
+                        {
+                            output += splitRecord[j] + ",'";
+                        }
+                        else if(counter == 27)
+                        {
+                            output += splitRecord[j] + "')";
+                            break;
+
+                        }
+                        else {
+                            output += splitRecord[j] + "','";
+                            if(output.charAt(2)!='1' && output.charAt(2)!='2' && output.charAt(2)!='3') {
+                                break;
+                            }
+                        }
+
+                        counter++;
+                        if(counter>27)
+                        {
+                            counter = 0;
+                            output = "";
+                            break;
+                        }
+                    }
+
+                }
+
+                if(counter == 27) {
+
+//                    || output.charAt(2) == 2 || output.charAt(2) == 3
+                    if (numOfOutput < 999) {
+
+                        bigString += output + ",\n";
+                    } else {
+
+                        bigString += output;
+
+                    }
+                    numOfOutput++;
+
+
+                }
+                if(numOfOutput == 1000)
+                {
+                    System.out.println(numOfSqlExecute);
+                    if(numOfSqlExecute==6)
+                    {
+                        System.out.println(bigString);
+                    }
+                    stmt.executeUpdate(bigString);
+                    bigString = "INSERT INTO FORMS VALUES";
+                    numOfOutput = 0;
+                    numOfSqlExecute++;
+
+                    System.out.println("Printed");
+                }
+
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("Duplicates")
+    //Duplicate
+    public void generateTablesApplication()
+    {
+        try {
+
+
+            // Create an object of filereader
+            // class with CSV file as a parameter.
+            FileReader filereader = new FileReader("src/resources/ApplicationsXLSX.csv");
+            // create csvReader object passing
+            // file reader as a parameter
+            CSVReader csvReader = new CSVReader(filereader);
+            String[] nextRecord;
+            String bigString = "INSERT INTO APPLICATIONS VALUES";
+            int numOfOutput = 1;
+            int numOfSqlExecute = 0;
+            nextRecord = csvReader.readNext();
+            int appidCounter = 1000;
+            // we are going to read data line by line
+            while ((nextRecord = csvReader.readNext()) != null && appidCounter < 240000) {
+                String output = "(" + appidCounter + ",";
+                int counter = 0;
+                for (int i = 0; i < nextRecord.length; i++) {
+                    String[] splitRecord = nextRecord[i].split("!");
+
+                    for(int j = 0; j < splitRecord.length; j++)
+                    {
+
+
+                        if(counter == 0 || counter == 1 || counter ==2)
+                        {
+                            output += splitRecord[j] + ",";
+
+                        }
+                        else if(counter == 3)
+                        {
+                            output+="'" + splitRecord[j]+"','";
+                        }
+                        else if(counter == 8)
+                    {
+                        output += splitRecord[j] + "')";
+                        break;
+
+                    }
+                       else {
+                        output += splitRecord[j] + "','";
+                    }
+
+                        counter++;
+                        if(counter>8)
+                        {
+                            counter = 0;
+                            output = "";
+                            break;
+                        }
+                    }
+
+                }
+
+                if(counter == 8) {
+
+//                    || output.charAt(2) == 2 || output.charAt(2) == 3
+                    if (numOfOutput < 999) {
+
+                        bigString += output + ",\n";
+
+                    } else {
+
+                        bigString += output;
+
+                    }
+                    numOfOutput++;
+                    appidCounter++;
+
+
+                }
+                if(numOfOutput == 1000)
+                {
+                    System.out.println(numOfSqlExecute);
+                    if(numOfSqlExecute==6)
+                    {
+                        System.out.println(bigString);
+                    }
+                    stmt.executeUpdate(bigString);
+                    bigString = "INSERT INTO APPLICATIONS VALUES";
+                    numOfOutput = 0;
+                    numOfSqlExecute++;
+
+
+                    System.out.println("Printed");
+                }
+
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

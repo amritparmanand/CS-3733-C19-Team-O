@@ -1,9 +1,8 @@
 package Datatypes;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.awt.*;
+import java.io.InputStream;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +31,30 @@ public class Agent extends Account {
         if (this.hasFetchedForms) {
             this.getWorkingForms();
         }
+    }
+
+    public Agent(int id, Connection conn) {
+        super("","","","","");
+
+        try {
+            String getData = "SELECT * FROM AGENTS WHERE TTBID = " + id;
+            PreparedStatement stmt = conn.prepareStatement(getData);
+
+            ResultSet result = stmt.executeQuery();
+
+            result.next();
+            super.setUsername(result.getString("username"));
+            super.setPassword(result.getString("password"));
+            super.setFullName(result.getString("fullName"));
+            super.setEmail(result.getString("email"));
+            super.setPhone(result.getString("phone"));
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        this.ttbID = id;
     }
 
     public int getTtbID() {
@@ -141,12 +164,24 @@ public class Agent extends Account {
         f.setAppellation(rs.getString("appellation"));
         f.setPhoneNumber(rs.getString("phoneNumber"));
         f.setEmailAddress(rs.getString("emailAddress"));
+        f.setCertificateOfApproval(rs.getBoolean("certificateOfApproval"));
+        f.setCertificateOfExemption(rs.getBoolean("certificateOfExemption"));
+        f.setOnlyState(rs.getString("onlyState"));
+        f.setDistinctiveLiquor(rs.getBoolean("distinctiveLiquor"));
+        f.setBottleCapacity(rs.getString("bottleCapacity"));
+        f.setTtbID(rs.getInt("TTBID"));
         f.setDateOfApplication(rs.getString("dateOfApplication"));
         f.setPrintName(rs.getString("printName"));
         f.setBeerWineSpirit(rs.getString("beerWineSpirit"));
         f.setAlcoholPercent(rs.getString("alcoholPercent"));
         f.setVintageYear(rs.getString("vintageYear"));
         f.setpHLevel(rs.getString("pHLevel"));
+        LabelImage formLabel = new LabelImage();
+        Blob foto = rs.getBlob("labelImage");
+        InputStream is = foto.getBinaryStream();
+//        f.getLabel().setLabelImage(img);
+//        Image img = new Image();
+
 
         return f;
     }

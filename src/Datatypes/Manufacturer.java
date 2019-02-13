@@ -19,6 +19,31 @@ public class Manufacturer extends Account {
         this.companyName = companyName;
     }
 
+    @SuppressWarnings("Duplicates")
+    public Manufacturer(int id, Connection connection) {
+        super("","","","","");
+
+        try {
+            String getData = "SELECT * FROM REPRESENTATIVES WHERE REPID = " + id;
+            PreparedStatement stmt = connection.prepareStatement(getData);
+
+            ResultSet result = stmt.executeQuery();
+
+            result.next();
+            super.setUsername(result.getString("username"));
+            super.setPassword(result.getString("password"));
+            super.setFullName(result.getString("fullName"));
+            super.setEmail(result.getString("email"));
+            super.setPhone(result.getString("phone"));
+            this.companyName = result.getString("companyname");
+            this.repID = id;
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+    }
+
     public int getRepID() {
         return repID;
     }
