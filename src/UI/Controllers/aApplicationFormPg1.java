@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 
+import Datatypes.Agent;
 import Datatypes.Form;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
@@ -43,9 +44,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextArea Q5Comment;
     @FXML private JFXTextArea Q6Comment;
     @FXML private JFXTextArea Q7Comment;
-
-
-
+    @FXML private JFXTextField receiver;
 
     @FXML public void initialize(){
         Form form = this.form;
@@ -92,7 +91,6 @@ public class aApplicationFormPg1 {
         System.out.println("filled in info page 1");
     }
 
-
     public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -124,10 +122,14 @@ public class aApplicationFormPg1 {
         cacheM.approveForm(cacheM.getDbM().getConnection());
     }
 
-
     @FXML
     public void denyForm() throws IOException {
         cacheM.denyForm(cacheM.getDbM().getConnection());
+    }
+
+    @FXML public void passForm() throws IOException{
+        cacheM.setPasser(cacheM.getAcct().getUsername());
+        cacheM.setReceiver(receiver.getText());
     }
 
 }

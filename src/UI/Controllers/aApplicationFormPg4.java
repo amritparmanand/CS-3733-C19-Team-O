@@ -78,5 +78,5 @@ public class aApplicationFormPg4 {
     public void denyForm() throws IOException {
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
-    
+
 }

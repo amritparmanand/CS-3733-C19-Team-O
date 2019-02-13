@@ -18,7 +18,8 @@ public class CacheManager {
     private Form form;
     private Account acct;
     private int formLimit;
-    private int receiver;
+    private String passer;
+    private String receiver;
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
@@ -41,8 +42,24 @@ public class CacheManager {
     public void setAcct(Account acct) {
         this.acct = acct;
     }
-
-
+    public int getFormLimit() {
+        return formLimit;
+    }
+    public void setFormLimit(int formLimit) {
+        this.formLimit = formLimit;
+    }
+    public String getPasser() {
+        return passer;
+    }
+    public void setPasser(String passer) {
+        this.passer = passer;
+    }
+    public String getReceiver() {
+        return receiver;
+    }
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
     // Facade stuff
 
     // Form

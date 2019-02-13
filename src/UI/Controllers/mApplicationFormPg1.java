@@ -194,7 +194,7 @@ public class mApplicationFormPg1{
         }
     };
 
-    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(3, cf);
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(10, cf);
 
     @FXML private VBox phVBox;
     @FXML private VBox vintageVBox;

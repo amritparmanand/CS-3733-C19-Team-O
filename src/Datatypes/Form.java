@@ -280,21 +280,7 @@ public class Form {
         }
     }
 
-    public void pass(Connection connection, int receiver){
-        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED' WHERE FORMID =" + this.formID;
-        try {
-            PreparedStatement ps = connection.prepareStatement(SQL);
-
-            ps.executeUpdate();
-
-            ps.close();
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-    }
-
-    public void receive(Connection connection, int receiver){
+    public void receive(Connection connection, int passer, int receiver){
         String SQL = "UPDATE APPLICATIONS SET TTBID = " + receiver + ", WHERE FORMID =" + this.formID;
         try {
             PreparedStatement ps = connection.prepareStatement(SQL);
