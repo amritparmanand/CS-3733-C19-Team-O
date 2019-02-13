@@ -8,6 +8,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -20,6 +22,7 @@ public class mRegister {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private String phoneNumber;
 
 
     public mRegister(SceneManager sceneM, CacheManager cacheM) {
@@ -28,7 +31,9 @@ public class mRegister {
     }
 
     @FXML private Button register;
-
+    @FXML private Label IDMessage;
+    @FXML private Label emailMessage;
+    @FXML private Label phoneMessage;
     @FXML private JFXTextField username;
     @FXML private JFXPasswordField password;
     @FXML private JFXPasswordField confirmP;
@@ -66,6 +71,7 @@ public class mRegister {
     }
 
     @FXML public void validateButton(){
+        phoneNumber = phone.getText().trim();
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||
@@ -73,8 +79,13 @@ public class mRegister {
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
                 companyName.getText().isEmpty() ||
-                repID.getText().isEmpty()){
+                repID.getText().isEmpty() ||
+                !validManuPhone(phoneNumber)){
             register.setDisable(true);
+            if(!validManuPhone(phoneNumber)){
+                phoneMessage.setTextFill(Color.RED);
+                phoneMessage.setText("Invalid Phone Number. Please Try again.");
+            }
         }
         else{
             register.setDisable(false);
@@ -82,16 +93,28 @@ public class mRegister {
     }
 
     /**
-     * @Author Clay Oshiro-Leavitt
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param phoneNumber phone number to be checked
      * checks the manufacturer phone number for Manufacturer Registration form
-     * will accept US and international phone numbers
+     * will accept US number with the following conditions
+     * 1 prefix optional
+     * area code is required
+     * delimiters between number groups are optional
+     * if delimiters are used, can use spaces, dashes, back slashes as dividers between number groups
+     * alphanumeric format is allowed after area code
      * @return true if is valid number, false if not
      */
     @FXML
-    public boolean validManuPhone(){
-        if(phone.getText().matches("/(\\+\\d{1,3}\\s?)?((\\(\\d{3}\\)\\s?)|(\\d{3})(\\s|-?))(\\d{3}(\\s|-?))(\\d{4})(\\s?(([E|e]xt[:|.|]?)|x|X)(\\s?\\d+))?/g\n")){
+    public boolean validManuPhone(String phoneNumber){
+        if(phoneNumber.matches("^[0]{8,20}$")){
+            return false;
+        } else if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){
+            //System.out.println("valid number");
             return true;
-        }else return false;
+        }else
+           // System.out.println("invalid number");
+        return false;
 
     }
 }

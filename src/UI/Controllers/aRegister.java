@@ -7,8 +7,12 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * @author Percy Jiang & Gabe Entov
@@ -19,6 +23,7 @@ public class aRegister {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private String phoneNumber;
 
     public aRegister(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -34,6 +39,9 @@ public class aRegister {
     @FXML private JFXTextField email;
     @FXML private JFXTextField phone;
     @FXML private JFXTextField ttbID;
+    @FXML private Label phoneMessage;
+    @FXML private Label emailMessage;
+    @FXML private Label IDMessage;
 
 
     @FXML
@@ -68,13 +76,20 @@ public class aRegister {
 
     @FXML
     public void validateButton(){
+        phoneNumber = phone.getText().trim();
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||
                 fullName.getText().isEmpty() ||
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
-                ttbID.getText().isEmpty() ){
+                ttbID.getText().isEmpty() ||
+                !validAgentPhone(phoneNumber)
+        ){
+            if(!validAgentPhone(phoneNumber)){
+                phoneMessage.setTextFill(Color.RED);
+                phoneMessage.setText("Invalid Phone Number. Please Try again.");
+            }
             aRegister.setDisable(true);
         }
         else{
@@ -83,15 +98,30 @@ public class aRegister {
     }
 
     /**
-     * @Author Clay Oshiro-Leavitt
-     * checks the agent phone number for Agent Registration form
-     * will only accept US phone numbers
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @since It 2
+     * @param phoneNumber phone number to be checked
+     * checks the manufacturer phone number for Agent Registration form
+     * will accept US number with the following conditions
+     * 1 prefix optional
+     * area code is required
+     * delimiters between number groups are optional
+     * if delimiters are used, can use spaces, dashes as dividers between number groups
+     * alphanumeric format is allowed after area code
      * @return true if is valid number, false if not
      */
     @FXML
-    public boolean validAgentPhone(){
-        if(phone.getText().matches("^(\\+0?1\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$\n")){
+    public boolean validAgentPhone(String phoneNumber){
+        if(phoneNumber.matches("^[0]{8,20}$")){
+            return false;
+        } else if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){
+            //System.out.println("valid number");
             return true;
-        }else return false;
+        }else
+        return false;
     }
+
+    //@FXML
+    //public boolean valid
 }

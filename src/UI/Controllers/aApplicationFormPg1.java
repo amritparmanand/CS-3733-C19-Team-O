@@ -82,11 +82,16 @@ public class aApplicationFormPg1 {
         brewerNO.setEditable(false);
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
+        domestic.setDisable(true);
+        imported.setDisable(true);
         serialNO.setText(form.getSerialNumber());
         serialNO.setEditable(false);
         wine.setSelected(isWine);
+        wine.setDisable(true);
         spirits.setSelected(isSpirit);
+        spirits.setDisable(true);
         malt.setSelected(isMalt);
+        malt.setDisable(true);
         brand.setText(form.getBrandName());
         brand.setEditable(false);
         fanciful.setText(form.getFancifulName());

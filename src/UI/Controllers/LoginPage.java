@@ -88,11 +88,13 @@ public class LoginPage {
             sceneM.changeScene(loader, new aRegister(sceneM, cacheM));
         }
     }
+
     @FXML public void search() throws IOException {
         // Search
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
+
     @FXML public void validateButton(){
         if(m.isSelected() || a.isSelected()){
             register.setDisable(false);

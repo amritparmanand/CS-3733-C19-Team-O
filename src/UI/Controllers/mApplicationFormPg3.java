@@ -112,24 +112,37 @@ public class mApplicationFormPg3 {
         form.setLabel(image);
         errorLabel.setText(" ");
         cacheM.setForm(form);
+        System.out.println("draft saved");
         return true;
     }
 
+    /*
     @FXML public void nextPage() throws IOException {
         if(saveDraft()) {
+            System.out.println("on to page 4");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
             sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
         }
     }
+    */
+    @FXML public void nextPage() throws IOException {
+        saveDraft();
+        System.out.println("on to page 4");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
+    }
     @FXML public void previousPage() throws IOException {
+        System.out.println("back to page 2");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
     @FXML public void searchPage() throws IOException {
+        System.out.println("to search page");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
     @FXML public void goToHomePage() throws IOException {
+        System.out.println("back to homepage");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
@@ -138,6 +151,12 @@ public class mApplicationFormPg3 {
     public void uploadImage(){
         image.getFile();
         imagePreview.setImage(image.getLabelImage());
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
 
 }
