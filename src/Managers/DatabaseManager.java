@@ -210,7 +210,8 @@ public class DatabaseManager {
                 "beerWineSpirit varchar(60), " +
                 "alcoholPercent varchar(60),   " +
                 "vintageYear varchar(60), " +
-                "phLevel varchar(60)) ";
+                "phLevel varchar(60), "+
+                "labelImage blob(32M))";
         String createUniqueReps = "create unique index Representatives_username_uindex " +
                 "on Representatives (username)";
         String createUniqueAgents = "create unique index Agents_username_uindex " +
@@ -298,7 +299,7 @@ public class DatabaseManager {
                         }
                         else if(counter == 27)
                         {
-                            output += splitRecord[j] + "')";
+                            output += splitRecord[j] + "', null)";
                             break;
 
                         }
