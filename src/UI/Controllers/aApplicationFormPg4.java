@@ -34,6 +34,7 @@ public class aApplicationFormPg4 {
     @FXML private JFXButton homePage;
     @FXML private JFXButton previous;
     @FXML private JFXButton submit;
+    @FXML private JFXButton logout;
     @FXML private JFXTextField dateOfApplication;
     @FXML private JFXTextField dateIssued;
     @FXML private JFXTextField signature;
@@ -81,6 +82,13 @@ public class aApplicationFormPg4 {
 
     @FXML
     public void saveDraft() throws IOException{
+
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
     }
 }
