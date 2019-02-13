@@ -1,5 +1,7 @@
 package UI.Controllers;
 
+import Datatypes.Agent;
+import Datatypes.Manufacturer;
 import Managers.*;
 
 import Managers.SceneManager;
@@ -49,7 +51,7 @@ public class LoginPage {
             String hashedPassword = cacheM.getDbM().mFindPassword(theID);
 
             if(uname.equals(username.getText()) && passwordDecoder.matches(password.getText(),hashedPassword)) {
-                cacheM.setAcct(cacheM.getDbM().mCreate(theID));
+                cacheM.setAcct(new Manufacturer(theID, cacheM.getDbM().getConnection()));
                 System.out.println("Login Successful!");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
                 sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
@@ -65,7 +67,7 @@ public class LoginPage {
             String uname = cacheM.getDbM().aFindUsername(theID);
             String hashedPassword = cacheM.getDbM().aFindPassword(theID);
             if(uname.equals(username.getText()) && passwordDecoder.matches(password.getText(),hashedPassword)) {
-                cacheM.setAcct(cacheM.getDbM().aCreate(theID));
+                cacheM.setAcct(new Agent(theID, cacheM.getDbM().getConnection()));
                 System.out.println("Login Successful!");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
                 sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
