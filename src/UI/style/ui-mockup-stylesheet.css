@@ -271,6 +271,7 @@
   -fx-background-color: white;
   -jfx-focus-color: #4A77DD;
   -jfx-unfocus-color: #17263d;
+  -jfx-label-float: true;
 
 }
 

@@ -5,10 +5,14 @@ import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -37,6 +41,7 @@ public class mApplicationFormPg1{
     @FXML private RadioButton wine2;
     @FXML private RadioButton spirits2;
     @FXML private RadioButton beer2;
+    @FXML private JFXButton saveDraft;
 
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -50,6 +55,11 @@ public class mApplicationFormPg1{
         boolean isWine = false;
         boolean isSpirit = false;
         boolean isMalt = false;
+     //   phLevel.setDisable(true);
+//        vintageYear.setDisable(true);
+        phVBox.setVisible(false);
+        vintageVBox.setVisible(false);
+
         if(form.getProductSource() == "DOMESTIC"){
             isDomestic = true;
             isImported = false;
@@ -62,6 +72,8 @@ public class mApplicationFormPg1{
             isWine = true;
             isSpirit = false;
             isMalt = false;
+            phLevel.setDisable(false);
+            vintageYear.setDisable(false);
         }else if(form.getBeerWineSpirit() == "SPIRITS"){
             isWine = false;
             isSpirit = true;
@@ -107,6 +119,8 @@ public class mApplicationFormPg1{
         if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
             if(wine.isSelected()){
                 form.setProductType("WINE");
+                phLevel.setDisable(false);
+                vintageYear.setDisable(false);
             }
             else if(distilled.isSelected()){
                 form.setProductType("DISTILLED");
@@ -204,4 +218,6 @@ public class mApplicationFormPg1{
         ProgressBar progressBar1 = new ProgressBar();
         progressBar1.updateProgressBar1(questions1);
     }
+
+
 }
