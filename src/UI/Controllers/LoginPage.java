@@ -48,6 +48,8 @@ public class LoginPage implements SerialPortDataListener {
     private Label loginMessage;
     @FXML
     private Button programChip;
+    @FXML
+    private Button about;
 
 
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
@@ -225,5 +227,10 @@ public class LoginPage implements SerialPortDataListener {
             register.setDisable(true);
             login.setDisable(true);
         }
+    }
+    @FXML 
+    public void about() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
 }
