@@ -14,31 +14,17 @@ import java.sql.SQLException;
  * manages the cache, provides access to cached info
  */
 public class CacheManager {
-    private Connection dbConn;
     private DatabaseManager dbM;
     private Form form;
     private Account acct;
     private int formLimit;
 
     public CacheManager(DatabaseManager dbM) {
-        this.dbConn = dbConn;
         this.dbM = dbM;
         this.form = new Form();
     }
 
-//    public CacheManager(Connection dbConn) {
-//        this.dbConn = dbConn;
-//        this.form = new Form();
-//    }
-//
-
     // Getters and Setters
-    public Connection getDbConn() {
-        return dbConn;
-    }
-    public void setDbConn(Connection dbConn) {
-        this.dbConn = dbConn;
-    }
     public DatabaseManager getDbM() {
         return dbM;
     }

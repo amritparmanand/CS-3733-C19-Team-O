@@ -359,6 +359,12 @@ public class Form {
         }
     }
 
+    /**
+     *
+     * @param conn
+     * @return the result set of approved applications
+     * @throws SQLException
+     */
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
         String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +

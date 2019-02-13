@@ -53,7 +53,7 @@ public class mApplicationFormPg4 {
 //        form.setDateIssued("");
 
         try{
-            cacheM.insertForm(cacheM.getDbConn());
+            cacheM.insertForm(cacheM.getDbM().getConnection());
         }catch(SQLException e){
             e.printStackTrace();
         }

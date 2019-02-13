@@ -155,7 +155,7 @@ public class SearchPage {
         else if(hiddenS){
             fc.setF(new hiddenScore());
         }
-        suggestion = fc.fuzzy(searchBox.getText(), cacheM.getDbConn());
+        suggestion = fc.fuzzy(searchBox.getText(), cacheM.getDbM().getConnection());
 
         ResultSet rs = getApprovedApplications();
         searchResults.getChildren().clear();
@@ -243,10 +243,6 @@ public class SearchPage {
     }
 
     public ResultSet getApprovedApplications() throws SQLException{
-        String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS " +
-                "ON FORMS.FORMID = APPLICATIONS.FORMID " +
-                "WHERE APPLICATIONS.STATUS='APPROVED'";
-        ResultSet rset = cacheM.getDbM().getStmt().executeQuery(retrieve);
-        return rset;
+        return cacheM.getApprovedApplications(cacheM.getDbM().getConnection());
     }
 }
