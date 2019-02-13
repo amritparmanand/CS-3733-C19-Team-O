@@ -4,19 +4,25 @@ import Datatypes.SearchResult;
 import Fuzzy.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
-import UI.Controllers.LoginPage;
 import com.jfoenix.controls.JFXCheckBox;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
@@ -114,6 +120,8 @@ public class SearchPage {
             try {
                 alcResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                 Node vbox = alcResult.getChildren().get(0);
+
+
                 if (vbox instanceof VBox) {
                     Node fName = ((VBox) vbox).getChildren().get(1);
                     Node bName = ((VBox) vbox).getChildren().get(2);
@@ -121,15 +129,104 @@ public class SearchPage {
 
                     ((Label) fName).setText(result.getFancifulName());
                     ((Label) bName).setText(result.getCompanyName());
-                    ((Label) aType).setText(result.getAlcoholType());
+                    ((Label) aType).setText(result.getBeerWineSpirit());
                 }
                 searchResults.getChildren().add(alcResult);
+                //POPUP WINDOW
+                vbox.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    public void handle(MouseEvent me) {
+                        Parent root = null;
+                        try {
+//                            SearchResultPopup searchResultPopup = new SearchResultPopup();
+                            root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchResultPopup.fxml"));
+
+                            //searchResultPopup.fancifulLabel.setText(result.getFancifulName());
+                            Node vbox2 = root.getChildrenUnmodifiable().get(0);
+
+                            if (vbox2 instanceof VBox) {
+                                Node fancifulBox = ((VBox) vbox2).getChildren().get(0);
+                                if(fancifulBox instanceof HBox) {
+                                    Node fancifulName = ((HBox) fancifulBox).getChildren().get(0);
+                                    ((Label) fancifulName).setText(result.getFancifulName());
+                                }
+                                Node hbox = ((VBox) vbox2).getChildren().get(1);
+                                if (hbox instanceof HBox) {
+                                    Node labelImage = ((HBox) hbox).getChildren().get(1); //image
+                                    if (labelImage instanceof ImageView){
+
+                                    }
+                                    Node vbox3 = ((HBox) hbox).getChildren().get(0);
+                                    if (vbox3 instanceof VBox) {
+                                        Node typeBox = ((VBox) vbox3).getChildren().get(0);
+                                        Node companyBox = ((VBox) vbox3).getChildren().get(1);
+                                        Node alcoholPercentBox = ((VBox) vbox3).getChildren().get(2);
+                                        Node pHBox = ((VBox) vbox3).getChildren().get(3);
+                                        Node yearBox = ((VBox) vbox3).getChildren().get(4);
+
+                                        if (typeBox instanceof HBox){
+                                            Node typeName = ((HBox) typeBox).getChildren().get(1);
+                                            ((Label) typeName).setText(result.getBeerWineSpirit());
+                                        }
+
+                                        if (companyBox instanceof HBox){
+                                            Node companyName = ((HBox) companyBox).getChildren().get(1);
+                                            ((Label) companyName).setText(result.getCompanyName());
+                                        }
+
+                                        if (alcoholPercentBox instanceof HBox){
+                                            Node alcoholPercentName = ((HBox) alcoholPercentBox).getChildren().get(1);
+                                            ((Label) alcoholPercentName).setText((result.getAlcohol()));
+                                        }
+
+                                        if (pHBox instanceof HBox){
+                                            Node pHName = ((HBox) pHBox).getChildren().get(1);
+                                            ((Label) pHName).setText((result.getPhLevel()));
+                                        }
+
+                                        if (yearBox instanceof HBox){
+                                            Node yearName = ((HBox) yearBox).getChildren().get(1);
+                                            ((Label) yearName).setText((result.getYear()));
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if (root !=null)
+                            cacheM.getSelectedResult();
+                            popWindow(root);
+
+
+
+
+
+
+
+                    }
+                });
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+    public void popWindow(Parent root) {
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Search Result");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+
 
 //    @FXML public void initialize() throws SQLException{
 //        search();
@@ -143,8 +240,6 @@ public class SearchPage {
     }
 
     @FXML public void search() throws SQLException {
-        //menubutton set text SQL
-
 
         // Perform fuzzy search based on user's choice
         String suggestion = "";
@@ -172,27 +267,30 @@ public class SearchPage {
             SearchResult result = new SearchResult();
             result.setFancifulName(rs.getString("FANCIFULNAME"));
             result.setCompanyName(rs.getString("BRANDNAME"));
-            result.setPhLevel(rs.getDouble("PHLEVEL"));
-            result.setAlcohol(rs.getDouble("ALCOHOLPERCENT"));
-            result.setYear(rs.getInt("VINTAGEYEAR"));
-            if(rs.getString("PRODUCTTYPE") == "WINE"){
-                result.setWine(true);
-                result.setBeer(false);
-                result.setLiquor(false);
-                result.setAlcoholType("Wine");
-            }
-            else if(rs.getString("PRODUCTTYPE") == "BEER"){
-                result.setWine(false);
-                result.setBeer(true);
-                result.setLiquor(false);
-                result.setAlcoholType("Beer");
-            }
-            else if(rs.getString("PRODUCTTYPE") == "LIQUOR"){
-                result.setWine(false);
-                result.setBeer(false);
-                result.setLiquor(true);
-                result.setAlcoholType("Liquor");
-            }
+            result.setPhLevel(rs.getString("PHLEVEL"));
+            result.setAlcohol(rs.getString("ALCOHOLPERCENT"));
+            result.setYear(rs.getString("VINTAGEYEAR"));
+            result.setBeerWineSpirit(rs.getString("BEERWINESPIRIT"));
+            //IMAGE REEEEEEE
+            // result set label image
+//            if(rs.getString("PRODUCTTYPE") == "WINE"){
+//                result.setWine(true);
+//                result.setBeer(false);
+//                result.setLiquor(false);
+//                result.setAlcoholType("Wine");
+//            }
+//            else if(rs.getString("PRODUCTTYPE") == "BEER"){
+//                result.setWine(false);
+//                result.setBeer(true);
+//                result.setLiquor(false);
+//                result.setAlcoholType("Beer");
+//            }
+//            else if(rs.getString("PRODUCTTYPE") == "LIQUOR"){
+//                result.setWine(false);
+//                result.setBeer(false);
+//                result.setLiquor(true);
+//                result.setAlcoholType("Liquor");
+//            }
 
             if(searchBox.getText().isEmpty()) {
                 System.out.println("foo");
@@ -200,13 +298,15 @@ public class SearchPage {
                     searchList.add(result);
                 }
                 else {
-                    if (beerCheck.isSelected() && result.isBeer()) {
+                    System.out.println(beerCheck.isSelected());
+                    System.out.println(result.getBeerWineSpirit().toLowerCase());
+                    if (beerCheck.isSelected() && result.getBeerWineSpirit().toLowerCase().equals("beer")) {
                         searchList.add(result);
                     }
-                    else if (wineCheck.isSelected() && result.isWine()) {
+                    if (wineCheck.isSelected() && result.getBeerWineSpirit().toLowerCase().equals("wine") ){
                         searchList.add(result);
                     }
-                    else if (liquorCheck.isSelected() && result.isLiquor()) {
+                    if (liquorCheck.isSelected() && result.getBeerWineSpirit().toLowerCase().equals("spirit")) {
                         searchList.add(result);
                     }
                 }
@@ -224,13 +324,13 @@ public class SearchPage {
                     searchList.add(result);
                 }
                 else {
-                    if (beerCheck.isSelected() && result.isBeer()) {
+                    if (beerCheck.isSelected() && result.getBeerWineSpirit().toLowerCase()=="beer") {
                         searchList.add(result);
                     }
-                    else if (wineCheck.isSelected() && result.isWine()) {
+                    if (wineCheck.isSelected() && result.getBeerWineSpirit().toLowerCase()=="wine") {
                         searchList.add(result);
                     }
-                    else if (liquorCheck.isSelected() && result.isLiquor()) {
+                    if (liquorCheck.isSelected() && result.getBeerWineSpirit().toLowerCase()=="spirit") {
                         searchList.add(result);
                     }
                 }
@@ -249,11 +349,7 @@ public class SearchPage {
     }
 
     public ResultSet getApprovedApplications() throws SQLException{
-        String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS " +
-                "ON FORMS.FORMID = APPLICATIONS.FORMID " +
-                "WHERE APPLICATIONS.STATUS='APPROVED'";
-        ResultSet rset = cacheM.getDbM().getStmt().executeQuery(retrieve);
-        return rset;
+        return cacheM.getApprovedApplications(cacheM.getDbM().getConnection());
     }
 
     /**

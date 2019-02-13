@@ -1,5 +1,7 @@
 package UI.Controllers;
 
+import Datatypes.Agent;
+import Datatypes.Manufacturer;
 import Managers.*;
 
 import Managers.SceneManager;

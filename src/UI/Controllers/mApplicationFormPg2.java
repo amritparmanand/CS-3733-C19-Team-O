@@ -2,6 +2,8 @@ package UI.Controllers;
 
 import Datatypes.Form;
 import Managers.*;
+import UI.MultiThreadWaitFor;
+import UI.callableFunction;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,44 +57,46 @@ public class mApplicationFormPg2 {
 
     }
 
-    @FXML public void saveDraft(){
-        Form form = cacheM.getForm();
+    @FXML public void saveDraft() {
+        if (printName != null && mailAddress != null && formula != null && grapes != null && appellation != null && phoneNumber != null && email != null) {
+            Form form = cacheM.getForm();
 
-        phoneNumberString = phoneNumber.getText().trim();
-        formEmail = email.getText().trim();
 
-        form.setPrintName(printName.getText());
-        form.setMailingAddress(mailAddress.getText());
-        form.setFormula(formula.getText());
-        form.setGrapeVarietal(grapes.getText());
-        form.setAppellation(appellation.getText());
-        if(validFormPhone(phoneNumberString)) {
-            form.setPhoneNumber(phoneNumberString);
-            System.out.println("valid phone number");
-        }else{
-            System.out.println("invalid phone number");
-        }
-        if(validFormEmail(formEmail)){
-            form.setEmailAddress(email.getText());
-            System.out.println("valid email");
-        }else{
-            System.out.println("invalid email");
-        }
+            phoneNumberString = phoneNumber.getText().trim();
+            formEmail = email.getText().trim();
 
-        if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
-            form.setGrapeVarietal("");
-            form.setAppellation("");
-        }
+            form.setPrintName(printName.getText());
+            form.setMailingAddress(mailAddress.getText());
+            form.setFormula(formula.getText());
+            form.setGrapeVarietal(grapes.getText());
+            form.setAppellation(appellation.getText());
+            if (validFormPhone(phoneNumberString)) {
+                form.setPhoneNumber(phoneNumberString);
+                System.out.println("valid phone number");
+            } else {
+                System.out.println("invalid phone number");
+            }
+            if (validFormEmail(formEmail)) {
+                form.setEmailAddress(email.getText());
+                System.out.println("valid email");
+            } else {
+                System.out.println("invalid email");
+            }
+            if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
+                form.setGrapeVarietal("");
+                form.setAppellation("");
+            }
+            if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
+                System.out.println("Unable to save. Invalid fields entered");
+                saveDraftMessage.setTextFill(Color.RED);
+                saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
+            } else {
+                saveDraftMessage.setText("");
+                cacheM.setForm(form);
 
-        if(!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)){
-            System.out.println("Unable to save. Invalid fields entered");
-            saveDraftMessage.setTextFill(Color.RED);
-            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
-        }else {
-            saveDraftMessage.setText("");
-            cacheM.setForm(form);
+                System.out.println("save Draft executed");
 
-            System.out.println("save Draft executed");
+            }
         }
     }
 
@@ -105,21 +109,38 @@ public class mApplicationFormPg2 {
         }
     }
 
+    /**
+     * The multi-thread function
+     * Saves draft every 5 seconds
+     */
+    callableFunction cf = new callableFunction() {
+        @Override
+        @FXML
+        public void call() {
+            saveDraft();
+        }
+    };
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
+
     @FXML public void nextPage() throws IOException {
         saveDraft();
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
     }
     @FXML public void previousPage() throws IOException {
         saveDraft();
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
     }
     @FXML public void searchPage() throws IOException {
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
     @FXML public void goToHomePage() throws IOException {
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
@@ -136,8 +157,7 @@ public class mApplicationFormPg2 {
      * alphanumeric format is allowed after area code
      * @return true if is valid number, false if not
      */
-    @FXML
-    public boolean validFormPhone(String phoneNumber){
+    @FXML public boolean validFormPhone(String phoneNumber){
         if(phoneNumber.matches("^[0]{8,20}$")){
             return false;
         } else if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){

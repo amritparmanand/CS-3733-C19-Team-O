@@ -64,7 +64,9 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
                                  <children>
+
                                     <JFXButton fx:id="previous" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
+
                                     <JFXButton fx:id="next1" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
