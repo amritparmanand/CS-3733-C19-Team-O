@@ -139,6 +139,7 @@ public class LoginPage implements SerialPortDataListener {
                         Platform.runLater(() -> {
                             loginMessage.setTextFill(Color.RED);
                             loginMessage.setText("Badge cannot be authenticated. Access Denied!");
+                            programChip.setVisible(false);
                             return;
 
                         });
