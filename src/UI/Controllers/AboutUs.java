@@ -21,7 +21,7 @@ public class AboutUs{
     @FXML private JFXButton back;
 
     @FXML
-    public void back() throws IOException {
+    public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }
