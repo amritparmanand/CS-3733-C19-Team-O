@@ -80,6 +80,7 @@
                                     <JFXButton fx:id="next1" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
+                              <Label fx:id="saveDraftMessage" />
                               <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
                               <JFXButton fx:id="saveDraft" onMousePressed="#saveDraft" prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
                               <Button fx:id="back1" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">

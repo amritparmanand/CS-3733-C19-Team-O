@@ -5,8 +5,10 @@ import Managers.*;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -19,12 +21,14 @@ public class mApplicationFormPg2 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private String phoneNumberString;
+    private String formEmail;
 
     @FXML private AnchorPane mainPane;
 
     @FXML private VBox hideBox;
     @FXML private VBox varietalVBox;
     @FXML private VBox appellationVBox;
+    @FXML private Label saveDraftMessage;
 
     @FXML private JFXTextField printName;
     @FXML private JFXTextField mailAddress;
@@ -55,6 +59,7 @@ public class mApplicationFormPg2 {
         Form form = cacheM.getForm();
 
         phoneNumberString = phoneNumber.getText().trim();
+        formEmail = email.getText().trim();
 
         form.setPrintName(printName.getText());
         form.setMailingAddress(mailAddress.getText());
@@ -63,20 +68,32 @@ public class mApplicationFormPg2 {
         form.setAppellation(appellation.getText());
         if(validFormPhone(phoneNumberString)) {
             form.setPhoneNumber(phoneNumberString);
-            System.out.println("vaild phone number");
+            System.out.println("valid phone number");
         }else{
             System.out.println("invalid phone number");
         }
-        form.setEmailAddress(email.getText());
+        if(validFormEmail(formEmail)){
+            form.setEmailAddress(email.getText());
+            System.out.println("valid email");
+        }else{
+            System.out.println("invalid email");
+        }
 
         if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
             form.setGrapeVarietal("");
             form.setAppellation("");
         }
 
-        cacheM.setForm(form);
+        if(!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)){
+            System.out.println("Unable to save. Invalid fields entered");
+            saveDraftMessage.setTextFill(Color.RED);
+            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
+        }else {
+            saveDraftMessage.setText("");
+            cacheM.setForm(form);
 
-        System.out.println("save Draft executed");
+            System.out.println("save Draft executed");
+        }
     }
 
     @FXML public void wineFieldCheck(){
@@ -128,6 +145,22 @@ public class mApplicationFormPg2 {
         }else
             return false;
 
+    }
+
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param email email to be checked
+     * checks the manufacturer email
+     * it must be a .gov account
+     * can have lower case, upper case, numbers
+     * @return true if valid email, false if invalid
+     */
+    @FXML
+    public boolean validFormEmail(String email){
+        if(email.matches("^([a-zA-Z0-9_\\-\\.]+)@+([a-zA-Z]+).+([a-zA-Z]{2,3})$")){
+            return true;
+        }else return false;
     }
 
 }
