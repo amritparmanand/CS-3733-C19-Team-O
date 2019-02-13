@@ -87,13 +87,13 @@
                   </JFXTextField>
                   <JFXTextField fx:id="email" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Email">
                      <VBox.margin>
-                        <Insets bottom="5.0" top="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
                   <Label fx:id="emailMessage" />
                   <JFXTextField fx:id="phone" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Phone (U.S Number Only)">
                      <VBox.margin>
-                        <Insets bottom="5.0" top="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
                   <Label fx:id="phoneMessage" />
@@ -117,6 +117,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </JFXPasswordField>
+                  <Label fx:id="passwordMessage" />
                   <JFXButton fx:id="register" disable="true" maxWidth="300.0" onAction="#validateButton" onMousePressed="#register" styleClass="buttonStyle" text="Register">
                      <VBox.margin>
                         <Insets top="10.0" />
