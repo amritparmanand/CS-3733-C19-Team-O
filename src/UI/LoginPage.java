@@ -15,6 +15,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Statement;
 import java.util.EventListener;
 
@@ -27,6 +28,7 @@ public class LoginPage implements SerialPortDataListener {
     private BCryptPasswordEncoder passwordDecoder = new BCryptPasswordEncoder();
     SerialPort ports[] = SerialPort.getCommPorts();
     SerialPort serialPort = null;
+    int chipID = -1;
 
     @FXML
     private RadioButton m;
@@ -44,6 +46,8 @@ public class LoginPage implements SerialPortDataListener {
     private TextField password;
     @FXML
     private Label loginMessage;
+    @FXML
+    private Button programChip;
 
 
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
@@ -53,9 +57,12 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML
     public void initialize() {
+        programChip.setVisible(false);
         if (ports.length > 0) {
             this.serialPort = ports[ports.length - 1];
             this.serialPort.openPort();
+
+            serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING,0,0);
 
             serialPort.addDataListener(new SerialPortDataListener() {
                 @Override
@@ -71,21 +78,36 @@ public class LoginPage implements SerialPortDataListener {
                     serialPort.readBytes(newData, newData.length);
                     String buf = new String(newData);
                     buf = buf.trim();
-
+//                    InputStream in = serialPort.getInputStream();
+//                    String buf = "";
+//                    for(int i = 0; i< 16; i++)
+//                    {
+//                        try {
+//                            buf += (char) in.read();
+//                        }
+//                        catch(Exception e)
+//                        {
+//                            break;
+//                        }
+//                    }
+//                    //System.out.println("output" + buf.split("\n")[0]);
+//                    buf = buf.split("\n")[0];
+//                    buf = buf.replaceAll("\"","");
+//                    buf = buf.trim();
                     System.out.println(buf);
+                    //MAGIC
                     if ((buf != null && !(buf.length() < 4))) {
-
-                        int loginID = Integer.parseInt(buf);
-                        String uname = cacheM.getDbM().aFindUsername(loginID);
-                        String hashedPassword = cacheM.getDbM().aFindPassword(loginID);
+                        chipID = Integer.parseInt(buf);
+                        String uname = cacheM.getDbM().aFindUsername(chipID);
+                        String hashedPassword = cacheM.getDbM().aFindPassword(chipID);
                         if ((uname != null) && (uname != "")) {
                             System.out.println("Login Successful!");
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
                             Platform.runLater(() -> {
-                                id.setText(String.valueOf(loginID));
+                                id.setText(String.valueOf(chipID));
                                 username.setText(uname);
                                 password.setText(hashedPassword);
-                                cacheM.setAcct(cacheM.getDbM().aCreate(loginID));
+                                cacheM.setAcct(cacheM.getDbM().aCreate(chipID));
                                 try {
                                     sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
                                 } catch (IOException e) {
@@ -100,13 +122,15 @@ public class LoginPage implements SerialPortDataListener {
                             Platform.runLater(() -> {
                                 loginMessage.setTextFill(Color.RED);
                                 loginMessage.setText("Badge has not yet been programmed");
+                                programChip.setVisible(true);
+                                programChip.setDisable(false);
                                 return;
 
                             });
 
                         }
                     }
-                    else
+                    else if (buf.equals(""))
                     {
                         Platform.runLater(() -> {
                             loginMessage.setTextFill(Color.RED);
@@ -173,6 +197,12 @@ public class LoginPage implements SerialPortDataListener {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aRegister.fxml"));
             sceneM.changeScene(loader, new aRegister(sceneM, cacheM));
         }
+    }
+
+    @FXML
+    public void programChip() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aRegister.fxml"));
+        sceneM.changeScene(loader, new aRegister(sceneM, cacheM, chipID));
     }
 
     @FXML

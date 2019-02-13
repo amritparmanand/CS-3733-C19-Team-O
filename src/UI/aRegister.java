@@ -16,10 +16,16 @@ public class aRegister {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
-
+    int ttbIDFromChip = -1;
     public aRegister(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+    }
+
+    public aRegister(SceneManager sceneM, CacheManager cacheM, int ttbID) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.ttbIDFromChip = ttbID;
     }
 
     @FXML private Button aRegister;
@@ -33,6 +39,12 @@ public class aRegister {
     @FXML private TextField ttbID;
 
 
+    @FXML
+    public void initialize()
+    {
+        if(ttbIDFromChip >= 0)
+        ttbID.setText(String.valueOf(ttbIDFromChip));
+    }
     @FXML
     public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
