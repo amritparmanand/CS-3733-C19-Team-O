@@ -2,6 +2,8 @@ package UI.Controllers;
 
 import Datatypes.Form;
 import Managers.*;
+import UI.MultiThreadWaitFor;
+import UI.callableFunction;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,8 +45,33 @@ public class mApplicationFormPg4 {
 
     }
 
+    public void saveDraft(){
+        if (dateOfApplication!=null && applicantNamePrint!=null) {
+            Form form = cacheM.getForm();
+
+            form.setDateOfApplication(dateOfApplication.getText());
+            form.setPrintName(applicantNamePrint.getText());
+
+            cacheM.setForm(form);
+        }
+    }
+
+    /**
+     * The multi-thread function
+     * Saves draft every 10 seconds
+     */
+    callableFunction cf = new callableFunction() {
+        @Override
+        @FXML
+        public void call() {
+            saveDraft();
+        }
+    };
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(10, cf);
+
     @FXML
     public void submit() throws SQLException, IOException {
+        multiThreadWaitFor.onShutDown();
         Form form = cacheM.getForm();
 
         form.setDateOfApplication(dateOfApplication.getText());
@@ -65,14 +92,17 @@ public class mApplicationFormPg4 {
     }
 
     @FXML public void previousPage() throws IOException {
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
     }
     @FXML public void searchPage() throws IOException {
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
     @FXML public void goToHomePage() throws IOException {
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }

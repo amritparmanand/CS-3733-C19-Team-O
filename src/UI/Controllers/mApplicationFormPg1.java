@@ -185,12 +185,15 @@ public class mApplicationFormPg1{
         System.out.println("Pg1 saved!");
     }
 
+    /**
+     * The multi-thread function
+     * Saves draft every 10 seconds
+     */
     callableFunction cf = new callableFunction() {
         @Override
         @FXML
         public void call() {
             saveDraft();
-            System.out.println("hi");
         }
     };
 
@@ -214,10 +217,12 @@ public class mApplicationFormPg1{
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
     @FXML public void searchPage() throws IOException {
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
     @FXML public void goToHomePage() throws IOException {
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
