@@ -95,81 +95,89 @@ public class mApplicationFormPg1{
         Form form = cacheM.getForm();
 
         // checks if domestic or imported
-        if (domestic.isSelected() || imported.isSelected()) {
-            if(domestic.isSelected()) {
-                form.setProductSource("DOMESTIC");
-            }
-            else if(imported.isSelected()){
-                form.setProductSource("IMPORTED");
+        if(domestic != null && domestic != null){
+            if (domestic.isSelected() || imported.isSelected()) {
+                if(domestic.isSelected()) {
+                    form.setProductSource("DOMESTIC");
+                }
+                else if(imported.isSelected()){
+                    form.setProductSource("IMPORTED");
+                }
             }
         }
 
         // checks if wine, distilled, or malt beverage
-        if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
-            if(wine.isSelected()){
-                form.setProductType("WINE");
-            }
-            else if(distilled.isSelected()){
-                form.setProductType("DISTILLED");
-            }
-            else if(malt.isSelected()) {
-                form.setProductType("MALT");
-            }
-        }
-
-        String type2 = null;
-        if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
-            if(wine2.isSelected())
-                type2 = "WINE";
-            else if(spirits2.isSelected())
-                type2 = "SPIRITS";
-            else if(beer2.isSelected())
-                type2 = "BEER";
-                form.setBeerWineSpirit(type2);
-            if(type2 == "WINE") {
-                form.setpHLevel(phLevel.getText());
-                form.setVintageYear(vintageYear.getText());
-            }else{
-                form.setpHLevel(null);
-                form.setVintageYear(null);
+        if(wine != null && distilled != null && malt != null){
+            if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
+                if(wine.isSelected()){
+                    form.setProductType("WINE");
+                }
+                else if(distilled.isSelected()){
+                    form.setProductType("DISTILLED");
+                }
+                else if(malt.isSelected()) {
+                    form.setProductType("MALT");
+                }
             }
         }
 
-        if (!repID.getText().isEmpty()){
-            form.setRepID(Integer.parseInt(repID.getText()));
+        String type2 = "WINE";
+        if (wine2 != null && spirits2 != null && beer2 != null) {
+            if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
+                if(wine2.isSelected())
+                    type2 = "WINE";
+                else if(spirits2.isSelected())
+                    type2 = "SPIRITS";
+                else if(beer2.isSelected())
+                    type2 = "BEER";
+                    form.setBeerWineSpirit(type2);
+                if(type2 == "WINE") {
+                    form.setpHLevel(phLevel.getText());
+                    form.setVintageYear(vintageYear.getText());
+                }else{
+                    form.setpHLevel(null);
+                    form.setVintageYear(null);
+                }
+            }
         }
-        else{
-            form.setRepID(0);
-        }
-        if (!brewerNO.getText().isEmpty()){
-            form.setBrewerNumber(brewerNO.getText());
-        }
-        else{
-            form.setBrewerNumber("");
-        }
-        if (!serialNumber.getText().isEmpty()){
-            form.setSerialNumber(serialNumber.getText());
-        }
-        else{
-            form.setSerialNumber("");
-        }
-        if (!brandName.getText().isEmpty()) {
-            form.setBrandName(brandName.getText());
-        }
-        else{
-            form.setBrandName("");
-        }
-        if (!fancifulName.getText().isEmpty()) {
-            form.setFancifulName(fancifulName.getText());
-        }
-        else{
-            form.setFancifulName("");
-        }
-        if (!alcoholPercentage.getText().isEmpty()) {
-            form.setAlcoholPercent(alcoholPercentage.getText());
-        }
-        else{
-            form.setAlcoholPercent("");
+
+        if (repID != null && brewerNO != null && serialNumber != null && brandName != null && fancifulName != null && alcoholPercentage != null) {
+            if (!repID.getText().isEmpty()){
+                form.setRepID(Integer.parseInt(repID.getText()));
+            }
+            else{
+                form.setRepID(0);
+            }
+            if (!brewerNO.getText().isEmpty()){
+                form.setBrewerNumber(brewerNO.getText());
+            }
+            else{
+                form.setBrewerNumber("");
+            }
+            if (!serialNumber.getText().isEmpty()){
+                form.setSerialNumber(serialNumber.getText());
+            }
+            else{
+                form.setSerialNumber("");
+            }
+            if (!brandName.getText().isEmpty()) {
+                form.setBrandName(brandName.getText());
+            }
+            else{
+                form.setBrandName("");
+            }
+            if (!fancifulName.getText().isEmpty()) {
+                form.setFancifulName(fancifulName.getText());
+            }
+            else{
+                form.setFancifulName("");
+            }
+            if (!alcoholPercentage.getText().isEmpty()) {
+                form.setAlcoholPercent(alcoholPercentage.getText());
+            }
+            else{
+                form.setAlcoholPercent("");
+            }
         }
 
         cacheM.setForm(form);
@@ -177,18 +185,16 @@ public class mApplicationFormPg1{
         System.out.println("Pg1 saved!");
     }
 
-//    callableFunction cf = new callableFunction() {
-//        @Override
-//        @FXML
-//        public void call() {
-//            Form form = cacheM.getForm();
-//            System.out.println(form.getRepID());
-//            cacheM.setForm(form);
-//            System.out.println("hi");
-//        }
-//    };
-//
-//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(3, cf);
+    callableFunction cf = new callableFunction() {
+        @Override
+        @FXML
+        public void call() {
+            saveDraft();
+            System.out.println("hi");
+        }
+    };
+
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(3, cf);
 
     @FXML private VBox phVBox;
     @FXML private VBox vintageVBox;
@@ -203,7 +209,7 @@ public class mApplicationFormPg1{
 
     @FXML public void nextPage() throws IOException {
         saveDraft();
-//        multiThreadWaitFor.onShutDown();
+        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }

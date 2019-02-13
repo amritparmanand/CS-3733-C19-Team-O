@@ -103,8 +103,4 @@ public class aApplicationFormPg2 {
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
-    @FXML
-    public void saveDraft() throws IOException{
-
-    }
 }

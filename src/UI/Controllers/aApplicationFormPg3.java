@@ -79,10 +79,6 @@ public class aApplicationFormPg3 {
     }
 
     @FXML
-    public void saveDraft() throws IOException{
-
-    }
-    @FXML
     public void uploadImage() throws IOException{
 
     }

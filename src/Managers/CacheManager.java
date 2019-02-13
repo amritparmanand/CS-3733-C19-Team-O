@@ -18,6 +18,7 @@ public class CacheManager {
     private Form form;
     private Account acct;
     private int formLimit;
+    private int receiver;
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
