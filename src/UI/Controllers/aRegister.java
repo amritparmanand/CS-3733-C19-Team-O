@@ -24,6 +24,7 @@ public class aRegister {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private String phoneNumber;
+    private String agentEmail;
 
     public aRegister(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -77,6 +78,7 @@ public class aRegister {
     @FXML
     public void validateButton(){
         phoneNumber = phone.getText().trim();
+        agentEmail = email.getText().trim();
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||
@@ -84,11 +86,22 @@ public class aRegister {
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
                 ttbID.getText().isEmpty() ||
-                !validAgentPhone(phoneNumber)
+                !validAgentPhone(phoneNumber) ||
+                !validAgentEmail(agentEmail)
         ){
             if(!validAgentPhone(phoneNumber)){
                 phoneMessage.setTextFill(Color.RED);
                 phoneMessage.setText("Invalid Phone Number. Please Try again.");
+            }
+            if(!validAgentEmail(agentEmail)){
+                emailMessage.setTextFill(Color.RED);
+                emailMessage.setText("Invalid Email. Must Be A .gov Address");
+            }
+            if(validAgentPhone(phoneNumber)){
+                phoneMessage.setText("");
+            }
+            if(validAgentEmail(agentEmail)){
+                emailMessage.setText("");
             }
             aRegister.setDisable(true);
         }
@@ -102,7 +115,7 @@ public class aRegister {
      * @version It 2
      * @since It 2
      * @param phoneNumber phone number to be checked
-     * checks the manufacturer phone number for Agent Registration form
+     * checks the agent phone number for Agent Registration form
      * will accept US number with the following conditions
      * 1 prefix optional
      * area code is required
@@ -122,6 +135,19 @@ public class aRegister {
         return false;
     }
 
-    //@FXML
-    //public boolean valid
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param email email to be checked
+     * checks the agent email
+     * it must be a .gov account
+     * can have lower case, upper case, numbers
+     * @return true if valid email, false if invalid
+     */
+    @FXML
+    public boolean validAgentEmail(String email){
+        if(email.matches("^([a-zA-Z0-9_\\-\\.]+)@+([a-zA-Z]+).gov$")){
+            return true;
+        }else return false;
+    }
 }
