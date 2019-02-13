@@ -123,6 +123,7 @@ public class mApplicationFormPg2 {
     };
     MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
+
     @FXML public void nextPage() throws IOException {
         saveDraft();
         multiThreadWaitFor.onShutDown();

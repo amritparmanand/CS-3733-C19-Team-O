@@ -21,7 +21,6 @@ public class MultiThreadWaitFor implements Runnable{
     }
 
     @Override
-    @FXML
     public void run() {
         try{
             while(isRunning == true){
