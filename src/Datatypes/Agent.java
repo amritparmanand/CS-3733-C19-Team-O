@@ -19,7 +19,6 @@ public class Agent extends Account {
     private ArrayList<Form> workingForms = new ArrayList<>();
     private boolean hasFetchedForms = false;
 
-    // Why are there 2 constructors?
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
@@ -109,7 +108,6 @@ public class Agent extends Account {
     public void getAssignedForms(Connection conn) {
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID = " + this.getTtbID();
-            ;
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
