@@ -7,7 +7,6 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -42,19 +41,10 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
-                  <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer" visible="false">
-                     <children>
-                        <TextField alignment="TOP_LEFT" promptText="search" styleClass="searchfield">
-                           <HBox.margin>
-                              <Insets left="20.0" top="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
+                  <JFXButton fx:id="search" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
                      <HBox.margin>
-                        <Insets left="450.0" />
-                     </HBox.margin>
-                  </HBox>
-                  <JFXButton fx:id="search" onMousePressed="#search" styleClass="searchButtonStyle" text="Search" />
+                        <Insets left="800.0" />
+                     </HBox.margin></JFXButton>
                </children></HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1280.0">
                <children>
