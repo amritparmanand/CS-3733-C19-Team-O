@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="CS3733">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/.." />
+      <root url="jar://$PROJECT_DIR$/../../Java Stuff/jfoenix-8.0.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java Stuff/jfoenix-8.0.8-retrolambda.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/.." />
+    </SOURCES>
+  </library>
+</component>
