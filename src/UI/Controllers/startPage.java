@@ -29,9 +29,10 @@ public class startPage {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
+
      @FXML public void about() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new AboutUs(sceneM, cacheM));
     }
 
 }
