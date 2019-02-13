@@ -15,6 +15,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Statement;
 import java.util.EventListener;
 
@@ -44,6 +45,8 @@ public class LoginPage implements SerialPortDataListener {
     private TextField password;
     @FXML
     private Label loginMessage;
+    @FXML
+    private Label programChip;
 
 
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
@@ -57,6 +60,8 @@ public class LoginPage implements SerialPortDataListener {
             this.serialPort = ports[ports.length - 1];
             this.serialPort.openPort();
 
+            serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING,0,0);
+
             serialPort.addDataListener(new SerialPortDataListener() {
                 @Override
                 public int getListeningEvents() {
@@ -65,15 +70,31 @@ public class LoginPage implements SerialPortDataListener {
 
                 @Override
                 public synchronized void serialEvent(SerialPortEvent serialPortEvent) {
-                    byte[] newData = new byte[8];
-                    serialPort.readBytes(newData, 8);
-
+//                    byte[] newData = new byte[8];
+//                    serialPort.readBytes(newData, 8);
+                    byte[] newData = new byte[serialPort.bytesAvailable()];
+                    serialPort.readBytes(newData, newData.length);
                     String buf = new String(newData);
                     buf = buf.trim();
-
+//                    InputStream in = serialPort.getInputStream();
+//                    String buf = "";
+//                    for(int i = 0; i< 16; i++)
+//                    {
+//                        try {
+//                            buf += (char) in.read();
+//                        }
+//                        catch(Exception e)
+//                        {
+//                            break;
+//                        }
+//                    }
+//                    //System.out.println("output" + buf.split("\n")[0]);
+//                    buf = buf.split("\n")[0];
+//                    buf = buf.replaceAll("\"","");
+//                    buf = buf.trim();
                     System.out.println(buf);
-                    if ((buf != null && !(buf.length() < 2))) {
-
+                    //MAGIC
+                    if ((buf != null && !(buf.length() < 4))) {
                         int loginID = Integer.parseInt(buf);
                         String uname = cacheM.getDbM().aFindUsername(loginID);
                         String hashedPassword = cacheM.getDbM().aFindPassword(loginID);
@@ -98,7 +119,8 @@ public class LoginPage implements SerialPortDataListener {
                         else{
                             Platform.runLater(() -> {
                                 loginMessage.setTextFill(Color.RED);
-                                loginMessage.setText("Badge cannot be authenticated. Access Denied!");
+                                loginMessage.setText("Badge not yet programmed");
+                                programChip.setText("Program this Chip?");
                                 return;
 
                             });
@@ -109,7 +131,8 @@ public class LoginPage implements SerialPortDataListener {
                     {
                         Platform.runLater(() -> {
                             loginMessage.setTextFill(Color.RED);
-                            loginMessage.setText("Badge has not yet been programmed.");
+                            loginMessage.setText("Badge cannot be authenticated. Access Denied!");
+                            //serialPort.closePort();
                             return;
 
                         });
