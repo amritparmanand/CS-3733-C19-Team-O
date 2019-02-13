@@ -88,6 +88,7 @@ public class mApplicationFormPg2 {
         }
     }
 
+
     @FXML public void nextPage() throws IOException {
         saveDraft();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
@@ -128,6 +129,12 @@ public class mApplicationFormPg2 {
         }else
             return false;
 
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
 
 }

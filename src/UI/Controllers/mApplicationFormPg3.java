@@ -153,4 +153,10 @@ public class mApplicationFormPg3 {
         imagePreview.setImage(image.getLabelImage());
     }
 
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+
 }
