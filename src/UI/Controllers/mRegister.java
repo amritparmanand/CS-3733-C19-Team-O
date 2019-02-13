@@ -23,6 +23,7 @@ public class mRegister {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private String phoneNumber;
+    private String manuEmail;
 
 
     public mRegister(SceneManager sceneM, CacheManager cacheM) {
@@ -72,6 +73,7 @@ public class mRegister {
 
     @FXML public void validateButton(){
         phoneNumber = phone.getText().trim();
+        manuEmail = email.getText().trim();
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||
@@ -80,12 +82,24 @@ public class mRegister {
                 phone.getText().isEmpty() ||
                 companyName.getText().isEmpty() ||
                 repID.getText().isEmpty() ||
-                !validManuPhone(phoneNumber)){
+                !validManuPhone(phoneNumber) ||
+                !validManuEmail(manuEmail)){
             register.setDisable(true);
             if(!validManuPhone(phoneNumber)){
                 phoneMessage.setTextFill(Color.RED);
-                phoneMessage.setText("Invalid Phone Number. Please Try again.");
+                phoneMessage.setText("Invalid Phone Number. Please Try Again");
             }
+            if(!validManuEmail(manuEmail)){
+                emailMessage.setTextFill(Color.RED);
+                emailMessage.setText("Invalid Email Address. Please Try Again");
+            }
+            if(validManuPhone(phoneNumber)){
+                phoneMessage.setText("");
+            }
+            if(validManuEmail(manuEmail)){
+                emailMessage.setText("");
+            }
+
         }
         else{
             register.setDisable(false);
@@ -114,5 +128,21 @@ public class mRegister {
         }else
             return false;
 
+    }
+
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param email email to be checked
+     * checks the manufacturer email
+     * it must be a .gov account
+     * can have lower case, upper case, numbers
+     * @return true if valid email, false if invalid
+     */
+    @FXML
+    public boolean validManuEmail(String email){
+        if(email.matches("^([a-zA-Z0-9_\\-\\.]+)@+([a-zA-Z]+).+([a-zA-Z]{2,3})$")){
+            return true;
+        }else return false;
     }
 }

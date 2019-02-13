@@ -24,29 +24,40 @@ public class agentEmailTest {
 
     private SceneManager dummysceneM;
     private CacheManager dummycacheM;
+    private mRegister dummyManu;
     private aRegister dummyAgent;
 
     // Parameters for Phone Number Tests
     @Parameterized.Parameters
     public static Collection<Object[]> emails() {
         return Arrays.asList(new Object[][] {
-                {"clay@TTB.gov", true}, {"a@TTB.gov", true}, { "Clay123@TTB.gov", true}, { "CLAY123@TTB.gov", true}, {"clay", false}, {"@TTB.gov", false}, {"clayTTB.gov", false},
-                {"", false}
+                {"clay@TTB.gov", true, true}, {"a@TTB.gov", true, true}, { "Clay123@TTB.gov", true, true}, { "CLAY123@TTB.gov", true, true}, {"clay", false, false}, {"@TTB.gov", false, false}, {"clayTTB.gov", false, false},
+                {"", false, false}, {"clay@gmail.com", false, true}, {"clay123@gmail.com", false, true}, {"CLAY123@gmail.com", false, true}, {"john@budweiser.com", false, true}, {"will@reck.io", false, true}
         });
     }
     @Parameterized.Parameter
     public String email;
 
     @Parameterized.Parameter(1)
-    public boolean expected;
+    public boolean agentExpected;
 
-    // Testing Phone Number Validation Systems
+    @Parameterized.Parameter (2)
+    public boolean manuExpected;
 
-    // manufacturer phone number
+    // Testing Email Validation Systems
+
+    // agent email validation
     @Test
     public void agentEmailValidation(){
         dummyAgent = new aRegister(dummysceneM, dummycacheM);
-
-        assertEquals(expected, dummyAgent.validAgentEmail(email));
+        assertEquals(agentExpected, dummyAgent.validAgentEmail(email));
     }
+
+    @Test
+    public void manufacturerEmailVerification(){
+        dummyManu = new mRegister(dummysceneM, dummycacheM);
+        assertEquals(manuExpected, dummyManu.validManuEmail(email));
+    }
+
+
 }
