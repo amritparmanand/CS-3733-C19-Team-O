@@ -45,58 +45,58 @@ public class mApplicationFormPg2 {
         this.cacheM = cacheM;
     }
 
-//    @FXML public void initialize(){
-//        Form form = cacheM.getForm();
-//        printName.setText(form.getPrintName());
-//        mailAddress.setText(form.getMailingAddress());
-//        formula.setText(form.getFormula());
-//        grapes.setText(form.getGrapeVarietal());
-//        appellation.setText(form.getAppellation());
-//        phoneNumber.setText(form.getPhoneNumber());
-//        email.setText(form.getEmailAddress());
-//
-//    }
+    @FXML public void initialize(){
+        Form form = cacheM.getForm();
+        printName.setText(form.getPrintName());
+        mailAddress.setText(form.getMailingAddress());
+        formula.setText(form.getFormula());
+        grapes.setText(form.getGrapeVarietal());
+        appellation.setText(form.getAppellation());
+        phoneNumber.setText(form.getPhoneNumber());
+        email.setText(form.getEmailAddress());
+    }
 
     @FXML public void saveDraft() {
-        if (printName != null && mailAddress != null && formula != null && grapes != null && appellation != null && phoneNumber != null && email != null) {
-            Form form = cacheM.getForm();
+        Form form = cacheM.getForm();
+
+        phoneNumberString = phoneNumber.getText().trim();
+        formEmail = email.getText().trim();
+
+        form.setPrintName(printName.getText());
+        form.setMailingAddress(mailAddress.getText());
+        form.setFormula(formula.getText());
+        form.setGrapeVarietal(grapes.getText());
+        form.setAppellation(appellation.getText());
+        if (validFormPhone(phoneNumberString)) {
+            form.setPhoneNumber(phoneNumberString);
+            System.out.println("valid phone number");
+        } else {
+            System.out.println("invalid phone number");
+        }
+        if (validFormEmail(formEmail)) {
+            form.setEmailAddress(email.getText());
+            System.out.println("valid email");
+        } else {
+            System.out.println("invalid email");
+        }
+        if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
+            form.setGrapeVarietal("");
+            form.setAppellation("");
+        }
 
 
-            phoneNumberString = phoneNumber.getText().trim();
-            formEmail = email.getText().trim();
+        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
+            System.out.println("Unable to save. Invalid fields entered");
+            saveDraftMessage.setTextFill(Color.RED);
+            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
+        }
+        else {
+            saveDraftMessage.setText("");
+            form.setPhoneNumber(phoneNumberString);
+            form.setEmailAddress(formEmail);
+            cacheM.setForm(form);
 
-            form.setPrintName(printName.getText());
-            form.setMailingAddress(mailAddress.getText());
-            form.setFormula(formula.getText());
-            form.setGrapeVarietal(grapes.getText());
-            form.setAppellation(appellation.getText());
-            if (validFormPhone(phoneNumberString)) {
-                form.setPhoneNumber(phoneNumberString);
-                System.out.println("valid phone number");
-            } else {
-                System.out.println("invalid phone number");
-            }
-            if (validFormEmail(formEmail)) {
-                form.setEmailAddress(email.getText());
-                System.out.println("valid email");
-            } else {
-                System.out.println("invalid email");
-            }
-            if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
-                form.setGrapeVarietal("");
-                form.setAppellation("");
-            }
-            if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
-                System.out.println("Unable to save. Invalid fields entered");
-                saveDraftMessage.setTextFill(Color.RED);
-                saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
-            } else {
-                saveDraftMessage.setText("");
-                cacheM.setForm(form);
-
-                System.out.println("save Draft executed");
-
-            }
+            System.out.println("save Draft executed");
         }
     }
 
@@ -115,9 +115,10 @@ public class mApplicationFormPg2 {
      */
     callableFunction cf = new callableFunction() {
         @Override
-        @FXML
         public void call() {
-            saveDraft();
+            if(printName != null && mailAddress != null && formula != null && grapes != null && appellation != null && phoneNumber != null && email != null){
+                saveDraft();
+            }
         }
     };
     MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);

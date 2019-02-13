@@ -35,7 +35,7 @@ public class aRegister {
         this.cacheM = cacheM;
     }
 
-    public aRegister(SceneManager sceneM, CacheManager cacheM, Integer ttbIDFromChip) {
+    public aRegister(SceneManager sceneM, CacheManager cacheM, int ttbIDFromChip) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.ttbIDFromChip = Integer.parseInt(ttbID.getText());

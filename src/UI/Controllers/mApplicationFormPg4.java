@@ -42,19 +42,17 @@ public class mApplicationFormPg4 {
         this.cacheM = cacheM;
     }
 
-//    @FXML
-//    public void initialize() {
-//        Form form = cacheM.getForm();
-//
-//        System.out.println("starting");
-//        dateOfApplication.setText(form.getDateOfApplication());
-//        //applicantSig.setText(form.getApplicantSignature);
-//        applicantNamePrint.setText(form.getApplicantName());
-//
-//    }
+    @FXML
+    public void initialize() {
+        Form form = cacheM.getForm();
+
+        System.out.println("starting");
+        dateOfApplication.setText(form.getDateOfApplication());
+        applicantNamePrint.setText(form.getApplicantName());
+
+    }
 
     public void saveDraft(){
-        if (dateOfApplication!=null && applicantNamePrint!=null) {
             Form form = cacheM.getForm();
 
             form.setDateOfApplication(dateOfApplication.getText());
@@ -62,7 +60,7 @@ public class mApplicationFormPg4 {
 
             cacheM.setForm(form);
             System.out.println("Pg4 Saved!");
-        }
+
     }
 
     /**
@@ -71,9 +69,10 @@ public class mApplicationFormPg4 {
      */
     callableFunction cf = new callableFunction() {
         @Override
-        @FXML
         public void call() {
-            saveDraft();
+            if (dateOfApplication!=null && applicantNamePrint!=null){
+                saveDraft();
+            }
         }
     };
     MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);

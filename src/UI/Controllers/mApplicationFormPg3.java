@@ -38,30 +38,28 @@ public class mApplicationFormPg3 {
         this.cacheM = cacheM;
     }
 
-//    @FXML public void initialize() {
-//        Form form = cacheM.getForm();
-//        if(form.getCertificateOfApproval() == null)
-//            certificateOfApproval.setSelected(false);
-//        else if(form.getCertificateOfApproval())
-//            certificateOfApproval.setSelected(true);
-//        if(form.getCertificateOfExemption() == null)
-//            certificateOfExemption.setSelected(false);
-//        else if(form.getCertificateOfExemption())
-//            certificateOfExemption.setSelected(true);
-//        if(form.getDistinctiveLiquor() == null)
-//            DistinctiveLiquor.setSelected(false);
-//        else if(form.getDistinctiveLiquor())
-//            DistinctiveLiquor.setSelected(true);
-//        if(form.getResubmission() == null)
-//            resubmission.setSelected(false);
-//        else if(form.getResubmission())
-//            resubmission.setSelected(true);
-//        validateStateField();
-//        validateBottleCapacity();
-//        validateTTBID();
-////        if(!(form.getLabel().getLabelImage() == null))
-////            imagePreview.setImage(form.getLabel().getLabelImage());
-//    }
+    @FXML public void initialize() {
+        Form form = cacheM.getForm();
+        if(form.getCertificateOfApproval() == null)
+            certificateOfApproval.setSelected(false);
+        else if(form.getCertificateOfApproval())
+            certificateOfApproval.setSelected(true);
+        if(form.getCertificateOfExemption() == null)
+            certificateOfExemption.setSelected(false);
+        else if(form.getCertificateOfExemption())
+            certificateOfExemption.setSelected(true);
+        if(form.getDistinctiveLiquor() == null)
+            DistinctiveLiquor.setSelected(false);
+        else if(form.getDistinctiveLiquor())
+            DistinctiveLiquor.setSelected(true);
+        if(form.getResubmission() == null)
+            resubmission.setSelected(false);
+        else if(form.getResubmission())
+            resubmission.setSelected(true);
+        validateStateField();
+        validateBottleCapacity();
+        validateTTBID();
+    }
 
 
     @FXML public void validateStateField() {
@@ -90,36 +88,31 @@ public class mApplicationFormPg3 {
     }
 
     @FXML public boolean saveDraft(){
-        if (onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null &&certificateOfExemption!= null && DistinctiveLiquor!= null && resubmission!= null && imagePreview!= null && imagePreview!= null) {
-            if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
-                    !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
-                errorLabel.setText("Please select a type of application.");
-                return false;
-            }
-            Form form = cacheM.getForm();
-
-            form.setCertificateOfApproval(certificateOfApproval.isSelected());
-            form.setCertificateOfExemption(certificateOfExemption.isSelected());
-            if(certificateOfExemption.isSelected()) {
-                form.setOnlyState(onlyState.getText());
-            }else {
-                form.setOnlyState(null);
-            }
-            form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
-            form.setResubmission(resubmission.isSelected());
-            if(!resubmission.isSelected())
-                form.setTtbID(0);
-            else
-                form.setTtbID(Integer.parseInt(ttbID.getText()));
-            form.setBottleCapacity(bottleCapacity.getText());
-            form.setLabel(image);
-            errorLabel.setText(" ");
-            cacheM.setForm(form);
-            return true;
-        }
-        else{
+        if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
+                !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
+            errorLabel.setText("Please select a type of application.");
             return false;
         }
+        Form form = cacheM.getForm();
+
+        form.setCertificateOfApproval(certificateOfApproval.isSelected());
+        form.setCertificateOfExemption(certificateOfExemption.isSelected());
+        if(certificateOfExemption.isSelected()) {
+            form.setOnlyState(onlyState.getText());
+        }else {
+            form.setOnlyState(null);
+        }
+        form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
+        form.setResubmission(resubmission.isSelected());
+        if(!resubmission.isSelected())
+            form.setTtbID(0);
+        else
+            form.setTtbID(Integer.parseInt(ttbID.getText()));
+        form.setBottleCapacity(bottleCapacity.getText());
+        form.setLabel(image);
+        errorLabel.setText(" ");
+        cacheM.setForm(form);
+        return true;
     }
 
     /**
@@ -128,10 +121,15 @@ public class mApplicationFormPg3 {
      */
     callableFunction cf = new callableFunction() {
         @Override
-        @FXML
+        @SuppressWarnings("Duplicates")
         public void call() {
-            saveDraft();
-            System.out.println("Pg3 saved!");
+            if(onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null &&
+                    certificateOfExemption!= null && DistinctiveLiquor!= null && resubmission!= null &&
+                    imagePreview!= null && imagePreview!= null){
+                saveDraft();
+                System.out.println("Pg3 saved!");
+            }
+
         }
     };
     MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
