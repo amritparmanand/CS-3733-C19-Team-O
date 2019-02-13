@@ -5,6 +5,7 @@ import Datatypes.Form;
 import Fuzzy.FuzzyContext;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -54,12 +55,8 @@ public class CacheManager {
         this.acct = acct;
     }
 
-    // Facade stuff
 
-    // The register function
-    public void register(Connection conn){
-        acct.register(dbConn);
-    }
+    // Facade stuff
 
     // Form
     public void approveForm(Connection conn){
@@ -73,6 +70,9 @@ public class CacheManager {
     }
     public void insertForm(Connection connection) throws SQLException{
         form.insert(dbConn);
+    }
+    public ResultSet getApprovedApplications(Connection conn) throws SQLException{
+        return form.getApprovedApplications(getDbConn());
     }
 
 }

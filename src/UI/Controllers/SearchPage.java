@@ -155,7 +155,7 @@ public class SearchPage {
         else if(hiddenS){
             fc.setF(new hiddenScore());
         }
-        suggestion = fc.fuzzy(searchBox.getText(), cacheM.getDbM().getConnection());
+        suggestion = fc.fuzzy(searchBox.getText(), cacheM.getDbConn());
 
         ResultSet rs = getApprovedApplications();
         searchResults.getChildren().clear();
