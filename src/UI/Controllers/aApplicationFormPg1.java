@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
@@ -127,9 +128,10 @@ public class aApplicationFormPg1 {
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
-    @FXML public void passForm() throws IOException{
+    @FXML public void passForm() throws IOException, SQLException {
         cacheM.setPasser(cacheM.getAcct().getUsername());
         cacheM.setReceiver(receiver.getText());
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
     }
 
 }

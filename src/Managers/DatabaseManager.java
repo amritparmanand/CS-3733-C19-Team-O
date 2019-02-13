@@ -8,8 +8,10 @@ import Fuzzy.Damerau_Levenshtein;
 import Fuzzy.FuzzyContext;
 import Fuzzy.Levenshtein;
 import Fuzzy.hiddenScore;
+import com.opencsv.CSVReader;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.io.FileReader;
 import java.sql.*;
 /**
  * @author Amrit Parmanand & Percy
@@ -146,35 +148,64 @@ public class DatabaseManager {
                 "fullName varchar(50),	" +
                 "email varchar(60),	" +
                 "phone varchar(15))";
+//        String createForms = "create table Forms(" +
+//                "formID int	constraint Forms_pk	primary key, " +
+//                "repID int, " +
+//                "brewerNumber varchar(60),	" +
+//                "productSource varchar(60),	" +
+//                "serialNumber varchar(60),	" +
+//                "productType varchar(60),	" +
+//                "brandName varchar(60),	" +
+//                "fancifulName varchar(60),	" +
+//                "applicantName varchar(200),	" +
+//                "mailingAddress varchar(80), " +
+//                "formula varchar(80), " +
+//                "grapeVarietal varchar(80),	" +
+//                "appellation varchar(60), " +
+//                "phoneNumber varchar(20), " +
+//                "emailAddress varchar(50),	" +
+//                "certificateOfApproval boolean," +   //begin new
+//                "certificateOfExemption boolean," +
+//                "onlyState varchar(2)," +
+//                "distinctiveLiquor boolean," +
+//                "bottleCapacity VARCHAR(5)," +
+//                "resubmission boolean," +
+//                "ttbID int ," + //end new
+//                "dateOfApplication VARCHAR(30) , " +
+//                "printName varchar(40),	" +
+//                "beerWineSpirit varchar(60), " +
+//                "alcoholPercent varchar(60),	" +
+//                "vintageYear varchar(60), " +
+//                "phLevel varchar(60))";
         String createForms = "create table Forms(" +
-                "formID int	constraint Forms_pk	primary key, " +
-                "repID int, " +
-                "brewerNumber varchar(60),	" +
-                "productSource varchar(60),	" +
-                "serialNumber varchar(60),	" +
-                "productType varchar(60),	" +
-                "brandName varchar(60),	" +
-                "fancifulName varchar(60),	" +
-                "applicantName varchar(200),	" +
-                "mailingAddress varchar(80), " +
-                "formula varchar(80), " +
-                "grapeVarietal varchar(80),	" +
-                "appellation varchar(60), " +
+                "formID bigint   constraint Forms_pk primary key, " +
+                "repID varchar (20), " +
+                "brewerNumber varchar(60), " +
+                "productSource varchar(60),    " +
+                "serialNumber varchar(60), " +
+                "productType varchar(100),  " +
+                "brandName varchar(100),    " +
+                "fancifulName varchar(100), " +
+                "applicantName varchar(200),   " +
+                "mailingAddress varchar(120), " +
+                "formula varchar(120), " +
+                "grapeVarietal varchar(200),    " +
+                "appellation varchar(200), " +
                 "phoneNumber varchar(20), " +
-                "emailAddress varchar(50),	" +
-                "certificateOfApproval boolean," +   //begin new
-                "certificateOfExemption boolean," +
+                "emailAddress varchar(50), " +
+                "certificateOfApproval varchar (2)," +   //begin new
+                "certificateOfExemption varchar (2)," +
                 "onlyState varchar(2)," +
-                "distinctiveLiquor boolean," +
-                "bottleCapacity VARCHAR(5)," +
-                "resubmission boolean," +
-                "ttbID int ," + //end new
+                "distinctiveLiquor varchar (50)," +
+                "bottleCapacity VARCHAR(300)," +
+                "resubmission VARCHAR (50)," +
+                "ttbID varchar (20)," + //end new
                 "dateOfApplication VARCHAR(30) , " +
-                "printName varchar(40),	" +
+                "printName varchar(40),    " +
                 "beerWineSpirit varchar(60), " +
-                "alcoholPercent varchar(60),	" +
+                "alcoholPercent varchar(60),   " +
                 "vintageYear varchar(60), " +
-                "phLevel varchar(60))";
+                "phLevel varchar(60)) ";
         String createUniqueReps = "create unique index Representatives_username_uindex " +
                 "on Representatives (username)";
         String createUniqueAgents = "create unique index Agents_username_uindex " +
@@ -226,4 +257,99 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
     }
+
+    public void generateTablesForms()
+    {
+        try {
+
+            // Create an object of filereader
+            // class with CSV file as a parameter.
+            FileReader filereader = new FileReader("src/resources/DifferenttTTBDB.csv");
+
+            // create csvReader object passing
+            // file reader as a parameter
+            CSVReader csvReader = new CSVReader(filereader);
+            String[] nextRecord;
+            String bigString = "INSERT INTO FORMS VALUES";
+            int numOfOutput = 1;
+            int numOfSqlExecute = 0;
+            nextRecord = csvReader.readNext();
+            // we are going to read data line by line
+            while ((nextRecord = csvReader.readNext()) != null) {
+
+                String output = "(";
+                int counter = 0;
+                for (int i = 0; i < nextRecord.length; i++) {
+
+                    String[] splitRecord = nextRecord[i].split("!");
+
+                    for(int j = 0; j < splitRecord.length; j++)
+                    {
+
+
+                        if(counter == 0)
+                        {
+                            output += splitRecord[j] + ",'";
+                        }
+                        else if(counter == 27)
+                        {
+                            output += splitRecord[j] + "')";
+                            break;
+
+                        }
+                        else {
+                            output += splitRecord[j] + "','";
+                            if(output.charAt(2)!='1' && output.charAt(2)!='2' && output.charAt(2)!='3') {
+                                break;
+                            }
+                        }
+
+                        counter++;
+                        if(counter>27)
+                        {
+                            counter = 0;
+                            output = "";
+                            break;
+                        }
+                    }
+
+                }
+
+                if(counter == 27) {
+
+//                    || output.charAt(2) == 2 || output.charAt(2) == 3
+                    if (numOfOutput < 999) {
+
+                        bigString += output + ",\n";
+                    } else {
+
+                        bigString += output;
+
+                    }
+                    numOfOutput++;
+
+
+                }
+                if(numOfOutput == 1000)
+                {
+                    System.out.println(numOfSqlExecute);
+                    if(numOfSqlExecute==6)
+                    {
+                        System.out.println(bigString);
+                    }
+                    stmt.executeUpdate(bigString);
+                    bigString = "INSERT INTO FORMS VALUES";
+                    numOfOutput = 0;
+                    numOfSqlExecute++;
+
+                    System.out.println("Printed");
+                }
+
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

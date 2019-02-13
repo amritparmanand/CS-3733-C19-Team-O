@@ -280,11 +280,61 @@ public class Form {
         }
     }
 
-    public void receive(Connection connection, int passer, int receiver){
-        String SQL = "UPDATE APPLICATIONS SET TTBID = " + receiver + ", WHERE FORMID =" + this.formID;
-        try {
-            PreparedStatement ps = connection.prepareStatement(SQL);
+    public void passForm(Connection connection, String passer) throws SQLException{
+        int passerID = 0;
 
+        try {
+            String s1 = "select TTBID from AGENTS where USERNAME = " + passer;
+            ResultSet result = connection.createStatement().executeQuery(s1);
+            while(result.next()){
+                passerID = result.getInt("ttbID");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        String s = "UPDATE APPLICATIONS SET STATUS = 'PASSING', WHERE TTBID =" + passerID;
+        try {
+            PreparedStatement ps = connection.prepareStatement(s);
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+    }
+
+    public void receiveForm(Connection connection, String passer, String receiver) throws SQLException{
+        int passerID = 0;
+        int receiverID = 0;
+
+        try {
+            String s1 = "select TTBID from AGENTS where USERNAME = " + passer;
+            ResultSet result = connection.createStatement().executeQuery(s1);
+            while(result.next()){
+                passerID = result.getInt("ttbID");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        try {
+            String s2 = "select TTBID from AGENTS where USERNAME = " + receiver;
+            ResultSet result = connection.createStatement().executeQuery(s2);
+            while(result.next()){
+                receiverID = result.getInt("ttbID");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        String s3 = "UPDATE APPLICATIONS SET TTBID = " + receiverID + ", WHERE TTBID =" + passerID + ", and STATUS = 'PASSING'";
+        try {
+            PreparedStatement ps = connection.prepareStatement(s3);
             ps.executeUpdate();
 
             ps.close();

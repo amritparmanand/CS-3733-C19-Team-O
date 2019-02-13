@@ -89,5 +89,11 @@ public class CacheManager {
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
         return form.getApprovedApplications(conn);
     }
+    public void passForm(Connection connection, String passer) throws SQLException{
+        form.passForm(connection, passer);
+    }
+    public void receiveForm(Connection connection, String passer, String receiver) throws SQLException{
+        form.receiveForm(connection,passer,receiver);
+    }
 
 }

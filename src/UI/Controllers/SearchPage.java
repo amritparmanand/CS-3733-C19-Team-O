@@ -230,8 +230,6 @@ public class SearchPage {
     }
 
     @FXML public void search() throws SQLException {
-        //menubutton set text SQL
-
 
         // Perform fuzzy search based on user's choice
         String suggestion = "";

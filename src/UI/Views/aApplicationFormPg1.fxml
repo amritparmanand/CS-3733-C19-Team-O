@@ -125,7 +125,7 @@
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
                                     <JFXTextField fx:id="receiver" alignment="CENTER" maxWidth="200.0" prefHeight="29.0" prefWidth="243.0" promptText="Receiver Username" />
-                                    <JFXButton onMousePressed="#passForm" text="Pass">
+                                    <JFXButton onMousePressed="#passForm" styleClass="buttonStyle" text="Pass">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>

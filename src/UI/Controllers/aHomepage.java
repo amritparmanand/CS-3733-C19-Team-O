@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 /**
  * @author Percy Jiang
  * @version It 1
@@ -41,5 +43,9 @@ public class aHomepage {
     public void getApp() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aFormStorage.fxml"));
         sceneM.changeScene(loader, new aFormStorage(sceneM, cacheM));
+    }
+
+    @FXML public void receiveForm() throws SQLException {
+        cacheM.receiveForm(cacheM.getDbM().getConnection(),cacheM.getPasser(),cacheM.getReceiver());
     }
 }
