@@ -23,7 +23,7 @@ public class Main extends Application {
         dbM.createSequences();
         dbM.insertDefault();
         dbM.generateTablesForms();
-//        dbM.generateTablesApplication();
+        dbM.generateTablesApplication();
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
