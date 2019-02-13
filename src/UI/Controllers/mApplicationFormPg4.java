@@ -23,6 +23,7 @@ public class mApplicationFormPg4 {
     @FXML private Button search;
     @FXML private Button back;
     @FXML private Button submit;
+
     @FXML private JFXTextField dateOfApplication;
     @FXML private JFXTextField applicantSig;
     @FXML private JFXTextField applicantNamePrint;

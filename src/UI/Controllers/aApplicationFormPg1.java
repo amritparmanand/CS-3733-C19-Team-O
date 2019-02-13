@@ -25,6 +25,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXButton acceptForm;
     @FXML private JFXButton denyForm;
     @FXML private JFXButton saveDraft;
+    @FXML private JFXButton logout;
     @FXML private JFXButton homePage;
     @FXML private JFXTextField repID;
     @FXML private JFXTextField brewerNO;
@@ -36,6 +37,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextField serialNO;
     @FXML private JFXTextField brand;
     @FXML private JFXTextField fanciful;
+
     @FXML private JFXTextArea Q1Comment;
     @FXML private JFXTextArea Q2Comment;
     @FXML private JFXTextArea Q3Comment;
@@ -132,6 +134,13 @@ public class aApplicationFormPg1 {
 
     @FXML
     public void saveDraft() throws IOException{
+
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
     }
 

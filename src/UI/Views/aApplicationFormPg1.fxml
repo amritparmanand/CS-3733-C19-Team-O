@@ -58,7 +58,7 @@
                                 <Insets left="450.0" />
                             </HBox.margin>
                         </HBox>
-                  <JFXButton fx:id="search" onMousePressed="#searchPage" styleClass="searchButtonStyle" text="Search" />
+                  <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout" />
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
