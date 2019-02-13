@@ -384,10 +384,7 @@ public class SearchPage {
 
                 for(SearchResult s : searchList){
                     //holder variable to hold the type of alcohol for printing
-                    String alcoholType = "";
-                    if (s.isBeer()){alcoholType = "beer";}
-                    else if (s.isLiquor()){alcoholType = "liquor";}
-                    else if (s.isWine()){alcoholType = "wine";}
+                    String alcoholType = s.getBeerWineSpirit().toLowerCase();
 
                     writer.println(s.getFancifulName() + ";" + s.getCompanyName()+ ";" + s.getAlcoholType() + ";" + alcoholType + ";" + s.getPhLevel() + ";" + s.getAlcohol() + ";" + s.getYear());
                 }
