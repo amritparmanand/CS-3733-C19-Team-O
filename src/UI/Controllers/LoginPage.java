@@ -34,6 +34,7 @@ public class LoginPage {
     @FXML private JFXPasswordField password;
     @FXML private Label loginMessage;
 
+
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
