@@ -60,19 +60,19 @@ public class CacheManager {
 
     // Form
     public void approveForm(Connection conn){
-        form.approve(dbConn);
+        form.approve(conn);
     }
     public void denyForm(Connection conn){
-        form.deny(dbConn);
+        form.deny(conn);
     }
     public void insertApp(Connection connection) throws SQLException {
-        form.addApp(dbConn);
+        form.addApp(connection);
     }
     public void insertForm(Connection connection) throws SQLException{
-        form.insert(dbConn);
+        form.insert(connection);
     }
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
-        return form.getApprovedApplications(getDbConn());
+        return form.getApprovedApplications(conn);
     }
 
 }
