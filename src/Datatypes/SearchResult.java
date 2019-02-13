@@ -8,27 +8,22 @@ public class SearchResult {
     private String fancifulName;
     private String companyName;
     private String alcoholType;
-    private boolean isBeer;
-    private boolean isLiquor;
-    private boolean isWine;
-    private double phLevel;
-    private double alcohol;
-    private int year;
+    private String phLevel;
+    private String alcohol;
+    private String year;
+    private String beerWineSpirit;
 
 
-    public SearchResult(String fancifulName, String companyName, String alcoholType,
-                        boolean isBeer, boolean isLiquor, boolean isWine, double phLevel,
-                        double alcohol, int year)
+    public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel,
+                        String alcohol, String year, String beerWineSpirit)
     {
         this.fancifulName = fancifulName;
         this.companyName = companyName;
         this.alcoholType = alcoholType;
-        this.isBeer = isBeer;
-        this.isLiquor = isLiquor;
-        this.isWine = isWine;
         this.phLevel = phLevel;
         this.alcohol = alcohol;
         this.year = year;
+        this.beerWineSpirit = beerWineSpirit;
 
     }
 
@@ -37,12 +32,10 @@ public class SearchResult {
         this.fancifulName = null;
         this.companyName = null;
         this.alcoholType = null;
-        this.isBeer = false;
-        this.isLiquor = false;
-        this.isWine = false;
-        this.phLevel = 0;
-        this.alcohol = 0;
-        this.year = 0;
+        this.phLevel = null;
+        this.alcohol = null;
+        this.year = null;
+        this.beerWineSpirit = null;
 
     }
 
@@ -64,41 +57,24 @@ public class SearchResult {
     public void setAlcoholType(String alcoholType) {
         this.alcoholType = alcoholType;
     }
-    public boolean isBeer() {
-        return isBeer;
-    }
-    public void setBeer(boolean beer) {
-        isBeer = beer;
-    }
-    public boolean isLiquor() {
-        return isLiquor;
-    }
-    public void setLiquor(boolean liquor) {
-        isLiquor = liquor;
-    }
-    public boolean isWine() {
-        return isWine;
-    }
-    public void setWine(boolean wine) {
-        isWine = wine;
-    }
-    public double getPhLevel() {
+    public String getPhLevel() {
         return phLevel;
     }
-    public void setPhLevel(double phLevel) {
+    public void setPhLevel(String phLevel) {
         this.phLevel = phLevel;
     }
-    public double getAlcohol() {
+    public String getAlcohol() {
         return alcohol;
     }
-    public void setAlcohol(double alcohol) {
+    public void setAlcohol(String alcohol) {
         this.alcohol = alcohol;
     }
-    public int getYear() {
+    public String getYear() {
         return year;
     }
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
-
+    public String getBeerWineSpirit() { return beerWineSpirit; }
+    public void setBeerWineSpirit(String beerWineSpirit) { this.beerWineSpirit = beerWineSpirit; }
 }
