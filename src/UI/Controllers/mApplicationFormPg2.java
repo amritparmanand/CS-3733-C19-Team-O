@@ -86,7 +86,7 @@ public class mApplicationFormPg2 {
 
     /**
      * The multi-thread function
-     * Saves draft every 10 seconds
+     * Saves draft every 5 seconds
      */
     callableFunction cf = new callableFunction() {
         @Override
@@ -95,7 +95,7 @@ public class mApplicationFormPg2 {
             saveDraft();
         }
     };
-    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(10, cf);
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
     @FXML public void nextPage() throws IOException {
         saveDraft();

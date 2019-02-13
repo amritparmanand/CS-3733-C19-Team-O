@@ -53,12 +53,13 @@ public class mApplicationFormPg4 {
             form.setPrintName(applicantNamePrint.getText());
 
             cacheM.setForm(form);
+            System.out.println("Pg4 Saved!");
         }
     }
 
     /**
      * The multi-thread function
-     * Saves draft every 10 seconds
+     * Saves draft every 5 seconds
      */
     callableFunction cf = new callableFunction() {
         @Override
@@ -67,7 +68,7 @@ public class mApplicationFormPg4 {
             saveDraft();
         }
     };
-    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(10, cf);
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
     @FXML
     public void submit() throws SQLException, IOException {

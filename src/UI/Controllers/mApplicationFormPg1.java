@@ -187,7 +187,7 @@ public class mApplicationFormPg1{
 
     /**
      * The multi-thread function
-     * Saves draft every 10 seconds
+     * Saves draft every 5 seconds
      */
     callableFunction cf = new callableFunction() {
         @Override
@@ -197,7 +197,7 @@ public class mApplicationFormPg1{
         }
     };
 
-    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(10, cf);
+    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
     @FXML private VBox phVBox;
     @FXML private VBox vintageVBox;

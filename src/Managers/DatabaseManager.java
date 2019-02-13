@@ -124,7 +124,7 @@ public class DatabaseManager {
     public void generateTables(){
         String createApplications = "create table Applications(" +
                 "appID int constraint Applications_pk primary key," +
-                "formID int /*constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS*/," +
+                "formID bigint /*constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS*/," +
                 "repID int /*constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES*/," +
                 "ttbID int /*constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS*/," +
                 "agentName VARCHAR(40)," +
@@ -341,6 +341,106 @@ public class DatabaseManager {
                     bigString = "INSERT INTO FORMS VALUES";
                     numOfOutput = 0;
                     numOfSqlExecute++;
+
+                    System.out.println("Printed");
+                }
+
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("Duplicates")
+    //Duplicate
+    public void generateTablesApplication()
+    {
+        try {
+
+            // Create an object of filereader
+            // class with CSV file as a parameter.
+            FileReader filereader = new FileReader("src/resources/ApplicationsXLSX.csv");
+
+            // create csvReader object passing
+            // file reader as a parameter
+            CSVReader csvReader = new CSVReader(filereader);
+            String[] nextRecord;
+            String bigString = "INSERT INTO APPLICATIONS VALUES";
+            int numOfOutput = 1;
+            int numOfSqlExecute = 0;
+            nextRecord = csvReader.readNext();
+            int appidCounter = 1000;
+            // we are going to read data line by line
+            while ((nextRecord = csvReader.readNext()) != null && appidCounter < 240000) {
+                String output = "(" + appidCounter + ",";
+                int counter = 0;
+                for (int i = 0; i < nextRecord.length; i++) {
+                    String[] splitRecord = nextRecord[i].split("!");
+
+                    for(int j = 0; j < splitRecord.length; j++)
+                    {
+
+
+                        if(counter == 0 || counter == 1 || counter ==2)
+                        {
+                            output += splitRecord[j] + ",";
+
+                        }
+                        else if(counter == 3)
+                        {
+                            output+="'" + splitRecord[j]+"','";
+                        }
+                        else if(counter == 8)
+                    {
+                        output += splitRecord[j] + "')";
+                        break;
+
+                    }
+                       else {
+                        output += splitRecord[j] + "','";
+                    }
+
+                        counter++;
+                        if(counter>8)
+                        {
+                            counter = 0;
+                            output = "";
+                            break;
+                        }
+                    }
+
+                }
+
+                if(counter == 8) {
+
+//                    || output.charAt(2) == 2 || output.charAt(2) == 3
+                    if (numOfOutput < 999) {
+
+                        bigString += output + ",\n";
+
+                    } else {
+
+                        bigString += output;
+
+                    }
+                    numOfOutput++;
+                    appidCounter++;
+
+
+                }
+                if(numOfOutput == 1000)
+                {
+                    System.out.println(numOfSqlExecute);
+                    if(numOfSqlExecute==6)
+                    {
+                        System.out.println(bigString);
+                    }
+                    stmt.executeUpdate(bigString);
+                    bigString = "INSERT INTO APPLICATIONS VALUES";
+                    numOfOutput = 0;
+                    numOfSqlExecute++;
+
 
                     System.out.println("Printed");
                 }
