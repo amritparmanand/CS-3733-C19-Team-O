@@ -57,45 +57,46 @@ public class mApplicationFormPg2 {
 
     }
 
-    @FXML public void saveDraft(){
-        if (printName!=null && mailAddress!=null && formula!=null && grapes!=null && appellation!=null && phoneNumber!=null && email!=null) {
+    @FXML public void saveDraft() {
+        if (printName != null && mailAddress != null && formula != null && grapes != null && appellation != null && phoneNumber != null && email != null) {
             Form form = cacheM.getForm();
 
 
-        phoneNumberString = phoneNumber.getText().trim();
-        formEmail = email.getText().trim();
+            phoneNumberString = phoneNumber.getText().trim();
+            formEmail = email.getText().trim();
 
-        form.setPrintName(printName.getText());
-        form.setMailingAddress(mailAddress.getText());
-        form.setFormula(formula.getText());
-        form.setGrapeVarietal(grapes.getText());
-        form.setAppellation(appellation.getText());
-        if(validFormPhone(phoneNumberString)) {
-            form.setPhoneNumber(phoneNumberString);
-            System.out.println("valid phone number");
-        }else{
-            System.out.println("invalid phone number");
-        }
-        if(validFormEmail(formEmail)){
-            form.setEmailAddress(email.getText());
-            System.out.println("valid email");
-        }else{
-            System.out.println("invalid email");
-        }
-            if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
+            form.setPrintName(printName.getText());
+            form.setMailingAddress(mailAddress.getText());
+            form.setFormula(formula.getText());
+            form.setGrapeVarietal(grapes.getText());
+            form.setAppellation(appellation.getText());
+            if (validFormPhone(phoneNumberString)) {
+                form.setPhoneNumber(phoneNumberString);
+                System.out.println("valid phone number");
+            } else {
+                System.out.println("invalid phone number");
+            }
+            if (validFormEmail(formEmail)) {
+                form.setEmailAddress(email.getText());
+                System.out.println("valid email");
+            } else {
+                System.out.println("invalid email");
+            }
+            if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
                 form.setGrapeVarietal("");
                 form.setAppellation("");
             }
-        if(!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)){
-            System.out.println("Unable to save. Invalid fields entered");
-            saveDraftMessage.setTextFill(Color.RED);
-            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
-        }else {
-            saveDraftMessage.setText("");
-            cacheM.setForm(form);
+            if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
+                System.out.println("Unable to save. Invalid fields entered");
+                saveDraftMessage.setTextFill(Color.RED);
+                saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
+            } else {
+                saveDraftMessage.setText("");
+                cacheM.setForm(form);
 
-            System.out.println("save Draft executed");
+                System.out.println("save Draft executed");
 
+            }
         }
     }
 
@@ -156,8 +157,7 @@ public class mApplicationFormPg2 {
      * alphanumeric format is allowed after area code
      * @return true if is valid number, false if not
      */
-    @FXML
-    public boolean validFormPhone(String phoneNumber){
+    @FXML public boolean validFormPhone(String phoneNumber){
         if(phoneNumber.matches("^[0]{8,20}$")){
             return false;
         } else if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){

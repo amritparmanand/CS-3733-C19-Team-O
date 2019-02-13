@@ -302,6 +302,20 @@ public class DatabaseManager {
                             break;
 
                         }
+                        else if(counter == 14)
+                        {
+                            output += splitRecord[j] + "',";
+                        }
+                        else if(counter == 15)
+                        {
+                            output += splitRecord[j] + ",";
+
+                        }
+                        else if(counter == 16)
+                        {
+                            output += splitRecord[j] + ",'";
+
+                        }
                         else {
                             output += splitRecord[j] + "','";
                             if(output.charAt(2)!='1' && output.charAt(2)!='2' && output.charAt(2)!='3') {
@@ -338,7 +352,7 @@ public class DatabaseManager {
                 if(numOfOutput == 1000)
                 {
                     System.out.println(numOfSqlExecute);
-                    if(numOfSqlExecute==6)
+                    if(numOfSqlExecute==0)
                     {
                         System.out.println(bigString);
                     }
@@ -456,5 +470,52 @@ public class DatabaseManager {
             e.printStackTrace();
         }
     }
-
+    @SuppressWarnings("Duplicates") public Manufacturer mCreate(int id){
+        String uname = "";
+        String pword = "";
+        String fname = "";
+        String email = "";
+        String phone = "";
+        String cname = "";
+        try {
+            String getData = "select * from REPRESENTATIVES where REPID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                uname = result.getString("username");
+                pword = result.getString("password");
+                fname = result.getString("fullName");
+                email = result.getString("email");
+                phone = result.getString("phone");
+                cname = result.getString("companyName");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        Manufacturer m = new Manufacturer(uname,pword,fname,email,phone,id,cname);
+        return m;
+    }
+    @SuppressWarnings("Duplicates") public Agent aCreate(int id){
+        String uname = "";
+        String pword = "";
+        String fname = "";
+        String email = "";
+        String phone = "";
+        try {
+            String getData = "select * from AGENTS where TTBID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                uname = result.getString("username");
+                pword = result.getString("password");
+                fname = result.getString("fullName");
+                email = result.getString("email");
+                phone = result.getString("phone");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        Agent a = new Agent(uname,pword,fname,email,phone,id);
+        return a;
+    }
 }
