@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 
+import Datatypes.Agent;
 import Datatypes.Form;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
@@ -25,6 +27,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXButton acceptForm;
     @FXML private JFXButton denyForm;
     @FXML private JFXButton saveDraft;
+    @FXML private JFXButton logout;
     @FXML private JFXButton homePage;
     @FXML private JFXTextField repID;
     @FXML private JFXTextField brewerNO;
@@ -36,6 +39,12 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextField serialNO;
     @FXML private JFXTextField brand;
     @FXML private JFXTextField fanciful;
+    @FXML private JFXRadioButton wine2;
+    @FXML private JFXRadioButton spirits2;
+    @FXML private JFXRadioButton beer2;
+    @FXML private JFXTextField alcoholPercentage;
+    @FXML private JFXTextField phLevel;
+    @FXML private JFXTextField vintageYear;
     @FXML private JFXTextArea Q1Comment;
     @FXML private JFXTextArea Q2Comment;
     @FXML private JFXTextArea Q3Comment;
@@ -43,13 +52,11 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextArea Q5Comment;
     @FXML private JFXTextArea Q6Comment;
     @FXML private JFXTextArea Q7Comment;
+    @FXML private JFXTextField receiver;
 
-
-
-
+    @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
-        Form form = this.form;
-
+        Form form = cacheM.getForm();
         boolean isDomestic = false;
         boolean isImported = false;
         boolean isWine = false;
@@ -58,7 +65,8 @@ public class aApplicationFormPg1 {
         if(form.getProductSource() == "DOMESTIC"){
             isDomestic = true;
             isImported = false;
-        }else{
+        }
+        if (form.getPrintName() == "IMPORTED"){
             isDomestic = false;
             isImported = true;
         }
@@ -76,22 +84,29 @@ public class aApplicationFormPg1 {
             isMalt = true;
         }
         System.out.println("starting");
+        if(form.getRepID() != 0)
+            repID.setText(Integer.toString(form.getRepID()));
         brewerNO.setText(form.getBrewerNumber());
-        brewerNO.setEditable(false);
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
+        domestic.setDisable(true);
+        imported.setDisable(true);
         serialNO.setText(form.getSerialNumber());
-        serialNO.setEditable(false);
         wine.setSelected(isWine);
+        wine.setDisable(true);
         spirits.setSelected(isSpirit);
+        spirits.setDisable(true);
         malt.setSelected(isMalt);
+        malt.setDisable(true);
         brand.setText(form.getBrandName());
-        brand.setEditable(false);
         fanciful.setText(form.getFancifulName());
-        fanciful.setEditable(false);
-        System.out.println("filled in info page 1");
+        wine2.setSelected(isWine);
+        spirits2.setSelected(isSpirit);
+        beer2.setSelected(isMalt);
+        alcoholPercentage.setText(form.getAlcoholPercent());
+        phLevel.setText(form.getpHLevel());
+        vintageYear.setText(form.getVintageYear());
     }
-
 
     public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -124,10 +139,22 @@ public class aApplicationFormPg1 {
         cacheM.approveForm(cacheM.getDbM().getConnection());
     }
 
-
     @FXML
     public void denyForm() throws IOException {
         cacheM.denyForm(cacheM.getDbM().getConnection());
+    }
+
+    @FXML public void passForm() throws IOException, SQLException {
+        cacheM.setPasser(cacheM.getAcct().getUsername());
+        cacheM.setReceiver(receiver.getText());
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+
     }
 
 }

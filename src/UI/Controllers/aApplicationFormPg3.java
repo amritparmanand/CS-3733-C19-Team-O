@@ -35,6 +35,7 @@ public class aApplicationFormPg3 {
     @FXML private JFXButton previous;
     @FXML private JFXButton next;
     @FXML private JFXButton search;
+    @FXML private JFXButton logout;
     @FXML private JFXTextField typeOfApp;
     @FXML private JFXButton uploadImage;
     @FXML private JFXTextArea Q14Comment;
@@ -80,6 +81,13 @@ public class aApplicationFormPg3 {
 
     @FXML
     public void uploadImage() throws IOException{
+
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
     }
 

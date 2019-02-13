@@ -5,6 +5,7 @@ import Datatypes.Form;
 import Datatypes.SearchResult;
 import Fuzzy.FuzzyContext;
 
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +21,8 @@ public class CacheManager {
     private Account acct;
     private SearchResult selectedResult;
     private int formLimit;
-    private int receiver;
+    private String passer;
+    private String receiver;
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
@@ -43,6 +45,24 @@ public class CacheManager {
     public void setAcct(Account acct) {
         this.acct = acct;
     }
+    public int getFormLimit() {
+        return formLimit;
+    }
+    public void setFormLimit(int formLimit) {
+        this.formLimit = formLimit;
+    }
+    public String getPasser() {
+        return passer;
+    }
+    public void setPasser(String passer) {
+        this.passer = passer;
+    }
+    public String getReceiver() {
+        return receiver;
+    }
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
 
     public SearchResult getSelectedResult() {
         return selectedResult;
@@ -61,14 +81,17 @@ public class CacheManager {
     public void denyForm(Connection conn){
         form.deny(conn);
     }
-    public void insertApp(Connection connection) throws SQLException {
-        form.addApp(connection);
-    }
-    public void insertForm(Connection connection) throws SQLException{
-        form.insert(connection);
+    public void insertForm(Connection connection) throws SQLException, FileNotFoundException {
+        form.insertForm(connection);
     }
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
         return form.getApprovedApplications(conn);
+    }
+    public void passForm(Connection connection, String passer) throws SQLException{
+        form.passForm(connection, passer);
+    }
+    public void receiveForm(Connection connection, String passer, String receiver) throws SQLException{
+        form.receiveForm(connection,passer,receiver);
     }
 
 }

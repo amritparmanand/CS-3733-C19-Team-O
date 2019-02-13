@@ -27,6 +27,7 @@ public class aGetApplication {
     @FXML private JFXButton back;
     @FXML private JFXButton search;
     @FXML private JFXButton getFormsButton;
+    @FXML private JFXButton logout;
     //@FXML private VBox getApp;
     @FXML private FlowPane loadFormPane;
 
@@ -52,5 +53,12 @@ public class aGetApplication {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+
     }
 }

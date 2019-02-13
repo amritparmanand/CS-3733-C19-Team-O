@@ -20,22 +20,31 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 /**
  * @author Sam Silver & Percy Jiang
- * @since It 1
  * @version It 2
  * Controller for aFormStorage of UI
+ * @since It 1
  */
 public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private FlowPane loadForms;
-    @FXML private JFXButton getFormsButton;
-    @FXML private JFXButton back;
-    @FXML private JFXButton search;
-    @FXML private VBox getApp;
-    @FXML private JFXTextField formLimit;
+    @FXML
+    private FlowPane loadForms;
+    @FXML
+    private JFXButton getFormsButton;
+    @FXML
+    private JFXButton back;
+    @FXML
+    private JFXButton logout;
+    @FXML
+    private JFXButton search;
+    @FXML
+    private VBox getApp;
+    @FXML
+    private JFXTextField formLimit;
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -60,11 +69,12 @@ public class aFormStorage {
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
 
-    @FXML public void assignNewForms() throws IOException {
+    @FXML
+    public void assignNewForms() throws IOException {
 
         // Initialize the instance of the Singleton class
         NumberAssigned object = NumberAssigned.getInstance();
-        if(!formLimit.getText().isEmpty()){
+        if (!formLimit.getText().isEmpty()) {
             object.setNum(Integer.parseInt(formLimit.getText()));
         }
         int limit = object.getNum();
@@ -72,9 +82,9 @@ public class aFormStorage {
         ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
 
-        for(Form form : populatedForms) {
+        for (Form form : populatedForms) {
             Pane formResult = null;
-            try{
+            try {
                 formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                 Node vbox = formResult.getChildren().get(0);
                 if (vbox instanceof VBox) {
@@ -85,6 +95,7 @@ public class aFormStorage {
                     ((Label) fName).setText(form.getFancifulName());
                     ((Label) bName).setText(form.getBrandName());
                     ((Label) aType).setText(form.getBeerWineSpirit());
+
                 }
                 loadForms.getChildren().add(formResult);
                 formResult.setId("Alcoholbox");
@@ -92,10 +103,9 @@ public class aFormStorage {
                 formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        try{
+                        try {
                             aApplicationFormControl(form);
-                        }
-                        catch(IOException e){
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
@@ -104,7 +114,13 @@ public class aFormStorage {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }}
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+
     }
 
 }

@@ -3,28 +3,25 @@
 /*by rob*/
 
 /*lets try and get the SVG files wortking */
-font-face {
-  font-family: Roboto;
+@font-face {
+  font-family: "Roboto";
   src: url("../font/roboto/Roboto-Regular.ttf");
-  -fx-text-fill: #17263d;
 }
 @font-face {
   font-family: "Roboto Medium";
   src: url("../font/roboto/Roboto-Medium.ttf");
-  -fx-text-fill: #17263d;
 }
 
 @font-face {
   font-family: "Roboto Light";
   src: url("../font/roboto/Roboto-Light.ttf");
-  -fx-text-fill: #17263d;
 }
 
 @font-face {
   font-family: "Roboto Bold";
   src: url("../font/roboto/Roboto-Bold.ttf");
-  -fx-text-fill: #17263d;
 }
+
 *{
   -fx-font-family: "Roboto", "Arial";
   -fx-text-fill: #17263d;
@@ -72,7 +69,7 @@ font-face {
   -fx-background-color: #f5f7fa;
   -fx-text-fill: #4A77DD;
   -fx-font-weight: 800;
-  -fx-background-radius: 30;
+  -fx-background-radius: 5;
 
 }
 
@@ -88,7 +85,7 @@ font-face {
   -fx-text-fill: #4A77DD;
   -fx-border-color: #4A77DD ;
   -fx-border-width: 3;
-  -fx-background-radius: 3;
+  -fx-background-radius: 5;
   -fx-border-radius: 3;
   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 0, 0.0 , 0 , 0 );
 }
@@ -131,7 +128,7 @@ font-face {
 .card{
   -fx-background-color: white;
   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-  -fx-background-radius: 30 30 30 30;
+  -fx-background-radius: 20;
 }
 
 .searchContainer{
@@ -160,8 +157,8 @@ font-face {
 
 .formstatuspill{
   -fx-border-width: 3;
-  -fx-background-radius: 20 20 20 20;
-  -fx-border-radius:20 20 20 20;
+  -fx-background-radius: 5;
+  -fx-border-radius: 5;
 }
 
 .cardtext{
@@ -274,6 +271,7 @@ font-face {
   -fx-background-color: white;
   -jfx-focus-color: #4A77DD;
   -jfx-unfocus-color: #17263d;
+  -jfx-label-float: true;
 
 }
 

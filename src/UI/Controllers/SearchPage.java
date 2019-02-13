@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -23,7 +24,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -235,8 +240,6 @@ public class SearchPage {
     }
 
     @FXML public void search() throws SQLException {
-        //menubutton set text SQL
-
 
         // Perform fuzzy search based on user's choice
         String suggestion = "";
@@ -349,5 +352,63 @@ public class SearchPage {
         return cacheM.getApprovedApplications(cacheM.getDbM().getConnection());
     }
 
+    /**
+     * @author Jonathan Luna and Liz Del Monaco
+     * downloads all searches from a query into a csv file
+     */
+    public void download(){
+        System.out.println(";)");
 
+        String path = "";
+
+        JFileChooser chooser = new JFileChooser();
+        String choosertitle = "Select a destination";
+
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle(choosertitle);
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        int r = chooser.showSaveDialog(null);
+
+        if(r == JFileChooser.APPROVE_OPTION){
+            path = chooser.getSelectedFile().getAbsolutePath();
+
+            try {
+                System.out.println(path);
+                PrintWriter writer = new PrintWriter(path + "/" + "search-results.csv", "UTF-8");
+
+                writer.println("sep=;");
+                writer.println("FANCIFUL NAME;COMPANY NAME;ALCOHOL TYPE;ALCOHOL TYPE2;PH LEVEL;ALCOHOL PERCENT;YEAR");
+
+                for(SearchResult s : searchList){
+                    //holder variable to hold the type of alcohol for printing
+                    String alcoholType = "";
+                    if (s.isBeer()){alcoholType = "beer";}
+                    else if (s.isLiquor()){alcoholType = "liquor";}
+                    else if (s.isWine()){alcoholType = "wine";}
+
+                    writer.println(s.getFancifulName() + ";" + s.getCompanyName()+ ";" + s.getAlcoholType() + ";" + alcoholType + ";" + s.getPhLevel() + ";" + s.getAlcohol() + ";" + s.getYear());
+                }
+                writer.close();
+            }
+
+            catch(FileNotFoundException e){
+                System.out.println("File not found.");
+                e.printStackTrace();
+            }
+
+            catch(UnsupportedEncodingException e){
+                System.out.println("Unsupported encoding exception.");
+                e.printStackTrace();
+            }
+        }
+
+        else{
+            System.out.println("User cancelled the operation");
+        }
+
+
+    }
 }

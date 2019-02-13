@@ -27,11 +27,6 @@ public class mHomepage {
     @FXML private VBox newForm;
     @FXML private VBox storage;
 
-    @FXML
-    public void search() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-    }
 
     @FXML
     public void back() throws IOException {
@@ -49,5 +44,11 @@ public class mHomepage {
     public void storage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mFormStorage.fxml"));
         sceneM.changeScene(loader, new mFormStorage(sceneM, cacheM));
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
 }
