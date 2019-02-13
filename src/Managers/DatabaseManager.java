@@ -270,7 +270,7 @@ public class DatabaseManager {
 
             // Create an object of filereader
             // class with CSV file as a parameter.
-            FileReader filereader = new FileReader("src/resources/DifferenttTTBDB.csv");
+            FileReader filereader = new FileReader("src/resources/ttb2012-20142.csv");
 
             // create csvReader object passing
             // file reader as a parameter

@@ -333,7 +333,7 @@ public class Form {
                 e.printStackTrace();
         }
 
-        String s3 = "UPDATE APPLICATIONS SET TTBID = " + receiverID + ", WHERE TTBID =" + passerID + ", and STATUS = 'PASSING'";
+        String s3 = "UPDATE APPLICATIONS SET TTBID = " + receiverID + ", STATUS = 'PENDING', WHERE TTBID =" + passerID + ", and STATUS = 'PASSING'";
         try {
             PreparedStatement ps = connection.prepareStatement(s3);
             ps.executeUpdate();

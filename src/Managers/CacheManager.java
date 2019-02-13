@@ -63,11 +63,9 @@ public class CacheManager {
     public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
-
     public SearchResult getSelectedResult() {
         return selectedResult;
     }
-
     public void setSelectedResult(SearchResult selectedResult) {
         this.selectedResult = selectedResult;
     }
