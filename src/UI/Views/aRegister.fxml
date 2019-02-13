@@ -131,6 +131,11 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </JFXPasswordField>
+                  <Label fx:id="passwordMessage">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
                   <JFXButton fx:id="aRegister" maxWidth="300.0" onAction="#validateButton" onMousePressed="#register" styleClass="buttonStyle" text="Register">
                      <VBox.margin>
                         <Insets top="30.0" />
