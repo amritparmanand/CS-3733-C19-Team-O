@@ -136,12 +136,21 @@ public class mApplicationFormPg3 {
     };
     MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
+    /*
     @FXML public void nextPage() throws IOException {
         multiThreadWaitFor.onShutDown();
         if(saveDraft()) {
+            System.out.println("on to page 4");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
             sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
         }
+    }
+    */
+    @FXML public void nextPage() throws IOException {
+        saveDraft();
+        System.out.println("on to page 4");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
     }
     @FXML public void previousPage() throws IOException {
         multiThreadWaitFor.onShutDown();
@@ -149,6 +158,7 @@ public class mApplicationFormPg3 {
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
     @FXML public void searchPage() throws IOException {
+
         multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
@@ -163,6 +173,12 @@ public class mApplicationFormPg3 {
     public void uploadImage(){
         image.getFile();
         imagePreview.setImage(image.getLabelImage());
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
 
 }

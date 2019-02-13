@@ -27,6 +27,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXButton acceptForm;
     @FXML private JFXButton denyForm;
     @FXML private JFXButton saveDraft;
+    @FXML private JFXButton logout;
     @FXML private JFXButton homePage;
     @FXML private JFXTextField repID;
     @FXML private JFXTextField brewerNO;
@@ -88,10 +89,15 @@ public class aApplicationFormPg1 {
         brewerNO.setText(form.getBrewerNumber());
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
+        domestic.setDisable(true);
+        imported.setDisable(true);
         serialNO.setText(form.getSerialNumber());
         wine.setSelected(isWine);
+        wine.setDisable(true);
         spirits.setSelected(isSpirit);
+        spirits.setDisable(true);
         malt.setSelected(isMalt);
+        malt.setDisable(true);
         brand.setText(form.getBrandName());
         fanciful.setText(form.getFancifulName());
         wine2.setSelected(isWine);
@@ -142,6 +148,13 @@ public class aApplicationFormPg1 {
         cacheM.setPasser(cacheM.getAcct().getUsername());
         cacheM.setReceiver(receiver.getText());
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+
     }
 
 }

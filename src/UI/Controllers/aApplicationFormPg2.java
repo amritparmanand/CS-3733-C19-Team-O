@@ -35,6 +35,7 @@ public class aApplicationFormPg2 {
     @FXML private JFXButton previous;
     @FXML private JFXButton next;
     @FXML private JFXButton search;
+    @FXML private JFXButton logout;
     @FXML private JFXTextField applicantName;
     @FXML private JFXTextField mailAddress;
     @FXML private JFXTextField formula;
@@ -81,7 +82,7 @@ public class aApplicationFormPg2 {
 
     @FXML
     public void back() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg3.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
 
@@ -103,4 +104,15 @@ public class aApplicationFormPg2 {
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
+    @FXML
+    public void saveDraft() throws IOException{
+
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+
+    }
 }

@@ -21,13 +21,20 @@ public class mApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private Button previous;
-    @FXML private Button search;
-    @FXML private Button back;
-    @FXML private Button submit;
-    @FXML private JFXTextField dateOfApplication;
-    @FXML private JFXTextField applicantSig;
-    @FXML private JFXTextField applicantNamePrint;
+    @FXML
+    private Button previous;
+    @FXML
+    private Button search;
+    @FXML
+    private Button back;
+    @FXML
+    private Button submit;
+    @FXML
+    private JFXTextField dateOfApplication;
+    @FXML
+    private JFXTextField applicantSig;
+    @FXML
+    private JFXTextField applicantNamePrint;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
@@ -35,7 +42,8 @@ public class mApplicationFormPg4 {
         this.cacheM = cacheM;
     }
 
-    @FXML public void initialize(){
+    @FXML
+    public void initialize() {
         Form form = cacheM.getForm();
 
         System.out.println("starting");
@@ -76,7 +84,7 @@ public class mApplicationFormPg4 {
         Form form = cacheM.getForm();
 
         form.setDateOfApplication(dateOfApplication.getText());
-       // form.setSignatureOfApplicant(applicantSig.getText());
+        // form.setSignatureOfApplicant(applicantSig.getText());
         form.setPrintName(applicantNamePrint.getText());
 //        form.setDateIssued("");
 
@@ -92,6 +100,7 @@ public class mApplicationFormPg4 {
 
     }
 
+
     @FXML public void previousPage() throws IOException {
         multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
@@ -106,5 +115,11 @@ public class mApplicationFormPg4 {
         multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
 }

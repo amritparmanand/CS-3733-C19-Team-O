@@ -8,6 +8,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -20,6 +22,9 @@ public class mRegister {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private String phoneNumber;
+    private String manuEmail;
+    private String ID;
 
 
     public mRegister(SceneManager sceneM, CacheManager cacheM) {
@@ -28,7 +33,10 @@ public class mRegister {
     }
 
     @FXML private Button register;
-
+    @FXML private Label IDMessage;
+    @FXML private Label emailMessage;
+    @FXML private Label phoneMessage;
+    @FXML private Label passwordMessage;
     @FXML private JFXTextField username;
     @FXML private JFXPasswordField password;
     @FXML private JFXPasswordField confirmP;
@@ -66,6 +74,10 @@ public class mRegister {
     }
 
     @FXML public void validateButton(){
+        phoneNumber = phone.getText().trim();
+        manuEmail = email.getText().trim();
+        ID = repID.getText().trim();
+
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
                 confirmP.getText().isEmpty() ||
@@ -73,8 +85,42 @@ public class mRegister {
                 email.getText().isEmpty() ||
                 phone.getText().isEmpty() ||
                 companyName.getText().isEmpty() ||
-                repID.getText().isEmpty()){
+                repID.getText().isEmpty() ||
+                !validManuPhone(phoneNumber) ||
+                !validManuEmail(manuEmail) ||
+                invalidID(ID) ||
+                !confirmPass(password.getText(), confirmP.getText())
+        ){
             register.setDisable(true);
+            if(!validManuPhone(phoneNumber) && !phoneNumber.isEmpty()){
+                phoneMessage.setTextFill(Color.RED);
+                phoneMessage.setText("Invalid Phone Number. Please Try Again");
+            }
+            if(!validManuEmail(manuEmail) && !manuEmail.isEmpty()){
+                emailMessage.setTextFill(Color.RED);
+                emailMessage.setText("Invalid Email Address. Please Try Again");
+            }
+            if(invalidID(ID)){
+                IDMessage.setTextFill(Color.RED);
+                IDMessage.setText("Invalid ID");
+            } else{
+                IDMessage.setText("");
+            }
+            if(validManuPhone(phoneNumber)){
+                phoneMessage.setText("");
+            }
+            if(validManuEmail(manuEmail)){
+                emailMessage.setText("");
+            }
+            if(!confirmPass(password.getText(), confirmP.getText())){
+                passwordMessage.setTextFill(Color.RED);
+                passwordMessage.setText("Passwords do not match");
+
+            }
+            if(confirmPass(password.getText(), confirmP.getText())){
+                passwordMessage.setText("");
+            }
+
         }
         else{
             register.setDisable(false);
@@ -82,16 +128,76 @@ public class mRegister {
     }
 
     /**
-     * @Author Clay Oshiro-Leavitt
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param phoneNumber phone number to be checked
      * checks the manufacturer phone number for Manufacturer Registration form
-     * will accept US and international phone numbers
+     * will accept US number with the following conditions
+     * 1 prefix optional
+     * area code is required
+     * delimiters between number groups are optional
+     * if delimiters are used, can use spaces, dashes, back slashes as dividers between number groups
+     * alphanumeric format is allowed after area code
      * @return true if is valid number, false if not
      */
     @FXML
-    public boolean validManuPhone(){
-        if(phone.getText().matches("/(\\+\\d{1,3}\\s?)?((\\(\\d{3}\\)\\s?)|(\\d{3})(\\s|-?))(\\d{3}(\\s|-?))(\\d{4})(\\s?(([E|e]xt[:|.|]?)|x|X)(\\s?\\d+))?/g\n")){
+    public boolean validManuPhone(String phoneNumber){
+        if(phoneNumber.matches("^[0]{8,20}$")){
+            return false;
+        } else if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){
+            return true;
+        }else
+            return false;
+
+    }
+
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param email email to be checked
+     * checks the manufacturer email
+     * it must be a .gov account
+     * can have lower case, upper case, numbers
+     * @return true if valid email, false if invalid
+     */
+    @FXML
+    public boolean validManuEmail(String email){
+        if(email.matches("^([a-zA-Z0-9_\\-\\.]+)@+([a-zA-Z]+).+([a-zA-Z]{2,3})$")){
             return true;
         }else return false;
+    }
 
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param ID repID to be checked
+     * checks to make sure that:
+     * ID is not negative
+     * ID does not contain any letters
+     * @return true if is Invalid, false if valid
+     */
+    @FXML
+    public boolean invalidID(String ID){
+        if(ID.isEmpty() || ID.matches("[a-zA-Z]") || Integer.parseInt(ID) < 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param password password from password field
+     * @param confirm password for confirmation field
+     * @return true if passwords are the same, false if not
+     */
+    @FXML
+    public boolean confirmPass(String password, String confirm){
+        if(password.equals(confirm)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
