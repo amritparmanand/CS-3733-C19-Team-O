@@ -96,7 +96,7 @@ public class Agent extends Account {
 
         if (this.workingForms.size() < limit) {
             try {
-                String unassignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID IS NULL";
+                String unassignedForms = "SELECT * FROM APPLICATIONS NATURAL JOIN FORMS WHERE APPLICATIONS.TTBID IS NULL ";
                 PreparedStatement ps = conn.prepareStatement(unassignedForms);
 
                 ResultSet rs = ps.executeQuery();

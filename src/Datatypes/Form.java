@@ -417,7 +417,10 @@ public class Form {
             prepStmt.setBoolean(19, getDistinctiveLiquor());
             prepStmt.setString(20, getBottleCapacity());
             prepStmt.setBoolean(21, getResubmission());
-            prepStmt.setInt(22, getTtbID());
+            if(getTtbID() != 0)
+                prepStmt.setInt(22, getTtbID());
+            else
+                prepStmt.setNull(22, java.sql.Types.INTEGER);
             prepStmt.setString(23, getDateOfApplication());
             prepStmt.setString(24, getPrintName());
             prepStmt.setString(25, getBeerWineSpirit());

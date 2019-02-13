@@ -38,30 +38,30 @@ public class mApplicationFormPg3 {
         this.cacheM = cacheM;
     }
 
-    @FXML public void initialize() {
-        Form form = cacheM.getForm();
-        if(form.getCertificateOfApproval() == null)
-            certificateOfApproval.setSelected(false);
-        else if(form.getCertificateOfApproval())
-            certificateOfApproval.setSelected(true);
-        if(form.getCertificateOfExemption() == null)
-            certificateOfExemption.setSelected(false);
-        else if(form.getCertificateOfExemption())
-            certificateOfExemption.setSelected(true);
-        if(form.getDistinctiveLiquor() == null)
-            DistinctiveLiquor.setSelected(false);
-        else if(form.getDistinctiveLiquor())
-            DistinctiveLiquor.setSelected(true);
-        if(form.getResubmission() == null)
-            resubmission.setSelected(false);
-        else if(form.getResubmission())
-            resubmission.setSelected(true);
-        validateStateField();
-        validateBottleCapacity();
-        validateTTBID();
-//        if(!(form.getLabel().getLabelImage() == null))
-//            imagePreview.setImage(form.getLabel().getLabelImage());
-    }
+//    @FXML public void initialize() {
+//        Form form = cacheM.getForm();
+//        if(form.getCertificateOfApproval() == null)
+//            certificateOfApproval.setSelected(false);
+//        else if(form.getCertificateOfApproval())
+//            certificateOfApproval.setSelected(true);
+//        if(form.getCertificateOfExemption() == null)
+//            certificateOfExemption.setSelected(false);
+//        else if(form.getCertificateOfExemption())
+//            certificateOfExemption.setSelected(true);
+//        if(form.getDistinctiveLiquor() == null)
+//            DistinctiveLiquor.setSelected(false);
+//        else if(form.getDistinctiveLiquor())
+//            DistinctiveLiquor.setSelected(true);
+//        if(form.getResubmission() == null)
+//            resubmission.setSelected(false);
+//        else if(form.getResubmission())
+//            resubmission.setSelected(true);
+//        validateStateField();
+//        validateBottleCapacity();
+//        validateTTBID();
+////        if(!(form.getLabel().getLabelImage() == null))
+////            imagePreview.setImage(form.getLabel().getLabelImage());
+//    }
 
 
     @FXML public void validateStateField() {
@@ -148,6 +148,7 @@ public class mApplicationFormPg3 {
     */
     @FXML public void nextPage() throws IOException {
         saveDraft();
+        multiThreadWaitFor.onShutDown();
         System.out.println("on to page 4");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));

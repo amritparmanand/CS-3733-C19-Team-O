@@ -45,17 +45,17 @@ public class mApplicationFormPg2 {
         this.cacheM = cacheM;
     }
 
-    @FXML public void initialize(){
-        Form form = cacheM.getForm();
-        printName.setText(form.getPrintName());
-        mailAddress.setText(form.getMailingAddress());
-        formula.setText(form.getFormula());
-        grapes.setText(form.getGrapeVarietal());
-        appellation.setText(form.getAppellation());
-        phoneNumber.setText(form.getPhoneNumber());
-        email.setText(form.getEmailAddress());
-
-    }
+//    @FXML public void initialize(){
+//        Form form = cacheM.getForm();
+//        printName.setText(form.getPrintName());
+//        mailAddress.setText(form.getMailingAddress());
+//        formula.setText(form.getFormula());
+//        grapes.setText(form.getGrapeVarietal());
+//        appellation.setText(form.getAppellation());
+//        phoneNumber.setText(form.getPhoneNumber());
+//        email.setText(form.getEmailAddress());
+//
+//    }
 
     @FXML public void saveDraft() {
         if (printName != null && mailAddress != null && formula != null && grapes != null && appellation != null && phoneNumber != null && email != null) {

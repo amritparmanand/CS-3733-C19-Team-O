@@ -204,7 +204,7 @@ public class DatabaseManager {
                 "distinctiveLiquor BOOLEAN," +
                 "bottleCapacity VARCHAR(300)," +
                 "resubmission BOOLEAN," +
-                "ttbID varchar (20)," + //end new
+                "ttbID int," + //end new
                 "dateOfApplication VARCHAR(30) , " +
                 "printName varchar(40),    " +
                 "beerWineSpirit varchar(60), " +
@@ -299,13 +299,19 @@ public class DatabaseManager {
 
                         } else if (counter == 14 || counter == 17 || counter == 19) {
                             output += splitRecord[j] + "',";
-                        } else if (counter == 15) {
+                        } else if (counter == 15 || counter == 20) {
                             output += splitRecord[j] + ",";
 
-                        } else if (counter == 16 || counter == 18 || counter == 20) {
+                        } else if (counter == 16 || counter == 18) {
                             output += splitRecord[j] + ",'";
 
-                        } else {
+                        }
+                        else if(counter == 21)
+                        {
+                            output += " 999,'";
+
+                        }
+                            else {
                             output += splitRecord[j] + "','";
                             if (output.charAt(1) != '1' && output.charAt(1) != '2' && output.charAt(1) != '3') {
                                 break;

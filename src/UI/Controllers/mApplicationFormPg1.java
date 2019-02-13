@@ -51,60 +51,60 @@ public class mApplicationFormPg1 {
         this.cacheM = cacheM;
     }
 
-    @SuppressWarnings("Duplicates") @FXML public void initialize(){
-        Form form = cacheM.getForm();
-        boolean isDomestic = false;
-        boolean isImported = false;
-        boolean isWine = false;
-        boolean isSpirit = false;
-        boolean isMalt = false;
-        //   phLevel.setDisable(true);
-//        vintageYear.setDisable(true);
-        phVBox.setVisible(false);
-        vintageVBox.setVisible(false);
-
-        if (form.getProductSource() == "DOMESTIC") {
-            isDomestic = true;
-            isImported = false;
-        }
-        if (form.getPrintName() == "IMPORTED") {
-            isDomestic = false;
-            isImported = true;
-        }
-        if (form.getBeerWineSpirit() == "WINE") {
-            isWine = true;
-            isSpirit = false;
-            isMalt = false;
-            phLevel.setDisable(false);
-            vintageYear.setDisable(false);
-        } else if (form.getBeerWineSpirit() == "SPIRITS") {
-            isWine = false;
-            isSpirit = true;
-            isMalt = false;
-        } else if (form.getBeerWineSpirit() == "BEER") {
-            isWine = false;
-            isSpirit = false;
-            isMalt = true;
-        }
-        System.out.println("starting");
-        if (form.getRepID() != 0)
-            repID.setText(Integer.toString(form.getRepID()));
-        brewerNO.setText(form.getBrewerNumber());
-        domestic.setSelected(isDomestic);
-        imported.setSelected(isImported);
-        serialNumber.setText(form.getSerialNumber());
-        wine.setSelected(isWine);
-        distilled.setSelected(isSpirit);
-        malt.setSelected(isMalt);
-        brandName.setText(form.getBrandName());
-        fancifulName.setText(form.getFancifulName());
-        wine2.setSelected(isWine);
-        spirits2.setSelected(isSpirit);
-        beer2.setSelected(isMalt);
-        alcoholPercentage.setText(form.getAlcoholPercent());
-        phLevel.setText(form.getpHLevel());
-        vintageYear.setText(form.getVintageYear());
-    }
+//    @SuppressWarnings("Duplicates") @FXML public void initialize(){
+//        Form form = cacheM.getForm();
+//        boolean isDomestic = false;
+//        boolean isImported = false;
+//        boolean isWine = false;
+//        boolean isSpirit = false;
+//        boolean isMalt = false;
+//        //   phLevel.setDisable(true);
+////        vintageYear.setDisable(true);
+//        phVBox.setVisible(false);
+//        vintageVBox.setVisible(false);
+//
+//        if (form.getProductSource() == "DOMESTIC") {
+//            isDomestic = true;
+//            isImported = false;
+//        }
+//        if (form.getPrintName() == "IMPORTED") {
+//            isDomestic = false;
+//            isImported = true;
+//        }
+//        if (form.getBeerWineSpirit() == "WINE") {
+//            isWine = true;
+//            isSpirit = false;
+//            isMalt = false;
+//            phLevel.setDisable(false);
+//            vintageYear.setDisable(false);
+//        } else if (form.getBeerWineSpirit() == "SPIRITS") {
+//            isWine = false;
+//            isSpirit = true;
+//            isMalt = false;
+//        } else if (form.getBeerWineSpirit() == "BEER") {
+//            isWine = false;
+//            isSpirit = false;
+//            isMalt = true;
+//        }
+//        System.out.println("starting");
+//        if (form.getRepID() != 0)
+//            repID.setText(Integer.toString(form.getRepID()));
+//        brewerNO.setText(form.getBrewerNumber());
+//        domestic.setSelected(isDomestic);
+//        imported.setSelected(isImported);
+//        serialNumber.setText(form.getSerialNumber());
+//        wine.setSelected(isWine);
+//        distilled.setSelected(isSpirit);
+//        malt.setSelected(isMalt);
+//        brandName.setText(form.getBrandName());
+//        fancifulName.setText(form.getFancifulName());
+//        wine2.setSelected(isWine);
+//        spirits2.setSelected(isSpirit);
+//        beer2.setSelected(isMalt);
+//        alcoholPercentage.setText(form.getAlcoholPercent());
+//        phLevel.setText(form.getpHLevel());
+//        vintageYear.setText(form.getVintageYear());
+//    }
 
 
     @FXML public void saveDraft(){
