@@ -4,7 +4,6 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -36,19 +35,10 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
-                  <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer" visible="false">
-                     <children>
-                        <TextField prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">
-                           <HBox.margin>
-                              <Insets left="20.0" top="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
+                  <JFXButton fx:id="logout" alignment="CENTER_RIGHT" buttonType="RAISED" onMousePressed="#logout" style="-fx-background-radius: 5;" styleClass="searchButtonStyle" text="Logout">
                      <HBox.margin>
-                        <Insets left="450.0" />
-                     </HBox.margin>
-                  </HBox>
-                  <JFXButton fx:id="logout" alignment="CENTER_RIGHT" buttonType="RAISED" style="-fx-background-radius: 5;" styleClass="searchButtonStyle" text="Logout" />
+                        <Insets left="800.0" />
+                     </HBox.margin></JFXButton>
                </children></HBox>
             <HBox alignment="CENTER" prefHeight="525.0" prefWidth="1280.0" spacing="150.0" VBox.vgrow="ALWAYS">
                <children>
