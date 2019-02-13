@@ -2,6 +2,7 @@ package Managers;
 
 import Datatypes.Account;
 import Datatypes.Form;
+import Datatypes.SearchResult;
 import Fuzzy.FuzzyContext;
 
 import java.sql.Connection;
@@ -17,6 +18,7 @@ public class CacheManager {
     private DatabaseManager dbM;
     private Form form;
     private Account acct;
+    private SearchResult selectedResult;
     private int formLimit;
     private String passer;
     private String receiver;
@@ -60,6 +62,15 @@ public class CacheManager {
     public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
+
+    public SearchResult getSelectedResult() {
+        return selectedResult;
+    }
+
+    public void setSelectedResult(SearchResult selectedResult) {
+        this.selectedResult = selectedResult;
+    }
+
     // Facade stuff
 
     // Form
