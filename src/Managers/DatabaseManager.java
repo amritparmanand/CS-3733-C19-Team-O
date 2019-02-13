@@ -10,6 +10,9 @@ import Fuzzy.Levenshtein;
 import Fuzzy.hiddenScore;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.*;
 /**
  * @author Amrit Parmanand & Percy
@@ -85,7 +88,7 @@ public class DatabaseManager {
                 "email varchar(60),	" +
                 "phone varchar(15))";
         String createForms = "create table Forms(" +
-                "formID int	constraint Forms_pk	primary key, " +
+                "formID bigint	constraint Forms_pk	primary key, " +
                 "repID int, " +
                 "brewerNumber varchar(60),	" +
                 "productSource varchar(60),	" +
@@ -112,7 +115,8 @@ public class DatabaseManager {
                 "beerWineSpirit varchar(60), " +
                 "alcoholPercent varchar(60),	" +
                 "vintageYear varchar(60), " +
-                "phLevel varchar(60))";
+                "phLevel varchar(60), " +
+                "labelImage BLOB)";
         String createUniqueReps = "create unique index Representatives_username_uindex " +
                 "on Representatives (username)";
         String createUniqueAgents = "create unique index Agents_username_uindex " +
@@ -254,14 +258,15 @@ public class DatabaseManager {
         return a;
     }
 
-//    // Insert a form from Manufacturer side into database
-//    public void insertForm(Form form) throws SQLException {
+    // Insert a form from Manufacturer side into database
+//    public void insertForm(Form form) throws SQLException, FileNotFoundException {
 //
 //        String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
 //                "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +
-//                "APPELLATION, PHONENUMBER, EMAILADDRESS, /* insert pg 3 things,*/ DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, " +
-//                "VINTAGEYEAR, PHLEVEL) " +
-//                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+//                "APPELLATION, PHONENUMBER, EMAILADDRESS, CERTIFICATEOFAPPROVAL, CERTIFICATEOFEXEMPTION, ONLYSTATE, " +
+//                "DISTINCTIVELIQUOR, BOTTLECAPACITY, RESUBMISSION, TTBID, DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, " +
+//                "ALCOHOLPERCENT, VINTAGEYEAR, PHLEVEL, LABELIMAGE) " +
+//                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 //        PreparedStatement prepStmt = connection.prepareStatement(Forms1);
 //        ResultSet seqVal = null;
 //        try {
@@ -282,23 +287,32 @@ public class DatabaseManager {
 //            prepStmt.setString(13, form.getAppellation());
 //            prepStmt.setString(14, form.getPhoneNumber());
 //            prepStmt.setString(15, form.getEmailAddress());
-//            //page3  args goes here
-//            prepStmt.setString(16, form.getDateOfApplication());
-//            prepStmt.setString(17, form.getPrintName());
-//            prepStmt.setString(18, form.getBeerWineSpirit());
-//            prepStmt.setString(19, form.getAlcoholPercent());
-//            prepStmt.setString(20, form.getVintageYear());
-//            prepStmt.setString(21, form.getpHLevel());
+//            prepStmt.setBoolean(16, form.getCertificateOfApproval());
+//            prepStmt.setBoolean(17, form.getCertificateOfExemption());
+//            prepStmt.setString(18, form.getOnlyState());
+//            prepStmt.setBoolean(19, form.getDistinctiveLiquor());
+//            prepStmt.setString(20, form.getBottleCapacity());
+//            prepStmt.setBoolean(21, form.getResubmission());
+//            prepStmt.setInt(22, form.getTtbID());
+//            prepStmt.setString(23, form.getDateOfApplication());
+//            prepStmt.setString(24, form.getPrintName());
+//            prepStmt.setString(25, form.getBeerWineSpirit());
+//            prepStmt.setString(26, form.getAlcoholPercent());
+//            prepStmt.setString(27, form.getVintageYear());
+//            prepStmt.setString(28, form.getpHLevel());
+//            File slimebert = form.getLabel().getLabelFile();
+//            FileInputStream blobert = new FileInputStream(slimebert);
+//            prepStmt.setBinaryStream(29, blobert, (int) slimebert.length());
 //            addApp(seqVal.getInt(1),form.getRepID(),form.getDateOfApplication());
 //            prepStmt.executeUpdate();
 //            prepStmt.close();
 //
 //        } catch (SQLException e) {
-//                e.printStackTrace();
+//            e.printStackTrace();
 //        }
 //    }
-//
-//    // Automatically generates and inserts an Application into database when Form is inserted
+
+    // Automatically generates and inserts an Application into database when Form is inserted
 //    public void addApp(int formID, int repID, String dateSubmitted) throws SQLException{
 //        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
 //                "VALUES(?,?,?,?,?,?,?,?)";

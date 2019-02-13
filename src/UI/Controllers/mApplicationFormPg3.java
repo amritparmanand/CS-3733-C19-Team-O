@@ -71,11 +71,11 @@ public class mApplicationFormPg3 {
         }
     }
     @FXML public void validateBottleCapacity() {
-        if(!certificateOfExemption.isSelected()) {
-            onlyState.setText("");
-            onlyState.setDisable(true);
-        }else {
-            onlyState.setDisable(false);
+        if(!DistinctiveLiquor.isSelected()) {
+            bottleCapacity.setText("");
+            bottleCapacity.setDisable(true);
+        }else{
+            bottleCapacity.setDisable(false);
         }
     }
     @FXML public void validateTTBID() {

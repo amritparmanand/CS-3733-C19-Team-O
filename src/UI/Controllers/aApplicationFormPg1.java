@@ -48,8 +48,7 @@ public class aApplicationFormPg1 {
 
 
     @FXML public void initialize(){
-        Form form = this.form;
-
+        Form form = cacheM.getForm();
         boolean isDomestic = false;
         boolean isImported = false;
         boolean isWine = false;
@@ -58,7 +57,8 @@ public class aApplicationFormPg1 {
         if(form.getProductSource() == "DOMESTIC"){
             isDomestic = true;
             isImported = false;
-        }else{
+        }
+        if (form.getPrintName() == "IMPORTED"){
             isDomestic = false;
             isImported = true;
         }
@@ -76,20 +76,23 @@ public class aApplicationFormPg1 {
             isMalt = true;
         }
         System.out.println("starting");
+        if(form.getRepID() != 0)
+            repID.setText(Integer.toString(form.getRepID()));
         brewerNO.setText(form.getBrewerNumber());
-        brewerNO.setEditable(false);
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
         serialNO.setText(form.getSerialNumber());
-        serialNO.setEditable(false);
         wine.setSelected(isWine);
-        spirits.setSelected(isSpirit);
+        distilled.setSelected(isSpirit);
         malt.setSelected(isMalt);
-        brand.setText(form.getBrandName());
-        brand.setEditable(false);
-        fanciful.setText(form.getFancifulName());
-        fanciful.setEditable(false);
-        System.out.println("filled in info page 1");
+        brandName.setText(form.getBrandName());
+        fancifulName.setText(form.getFancifulName());
+        wine2.setSelected(isWine);
+        spirits2.setSelected(isSpirit);
+        beer2.setSelected(isMalt);
+        alcoholPercentage.setText(form.getAlcoholPercent());
+        phLevel.setText(form.getpHLevel());
+        vintageYear.setText(form.getVintageYear());
     }
 
 

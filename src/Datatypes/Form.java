@@ -2,6 +2,7 @@ package Datatypes;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.sql.*;
 import java.util.Date;
@@ -285,9 +286,12 @@ public class Form {
     /**
      * Automatically generates and inserts an Application into database when Form is inserted
      * @param connection
+     * @param formID
+     * @param repID
+     * @param dateSubmitted
      * @throws SQLException
      */
-    public void addApp(Connection connection) throws SQLException{
+    public void addApp(Connection connection, int formID, int repID, String dateSubmitted) throws SQLException{
         String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
                 "VALUES(?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Apps1);
@@ -296,10 +300,10 @@ public class Form {
             seqVal = connection.prepareStatement("values (next value for appIDSequence)").executeQuery();
             seqVal.next();
             prepStmt.setInt(1, seqVal.getInt(1));
-            prepStmt.setInt(2, this.getFormID());
-            prepStmt.setInt(3, this.getRepID());
+            prepStmt.setInt(2,formID);
+            prepStmt.setInt(3,repID);
             prepStmt.setNull(4, Types.INTEGER);
-            prepStmt.setString(5, this.getDateOfApplication());
+            prepStmt.setString(5, dateSubmitted);
             prepStmt.setNull(6, Types.VARCHAR);
             prepStmt.setNull(7, Types.VARCHAR);
             prepStmt.setString(8, "PENDING");
@@ -316,41 +320,52 @@ public class Form {
      * @param connection
      * @throws SQLException
      */
-    public void insert(Connection connection) throws SQLException {
+    public void insertForm(Connection connection) throws SQLException, FileNotFoundException {
 
         String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
                 "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +
-                "APPELLATION, PHONENUMBER, EMAILADDRESS, /* insert pg 3 things,*/ DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, " +
-                "VINTAGEYEAR, PHLEVEL) " +
-                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                "APPELLATION, PHONENUMBER, EMAILADDRESS, CERTIFICATEOFAPPROVAL, CERTIFICATEOFEXEMPTION, ONLYSTATE, " +
+                "DISTINCTIVELIQUOR, BOTTLECAPACITY, RESUBMISSION, TTBID, DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, " +
+                "ALCOHOLPERCENT, VINTAGEYEAR, PHLEVEL, LABELIMAGE) " +
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
         ResultSet seqVal = null;
         try {
             seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
             seqVal.next();
+            this.setFormID(seqVal.getInt(1));
             prepStmt.setInt(1,seqVal.getInt(1));
-            prepStmt.setInt(2, this.getRepID());
-            prepStmt.setString(3, this.getBrewerNumber());
-            prepStmt.setString(4, this.getProductSource());
-            prepStmt.setString(5, this.getSerialNumber());
-            prepStmt.setString(6, this.getProductType());
-            prepStmt.setString(7, this.getBrandName());
-            prepStmt.setString(8, this.getFancifulName());
-            prepStmt.setString(9, this.getApplicantName());
-            prepStmt.setString(10, this.getMailingAddress());
-            prepStmt.setString(11, this.getFormula());
-            prepStmt.setString(12, this.getGrapeVarietal());
-            prepStmt.setString(13, this.getAppellation());
-            prepStmt.setString(14, this.getPhoneNumber());
-            prepStmt.setString(15, this.getEmailAddress());
-            //page3  args goes here
-            prepStmt.setString(16, this.getDateOfApplication());
-            prepStmt.setString(17, this.getPrintName());
-            prepStmt.setString(18, this.getBeerWineSpirit());
-            prepStmt.setString(19, this.getAlcoholPercent());
-            prepStmt.setString(20, this.getVintageYear());
-            prepStmt.setString(21, this.getpHLevel());
-            addApp(connection);
+            prepStmt.setInt(2, getRepID());
+            prepStmt.setString(3, getBrewerNumber());
+            prepStmt.setString(4, getProductSource());
+            prepStmt.setString(5, getSerialNumber());
+            prepStmt.setString(6, getProductType());
+            prepStmt.setString(7, getBrandName());
+            prepStmt.setString(8, getFancifulName());
+            prepStmt.setString(9, getApplicantName());
+            prepStmt.setString(10, getMailingAddress());
+            prepStmt.setString(11, getFormula());
+            prepStmt.setString(12, getGrapeVarietal());
+            prepStmt.setString(13, getAppellation());
+            prepStmt.setString(14, getPhoneNumber());
+            prepStmt.setString(15, getEmailAddress());
+            prepStmt.setBoolean(16, getCertificateOfApproval());
+            prepStmt.setBoolean(17, getCertificateOfExemption());
+            prepStmt.setString(18, getOnlyState());
+            prepStmt.setBoolean(19, getDistinctiveLiquor());
+            prepStmt.setString(20, getBottleCapacity());
+            prepStmt.setBoolean(21, getResubmission());
+            prepStmt.setInt(22, getTtbID());
+            prepStmt.setString(23, getDateOfApplication());
+            prepStmt.setString(24, getPrintName());
+            prepStmt.setString(25, getBeerWineSpirit());
+            prepStmt.setString(26, getAlcoholPercent());
+            prepStmt.setString(27, getVintageYear());
+            prepStmt.setString(28, getpHLevel());
+            File slimebert = getLabel().getLabelFile();
+            FileInputStream blobert = new FileInputStream(slimebert);
+            prepStmt.setBinaryStream(29, blobert, (int) slimebert.length());
+            addApp(connection, seqVal.getInt(1),getRepID(), getDateOfApplication());
             prepStmt.executeUpdate();
             prepStmt.close();
 

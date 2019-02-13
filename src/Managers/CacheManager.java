@@ -4,6 +4,7 @@ import Datatypes.Account;
 import Datatypes.Form;
 import Fuzzy.FuzzyContext;
 
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,11 +66,8 @@ public class CacheManager {
     public void denyForm(Connection conn){
         form.deny(conn);
     }
-    public void insertApp(Connection connection) throws SQLException {
-        form.addApp(connection);
-    }
-    public void insertForm(Connection connection) throws SQLException{
-        form.insert(connection);
+    public void insertForm(Connection connection) throws SQLException, FileNotFoundException {
+        form.insertForm(connection);
     }
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
         return form.getApprovedApplications(conn);

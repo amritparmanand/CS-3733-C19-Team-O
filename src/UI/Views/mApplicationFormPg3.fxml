@@ -76,7 +76,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
                                  <children>
-                                    <JFXButton fx:id="previous1" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton fx:id="previous1" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
                                     <JFXButton fx:id="next1" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
@@ -158,7 +158,7 @@
                                                                 <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="484.0">
                                                                     <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TOTAL BOTTLE CAPACITY BEFORE CLOSURE " />
-                                                      <JFXTextField fx:id="bottleCapacity" editable="false" prefHeight="26.0" prefWidth="94.0" />
+                                                      <JFXTextField fx:id="bottleCapacity" prefHeight="26.0" prefWidth="94.0" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="(Fill in amount)" />
                                                                     </children>
                                                                 </HBox>

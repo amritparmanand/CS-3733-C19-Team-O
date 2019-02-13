@@ -77,12 +77,12 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
                                  <children>
-                                    <JFXButton fx:id="previous1" styleClass="buttonStyle" text="Previous Page" />
-                                    <JFXButton fx:id="next1"  styleClass="buttonStyle" text="Next Page" />
+                                    <JFXButton fx:id="previous1" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton fx:id="next1" disable="true" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
                               <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
-                              <JFXButton  prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
+                              <JFXButton prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
                               <Button fx:id="back1" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
                                  <VBox.margin>
                                     <Insets top="20.0" />
