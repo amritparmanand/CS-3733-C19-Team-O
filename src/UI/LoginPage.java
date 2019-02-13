@@ -65,14 +65,15 @@ public class LoginPage implements SerialPortDataListener {
 
                 @Override
                 public synchronized void serialEvent(SerialPortEvent serialPortEvent) {
-                    byte[] newData = new byte[8];
-                    serialPort.readBytes(newData, 8);
-
+//                    byte[] newData = new byte[8];
+//                    serialPort.readBytes(newData, 8);
+                    byte[] newData = new byte[serialPort.bytesAvailable()];
+                    serialPort.readBytes(newData, newData.length);
                     String buf = new String(newData);
                     buf = buf.trim();
 
                     System.out.println(buf);
-                    if ((buf != null && !(buf.length() < 2))) {
+                    if ((buf != null && !(buf.length() < 4))) {
 
                         int loginID = Integer.parseInt(buf);
                         String uname = cacheM.getDbM().aFindUsername(loginID);
@@ -98,7 +99,7 @@ public class LoginPage implements SerialPortDataListener {
                         else{
                             Platform.runLater(() -> {
                                 loginMessage.setTextFill(Color.RED);
-                                loginMessage.setText("Badge cannot be authenticated. Access Denied!");
+                                loginMessage.setText("Badge has not yet been programmed");
                                 return;
 
                             });
@@ -109,7 +110,7 @@ public class LoginPage implements SerialPortDataListener {
                     {
                         Platform.runLater(() -> {
                             loginMessage.setTextFill(Color.RED);
-                            loginMessage.setText("Badge has not yet been programmed.");
+                            loginMessage.setText("Badge cannot be authenticated. Access Denied!");
                             return;
 
                         });
