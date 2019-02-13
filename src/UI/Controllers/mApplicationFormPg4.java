@@ -19,13 +19,20 @@ public class mApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private Button previous;
-    @FXML private Button search;
-    @FXML private Button back;
-    @FXML private Button submit;
-    @FXML private JFXTextField dateOfApplication;
-    @FXML private JFXTextField applicantSig;
-    @FXML private JFXTextField applicantNamePrint;
+    @FXML
+    private Button previous;
+    @FXML
+    private Button search;
+    @FXML
+    private Button back;
+    @FXML
+    private Button submit;
+    @FXML
+    private JFXTextField dateOfApplication;
+    @FXML
+    private JFXTextField applicantSig;
+    @FXML
+    private JFXTextField applicantNamePrint;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
@@ -33,7 +40,8 @@ public class mApplicationFormPg4 {
         this.cacheM = cacheM;
     }
 
-    @FXML public void initialize(){
+    @FXML
+    public void initialize() {
         Form form = cacheM.getForm();
 
         System.out.println("starting");
@@ -48,13 +56,13 @@ public class mApplicationFormPg4 {
         Form form = cacheM.getForm();
 
         form.setDateOfApplication(dateOfApplication.getText());
-       // form.setSignatureOfApplicant(applicantSig.getText());
+        // form.setSignatureOfApplicant(applicantSig.getText());
         form.setPrintName(applicantNamePrint.getText());
 //        form.setDateIssued("");
 
-        try{
+        try {
             cacheM.getDbM().insertForm(form);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -64,15 +72,20 @@ public class mApplicationFormPg4 {
 
     }
 
-    @FXML public void previousPage() throws IOException {
+    @FXML
+    public void previousPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
     }
-    @FXML public void searchPage() throws IOException {
+
+    @FXML
+    public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
-    @FXML public void goToHomePage() throws IOException {
+
+    @FXML
+    public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
