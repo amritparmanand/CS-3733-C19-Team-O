@@ -3,9 +3,7 @@ package Datatypes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigInteger;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Date;
 /**
  * @author Harry James and Gabriel Entov
@@ -46,6 +44,7 @@ public class Form {
     private int formID;
 
 
+    // Constructor
     public Form() {
         this.repID = 0;
         this.formID = 0;
@@ -77,6 +76,7 @@ public class Form {
         this.bottleCapacity = null;
     }
 
+    // Getters and setters
     public int getRepID(){ return repID; }
     public void setRepID(int repID){ this.repID = repID; }
     public String getBrewerNumber() {
@@ -266,8 +266,6 @@ public class Form {
         }
     }
 
-    // Query the database to select applications where form ID matches this form
-    // Update the status to be denied
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) {
         String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED' WHERE FORMID ="
@@ -281,6 +279,83 @@ public class Form {
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
+        }
+    }
+
+    /**
+     * Automatically generates and inserts an Application into database when Form is inserted
+     * @param connection
+     * @throws SQLException
+     */
+    public void addApp(Connection connection) throws SQLException{
+        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
+                "VALUES(?,?,?,?,?,?,?,?)";
+        PreparedStatement prepStmt = connection.prepareStatement(Apps1);
+        ResultSet seqVal = null;
+        try {
+            seqVal = connection.prepareStatement("values (next value for appIDSequence)").executeQuery();
+            seqVal.next();
+            prepStmt.setInt(1, seqVal.getInt(1));
+            prepStmt.setInt(2, this.getFormID());
+            prepStmt.setInt(3, this.getRepID());
+            prepStmt.setNull(4, Types.INTEGER);
+            prepStmt.setString(5, this.getDateOfApplication());
+            prepStmt.setNull(6, Types.VARCHAR);
+            prepStmt.setNull(7, Types.VARCHAR);
+            prepStmt.setString(8, "PENDING");
+            prepStmt.executeUpdate();
+            prepStmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Insert a form from Manufacturer side into database
+     * @param connection
+     * @throws SQLException
+     */
+    public void insert(Connection connection) throws SQLException {
+
+        String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
+                "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +
+                "APPELLATION, PHONENUMBER, EMAILADDRESS, /* insert pg 3 things,*/ DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, " +
+                "VINTAGEYEAR, PHLEVEL) " +
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement prepStmt = connection.prepareStatement(Forms1);
+        ResultSet seqVal = null;
+        try {
+            seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
+            seqVal.next();
+            prepStmt.setInt(1,seqVal.getInt(1));
+            prepStmt.setInt(2, this.getRepID());
+            prepStmt.setString(3, this.getBrewerNumber());
+            prepStmt.setString(4, this.getProductSource());
+            prepStmt.setString(5, this.getSerialNumber());
+            prepStmt.setString(6, this.getProductType());
+            prepStmt.setString(7, this.getBrandName());
+            prepStmt.setString(8, this.getFancifulName());
+            prepStmt.setString(9, this.getApplicantName());
+            prepStmt.setString(10, this.getMailingAddress());
+            prepStmt.setString(11, this.getFormula());
+            prepStmt.setString(12, this.getGrapeVarietal());
+            prepStmt.setString(13, this.getAppellation());
+            prepStmt.setString(14, this.getPhoneNumber());
+            prepStmt.setString(15, this.getEmailAddress());
+            //page3  args goes here
+            prepStmt.setString(16, this.getDateOfApplication());
+            prepStmt.setString(17, this.getPrintName());
+            prepStmt.setString(18, this.getBeerWineSpirit());
+            prepStmt.setString(19, this.getAlcoholPercent());
+            prepStmt.setString(20, this.getVintageYear());
+            prepStmt.setString(21, this.getpHLevel());
+            addApp(connection);
+            prepStmt.executeUpdate();
+            prepStmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

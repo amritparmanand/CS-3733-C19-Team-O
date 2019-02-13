@@ -6,11 +6,12 @@ import Fuzzy.FuzzyContext;
 
 import java.sql.Connection;
 /**
- * @author Sam Silver
- * @version It 1
+ * @author Sam Silver & Percy
+ * @version It 2
  * manages the cache, provides access to cached info
  */
 public class CacheManager {
+//    private Connection dbConn;
     private DatabaseManager dbM;
     private Form form;
     private Account acct;
@@ -20,6 +21,19 @@ public class CacheManager {
         this.form = new Form();
     }
 
+//    public CacheManager(Connection dbConn) {
+//        this.dbConn = dbConn;
+//        this.form = new Form();
+//    }
+//
+//    public Connection getDbConn() {
+//        return dbConn;
+//    }
+//    public void setDbConn(Connection dbConn) {
+//        this.dbConn = dbConn;
+//    }
+
+    // Getters and setters
     public DatabaseManager getDbM() {
         return dbM;
     }
@@ -35,4 +49,7 @@ public class CacheManager {
     public void setAcct(Account acct) {
         this.acct = acct;
     }
+
+    // Facade stuff
+
 }
