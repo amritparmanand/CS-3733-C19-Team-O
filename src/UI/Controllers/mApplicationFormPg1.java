@@ -166,6 +166,9 @@ public class mApplicationFormPg1{
         if (!alcoholPercentage.getText().isEmpty()) {
             form.setAlcoholPercent(alcoholPercentage.getText());
         }
+        if (Integer.parseInt(alcoholPercentage.getText()) > 100){
+            System.out.println("Alcohol Percentage cannot exceed 100%");
+        }
 
         cacheM.setForm(form);
 
