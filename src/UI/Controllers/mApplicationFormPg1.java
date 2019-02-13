@@ -9,11 +9,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -26,6 +24,8 @@ public class mApplicationFormPg1 {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
+    @FXML
+    private Label saveDraftMessage;
     @FXML
     private JFXTextField repID;
     @FXML
@@ -185,10 +185,12 @@ public class mApplicationFormPg1 {
         if (!alcoholPercentage.getText().isEmpty()) {
             form.setAlcoholPercent(alcoholPercentage.getText());
         }
-        if (Integer.parseInt(alcoholPercentage.getText()) > 100){
+        /*if (Integer.parseInt(alcoholPercentage.getText()) > 100){
             System.out.println("Alcohol Percentage cannot exceed 100%");
+            saveDraftMessage.setTextFill(Color.RED);
+            saveDraftMessage.setText("Alcohol Percentage cannot exceed 100%");
         }
-
+*/
         cacheM.setForm(form);
 
         System.out.println("Pg1 saved!");

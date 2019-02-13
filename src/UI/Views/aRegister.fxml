@@ -106,16 +106,16 @@
                   </JFXTextField>
                   <JFXTextField fx:id="email" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Email">
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets bottom="5.0" top="20.0" />
                      </VBox.margin>
                   </JFXTextField>
                   <Label fx:id="emailMessage" />
                   <JFXTextField fx:id="phone" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Phone (U.S Number Only)">
                      <VBox.margin>
-                        <Insets />
+                        <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
-                  <Label fx:id="phoneMessage" prefHeight="6.0" prefWidth="0.0" />
+                  <Label fx:id="phoneMessage" />
                   <JFXTextField fx:id="username" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Username">
                      <VBox.margin>
                         <Insets top="10.0" />

@@ -87,15 +87,22 @@ public class aRegister {
                 phone.getText().isEmpty() ||
                 ttbID.getText().isEmpty() ||
                 !validAgentPhone(phoneNumber) ||
-                !validAgentEmail(agentEmail)
+                !validAgentEmail(agentEmail) ||
+                (Integer.parseInt(ttbID.getText()) < 0)
         ){
-            if(!validAgentPhone(phoneNumber)){
+            if(!validAgentPhone(phoneNumber) && !phoneNumber.isEmpty()){
                 phoneMessage.setTextFill(Color.RED);
-                phoneMessage.setText("Invalid Phone Number. Please Try again.");
+                phoneMessage.setText("Invalid Phone Number");
             }
-            if(!validAgentEmail(agentEmail)){
+            if(!validAgentEmail(agentEmail) && !agentEmail.isEmpty()){
                 emailMessage.setTextFill(Color.RED);
-                emailMessage.setText("Invalid Email. Must Be A .gov Address");
+                emailMessage.setText("Invalid Email. Must be a .gov Address");
+            }
+            if(Integer.parseInt(ttbID.getText()) < 0){
+                IDMessage.setTextFill(Color.RED);
+                IDMessage.setText("ID cannot be negative");
+            } else{
+                IDMessage.setText("");
             }
             if(validAgentPhone(phoneNumber)){
                 phoneMessage.setText("");
