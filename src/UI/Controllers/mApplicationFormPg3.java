@@ -38,30 +38,28 @@ public class mApplicationFormPg3 {
         this.cacheM = cacheM;
     }
 
-//    @FXML public void initialize() {
-//        Form form = cacheM.getForm();
-//        if(form.getCertificateOfApproval() == null)
-//            certificateOfApproval.setSelected(false);
-//        else if(form.getCertificateOfApproval())
-//            certificateOfApproval.setSelected(true);
-//        if(form.getCertificateOfExemption() == null)
-//            certificateOfExemption.setSelected(false);
-//        else if(form.getCertificateOfExemption())
-//            certificateOfExemption.setSelected(true);
-//        if(form.getDistinctiveLiquor() == null)
-//            DistinctiveLiquor.setSelected(false);
-//        else if(form.getDistinctiveLiquor())
-//            DistinctiveLiquor.setSelected(true);
-//        if(form.getResubmission() == null)
-//            resubmission.setSelected(false);
-//        else if(form.getResubmission())
-//            resubmission.setSelected(true);
-//        validateStateField();
-//        validateBottleCapacity();
-//        validateTTBID();
-////        if(!(form.getLabel().getLabelImage() == null))
-////            imagePreview.setImage(form.getLabel().getLabelImage());
-//    }
+    @FXML public void initialize() {
+        Form form = cacheM.getForm();
+        if(form.getCertificateOfApproval() == null)
+            certificateOfApproval.setSelected(false);
+        else if(form.getCertificateOfApproval())
+            certificateOfApproval.setSelected(true);
+        if(form.getCertificateOfExemption() == null)
+            certificateOfExemption.setSelected(false);
+        else if(form.getCertificateOfExemption())
+            certificateOfExemption.setSelected(true);
+        if(form.getDistinctiveLiquor() == null)
+            DistinctiveLiquor.setSelected(false);
+        else if(form.getDistinctiveLiquor())
+            DistinctiveLiquor.setSelected(true);
+        if(form.getResubmission() == null)
+            resubmission.setSelected(false);
+        else if(form.getResubmission())
+            resubmission.setSelected(true);
+        validateStateField();
+        validateBottleCapacity();
+        validateTTBID();
+    }
 
 
     @FXML public void validateStateField() {
@@ -90,51 +88,51 @@ public class mApplicationFormPg3 {
     }
 
     @FXML public boolean saveDraft(){
-        if (onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null &&certificateOfExemption!= null && DistinctiveLiquor!= null && resubmission!= null && imagePreview!= null && imagePreview!= null) {
-            if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
-                    !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
-                errorLabel.setText("Please select a type of application.");
-                return false;
-            }
-            Form form = cacheM.getForm();
-
-            form.setCertificateOfApproval(certificateOfApproval.isSelected());
-            form.setCertificateOfExemption(certificateOfExemption.isSelected());
-            if(certificateOfExemption.isSelected()) {
-                form.setOnlyState(onlyState.getText());
-            }else {
-                form.setOnlyState(null);
-            }
-            form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
-            form.setResubmission(resubmission.isSelected());
-            if(!resubmission.isSelected())
-                form.setTtbID(0);
-            else
-                form.setTtbID(Integer.parseInt(ttbID.getText()));
-            form.setBottleCapacity(bottleCapacity.getText());
-            form.setLabel(image);
-            errorLabel.setText(" ");
-            cacheM.setForm(form);
-            return true;
-        }
-        else{
+        if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
+                !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
+            errorLabel.setText("Please select a type of application.");
             return false;
         }
+        Form form = cacheM.getForm();
+
+        form.setCertificateOfApproval(certificateOfApproval.isSelected());
+        form.setCertificateOfExemption(certificateOfExemption.isSelected());
+        if(certificateOfExemption.isSelected()) {
+            form.setOnlyState(onlyState.getText());
+        }else {
+            form.setOnlyState(null);
+        }
+        form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
+        form.setResubmission(resubmission.isSelected());
+        if(!resubmission.isSelected())
+            form.setTtbID(0);
+        else
+            form.setTtbID(Integer.parseInt(ttbID.getText()));
+        form.setBottleCapacity(bottleCapacity.getText());
+        form.setLabel(image);
+        errorLabel.setText(" ");
+        cacheM.setForm(form);
+        return true;
     }
 
-    /**
-     * The multi-thread function
-     * Saves draft every 5 seconds
-     */
-    callableFunction cf = new callableFunction() {
-        @Override
-        @FXML
-        public void call() {
-            saveDraft();
-            System.out.println("Pg3 saved!");
-        }
-    };
-    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
+//    /**
+//     * The multi-thread function
+//     * Saves draft every 5 seconds
+//     */
+//    callableFunction cf = new callableFunction() {
+//        @Override
+//        @SuppressWarnings("Duplicates")
+//        public void call() {
+//            if(onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null &&
+//                    certificateOfExemption!= null && DistinctiveLiquor!= null && resubmission!= null &&
+//                    imagePreview!= null && imagePreview!= null){
+//                saveDraft();
+//                System.out.println("Pg3 saved!");
+//            }
+//
+//        }
+//    };
+//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
     /*
     @FXML public void nextPage() throws IOException {
@@ -148,24 +146,18 @@ public class mApplicationFormPg3 {
     */
     @FXML public void nextPage() throws IOException {
         saveDraft();
-        multiThreadWaitFor.onShutDown();
+//        multiThreadWaitFor.onShutDown();
         System.out.println("on to page 4");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
     }
     @FXML public void previousPage() throws IOException {
-        multiThreadWaitFor.onShutDown();
+//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
-    @FXML public void searchPage() throws IOException {
-
-        multiThreadWaitFor.onShutDown();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-    }
     @FXML public void goToHomePage() throws IOException {
-        multiThreadWaitFor.onShutDown();
+//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }

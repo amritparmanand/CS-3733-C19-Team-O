@@ -21,7 +21,6 @@ public class MultiThreadWaitFor implements Runnable{
     }
 
     @Override
-    @FXML
     public void run() {
         try{
             while(isRunning == true){
@@ -35,5 +34,6 @@ public class MultiThreadWaitFor implements Runnable{
 
     public void onShutDown(){
         this.isRunning = false;
+        thread.stop();
     }
 }

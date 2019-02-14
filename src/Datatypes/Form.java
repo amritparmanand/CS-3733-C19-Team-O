@@ -49,32 +49,32 @@ public class Form {
     public Form() {
         this.repID = 0;
         this.formID = 0;
-        this.brewerNumber = null;
-        this.productSource = null;
-        this.serialNumber = null;
-        this.productType = null;
-        this.brandName = null;
-        this.fancifulName = null;
-        this.applicantName = null;
-        this.mailingAddress = null;
-        this.formula = null;
-        this.grapeVarietal = null;
-        this.appellation = null;
-        this.phoneNumber = null;
-        this.emailAddress = null;
-        this.dateOfApplication = null;
-        this.printName = null;
-        this.beerWineSpirit = null;
-        this.alcoholPercent = null;
-        this.vintageYear = null;
-        this.pHLevel = null;
-        this.certificateOfApproval = null;
-        this.certificateOfExemption = null;
-        this.onlyState = null;
-        this.distinctiveLiquor = null;
-        this.resubmission = null;
+        this.brewerNumber = "";
+        this.productSource = "";
+        this.serialNumber = "";
+        this.productType = "";
+        this.brandName = "";
+        this.fancifulName = "";
+        this.applicantName = "";
+        this.mailingAddress = "";
+        this.formula = "";
+        this.grapeVarietal = "";
+        this.appellation = "";
+        this.phoneNumber = "";
+        this.emailAddress = "";
+        this.dateOfApplication = "";
+        this.printName = "";
+        this.beerWineSpirit = "";
+        this.alcoholPercent = "";
+        this.vintageYear = "";
+        this.pHLevel = "";
+        this.certificateOfApproval = false;
+        this.certificateOfExemption = false;
+        this.onlyState = "";
+        this.distinctiveLiquor = false;
+        this.resubmission = false;
         this.ttbID = 0;
-        this.bottleCapacity = null;
+        this.bottleCapacity = "";
     }
 
     // Getters and setters
