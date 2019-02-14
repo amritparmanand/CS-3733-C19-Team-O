@@ -263,6 +263,26 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
     }
+    public boolean isFormsEmpty() throws SQLException{
+        ResultSet rs = stmt.executeQuery("SELECT * from FORMS");
+
+        // checking if ResultSet is empty
+        if (!rs.next()) {
+            return true;
+        }
+        else
+            return false;
+    }
+    public boolean isAppsEmpty() throws SQLException{
+        ResultSet rs = stmt.executeQuery("SELECT * from APPLICATIONS");
+
+        // checking if ResultSet is empty
+        if (!rs.next()) {
+            return true;
+        }
+        else
+            return false;
+    }
 
     public void generateTablesForms() {
         try {

@@ -42,7 +42,7 @@ public class Form {
     private String vintageYear;
     private String pHLevel;
     private String bottleCapacity;
-    private int formID;
+    private long formID;
 
 
     // Constructor
@@ -236,10 +236,10 @@ public class Form {
     public void setTtbID(int ttbID) {
         this.ttbID = ttbID;
     }
-    public void setFormID(int formID) {
+    public void setFormID(long formID) {
         this.formID = formID;
     }
-    public int getFormID() {
+    public long getFormID() {
         return formID;
     }
     public LabelImage getLabel() {
@@ -249,7 +249,7 @@ public class Form {
         this.label = label;
     }
 
-
+    @SuppressWarnings("Duplicates")
     public void approve(Connection conn) {
         String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, STATUS = 'APPROVED' WHERE FORMID ="
                 + this.formID;
@@ -265,7 +265,7 @@ public class Form {
                 e.printStackTrace();
         }
     }
-
+    @SuppressWarnings("Duplicates")
     public void deny(Connection conn) {
         String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED' WHERE FORMID ="
                 + this.formID;
@@ -280,7 +280,7 @@ public class Form {
                 e.printStackTrace();
         }
     }
-
+    @SuppressWarnings("Duplicates")
     public void passForm(Connection connection, String passer) throws SQLException{
         int passerID = 0;
 
@@ -307,6 +307,7 @@ public class Form {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     public void receiveForm(Connection connection, String passer, String receiver) throws SQLException{
         int passerID = 0;
         int receiverID = 0;

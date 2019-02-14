@@ -96,25 +96,28 @@ public class Agent extends Account {
 
         if (this.workingForms.size() < limit) {
             try {
-                String unassignedForms = "SELECT * FROM APPLICATIONS NATURAL JOIN FORMS WHERE APPLICATIONS.TTBID IS NULL ";
-                PreparedStatement ps = conn.prepareStatement(unassignedForms);
+                String unassignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID " +
+                        "WHERE APPLICATIONS.TTBID IS NULL AND APPLICATIONS.STATUS = 'PENDING'";
+                Statement stmt = conn.createStatement();
 
-                ResultSet rs = ps.executeQuery();
+                ResultSet rs = stmt.executeQuery(unassignedForms);
 
                 String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
                 while (rs.next() && this.workingForms.size() < limit) {
-                    insertingAgentID = insertingAgentID.concat(rs.getInt("formID") + ", ");
+                    System.out.println("bingus");
+                    insertingAgentID = insertingAgentID.concat(rs.getLong("formID") + ", ");
                     this.workingForms.add(formFromResultSet(rs));
                 }
 
-                ps.close();
+                stmt.close();
 
                 // Get rid of the comma and space
+                System.out.println(insertingAgentID);
                 insertingAgentID = insertingAgentID.substring(0, insertingAgentID.length() - 2).concat(")");
-
-                ps = conn.prepareStatement(insertingAgentID);
-                ps.executeUpdate();
-                ps.close();
+                System.out.println(insertingAgentID);
+                stmt = conn.createStatement();
+                stmt.executeUpdate(insertingAgentID);
+                stmt.close();
             } catch (SQLException e) {
                 if (!e.getSQLState().equals("X0Y32"))
                     e.printStackTrace();
@@ -130,7 +133,7 @@ public class Agent extends Account {
     // Call formFromResultSet into object and add it into the working Forms of this agent
     public void getAssignedForms(Connection conn) {
         try {
-            String assignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID = " + this.getTtbID();
+            String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE APPLICATIONS.TTBID = " + this.getTtbID();
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
@@ -149,7 +152,7 @@ public class Agent extends Account {
     //    // Parse a Form from database to object
     private Form formFromResultSet(ResultSet rs) throws SQLException {
         Form f = new Form();
-        f.setFormID(rs.getInt("formID"));
+        f.setFormID(rs.getLong("formID"));
         f.setRepID(rs.getInt("repID"));
         f.setBrewerNumber(rs.getString("brewerNumber"));
         f.setProductSource(rs.getString("productSource"));
@@ -177,8 +180,10 @@ public class Agent extends Account {
         f.setVintageYear(rs.getString("vintageYear"));
         f.setpHLevel(rs.getString("pHLevel"));
         LabelImage formLabel = new LabelImage();
-        Blob foto = rs.getBlob("labelImage");
-        InputStream is = foto.getBinaryStream();
+        Blob picture = rs.getBlob("labelImage");
+        if (picture != null) {
+            InputStream is = picture.getBinaryStream();
+        }
 //        f.getLabel().setLabelImage(img);
 //        Image img = new Image();
 
