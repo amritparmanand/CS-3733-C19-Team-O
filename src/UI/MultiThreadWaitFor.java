@@ -34,6 +34,6 @@ public class MultiThreadWaitFor implements Runnable{
 
     public void onShutDown(){
         this.isRunning = false;
-        thread.stop();
+//        thread.stop();
     }
 }
