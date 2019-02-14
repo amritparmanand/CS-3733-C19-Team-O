@@ -115,24 +115,24 @@ public class mApplicationFormPg3 {
         return true;
     }
 
-    /**
-     * The multi-thread function
-     * Saves draft every 5 seconds
-     */
-    callableFunction cf = new callableFunction() {
-        @Override
-        @SuppressWarnings("Duplicates")
-        public void call() {
-            if(onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null &&
-                    certificateOfExemption!= null && DistinctiveLiquor!= null && resubmission!= null &&
-                    imagePreview!= null && imagePreview!= null){
-                saveDraft();
-                System.out.println("Pg3 saved!");
-            }
-
-        }
-    };
-    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
+//    /**
+//     * The multi-thread function
+//     * Saves draft every 5 seconds
+//     */
+//    callableFunction cf = new callableFunction() {
+//        @Override
+//        @SuppressWarnings("Duplicates")
+//        public void call() {
+//            if(onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null &&
+//                    certificateOfExemption!= null && DistinctiveLiquor!= null && resubmission!= null &&
+//                    imagePreview!= null && imagePreview!= null){
+//                saveDraft();
+//                System.out.println("Pg3 saved!");
+//            }
+//
+//        }
+//    };
+//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
     /*
     @FXML public void nextPage() throws IOException {
@@ -146,24 +146,18 @@ public class mApplicationFormPg3 {
     */
     @FXML public void nextPage() throws IOException {
         saveDraft();
-        multiThreadWaitFor.onShutDown();
+//        multiThreadWaitFor.onShutDown();
         System.out.println("on to page 4");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
     }
     @FXML public void previousPage() throws IOException {
-        multiThreadWaitFor.onShutDown();
+//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
-    @FXML public void searchPage() throws IOException {
-
-        multiThreadWaitFor.onShutDown();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-    }
     @FXML public void goToHomePage() throws IOException {
-        multiThreadWaitFor.onShutDown();
+//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }

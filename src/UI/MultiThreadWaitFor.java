@@ -25,12 +25,7 @@ public class MultiThreadWaitFor implements Runnable{
         try{
             while(isRunning == true){
                 c.call();
-                try{
-                    thread.sleep(1000*secs);
-                }
-                catch (InterruptedException e){
-                    System.out.println("sup" + e);
-                }
+                thread.sleep(1000*secs);
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -39,11 +34,6 @@ public class MultiThreadWaitFor implements Runnable{
 
     public void onShutDown(){
         this.isRunning = false;
-        try{
-            thread.interrupt();
-        }
-        catch (Exception e){
-            System.out.println("it's okay!" + e);
-        }
+        thread.stop();
     }
 }

@@ -173,26 +173,26 @@ public class mApplicationFormPg1 {
         System.out.println("Pg1 saved!");
     }
 
-    /**
-     * The multi-thread function
-     * Saves draft every 5 seconds
-     */
-    callableFunction cf = new callableFunction() {
-        @Override
-        @SuppressWarnings("Duplicates")
-        public void call() {
-            if(repID != null && brewerNO != null && serialNumber != null && brandName != null && fancifulName != null &&
-                    alcoholPercentage != null && wine2 != null && spirits2 != null && beer2 != null && wine != null &&
-                    distilled != null && malt != null && domestic != null && imported != null){
-                saveDraft();
-            }
-            else{
-                System.out.println("null detected!");
-            }
-        }
-    };
-
-    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
+//    /**
+//     * The multi-thread function
+//     * Saves draft every 5 seconds
+//     */
+//    callableFunction cf = new callableFunction() {
+//        @Override
+//        @SuppressWarnings("Duplicates")
+//        public void call() {
+//            if(repID != null && brewerNO != null && serialNumber != null && brandName != null && fancifulName != null &&
+//                    alcoholPercentage != null && wine2 != null && spirits2 != null && beer2 != null && wine != null &&
+//                    distilled != null && malt != null && domestic != null && imported != null){
+//                saveDraft();
+//            }
+//            else{
+//                System.out.println("null detected!");
+//            }
+//        }
+//    };
+//
+//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
 
     @FXML
@@ -215,13 +215,13 @@ public class mApplicationFormPg1 {
     @FXML
     public void nextPage() throws IOException {
         saveDraft();
-        multiThreadWaitFor.onShutDown();
+//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
     }
 
     @FXML public void goToHomePage() throws IOException {
-        multiThreadWaitFor.onShutDown();
+//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
