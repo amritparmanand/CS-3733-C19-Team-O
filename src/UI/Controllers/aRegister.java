@@ -35,10 +35,10 @@ public class aRegister {
         this.cacheM = cacheM;
     }
 
-    public aRegister(SceneManager sceneM, CacheManager cacheM, int ttbIDFromChip) {
+    public aRegister(SceneManager sceneM, CacheManager cacheM, int chipID) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        this.ttbIDFromChip = Integer.parseInt(ttbID.getText());
+        this.ttbIDFromChip = chipID;
 
     }
 
