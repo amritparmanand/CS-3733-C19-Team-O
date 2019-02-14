@@ -114,7 +114,6 @@ public class Agent extends Account {
 
                 stmt.close();
 
-                // Get rid of the comma and space
                 stmt = conn.createStatement();
                 stmt.executeUpdate(insertingAgentID);
                 stmt.close();
