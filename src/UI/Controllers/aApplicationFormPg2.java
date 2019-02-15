@@ -111,11 +111,9 @@ public class aApplicationFormPg2 {
     public void saveDraft() throws IOException{
 
     }
-    @FXML public void passForm() throws IOException, SQLException {
-        cacheM.setPasser(cacheM.getAcct().getUsername());
-        cacheM.setReceiver(receiver.getText());
-        System.out.println(cacheM.getAcct().getUsername());
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
+    @FXML public void passForm() throws IOException{
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), Integer.parseInt(receiver.getText()));
+        back();
     }
 
     @FXML

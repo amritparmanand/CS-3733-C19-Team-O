@@ -52,7 +52,6 @@
                         <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Pending" />
                         <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Denied" />
                         <JFXButton fx:id="back" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
-                        <JFXButton onMousePressed="#receiveForm" text="Receive" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
