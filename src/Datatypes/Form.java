@@ -282,7 +282,7 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void passForm(Connection connection, String passer) throws SQLException{
+    public void passForm(Connection connection, String passer){
         int passerID = 0;
 
         try {
@@ -309,7 +309,7 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void receiveForm(Connection connection, String passer, String receiver) throws SQLException{
+    public void receiveForm(Connection connection, String passer, String receiver){
         int passerID = 0;
         int receiverID = 0;
 
@@ -335,7 +335,7 @@ public class Form {
                 e.printStackTrace();
         }
 
-        String s3 = "UPDATE APPLICATIONS SET TTBID = " + receiverID + ", WHERE TTBID =" + passerID + ", and STATUS = 'PASSING'";
+        String s3 = "UPDATE APPLICATIONS SET TTBID = " + receiverID + ", STATUS = 'PENDING' where TTBID =" + passerID + " and STATUS = 'PASSING'";
         try {
             PreparedStatement ps = connection.prepareStatement(s3);
             ps.executeUpdate();

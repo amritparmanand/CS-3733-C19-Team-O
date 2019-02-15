@@ -76,7 +76,7 @@
                   </Label>
                   <JFXTextField fx:id="repID" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Representative ID">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
                   <Label fx:id="IDMessage" />
@@ -107,6 +107,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </JFXTextField>
+                  <Label fx:id="usernameMessage" />
                   <JFXPasswordField fx:id="password" maxWidth="300.0" onKeyReleased="#validateButton" promptText="Password">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />

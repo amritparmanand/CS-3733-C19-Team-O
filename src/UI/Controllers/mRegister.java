@@ -24,6 +24,7 @@ public class mRegister {
     private CacheManager cacheM;
     private String phoneNumber;
     private String manuEmail;
+    private String manuUsername;
     private String ID;
 
 
@@ -37,6 +38,7 @@ public class mRegister {
     @FXML private Label emailMessage;
     @FXML private Label phoneMessage;
     @FXML private Label passwordMessage;
+    @FXML private Label usernameMessage;
     @FXML private JFXTextField username;
     @FXML private JFXPasswordField password;
     @FXML private JFXPasswordField confirmP;
@@ -77,6 +79,7 @@ public class mRegister {
         phoneNumber = phone.getText().trim();
         manuEmail = email.getText().trim();
         ID = repID.getText().trim();
+        manuUsername = username.getText().trim();
 
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
@@ -100,7 +103,7 @@ public class mRegister {
                 emailMessage.setTextFill(Color.RED);
                 emailMessage.setText("Invalid Email Address. Please Try Again");
             }
-            if(invalidID(ID)){
+            if(invalidID(ID) && !ID.isEmpty()){
                 IDMessage.setTextFill(Color.RED);
                 IDMessage.setText("Invalid ID");
             } else{
@@ -119,6 +122,14 @@ public class mRegister {
             }
             if(confirmPass(password.getText(), confirmP.getText())){
                 passwordMessage.setText("");
+            }
+
+            if(!validUsername(manuUsername) && !manuUsername.isEmpty()){
+                usernameMessage.setTextFill(Color.RED);
+                usernameMessage.setText("Username cannot have spaces, special characters");
+            }
+            if(validUsername(manuUsername)){
+                usernameMessage.setText("");
             }
 
         }
@@ -179,7 +190,7 @@ public class mRegister {
      */
     @FXML
     public boolean invalidID(String ID){
-        if(ID.isEmpty() || ID.matches("[a-zA-Z]") || Integer.parseInt(ID) < 0) {
+        if(ID.isEmpty() || ID.matches("^[a-zA-Z]+") || Integer.parseInt(ID) < 0) {
             return true;
         }else{
             return false;
@@ -200,5 +211,19 @@ public class mRegister {
         }else{
             return false;
         }
+    }
+
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param username Username to be checked
+     * username cannot have any spaces, special characters
+     * @return true if the username is valid, false if not
+     */
+    @FXML
+    public boolean validUsername(String username){
+        if(username.matches("^[a-zA-Z0-9]+")){
+            return true;
+        }else return false;
     }
 }

@@ -19,6 +19,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -120,7 +121,11 @@ public class aFormStorage {
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
 
+    @FXML public void receiveForm() throws SQLException {
+        System.out.println("forms received");
+        cacheM.receiveForm(cacheM.getDbM().getConnection(),cacheM.getPasser(),cacheM.getReceiver());
     }
 
 }
