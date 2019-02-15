@@ -280,6 +280,7 @@ public class Form {
                 e.printStackTrace();
         }
     }
+
     @SuppressWarnings("Duplicates")
     public void passForm(Connection connection, String passer) throws SQLException{
         int passerID = 0;
@@ -313,7 +314,7 @@ public class Form {
         int receiverID = 0;
 
         try {
-            String s1 = "select TTBID from AGENTS where USERNAME = " + passer;
+            String s1 = "select TTBID from AGENTS where USERNAME = '" + passer + "'";
             ResultSet result = connection.createStatement().executeQuery(s1);
             while(result.next()){
                 passerID = result.getInt("ttbID");
@@ -324,7 +325,7 @@ public class Form {
         }
 
         try {
-            String s2 = "select TTBID from AGENTS where USERNAME = " + receiver;
+            String s2 = "select TTBID from AGENTS where USERNAME = '" + receiver + "'";
             ResultSet result = connection.createStatement().executeQuery(s2);
             while(result.next()){
                 receiverID = result.getInt("ttbID");
