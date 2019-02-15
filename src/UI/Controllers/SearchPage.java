@@ -4,7 +4,9 @@ import Datatypes.SearchResult;
 import Fuzzy.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,6 +47,9 @@ public class SearchPage {
     boolean DLevi = false;
     boolean hiddenS = true;
 
+    private int searchPageNumber = 1;
+    private int lowerBound = (searchPageNumber-1)*15;
+
     public SearchPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -73,6 +78,15 @@ public class SearchPage {
     @FXML private MenuItem dlSearch;
     @FXML private MenuItem hiddenScore;
     @FXML private MenuButton algChoose;
+    @FXML private JFXTextField pageNumber;
+    @FXML private JFXButton pageButton;
+
+    //rob
+    @FXML
+    public void setPageNumber(){
+        searchPageNumber = Integer.parseInt(pageNumber.getText());
+        searchBuild();
+    }
 
 
     @FXML
@@ -129,7 +143,7 @@ public class SearchPage {
 
                     ((Label) fName).setText(result.getFancifulName());
                     ((Label) bName).setText(result.getCompanyName());
-                    ((Label) aType).setText(result.getBeerWineSpirit());
+                    ((Label) aType).setText(result.getProductType());
                 }
                 searchResults.getChildren().add(alcResult);
                 //POPUP WINDOW
@@ -165,7 +179,7 @@ public class SearchPage {
 
                                         if (typeBox instanceof HBox){
                                             Node typeName = ((HBox) typeBox).getChildren().get(1);
-                                            ((Label) typeName).setText(result.getBeerWineSpirit());
+                                            ((Label) typeName).setText(result.getProductType());
                                         }
 
                                         if (companyBox instanceof HBox){
@@ -201,12 +215,7 @@ public class SearchPage {
                         }
                         if (root !=null)
                             cacheM.getSelectedResult();
-                            popWindow(root);
-
-
-
-
-
+                        popWindow(root);
 
 
                     }
@@ -239,6 +248,7 @@ public class SearchPage {
         searchSuggest.setText("");
     }
 
+    @SuppressWarnings("Duplicates")
     @FXML public void search() throws SQLException {
 
         // Perform fuzzy search based on user's choice
@@ -262,7 +272,10 @@ public class SearchPage {
         searchResults.getChildren().clear();
         searchList.clear();
 
-        // For each of the approved applications
+        // For each of the approved applications  NOW we have to limit this punk
+        //make the array
+
+
         while (rs.next()) {
             SearchResult result = new SearchResult();
             result.setFancifulName(rs.getString("FANCIFULNAME"));
@@ -270,27 +283,10 @@ public class SearchPage {
             result.setPhLevel(rs.getString("PHLEVEL"));
             result.setAlcohol(rs.getString("ALCOHOLPERCENT"));
             result.setYear(rs.getString("VINTAGEYEAR"));
-            result.setBeerWineSpirit(rs.getString("BEERWINESPIRIT"));
+            result.setProductType(rs.getString("PRODUCTTYPE"));
             //IMAGE REEEEEEE
             // result set label image
-//            if(rs.getString("PRODUCTTYPE") == "WINE"){
-//                result.setWine(true);
-//                result.setBeer(false);
-//                result.setLiquor(false);
-//                result.setAlcoholType("Wine");
-//            }
-//            else if(rs.getString("PRODUCTTYPE") == "BEER"){
-//                result.setWine(false);
-//                result.setBeer(true);
-//                result.setLiquor(false);
-//                result.setAlcoholType("Beer");
-//            }
-//            else if(rs.getString("PRODUCTTYPE") == "LIQUOR"){
-//                result.setWine(false);
-//                result.setBeer(false);
-//                result.setLiquor(true);
-//                result.setAlcoholType("Liquor");
-//            }
+//
 
             if(searchBox.getText().isEmpty()) {
                 System.out.println("foo");
@@ -298,15 +294,13 @@ public class SearchPage {
                     searchList.add(result);
                 }
                 else {
-                    System.out.println(beerCheck.isSelected());
-                    System.out.println(result.getBeerWineSpirit().toLowerCase());
-                    if (beerCheck.isSelected() && result.getBeerWineSpirit().toLowerCase().equals("beer")) {
+                    if (beerCheck.isSelected() && result.getProductType().toLowerCase().equals("malt")) {
                         searchList.add(result);
                     }
-                    if (wineCheck.isSelected() && result.getBeerWineSpirit().toLowerCase().equals("wine") ){
+                    if (wineCheck.isSelected() && result.getProductType().toLowerCase().equals("wine") ){
                         searchList.add(result);
                     }
-                    if (liquorCheck.isSelected() && result.getBeerWineSpirit().toLowerCase().equals("spirit")) {
+                    if (liquorCheck.isSelected() && result.getProductType().toLowerCase().equals("distilled")) {
                         searchList.add(result);
                     }
                 }
@@ -314,7 +308,7 @@ public class SearchPage {
 
             else if(!searchBox.getText().isEmpty() &&
                     ((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
-                    || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){
+                            || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))){
                 //if ^^ this is not empty, we do a fuzzy search, and check if it's empty again
                 //see if fuzzy returns anything
                 //if it does: set did you mean to "Did you Mean"
@@ -324,13 +318,13 @@ public class SearchPage {
                     searchList.add(result);
                 }
                 else {
-                    if (beerCheck.isSelected() && result.getBeerWineSpirit().toLowerCase()=="beer") {
+                    if (beerCheck.isSelected() && result.getProductType().toLowerCase().equals("malt")) {
                         searchList.add(result);
                     }
-                    if (wineCheck.isSelected() && result.getBeerWineSpirit().toLowerCase()=="wine") {
+                    if (wineCheck.isSelected() && result.getProductType().toLowerCase().equals("wine")) {
                         searchList.add(result);
                     }
-                    if (liquorCheck.isSelected() && result.getBeerWineSpirit().toLowerCase()=="spirit") {
+                    if (liquorCheck.isSelected() && result.getProductType().toLowerCase().equals("distilled")) {
                         searchList.add(result);
                     }
                 }
@@ -345,11 +339,21 @@ public class SearchPage {
                 continue;
             }
         }
-        loadAlcohol(searchList);
+
+        searchBuild();
+
+        //populate the hos in the for
+    }
+
+    //put them together
+    public void searchBuild(){
+        for(int i = lowerBound; i <lowerBound+15; i++){
+            loadAlcohol(searchList);
+        }
     }
 
     public ResultSet getApprovedApplications() throws SQLException{
-        return cacheM.getApprovedApplications(cacheM.getDbM().getConnection());
+        return cacheM.getApprovedApplications(cacheM.getDbM().getConnection()); //we have to limit so it doesnt overload our program with 1M icons
     }
 
     /**
@@ -384,7 +388,7 @@ public class SearchPage {
 
                 for(SearchResult s : searchList){
                     //holder variable to hold the type of alcohol for printing
-                    String alcoholType = s.getBeerWineSpirit().toLowerCase();
+                    String alcoholType = s.getProductType();
 
                     writer.println(s.getFancifulName() + ";" + s.getCompanyName()+ ";" + s.getAlcoholType() + ";" + alcoholType + ";" + s.getPhLevel() + ";" + s.getAlcohol() + ";" + s.getYear());
                 }

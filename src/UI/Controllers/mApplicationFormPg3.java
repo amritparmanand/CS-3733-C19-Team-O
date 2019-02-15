@@ -3,8 +3,6 @@ package UI.Controllers;
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Managers.*;
-import UI.MultiThreadWaitFor;
-import UI.callableFunction;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -88,31 +86,38 @@ public class mApplicationFormPg3 {
     }
 
     @FXML public boolean saveDraft(){
-        if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
-                !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
-            errorLabel.setText("Please select a type of application.");
+        if (onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null
+                &&certificateOfExemption!= null && DistinctiveLiquor!= null
+                && resubmission!= null && imagePreview!= null) {
+            if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
+                    !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
+                errorLabel.setText("Please select a type of application.");
+                return false;
+            }
+            Form form = cacheM.getForm();
+
+            form.setCertificateOfApproval(certificateOfApproval.isSelected());
+            form.setCertificateOfExemption(certificateOfExemption.isSelected());
+            if(certificateOfExemption.isSelected()) {
+                form.setOnlyState(onlyState.getText());
+            }else {
+                form.setOnlyState(null);
+            }
+            form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
+            form.setResubmission(resubmission.isSelected());
+            if(!resubmission.isSelected())
+                form.setTtbID(0);
+            else
+                form.setTtbID(Integer.parseInt(ttbID.getText()));
+            form.setBottleCapacity(bottleCapacity.getText());
+            form.setLabel(image);
+            errorLabel.setText(" ");
+            cacheM.setForm(form);
+            return true;
+        }
+        else{
             return false;
         }
-        Form form = cacheM.getForm();
-
-        form.setCertificateOfApproval(certificateOfApproval.isSelected());
-        form.setCertificateOfExemption(certificateOfExemption.isSelected());
-        if(certificateOfExemption.isSelected()) {
-            form.setOnlyState(onlyState.getText());
-        }else {
-            form.setOnlyState(null);
-        }
-        form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
-        form.setResubmission(resubmission.isSelected());
-        if(!resubmission.isSelected())
-            form.setTtbID(0);
-        else
-            form.setTtbID(Integer.parseInt(ttbID.getText()));
-        form.setBottleCapacity(bottleCapacity.getText());
-        form.setLabel(image);
-        errorLabel.setText(" ");
-        cacheM.setForm(form);
-        return true;
     }
 
 //    /**

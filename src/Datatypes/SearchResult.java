@@ -11,11 +11,11 @@ public class SearchResult {
     private String phLevel;
     private String alcohol;
     private String year;
-    private String beerWineSpirit;
+    private String productType;
 
 
     public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel,
-                        String alcohol, String year, String beerWineSpirit)
+                        String alcohol, String year, String productType)
     {
         this.fancifulName = fancifulName;
         this.companyName = companyName;
@@ -23,7 +23,7 @@ public class SearchResult {
         this.phLevel = phLevel;
         this.alcohol = alcohol;
         this.year = year;
-        this.beerWineSpirit = beerWineSpirit;
+        this.productType = productType;
 
     }
 
@@ -35,7 +35,7 @@ public class SearchResult {
         this.phLevel = null;
         this.alcohol = null;
         this.year = null;
-        this.beerWineSpirit = null;
+        this.productType = null;
 
     }
 
@@ -75,6 +75,6 @@ public class SearchResult {
     public void setYear(String year) {
         this.year = year;
     }
-    public String getBeerWineSpirit() { return beerWineSpirit; }
-    public void setBeerWineSpirit(String beerWineSpirit) { this.beerWineSpirit = beerWineSpirit; }
+    public String getProductType() { return productType; }
+    public void setProductType(String productType) { this.productType = productType; }
 }

@@ -56,7 +56,6 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
-        Form form = cacheM.getForm();
         boolean isDomestic = false;
         boolean isImported = false;
         boolean isWine = false;
