@@ -282,33 +282,8 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void passForm(Connection connection, String passer, String receiver){
-        int passerID = 0;
-        int receiverID = 0;
-
-        try {
-            String s1 = "select TTBID from AGENTS where USERNAME = '" + passer + "'";
-            ResultSet result = connection.createStatement().executeQuery(s1);
-            while(result.next()){
-                passerID = result.getInt("ttbID");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-
-        try {
-            String s2 = "select TTBID from AGENTS where USERNAME = '" + receiver + "'";
-            ResultSet result = connection.createStatement().executeQuery(s2);
-            while(result.next()){
-                receiverID = result.getInt("ttbID");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-
-        String s = "UPDATE APPLICATIONS SET TTBID = " + receiverID + " WHERE TTBID = " + passerID;
+    public void passForm(Connection connection, long f, int r){
+        String s = "UPDATE APPLICATIONS SET TTBID = " + r + " WHERE FORMID = " + f;
         try {
             PreparedStatement ps = connection.prepareStatement(s);
             ps.executeUpdate();

@@ -143,11 +143,8 @@ public class aApplicationFormPg1 {
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
-    @SuppressWarnings("Duplicates")
     @FXML public void passForm(){
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername(),receiver.getText());
-        System.out.println(cacheM.getAcct().getUsername());
-        System.out.println(receiver.getText());
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), Integer.parseInt(receiver.getText()));
     }
 
     @FXML
