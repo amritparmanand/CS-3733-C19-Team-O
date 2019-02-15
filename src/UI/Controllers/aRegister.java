@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import org.springframework.security.access.method.P;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -27,6 +28,7 @@ public class aRegister {
     private String phoneNumber;
     private String agentEmail;
     private String ID;
+    private String agentUsername;
     int ttbIDFromChip = -1;
 
 
@@ -51,6 +53,7 @@ public class aRegister {
     @FXML private JFXTextField email;
     @FXML private JFXTextField phone;
     @FXML private JFXTextField ttbID;
+    @FXML private Label usernameMessage;
     @FXML private Label phoneMessage;
     @FXML private Label emailMessage;
     @FXML private Label IDMessage;
@@ -97,6 +100,7 @@ public class aRegister {
     public void validateButton(){
         phoneNumber = phone.getText().trim();
         agentEmail = email.getText().trim();
+        agentUsername = username.getText().trim();
         ID = ttbID.getText().trim();
         if(username.getText().isEmpty() ||
                 password.getText().isEmpty() ||
@@ -108,7 +112,8 @@ public class aRegister {
                 !validAgentPhone(phoneNumber) ||
                 !validAgentEmail(agentEmail) ||
                 invalidID(ID) ||
-                !confirmPass(password.getText(), confirmP.getText())
+                !confirmPass(password.getText(), confirmP.getText()) ||
+                !validUsername(agentUsername)
         ){
             if(!validAgentPhone(phoneNumber) && !phoneNumber.isEmpty()){
                 phoneMessage.setTextFill(Color.RED);
@@ -118,7 +123,7 @@ public class aRegister {
                 emailMessage.setTextFill(Color.RED);
                 emailMessage.setText("Invalid Email. Must be a .gov Address");
             }
-            if(invalidID(ID)){
+            if(invalidID(ID) && !ID.isEmpty()){
                 IDMessage.setTextFill(Color.RED);
                 IDMessage.setText("Invalid ID");
             } else{
@@ -138,6 +143,14 @@ public class aRegister {
             if(confirmPass(password.getText(), confirmP.getText())){
                 passwordMessage.setText("");
             }
+            if(!validUsername(agentUsername)){
+                usernameMessage.setTextFill(Color.RED);
+                usernameMessage.setText("Username cannot have spaces, special characters");
+            }
+            if(validUsername(agentUsername) && !agentUsername.isEmpty()){
+                usernameMessage.setText("");
+            }
+
             aRegister.setDisable(true);
         }
         else{
@@ -197,7 +210,7 @@ public class aRegister {
      */
     @FXML
     public boolean invalidID(String ID){
-        if(ID.isEmpty() || ID.matches("[a-zA-Z]") || Integer.parseInt(ID) < 0) {
+        if(ID.isEmpty() || ID.matches("^[a-zA-Z]+") || Integer.parseInt(ID) < 0) {
             return true;
         }else{
             return false;
@@ -219,4 +232,19 @@ public class aRegister {
             return false;
         }
     }
+
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 2
+     * @param username Username to be checked
+     * username cannot have any spaces, special characters
+     * @return true if the username is valid, false if not
+     */
+    @FXML
+    public boolean validUsername(String username){
+        if(username.matches("^[a-zA-Z0-9]+")){
+            return true;
+        }else return false;
+    }
+
 }

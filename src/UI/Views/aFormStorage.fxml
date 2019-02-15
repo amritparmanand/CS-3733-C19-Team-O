@@ -47,7 +47,7 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="200.0" spacing="20.0" styleClass="toolbar">
                      <children>
-                        <JFXTextField fx:id="formLimit" promptText="Form Limit" />
+                        <JFXTextField fx:id="formLimit" promptText="Form Limit" styleClass="jfx-text-field" />
                         <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Approved" />
                         <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Pending" />
                         <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Denied" />
