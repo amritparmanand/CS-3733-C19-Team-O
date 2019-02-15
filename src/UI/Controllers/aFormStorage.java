@@ -83,7 +83,7 @@ public class aFormStorage {
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
 
         for (Form form : populatedForms) {
-            Pane formResult = null;
+            Pane formResult;
             try {
                 formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                 Node vbox = formResult.getChildren().get(0);
