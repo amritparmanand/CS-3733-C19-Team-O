@@ -102,7 +102,7 @@ public class Agent extends Account {
         if (this.workingForms.size() < limit) {
             try {
                 String unassignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID " +
-                        "WHERE APPLICATIONS.TTBID IS NULL AND APPLICATIONS.STATUS  = 'PENDING'";
+                        "WHERE APPLICATIONS.TTBID IS NULL";
                 Statement stmt = conn.createStatement();
 
                 ResultSet rs = stmt.executeQuery(unassignedForms);

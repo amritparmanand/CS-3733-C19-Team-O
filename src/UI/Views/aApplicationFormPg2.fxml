@@ -19,7 +19,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.aApplicationFormPg2">
 
     <children>
@@ -66,7 +65,7 @@
                         <JFXProgressBar progress="0.0" />
                                 <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
 
-                        <JFXProgressBar />
+                        <JFXProgressBar progress="0.0" />
 
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
@@ -109,17 +108,22 @@
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
-                                    <JFXButton fx:id="saveDraft" prefHeight="50.0" prefWidth="75.0" text="Save Draft">
-                                       <HBox.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </HBox.margin>
-                                       <styleClass>
-                                          <String fx:value="labeltext" />
-                                          <String fx:value="card" />
-                                       </styleClass>
-                                    </JFXButton>
+                                    <JFXButton fx:id="saveDraft" prefHeight="50.0" prefWidth="75.0" styleClass="changeColorButton" text="Save Draft" textAlignment="CENTER" wrapText="true" />
                                             </children>
                                         </HBox>
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXTextField fx:id="receiver" alignment="CENTER" maxWidth="200.0" prefHeight="29.0" prefWidth="243.0" promptText="Receiver Username" />
+                                    <JFXButton onMousePressed="#passForm" styleClass="buttonStyle" text="Pass">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
                               <JFXButton fx:id="homePage" onMousePressed="#nextPage" styleClass="changeColorButton" text="Back to Homepage">
                                  <VBox.margin>
                                     <Insets top="20.0" />

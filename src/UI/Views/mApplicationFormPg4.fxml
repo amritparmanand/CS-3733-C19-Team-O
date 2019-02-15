@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.161-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormPg4">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormPg4">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -131,26 +131,8 @@
                                         </VBox>
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
-                                                <Label text="17. Signature of Applicant or Authorized Agent" />
-                                    <JFXTextField fx:id="applicantSig" />
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
                                                 <Label text="18. Print Name of Applicant or Authorized Agent" />
                                     <JFXTextField fx:id="applicantNamePrint" />
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Label text="19. Date Issued" />
-                                    <JFXTextField />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
