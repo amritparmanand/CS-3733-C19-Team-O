@@ -144,13 +144,10 @@ public class aApplicationFormPg1 {
     }
 
     @SuppressWarnings("Duplicates")
-    @FXML public void passForm() throws IOException, SQLException {
-        cacheM.setPasser(cacheM.getAcct().getUsername());
-        cacheM.setReceiver(receiver.getText());
-        System.out.println("current agent:"+cacheM.getAcct().getUsername());
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
-        System.out.println("passer:"+cacheM.getPasser());
-        System.out.println("receiver"+cacheM.getReceiver());
+    @FXML public void passForm(){
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername(),receiver.getText());
+        System.out.println(cacheM.getAcct().getUsername());
+        System.out.println(receiver.getText());
     }
 
     @FXML

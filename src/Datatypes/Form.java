@@ -282,34 +282,7 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void passForm(Connection connection, String passer){
-        int passerID = 0;
-
-        try {
-            String s1 = "select TTBID from AGENTS where USERNAME = '" + passer + "'";
-            ResultSet result = connection.createStatement().executeQuery(s1);
-            while(result.next()){
-                passerID = result.getInt("ttbID");
-            }
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-
-        String s = "UPDATE APPLICATIONS SET STATUS = 'PASSING' WHERE TTBID = " + passerID;
-        try {
-            PreparedStatement ps = connection.prepareStatement(s);
-            ps.executeUpdate();
-
-            ps.close();
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-    }
-
-    @SuppressWarnings("Duplicates")
-    public void receiveForm(Connection connection, String passer, String receiver){
+    public void passForm(Connection connection, String passer, String receiver){
         int passerID = 0;
         int receiverID = 0;
 
@@ -335,9 +308,9 @@ public class Form {
                 e.printStackTrace();
         }
 
-        String s3 = "UPDATE APPLICATIONS SET TTBID = " + receiverID + ", STATUS = 'PENDING' where TTBID =" + passerID + " and STATUS = 'PASSING'";
+        String s = "UPDATE APPLICATIONS SET TTBID = " + receiverID + " WHERE TTBID = " + passerID;
         try {
-            PreparedStatement ps = connection.prepareStatement(s3);
+            PreparedStatement ps = connection.prepareStatement(s);
             ps.executeUpdate();
 
             ps.close();

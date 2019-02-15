@@ -90,10 +90,9 @@ public class aApplicationFormPg3 {
 
 
     @FXML public void passForm() throws IOException, SQLException {
-        cacheM.setPasser(cacheM.getAcct().getUsername());
-        cacheM.setReceiver(receiver.getText());
-        System.out.println(cacheM.getAcct().getUsername());
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getPasser(),cacheM.getReceiver());
+        System.out.println(cacheM.getPasser());
+        System.out.println(cacheM.getReceiver());
     }
 
     @FXML

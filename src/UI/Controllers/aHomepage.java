@@ -46,7 +46,4 @@ public class aHomepage {
         sceneM.changeScene(loader, new aFormStorage(sceneM, cacheM));
     }
 
-    @FXML public void receiveForm() throws SQLException {
-        cacheM.receiveForm(cacheM.getDbM().getConnection(),cacheM.getPasser(),cacheM.getReceiver());
-    }
 }
