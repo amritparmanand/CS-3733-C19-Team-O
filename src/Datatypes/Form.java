@@ -358,7 +358,7 @@ public class Form {
         String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
                 "VALUES(?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Apps1);
-        ResultSet seqVal = null;
+        ResultSet seqVal;
         try {
             seqVal = connection.prepareStatement("values (next value for appIDSequence)").executeQuery();
             seqVal.next();
@@ -392,7 +392,7 @@ public class Form {
                 "ALCOHOLPERCENT, VINTAGEYEAR, PHLEVEL, LABELIMAGE) " +
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
-        ResultSet seqVal = null;
+        ResultSet seqVal;
         try {
             seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
             seqVal.next();

@@ -93,9 +93,12 @@ public class Agent extends Account {
     // Query the database to select forms where ttb ID is empty
     // Insert this agent's ID into the selected forms
     public void assignNewForms(Connection conn, int limit) {
+
         if (!hasFetchedForms)
             getAssignedForms(conn);
 
+        System.out.println("working forms size:"+workingForms.size());
+        System.out.println("limit:"+limit);
         if (this.workingForms.size() < limit) {
             try {
                 String unassignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID " +
@@ -105,17 +108,19 @@ public class Agent extends Account {
                 ResultSet rs = stmt.executeQuery(unassignedForms);
 
 
-                String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
                 while (rs.next() && this.workingForms.size() < limit) {
+                    String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
                     insertingAgentID = insertingAgentID.concat(rs.getLong("FORMID") + ")");
                     this.workingForms.add(formFromResultSet(rs));
                     System.out.println(insertingAgentID);
+                    stmt = conn.createStatement();
+                    stmt.executeUpdate(insertingAgentID);
                 }
 
-                stmt.close();
+//                stmt.close();
 
-                stmt = conn.createStatement();
-                stmt.executeUpdate(insertingAgentID);
+//                stmt = conn.createStatement();
+//                stmt.executeUpdate(insertingAgentID);
                 stmt.close();
             } catch (SQLException e) {
                 if (!e.getSQLState().equals("X0Y32"))
