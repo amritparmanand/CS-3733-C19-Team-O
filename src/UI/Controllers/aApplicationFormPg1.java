@@ -56,55 +56,58 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
-        boolean isDomestic = false;
-        boolean isImported = false;
-        boolean isWine = false;
-        boolean isSpirit = false;
-        boolean isMalt = false;
-        if(form.getProductSource() == "DOMESTIC"){
-            isDomestic = true;
-            isImported = false;
+        System.out.println(form.getProductSource());
+        
+        switch(form.getProductSource()){
+            case "DOMESTIC":
+                domestic.setSelected(true);
+                break;
+            case "IMPORTED":
+                imported.setSelected(true);
+                break;
         }
-        if (form.getPrintName() == "IMPORTED"){
-            isDomestic = false;
-            isImported = true;
+        System.out.println(form.getBeerWineSpirit());
+        switch(form.getBeerWineSpirit()){
+            case "WINE":
+                wine2.setSelected(true);
+                break;
+            case "SPIRITS":
+                spirits2.setSelected(true);
+                break;
+            case "BEER":
+                beer2.setSelected(true);
+                break;
         }
-        if(form.getBeerWineSpirit() == "WINE"){
-            isWine = true;
-            isSpirit = false;
-            isMalt = false;
-        }else if(form.getBeerWineSpirit() == "SPIRITS"){
-            isWine = false;
-            isSpirit = true;
-            isMalt = false;
-        }else if(form.getBeerWineSpirit() == "BEER"){
-            isWine = false;
-            isSpirit = false;
-            isMalt = true;
+        System.out.println(form.getProductType());
+        switch(form.getProductType()){
+            case "WINE":
+                wine.setSelected(true);
+                break;
+            case "DISTILLED":
+                spirits.setSelected(true);
+                break;
+            case "MALT":
+                malt.setSelected(true);
+                break;
         }
-        System.out.println("starting");
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
         brewerNO.setText(form.getBrewerNumber());
-        domestic.setSelected(isDomestic);
-        imported.setSelected(isImported);
         domestic.setDisable(true);
         imported.setDisable(true);
         serialNO.setText(form.getSerialNumber());
-        wine.setSelected(isWine);
+        wine2.setDisable(true);
+        beer2.setDisable(true);
+        spirits2.setDisable(true);
         wine.setDisable(true);
-        spirits.setSelected(isSpirit);
         spirits.setDisable(true);
-        malt.setSelected(isMalt);
         malt.setDisable(true);
         brand.setText(form.getBrandName());
         fanciful.setText(form.getFancifulName());
-        wine2.setSelected(isWine);
-        spirits2.setSelected(isSpirit);
-        beer2.setSelected(isMalt);
         alcoholPercentage.setText(form.getAlcoholPercent());
         phLevel.setText(form.getpHLevel());
         vintageYear.setText(form.getVintageYear());
+        System.out.println("starting");
     }
 
     public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
