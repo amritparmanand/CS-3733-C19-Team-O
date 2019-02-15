@@ -146,6 +146,7 @@ public class aApplicationFormPg1 {
     @FXML public void passForm() throws IOException, SQLException {
         cacheM.setPasser(cacheM.getAcct().getUsername());
         cacheM.setReceiver(receiver.getText());
+        System.out.println(cacheM.getAcct().getUsername());
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
     }
 

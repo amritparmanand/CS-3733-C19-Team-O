@@ -285,7 +285,7 @@ public class Form {
         int passerID = 0;
 
         try {
-            String s1 = "select TTBID from AGENTS where USERNAME = " + passer;
+            String s1 = "select TTBID from AGENTS where USERNAME = '" + passer + "'";
             ResultSet result = connection.createStatement().executeQuery(s1);
             while(result.next()){
                 passerID = result.getInt("ttbID");
@@ -295,7 +295,7 @@ public class Form {
                 e.printStackTrace();
         }
 
-        String s = "UPDATE APPLICATIONS SET STATUS = 'PASSING', WHERE TTBID =" + passerID;
+        String s = "UPDATE APPLICATIONS SET STATUS = 'PASSING' WHERE TTBID = " + passerID;
         try {
             PreparedStatement ps = connection.prepareStatement(s);
             ps.executeUpdate();

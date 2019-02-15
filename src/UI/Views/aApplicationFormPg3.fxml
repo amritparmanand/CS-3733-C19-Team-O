@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.aApplicationFormPg3">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.aApplicationFormPg3">
 
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -55,30 +55,37 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
-                            <HBox.margin>
-                                <Insets top="20.0" />
-                            </HBox.margin>
-                            <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Text>
                         <JFXProgressBar progress="0.0" />
-                                <Text layoutX="116.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
+                        <Text layoutX="116.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
                         <JFXProgressBar progress="0.0" />
-                                <Text layoutX="116.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 3 Progress" />
+                        <Text layoutX="116.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 3 Progress" />
                         <JFXProgressBar progress="0.0" />
-                                <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
-
+                        <Text layoutX="116.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
                         <JFXProgressBar progress="0.0" />
-
-                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                    <children>
-                                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                                            <children>
-                                    <JFXButton fx:id="previous" onMousePressed="#back" styleClass="buttonStyle" text="Previous Page" />
-                                    <JFXButton fx:id="next" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
-                                            </children>
-                                        </HBox>
-                                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <VBox alignment="CENTER" prefHeight="275.0" prefWidth="320.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                 <children>
+                                    <JFXButton fx:id="previous" onMousePressed="#back" styleClass="buttonStyle" text="Previous Page">
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton fx:id="next" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page">
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <JFXButton fx:id="acceptForm" onMousePressed="#acceptForm" prefHeight="50.0" prefWidth="75.0" text="Accept">
                                        <styleClass>
@@ -105,21 +112,34 @@
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
-                                    <JFXButton fx:id="saveDraft" prefHeight="50.0" prefWidth="75.0" styleClass="changeColorButton" text="Save Draft" textAlignment="CENTER" wrapText="true">
+                                    <JFXButton fx:id="saveDraft" prefHeight="54.0" prefWidth="75.0" styleClass="changeColorButton" text="Save Draft" textAlignment="CENTER" wrapText="true" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXTextField fx:id="receiver" alignment="CENTER" maxWidth="200.0" prefHeight="29.0" prefWidth="243.0" promptText="Receiver Username" />
+                                    <JFXButton onMousePressed="#passForm" styleClass="buttonStyle" text="Pass">
                                        <HBox.margin>
-                                          <Insets left="10.0" right="10.0" />
+                                          <Insets left="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
                                  </children>
-                                        </HBox>
-                              <JFXButton fx:id="homePage" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to Homepage" />
-                                    </children>
-                                </VBox>
-                            </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <JFXButton fx:id="homePage" onMousePressed="#nextPage" prefHeight="55.0" prefWidth="135.0" styleClass="changeColorButton" text="Back to Homepage">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </JFXButton>
+                           </children>
                         </VBox>
+                     </children>
+                  </VBox>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="397.0" prefWidth="640.0">
                             <content>
-                                <VBox prefHeight="900.0" prefWidth="620.0" styleClass="backPane">
+                                <VBox prefHeight="686.0" prefWidth="620.0" styleClass="backPane">
                                     <children>
                                         <Label text="TTB Label Form">
                                             <padding>
@@ -249,7 +269,7 @@
                                     <JFXTextArea fx:id="Q14Comment" />
                                  </content>
                                         </TitledPane>
-                                        <TitledPane animated="false" text="Question 15 Comments">
+                                        <TitledPane animated="false" expanded="false" text="Question 15 Comments">
                                             <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                             </padding>
