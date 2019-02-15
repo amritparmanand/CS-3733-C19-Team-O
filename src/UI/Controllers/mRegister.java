@@ -140,6 +140,7 @@ public class mRegister {
      * alphanumeric format is allowed after area code
      * @return true if is valid number, false if not
      */
+
     @FXML
     public boolean validManuPhone(String phoneNumber){
         if(phoneNumber.matches("^[0]{8,20}$")){

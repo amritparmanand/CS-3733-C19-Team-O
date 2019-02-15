@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
@@ -50,6 +51,8 @@ public class aApplicationFormPg2 {
     @FXML private JFXTextArea Q11Comment;
     @FXML private JFXTextArea Q12Comment;
     @FXML private JFXTextArea Q13Comment;
+    @FXML private JFXTextField receiver;
+
 
 
 
@@ -107,6 +110,12 @@ public class aApplicationFormPg2 {
     @FXML
     public void saveDraft() throws IOException{
 
+    }
+    @FXML public void passForm() throws IOException, SQLException {
+        cacheM.setPasser(cacheM.getAcct().getUsername());
+        cacheM.setReceiver(receiver.getText());
+        System.out.println(cacheM.getAcct().getUsername());
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
     }
 
     @FXML
