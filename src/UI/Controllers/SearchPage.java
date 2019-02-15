@@ -85,7 +85,7 @@ public class SearchPage {
     @FXML
     public void setPageNumber(){
         searchPageNumber = Integer.parseInt(pageNumber.getText());
-        searchBuild();
+//        searchBuild();
     }
 
 
@@ -340,17 +340,18 @@ public class SearchPage {
             }
         }
 
-        searchBuild();
+        loadAlcohol(searchList);
 
         //populate the hos in the for
     }
 
     //put them together
-    public void searchBuild(){
-        for(int i = lowerBound; i <lowerBound+15; i++){
-            loadAlcohol(searchList);
-        }
-    }
+//    public void searchBuild(){
+//        searchResults.getChildren().clear();
+//        for(int i = lowerBound; i <lowerBound+15; i++){
+//            loadAlcohol(searchList);
+//        }
+//    }
 
     public ResultSet getApprovedApplications() throws SQLException{
         return cacheM.getApprovedApplications(cacheM.getDbM().getConnection()); //we have to limit so it doesnt overload our program with 1M icons
