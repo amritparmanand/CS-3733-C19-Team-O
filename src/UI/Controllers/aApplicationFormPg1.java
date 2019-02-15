@@ -143,11 +143,14 @@ public class aApplicationFormPg1 {
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
+    @SuppressWarnings("Duplicates")
     @FXML public void passForm() throws IOException, SQLException {
         cacheM.setPasser(cacheM.getAcct().getUsername());
         cacheM.setReceiver(receiver.getText());
-        System.out.println(cacheM.getAcct().getUsername());
+        System.out.println("current agent:"+cacheM.getAcct().getUsername());
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getAcct().getUsername());
+        System.out.println("passer:"+cacheM.getPasser());
+        System.out.println("receiver"+cacheM.getReceiver());
     }
 
     @FXML
