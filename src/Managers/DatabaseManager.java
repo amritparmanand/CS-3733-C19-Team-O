@@ -11,10 +11,7 @@ import Fuzzy.hiddenScore;
 import com.opencsv.CSVReader;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.sql.*;
 /**
  * @author Amrit Parmanand & Percy
@@ -289,7 +286,8 @@ public class DatabaseManager {
 
             // Create an object of filereader
             // class with CSV file as a parameter.
-            FileReader filereader = new FileReader("src/resources/forPresentation.csv");
+            ClassLoader classLoader = getClass().getClassLoader();
+            FileReader filereader = new FileReader(new File(classLoader.getResource("Resources/forPresentation.csv").getFile()));
 
             // create csvReader object passing
             // file reader as a parameter
@@ -392,7 +390,8 @@ public class DatabaseManager {
 
             // Create an object of filereader
             // class with CSV file as a parameter.
-            FileReader filereader = new FileReader("src/resources/ApplicationsXLSX.csv");
+            ClassLoader classLoader = getClass().getClassLoader();
+            FileReader filereader = new FileReader(new File(classLoader.getResource("/Resources/ApplicationsXLSX.csv").getFile()));
             // create csvReader object passing
             // file reader as a parameter
             CSVReader csvReader = new CSVReader(filereader);

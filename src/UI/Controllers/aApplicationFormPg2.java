@@ -111,8 +111,9 @@ public class aApplicationFormPg2 {
     public void saveDraft() throws IOException{
 
     }
-    @FXML public void passForm(){
+    @FXML public void passForm() throws IOException{
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), Integer.parseInt(receiver.getText()));
+        back();
     }
 
     @FXML

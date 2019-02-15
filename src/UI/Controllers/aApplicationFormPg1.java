@@ -143,8 +143,9 @@ public class aApplicationFormPg1 {
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
-    @FXML public void passForm(){
+    @FXML public void passForm() throws IOException{
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), Integer.parseInt(receiver.getText()));
+        goToHomePage();
     }
 
     @FXML
