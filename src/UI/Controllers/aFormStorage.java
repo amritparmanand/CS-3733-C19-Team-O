@@ -3,7 +3,7 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Form;
-import Datatypes.NumberAssigned;
+import Datatypes.Setting;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
@@ -19,7 +19,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -74,11 +73,11 @@ public class aFormStorage {
     public void assignNewForms() throws IOException {
 
         // Initialize the instance of the Singleton class
-        NumberAssigned object = NumberAssigned.getInstance();
+        Setting object = Setting.getInstance();
         if (!formLimit.getText().isEmpty()) {
-            object.setNum(Integer.parseInt(formLimit.getText()));
+            object.setFormLimit(Integer.parseInt(formLimit.getText()));
         }
-        int limit = object.getNum();
+        int limit = object.getFormLimit();
 
         ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();

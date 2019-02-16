@@ -10,9 +10,12 @@ import javafx.fxml.FXML;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
+/**
+ * @author Robert & Percy
+ * @version It3
+ * application form in one page
+ */
 public class mOnePageForm {
-    @FXML private JFXTextField textfield;
-    @FXML private JFXButton button;
     private SceneManager sceneM;
     private CacheManager cacheM;
 
@@ -22,13 +25,20 @@ public class mOnePageForm {
         this.cacheM = cacheM;
     }
 
+    @FXML private JFXTextField brandName;
+    @FXML private JFXTextField fancifulName;
+    @FXML private JFXTextField formula;
+
+
 
     @FXML
     public void savePDF() throws IOException {
 
         System.out.println("saving pdf");
         PDF pdf = new PDF();
-        pdf.appendText(textfield.getText(), 24,780, 10);
+        pdf.appendText(brandName.getText(), 24,780, 10);
+        pdf.appendText(fancifulName.getText(), 24,740, 10);
+//        pdf.appendText(formula.getText(), 24,700, 10);
         System.out.println("saved!");
     }
 
