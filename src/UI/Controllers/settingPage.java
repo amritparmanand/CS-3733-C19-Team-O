@@ -28,7 +28,6 @@ public class settingPage {
     @FXML private JFXRadioButton SQL;
     @FXML private JFXRadioButton Levenshtein;
     @FXML private JFXRadioButton Damerau;
-    @FXML private JFXRadioButton hiddenScore;
     @FXML private JFXTextField formLimit;
     @FXML private JFXRadioButton CSV;
 

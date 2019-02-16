@@ -49,17 +49,27 @@
                               <Label alignment="CENTER" prefHeight="50.0" prefWidth="300.0" text="Specify the Fuzzy Algorithm" textAlignment="CENTER" />
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <JFXRadioButton fx:id="m" text="Manufacturer">
+                                    <JFXRadioButton fx:id="SQL" text="SQL">
                                        <HBox.margin>
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                        <toggleGroup>
-                                          <ToggleGroup fx:id="manuOrAgent" />
+                                          <ToggleGroup fx:id="g1" />
                                        </toggleGroup>
                                     </JFXRadioButton>
-                                    <JFXRadioButton fx:id="a" text="Agent" toggleGroup="$manuOrAgent">
+                                    <JFXRadioButton fx:id="Levenshtein" text="Levenshtein" toggleGroup="$g1">
                                        <HBox.margin>
                                           <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton fx:id="Damerau" text="Damerau" toggleGroup="$g1">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton text="Hidden Score" toggleGroup="$g1">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
                                        </HBox.margin>
                                     </JFXRadioButton>
                                  </children>
@@ -71,7 +81,24 @@
                               </Label>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <JFXTextField promptText="Form Limit" />
+                                    <JFXTextField fx:id="formLimit" promptText="Form Limit" />
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="385.0" text="Specify the download format" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXRadioButton fx:id="CSV" text="CSV">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="g2" />
+                                       </toggleGroup>
+                                    </JFXRadioButton>
                                  </children>
                               </HBox>
                            </children>
