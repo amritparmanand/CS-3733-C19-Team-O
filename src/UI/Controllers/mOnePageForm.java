@@ -1,13 +1,17 @@
 package UI.Controllers;
 
 import Datatypes.Form;
+import Datatypes.LabelImage;
 import Datatypes.PDF;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.image.ImageView;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -43,6 +47,27 @@ public class mOnePageForm {
     @FXML private RadioButton wine2;
     @FXML private RadioButton spirits2;
     @FXML private RadioButton beer2;
+    @FXML private JFXTextField printName;
+    @FXML private JFXTextField mailAddress;
+    @FXML private JFXTextField formula;
+    @FXML private JFXTextField grapes;
+    @FXML private JFXTextField appellation;
+    @FXML private JFXTextField phoneNumber;
+    @FXML private JFXTextField email;
+    @FXML private JFXTextField onlyState;
+    @FXML private JFXTextField ttbID;
+    @FXML private JFXTextField bottleCapacity; //will be int, for future reference
+    @FXML private JFXCheckBox certificateOfApproval;
+    @FXML private JFXCheckBox certificateOfExemption;
+    @FXML private JFXCheckBox DistinctiveLiquor;
+    @FXML private JFXCheckBox resubmission;
+    @FXML private ImageView imagePreview;
+    @FXML private Label errorLabel;
+    @FXML private JFXTextField dateOfApplication;
+    @FXML private JFXTextField applicantSig;
+    @FXML private JFXTextField applicantNamePrint;
+
+    private LabelImage image = new LabelImage();
 
 
 

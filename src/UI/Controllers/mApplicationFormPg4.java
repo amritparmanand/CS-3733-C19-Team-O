@@ -29,12 +29,9 @@ public class mApplicationFormPg4 {
     private Button back;
     @FXML
     private Button submit;
-    @FXML
-    private JFXTextField dateOfApplication;
-    @FXML
-    private JFXTextField applicantSig;
-    @FXML
-    private JFXTextField applicantNamePrint;
+    @FXML private JFXTextField dateOfApplication;
+    @FXML private JFXTextField applicantSig;
+    @FXML private JFXTextField applicantNamePrint;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
