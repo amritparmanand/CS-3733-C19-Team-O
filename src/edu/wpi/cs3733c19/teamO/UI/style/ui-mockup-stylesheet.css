@@ -1,0 +1,301 @@
+
+/*UI MOCKUP CSS*/
+/*by rob*/
+
+/*lets try and get the SVG files wortking */
+@font-face {
+  font-family: "Roboto";
+  src: url("../../edu/wpi/cs3733c19/teamO/UI/font/roboto/Roboto-Regular.ttf");
+}
+@font-face {
+  font-family: "Roboto Medium";
+  src: url("../../edu/wpi/cs3733c19/teamO/UI/font/roboto/Roboto-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Roboto Light";
+  src: url("../../edu/wpi/cs3733c19/teamO/UI/font/roboto/Roboto-Light.ttf");
+}
+
+@font-face {
+  font-family: "Roboto Bold";
+  src: url("../../edu/wpi/cs3733c19/teamO/UI/font/roboto/Roboto-Bold.ttf");
+}
+
+*{
+  -fx-font-family: "Roboto", "Arial";
+  -fx-text-fill: #17263d;
+}
+
+.toolbar{
+  -fx-background-color: white;
+  -fx-border-width: 0 1 0 0;
+  -fx-border-color: lightgrey;
+
+}
+
+/*Titled pane*/
+.titled-pane
+{
+    -fx-background-color: #4A77DD;
+    -fx-text-fill: white;
+}
+
+.titled-pane > .title
+{
+-fx-background-color: #4A77DD;
+-fx-font-size: 16;
+
+
+}
+
+.titled-pane > .title > .arrow-button .arrow
+{
+-fx-background-color: white;
+}
+
+.buttonStyle{
+  -fx-background-color: #4A77DD;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+  -fx-text-fill: white;
+  -fx-background-radius: 3;
+}
+
+.buttonStyle:hover{
+  -fx-background-color:rgb(23, 58, 141);
+}
+
+.searchButtonStyle{
+  -fx-background-color: #f5f7fa;
+  -fx-text-fill: #4A77DD;
+  -fx-font-weight: 800;
+  -fx-background-radius: 5;
+
+}
+
+.searchButtonStyle:hover{
+  -fx-background-color: #4A77DD;
+  -fx-text-fill: #f5f7fa;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+
+}
+
+.changeColorButton{
+  -fx-background-color: none;
+  -fx-text-fill: #4A77DD;
+  -fx-border-color: #4A77DD ;
+  -fx-border-width: 3;
+  -fx-background-radius: 5;
+  -fx-border-radius: 3;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 0, 0.0 , 0 , 0 );
+}
+
+.largeBorderRadius{
+  -fx-border-width: 3;
+  -fx-background-radius: 40;
+  -fx-border-radius:40;
+}
+
+.changeColorButton:hover{
+  -fx-background-color: #4A77DD;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+  -fx-text-fill: white;
+
+}
+
+.topbar{
+  -fx-background-color: white;
+}
+
+.ttbtitle{
+  -fx-font-size: 36px;
+  -fx-fill: white;
+}
+.ttbsubtitle{
+  -fx-font-size: 12px;
+  -fx-fill: white;
+}
+
+.navheader{
+  -fx-background-color: #4A77DD;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.backPane{
+  -fx-background-color: #f5f7fa;
+}
+
+.card{
+  -fx-background-color: white;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+  -fx-background-radius: 20;
+}
+
+.searchContainer{
+  -fx-background-color: white;
+  -fx-background-radius: 80px;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+
+.card:hover{
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 8, 0.0 , 0 , 1 );
+
+}
+
+.labeltext{
+  -fx-text-fill: #17263d;
+  -fx-font-size: 12px;
+}
+
+.searchfield{
+  -fx-background-color: white;
+  -fx-border-color: #d5ddeb ;
+  -fx-border-width: 0;
+  -fx-background-radius: 5 5 5 5;
+  -fx-border-radius:5 5 5 5;
+}
+
+.formstatuspill{
+  -fx-border-width: 3;
+  -fx-background-radius: 5;
+  -fx-border-radius: 5;
+}
+
+.cardtext{
+  -fx-font-size: 24;
+}
+
+.pendingstatus{
+  -fx-background-color: #fbf8e1;
+  -fx-border-color: #fdefc1;
+  -fx-text-fill: #643018;
+
+}
+
+.acceptstatus{
+  -fx-background-color: #e4f7ef;
+  -fx-border-color: #c9e9dc;
+  -fx-text-fill: #204834;
+
+}
+
+.denystatus{
+  -fx-background-color: #fcedec;
+  -fx-border-color: #f9e4e3;
+  -fx-text-fill: #521511;
+
+}
+
+
+
+.textfield{
+  -fx-background-color: white;
+  -fx-border-color: #d5ddeb ;
+  -fx-border-width: 1;
+  -fx-background-radius: 5 5 5 5;
+  -fx-border-radius:5 5 5 5;
+}
+
+
+.h1{
+  -fx-font-size: 20px;
+}
+
+.h2{
+  -fx-font-size: 16px;
+}
+
+.checkbox{
+
+}
+
+.radiobutton{
+
+}
+
+.scrollpane{
+  -fx-background-color: #f5f7fa;
+
+}
+
+/*radiobutton effects DELETE IF THEY MAKE IT WEIRD*/
+
+.radio-button .radio{
+  -fx-background-color: white;
+  -fx-effect: innershadow(one-pass-box, lightgray, 5, 0.3, 0, 1);
+
+}
+
+.radio-button .dot{
+  -fx-mark-highlight-color: #4A77DD ;
+  -fx-mark-color: #4A77DD ;
+
+
+}
+
+
+/*!*checkbox DELETE IF THEY MAKE IT WEIRD*!*/
+/*.check-box .box {*/
+  /*-fx-background-color: white;*/
+  /*-fx-effect: innershadow(one-pass-box, lightgray, 5, 0.3, 0, 1);*/
+/*}*/
+
+/*.check-box:selected .mark {*/
+  /*-fx-background-color: white;*/
+/*}*/
+
+/*.check-box:selected .box {*/
+  /*-fx-background-color: #4A77DD;*/
+  /*-fx-effect: innershadow(one-pass-box, lightgray, 5, 0, 0, 0);*/
+/*}*/
+
+.innerShadow{
+  -fx-effect: innershadow(three-pass-box, lightgray, 5, 0.3, 0, 1);
+}
+
+.jfx-text-field{
+  -fx-background-color: white;
+  -jfx-unfocus-color: #17263d;
+  -jfx-disable-animation: false;
+  -jfx-focus-color: #4A77DD;
+  -fx-background-radius: 3;
+  -jfx-label-float: true;
+}
+
+.input-line{
+  -fx-opacity:0;
+}
+
+
+.jfx-password-field{
+  -fx-background-color: white;
+  -jfx-focus-color: #4A77DD;
+  -jfx-unfocus-color: #17263d;
+  -jfx-label-float: true;
+
+}
+
+.jfx-radio-button{
+  -jfx-selected-color: #4A77DD;
+
+}
+
+.suggestText{
+-fx-font-weight: bold;
+-fx-font-style: italic;
+}
+.jfx-check-box{
+  -jfx-checked-color: #4A77DD;
+}
+.menu-item:focused{
+  -fx-background-color: #4A77DD;
+}
+.menu-button .label{
+  -fx-text-fill: white;
+}
+.menu-item .label{
+  -fx-text-fill: black;
+}
+.menu-item:hover .label{
+  -fx-text-fill: white;
+}

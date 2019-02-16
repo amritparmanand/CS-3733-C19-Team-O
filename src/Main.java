@@ -1,6 +1,7 @@
-import Managers.*;
-
-import UI.Controllers.LoginPage;
+import edu.wpi.cs3733c19.teamO.UI.Controllers.LoginPage;
+import edu.wpi.cs3733c19.teamO.Managers.CacheManager;
+import edu.wpi.cs3733c19.teamO.Managers.DatabaseManager;
+import edu.wpi.cs3733c19.teamO.Managers.SceneManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -26,7 +27,7 @@ public class Main extends Application {
         dbM.generateTablesApplication();
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/edu/wpi/cs3733c19/teamO/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM), "UI");
     }
 
