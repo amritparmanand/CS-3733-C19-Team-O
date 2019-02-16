@@ -36,6 +36,7 @@ public class settingPage {
         // Initialize the instance of the Singleton class
         Setting object = Setting.getInstance();
 
+        // Set fuzzy
         if(SQL.isSelected()){
             object.setFuzzy("SQL");
         }
@@ -49,11 +50,17 @@ public class settingPage {
             object.setFuzzy("hiddenScore");
         }
 
+        // Set form limit
         if(formLimit.getText().isEmpty()){
             object.setFormLimit(5);
         }
         else{
             object.setFormLimit(Integer.parseInt(formLimit.getText()));
+        }
+
+        // Set download format
+        if(CSV.isSelected()){
+            object.setFormat("CSV");
         }
 
         System.out.println("Settings: ");

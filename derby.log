@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sat Feb 16 16:03:30 EST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0168-f81f-0a83-00000d57b3f8 
-on database directory /Users/robertrinearson/Documents/iteration2/ttbDB with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
-Loaded from file:/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/db/lib/derby.jar
+Sat Feb 16 17:56:45 EST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0168-f886-b8ae-00000d48c710 
+on database directory C:\Users\jiang\Documents\CS3733\CS-3733-C19-Team-O-Iteration-1\ttbDB with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_171/db/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_171-b11
-user.dir=/Users/robertrinearson/Documents/iteration2
-os.name=Mac OS X
-os.arch=x86_64
-os.version=10.14.3
+user.dir=C:\Users\jiang\Documents\CS3733\CS-3733-C19-Team-O-Iteration-1
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
