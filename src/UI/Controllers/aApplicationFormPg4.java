@@ -87,7 +87,9 @@ public class aApplicationFormPg4 {
     @FXML
     public void acceptForm() throws IOException {
         form.setSignature(signature.getText());
+        System.out.println(form.getSignature());
         form.setDateIssued(dateIssued.getValue().toString());
+        System.out.println(form.getDateIssued());
         cacheM.approveForm(cacheM.getDbM().getConnection());
         System.out.println("acceptForm Called");
     }

@@ -57,6 +57,7 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+        cacheM.setForm(form);
         Agent temp = (Agent) cacheM.getAcct();
         boolean isDomestic = false;
         boolean isImported = false;

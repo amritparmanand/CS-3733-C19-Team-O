@@ -50,7 +50,7 @@ public class Form {
     // Constructor
     public Form() {
         this.repID = 0;
-        this.formID = 0;
+        this.formID = 20;
         this.brewerNumber = "";
         this.productSource = "";
         this.serialNumber = "";
@@ -267,9 +267,10 @@ public class Form {
 
     @SuppressWarnings("Duplicates")
     public void approve(Connection conn) {
-        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, STATUS = 'APPROVED' WHERE FORMID ="
+        System.out.println("in Form Approve");
+        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, STATUS = 'APPROVED' , DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
                 + this.formID;
-
+        System.out.println(SQL);
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
@@ -319,9 +320,9 @@ public class Form {
      * @param dateSubmitted
      * @throws SQLException
      */
-    public void addApp(Connection connection, int formID, int repID, String dateSubmitted) throws SQLException{
-        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
-                "VALUES(?,?,?,?,?,?,?,?)";
+    public void addApp(Connection connection, int formID, int repID, String dateSubmitted, String dateIssued, String signature) throws SQLException{
+        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS, DATEISSUED, SIGNATURE) " +
+                "VALUES(?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Apps1);
         ResultSet seqVal;
         try {
@@ -335,6 +336,8 @@ public class Form {
             prepStmt.setNull(6, Types.VARCHAR);
             prepStmt.setNull(7, Types.VARCHAR);
             prepStmt.setString(8, "PENDING");
+            prepStmt.setString(9, dateIssued);
+            prepStmt.setString(10,signature);
             prepStmt.executeUpdate();
             prepStmt.close();
 
@@ -396,9 +399,11 @@ public class Form {
             File slimebert = getLabel().getLabelFile();
             FileInputStream blobert = new FileInputStream(slimebert);
             prepStmt.setBinaryStream(29, blobert, (int) slimebert.length());
-            addApp(connection, seqVal.getInt(1),getRepID(), getDateOfApplication());
+
+            addApp(connection, seqVal.getInt(1),getRepID(), getDateOfApplication(), dateIssued, signature);
             prepStmt.executeUpdate();
             prepStmt.close();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
