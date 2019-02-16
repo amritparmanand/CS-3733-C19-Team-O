@@ -56,6 +56,7 @@ public class aApplicationFormPg4 {
         dateOfApplication.setEditable(false);
         printName.setText(form.getPrintName());
         printName.setEditable(false);
+        signature.setText(form.getSignature());
     }
 
     @FXML
@@ -77,18 +78,19 @@ public class aApplicationFormPg4 {
 
     @FXML
     public void acceptForm() throws IOException {
+        form.setSignature(signature.getText());
         cacheM.approveForm(cacheM.getDbM().getConnection());
     }
 
 
     @FXML
     public void denyForm() throws IOException {
+        form.setSignature(signature.getText());
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
     @FXML
     public void saveDraft() throws IOException{
-
     }
 
 

@@ -43,6 +43,8 @@ public class Form {
     private String pHLevel;
     private String bottleCapacity;
     private long formID;
+    private String signature;
+    private String dateIssued;
 
 
     // Constructor
@@ -75,6 +77,7 @@ public class Form {
         this.resubmission = false;
         this.ttbID = 0;
         this.bottleCapacity = "";
+        this.signature = "";
     }
 
     // Getters and setters
@@ -247,6 +250,18 @@ public class Form {
     }
     public void setLabel(LabelImage label) {
         this.label = label;
+    }
+    public String getSignature() {
+        return signature;
+    }
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+    public String getDateIssued() {
+        return dateIssued;
+    }
+    public void setDateIssued(String dateIssued) {
+        this.dateIssued = dateIssued;
     }
 
     @SuppressWarnings("Duplicates")
