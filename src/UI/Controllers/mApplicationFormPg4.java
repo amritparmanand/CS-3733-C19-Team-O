@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Form;
+import Datatypes.Manufacturer;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
@@ -45,10 +46,14 @@ public class mApplicationFormPg4 {
     @FXML
     public void initialize() {
         Form form = cacheM.getForm();
+        Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
         System.out.println("starting");
         dateOfApplication.setText(form.getDateOfApplication());
-        applicantNamePrint.setText(form.getApplicantName());
+        if(!form.getApplicantName().equals(""))
+            applicantNamePrint.setText(form.getApplicantName());
+        else
+            applicantNamePrint.setText(manAcc.getFullName());
 
     }
 
