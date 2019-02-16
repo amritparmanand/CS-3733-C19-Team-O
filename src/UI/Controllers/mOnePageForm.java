@@ -51,9 +51,14 @@ public class mOnePageForm {
 
         System.out.println("saving pdf");
         PDF pdf = new PDF();
+
+        pdf.open();
+
         pdf.appendText(brandName.getText(), 24,780, 10);
         pdf.appendText(fancifulName.getText(), 24,740, 10);
-//        pdf.appendText(formula.getText(), 24,700, 10);
+
+        pdf.close();
+
         System.out.println("saved!");
     }
 

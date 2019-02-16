@@ -26,12 +26,17 @@ public class PDF {
 
 
 
-
-    //Methods
-    public void appendText(String text, float x, float y, float fontSize) throws IOException {
+    public void open()throws IOException{
         formPDF.setAllSecurityToBeRemoved(true);
         pDAcroForm.setAppendOnly(false);
         pDAcroForm.flatten();
+    }
+
+    //Methods
+    public void appendText(String text, float x, float y, float fontSize) throws IOException {
+//        formPDF.setAllSecurityToBeRemoved(true);
+//        pDAcroForm.setAppendOnly(false);
+//        pDAcroForm.flatten();
 
 
         contentStream.beginText();
@@ -39,6 +44,12 @@ public class PDF {
         contentStream.newLineAtOffset(x,y);
         contentStream.showText(text);
         contentStream.endText();
+//        contentStream.close();
+//        formPDF.save(new File("./testfile.pdf"));
+//        formPDF.close();
+    }
+
+    public void close() throws IOException {
         contentStream.close();
         formPDF.save(new File("./testfile.pdf"));
         formPDF.close();
