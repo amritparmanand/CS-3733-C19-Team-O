@@ -108,7 +108,7 @@ public class aApplicationFormPg1 {
         phLevel.setText(form.getpHLevel());
         vintageYear.setText(form.getVintageYear());
         TTBID.setText(Integer.toString(temp.getTtbID()));
-        TTBID.setDisable(true);
+        form.setTtbID((temp.getTtbID()));
     }
 
     public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {

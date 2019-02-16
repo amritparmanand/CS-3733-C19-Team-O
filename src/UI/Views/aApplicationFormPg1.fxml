@@ -165,7 +165,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                     <Label text="TTB ID" />
-                                    <JFXTextField fx:id="TTBID" />
+                                    <JFXTextField fx:id="TTBID" editable="false" />
                                     <Label text="CT" />
                                     <JFXTextField fx:id="CT" />
                                     <Label text="OR" />
