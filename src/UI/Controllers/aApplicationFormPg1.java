@@ -57,6 +57,7 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+        Agent temp = (Agent) cacheM.getAcct();
         boolean isDomestic = false;
         boolean isImported = false;
         boolean isWine = false;
@@ -106,6 +107,8 @@ public class aApplicationFormPg1 {
         alcoholPercentage.setText(form.getAlcoholPercent());
         phLevel.setText(form.getpHLevel());
         vintageYear.setText(form.getVintageYear());
+        TTBID.setText(Integer.toString(temp.getTtbID()));
+        TTBID.setDisable(true);
     }
 
     public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
