@@ -89,6 +89,7 @@ public class aApplicationFormPg4 {
         form.setSignature(signature.getText());
         form.setDateIssued(dateIssued.getValue().toString());
         cacheM.approveForm(cacheM.getDbM().getConnection());
+        System.out.println("acceptForm Called");
     }
 
 
