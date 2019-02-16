@@ -4,6 +4,7 @@ import Datatypes.Form;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,8 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author Amrit Parmanand & Elizabeth Del Monaco
@@ -30,7 +33,7 @@ public class mApplicationFormPg4 {
     @FXML
     private Button submit;
     @FXML
-    private JFXTextField dateOfApplication;
+    private JFXDatePicker dateOfApplication;
     @FXML
     private JFXTextField applicantSig;
     @FXML
@@ -45,17 +48,19 @@ public class mApplicationFormPg4 {
     @FXML
     public void initialize() {
         Form form = cacheM.getForm();
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         System.out.println("starting");
-        dateOfApplication.setText(form.getDateOfApplication());
-        applicantNamePrint.setText(form.getApplicantName());
+        applicantNamePrint.setText(form.getPrintName());
+        if(!form.getDateOfApplication().isEmpty()){
+            dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
+        }
 
     }
 
     public void saveDraft(){
             Form form = cacheM.getForm();
 
-            form.setDateOfApplication(dateOfApplication.getText());
+            form.setDateOfApplication(dateOfApplication.getValue().toString());
             form.setPrintName(applicantNamePrint.getText());
 
             cacheM.setForm(form);
@@ -67,22 +72,22 @@ public class mApplicationFormPg4 {
      * The multi-thread function
      * Saves draft every 5 seconds
      */
-    callableFunction cf = new callableFunction() {
-        @Override
-        public void call() {
-            if (dateOfApplication!=null && applicantNamePrint!=null){
-                saveDraft();
-            }
-        }
-    };
-    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
+//    callableFunction cf = new callableFunction() {
+//        @Override
+//        public void call() {
+//            if (dateOfApplication!=null && applicantNamePrint!=null){
+//                saveDraft();
+//            }
+//        }
+//    };
+//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
     @FXML
     public void submit() throws SQLException, IOException {
-        multiThreadWaitFor.onShutDown();
+        //multiThreadWaitFor.onShutDown();
         Form form = cacheM.getForm();
 
-        form.setDateOfApplication(dateOfApplication.getText());
+        form.setDateOfApplication(dateOfApplication.getValue().toString());
         // form.setSignatureOfApplicant(applicantSig.getText());
         form.setPrintName(applicantNamePrint.getText());
 //        form.setDateIssued("");
@@ -101,17 +106,17 @@ public class mApplicationFormPg4 {
 
 
     @FXML public void previousPage() throws IOException {
-        multiThreadWaitFor.onShutDown();
+        //multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
     }
     @FXML public void searchPage() throws IOException {
-        multiThreadWaitFor.onShutDown();
+        //multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
     @FXML public void goToHomePage() throws IOException {
-        multiThreadWaitFor.onShutDown();
+        //multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }

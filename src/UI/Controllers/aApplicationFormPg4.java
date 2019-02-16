@@ -39,7 +39,7 @@ public class aApplicationFormPg4 {
     @FXML private JFXButton previous;
     @FXML private JFXButton submit;
     @FXML private JFXButton logout;
-    @FXML private JFXTextField dateOfApplication;
+    @FXML private JFXDatePicker dateOfApplication;
     @FXML private JFXTextField printName;
     @FXML private JFXTextArea Q16Comment;
     @FXML private JFXTextArea Q17Comment;
@@ -55,7 +55,9 @@ public class aApplicationFormPg4 {
     @FXML public void initialize () {
         Form form = this.form;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-        dateOfApplication.setText(form.getDateOfApplication());
+        if(!form.getDateOfApplication().isEmpty()){
+            dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
+        }
         dateOfApplication.setEditable(false);
         printName.setText(form.getPrintName());
         printName.setEditable(false);
