@@ -53,6 +53,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextArea Q6Comment;
     @FXML private JFXTextArea Q7Comment;
     @FXML private JFXTextField receiver;
+    @FXML private JFXTextField TTBID;
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){

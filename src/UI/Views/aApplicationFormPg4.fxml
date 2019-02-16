@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -189,6 +190,10 @@
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                             </padding>
                                         </VBox>
+                              <Label text="19. Date Issued" />
+                              <JFXDatePicker fx:id="dateIssued" />
+                              <Label text="20. Authorized Signature, Alcohol and Tobacco Tax and Trade Bureau" />
+                              <JFXTextField fx:id="signature" />
                                     </children>
                                 </VBox>
                             </content>

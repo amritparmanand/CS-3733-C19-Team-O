@@ -5,6 +5,7 @@ import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -37,14 +38,16 @@ public class aApplicationFormPg4 {
     @FXML private JFXButton submit;
     @FXML private JFXButton logout;
     @FXML private JFXTextField dateOfApplication;
-    @FXML private JFXTextField dateIssued;
-    @FXML private JFXTextField signature;
     @FXML private JFXTextField printName;
     @FXML private JFXTextArea Q16Comment;
     @FXML private JFXTextArea Q17Comment;
     @FXML private JFXTextArea Q18Comment;
     @FXML private JFXTextArea Q19Comment;
     @FXML private JFXTextField receiver;
+    @FXML private JFXDatePicker dateIssued;
+    @FXML private JFXTextField signature;
+
+
 
 
     @FXML public void initialize () {
