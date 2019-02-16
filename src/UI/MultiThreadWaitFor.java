@@ -2,7 +2,11 @@ package UI;
 
 import UI.callableFunction;
 import javafx.fxml.FXML;
-
+/**
+ * @author Percy Jiang
+ * @version It 2
+ * Auto save in progress forms function
+ */
 public class MultiThreadWaitFor implements Runnable{
     private Thread thread;
     public int secs;
@@ -17,7 +21,6 @@ public class MultiThreadWaitFor implements Runnable{
     }
 
     @Override
-    @FXML
     public void run() {
         try{
             while(isRunning == true){
@@ -31,5 +34,6 @@ public class MultiThreadWaitFor implements Runnable{
 
     public void onShutDown(){
         this.isRunning = false;
+//        thread.stop();
     }
 }

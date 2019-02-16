@@ -4,12 +4,25 @@ import Datatypes.Account;
 import Datatypes.Agent;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
+import Fuzzy.Damerau_Levenshtein;
+import Fuzzy.FuzzyContext;
+import Fuzzy.Levenshtein;
+import Fuzzy.hiddenScore;
+import com.opencsv.CSVReader;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.io.*;
 import java.sql.*;
-
+/**
+ * @author Amrit Parmanand & Percy
+ * @version It 2
+ * @since It 1
+ * Manages the database, handles accessing and inserting data
+ */
 public class DatabaseManager {
     private Connection connection;
     private Statement stmt;
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public Connection getConnection()
     {
@@ -30,6 +43,10 @@ public class DatabaseManager {
         Statement stmt = null;
         try {
             connection = DriverManager.getConnection("jdbc:derby:ttbDB;create=true");
+            CallableStatement cs = connection.prepareCall
+                    ("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.language.sequence.preallocator', '1')");
+            cs.execute();
+            cs.close();
             stmt = connection.createStatement();
         }
         catch(SQLException e){
@@ -43,92 +60,11 @@ public class DatabaseManager {
 
     }
 
-    // Got connected, codes start here
-
-    // Generate the tables in database and create the sequences for ids
-    public void generateTables(){
-        String createApplications = "create table Applications(" +
-                "appID int constraint Applications_pk primary key," +
-                "formID int /*constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS*/," +
-                "repID int /*constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES*/," +
-                "ttbID int /*constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS*/," +
-                "agentName VARCHAR(40)," +
-                "dateSubmitted VARCHAR(20) ," +
-                "dateApproved VARCHAR(20)," +
-                "dateRejected VARCHAR(20)," +
-                "dateExpired VARCHAR(20)," +
-                "status VARCHAR(15))";
-        String createRepresentatives = "create table Representatives" +
-                "(repID int constraint Representatives_pk	primary key, " +
-                "username varchar(20),	" +
-                "password varchar(65), 	" +
-                "fullName varchar(50),	" +
-                "companyName varchar(50),	" +
-                "email varchar(20),	" +
-                "phone varchar(15))";
-        String createAgents = "create table Agents" +
-                "(ttbID int	constraint Agents_pk primary key, " +
-                "username varchar(20), " +
-                "password varchar(65), " +
-                "fullName varchar(50),	" +
-                "email varchar(20),	" +
-                "phone varchar(15))";
-        String createForms = "create table Forms(" +
-                "formID int	constraint Forms_pk	primary key, " +
-                "repID int, " +
-                "brewerNumber int,	" +
-                "productSource varchar(30),	" +
-                "serialNumber int,	" +
-                "productType varchar(30),	" +
-                "brandName varchar(60),	" +
-                "fancifulName varchar(60),	" +
-                "applicantName varchar(200),	" +
-                "mailingAddress varchar(80), " +
-                "formula varchar(80), " +
-                "grapeVarietal varchar(80),	" +
-                "appellation varchar(60), " +
-                "phoneNumber varchar(20), " +
-                "emailAddress varchar(50),	" +
-                "dateOfApplication VARCHAR(30) , " +
-                "printName varchar(40),	" +
-                "beerWineSpirit int, " +
-                "alcoholPercent double,	" +
-                "vintageYear int, " +
-                "phLevel double)";
-        String createUniqueReps = "create unique index Representatives_username_uindex " +
-                "on Representatives (username)";
-        String createUniqueAgents = "create unique index Agents_username_uindex " +
-                "on Agents (username)";
-        try {
-            this.stmt.execute(createRepresentatives);
-            this.stmt.execute(createAgents);
-            this.stmt.execute(createForms);
-            this.stmt.execute(createApplications);
-            this.stmt.execute(createUniqueReps);
-            this.stmt.execute(createUniqueAgents);
-        }
-        catch (SQLException e){
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-    }
-    public void createSequences(){
-        String repSequence = "create sequence repIDSequence as int start with 800 increment by 1";
-        String formSequence = "create sequence formIDSequence as int start with 800 increment by 1";
-        String appSequence = "create sequence appIDSequence as int start with 800 increment by 1";
-
-        try {
-            this.stmt.execute(repSequence);
-            this.stmt.execute(formSequence);
-            this.stmt.execute(appSequence);
-        }
-        catch (SQLException e){
-            if (!e.getSQLState().equals("X0Y68"))
-                e.printStackTrace();
-        }
-    }
-
-    // Find username and password for an account by its id
+    /**
+     * Find username and password for an account by its id
+     * @param id
+     * @return the username or password
+     */
     public String mFindUsername(int id){
         String uname = "";
         try {
@@ -186,7 +122,369 @@ public class DatabaseManager {
         return hashedPassword;
     }
 
-    // Create an instance of an account once logged in
+    /**
+     * Generate the tables in database and create the sequences for ids
+     */
+    public void generateTables(){
+        String createApplications = "create table Applications(" +
+                "appID int constraint Applications_pk primary key," +
+                "formID bigint /*constraint APPLICATIONS_FORMS_FORMID_FK	references FORMS*/," +
+                "repID int /*constraint APPLICATIONS_REPRESENTATIVES_REPID_FK	references REPRESENTATIVES*/," +
+                "ttbID int /*constraint APPLICATIONS_AGENTS_TTBID_FK references AGENTS*/," +
+                "agentName VARCHAR(40)," +
+                "dateSubmitted VARCHAR(20) ," +
+                "dateApproved VARCHAR(20)," +
+                "dateRejected VARCHAR(20)," +
+                "dateExpired VARCHAR(20)," +
+                "status VARCHAR(15))";
+        String createRepresentatives = "create table Representatives" +
+                "(repID int constraint Representatives_pk	primary key, " +
+                "username varchar(20),	" +
+                "password varchar(65), 	" +
+                "fullName varchar(50),	" +
+                "companyName varchar(50),	" +
+                "email varchar(20),	" +
+                "phone varchar(15))";
+        String createAgents = "create table Agents" +
+                "(ttbID int	constraint Agents_pk primary key, " +
+                "username varchar(20), " +
+                "password varchar(65), " +
+                "fullName varchar(50),	" +
+                "email varchar(60),	" +
+                "phone varchar(15))";
+//        String createForms = "create table Forms(" +
+//                "formID int	constraint Forms_pk	primary key, " +
+//                "repID int, " +
+//                "brewerNumber varchar(60),	" +
+//                "productSource varchar(60),	" +
+//                "serialNumber varchar(60),	" +
+//                "productType varchar(60),	" +
+//                "brandName varchar(60),	" +
+//                "fancifulName varchar(60),	" +
+//                "applicantName varchar(200),	" +
+//                "mailingAddress varchar(80), " +
+//                "formula varchar(80), " +
+//                "grapeVarietal varchar(80),	" +
+//                "appellation varchar(60), " +
+//                "phoneNumber varchar(20), " +
+//                "emailAddress varchar(50),	" +
+//                "certificateOfApproval boolean," +   //begin new
+//                "certificateOfExemption boolean," +
+//                "onlyState varchar(2)," +
+//                "distinctiveLiquor boolean," +
+//                "bottleCapacity VARCHAR(5)," +
+//                "resubmission boolean," +
+//                "ttbID int ," + //end new
+//                "dateOfApplication VARCHAR(30) , " +
+//                "printName varchar(40),	" +
+//                "beerWineSpirit varchar(60), " +
+//                "alcoholPercent varchar(60),	" +
+//                "vintageYear varchar(60), " +
+//                "phLevel varchar(60))";
+
+
+        String createForms = "create table Forms(" +
+                "formID bigint   constraint Forms_pk primary key, " +
+                "repID varchar (20), " +
+                "brewerNumber varchar(60), " +
+                "productSource varchar(60),    " +
+                "serialNumber varchar(60), " +
+                "productType varchar(100),  " +
+                "brandName varchar(100),    " +
+                "fancifulName varchar(100), " +
+                "applicantName varchar(200),   " +
+                "mailingAddress varchar(120), " +
+                "formula varchar(120), " +
+                "grapeVarietal varchar(200),    " +
+                "appellation varchar(200), " +
+                "phoneNumber varchar(20), " +
+                "emailAddress varchar(50), " +
+                "certificateOfApproval BOOLEAN," +   //begin new
+                "certificateOfExemption BOOLEAN," +
+                "onlyState varchar(2)," +
+                "distinctiveLiquor BOOLEAN," +
+                "bottleCapacity VARCHAR(300)," +
+                "resubmission BOOLEAN," +
+                "ttbID int," + //end new
+                "dateOfApplication VARCHAR(30) , " +
+                "printName varchar(40),    " +
+                "beerWineSpirit varchar(60), " +
+                "alcoholPercent varchar(60),   " +
+                "vintageYear varchar(60), " +
+                "phLevel varchar(60), "+
+                "labelImage blob(32M))";
+        String createUniqueReps = "create unique index Representatives_username_uindex " +
+                "on Representatives (username)";
+        String createUniqueAgents = "create unique index Agents_username_uindex " +
+                "on Agents (username)";
+        try {
+            this.stmt.execute(createRepresentatives);
+            this.stmt.execute(createAgents);
+            this.stmt.execute(createForms);
+            this.stmt.execute(createApplications);
+            this.stmt.execute(createUniqueReps);
+            this.stmt.execute(createUniqueAgents);
+        }
+        catch (SQLException e){
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+    }
+    public void createSequences(){
+        String repSequence = "create sequence repIDSequence as int start with 800 increment by 1";
+        String formSequence = "create sequence formIDSequence as int start with 800 increment by 1";
+        String appSequence = "create sequence appIDSequence as int start with 800 increment by 1";
+
+        try {
+            this.stmt.execute(repSequence);
+            this.stmt.execute(formSequence);
+            this.stmt.execute(appSequence);
+        }
+        catch (SQLException e){
+            if (!e.getSQLState().equals("X0Y68"))
+                e.printStackTrace();
+        }
+    }
+
+    /**
+     * Insert the default manufacturer and agent
+     * @throws SQLException
+     */
+    public void insertDefault() throws SQLException{
+        String mPassword = this.passwordEncoder.encode("manu");
+        String aPassword = this.passwordEncoder.encode("ttb");
+
+        String mDefault = "insert into REPRESENTATIVES values (1, 'manu', '" + mPassword + "', 'manu', 'manu', 'manu', 'manu')";
+        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb')";
+        try {
+            this.stmt.execute(mDefault);
+            this.stmt.execute(aDefault);
+        }catch(SQLException e){
+            if (!e.getSQLState().equals("23505"))
+                e.printStackTrace();
+        }
+    }
+    public boolean isFormsEmpty() throws SQLException{
+        ResultSet rs = stmt.executeQuery("SELECT * from FORMS");
+
+        // checking if ResultSet is empty
+        if (!rs.next()) {
+            return true;
+        }
+        else
+            return false;
+    }
+    public boolean isAppsEmpty() throws SQLException{
+        ResultSet rs = stmt.executeQuery("SELECT * from APPLICATIONS");
+
+        // checking if ResultSet is empty
+        if (!rs.next()) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public void generateTablesForms() {
+        try {
+
+            // Create an object of filereader
+            // class with CSV file as a parameter.
+            ClassLoader classLoader = getClass().getClassLoader();
+            FileReader filereader = new FileReader(new File(classLoader.getResource("Resources/forPresentation.csv").getFile()));
+
+            // create csvReader object passing
+            // file reader as a parameter
+            CSVReader csvReader = new CSVReader(filereader);
+            String[] nextRecord;
+            String bigString = "INSERT INTO FORMS VALUES";
+            int numOfOutput = 1;
+            int numOfSqlExecute = 0;
+            nextRecord = csvReader.readNext();
+            // we are going to read data line by line
+            while ((nextRecord = csvReader.readNext()) != null) {
+
+                String output = "(";
+                int counter = 0;
+                for (int i = 0; i < nextRecord.length; i++) {
+
+                    String[] splitRecord = nextRecord[i].split("!");
+
+                    for (int j = 0; j < splitRecord.length; j++) {
+
+
+                        if (counter == 0) {
+                            output += splitRecord[j] + ",'";
+                        } else if (counter == 27) {
+                            output += splitRecord[j] + "', NULL)";
+                            break;
+
+                        } else if (counter == 14 || counter == 17 || counter == 19) {
+                            output += splitRecord[j] + "',";
+                        } else if (counter == 15 || counter == 20) {
+                            output += splitRecord[j] + ",";
+
+                        } else if (counter == 16 || counter == 18) {
+                            output += splitRecord[j] + ",'";
+
+                        }
+                        else if(counter == 21)
+                        {
+                            output += " 999,'";
+
+                        }
+                            else {
+                            output += splitRecord[j] + "','";
+                            if (output.charAt(1) != '1' && output.charAt(1) != '2' && output.charAt(1) != '3') {
+                                break;
+                            }
+                        }
+
+                        counter++;
+                        if (counter > 27) {
+                            counter = 0;
+                            output = "";
+                            break;
+                        }
+
+                    }
+
+                }
+
+                if (counter == 27) {
+
+//                    || output.charAt(2) == 2 || output.charAt(2) == 3
+                    if (numOfOutput < 999) {
+
+                        bigString += output + ",\n";
+                    } else {
+
+                        bigString += output;
+
+                    }
+                    numOfOutput++;
+
+
+                }
+                if (numOfOutput == 1000) {
+                    System.out.println(numOfSqlExecute);
+                    if (numOfSqlExecute == 0) {
+                        System.out.println(bigString);
+                    }
+                    stmt.executeUpdate(bigString);
+                    bigString = "INSERT INTO FORMS VALUES";
+                    numOfOutput = 0;
+                    numOfSqlExecute++;
+
+                    System.out.println("Printed");
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("Duplicates")
+    //Duplicate
+    public void generateTablesApplication()
+    {
+        try {
+
+
+            // Create an object of filereader
+            // class with CSV file as a parameter.
+            ClassLoader classLoader = getClass().getClassLoader();
+            FileReader filereader = new FileReader(new File(classLoader.getResource("/Resources/ApplicationsXLSX.csv").getFile()));
+            // create csvReader object passing
+            // file reader as a parameter
+            CSVReader csvReader = new CSVReader(filereader);
+            String[] nextRecord;
+            String bigString = "INSERT INTO APPLICATIONS VALUES";
+            int numOfOutput = 1;
+            int numOfSqlExecute = 0;
+            nextRecord = csvReader.readNext();
+            int appidCounter = 1000;
+            // we are going to read data line by line
+            while ((nextRecord = csvReader.readNext()) != null && appidCounter < 240000) {
+                String output = "(" + appidCounter + ",";
+                int counter = 0;
+                for (int i = 0; i < nextRecord.length; i++) {
+                    String[] splitRecord = nextRecord[i].split("!");
+
+                    for(int j = 0; j < splitRecord.length; j++)
+                    {
+
+
+                        if(counter == 0 || counter == 1 || counter ==2)
+                        {
+                            output += splitRecord[j] + ",";
+
+                        }
+                        else if(counter == 3)
+                        {
+                            output+="'" + splitRecord[j]+"','";
+                        }
+                        else if(counter == 8)
+                    {
+                        output += splitRecord[j] + "')";
+                        break;
+
+                    }
+                       else {
+                        output += splitRecord[j] + "','";
+                    }
+
+                        counter++;
+                        if(counter>8)
+                        {
+                            counter = 0;
+                            output = "";
+                            break;
+                        }
+                    }
+
+                }
+
+                if(counter == 8) {
+
+//                    || output.charAt(2) == 2 || output.charAt(2) == 3
+                    if (numOfOutput < 999) {
+
+                        bigString += output + ",\n";
+
+                    } else {
+
+                        bigString += output;
+
+                    }
+                    numOfOutput++;
+                    appidCounter++;
+
+
+                }
+                if(numOfOutput == 1000)
+                {
+                    System.out.println(numOfSqlExecute);
+                    if(numOfSqlExecute==6)
+                    {
+                        System.out.println(bigString);
+                    }
+                    stmt.executeUpdate(bigString);
+                    bigString = "INSERT INTO APPLICATIONS VALUES";
+                    numOfOutput = 0;
+                    numOfSqlExecute++;
+
+
+                    System.out.println("Printed");
+                }
+
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @SuppressWarnings("Duplicates") public Manufacturer mCreate(int id){
         String uname = "";
         String pword = "";
@@ -235,127 +533,4 @@ public class DatabaseManager {
         Agent a = new Agent(uname,pword,fname,email,phone,id);
         return a;
     }
-
-    // Insert a form from Manufacturer side into database
-    public void insertForm(Form form) throws SQLException {
-        form.setApplicantName("DankMEME");
-        form.setBeerWineSpirit(11);
-        form.setpHLevel(1.1);
-        form.setVintageYear(1111);
-        form.setAlcoholPercent(1000);
-
-        String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
-                "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +
-                "APPELLATION, PHONENUMBER, EMAILADDRESS, DATEOFAPPLICATION, PRINTNAME, BEERWINESPIRIT, ALCOHOLPERCENT, " +
-                "VINTAGEYEAR, PHLEVEL) " +
-                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement prepStmt = connection.prepareStatement(Forms1);
-        ResultSet seqVal = null;
-        try {
-            seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
-            seqVal.next();
-            prepStmt.setInt(1,seqVal.getInt(1));
-            prepStmt.setInt(2, form.getRepID());
-            prepStmt.setInt(3, form.getBrewerNumber());
-            prepStmt.setString(4, form.getProductSource());
-            prepStmt.setInt(5, form.getSerialNumber());
-            prepStmt.setString(6, form.getProductType());
-            prepStmt.setString(7, form.getBrandName());
-            prepStmt.setString(8, form.getFancifulName());
-            prepStmt.setString(9, form.getApplicantName());
-            prepStmt.setString(10, form.getMailingAddress());
-            prepStmt.setString(11, form.getFormula());
-            prepStmt.setString(12, form.getGrapeVarietal());
-            prepStmt.setString(13, form.getAppellation());
-            prepStmt.setString(14, form.getPhoneNumber());
-            prepStmt.setString(15, form.getEmailAddress());
-            prepStmt.setString(16, form.getDateOfApplication());
-            prepStmt.setString(17, form.getPrintName());
-            prepStmt.setInt(18, form.getBeerWineSpirit());
-            prepStmt.setDouble(19, form.getAlcoholPercent());
-            prepStmt.setInt(20, form.getVintageYear());
-            prepStmt.setDouble(21, form.getpHLevel());
-            addApp(seqVal.getInt(1),form.getRepID(),form.getDateOfApplication());
-            prepStmt.executeUpdate();
-            prepStmt.close();
-
-        } catch (SQLException e) {
-                e.printStackTrace();
-        }
-    }
-
-    // Automatically generates and inserts an Application into database when Form is inserted
-    public void addApp(int formID, int repID, String dateSubmitted) throws SQLException{
-        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
-                "VALUES(?,?,?,?,?,?,?,?)";
-        PreparedStatement prepStmt = connection.prepareStatement(Apps1);
-        ResultSet seqVal = null;
-        try {
-            seqVal = connection.prepareStatement("values (next value for appIDSequence)").executeQuery();
-            seqVal.next();
-            prepStmt.setInt(1, seqVal.getInt(1));
-            prepStmt.setInt(2,formID);
-            prepStmt.setInt(3,repID);
-            prepStmt.setNull(4, Types.INTEGER);
-            prepStmt.setString(5, dateSubmitted);
-            prepStmt.setNull(6, Types.VARCHAR);
-            prepStmt.setNull(7, Types.VARCHAR);
-            prepStmt.setString(8, "PENDING");
-            prepStmt.executeUpdate();
-            prepStmt.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Unused?
-    // Agent calls this method to approve an Application
-    public void approveApplication(int formID) throws SQLException{
-        String Apps1 = "UPDATE CUSTOMERS\n" +
-                "SET STATUS = 'Approved'\n" +
-                "WHERE ID =" + formID + ";";
-        PreparedStatement prepStmt = connection.prepareStatement(Apps1);
-        ResultSet seqVal = null;
-        try {
-
-            prepStmt.executeUpdate();
-            prepStmt.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // ???
-    public void executeStatement(PreparedStatement ps) {
-        try {
-            ps.executeUpdate();
-            ps.close();
-        } catch (SQLException e) {
-                e.printStackTrace();
-        }
-    }
-
-    // No where statement, need to fix!!!
-    // Get the Forms in the database with status sat to approved
-    public ResultSet getApprovedApplications() throws SQLException{
-        String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS" +
-                " ON FORMS.FORMID = APPLICATIONS.FORMID";
-        ResultSet rset = stmt.executeQuery(retrieve);
-        return rset;
-    }
-
-    // Insert the sample data for Iteration 1
-//    public void insertSamples() throws SQLException{
-//        String formSamples = "INSERT INTO FORMS VALUES (1,81,81,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1812 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,13.95,2010,13.95), (2,81,81,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1813 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,11,2010,11), (3,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1814 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.9,2010,14.9), (4,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1815 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.9,2010,14.9), (5,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1816 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.7,2010,14.7), (6,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1817 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.7,2010,14.7), (7,88,88,1,120009,0,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','1818 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.7,2010,14.7), (8,641,641,1,120009,0,'\"REUNION\"','MOONSHINE','TIGER JUICE LLC','1819 WASHINGTON ST','MOONSHINE','MOONSHINE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-02-18 00:00:00','Harrison James',41,40,2010,40), (9,88,88,1,120009,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1820 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.9,2010,14.9), (10,88,88,1,120010,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1821 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.9,2010,14.9), (11,88,88,1,120011,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1822 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.7,2010,14.7), (12,88,88,1,120012,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1823 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.6,2010,14.6), (13,88,88,1,120013,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1824 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,15.3,2010,15.3), (14,88,88,1,120014,0,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1825 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,15,2010,15), (15,88,88,1,120015,1,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','1826 WASHINGTON ST','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,15.9,2010,15.9), (16,88,88,1,120016,1,'ORFILA VINEYARDS AND WINERY','ESTATE AMBASSADOR''S RESERVE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','13455 SAN PASQUAL RD','ESTATE AMBASSADOR''S RESERVE','ESTATE AMBASSADOR''S RESERVE','YAKIMA VALLEY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,15.2,2010,15.2), (17,81,81,1,120017,1,'ORFILA VINEYARDS AND WINERY','MOONSHINE','ORFILA VINEYARDS, ORFILA VINEYARDS, INC.','13456 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,11.9,2010,11.9), (18,88,88,1,120009,1,'MOSHIN VINEYARDS','MOONSHINE','MOSHIN VINEYARDS, MOSHIN VINEYARDS, INC.','13457 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,14.8,2009,14.8), (19,81,81,1,120001,1,'ACKERMANN','MOONSHINE','CHATEAU BARNABY, CHATEAU BARNABY, LLC','13458 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-17 00:00:00','Harrison James',53,8.5,2009,8.5), (20,88,88,1,120009,1,'GOUGER CELLARS','MOONSHINE','GOUGER CELLARS, GOUGER CELLARS, LLC','13459 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',7,14.5,2009,14.5), (21,80,80,0,120009,1,'DOMAINE CHEVROT','MOONSHINE','JOLI VIN IMPORTS, GARY ROSHKE','13460 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',51,12.5,2009,12.5), (22,80,80,0,122865,1,'DOMAINE CHEVROT','MOONSHINE','GOLDEN STATE WINE CO., G.S.W.C., INC.','13461 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',51,13,2009,13), (23,80,80,0,120001,1,'DOMAINE CHEVROT','MOONSHINE','FLEISCHER INTERNATIONAL TRADING, INC.','13462 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-17 00:00:00','Harrison James',52,13.3,2009,13.3), (24,85,85,0,120001,1,'DOMAINE CHEVROT','MOONSHINE','ROUND 8, LLC','13463 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-19 00:00:00','Harrison James',52,1,2009,13), (25,301,301,0,120001,1,'DOMAINE CHEVROT','MOONSHINE','SMUGGLERS'' NOTCH DISTILLERY, LLC','13464 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-19 00:00:00','Harrison James',46,40,2009,40), (26,902,902,0,120001,1,'DOMAINE CHEVROT','MOONSHINE','FOUR CORNERS GRILLE AND FLYING GOOSE BREW PUB, TJM ENTERPRISES, INC.','13465 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-05 00:00:00','Harrison James',33,1,2009,13), (27,80,80,0,120009,1,'DOMAINE CHEVROT','MOONSHINE','TASTY WINE COMPANY, A.B. COMPANY OF WISCONSIN INC.','13466 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-13 00:00:00','Harrison James',1,12.5,2009,12.5), (28,902,902,0,120009,1,'DOMAINE CHEVROT','MOONSHINE','ROHRBACH BREWING COMPANY, RAILROAD STREET BREWING COMPANY INC.','13467 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-18 00:00:00','Harrison James',2,1,2009,13), (29,906,906,0,120009,1,'DOMAINE CHEVROT','MOONSHINE','CITY STEAM BREWERY, THOMAS HOOKER BREWING COMPANY, LLC','13468 SAN PASQUAL RD','MOONSHINE','MOONSHINE','MENDOCINO COUNTY','\"5856457291\"','hjames@wpi.edu','2012-01-06 00:00:00','Harrison James',14,5.9,2009,5.9)";
-//        String appSamples = "INSERT INTO APPLICATIONS VALUES (1,1,81,1,'HARRISON','1999-01-01 00:00:00','.','.','.','APPROVED'), (2,2,81,3,'AMRIT','1999-01-02 00:00:00','.','.','.','DENIED'), (3,3,88,5,'PERCY','1999-01-03 00:00:00','.','.','.','APPROVED'), (4,4,88,7,'LIZ','1999-01-04 00:00:00','.','.','.','DENIED'), (5,5,88,9,'TREVOR','1999-01-05 00:00:00','.','.','.','APPROVED'), (6,6,88,11,'ROBERT','1999-01-06 00:00:00','.','.','.','DENIED'), (7,7,88,13,'JOHN','1999-01-07 00:00:00','.','.','.','APPROVED'), (8,8,641,15,'GABE','1999-01-08 00:00:00','.','.','.','DENIED'), (9,9,88,17,'SRI','1999-01-09 00:00:00','.','.','.','APPROVED'), (10,10,88,19,'SAM','1999-01-10 00:00:00','.','.','.','DENIED'), (11,11,88,21,'CLAY','1999-01-11 00:00:00','.','.','.','APPROVED'), (12,12,88,23,'HARRISON','1999-01-12 00:00:00','.','.','.','DENIED'), (13,13,88,25,'AMRIT','1999-01-13 00:00:00','.','.','.','APPROVED'), (14,14,88,27,'PERCY','1999-01-14 00:00:00','.','.','.','DENIED'), (15,15,88,29,'LIZ','1999-01-15 00:00:00','.','.','.','APPROVED'), (16,16,88,31,'TREVOR','1999-01-16 00:00:00','.','.','.','DENIED'), (17,17,81,33,'ROBERT','1999-01-17 00:00:00','.','.','.','APPROVED'), (18,18,88,35,'JOHN','1999-01-18 00:00:00','.','.','.','DENIED'), (19,19,81,37,'GABE','1999-01-19 00:00:00','.','.','.','APPROVED'), (20,20,88,39,'SRI','1999-01-20 00:00:00','.','.','.','DENIED'), (21,21,80,41,'SAM','1999-01-21 00:00:00','.','.','.','APPROVED'), (22,22,80,43,'CLAY','1999-01-22 00:00:00','.','.','.','DENIED'), (23,23,80,45,'HARRISON','1999-01-23 00:00:00','.','.','.','APPROVED'), (24,24,85,47,'AMRIT','1999-01-24 00:00:00','.','.','.','DENIED'), (25,25,301,49,'PERCY','1999-01-25 00:00:00','.','.','.','APPROVED'), (26,26,902,51,'LIZ','1999-01-26 00:00:00','.','.','.','DENIED'), (27,27,80,53,'TREVOR','1999-01-27 00:00:00','.','.','.','APPROVED'), (28,28,902,55,'ROBERT','1999-01-28 00:00:00','.','.','.','DENIED'), (29,29,906,57,'JOHN','1999-01-29 00:00:00','.','.','.','APPROVED')";
-//        try {
-//            this.stmt.execute(formSamples);
-//            this.stmt.execute(appSamples);
-//        }catch(SQLException e){
-//            if (!e.getSQLState().equals("23505"))
-//                e.printStackTrace();
-//        }
-//    }
 }

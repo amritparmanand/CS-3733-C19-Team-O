@@ -1,5 +1,11 @@
 package Datatypes;
 
+/**
+ * @author Robert Rinearson & Percy Jiang
+ * @version It 1
+ * Progress bar tracker for manufacturer application
+ */
+
 public class ProgressBar {
 
     private float alpha;

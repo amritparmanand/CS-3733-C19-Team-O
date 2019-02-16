@@ -1,20 +1,25 @@
 package Datatypes;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.awt.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * @author Percy Jiang & Gabe Entov
+ * @version It 2
+ * @since It 1
+ * Class for an agent account
+ */
 public class Agent extends Account {
     private int ttbID;
     private ArrayList<Form> workingForms = new ArrayList<>();
     private boolean hasFetchedForms = false;
 
-    // Why are there 2 constructors?
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
@@ -25,9 +30,33 @@ public class Agent extends Account {
         this.ttbID = ttbID;
         this.hasFetchedForms = hasFetchedForms;
 
-        if(this.hasFetchedForms) {
+        if (this.hasFetchedForms) {
             this.getWorkingForms();
         }
+    }
+
+    public Agent(int id, Connection conn) {
+        super("","","","","");
+
+        try {
+            String getData = "SELECT * FROM AGENTS WHERE TTBID = " + id;
+            PreparedStatement stmt = conn.prepareStatement(getData);
+
+            ResultSet result = stmt.executeQuery();
+
+            result.next();
+            super.setUsername(result.getString("username"));
+            super.setPassword(result.getString("password"));
+            super.setFullName(result.getString("fullName"));
+            super.setEmail(result.getString("email"));
+            super.setPhone(result.getString("phone"));
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        this.ttbID = id;
     }
 
     public int getTtbID() {
@@ -63,30 +92,36 @@ public class Agent extends Account {
     // As long as there are less than 3 forms in workingForms
     // Query the database to select forms where ttb ID is empty
     // Insert this agent's ID into the selected forms
-    public void assignNewForms(Connection conn) {
+    public void assignNewForms(Connection conn, int limit) {
+
         if (!hasFetchedForms)
             getAssignedForms(conn);
 
-        if (this.workingForms.size() < 3) {
+        System.out.println("working forms size:"+workingForms.size());
+        System.out.println("limit:"+limit);
+        if (this.workingForms.size() < limit) {
             try {
-                String unassignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID IS NULL";
-                PreparedStatement ps = conn.prepareStatement(unassignedForms);
+                String unassignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID " +
+                        "WHERE APPLICATIONS.TTBID IS NULL";
+                Statement stmt = conn.createStatement();
 
-                ResultSet rs = ps.executeQuery();
+                ResultSet rs = stmt.executeQuery(unassignedForms);
 
-                String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
-                while (rs.next() && this.workingForms.size() < 3) {
-                    insertingAgentID = insertingAgentID.concat(rs.getInt("formID") + ", ");
+
+                while (rs.next() && this.workingForms.size() < limit) {
+                    String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
+                    insertingAgentID = insertingAgentID.concat(rs.getLong("FORMID") + ")");
                     this.workingForms.add(formFromResultSet(rs));
+                    System.out.println(insertingAgentID);
+                    stmt = conn.createStatement();
+                    stmt.executeUpdate(insertingAgentID);
                 }
 
-                ps.close();
+//                stmt.close();
 
-                insertingAgentID = insertingAgentID.substring(0, insertingAgentID.length() - 2).concat(")");
-
-                ps = conn.prepareStatement(insertingAgentID);
-                ps.executeUpdate();
-                ps.close();
+//                stmt = conn.createStatement();
+//                stmt.executeUpdate(insertingAgentID);
+                stmt.close();
             } catch (SQLException e) {
                 if (!e.getSQLState().equals("X0Y32"))
                     e.printStackTrace();
@@ -102,12 +137,12 @@ public class Agent extends Account {
     // Call formFromResultSet into object and add it into the working Forms of this agent
     public void getAssignedForms(Connection conn) {
         try {
-            String assignedForms = "SELECT * FROM APPLICATIONS NATURAL RIGHT JOIN FORMS WHERE TTBID = " + this.getTtbID();                ;
+            String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE APPLICATIONS.TTBID = " + this.getTtbID();
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next() && this.workingForms.size() < 3) { //extraneous < 3 because only three will ever be assigned
+            while (rs.next()) {
                 workingForms.add(formFromResultSet(rs));
             }
             ps.close();
@@ -118,28 +153,44 @@ public class Agent extends Account {
         }
     }
 
-    // Parse a Form from database to object
+    //    // Parse a Form from database to object
     private Form formFromResultSet(ResultSet rs) throws SQLException {
-        return new Form(rs.getInt("formID"),
-                rs.getInt("repID"),
-                rs.getInt("brewerNumber"),
-                rs.getString("productSource"),
-                rs.getInt("serialNumber"),
-                rs.getString("productType"),
-                rs.getString("brandName"),
-                rs.getString("fancifulName"),
-                rs.getString("applicantName"),
-                rs.getString("mailingAddress"),
-                rs.getString("formula"),
-                rs.getString("grapeVarietal"),
-                rs.getString("appellation"),
-                rs.getString("phoneNumber"),
-                rs.getString("emailAddress"),
-                rs.getString("dateOfApplication"),
-                rs.getString("printName"),
-                rs.getInt("beerWineSpirit"),
-                rs.getDouble("alcoholPercent"),
-                rs.getInt("vintageYear"),
-                rs.getDouble("pHLevel"));
+        Form f = new Form();
+        f.setFormID(rs.getLong("formID"));
+        f.setRepID(rs.getInt("repID"));
+        f.setBrewerNumber(rs.getString("brewerNumber"));
+        f.setProductSource(rs.getString("productSource"));
+        f.setSerialNumber(rs.getString("serialNumber"));
+        f.setProductType(rs.getString("productType"));
+        f.setBrandName(rs.getString("brandName"));
+        f.setFancifulName(rs.getString("fancifulName"));
+        f.setApplicantName(rs.getString("applicantName"));
+        f.setMailingAddress(rs.getString("mailingAddress"));
+        f.setFormula(rs.getString("formula"));
+        f.setGrapeVarietal(rs.getString("grapeVarietal"));
+        f.setAppellation(rs.getString("appellation"));
+        f.setPhoneNumber(rs.getString("phoneNumber"));
+        f.setEmailAddress(rs.getString("emailAddress"));
+        f.setCertificateOfApproval(rs.getBoolean("certificateOfApproval"));
+        f.setCertificateOfExemption(rs.getBoolean("certificateOfExemption"));
+        f.setOnlyState(rs.getString("onlyState"));
+        f.setDistinctiveLiquor(rs.getBoolean("distinctiveLiquor"));
+        f.setBottleCapacity(rs.getString("bottleCapacity"));
+        f.setTtbID(rs.getInt("TTBID"));
+        f.setDateOfApplication(rs.getString("dateOfApplication"));
+        f.setPrintName(rs.getString("printName"));
+        f.setBeerWineSpirit(rs.getString("beerWineSpirit"));
+        f.setAlcoholPercent(rs.getString("alcoholPercent"));
+        f.setVintageYear(rs.getString("vintageYear"));
+        f.setpHLevel(rs.getString("pHLevel"));
+        LabelImage formLabel = new LabelImage();
+        Blob picture = rs.getBlob("labelImage");
+        if (picture != null) {
+            InputStream is = picture.getBinaryStream();
+        }
+//        f.getLabel().setLabelImage(img);
+//        Image img = new Image();
+
+        return f;
     }
 }

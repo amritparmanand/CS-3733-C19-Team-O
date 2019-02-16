@@ -1,6 +1,6 @@
 import Managers.*;
 
-import UI.LoginPage;
+import UI.Controllers.LoginPage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -21,7 +21,17 @@ public class Main extends Application {
 
         dbM.generateTables();
         dbM.createSequences();
-//        dbM.insertSamples();
+        dbM.insertDefault();
+        if(dbM.isFormsEmpty())
+            dbM.generateTablesForms();
+        else if(!dbM.isFormsEmpty())
+            System.out.println("Forms are populated!");
+
+        if(dbM.isAppsEmpty())
+            dbM.generateTablesApplication();
+        else if(!dbM.isAppsEmpty())
+            System.out.println("Apps are populated");
+
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM), "UI");
