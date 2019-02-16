@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
@@ -52,11 +54,15 @@ public class aApplicationFormPg4 {
 
     @FXML public void initialize () {
         Form form = this.form;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         dateOfApplication.setText(form.getDateOfApplication());
         dateOfApplication.setEditable(false);
         printName.setText(form.getPrintName());
         printName.setEditable(false);
         signature.setText(form.getSignature());
+        if(!form.getDateIssued().isEmpty()){
+            dateIssued.setValue(LocalDate.parse(form.getDateIssued(), formatter));
+        }
     }
 
     @FXML
@@ -67,8 +73,8 @@ public class aApplicationFormPg4 {
 
     @FXML
     public void back() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
-        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg3.fxml"));
+        sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form));
     }
     @FXML
     public void goToHomePage() throws IOException {
@@ -79,6 +85,7 @@ public class aApplicationFormPg4 {
     @FXML
     public void acceptForm() throws IOException {
         form.setSignature(signature.getText());
+        form.setDateIssued(dateIssued.getValue().toString());
         cacheM.approveForm(cacheM.getDbM().getConnection());
     }
 
@@ -86,6 +93,7 @@ public class aApplicationFormPg4 {
     @FXML
     public void denyForm() throws IOException {
         form.setSignature(signature.getText());
+        form.setDateIssued(dateIssued.getValue().toString());
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 

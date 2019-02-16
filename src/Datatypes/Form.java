@@ -78,6 +78,7 @@ public class Form {
         this.ttbID = 0;
         this.bottleCapacity = "";
         this.signature = "";
+        this.dateIssued = "";
     }
 
     // Getters and setters
