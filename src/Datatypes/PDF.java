@@ -4,6 +4,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 
 import java.io.File;
@@ -17,7 +18,7 @@ import java.io.IOException;
 
 public class PDF {
 
-    File rawPDF = new File("C:\\Users\\jiang\\Documents\\CS3733\\CS-3733-C19-Team-O-Iteration-1\\src\\Resources\\ttbpdf.pdf");
+    File rawPDF = new File("/Users/robertrinearson/Documents/iteration2/src/Resources/ttbpdf.pdf");
     PDDocument formPDF = PDDocument.load(rawPDF);
 
     PDPage formPage1 = formPDF.getPage(0);
@@ -47,6 +48,11 @@ public class PDF {
 //        contentStream.close();
 //        formPDF.save(new File("./testfile.pdf"));
 //        formPDF.close();
+    }
+
+    public void appendImage(String labelPath, float x, float y, float height, float width) throws IOException{
+        PDImageXObject pdfLabel = PDImageXObject.createFromFile(labelPath, formPDF );
+        contentStream.drawImage(pdfLabel, x, y, height, width);
     }
 
     public void close() throws IOException {

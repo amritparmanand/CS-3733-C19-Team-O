@@ -68,7 +68,7 @@ public class mOnePageForm {
     @FXML private JFXTextField dateOfApplication;
     @FXML private JFXTextField applicantSig;
     @FXML private JFXTextField applicantNamePrint;
-    private LabelImage image = new LabelImage();
+    @FXML private LabelImage image = new LabelImage();
 
     @FXML public boolean validFormPhone(String phoneNumber){
         if(phoneNumber.matches("^[0]{8,20}$")){
@@ -100,8 +100,65 @@ public class mOnePageForm {
 
         pdf.open();
 
+        pdf.appendText(repID.getText(), 38, 890, 10);
+        pdf.appendText(brewerNO.getText(), 24, 880, 10);
+
+        if(domestic.isSelected())
+            pdf.appendText("X", 146,870, 10);
+        else
+            pdf.appendText("X", 180,870, 10);
+
+        pdf.appendText(Character.toString(serialNumber.getText().charAt(0)), 24, 811, 10);
+        pdf.appendText(Character.toString(serialNumber.getText().charAt(1)), 42, 811, 10);
+        pdf.appendText(Character.toString(serialNumber.getText().charAt(2)), 70, 811, 10);
+        pdf.appendText(Character.toString(serialNumber.getText().charAt(3)), 88, 811, 10);
+        pdf.appendText(Character.toString(serialNumber.getText().charAt(4)), 106, 811, 10);
+        pdf.appendText(Character.toString(serialNumber.getText().charAt(5)), 122, 811, 10);
+
+        //type of product
+        if (wine.isSelected())
+            pdf.appendText("X", 154,835, 10);
+        else if(distilled.isSelected())
+            pdf.appendText("X", 154,824, 10);
+        else
+            pdf.appendText("X", 154, 813, 10);
+
+
         pdf.appendText(brandName.getText(), 24,780, 10);
-        pdf.appendText(fancifulName.getText(), 24,740, 10);
+        pdf.appendText(fancifulName.getText(), 24,755, 10);
+        pdf.appendText(printName.getText(), 268, 846, 10);
+        pdf.appendText(mailAddress.getText(), 268,780, 10);
+        pdf.appendText(formula.getText(), 24,722, 10);
+        pdf.appendText(grapes.getText(), 153, 722, 10);
+        pdf.appendText(appellation.getText(), 24,688, 10);
+        pdf.appendText(email.getText(), 153, 652, 10);
+        pdf.appendText(phoneNumber.getText(), 24, 652, 10);
+
+
+        //type of application
+        if(certificateOfApproval.isSelected()){
+            pdf.appendText("X", 404, 730, 10);
+        }
+        if(certificateOfExemption.isSelected()){
+            pdf.appendText("X", 404,720, 10);
+            pdf.appendText(onlyState.getText(), 451, 706, 10);
+        }
+        if(DistinctiveLiquor.isSelected()){
+            pdf.appendText("X", 404, 700, 10);
+            pdf.appendText(bottleCapacity.getText(), 541, 686, 10);
+        }
+        if(resubmission.isSelected()){
+            pdf.appendText("X", 404,668, 10);
+            pdf.appendText(ttbID.getText(), 437, 657, 10);
+        }
+
+        //Label
+        pdf.appendImage(image.getLabelFile().getPath(), 90, 66, 200, 200);
+
+        pdf.appendText(dateOfApplication.getText(), 24, 500, 10);
+        //pdf.appendText(applicantSig.getText(), 138, 500, 10);
+        pdf.appendText(applicantNamePrint.getText(), 366, 500, 10);
+
 
         pdf.close();
 
