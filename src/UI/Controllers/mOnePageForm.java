@@ -338,6 +338,7 @@ public class mOnePageForm {
             goToHomePage();
         }
 
+        System.out.println("form submitted!");
     }
 
 
