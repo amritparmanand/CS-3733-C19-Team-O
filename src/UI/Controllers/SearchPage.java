@@ -364,6 +364,7 @@ public class SearchPage {
         System.out.println(";)");
 
         String path = "";
+        String delimiter = ";";
 
         JFileChooser chooser = new JFileChooser();
         String choosertitle = "Select a destination";
@@ -390,7 +391,7 @@ public class SearchPage {
                     //holder variable to hold the type of alcohol for printing
                     String alcoholType = s.getProductType();
 
-                    writer.println(s.getFancifulName() + ";" + s.getCompanyName()+ ";" + s.getAlcoholType() + ";" + alcoholType + ";" + s.getPhLevel() + ";" + s.getAlcohol() + ";" + s.getYear());
+                    writer.println(s.getFancifulName() + delimiter + s.getCompanyName()+ delimiter + s.getAlcoholType() + delimiter + alcoholType + delimiter + s.getPhLevel() + delimiter + s.getAlcohol() + delimiter + s.getYear());
                 }
                 writer.close();
             }

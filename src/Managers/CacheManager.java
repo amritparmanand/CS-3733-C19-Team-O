@@ -23,6 +23,8 @@ public class CacheManager {
     private int formLimit;
     private String passer;
     private String receiver;
+    private String fuzzy;
+    private String format;
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
@@ -96,4 +98,11 @@ public class CacheManager {
         form.passForm(connection, f, r);
     }
 
+    public void setFuzzy(String fuzzy) {
+        this.fuzzy = fuzzy;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
 }
