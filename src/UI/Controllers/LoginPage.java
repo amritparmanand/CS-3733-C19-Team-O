@@ -243,7 +243,15 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML
     public void help() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/helpBox.fxml"));
-        sceneM.changeScene(loader, new helpBox(sceneM, cacheM));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchResultPopup.fxml"));
+        helpPopWindow(root);
+    }
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 }
