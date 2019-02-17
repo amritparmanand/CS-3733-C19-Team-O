@@ -5,10 +5,13 @@ import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -42,13 +45,29 @@ public class aApplicationFormPg3 {
     @FXML private JFXButton uploadImage;
     @FXML private JFXTextArea Q14Comment;
     @FXML private JFXTextArea Q15Comment;
+    @FXML private JFXTextField onlyState;
+    @FXML private JFXTextField ttbID;
+    @FXML private JFXTextField bottleCapacity; //will be int, for future reference
+    @FXML private JFXCheckBox certificateOfApproval;
+    @FXML private JFXCheckBox certificateOfExemption;
+    @FXML private JFXCheckBox DistinctiveLiquor;
+    @FXML private JFXCheckBox resubmission;
+    @FXML private ImageView imagePreview;
+    @FXML private Label errorLabel;
     @FXML private JFXTextField receiver;
 
 
+    @SuppressWarnings("Duplicates")
     public void initialize(){
-        Form form = this.form;
-
-
+        Form form = cacheM.getForm();
+        certificateOfApproval.setSelected(form.getCertificateOfApproval());
+        certificateOfExemption.setSelected(form.getCertificateOfExemption());
+        DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
+        resubmission.setSelected(form.getResubmission());
+        certificateOfApproval.setDisable(true);
+        certificateOfExemption.setDisable(true);
+        DistinctiveLiquor.setDisable(true);
+        resubmission.setDisable(true);
     }
     @FXML
     public void search() throws IOException {

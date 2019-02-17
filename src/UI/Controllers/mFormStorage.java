@@ -90,22 +90,27 @@ public class mFormStorage {
                 loadForms.getChildren().add(formResult);
                 formResult.setId("Alcoholbox");
 
-//                formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent event) {
-//                        try {
-//                            aApplicationFormControl(form);
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
+                formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        try {
+                            mApplicationFormControl(form);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }}
 
+    @FXML
+    public void mApplicationFormControl(Form form) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
+    }
     @FXML
     public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
