@@ -76,7 +76,12 @@ public class CacheManager {
 
     // Form
     public void approveForm(Connection conn){
+        System.out.println("cManager approve Form");
+        System.out.println(form.getFormID());
+        System.out.println(form.getSignature());
+        System.out.println(form.getDateIssued());
         form.approve(conn);
+
     }
     public void denyForm(Connection conn){
         form.deny(conn);

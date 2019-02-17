@@ -53,6 +53,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextArea Q6Comment;
     @FXML private JFXTextArea Q7Comment;
     @FXML private JFXTextField receiver;
+    @FXML private JFXTextField TTBID;
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
@@ -62,6 +63,7 @@ public class aApplicationFormPg1 {
                 domestic.setSelected(true);
             case "IMPORTED":
                 imported.setSelected(true);
+
         }
         switch(form.getProductType()){
             case "WINE":
