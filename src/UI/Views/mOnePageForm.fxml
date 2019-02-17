@@ -63,7 +63,7 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
-                              <JFXButton prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
+                              <JFXButton prefHeight="32.0" prefWidth="134.0" onMousePressed="#saveDraft" styleClass="buttonStyle" text="Save Draft" />
                               <Button fx:id="back1" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
                                  <VBox.margin>
                                     <Insets top="20.0" />
@@ -111,7 +111,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="1. REP. ID. NO. (If any)" />
-                                          <JFXTextField fx:id="repID1" prefHeight="26.0" prefWidth="554.0" />
+                                          <JFXTextField fx:id="repID" prefHeight="26.0" prefWidth="554.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -123,7 +123,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="2. Plant Registry/Basic Permit/ Brewer's NO. (Required)" />
-                                          <JFXTextField fx:id="brewerNO1" />
+                                          <JFXTextField fx:id="brewerNO" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -137,15 +137,15 @@
                                           <Label styleClass="labeltext" text="3. Source of Product (Required)" />
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <JFXRadioButton fx:id="domestic1" text="Domestic">
+                                                <JFXRadioButton fx:id="domestic" text="Domestic">
                                                    <HBox.margin>
                                                       <Insets right="20.0" />
                                                    </HBox.margin>
                                                    <toggleGroup>
-                                                      <ToggleGroup fx:id="DI1" />
+                                                      <ToggleGroup fx:id="DI" />
                                                    </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="imported1" text="Imported" toggleGroup="$DI1" />
+                                                <JFXRadioButton fx:id="imported" text="Imported" toggleGroup="$DI" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -156,7 +156,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="4. Serial Number (Required)" />
-                                          <JFXTextField fx:id="serialNumber1" />
+                                          <JFXTextField fx:id="serialNumber" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -168,7 +168,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" />
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <JFXRadioButton fx:id="wine1" text="Wine">
+                                                <JFXRadioButton fx:id="wine" text="Wine">
                                                    <toggleGroup>
                                                       <ToggleGroup fx:id="WDM1" />
                                                    </toggleGroup>
@@ -176,7 +176,7 @@
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="distilled1" text="Distilled Spirits">
+                                                <JFXRadioButton fx:id="distilled" text="Distilled Spirits">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
@@ -184,7 +184,7 @@
                                                       <ToggleGroup fx:id="WDM11" />
                                                    </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="malt1" text="Malt Beverages" toggleGroup="$WDM11">
+                                                <JFXRadioButton fx:id="malt" text="Malt Beverages" toggleGroup="$WDM11">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
@@ -199,7 +199,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="6. Brand Name (Required)" />
-                                          <JFXTextField fx:id="brandName1" />
+                                          <JFXTextField fx:id="brandName" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -208,7 +208,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="7. Fanciful Name (If any)" />
-                                          <JFXTextField fx:id="fancifulName1" />
+                                          <JFXTextField fx:id="fancifulName" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -217,7 +217,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name and Address of Applicant as shown on Plant Registry, Basic Permit, or Brewer's Notice. Include Approved DBA or Tradename if Used on the Label (Required)" wrappingWidth="580.0" />
-                                          <JFXTextField fx:id="printName1" />
+                                          <JFXTextField fx:id="printName" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -226,7 +226,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="8a. Mailing Address if Different" />
-                                          <JFXTextField fx:id="mailAddress1" />
+                                          <JFXTextField fx:id="mailAddress" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -235,7 +235,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="9. Formula" />
-                                          <JFXTextField fx:id="formula1" />
+                                          <JFXTextField fx:id="formula" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -244,16 +244,16 @@
                                     <VBox fx:id="varietalVBox1" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="10. Grape Variental(s) Wine Only" />
-                                          <JFXTextField fx:id="grapes1" />
+                                          <JFXTextField fx:id="grapes" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox fx:id="appellationVBox1" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                    <VBox fx:id="appellationVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="11. Wine Appellation (If on label)" />
-                                          <JFXTextField fx:id="appellation1" />
+                                          <JFXTextField fx:id="appellation" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -262,7 +262,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="12. Phone Number" />
-                                          <JFXTextField fx:id="phoneNumber1" />
+                                          <JFXTextField fx:id="phoneNumber" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -271,7 +271,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="13. Email Address" />
-                                          <JFXTextField fx:id="email1" />
+                                          <JFXTextField fx:id="email" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -284,7 +284,7 @@
                                              <children>
                                                 <VBox prefWidth="400.0">
                                                    <children>
-                                                      <JFXCheckBox fx:id="certificateOfApproval1" text="CERTIFICATE OF LABEL APPROVAL" />
+                                                      <JFXCheckBox fx:id="certificateOfApproval" text="CERTIFICATE OF LABEL APPROVAL" />
                                                    </children>
                                                    <FlowPane.margin>
                                                       <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -292,11 +292,11 @@
                                                 </VBox>
                                                 <VBox prefWidth="400.0">
                                                    <children>
-                                                      <JFXCheckBox fx:id="certificateOfExemption1" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
+                                                      <JFXCheckBox fx:id="certificateOfExemption" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
                                                       <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                          <children>
                                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="&quot;For sale in " />
-                                                            <JFXTextField fx:id="onlyState1" prefHeight="26.0" prefWidth="45.0" />
+                                                            <JFXTextField fx:id="onlyState" prefHeight="26.0" prefWidth="45.0" />
                                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text=" only&quot; (Fill in state abbreviation)" />
                                                          </children>
                                                       </HBox>
@@ -307,11 +307,11 @@
                                                 </VBox>
                                                 <VBox prefWidth="400.0">
                                                    <children>
-                                                      <JFXCheckBox fx:id="DistinctiveLiquor1" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
+                                                      <JFXCheckBox fx:id="DistinctiveLiquor" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
                                                       <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="484.0">
                                                          <children>
                                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TOTAL BOTTLE CAPACITY BEFORE CLOSURE " />
-                                                            <JFXTextField fx:id="bottleCapacity1" prefHeight="26.0" prefWidth="94.0" />
+                                                            <JFXTextField fx:id="bottleCapacity" prefHeight="26.0" prefWidth="94.0" />
                                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="(Fill in amount)" />
                                                          </children>
                                                       </HBox>
@@ -322,11 +322,11 @@
                                                 </VBox>
                                                 <VBox prefWidth="400.0">
                                                    <children>
-                                                      <JFXCheckBox fx:id="resubmission1" text="RESUBMISSION AFTER REJECTION" />
+                                                      <JFXCheckBox fx:id="resubmission" text="RESUBMISSION AFTER REJECTION" />
                                                       <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                          <children>
                                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TTB ID " />
-                                                            <JFXTextField fx:id="ttbID1" />
+                                                            <JFXTextField fx:id="ttbID" />
                                                          </children>
                                                       </HBox>
                                                    </children>
@@ -349,14 +349,14 @@
                                                 <Insets top="10.0" />
                                              </VBox.margin>
                                              <children>
-                                                <ImageView fx:id="imagePreview1" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="imagePreview" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                              <styleClass>
                                                 <String fx:value="textfield" />
                                                 <String fx:value="innerShadow" />
                                              </styleClass>
                                           </Pane>
-                                          <JFXButton fx:id="uploadImageButton1" onMouseClicked="#uploadImage" onMouseReleased="#uploadImage" styleClass="buttonStyle" text="Upload" />
+                                          <JFXButton fx:id="uploadImageButton" onMouseClicked="#uploadImage" onMouseReleased="#uploadImage" styleClass="buttonStyle" text="Upload" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -377,17 +377,17 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" />
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <JFXRadioButton fx:id="wine21" text="Wine" toggleGroup="$WDM11">
+                                                <JFXRadioButton fx:id="wine2" text="Wine" toggleGroup="$WDM11">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="spirits21" text="Liquor" toggleGroup="$WDM11">
+                                                <JFXRadioButton fx:id="spirits2" text="Liquor" toggleGroup="$WDM11">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="beer21" text="Beer" toggleGroup="$WDM11">
+                                                <JFXRadioButton fx:id="beer2" text="Beer" toggleGroup="$WDM11">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
@@ -402,25 +402,25 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="Alcohol Percentage" />
-                                          <JFXTextField fx:id="alcoholPercentage1" />
+                                          <JFXTextField fx:id="alcoholPercentage" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox fx:id="phVBox1" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                    <VBox fx:id="phVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="pH Level" />
-                                          <JFXTextField fx:id="phLevel1" />
+                                          <JFXTextField fx:id="phLevel" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox fx:id="vintageVBox1" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                    <VBox fx:id="vintageVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="Vintage Year" />
-                                          <JFXTextField fx:id="vintageYear1" />
+                                          <JFXTextField fx:id="vintageYear" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -434,7 +434,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label text="16. Date of Application" />
-                                          <JFXTextField fx:id="dateOfApplication1" />
+                                          <JFXTextField fx:id="dateOfApplication" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -443,7 +443,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label text="17. Signature of Applicant or Authorized Agent" />
-                                          <JFXTextField fx:id="dateOfApplication11" />
+                                          <JFXTextField fx:id="dateOfApplication1" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -452,7 +452,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label text="18. Print Name of Applicant or Authorized Agent" />
-                                          <JFXTextField fx:id="applicantNamePrint2" />
+                                          <JFXTextField fx:id="applicantNamePrint" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

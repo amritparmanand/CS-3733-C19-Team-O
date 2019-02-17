@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -58,20 +59,39 @@ public class mOnePageForm {
     @FXML private JFXTextField email;
     @FXML private JFXTextField onlyState;
     @FXML private JFXTextField ttbID;
-    @FXML private JFXTextField bottleCapacity; //will be int, for future reference
+    @FXML private JFXTextField bottleCapacity;
     @FXML private JFXCheckBox certificateOfApproval;
     @FXML private JFXCheckBox certificateOfExemption;
     @FXML private JFXCheckBox DistinctiveLiquor;
     @FXML private JFXCheckBox resubmission;
     @FXML private ImageView imagePreview;
-    @FXML private Label errorLabel;
     @FXML private JFXTextField dateOfApplication;
     @FXML private JFXTextField applicantSig;
     @FXML private JFXTextField applicantNamePrint;
-
     private LabelImage image = new LabelImage();
 
+    @FXML public boolean validFormPhone(String phoneNumber){
+        if(phoneNumber.matches("^[0]{8,20}$")){
+            return false;
+        } else if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){
+            return true;
+        }else
+            return false;
 
+    }
+    @FXML public boolean validFormEmail(String email){
+        if(email.matches("^([a-zA-Z0-9_\\-\\.]+)@+([a-zA-Z]+).+([a-zA-Z]{2,3})$")){
+            return true;
+        }else return false;
+    }
+    @FXML public void wineFieldCheck(){
+        if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
+            grapes.setEditable(false);
+            grapes.setPromptText("n/a");
+            appellation.setEditable(false);
+            appellation.setPromptText("n/a");
+        }
+    }
 
     @FXML public void savePDF() throws IOException {
 
@@ -91,6 +111,7 @@ public class mOnePageForm {
     @FXML public void saveDraft(){
         Form form = cacheM.getForm();
 
+        // Page 1
         if (domestic.isSelected() || imported.isSelected()) {
             if(domestic.isSelected()) {
                 form.setProductSource("DOMESTIC");
@@ -99,7 +120,6 @@ public class mOnePageForm {
                 form.setProductSource("IMPORTED");
             }
         }
-
         if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
             if(wine.isSelected()){
                 form.setProductType("WINE");
@@ -111,7 +131,6 @@ public class mOnePageForm {
                 form.setProductType("MALT");
             }
         }
-
         String type2 = "WINE";
         if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
             if(wine2.isSelected())
@@ -129,7 +148,6 @@ public class mOnePageForm {
                 form.setVintageYear(null);
             }
         }
-
         if (!repID.getText().isEmpty()){
             form.setRepID(Integer.parseInt(repID.getText()));
         }
@@ -147,6 +165,73 @@ public class mOnePageForm {
         }
         if (!alcoholPercentage.getText().isEmpty()) {
             form.setAlcoholPercent(alcoholPercentage.getText());
+        }
+
+        // Page 2
+        if (!printName.getText().isEmpty()) {
+            form.setPrintName(printName.getText());
+        }
+        if (!mailAddress.getText().isEmpty()) {
+            form.setMailingAddress(mailAddress.getText());
+        }
+        if (!formula.getText().isEmpty()) {
+            form.setFormula(formula.getText());
+        }
+        if (!grapes.getText().isEmpty()) {
+            form.setGrapeVarietal(grapes.getText());
+        }
+        if (!appellation.getText().isEmpty()) {
+            form.setAppellation(appellation.getText());
+        }
+        if (!phoneNumber.getText().isEmpty()) {
+            if (validFormPhone(phoneNumber.getText().trim())) {
+                form.setPhoneNumber(phoneNumber.getText().trim());
+                System.out.println("valid phone number");
+            }
+            else {
+                System.out.println("invalid phone number");
+            }
+        }
+        if (!email.getText().isEmpty()) {
+            if (validFormEmail(email.getText().trim())) {
+                form.setEmailAddress(email.getText());
+                System.out.println("valid email");
+            }
+            else {
+                System.out.println("invalid email");
+            }
+        }
+        if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
+            form.setGrapeVarietal("");
+            form.setAppellation("");
+        }
+
+        // Page 3
+        form.setCertificateOfApproval(certificateOfApproval.isSelected());
+        form.setCertificateOfExemption(certificateOfExemption.isSelected());
+        if(certificateOfExemption.isSelected()) {
+            form.setOnlyState(onlyState.getText());
+        }
+        else {
+            form.setOnlyState(null);
+        }
+        form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
+        form.setResubmission(resubmission.isSelected());
+        if(!resubmission.isSelected())
+            form.setTtbID(0);
+        else
+            form.setTtbID(Integer.parseInt(ttbID.getText()));
+        if (!bottleCapacity.getText().isEmpty()) {
+            form.setBottleCapacity(bottleCapacity.getText());
+        }
+        form.setLabel(image);
+
+        // Page 4
+        if (!dateOfApplication.getText().isEmpty()) {
+            dateOfApplication.setText(form.getDateOfApplication());
+        }
+        if (!applicantNamePrint.getText().isEmpty()) {
+            applicantNamePrint.setText(form.getApplicantName());
         }
 
         cacheM.setForm(form);
@@ -173,16 +258,26 @@ public class mOnePageForm {
 
     @SuppressWarnings("Duplicates") @FXML public void submit()throws IOException{
         saveDraft();
-        
-        try{
-            cacheM.insertForm(cacheM.getDbM().getConnection());
-        }catch(SQLException e){
-            e.printStackTrace();
+
+        if (!validFormEmail(email.getText().trim()) || !validFormPhone(phoneNumber.getText().trim())) {
+            System.out.println("Unable to submit. Invalid fields entered");
+        }
+        else {
+            System.out.println("save Draft executed");
+
+            try{
+                cacheM.insertForm(cacheM.getDbM().getConnection());
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+
+            Form cleanForm = new Form();
+            cacheM.setForm(cleanForm);
+            goToHomePage();
         }
 
-        Form cleanForm = new Form();
-        cacheM.setForm(cleanForm);
-        goToHomePage();
     }
+
+
 
 }
