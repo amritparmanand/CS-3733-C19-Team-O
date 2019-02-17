@@ -52,14 +52,12 @@ public class mApplicationFormPg4 {
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
         System.out.println("starting");
-        dateOfApplication.setText(form.getDateOfApplication());
         if(!form.getApplicantName().equals(""))
-            applicantNamePrint.setText(form.getApplicantName());
+            applicantNamePrint.setText(form.getPrintName());
         else
             applicantNamePrint.setText(manAcc.getFullName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         System.out.println("starting");
-        applicantNamePrint.setText(form.getPrintName());
         if(!form.getDateOfApplication().isEmpty()){
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
