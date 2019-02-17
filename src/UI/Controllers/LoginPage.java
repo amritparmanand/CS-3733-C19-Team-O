@@ -250,6 +250,7 @@ public class LoginPage implements SerialPortDataListener {
         Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpBox.fxml"));
         helpPopWindow(root);
     }
+
     public void helpPopWindow(Parent root){
         Stage stage;
         stage = new Stage();
