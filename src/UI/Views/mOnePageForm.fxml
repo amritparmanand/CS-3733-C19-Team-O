@@ -77,7 +77,7 @@
                         <Insets top="20.0" />
                      </HBox.margin>
                   </VBox>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="1400.0" prefWidth="650.0" vvalue="1.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="1400.0" prefWidth="650.0" vvalue="0">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
@@ -443,7 +443,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label text="17. Signature of Applicant or Authorized Agent" />
-                                          <JFXTextField fx:id="dateOfApplication1" />
+                                          <JFXTextField fx:id="applicantSig" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -541,92 +541,92 @@
                                                 <JFXTextArea fx:id="Q7Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment71" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment71" animated="false" text="Question 8 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment1" />
+                                                <JFXTextArea fx:id="Q8Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment72" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment72" animated="false" text="Question 9 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment2" />
+                                                <JFXTextArea fx:id="Q9Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment73" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment73" animated="false" text="Question 10 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment3" />
+                                                <JFXTextArea fx:id="Q10Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment74" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment74" animated="false" text="Question 11 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment4" />
+                                                <JFXTextArea fx:id="Q11Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment75" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment75" animated="false" text="Question 12 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment5" />
+                                                <JFXTextArea fx:id="Q12Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment76" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment76" animated="false" text="Question 13 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment6" />
+                                                <JFXTextArea fx:id="Q13Comment6" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment77" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment77" animated="false" text="Question 14 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment7" />
+                                                <JFXTextArea fx:id="Q14Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment78" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment78" animated="false" text="Question 15 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment8" />
+                                                <JFXTextArea fx:id="Q15Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment79" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment79" animated="false" text="Question 16 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment9" />
+                                                <JFXTextArea fx:id="Q16Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment710" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment710" animated="false" text="Question 17 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment10" />
+                                                <JFXTextArea fx:id="Q17Comment" />
                                              </content>
                                           </TitledPane>
-                                          <TitledPane fx:id="acomment711" animated="false" text="Question 7 Comments">
+                                          <TitledPane fx:id="acomment711" animated="false" text="Question 18 Comments">
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                              <content>
-                                                <JFXTextArea fx:id="Q7Comment11" />
+                                                <JFXTextArea fx:id="Q18Comment" />
                                              </content>
                                           </TitledPane>
                                        </panes>

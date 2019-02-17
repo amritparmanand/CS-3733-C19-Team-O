@@ -101,12 +101,12 @@ public class mOnePageForm {
         pdf.open();
 
         pdf.appendText(repID.getText(), 38, 890, 10);
-        pdf.appendText(brewerNO.getText(), 24, 880, 10);
+        pdf.appendText(brewerNO.getText(), 24, 865, 10);
 
         if(domestic.isSelected())
-            pdf.appendText("X", 146,870, 10);
+            pdf.appendText("X", 143,870, 10);
         else
-            pdf.appendText("X", 180,870, 10);
+            pdf.appendText("X", 190,870, 10);
 
         pdf.appendText(Character.toString(serialNumber.getText().charAt(0)), 24, 811, 10);
         pdf.appendText(Character.toString(serialNumber.getText().charAt(1)), 42, 811, 10);
@@ -117,11 +117,11 @@ public class mOnePageForm {
 
         //type of product
         if (wine.isSelected())
-            pdf.appendText("X", 154,835, 10);
+            pdf.appendText("X", 146,833, 10);
         else if(distilled.isSelected())
-            pdf.appendText("X", 154,824, 10);
+            pdf.appendText("X", 146,828, 10);
         else
-            pdf.appendText("X", 154, 813, 10);
+            pdf.appendText("X", 146, 823, 10);
 
 
         pdf.appendText(brandName.getText(), 24,780, 10);
@@ -137,26 +137,26 @@ public class mOnePageForm {
 
         //type of application
         if(certificateOfApproval.isSelected()){
-            pdf.appendText("X", 404, 730, 10);
+            pdf.appendText("X", 398, 736, 10);
         }
         if(certificateOfExemption.isSelected()){
-            pdf.appendText("X", 404,720, 10);
-            pdf.appendText(onlyState.getText(), 451, 706, 10);
+            pdf.appendText("X", 398,720, 10);
+            pdf.appendText(onlyState.getText(), 451, 710, 10);
         }
         if(DistinctiveLiquor.isSelected()){
-            pdf.appendText("X", 404, 700, 10);
-            pdf.appendText(bottleCapacity.getText(), 541, 686, 10);
+            pdf.appendText("X", 398, 700, 10);
+            pdf.appendText(bottleCapacity.getText(), 541, 690, 10);
         }
         if(resubmission.isSelected()){
-            pdf.appendText("X", 404,668, 10);
-            pdf.appendText(ttbID.getText(), 437, 657, 10);
+            pdf.appendText("X", 398,668, 10);
+            pdf.appendText(ttbID.getText(), 437, 658, 10);
         }
 
         //Label
-        pdf.appendImage(image.getLabelFile().getPath(), 90, 66, 200, 200);
+        pdf.appendImage(image.getLabelFile().getPath(), 200, 66, 200, 200);
 
         pdf.appendText(dateOfApplication.getText(), 24, 500, 10);
-        //pdf.appendText(applicantSig.getText(), 138, 500, 10);
+        pdf.appendText(applicantSig.getText(), 138, 500, 10);
         pdf.appendText(applicantNamePrint.getText(), 366, 500, 10);
 
 
