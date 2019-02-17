@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Form;
+import Datatypes.Manufacturer;
 import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
@@ -58,6 +59,7 @@ public class mApplicationFormPg1 {
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
 
         Form form = cacheM.getForm();
+        Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
         boolean isDomestic = false;
         boolean isImported = false;
@@ -92,7 +94,10 @@ public class mApplicationFormPg1 {
             isSpirit = false;
             isMalt = true;
         }
-        repID.setText(Integer.toString(form.getRepID()));
+        if(form.getRepID() != 0)
+            repID.setText(Integer.toString(form.getRepID()));
+        else
+                repID.setText(Integer.toString(manAcc.getRepID()));
         brewerNO.setText(form.getBrewerNumber());
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
@@ -100,7 +105,10 @@ public class mApplicationFormPg1 {
         wine.setSelected(isWine);
         distilled.setSelected(isSpirit);
         malt.setSelected(isMalt);
-        brandName.setText(form.getBrandName());
+        if(!form.getBrandName().equals(""))
+            brandName.setText(form.getBrandName());
+        else
+            brandName.setText(manAcc.getCompanyName());
         fancifulName.setText(form.getFancifulName());
         wine2.setSelected(isWine);
         spirits2.setSelected(isSpirit);
