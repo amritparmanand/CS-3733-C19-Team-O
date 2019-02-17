@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Form;
+import Datatypes.Manufacturer;
 import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
@@ -8,6 +9,7 @@ import UI.callableFunction;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -17,6 +19,8 @@ import java.lang.System;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.time.Year;
+import java.util.Calendar;
 
 /**
  * @author Amrit Parmanand & Elizabeth Del Monaco
@@ -45,6 +49,7 @@ public class mApplicationFormPg1 {
     @FXML private RadioButton spirits2;
     @FXML private RadioButton beer2;
     @FXML private JFXButton saveDraft;
+    @FXML private Label serialMessage;
 
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -54,6 +59,7 @@ public class mApplicationFormPg1 {
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
 
         Form form = cacheM.getForm();
+        Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
         boolean isDomestic = false;
         boolean isImported = false;
@@ -88,7 +94,10 @@ public class mApplicationFormPg1 {
             isSpirit = false;
             isMalt = true;
         }
-        repID.setText(Integer.toString(form.getRepID()));
+        if(form.getRepID() != 0)
+            repID.setText(Integer.toString(form.getRepID()));
+        else
+                repID.setText(Integer.toString(manAcc.getRepID()));
         brewerNO.setText(form.getBrewerNumber());
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
@@ -96,7 +105,10 @@ public class mApplicationFormPg1 {
         wine.setSelected(isWine);
         distilled.setSelected(isSpirit);
         malt.setSelected(isMalt);
-        brandName.setText(form.getBrandName());
+        if(!form.getBrandName().equals(""))
+            brandName.setText(form.getBrandName());
+        else
+            brandName.setText(manAcc.getCompanyName());
         fancifulName.setText(form.getFancifulName());
         wine2.setSelected(isWine);
         spirits2.setSelected(isSpirit);
@@ -238,6 +250,33 @@ public class mApplicationFormPg1 {
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+
+    /**
+     * @author Clay Oshiro-Leavitt
+     * Checks that the serial number is valid
+     * Criteria:
+     * must be an integer
+     * must be 6 digits in length
+     * 1st two digits must be the last two digits of the current year (IE Year = 2019 -> 1st two digits = 19)
+     * @return true if valid serial number, false if not
+     */
+    @FXML
+    public Boolean validSerial(){
+        String year = Integer.toString(Year.now().getValue());
+        String serial = serialNumber.getText();
+        if(serial.matches("^[0-9]{6}")) {
+            if (serial.substring(0, 1).equals(year.substring(2, 3))) {
+                serialMessage.setText("");
+                return true;
+            } else System.out.println("First two digits must be equal to last two digits of current year");
+            serialMessage.setTextFill(Color.RED);
+            serialMessage.setText("First two digits must be equal to last two digits of current year");
+            return false;
+        }else
+            serialMessage.setTextFill(Color.RED);
+        serialMessage.setText("Serial Number must be an integer of 6 digits");
+            return false;
     }
 
 

@@ -73,13 +73,18 @@ public class CacheManager {
     // Facade stuff
     // Form
     public void approveForm(Connection conn){
+        System.out.println("cManager approve Form");
+        System.out.println(form.getFormID());
+        System.out.println(form.getSignature());
+        System.out.println(form.getDateIssued());
         form.approve(conn);
+
     }
     public void denyForm(Connection conn){
         form.deny(conn);
     }
-    public void insertForm(Connection connection) throws SQLException, FileNotFoundException {
-        form.insertForm(connection);
+    public boolean insertForm(Connection connection) throws SQLException, FileNotFoundException {
+        return form.insertForm(connection);
     }
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
         return form.getApprovedApplications(conn);
