@@ -66,7 +66,7 @@ public class Damerau_Levenshtein implements IFuzzy {
         int size = 0;
 
         try {
-            String getEverything = "select * from FORMS";
+            String getEverything = "select BRANDNAME, FANCIFULNAME from FORMS";
             ResultSet r1 = conn.createStatement().executeQuery(getEverything);
             while(r1.next()){
                 brandI = r1.getString("brandName");

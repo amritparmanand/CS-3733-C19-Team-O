@@ -52,6 +52,8 @@ public class LoginPage implements SerialPortDataListener {
     private Button programChip;
     @FXML
     private Button about;
+    @FXML
+    private Button pdf;
 
 
 
@@ -222,8 +224,8 @@ public class LoginPage implements SerialPortDataListener {
     @FXML
     public void aboutUs() throws IOException {
         // Search
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
-        sceneM.changeScene(loader, new AboutUs(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
+        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM));
     }
 
     @FXML
@@ -240,9 +242,11 @@ public class LoginPage implements SerialPortDataListener {
             login.setDisable(true);
         }
     }
-    @FXML 
+    @FXML
     public void about() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
+        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM));
     }
+
+
 }

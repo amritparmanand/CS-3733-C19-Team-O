@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.161-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AboutUs">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AboutUs">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -48,9 +48,9 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" />
                     </children>
             </HBox>
-                <HBox alignment="CENTER" prefHeight="603.0" prefWidth="1280.0">
+                <HBox alignment="CENTER" prefHeight="869.0" prefWidth="1280.0">
                     <children>
-                  <ScrollPane prefHeight="569.0" prefWidth="616.0">
+                  <ScrollPane prefHeight="776.0" prefWidth="530.0">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="791.0" prefWidth="571.0">
                            <children>
@@ -63,7 +63,8 @@
                                  <styleClass>
                                     <String fx:value="labeltext" />
                                     <String fx:value="h2" />
-                                 </styleClass></JFXTextArea>
+                                 </styleClass>
+                              </JFXTextArea>
                            </children>
                         </AnchorPane>
                     </content>

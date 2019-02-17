@@ -434,7 +434,8 @@ public class Form {
      * @throws SQLException
      */
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
-        String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS " +
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT," +
+                "VINTAGEYEAR FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
                 "WHERE APPLICATIONS.STATUS='APPROVED'";
         ResultSet rset = conn.createStatement().executeQuery(retrieve);

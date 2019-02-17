@@ -57,29 +57,39 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
-        cacheM.setForm(form);
+        System.out.println(form.getProductSource());
+        
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);
+                break;
             case "IMPORTED":
                 imported.setSelected(true);
-
+                break;
         }
-        switch(form.getProductType()){
-            case "WINE":
-                wine.setSelected(true);
-            case "DISTILLED":
-                spirits.setSelected(true);
-            case "MALT":
-                malt.setSelected(true);
-        }
+        System.out.println(form.getBeerWineSpirit());
         switch(form.getBeerWineSpirit()){
             case "WINE":
                 wine2.setSelected(true);
+                break;
             case "SPIRITS":
                 spirits2.setSelected(true);
+                break;
             case "BEER":
                 beer2.setSelected(true);
+                break;
+        }
+        System.out.println(form.getProductType());
+        switch(form.getProductType()){
+            case "WINE":
+                wine.setSelected(true);
+                break;
+            case "DISTILLED":
+                spirits.setSelected(true);
+                break;
+            case "MALT":
+                malt.setSelected(true);
+                break;
         }
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));

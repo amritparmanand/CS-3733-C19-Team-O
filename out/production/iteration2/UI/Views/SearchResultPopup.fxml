@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
+               <children>
+                  <Label fx:id="fancifulLabel" style="-fx-text-fill: white;" styleClass="ttbtitle" text="FancifulLabel" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" styleClass="backPane" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="200.0" styleClass="toolbar">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="80.0">
+                                 <children>
+                                    <Label text="Type:" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="typeLabel" text="TypeLabel" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="80.0">
+                                 <children>
+                                    <Label text="Company:" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="companyLabel" text="CompLabel" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="80.0">
+                                 <children>
+                                    <Label text="Alcohol %:" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="alcoholPercentLabel" text="AlcLabel" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="80.0">
+                                 <children>
+                                    <Label text="pH Level:" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="pHLabel" text="pHLabel" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="80.0">
+                                 <children>
+                                    <Label text="Year:" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="yearLabel" text="YearLabel" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </VBox>
+                  <ImageView fx:id="imageLabel" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets top="35.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
