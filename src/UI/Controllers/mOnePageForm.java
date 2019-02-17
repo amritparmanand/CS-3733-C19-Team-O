@@ -9,12 +9,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * @author Robert & Percy
@@ -71,8 +73,7 @@ public class mOnePageForm {
 
 
 
-    @FXML
-    public void savePDF() throws IOException {
+    @FXML public void savePDF() throws IOException {
 
         System.out.println("saving pdf");
         PDF pdf = new PDF();
@@ -151,6 +152,37 @@ public class mOnePageForm {
         cacheM.setForm(form);
 
         System.out.println("Form Saved!");
+    }
+
+    @FXML public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+
+    @FXML public void goToHomePage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
+        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+    }
+
+    @FXML
+    public void uploadImage(){
+        image.getFile();
+        imagePreview.setImage(image.getLabelImage());
+    }
+
+
+    @SuppressWarnings("Duplicates") @FXML public void submit()throws IOException{
+        saveDraft();
+        
+        try{
+            cacheM.insertForm(cacheM.getDbM().getConnection());
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        Form cleanForm = new Form();
+        cacheM.setForm(cleanForm);
+        goToHomePage();
     }
 
 }

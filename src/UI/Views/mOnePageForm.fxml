@@ -168,7 +168,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" />
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <JFXRadioButton fx:id="wine1" onKeyPressed="#showWineFields" onMousePressed="#showWineFields" text="Wine">
+                                                <JFXRadioButton fx:id="wine1" text="Wine">
                                                    <toggleGroup>
                                                       <ToggleGroup fx:id="WDM1" />
                                                    </toggleGroup>
@@ -176,7 +176,7 @@
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="distilled1" onKeyPressed="#hideWineFields" onMousePressed="#hideWineFields" text="Distilled Spirits">
+                                                <JFXRadioButton fx:id="distilled1" text="Distilled Spirits">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
@@ -184,7 +184,7 @@
                                                       <ToggleGroup fx:id="WDM11" />
                                                    </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="malt1" onKeyPressed="#hideWineFields" onMousePressed="#hideWineFields" text="Malt Beverages" toggleGroup="$WDM11">
+                                                <JFXRadioButton fx:id="malt1" text="Malt Beverages" toggleGroup="$WDM11">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
@@ -292,7 +292,7 @@
                                                 </VBox>
                                                 <VBox prefWidth="400.0">
                                                    <children>
-                                                      <JFXCheckBox fx:id="certificateOfExemption1" onMouseClicked="#validateStateField" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
+                                                      <JFXCheckBox fx:id="certificateOfExemption1" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
                                                       <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                          <children>
                                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="&quot;For sale in " />
@@ -307,7 +307,7 @@
                                                 </VBox>
                                                 <VBox prefWidth="400.0">
                                                    <children>
-                                                      <JFXCheckBox fx:id="DistinctiveLiquor1" onMouseClicked="#validateBottleCapacity" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
+                                                      <JFXCheckBox fx:id="DistinctiveLiquor1" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
                                                       <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="484.0">
                                                          <children>
                                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TOTAL BOTTLE CAPACITY BEFORE CLOSURE " />
@@ -322,7 +322,7 @@
                                                 </VBox>
                                                 <VBox prefWidth="400.0">
                                                    <children>
-                                                      <JFXCheckBox fx:id="resubmission1" onMouseClicked="#validateTTBID" text="RESUBMISSION AFTER REJECTION" />
+                                                      <JFXCheckBox fx:id="resubmission1" text="RESUBMISSION AFTER REJECTION" />
                                                       <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                                          <children>
                                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TTB ID " />
@@ -377,17 +377,17 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" />
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <JFXRadioButton fx:id="wine21" onMousePressed="#showWineFields" text="Wine" toggleGroup="$WDM11">
+                                                <JFXRadioButton fx:id="wine21" text="Wine" toggleGroup="$WDM11">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="spirits21" onMousePressed="#hideWineFields" text="Liquor" toggleGroup="$WDM11">
+                                                <JFXRadioButton fx:id="spirits21" text="Liquor" toggleGroup="$WDM11">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="beer21" onMousePressed="#hideWineFields" text="Beer" toggleGroup="$WDM11">
+                                                <JFXRadioButton fx:id="beer21" text="Beer" toggleGroup="$WDM11">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
