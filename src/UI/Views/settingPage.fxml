@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -73,6 +74,9 @@
                                        </HBox.margin>
                                     </JFXRadioButton>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="-15.0" />
+                                 </VBox.margin>
                               </HBox>
                               <Label alignment="CENTER" prefHeight="50.0" prefWidth="385.0" text="Specify the number of Forms an Agent can get at a time" textAlignment="CENTER">
                                  <VBox.margin>
@@ -81,26 +85,30 @@
                               </Label>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <JFXTextField fx:id="formLimit" promptText="Form Limit" />
+                                    <JFXTextField fx:id="formLimit" promptText="Form Limit">
+                                       <HBox.margin>
+                                          <Insets top="-20.0" />
+                                       </HBox.margin></JFXTextField>
                                  </children>
                               </HBox>
-                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="385.0" text="Specify the download format" textAlignment="CENTER">
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="385.0" text="Specify the download delimiter format" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </Label>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <JFXRadioButton fx:id="CSV" text="CSV">
-                                       <HBox.margin>
-                                          <Insets right="20.0" />
-                                       </HBox.margin>
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="g2" />
-                                       </toggleGroup>
-                                    </JFXRadioButton>
+                                    <JFXTextField fx:id="delimiter" promptText="Delimiter" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="-15.0" />
+                                 </VBox.margin>
                               </HBox>
+                              <JFXButton onMousePressed="#confirm" styleClass="buttonStyle" text="Save Settings">
+                                 <VBox.margin>
+                                    <Insets top="40.0" />
+                                 </VBox.margin>
+                              </JFXButton>
                            </children>
                         </VBox>
                      </children>

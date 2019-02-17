@@ -12,7 +12,7 @@ public class Setting {
 
     private int formLimit = 5; // Default is 5
     private String fuzzy = "hiddenScore";
-    private String format = "CSV";
+    private String format = ",";
 
     private static Setting instance = new Setting();
 

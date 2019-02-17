@@ -29,7 +29,7 @@ public class settingPage {
     @FXML private JFXRadioButton Levenshtein;
     @FXML private JFXRadioButton Damerau;
     @FXML private JFXTextField formLimit;
-    @FXML private JFXRadioButton CSV;
+    @FXML private JFXTextField delimiter;
 
     @FXML public void confirm() throws IOException {
         // Initialize the instance of the Singleton class
@@ -58,8 +58,11 @@ public class settingPage {
         }
 
         // Set download format
-        if(CSV.isSelected()){
-            object.setFormat("CSV");
+        if(delimiter.getText().isEmpty()){
+            object.setFormat(",");
+        }
+        else{
+            object.setFormLimit(Integer.parseInt(formLimit.getText()));
         }
 
         System.out.println("Settings: ");
