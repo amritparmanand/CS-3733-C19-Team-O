@@ -31,6 +31,6 @@
             <Font size="27.0" />
          </font>
       </Text>
-      <Text layoutX="3.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="jfx-text-field" text="&lt;insert help text&gt;" wrappingWidth="342.13671875" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="54.0" />
+      <Text layoutX="3.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="jfx-text-field" text="&lt;insert help text&gt;" wrappingWidth="342.13671875" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="54.0" />
    </children>
 </AnchorPane>
