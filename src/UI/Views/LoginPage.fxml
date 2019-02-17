@@ -107,6 +107,7 @@
                                  </VBox.margin>
                               </Label>
                               <JFXButton fx:id="programChip" onAction="#validateButton" onMousePressed="#programChip" prefHeight="42.0" prefWidth="168.0" styleClass="changeColorButton" text="Program This Chip" />
+                              <JFXButton fx:id="help" onMousePressed="#help" styleClass="searchButtonStyle" text="Help" />
                            </children>
                         </VBox>
                      </children>

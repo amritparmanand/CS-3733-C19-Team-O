@@ -1,13 +1,11 @@
 package UI.Controllers;
 
-import Datatypes.Agent;
-import Datatypes.Manufacturer;
-import Managers.*;
-
+import Managers.CacheManager;
 import Managers.SceneManager;
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,14 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Statement;
-import java.util.EventListener;
-
 import javafx.scene.paint.Color;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.io.IOException;
 
 public class LoginPage implements SerialPortDataListener {
     private SceneManager sceneM;
@@ -52,7 +46,8 @@ public class LoginPage implements SerialPortDataListener {
     private Button programChip;
     @FXML
     private Button about;
-
+    @FXML
+    private JFXButton help;
 
 
 
@@ -244,5 +239,10 @@ public class LoginPage implements SerialPortDataListener {
     public void about() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+    }
+
+    @FXML
+    public void help() throws IOException{
+
     }
 }
