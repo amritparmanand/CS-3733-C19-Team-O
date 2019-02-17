@@ -106,39 +106,68 @@ public class mOnePageForm {
         pdf.NewOpen();
         System.out.println("real shit starts here");
 
-        pdf.appendText(repID.getText(), 24, 912, 10);
-        pdf.appendText(brewerNO.getText(), 24, 865, 10);
+        if (!repID.getText().isEmpty()) {
+            pdf.appendText(repID.getText(), 24, 912, 10);
+        }
+        if (!brewerNO.getText().isEmpty()) {
+            pdf.appendText(brewerNO.getText(), 24, 865, 10);
+        }
 
         if(domestic.isSelected())
             pdf.appendText("X", 143,870, 10);
-        else
+        else if(imported.isSelected())
             pdf.appendText("X", 190,870, 10);
 
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(0)), 24, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(1)), 42, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(2)), 70, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(3)), 88, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(4)), 106, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(5)), 122, 811, 10);
+        if (!serialNumber.getText().isEmpty()) {
+            if (serialNumber.getText().length() == 6) {
+                pdf.appendText(Character.toString(serialNumber.getText().charAt(0)), 24, 811, 10);
+                pdf.appendText(Character.toString(serialNumber.getText().charAt(1)), 42, 811, 10);
+                pdf.appendText(Character.toString(serialNumber.getText().charAt(2)), 70, 811, 10);
+                pdf.appendText(Character.toString(serialNumber.getText().charAt(3)), 88, 811, 10);
+                pdf.appendText(Character.toString(serialNumber.getText().charAt(4)), 106, 811, 10);
+                pdf.appendText(Character.toString(serialNumber.getText().charAt(5)), 122, 811, 10);
+            }
+            else{
+                System.out.println("serial number has to be 6 digit");
+            }
+        }
 
         //type of product
         if (wine.isSelected())
             pdf.appendText("X", 146,833, 10);
         else if(distilled.isSelected())
             pdf.appendText("X", 146,828, 10);
-        else
+        else if(malt.isSelected())
             pdf.appendText("X", 146, 823, 10);
 
 
-        pdf.appendText(brandName.getText(), 24,780, 10);
-        pdf.appendText(fancifulName.getText(), 24,755, 10);
-        pdf.appendText(printName.getText(), 268, 846, 10);
-        pdf.appendText(mailAddress.getText(), 268,780, 10);
-        pdf.appendText(formula.getText(), 24,722, 10);
-        pdf.appendText(grapes.getText(), 153, 722, 10);
-        pdf.appendText(appellation.getText(), 24,688, 10);
-        pdf.appendText(email.getText(), 153, 652, 10);
-        pdf.appendText(phoneNumber.getText(), 24, 652, 10);
+        if (!brandName.getText().isEmpty()) {
+            pdf.appendText(brandName.getText(), 24,780, 10);
+        }
+        if (!fancifulName.getText().isEmpty()) {
+            pdf.appendText(fancifulName.getText(), 24,755, 10);
+        }
+        if (!printName.getText().isEmpty()) {
+            pdf.appendText(printName.getText(), 268, 846, 10);
+        }
+        if (!mailAddress.getText().isEmpty()) {
+            pdf.appendText(mailAddress.getText(), 268,780, 10);
+        }
+        if (!formula.getText().isEmpty()) {
+            pdf.appendText(formula.getText(), 24,722, 10);
+        }
+        if (!grapes.getText().isEmpty()) {
+            pdf.appendText(grapes.getText(), 153, 722, 10);
+        }
+        if (!appellation.getText().isEmpty()) {
+            pdf.appendText(appellation.getText(), 24,688, 10);
+        }
+        if (!email.getText().isEmpty()) {
+            pdf.appendText(email.getText(), 153, 652, 10);
+        }
+        if (!phoneNumber.getText().isEmpty()) {
+            pdf.appendText(phoneNumber.getText(), 24, 652, 10);
+        }
 
 
         //type of application
@@ -159,11 +188,19 @@ public class mOnePageForm {
         }
 
         //Label
-        pdf.appendImage(image.getLabelFile().getPath(), 200, 66, 200, 200);
+        if (!image.getFile().exists()) {
+            pdf.appendImage(image.getLabelFile().getPath(), 200, 66, 200, 200);
+        }
 
-        pdf.appendText(dateOfApplication.getText(), 24, 500, 10);
-        pdf.appendText(applicantSig.getText(), 138, 500, 10);
-        pdf.appendText(applicantNamePrint.getText(), 366, 500, 10);
+        if (!dateOfApplication.getText().isEmpty()) {
+            pdf.appendText(dateOfApplication.getText(), 24, 500, 10);
+        }
+        if (!applicantSig.getText().isEmpty()) {
+            pdf.appendText(applicantSig.getText(), 138, 500, 10);
+        }
+        if (!applicantNamePrint.getText().isEmpty()) {
+            pdf.appendText(applicantNamePrint.getText(), 366, 500, 10);
+        }
 
         pdf.NewClose();
 
