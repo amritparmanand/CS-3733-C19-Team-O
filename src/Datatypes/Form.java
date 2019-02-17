@@ -79,6 +79,7 @@ public class Form {
         this.bottleCapacity = "";
         this.signature = "";
         this.dateIssued = "";
+        this.label = new LabelImage();
     }
 
     // Getters and setters
@@ -346,12 +347,24 @@ public class Form {
         }
     }
 
+    public boolean validate(){
+        if(getBrewerNumber() == "" || getProductSource() == "" || getSerialNumber() == "" ||
+                getProductType() == "" || getBrandName() == "" || getBeerWineSpirit() == "" ||
+                getAlcoholPercent() == "" || getApplicantName() == "" || getPhoneNumber() == ""||
+                getEmailAddress() == "" || getDateOfApplication() == "" || getPrintName() == "" ||
+                (!certificateOfApproval && !certificateOfExemption && !distinctiveLiquor && !resubmission) ||
+                getLabel().getFile() == null)
+            return false;
+        else
+            return true;
+    }
+
     /**
      * Insert a form from Manufacturer side into database
      * @param connection
      * @throws SQLException
      */
-    public void insertForm(Connection connection) throws SQLException, FileNotFoundException {
+    public boolean insertForm(Connection connection) throws SQLException, FileNotFoundException {
 
         String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
                 "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +
@@ -361,6 +374,8 @@ public class Form {
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
         ResultSet seqVal;
+        if(!validate())
+            return false;
         try {
             seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
             seqVal.next();
@@ -403,10 +418,12 @@ public class Form {
             addApp(connection, seqVal.getInt(1),getRepID(), getDateOfApplication(), dateIssued, signature);
             prepStmt.executeUpdate();
             prepStmt.close();
+            return true;
 
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 

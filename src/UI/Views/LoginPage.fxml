@@ -75,7 +75,7 @@
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin></JFXTextField>
-                              <JFXTextField fx:id="username" alignment="BOTTOM_LEFT" promptText="Username">
+                              <JFXTextField fx:id="username" alignment="BOTTOM_LEFT" promptText="Username (Case-sensitive)">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin></JFXTextField>

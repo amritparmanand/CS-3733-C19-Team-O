@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -39,6 +40,7 @@ public class mApplicationFormPg4 {
     private JFXTextField applicantSig;
     @FXML
     private JFXTextField applicantNamePrint;
+    @FXML private Label errorLabel2;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
@@ -100,7 +102,11 @@ public class mApplicationFormPg4 {
 //        form.setDateIssued("");
 
         try{
-            cacheM.insertForm(cacheM.getDbM().getConnection());
+            if(!cacheM.insertForm(cacheM.getDbM().getConnection())) {
+                errorLabel2.setText("Missing required form fields.");
+//                submit.setText("Force Submit");
+            }
+
         }catch(SQLException e){
             e.printStackTrace();
         }
