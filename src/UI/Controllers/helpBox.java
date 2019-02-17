@@ -4,6 +4,7 @@ import Managers.CacheManager;
 import Managers.SceneManager;
 
 public class helpBox {
+    @FXML ImageView helpGif;
 //    private SceneManager sceneM;
 //    private CacheManager cacheM;
 //
@@ -14,6 +15,7 @@ public class helpBox {
 
 //    @FXML
 //    private Text instruction;
+
 
 
 }
