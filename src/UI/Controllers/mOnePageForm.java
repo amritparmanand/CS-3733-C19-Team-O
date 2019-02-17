@@ -98,9 +98,15 @@ public class mOnePageForm {
         System.out.println("saving pdf");
         PDF pdf = new PDF();
 
-        pdf.open();
+        pdf.fakeOpen();
+        pdf.fakeClose();
 
-        pdf.appendText(repID.getText(), 38, 890, 10);
+        System.out.println("initialization done");
+
+        pdf.NewOpen();
+        System.out.println("real shit starts here");
+
+        pdf.appendText(repID.getText(), 24, 912, 10);
         pdf.appendText(brewerNO.getText(), 24, 865, 10);
 
         if(domestic.isSelected())
@@ -159,10 +165,9 @@ public class mOnePageForm {
         pdf.appendText(applicantSig.getText(), 138, 500, 10);
         pdf.appendText(applicantNamePrint.getText(), 366, 500, 10);
 
+        pdf.NewClose();
 
-        pdf.close();
-
-        System.out.println("saved!");
+        System.out.println("real shit saved!");
     }
 
     @FXML public void saveDraft(){
