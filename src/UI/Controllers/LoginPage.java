@@ -9,11 +9,15 @@ import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
@@ -243,7 +247,7 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML
     public void help() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/SearchResultPopup.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpBox.fxml"));
         helpPopWindow(root);
     }
     public void helpPopWindow(Parent root){
