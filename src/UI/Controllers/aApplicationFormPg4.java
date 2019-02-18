@@ -84,10 +84,10 @@ public class aApplicationFormPg4 {
 
     @FXML
     public void back() throws IOException {
-        comments.setComment16(Q16Comment.getText() + "\n");
-        comments.setComment17(Q17Comment.getText() + "\n");
-        comments.setComment18(Q18Comment.getText() + "\n");
-        comments.setComment19(Q19Comment.getText() + "\n");
+        comments.setComment16(Q16Comment.getText());
+        comments.setComment17(Q17Comment.getText());
+        comments.setComment18(Q18Comment.getText());
+        comments.setComment19(Q19Comment.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form,comments));
     }
@@ -110,10 +110,10 @@ public class aApplicationFormPg4 {
 
     @FXML
     public void denyForm() throws Exception {
-        comments.setComment16(Q16Comment.getText() + "\n");
-        comments.setComment17(Q17Comment.getText() + "\n");
-        comments.setComment18(Q18Comment.getText() + "\n");
-        comments.setComment19(Q19Comment.getText() + "\n");
+        comments.setComment16(Q16Comment.getText());
+        comments.setComment17(Q17Comment.getText());
+        comments.setComment18(Q18Comment.getText());
+        comments.setComment19(Q19Comment.getText());
         form.setSignature(signature.getText());
         form.setDateIssued(dateIssued.getValue().toString());
         System.out.println(comments.generateComments(comments));

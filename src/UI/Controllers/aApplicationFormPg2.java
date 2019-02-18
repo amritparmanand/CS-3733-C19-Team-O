@@ -94,26 +94,26 @@ public class aApplicationFormPg2 {
 
     @FXML
     public void back() throws IOException {
-        comments.setComment8(Q8Comment.getText() + "\n");
-        comments.setComment8a(Q8aComment.getText() + "\n");
-        comments.setComment9(Q9Comment.getText() + "\n");
-        comments.setComment10(Q10Comment.getText() + "\n");
-        comments.setComment11(Q11Comment.getText() + "\n");
-        comments.setComment12(Q12Comment.getText() + "\n");
-        comments.setComment13(Q13Comment.getText() + "\n");
+        comments.setComment8(Q8Comment.getText());
+        comments.setComment8a(Q8aComment.getText());
+        comments.setComment9(Q9Comment.getText());
+        comments.setComment10(Q10Comment.getText());
+        comments.setComment11(Q11Comment.getText());
+        comments.setComment12(Q12Comment.getText());
+        comments.setComment13(Q13Comment.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form, comments));
     }
 
     @FXML
     public void nextPage() throws IOException {
-        comments.setComment8(Q8Comment.getText() + "\n");
-        comments.setComment8a(Q8aComment.getText() + "\n");
-        comments.setComment9(Q9Comment.getText() + "\n");
-        comments.setComment10(Q10Comment.getText() + "\n");
-        comments.setComment11(Q11Comment.getText() + "\n");
-        comments.setComment12(Q12Comment.getText() + "\n");
-        comments.setComment13(Q13Comment.getText() + "\n");
+        comments.setComment8(Q8Comment.getText());
+        comments.setComment8a(Q8aComment.getText());
+        comments.setComment9(Q9Comment.getText());
+        comments.setComment10(Q10Comment.getText());
+        comments.setComment11(Q11Comment.getText());
+        comments.setComment12(Q12Comment.getText());
+        comments.setComment13(Q13Comment.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form,comments));
     }
@@ -127,13 +127,13 @@ public class aApplicationFormPg2 {
     @FXML
     public void denyForm() throws Exception {
         cacheM.denyForm(cacheM.getDbM().getConnection());
-        comments.setComment8(Q8Comment.getText() + "\n");
-        comments.setComment8a(Q8aComment.getText() + "\n");
-        comments.setComment9(Q9Comment.getText() + "\n");
-        comments.setComment10(Q10Comment.getText() + "\n");
-        comments.setComment11(Q11Comment.getText() + "\n");
-        comments.setComment12(Q12Comment.getText() + "\n");
-        comments.setComment13(Q13Comment.getText() + "\n");
+        comments.setComment8(Q8Comment.getText());
+        comments.setComment8a(Q8aComment.getText());
+        comments.setComment9(Q9Comment.getText());
+        comments.setComment10(Q10Comment.getText());
+        comments.setComment11(Q11Comment.getText());
+        comments.setComment12(Q12Comment.getText());
+        comments.setComment13(Q13Comment.getText());
         System.out.println(comments.generateComments(comments));
     }
 

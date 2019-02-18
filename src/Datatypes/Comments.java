@@ -230,16 +230,16 @@ public class Comments {
 //        }
         for(int i = 0; i < comments.size(); i++) {
             //if it is not ""
-            if(!comments.get(i).equals("\n"))
+            if(!comments.get(i).equals(""))
             {
                 if(i == 8)
-                commentBlurb += "8a"  + ". " + comments.get(i);
+                commentBlurb += "8a"  + ". " + comments.get(i) + "\n";
 
                 if(i > 8)
-                commentBlurb += i  + ". " + comments.get(i);
+                commentBlurb += i  + ". " + comments.get(i) + "\n";
 
                 else
-                commentBlurb += i+1  + ". " + comments.get(i);
+                commentBlurb += i+1  + ". " + comments.get(i) + "\n";
 
 
             }
