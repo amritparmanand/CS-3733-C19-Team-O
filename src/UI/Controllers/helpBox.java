@@ -15,7 +15,7 @@ import javafx.fxml.FXML;
 
 public class helpBox {
     @FXML
-    ImageView helpGif;
+    ImageView helpGif = null;
     private String prevLocation;
     private SceneManager sceneM;
     private CacheManager cacheM;

@@ -247,7 +247,7 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML
     public void help() throws IOException{
-        helpBox.imageSeter("login");
+        helpBox helpBox = new helpBox(sceneM, cacheM, "login");
         Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpBox.fxml"));
         helpPopWindow(root);
     }
