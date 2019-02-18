@@ -42,6 +42,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
+                  <JFXButton fx:id="help" styleClass="searchButtonStyle" text="Help" />
                   <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer">
                      <children>
                         <TextField fx:id="searchBox" prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">

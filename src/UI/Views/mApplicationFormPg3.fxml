@@ -43,6 +43,7 @@
                                 <Insets left="5.0" />
                             </HBox.margin>
                         </Text>
+                  <JFXButton fx:id="help" styleClass="searchButtonStyle" text="Help" />
                   <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
                      <HBox.margin>
                         <Insets left="800.0" />
@@ -116,7 +117,7 @@
                                             </padding>
                                         </Separator>
                                         <HBox prefHeight="100.0" prefWidth="200.0" />
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                        <VBox fx:id="help" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label styleClass="labeltext" text="14. Type of Application" />
                                                 <FlowPane prefHeight="200.0" prefWidth="200.0">
