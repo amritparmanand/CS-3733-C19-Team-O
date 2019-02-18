@@ -1,21 +1,18 @@
 package UI.Controllers;
 
 
+import Datatypes.Agent;
 import Datatypes.Form;
-import Managers.CacheManager;
-import Managers.SceneManager;
+import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
@@ -153,8 +150,7 @@ public class aApplicationFormPg1 {
 
     }
     public void help() throws IOException{
-        helpBox helpBox = new helpBox();
-        helpBox.mAppMulti();
+        helpBox.imageSeter("aAppMulti");
         Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpBox.fxml"));
         helpPopWindow(root);
     }
