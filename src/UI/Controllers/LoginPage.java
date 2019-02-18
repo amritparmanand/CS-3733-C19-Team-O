@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -247,17 +249,25 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML
     public void help() throws IOException{
-        helpBox helpBox = new helpBox(sceneM, cacheM, "login");
+        helpBox helpBox = new helpBox();
+        helpBox.loginPage();
         Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpBox.fxml"));
         helpPopWindow(root);
     }
 
     public void helpPopWindow(Parent root){
+//        Image image = new Image(getClass().getResourceAsStream("/HelpGifs/login.gif"));
+//        ImageView helpGif = new ImageView(image);
         Stage stage;
         stage = new Stage();
+//        helpGif.setFitHeight(480);
+//        helpGif.setFitWidth(270);
+//        helpGif.setImage(image);
         stage.setScene(new Scene(root));
         stage.setTitle("Help Window");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+
+
     }
 }

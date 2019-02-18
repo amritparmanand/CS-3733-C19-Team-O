@@ -153,7 +153,8 @@ public class aApplicationFormPg1 {
 
     }
     public void help() throws IOException{
-        helpBox helpBox = new helpBox(sceneM, cacheM, "aAppMulti");
+        helpBox helpBox = new helpBox();
+        helpBox.mAppMulti();
         Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpBox.fxml"));
         helpPopWindow(root);
     }
