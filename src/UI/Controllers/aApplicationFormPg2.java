@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 
+import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -22,11 +23,13 @@ public class aApplicationFormPg2 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
+    private Comments comments;
 
-    public aApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
+    public aApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.form = form;
+        this.comments = comments;
     }
 
     @FXML private JFXButton acceptForm;
@@ -57,8 +60,14 @@ public class aApplicationFormPg2 {
 
 
     @FXML public void initialize() {
+        Q8Comment.setText(comments.getComment8());
+        Q8aComment.setText(comments.getComment8a());
+        Q9Comment.setText(comments.getComment9());
+        Q10Comment.setText(comments.getComment10());
+        Q11Comment.setText(comments.getComment11());
+        Q12Comment.setText(comments.getComment12());
+        Q13Comment.setText(comments.getComment13());
         Form form = this.form;
-
         applicantName.setText(form.getPrintName());
         applicantName.setEditable(false);
         mailAddress.setText(form.getMailingAddress());
@@ -85,15 +94,28 @@ public class aApplicationFormPg2 {
 
     @FXML
     public void back() throws IOException {
+        comments.setComment8(Q8Comment.getText() + "\n");
+        comments.setComment8a(Q8aComment.getText() + "\n");
+        comments.setComment9(Q9Comment.getText() + "\n");
+        comments.setComment10(Q10Comment.getText() + "\n");
+        comments.setComment11(Q11Comment.getText() + "\n");
+        comments.setComment12(Q12Comment.getText() + "\n");
+        comments.setComment13(Q13Comment.getText() + "\n");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form, comments));
     }
 
     @FXML
     public void nextPage() throws IOException {
-
+        comments.setComment8(Q8Comment.getText() + "\n");
+        comments.setComment8a(Q8aComment.getText() + "\n");
+        comments.setComment9(Q9Comment.getText() + "\n");
+        comments.setComment10(Q10Comment.getText() + "\n");
+        comments.setComment11(Q11Comment.getText() + "\n");
+        comments.setComment12(Q12Comment.getText() + "\n");
+        comments.setComment13(Q13Comment.getText() + "\n");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form,comments));
     }
 
     @FXML

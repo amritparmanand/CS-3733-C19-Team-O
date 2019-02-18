@@ -2,6 +2,7 @@ package UI.Controllers;
 
 
 import Datatypes.Agent;
+import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
@@ -23,6 +24,7 @@ public class aApplicationFormPg1 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
+    private Comments comments = new Comments();
 
     @FXML private JFXButton acceptForm;
     @FXML private JFXButton denyForm;
@@ -57,6 +59,13 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+        Q1Comment.setText(comments.getComment1());
+        Q2Comment.setText(comments.getComment2());
+        Q3Comment.setText(comments.getComment3());
+        Q4Comment.setText(comments.getComment4());
+        Q5Comment.setText(comments.getComment5());
+        Q6Comment.setText(comments.getComment6());
+        Q7Comment.setText(comments.getComment7());
         cacheM.setForm(form);
         switch(form.getProductSource()){
             case "DOMESTIC":
@@ -107,11 +116,25 @@ public class aApplicationFormPg1 {
         this.form = form;
     }
 
+    public aApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+        this.comments = comments;
+    }
+
     @FXML
     public void nextPage() throws IOException {
 
+        comments.setComment1(Q1Comment.getText() + "\n");
+        comments.setComment2(Q2Comment.getText() + "\n");
+        comments.setComment3(Q3Comment.getText() + "\n");
+        comments.setComment4(Q4Comment.getText() + "\n");
+        comments.setComment5(Q5Comment.getText() + "\n");
+        comments.setComment6(Q6Comment.getText() + "\n");
+        comments.setComment7(Q7Comment.getText() + "\n");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg2.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form,comments));
 
     }
 

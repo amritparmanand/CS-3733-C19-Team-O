@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 
+import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -25,11 +26,13 @@ public class aApplicationFormPg3 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
+    private Comments comments;
 
-    public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form) {
+    public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.form = form;
+        this.comments = comments;
     }
 
 
@@ -59,6 +62,8 @@ public class aApplicationFormPg3 {
 
     @SuppressWarnings("Duplicates")
     public void initialize(){
+        Q14Comment.setText(comments.getComment14());
+        Q15Comment.setText(comments.getComment15());
         Form form = cacheM.getForm();
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
@@ -77,14 +82,17 @@ public class aApplicationFormPg3 {
 
     @FXML
     public void back() throws IOException {
+        comments.setComment14(Q14Comment.getText() + "\n");
+        comments.setComment15(Q15Comment.getText() + "\n");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg2.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form,comments));
     }
     @FXML
     public void nextPage() throws IOException {
-
+        comments.setComment14(Q14Comment.getText() + "\n");
+        comments.setComment15(Q15Comment.getText() + "\n");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg4.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM, form,comments));
     }
     @FXML
     public void goToHomePage() throws IOException {

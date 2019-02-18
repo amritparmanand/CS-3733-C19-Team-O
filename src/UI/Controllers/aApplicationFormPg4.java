@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 
+import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -25,11 +26,13 @@ public class aApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
+    private Comments comments;
 
-    public aApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
+    public aApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.form = form;
+        this.comments = comments;
     }
 
     @FXML private JFXButton acceptForm;
@@ -53,6 +56,12 @@ public class aApplicationFormPg4 {
 
 
     @FXML public void initialize () {
+        //load all the comments for this page
+        Q16Comment.setText(comments.getComment16());
+        Q17Comment.setText(comments.getComment17());
+        Q18Comment.setText(comments.getComment18());
+        Q19Comment.setText(comments.getComment19());
+
         Form form = this.form;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         if(!form.getDateOfApplication().isEmpty()){
@@ -75,8 +84,12 @@ public class aApplicationFormPg4 {
 
     @FXML
     public void back() throws IOException {
+        comments.setComment16(Q16Comment.getText() + "\n");
+        comments.setComment17(Q17Comment.getText() + "\n");
+        comments.setComment18(Q18Comment.getText() + "\n");
+        comments.setComment19(Q19Comment.getText() + "\n");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form,comments));
     }
     @FXML
     public void goToHomePage() throws IOException {
@@ -96,9 +109,14 @@ public class aApplicationFormPg4 {
 
 
     @FXML
-    public void denyForm() throws IOException {
+    public void denyForm() throws Exception {
+        comments.setComment16(Q16Comment.getText() + "\n");
+        comments.setComment17(Q17Comment.getText() + "\n");
+        comments.setComment18(Q18Comment.getText() + "\n");
+        comments.setComment19(Q19Comment.getText() + "\n");
         form.setSignature(signature.getText());
         form.setDateIssued(dateIssued.getValue().toString());
+        System.out.println(comments.generateComments(comments));
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 
