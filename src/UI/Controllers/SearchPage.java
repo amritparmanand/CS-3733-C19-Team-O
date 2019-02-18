@@ -26,6 +26,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -367,17 +368,19 @@ public class SearchPage {
             delimiter = ',';
         }
 
-        String workingDirectory = System.getProperty("user.dir");
-        String filePath = workingDirectory + File.separator + "Search-Results.csv";
 
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        //Select the extentions we allow for the files
+        //Actually get the folder
+        directoryChooser.setInitialDirectory(null);
 
+        File folder = directoryChooser.showDialog(null);
+        String filePath = folder + "/Save-Results.csv";
         File file = new File(filePath);
 
         try {
             FileWriter searchResults = new FileWriter(file);
 
-            // create CSVWriter object filewriter object as parameter
-            //CSVWriter writer = new CSVWriter(outputfile);
             CSVWriter writer = new CSVWriter(searchResults,
                     delimiter,
                     CSVWriter.NO_QUOTE_CHARACTER,
