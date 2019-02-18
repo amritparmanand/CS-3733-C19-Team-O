@@ -117,7 +117,7 @@ public class mOnePageForm {
 
         pdf.open();
 
-        pdf.appendText(repID.getText(), 38, 890, 10);
+        pdf.appendText(repID.getText(), 24, 912, 10);
         pdf.appendText(brewerNO.getText(), 24, 865, 10);
 
         if(domestic.isSelected())
