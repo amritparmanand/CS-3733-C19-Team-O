@@ -6,6 +6,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 
+/**
+ * @author Jonathan & Trevor & Sri
+ * @version It 3
+ * @since It 3
+ * Manages the popup helpbox
+ */
+
 public class helpBox {
     @FXML
     ImageView helpGif;
@@ -18,6 +25,11 @@ public class helpBox {
         this.cacheM = cacheM;
     }
 
+    /**
+     * @author Trevor and Jonathan
+     * @param prevLocation
+     * sets the image to be displayed on the help page
+     */
     public void imageSeter(String prevLocation){
 
         Image image;
