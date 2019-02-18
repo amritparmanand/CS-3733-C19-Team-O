@@ -1,9 +1,9 @@
 package Datatypes;
 
-import java.io.InputStream;
-import java.sql.*;
-import java.util.ArrayList;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  * @author Percy Jiang & Gabe Entov
  * @version It 1
@@ -11,8 +11,6 @@ import java.util.ArrayList;
  */
 public class Manufacturer extends Account {
     private int repID;
-    private ArrayList<Form> workingForms = new ArrayList<>();
-    private boolean hasFetchedForms = false;
     private String companyName;
 
     public Manufacturer(String username, String password, String fullName, String email, String phone, int repID, String companyName) {
@@ -58,33 +56,6 @@ public class Manufacturer extends Account {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
-    public boolean getHasFetchedForms() {
-        return hasFetchedForms;
-    }
-
-    // Query the database to select forms where the TTB ID matches this agent's id
-    // Call formFromResultSet into object and add it into the working Forms of this agent
-    @SuppressWarnings("Duplicates")
-    public void setAssignedForms(Connection conn) {
-        try {
-            String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE APPLICATIONS.REPID = " + this.getRepID();
-            PreparedStatement ps = conn.prepareStatement(assignedForms);
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                workingForms.add(formFromResultSet(rs));
-            }
-            ps.close();
-            this.hasFetchedForms = true;
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
-    }
-    public ArrayList<Form> getAssignedForms() {
-        return workingForms;
-    }
 
     // Parse a manufacturer object into database
     @SuppressWarnings("Duplicates")
@@ -109,45 +80,5 @@ public class Manufacturer extends Account {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-    }
-    @SuppressWarnings("Duplicates")
-    private Form formFromResultSet(ResultSet rs) throws SQLException {
-        Form f = new Form();
-        f.setFormID(rs.getLong("formID"));
-        f.setRepID(rs.getInt("repID"));
-        f.setBrewerNumber(rs.getString("brewerNumber"));
-        f.setProductSource(rs.getString("productSource"));
-        f.setSerialNumber(rs.getString("serialNumber"));
-        f.setProductType(rs.getString("productType"));
-        f.setBrandName(rs.getString("brandName"));
-        f.setFancifulName(rs.getString("fancifulName"));
-        f.setApplicantName(rs.getString("applicantName"));
-        f.setMailingAddress(rs.getString("mailingAddress"));
-        f.setFormula(rs.getString("formula"));
-        f.setGrapeVarietal(rs.getString("grapeVarietal"));
-        f.setAppellation(rs.getString("appellation"));
-        f.setPhoneNumber(rs.getString("phoneNumber"));
-        f.setEmailAddress(rs.getString("emailAddress"));
-        f.setCertificateOfApproval(rs.getBoolean("certificateOfApproval"));
-        f.setCertificateOfExemption(rs.getBoolean("certificateOfExemption"));
-        f.setOnlyState(rs.getString("onlyState"));
-        f.setDistinctiveLiquor(rs.getBoolean("distinctiveLiquor"));
-        f.setBottleCapacity(rs.getString("bottleCapacity"));
-        f.setTtbID(rs.getInt("TTBID"));
-        f.setDateOfApplication(rs.getString("dateOfApplication"));
-        f.setPrintName(rs.getString("printName"));
-        f.setBeerWineSpirit(rs.getString("beerWineSpirit"));
-        f.setAlcoholPercent(rs.getString("alcoholPercent"));
-        f.setVintageYear(rs.getString("vintageYear"));
-        f.setpHLevel(rs.getString("pHLevel"));
-        LabelImage formLabel = new LabelImage();
-        Blob picture = rs.getBlob("labelImage");
-        if (picture != null) {
-            InputStream is = picture.getBinaryStream();
-        }
-//        f.getLabel().setLabelImage(img);
-//        Image img = new Image();
-
-        return f;
     }
 }

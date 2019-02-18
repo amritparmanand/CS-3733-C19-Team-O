@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -110,7 +109,7 @@
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
-                                    <JFXButton fx:id="saveDraft" onMousePressed="#saveDraft" prefHeight="54.0" prefWidth="75.0" styleClass="changeColorButton" text="Save Draft" textAlignment="CENTER" wrapText="true" />
+                                    <JFXButton fx:id="saveDraft" prefHeight="54.0" prefWidth="75.0" styleClass="changeColorButton" text="Save Draft" textAlignment="CENTER" wrapText="true" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
@@ -175,7 +174,7 @@
                                         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                             <children>
                                                 <Label text="16. Date of Application" />
-                                    <JFXDatePicker fx:id="dateOfApplication" />
+                                    <JFXTextField fx:id="dateOfApplication" />
                                             </children>
                                             <padding>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -190,10 +189,6 @@
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                             </padding>
                                         </VBox>
-                              <Label text="19. Date Issued" />
-                              <JFXDatePicker fx:id="dateIssued" />
-                              <Label text="20. Authorized Signature, Alcohol and Tobacco Tax and Trade Bureau" />
-                              <JFXTextField fx:id="signature" />
                                     </children>
                                 </VBox>
                             </content>

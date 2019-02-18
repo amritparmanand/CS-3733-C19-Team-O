@@ -1,7 +1,6 @@
 package UI.Controllers;
 
 import Datatypes.Form;
-import Datatypes.Manufacturer;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
@@ -47,22 +46,14 @@ public class mApplicationFormPg2 {
     }
 
     @FXML public void initialize(){
-
-        Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
         Form form = cacheM.getForm();
         printName.setText(form.getPrintName());
         mailAddress.setText(form.getMailingAddress());
         formula.setText(form.getFormula());
         grapes.setText(form.getGrapeVarietal());
         appellation.setText(form.getAppellation());
-        if(!form.getPhoneNumber().equals(""))
-            phoneNumber.setText(form.getPhoneNumber());
-        else
-            phoneNumber.setText(manAcc.getPhone());
-        if(!form.getEmailAddress().equals(""))
-            email.setText(form.getEmailAddress());
-        else
-            email.setText(manAcc.getEmail());
+        phoneNumber.setText(form.getPhoneNumber());
+        email.setText(form.getEmailAddress());
     }
 
     @FXML public void saveDraft() {

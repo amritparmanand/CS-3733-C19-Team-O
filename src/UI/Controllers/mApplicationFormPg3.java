@@ -38,16 +38,25 @@ public class mApplicationFormPg3 {
 
     @FXML public void initialize() {
         Form form = cacheM.getForm();
-        certificateOfApproval.setSelected(form.getCertificateOfApproval());
-        certificateOfExemption.setSelected(form.getCertificateOfExemption());
-        DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
-        resubmission.setSelected(form.getResubmission());
+        if(form.getCertificateOfApproval() == null)
+            certificateOfApproval.setSelected(false);
+        else if(form.getCertificateOfApproval())
+            certificateOfApproval.setSelected(true);
+        if(form.getCertificateOfExemption() == null)
+            certificateOfExemption.setSelected(false);
+        else if(form.getCertificateOfExemption())
+            certificateOfExemption.setSelected(true);
+        if(form.getDistinctiveLiquor() == null)
+            DistinctiveLiquor.setSelected(false);
+        else if(form.getDistinctiveLiquor())
+            DistinctiveLiquor.setSelected(true);
+        if(form.getResubmission() == null)
+            resubmission.setSelected(false);
+        else if(form.getResubmission())
+            resubmission.setSelected(true);
         validateStateField();
         validateBottleCapacity();
         validateTTBID();
-        onlyState.setText(form.getOnlyState());
-        ttbID.setText(String.valueOf(form.getTtbID()));
-        bottleCapacity.setText(form.getBottleCapacity());
     }
 
 

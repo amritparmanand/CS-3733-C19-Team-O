@@ -2,8 +2,6 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.NumberAssigned;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
@@ -12,13 +10,9 @@ import com.jfoenix.controls.JFXCheckBox;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,14 +32,11 @@ public class mFormStorage {
     @FXML private JFXCheckBox approved;
     @FXML private JFXCheckBox pending;
     @FXML private JFXCheckBox denied;
-    @FXML private FlowPane loadForms;
 
     public mFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
-
-
 
     @FXML
     public void newForm() throws IOException {
@@ -53,64 +44,35 @@ public class mFormStorage {
         sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
     }
 
-    @SuppressWarnings("Duplicates")
-    @FXML public void getForms() throws IOException {
-        Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        if(!manAcc.getHasFetchedForms())
-            manAcc.setAssignedForms(cacheM.getDbM().getConnection());
+    /*  @FXML
+    public void loadForms(ActionEvent event) throws IOException {
+        Pane formResult = null;
+        try {
 
-        ArrayList<Form> populatedForms = (manAcc.getAssignedForms());
+            formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
+            loadForms.getChildren().add(formResult);
 
-        for (Form form : populatedForms) {
-            Pane formResult;
-            try {
-                formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
-                Node vbox = formResult.getChildren().get(0);
-                if (vbox instanceof VBox) {
-                    Node fName = ((VBox) vbox).getChildren().get(1);
-                    Node bName = ((VBox) vbox).getChildren().get(2);
-                    Node aType = ((VBox) vbox).getChildren().get(3);
 
-                    ((Label) fName).setText(form.getFancifulName());
-                    ((Label) bName).setText(form.getBrandName());
-                    switch(form.getProductType()){
-                        case "WINE":
-                            ((Label) aType).setText("Wine");
-                            break;
-                        case "DISTILLED":
-                            ((Label) aType).setText("Distilled Beverage");
-                            break;
-                        case "MALT":
-                            ((Label) aType).setText("Malt Beverage");
-                            break;
+            formResult.setId("Alcoholbox");
+            formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    try{
+                        aApplicationFormPg1();
+
                     }
-
-
+                    catch(IOException e){
+                        e.printStackTrace();
+                    }
                 }
-                loadForms.getChildren().add(formResult);
-                formResult.setId("Alcoholbox");
+            });
 
-                formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        try {
-                            mApplicationFormControl(form);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }}
-
-    @FXML
-    public void mApplicationFormControl(Form form) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+*/
+
     @FXML
     public void searchPage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));

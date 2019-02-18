@@ -89,18 +89,7 @@ public class aFormStorage {
 
                     ((Label) fName).setText(form.getFancifulName());
                     ((Label) bName).setText(form.getBrandName());
-                    switch(form.getProductType()){
-                        case "WINE":
-                            ((Label) aType).setText("Wine");
-                            break;
-                        case "DISTILLED":
-                            ((Label) aType).setText("Distilled Beverage");
-                            break;
-                        case "MALT":
-                            ((Label) aType).setText("Malt Beverage");
-                            break;
-                    }
-
+                    ((Label) aType).setText(form.getProductType());
 
                 }
                 loadForms.getChildren().add(formResult);

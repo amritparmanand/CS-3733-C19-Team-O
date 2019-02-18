@@ -53,7 +53,6 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextArea Q6Comment;
     @FXML private JFXTextArea Q7Comment;
     @FXML private JFXTextField receiver;
-    @FXML private JFXTextField TTBID;
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
@@ -97,6 +96,9 @@ public class aApplicationFormPg1 {
         domestic.setDisable(true);
         imported.setDisable(true);
         serialNO.setText(form.getSerialNumber());
+        wine2.setDisable(true);
+        beer2.setDisable(true);
+        spirits2.setDisable(true);
         wine.setDisable(true);
         spirits.setDisable(true);
         malt.setDisable(true);
@@ -105,9 +107,6 @@ public class aApplicationFormPg1 {
         alcoholPercentage.setText(form.getAlcoholPercent());
         phLevel.setText(form.getpHLevel());
         vintageYear.setText(form.getVintageYear());
-        wine2.setDisable(true);
-        spirits2.setDisable(true);
-        beer2.setDisable(true);
         System.out.println("starting");
     }
 
