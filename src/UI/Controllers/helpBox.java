@@ -35,61 +35,61 @@ public class helpBox {
         Image image;
         switch (prevLocation) {
             case "login":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/login.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/login.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
             case "aAppMulti":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/aApp.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/aApp.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
             case "aAppSingle":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/aApp.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/aApp.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
             case "mAppSingle":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/mAppSingle.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/mAppSingle.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
             case "mAppMulti":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/mApp.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/mApp.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
             case "search":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/search.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/search.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
             case "aGetApp":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/aGetApp.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/aGetApp.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
             case "mCreateForm":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/mCreateForm.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/mCreateForm.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
             case "aCreateAccount":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/aCreateAccount.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/aCreateAccount.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
             case "mCreateAccount":
-                image = new Image(getClass().getResourceAsStream("/HelpGifs/mCreateAccount.png"));
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/mCreateAccount.gif"));
                 helpGif.setFitHeight(726); //726
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
