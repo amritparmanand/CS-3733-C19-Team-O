@@ -107,7 +107,12 @@ public class mApplicationFormPg4 {
 //        form.setDateIssued("");
 
         try{
-            cacheM.insertForm(cacheM.getDbM().getConnection());
+            if(cacheM.getForm().getResubmission()){
+                cacheM.getForm().resubmitForm(cacheM.getDbM().getConnection());
+            }
+            else{
+                cacheM.insertForm(cacheM.getDbM().getConnection());
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }

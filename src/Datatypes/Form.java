@@ -300,7 +300,7 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void resubmit(Connection conn) {
+    public void resubmitApp(Connection conn) {
         //set the status to pending 
         //if(formID != getFormID())
         String SQL = "UPDATE APPLICATIONS SET DATESUBMITTED = CURRENT_DATE, STATUS = 'PENDING' WHERE FORMID ="
@@ -392,59 +392,78 @@ public class Form {
                 "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
         ResultSet seqVal;
-        if(getResubmission())
-        {
-            resubmit(connection);
+        try {
+            seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
+            seqVal.next();
+            this.setFormID(seqVal.getInt(1));
+            prepStmt.setInt(1, seqVal.getInt(1));
+            prepStmt.setInt(2, getRepID());
+            prepStmt.setString(3, getBrewerNumber());
+            prepStmt.setString(4, getProductSource());
+            prepStmt.setString(5, getSerialNumber());
+            prepStmt.setString(6, getProductType());
+            prepStmt.setString(7, getBrandName());
+            prepStmt.setString(8, getFancifulName());
+            prepStmt.setString(9, getApplicantName());
+            prepStmt.setString(10, getMailingAddress());
+            prepStmt.setString(11, getFormula());
+            prepStmt.setString(12, getGrapeVarietal());
+            prepStmt.setString(13, getAppellation());
+            prepStmt.setString(14, getPhoneNumber());
+            prepStmt.setString(15, getEmailAddress());
+            prepStmt.setBoolean(16, getCertificateOfApproval());
+            prepStmt.setBoolean(17, getCertificateOfExemption());
+            prepStmt.setString(18, getOnlyState());
+            prepStmt.setBoolean(19, getDistinctiveLiquor());
+            prepStmt.setString(20, getBottleCapacity());
+            prepStmt.setBoolean(21, getResubmission());
+            if (getTtbID() != 0)
+                prepStmt.setInt(22, getTtbID());
+            else
+                prepStmt.setNull(22, java.sql.Types.INTEGER);
+            prepStmt.setString(23, getDateOfApplication());
+            prepStmt.setString(24, getPrintName());
+            prepStmt.setString(25, getBeerWineSpirit());
+            prepStmt.setString(26, getAlcoholPercent());
+            prepStmt.setString(27, getVintageYear());
+            prepStmt.setString(28, getpHLevel());
+            File slimebert = getLabel().getLabelFile();
+            FileInputStream blobert = new FileInputStream(slimebert);
+            prepStmt.setBinaryStream(29, blobert, (int) slimebert.length());
+
+            addApp(connection, seqVal.getInt(1), getRepID(), getDateOfApplication(), dateIssued, signature);
+            prepStmt.executeUpdate();
+            prepStmt.close();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        else {
-            try {
-                seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
-                seqVal.next();
-                this.setFormID(seqVal.getInt(1));
-                prepStmt.setInt(1, seqVal.getInt(1));
-                prepStmt.setInt(2, getRepID());
-                prepStmt.setString(3, getBrewerNumber());
-                prepStmt.setString(4, getProductSource());
-                prepStmt.setString(5, getSerialNumber());
-                prepStmt.setString(6, getProductType());
-                prepStmt.setString(7, getBrandName());
-                prepStmt.setString(8, getFancifulName());
-                prepStmt.setString(9, getApplicantName());
-                prepStmt.setString(10, getMailingAddress());
-                prepStmt.setString(11, getFormula());
-                prepStmt.setString(12, getGrapeVarietal());
-                prepStmt.setString(13, getAppellation());
-                prepStmt.setString(14, getPhoneNumber());
-                prepStmt.setString(15, getEmailAddress());
-                prepStmt.setBoolean(16, getCertificateOfApproval());
-                prepStmt.setBoolean(17, getCertificateOfExemption());
-                prepStmt.setString(18, getOnlyState());
-                prepStmt.setBoolean(19, getDistinctiveLiquor());
-                prepStmt.setString(20, getBottleCapacity());
-                prepStmt.setBoolean(21, getResubmission());
-                if (getTtbID() != 0)
-                    prepStmt.setInt(22, getTtbID());
-                else
-                    prepStmt.setNull(22, java.sql.Types.INTEGER);
-                prepStmt.setString(23, getDateOfApplication());
-                prepStmt.setString(24, getPrintName());
-                prepStmt.setString(25, getBeerWineSpirit());
-                prepStmt.setString(26, getAlcoholPercent());
-                prepStmt.setString(27, getVintageYear());
-                prepStmt.setString(28, getpHLevel());
-                File slimebert = getLabel().getLabelFile();
-                FileInputStream blobert = new FileInputStream(slimebert);
-                prepStmt.setBinaryStream(29, blobert, (int) slimebert.length());
+    }
 
-                addApp(connection, seqVal.getInt(1), getRepID(), getDateOfApplication(), dateIssued, signature);
-                prepStmt.executeUpdate();
-                prepStmt.close();
+    /**
+     * Insert a form from Manufacturer side into database
+     * @param connection
+     * @throws SQLException
+     */
+    @SuppressWarnings("Duplicates")
+    public void resubmitForm(Connection connection) throws SQLException, FileNotFoundException {
 
+        String SQL = "UPDATE FORMS SET BREWERNUMBER = '" + this.getBrewerNumber() + "' WHERE FORMID ="
+                + this.formID;
+        try {
+            PreparedStatement ps = connection.prepareStatement(SQL);
 
-            } catch (SQLException e) {
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
-            }
         }
+
+        resubmitApp(connection);
+
     }
 
     /**

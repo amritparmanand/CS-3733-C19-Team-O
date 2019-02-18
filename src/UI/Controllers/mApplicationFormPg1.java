@@ -126,7 +126,7 @@ public class mApplicationFormPg1 {
 
 
     @FXML public void saveDraft(){
-        Form form = cacheM.getForm();
+//        Form form = cacheM.getForm();
 
         if (domestic.isSelected() || imported.isSelected()) {
             if(domestic.isSelected()) {
@@ -184,6 +184,13 @@ public class mApplicationFormPg1 {
         }
         if (!alcoholPercentage.getText().isEmpty()) {
             form.setAlcoholPercent(alcoholPercentage.getText());
+        }
+
+        String style = "-fx-background-color: #94BDFF;";
+        if(form.getTtbID() != 0){
+            if(brewerNO.getText() != form.getBrewerNumber()){
+                form.setBrewerNumber(brewerNO.getText() + style);
+            }
         }
 
         cacheM.setForm(form);
