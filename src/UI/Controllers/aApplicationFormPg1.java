@@ -156,7 +156,15 @@ public class aApplicationFormPg1 {
     }
 
     @FXML
-    public void denyForm() throws IOException {
+    public void denyForm() throws Exception {
+        comments.setComment1(Q1Comment.getText() + "\n");
+        comments.setComment2(Q2Comment.getText() + "\n");
+        comments.setComment3(Q3Comment.getText() + "\n");
+        comments.setComment4(Q4Comment.getText() + "\n");
+        comments.setComment5(Q5Comment.getText() + "\n");
+        comments.setComment6(Q6Comment.getText() + "\n");
+        comments.setComment7(Q7Comment.getText() + "\n");
+        System.out.println(comments.generateComments(comments));
         cacheM.denyForm(cacheM.getDbM().getConnection());
     }
 

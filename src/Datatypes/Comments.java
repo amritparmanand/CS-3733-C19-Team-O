@@ -8,207 +8,211 @@ import java.util.List;
 
 public class Comments {
     //comments 1 through 19
-    String comment1 = "";
-    String comment2 = "";
-    String comment3 = "";
-    String comment4 = "";
-    String comment5 = "";
-    String comment6 = "";
-    String comment7 = "";
-    String comment8 = "";
-    String comment8a = "";
-    String comment9 = "";
-    String comment10 = "";
-    String comment11 = "";
-    String comment12 = "";
-    String comment13 = "";
-    String comment14 = "";
-    String comment15 = "";
-    String comment16 = "";
-    String comment17 = "";
-    String comment18 = "";
-    String comment19 = "";
+//    String comment1 = "";
+//    String comment2 = "";
+//    String comment3 = "";
+//    String comment4 = "";
+//    String comment5 = "";
+//    String comment6 = "";
+//    String comment7 = "";
+//    String comment8 = "";
+//    String comment8a = "";
+//    String comment9 = "";
+//    String comment10 = "";
+//    String comment11 = "";
+//    String comment12 = "";
+//    String comment13 = "";
+//    String comment14 = "";
+//    String comment15 = "";
+//    String comment16 = "";
+//    String comment17 = "";
+//    String comment18 = "";
+//    String comment19 = "";
 
-    Method[] methods = getClass().getMethods();
+    //Method[] methods = getClass().getMethods();
+    ArrayList<String> comments = new ArrayList<String> (20);
 
     public Comments() {
+        for(int i = 0; i<20; i++) {
+            comments.add("");
+        }
     }
 
     public String getComment1() {
-        return comment1;
+        return comments.get(0);
     }
 
     public void setComment1(String comment1) {
-        this.comment1 = comment1;
+        comments.set(0, comment1);
     }
 
     public String getComment2() {
-        return comment2;
+        return comments.get(1);
     }
 
     public void setComment2(String comment2) {
-        this.comment2 = comment2;
+        comments.set(1, comment2);
     }
 
     public String getComment3() {
-        return comment3;
+        return comments.get(2);
     }
 
     public void setComment3(String comment3) {
-        this.comment3 = comment3;
+        comments.set(2, comment3);
     }
 
     public String getComment4() {
-        return comment4;
+        return comments.get(3);
     }
 
     public void setComment4(String comment4) {
-        this.comment4 = comment4;
+        comments.set(3, comment4);
     }
 
     public String getComment5() {
-        return comment5;
+        return comments.get(4);
     }
 
     public void setComment5(String comment5) {
-        this.comment5 = comment5;
+        comments.set(4, comment5);
     }
 
     public String getComment6() {
-        return comment6;
+        return comments.get(5);
     }
 
     public void setComment6(String comment6) {
-        this.comment6 = comment6;
+        comments.set(5, comment6);
     }
 
     public String getComment7() {
-        return comment7;
+        return comments.get(6);
     }
 
     public void setComment7(String comment7) {
-        this.comment7 = comment7;
+        comments.set(6, comment7);
     }
 
     public String getComment8() {
-        return comment8;
+        return comments.get(7);
     }
 
     public void setComment8(String comment8) {
-        this.comment8 = comment8;
+        comments.set(7, comment8);
     }
 
     public String getComment8a() {
-        return comment8a;
+        return comments.get(8);
     }
 
     public void setComment8a(String comment8a) {
-        this.comment8a = comment8a;
+        comments.set(8, comment8a);
     }
 
     public String getComment9() {
-        return comment9;
+        return comments.get(9);
     }
 
     public void setComment9(String comment9) {
-        this.comment9 = comment9;
+        comments.set(9, comment9);
     }
 
     public String getComment10() {
-        return comment10;
+        return comments.get(10);
     }
 
     public void setComment10(String comment10) {
-        this.comment10 = comment10;
+        comments.set(10, comment10);
     }
 
     public String getComment11() {
-        return comment11;
+        return comments.get(11);
     }
 
     public void setComment11(String comment11) {
-        this.comment11 = comment11;
+        comments.set(11, comment11);
     }
 
     public String getComment12() {
-        return comment12;
+        return comments.get(12);
     }
 
     public void setComment12(String comment12) {
-        this.comment12 = comment12;
+        comments.set(12, comment12);
     }
 
     public String getComment13() {
-        return comment13;
+        return comments.get(13);
     }
 
     public void setComment13(String comment13) {
-        this.comment13 = comment13;
+        comments.set(13, comment13);
     }
 
     public String getComment14() {
-        return comment14;
+        return comments.get(14);
     }
 
     public void setComment14(String comment14) {
-        this.comment14 = comment14;
+        comments.set(14, comment14);
     }
 
     public String getComment15() {
-        return comment15;
+        return comments.get(15);
     }
 
     public void setComment15(String comment15) {
-        this.comment15 = comment15;
+        comments.set(15, comment15);
     }
 
     public String getComment16() {
-        return comment16;
+        return comments.get(16);
     }
 
     public void setComment16(String comment16) {
-        this.comment16 = comment16;
+        comments.set(16, comment16);
     }
 
     public String getComment17() {
-        return comment17;
+        return comments.get(17);
     }
 
     public void setComment17(String comment17) {
-        this.comment17 = comment17;
+        comments.set(17, comment17);
     }
 
     public String getComment18() {
-        return comment18;
+        return comments.get(18);
     }
 
     public void setComment18(String comment18) {
-        this.comment18 = comment18;
+        comments.set(18, comment18);;
     }
 
     public String getComment19() {
-        return comment19;
+        return comments.get(19);
     }
 
     public void setComment19(String comment19) {
-        this.comment19 = comment19;
+        comments.set(19, comment19);
     }
 
     public String generateComments(Object c) throws Exception
     {
-        String comments = "";
-        int getterNumber = 0;
-        //iterate through all the comments
-        List<Method> getters = new ArrayList<Method>();
+        String commentBlurb = "";
+//        int getterNumber = 0;
+//        //iterate through all the comments
+//        List<Method> getters = new ArrayList<Method>();
 
-        for (int i = 0; i < methods.length; i++) {
-            if ((methods[i].getName().startsWith("get"))) {
-                getters.add(methods[i]);
-                System.out.println(getters.get(i));
-                //System.out.println(methods[i].toString());
-            }
-        }
-
+//        for (int i = 0; i < methods.length; i++) {
+//            if ((methods[i].getName().startsWith("get"))) {
+//                getters.add(methods[i]);
+//                //System.out.println(methods[i].toString());
+//            }
+//        }
+//
+//        System.out.println(getters.get(16));
 //        for(int i = 0; i < methods.length; i++)
 //        {
 //            System.out.println(methods[i]);
@@ -224,8 +228,23 @@ public class Comments {
 ////                }
 ////            }
 //        }
+        for(int i = 0; i < comments.size(); i++) {
+            //if it is not ""
+            if(!comments.get(i).equals("\n"))
+            {
+                if(i == 8)
+                commentBlurb += "8a"  + ". " + comments.get(i);
 
-        //return the concatenation of all of them
-        return comments;
+                if(i > 8)
+                commentBlurb += i  + ". " + comments.get(i);
+
+                else
+                commentBlurb += i+1  + ". " + comments.get(i);
+
+
+            }
+            //return the concatenation of all of them
+        }
+        return commentBlurb;
     }
 }

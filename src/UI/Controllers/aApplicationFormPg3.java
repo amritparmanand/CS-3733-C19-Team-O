@@ -106,8 +106,11 @@ public class aApplicationFormPg3 {
 
 
     @FXML
-    public void denyForm() throws IOException {
+    public void denyForm() throws Exception {
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        comments.setComment14(Q14Comment.getText() + "\n");
+        comments.setComment15(Q15Comment.getText() + "\n");
+        System.out.println(comments.generateComments(comments));
     }
 
     @FXML
