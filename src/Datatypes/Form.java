@@ -1,5 +1,6 @@
 package Datatypes;
 
+import javax.security.auth.Subject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -298,6 +299,7 @@ public class Form {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     public void resubmit(Connection conn) {
         //set the status to pending 
         //if(formID != getFormID())
@@ -457,5 +459,22 @@ public class Form {
                 "WHERE APPLICATIONS.STATUS='APPROVED'";
         ResultSet rset = conn.createStatement().executeQuery(retrieve);
         return rset;
+    }
+
+    public String getFormStatus(Connection connection){
+
+        String status = "";
+
+        String getID = "SELECT STATUS FROM APPLICATIONS join FORMS on forms.FORMID = APPLICATIONS.FORMID WHERE FORMS.FORMID = " + this.formID;
+        try {
+            ResultSet rset = connection.createStatement().executeQuery(getID);
+            while(rset.next())
+                status = rset.getString("status");
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        return status;
     }
 }

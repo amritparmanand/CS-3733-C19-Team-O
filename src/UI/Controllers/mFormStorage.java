@@ -85,11 +85,24 @@ public class mFormStorage {
                             break;
                     }
 
+                    String style = "";
+                    switch(form.getFormStatus(cacheM.getDbM().getConnection())){
+                        case "APPROVED":
+                            style = "-fx-background-color: #e4f7ef;\n";
+                            break;
+                        case "DENIED":
+                            style = "-fx-background-color: #fcedec;\n";
+                            break;
+                        case "PENDING":
+                            style = "-fx-background-color: #fbf8e1;\n";
+                            break;
+                    }
+                    vbox.setStyle(style);
+
 
                 }
                 loadForms.getChildren().add(formResult);
                 formResult.setId("Alcoholbox");
-
                 formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
