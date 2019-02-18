@@ -70,15 +70,11 @@ public class aFormStorage {
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
 
+    @SuppressWarnings("Duplicates")
     @FXML
     public void assignNewForms() throws IOException {
 
-        // Initialize the instance of the Singleton class
-        NumberAssigned object = NumberAssigned.getInstance();
-        if (!formLimit.getText().isEmpty()) {
-            object.setNum(Integer.parseInt(formLimit.getText()));
-        }
-        int limit = object.getNum();
+        int limit = 5;
 
         ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
@@ -126,7 +122,8 @@ public class aFormStorage {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }}
+        }
+    }
 
     @FXML
     public void logout() throws IOException {

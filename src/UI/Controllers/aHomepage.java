@@ -46,4 +46,10 @@ public class aHomepage {
         sceneM.changeScene(loader, new aFormStorage(sceneM, cacheM));
     }
 
+    @FXML
+    public void viewReviewed() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aGetApplication.fxml"));
+        sceneM.changeScene(loader, new aGetApplication(sceneM, cacheM));
+    }
+
 }

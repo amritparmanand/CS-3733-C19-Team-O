@@ -7,8 +7,8 @@ import java.math.BigInteger;
 import java.sql.*;
 import java.util.Date;
 /**
- * @author Harry James and Gabriel Entov
- * @version It 2
+ * @author Harry James and Gabriel Entov & Percy
+ * @version It 3
  * object to hold information in a form
  */
 public class Form {

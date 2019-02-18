@@ -214,7 +214,7 @@ public class DatabaseManager {
                 "alcoholPercent varchar(60),   " +
                 "vintageYear varchar(60), " +
                 "phLevel varchar(60), "+
-                "labelImage blob(32M)), ";
+                "labelImage blob(32M)) ";
         String createUniqueReps = "create unique index Representatives_username_uindex " +
                 "on Representatives (username)";
         String createUniqueAgents = "create unique index Agents_username_uindex " +

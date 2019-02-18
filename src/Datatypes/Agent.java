@@ -18,6 +18,7 @@ import java.util.Set;
 public class Agent extends Account {
     private int ttbID;
     private ArrayList<Form> workingForms = new ArrayList<>();
+    private ArrayList<Form> reviewedForms = new ArrayList<>();
     private boolean hasFetchedForms = false;
 
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID) {
@@ -64,6 +65,12 @@ public class Agent extends Account {
     }
     public void setTtbID(int ttbID) {
         this.ttbID = ttbID;
+    }
+    public ArrayList<Form> getReviewedForms() {
+        return reviewedForms;
+    }
+    public void setReviewedForms(ArrayList<Form> reviewedForms) {
+        this.reviewedForms = reviewedForms;
     }
 
     // Parse an agent object into database
@@ -135,9 +142,11 @@ public class Agent extends Account {
 
     // Query the database to select forms where the TTB ID matches this agent's id
     // Call formFromResultSet into object and add it into the working Forms of this agent
+    @SuppressWarnings("Duplicates")
     public void getAssignedForms(Connection conn) {
         try {
-            String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE APPLICATIONS.TTBID = " + this.getTtbID();
+            String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE" +
+                    " APPLICATIONS.TTBID = " + this.getTtbID() + " and APPLICATIONS.STATUS = 'PENDING'";
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
@@ -147,6 +156,30 @@ public class Agent extends Account {
             }
             ps.close();
             this.hasFetchedForms = true;
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+    }
+
+    /**
+     * @author Percy
+     * @version It3
+     * @param connection
+     */
+    @SuppressWarnings("Duplicates")
+    public void getReviewedForms(Connection connection){
+        try {
+            String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
+                    "APPLICATIONS.TTBID = " + this.getTtbID()+ " and APPLICATIONS.STATUS = 'APPROVED' or APPLICATIONS.STATUS = 'DENIED'";
+            PreparedStatement ps = connection.prepareStatement(assignedForms);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                reviewedForms.add(formFromResultSet(rs));
+            }
+            ps.close();
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
