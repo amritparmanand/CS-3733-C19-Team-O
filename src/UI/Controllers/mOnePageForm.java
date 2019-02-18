@@ -148,8 +148,8 @@ public class mOnePageForm {
         pdf.appendText(formula.getText(), 24,722, 10);
         pdf.appendText(grapes.getText(), 153, 722, 10);
         pdf.appendText(appellation.getText(), 24,688, 10);
-        pdf.appendText(email.getText(), 153, 652, 10);
-        pdf.appendText(phoneNumber.getText(), 24, 652, 10);
+        pdf.appendText(email.getText(), 153, 656, 10);
+        pdf.appendText(phoneNumber.getText(), 24, 656, 10);
 
 
         //type of application
@@ -175,6 +175,11 @@ public class mOnePageForm {
         pdf.appendText(dateOfApplication.getText(), 24, 500, 10);
         pdf.appendText(applicantSig.getText(), 138, 500, 10);
         pdf.appendText(applicantNamePrint.getText(), 366, 500, 10);
+
+        pdf.appendText("Additional Fields:", 24, 620, 10 );
+        pdf.appendText("Alcohol Percentage: "+alcoholPercentage.getText(), 24, 610, 10);
+        pdf.appendText("pH Level: "+phLevel.getText(), 24, 600, 10);
+        pdf.appendText("Vintage Year: "+vintageYear.getText(), 24, 590, 10);
 
         pdf.closeStream();
 
