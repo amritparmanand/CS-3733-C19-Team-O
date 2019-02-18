@@ -1,3 +1,4 @@
+import Firebase.FirebaseHandler;
 import Managers.*;
 
 import UI.Controllers.LoginPage;
@@ -12,6 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        FirebaseHandler firebaseHandler = new FirebaseHandler();
         //backend
         dbM = new DatabaseManager();
         //frontend
