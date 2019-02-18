@@ -121,8 +121,14 @@ public class mFormStorage {
 
     @FXML
     public void mApplicationFormControl(Form form) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
+        if (!form.getFormStatus(cacheM.getDbM().getConnection()).equals("DENIED")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
+            sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
+        }
+        else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
+            sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM, form));
+        }
     }
     @FXML
     public void searchPage() throws IOException {

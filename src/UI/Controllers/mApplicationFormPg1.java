@@ -30,7 +30,7 @@ import java.util.Calendar;
 public class mApplicationFormPg1 {
     private SceneManager sceneM;
     private CacheManager cacheM;
-
+    private Form form;
     @FXML private Label saveDraftMessage;
     @FXML private JFXTextField repID;
     @FXML private JFXTextField brewerNO;
@@ -51,14 +51,20 @@ public class mApplicationFormPg1 {
     @FXML private JFXButton saveDraft;
     @FXML private Label serialMessage;
 
+    public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        form = cacheM.getForm();
     }
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
 
-        Form form = cacheM.getForm();
+        //Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
         boolean isDomestic = false;
@@ -229,7 +235,7 @@ public class mApplicationFormPg1 {
         saveDraft();
 //        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM, form));
     }
 
     @FXML public void goToHomePage() throws IOException {

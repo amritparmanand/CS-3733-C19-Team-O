@@ -25,7 +25,7 @@ public class mApplicationFormPg2 {
     private CacheManager cacheM;
     private String phoneNumberString;
     private String formEmail;
-
+    private Form form;
     @FXML private AnchorPane mainPane;
 
     @FXML private VBox hideBox;
@@ -41,15 +41,20 @@ public class mApplicationFormPg2 {
     @FXML private JFXTextField phoneNumber;
     @FXML private JFXTextField email;
 
+    public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
+
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        form = cacheM.getForm();
     }
-
     @FXML public void initialize(){
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        Form form = cacheM.getForm();
         printName.setText(form.getPrintName());
         mailAddress.setText(form.getMailingAddress());
         formula.setText(form.getFormula());
@@ -138,13 +143,13 @@ public class mApplicationFormPg2 {
         saveDraft();
 //        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM, form));
     }
     @FXML public void previousPage() throws IOException {
         saveDraft();
 //        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM, form));
     }
     @FXML public void searchPage() throws IOException {
 //        multiThreadWaitFor.onShutDown();

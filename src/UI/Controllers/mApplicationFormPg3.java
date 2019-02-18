@@ -21,6 +21,8 @@ public class mApplicationFormPg3 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private LabelImage image = new LabelImage();
+    private Form form;
+
     @FXML private JFXTextField onlyState;
     @FXML private JFXTextField ttbID;
     @FXML private JFXTextField bottleCapacity; //will be int, for future reference
@@ -31,13 +33,18 @@ public class mApplicationFormPg3 {
     @FXML private ImageView imagePreview;
     @FXML private Label errorLabel;
 
+    public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM,Form form) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        this.form = cacheM.getForm();
     }
 
     @FXML public void initialize() {
-        Form form = cacheM.getForm();
         if(form.getCertificateOfApproval() == null)
             certificateOfApproval.setSelected(false);
         else if(form.getCertificateOfApproval())
@@ -154,12 +161,12 @@ public class mApplicationFormPg3 {
 //        multiThreadWaitFor.onShutDown();
         System.out.println("on to page 4");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM, form));
     }
     @FXML public void previousPage() throws IOException {
 //        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM, form));
     }
     @FXML public void goToHomePage() throws IOException {
 //        multiThreadWaitFor.onShutDown();

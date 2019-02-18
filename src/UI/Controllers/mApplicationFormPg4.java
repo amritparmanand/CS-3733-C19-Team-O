@@ -24,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 public class mApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private Form form;
 
     @FXML
     private Button previous;
@@ -40,15 +41,21 @@ public class mApplicationFormPg4 {
     @FXML
     private JFXTextField applicantNamePrint;
 
+    public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
+
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        this.form = cacheM.getForm();
     }
 
     @FXML
     public void initialize() {
-        Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
         System.out.println("starting");
@@ -115,7 +122,7 @@ public class mApplicationFormPg4 {
     @FXML public void previousPage() throws IOException {
         //multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM, form));
     }
     @FXML public void searchPage() throws IOException {
         //multiThreadWaitFor.onShutDown();
