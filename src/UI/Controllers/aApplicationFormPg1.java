@@ -29,6 +29,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXButton saveDraft;
     @FXML private JFXButton logout;
     @FXML private JFXButton homePage;
+    @FXML private JFXButton help;
     @FXML private JFXTextField repID;
     @FXML private JFXTextField brewerNO;
     @FXML private JFXRadioButton domestic;
@@ -147,6 +148,20 @@ public class aApplicationFormPg1 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
+    }
+    public void help() throws IOException{
+        helpBox.imageSeter("login");
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpBox.fxml"));
+        helpPopWindow(root);
+    }
+
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
 }

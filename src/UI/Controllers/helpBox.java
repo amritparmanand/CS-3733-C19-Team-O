@@ -64,6 +64,36 @@ public class helpBox {
                 helpGif.setFitWidth(500); //500
                 helpGif.setImage(image);
                 break;
+            case "search":
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/search.png"));
+                helpGif.setFitHeight(726); //726
+                helpGif.setFitWidth(500); //500
+                helpGif.setImage(image);
+                break;
+            case "aGetApp":
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/aGetApp.png"));
+                helpGif.setFitHeight(726); //726
+                helpGif.setFitWidth(500); //500
+                helpGif.setImage(image);
+                break;
+            case "mCreateForm":
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/mCreateForm.png"));
+                helpGif.setFitHeight(726); //726
+                helpGif.setFitWidth(500); //500
+                helpGif.setImage(image);
+                break;
+            case "aCreateAccount":
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/aCreateAccount.png"));
+                helpGif.setFitHeight(726); //726
+                helpGif.setFitWidth(500); //500
+                helpGif.setImage(image);
+                break;
+            case "mCreateAccount":
+                image = new Image(getClass().getResourceAsStream("/HelpGifs/mCreateAccount.png"));
+                helpGif.setFitHeight(726); //726
+                helpGif.setFitWidth(500); //500
+                helpGif.setImage(image);
+                break;
 
         }
     }
