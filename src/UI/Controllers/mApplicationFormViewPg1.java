@@ -94,10 +94,15 @@ public class mApplicationFormViewPg1 {
         distilled.setDisable(true);
         malt.setDisable(true);
         brandName.setText(form.getBrandName());
+        brandName.setEditable(false);
         fancifulName.setText(form.getFancifulName());
+        fancifulName.setEditable(false);
         alcoholPercentage.setText(form.getAlcoholPercent());
+        alcoholPercentage.setEditable(false);
         phLevel.setText(form.getpHLevel());
+        phLevel.setEditable(false);
         vintageYear.setText(form.getVintageYear());
+        vintageYear.setEditable(false);
         wine2.setDisable(true);
         spirits2.setDisable(true);
         beer2.setDisable(true);
