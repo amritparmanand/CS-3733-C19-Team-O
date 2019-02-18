@@ -56,8 +56,7 @@ public class mFormStorage {
     @SuppressWarnings("Duplicates")
     @FXML public void getForms() throws IOException {
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        if(!manAcc.getHasFetchedForms())
-            manAcc.setAssignedForms(cacheM.getDbM().getConnection());
+        manAcc.retrieveAssignedForms(cacheM.getDbM().getConnection());
 
         ArrayList<Form> populatedForms = (manAcc.getAssignedForms());
 

@@ -65,23 +65,29 @@ public class Manufacturer extends Account {
     // Query the database to select forms where the TTB ID matches this agent's id
     // Call formFromResultSet into object and add it into the working Forms of this agent
     @SuppressWarnings("Duplicates")
-    public void setAssignedForms(Connection conn) {
+    public void retrieveAssignedForms(Connection conn) {
         try {
+            ArrayList<Form> jeans = new ArrayList<>();
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE APPLICATIONS.REPID = " + this.getRepID();
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                workingForms.add(formFromResultSet(rs));
+                jeans.add(formFromResultSet(rs));
             }
+            setWorkingForms(jeans);
             ps.close();
-            this.hasFetchedForms = true;
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
     }
+
+    public void setWorkingForms(ArrayList<Form> workingForms) {
+        this.workingForms = workingForms;
+    }
+
     public ArrayList<Form> getAssignedForms() {
         return workingForms;
     }

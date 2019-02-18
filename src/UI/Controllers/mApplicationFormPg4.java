@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -39,6 +40,8 @@ public class mApplicationFormPg4 {
     private JFXTextField applicantSig;
     @FXML
     private JFXTextField applicantNamePrint;
+    @FXML private Label errorLabel2;
+
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
@@ -65,13 +68,15 @@ public class mApplicationFormPg4 {
     }
 
     public void saveDraft(){
-            Form form = cacheM.getForm();
+        Form form = cacheM.getForm();
 
+        if(dateOfApplication.getValue() != null)
             form.setDateOfApplication(dateOfApplication.getValue().toString());
+        if(applicantNamePrint.getText().isEmpty())
             form.setPrintName(applicantNamePrint.getText());
 
-            cacheM.setForm(form);
-            System.out.println("Pg4 Saved!");
+        cacheM.setForm(form);
+        System.out.println("Pg4 Saved!");
 
     }
 
@@ -92,17 +97,18 @@ public class mApplicationFormPg4 {
     @FXML
     public void submit() throws SQLException, IOException {
         //multiThreadWaitFor.onShutDown();
+        saveDraft();
         Form form = cacheM.getForm();
-
-        form.setDateOfApplication(dateOfApplication.getValue().toString());
-        // form.setSignatureOfApplicant(applicantSig.getText());
-        form.setPrintName(applicantNamePrint.getText());
-//        form.setDateIssued("");
-
-        try{
-            cacheM.insertForm(cacheM.getDbM().getConnection());
-        }catch(SQLException e){
-            e.printStackTrace();
+        System.out.println(form.isValid());
+        if(!form.isValid()) {
+            errorLabel2.setText("Missing required fields.");
+            return;
+        }else {
+            try {
+                cacheM.insertForm(cacheM.getDbM().getConnection());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         Form cleanForm = new Form();

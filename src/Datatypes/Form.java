@@ -284,8 +284,7 @@ public class Form {
     }
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) {
-        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED' WHERE FORMID ="
-                + this.formID;
+        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED' WHERE FORMID ="+ this.formID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
@@ -322,6 +321,16 @@ public class Form {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+    }
+
+    public boolean isValid(){
+        if(brewerNumber == "" || productSource == "" || serialNumber == "" || productType == "" || brandName == "" ||
+        applicantName == "" || alcoholPercent == "" || applicantName == "" || phoneNumber == "" || emailAddress == "" ||
+                (!certificateOfExemption && !certificateOfApproval && !distinctiveLiquor && !resubmission) ||
+                label.getFile() == null || dateOfApplication == "" || printName == "")
+            return false;
+        else
+            return true;
     }
 
     /**
