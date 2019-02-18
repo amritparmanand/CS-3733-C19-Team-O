@@ -26,7 +26,26 @@ import java.io.IOException;
 
 public class PDF {
 
-    File rawPDF = new File("/Users/robertrinearson/Documents/iteration2/src/Resources/ttbpdf.pdf");
+    File NrawPDF = new File("/Users/robertrinearson/Documents/iteration2/src/Resources/ttbpdf.pdf");
+    PDDocument NformPDF = PDDocument.load(NrawPDF);
+
+    PDPage NformPage1 = NformPDF.getPage(0);
+    PDPageContentStream NcontentStream = new PDPageContentStream(NformPDF, NformPage1, PDPageContentStream.AppendMode.APPEND, true, true);
+    PDAcroForm NpDAcroForm = NformPDF.getDocumentCatalog().getAcroForm();
+
+    public void fakeOpen()throws IOException{
+        NformPDF.setAllSecurityToBeRemoved(true);
+        NpDAcroForm.setAppendOnly(false);
+        NpDAcroForm.flatten();
+    }
+
+    public void fakeClose() throws IOException {
+        NcontentStream.close();
+        NformPDF.save(new File("./TheFake.pdf"));
+        NformPDF.close();
+    }
+
+    File rawPDF = new File("./TheFake.pdf");
     PDDocument formPDF = PDDocument.load(rawPDF);
 
     PDPage formPage1 = formPDF.getPage(0);
