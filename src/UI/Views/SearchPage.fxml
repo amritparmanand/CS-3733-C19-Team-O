@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.SearchPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.SearchPage">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -148,6 +148,11 @@
                               <TextField prefWidth="30.0" />
                            </children>
                         </HBox>
+                        <JFXTextField fx:id="delimiterChooser" maxWidth="100.0" promptText="Choose Delimiter (Default ',')">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="30.0" />
+                           </VBox.margin>
+                        </JFXTextField>
                         <JFXButton fx:id="download" onAction="#download" styleClass="buttonStyle" text="Download">
                            <VBox.margin>
                               <Insets bottom="10.0" left="30.0" />

@@ -1,5 +1,7 @@
 package UI.Controllers;
 
+import java.io.*;
+
 import Datatypes.SearchResult;
 import Fuzzy.*;
 import Managers.CacheManager;
@@ -7,6 +9,7 @@ import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
+import com.opencsv.CSVWriter;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,13 +30,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Amrit Parmanand & Robert Rinearson
  * @version It 1
@@ -80,6 +81,7 @@ public class SearchPage {
     @FXML private MenuButton algChoose;
     @FXML private JFXTextField pageNumber;
     @FXML private JFXButton pageButton;
+    @FXML private JFXTextField delimiterChooser;
 
     //rob
     @FXML
@@ -356,10 +358,51 @@ public class SearchPage {
         return cacheM.getApprovedApplications(cacheM.getDbM().getConnection()); //we have to limit so it doesnt overload our program with 1M icons
     }
 
-    /**
+
+    public void download(){
+        Character delimiter;
+        if(!delimiterChooser.getText().isEmpty()){
+            delimiter = delimiterChooser.getText().charAt(0);
+        }else{
+            delimiter = ',';
+        }
+
+        String workingDirectory = System.getProperty("user.dir");
+        String filePath = workingDirectory + File.separator + "Search-Results.csv";
+
+
+        File file = new File(filePath);
+
+        try {
+            FileWriter searchResults = new FileWriter(file);
+
+            // create CSVWriter object filewriter object as parameter
+            //CSVWriter writer = new CSVWriter(outputfile);
+            CSVWriter writer = new CSVWriter(searchResults,
+                    delimiter,
+                    CSVWriter.NO_QUOTE_CHARACTER,
+                    CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                    CSVWriter.DEFAULT_LINE_END);
+
+            List<String[]> data = new ArrayList<String[]>();
+            data.add(new String[]{"FANCIFUL NAME","COMPANY NAME","ALCOHOL TYPE","ALCOHOL TYPE2","PH LEVEL","ALCOHOL PERCENT","YEAR"});
+
+            for(SearchResult s : searchList) {
+                String alcoholType = s.getProductType();
+                data.add(new String[]{s.getFancifulName(), s.getCompanyName(), s.getAlcoholType(), alcoholType, s.getPhLevel(), s.getAlcohol(), s.getYear()});
+            }
+            writer.writeAll(data);
+
+            writer.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+ /*   *//**
      * @author Jonathan Luna and Liz Del Monaco
      * downloads all searches from a query into a csv file
-     */
+     *//*
     public void download(){
         System.out.println(";)");
 
@@ -368,17 +411,21 @@ public class SearchPage {
 
         JFileChooser chooser = new JFileChooser();
         String choosertitle = "Select a destination";
+        System.out.println("chooser created");
 
         chooser.setCurrentDirectory(new java.io.File("."));
         chooser.setDialogTitle(choosertitle);
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         chooser.setAcceptAllFileFilterUsed(false);
+        System.out.println("chooser.setAcceptAllFileFilterUsed(false)");
 
-        int r = chooser.showSaveDialog(null);
-
+        int r = chooser.showSaveDialog(chooser);
+System.out.println("r");
         if(r == JFileChooser.APPROVE_OPTION){
+            System.out.println("before path specified");
             path = chooser.getSelectedFile().getAbsolutePath();
+            System.out.println("after path specified");
 
             try {
                 System.out.println(path);
@@ -412,5 +459,5 @@ public class SearchPage {
         }
 
 
-    }
+    }*/
 }
