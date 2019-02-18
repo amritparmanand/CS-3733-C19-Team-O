@@ -142,7 +142,7 @@ public class aApplicationFormPg2 {
 
     }
     @FXML public void passForm() throws IOException{
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), Integer.parseInt(receiver.getText()));
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
         back();
     }
 

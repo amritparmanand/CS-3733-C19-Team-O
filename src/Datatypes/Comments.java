@@ -201,37 +201,12 @@ public class Comments {
     public String generateComments(Object c) throws Exception
     {
         String commentBlurb = "";
-//        int getterNumber = 0;
-//        //iterate through all the comments
-//        List<Method> getters = new ArrayList<Method>();
 
-//        for (int i = 0; i < methods.length; i++) {
-//            if ((methods[i].getName().startsWith("get"))) {
-//                getters.add(methods[i]);
-//                //System.out.println(methods[i].toString());
-//            }
-//        }
-//
-//        System.out.println(getters.get(16));
-//        for(int i = 0; i < methods.length; i++)
-//        {
-//            System.out.println(methods[i]);
-////            if(methods[i].getName().contains("get"))
-////            {
-////                //if it's a getter increment this
-////                getterNumber ++;
-////                System.out.println(getterNumber);
-////                //if it is not ""
-////                if(!methods[i].invoke(c).equals("\n")) {
-////                    System.out.println(methods[i].invoke(c));
-////                    comments += getterNumber + ". " + methods[i].invoke(c);
-////                }
-////            }
-//        }
         for(int i = 0; i < comments.size(); i++) {
             //if it is not ""
             if(!comments.get(i).equals(""))
             {
+                //8a is weird so check for that
                 if(i == 8)
                 commentBlurb += "8a"  + ". " + comments.get(i) + "\n";
 

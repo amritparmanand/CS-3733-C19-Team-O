@@ -299,8 +299,20 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void passForm(Connection connection, long f, int r){
-        String s = "UPDATE APPLICATIONS SET TTBID = " + r + " WHERE FORMID = " + f;
+    public void passForm(Connection connection, long formID, String username){
+        //take in a username of an Agent, query the agent table for the ID, the rest is the same
+        int id = 0;
+        String getID = "SELECT TTBID FROM AGENTS WHERE USERNAME = '" + username + "'";
+        try {
+            ResultSet rset = connection.createStatement().executeQuery(getID);
+            while(rset.next())
+                id = rset.getInt("ttbID");
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        String s = "UPDATE APPLICATIONS SET TTBID = " + id + " WHERE FORMID = " + formID;
         try {
             PreparedStatement ps = connection.prepareStatement(s);
             ps.executeUpdate();
