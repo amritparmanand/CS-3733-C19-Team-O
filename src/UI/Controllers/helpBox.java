@@ -20,9 +20,10 @@ public class helpBox {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    public helpBox(SceneManager sceneM, CacheManager cacheM) {
+    public helpBox(SceneManager sceneM, CacheManager cacheM, String prevLocation) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        imageSeter(prevLocation);
     }
 
     /**
@@ -30,7 +31,7 @@ public class helpBox {
      * @param prevLocation
      * sets the image to be displayed on the help page
      */
-    public void imageSeter(String prevLocation){
+    private void imageSeter(String prevLocation){
 
         Image image;
         switch (prevLocation) {
