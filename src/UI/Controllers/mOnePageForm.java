@@ -3,21 +3,37 @@ package UI.Controllers;
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Datatypes.PDF;
+import Datatypes.SearchResult;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.tools.hat.internal.model.Root;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.apache.pdfbox.rendering.PDFRenderer;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * @author Robert & Percy
@@ -69,6 +85,7 @@ public class mOnePageForm {
     @FXML private JFXTextField applicantSig;
     @FXML private JFXTextField applicantNamePrint;
     @FXML private LabelImage image = new LabelImage();
+    @FXML private Button button;
 
     @FXML public boolean validFormPhone(String phoneNumber){
         if(phoneNumber.matches("^[0]{8,20}$")){
@@ -159,10 +176,77 @@ public class mOnePageForm {
         pdf.appendText(applicantSig.getText(), 138, 500, 10);
         pdf.appendText(applicantNamePrint.getText(), 366, 500, 10);
 
+        pdf.closeStream();
 
+        pdfPopupWindow(pdf);
         pdf.close();
 
         System.out.println("saved!");
+    }
+
+
+    //PoPup
+
+
+                //POPUP WINDOW
+
+    public void pdfPopupWindow(PDF pdf) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/PDFpopup.fxml"));
+
+        //time for the
+        Node vbox = root.getChildrenUnmodifiable().get(0);
+        ImageView pdfImage = new ImageView();
+        pdfImage.setImage(pdf.renderPDF());
+
+        if (vbox instanceof VBox) {
+            System.out.println("vboxinstance");
+            Node navBox = ((VBox) vbox).getChildren().get(0);
+            Node scrollPane = ((VBox) vbox).getChildren().get(1);
+
+            if (navBox instanceof HBox){
+                Node fancifulLabel = ((HBox) navBox).getChildren().get(0);
+                Node saveButton = ((HBox) navBox).getChildren().get(1);
+
+                ((Label) fancifulLabel).setText(fancifulName.getText());
+                ((JFXButton) saveButton).setOnAction((event -> {
+                    try {
+                        pdf.savePDF(pdf, vbox);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }));
+            }
+
+            if (scrollPane instanceof ScrollPane){
+                System.out.println("scrollpane instance");
+                ((ScrollPane) scrollPane).setContent(pdfImage);
+//                if(pdfVBox instanceof VBox){
+//                    Node pdfImage = ((VBox) vbox).getChildren().get(0);
+//                    if (pdfImage instanceof ImageView){
+//                        System.out.println("imageview sout");
+//                        ((ImageView) pdfImage).setImage(pdf.renderPDF());
+//                    }
+//                }
+
+
+            }
+        }
+        popWindow(root);
+    }
+
+    @FXML public void printPDF(){
+
+    }
+
+
+    @FXML public void popWindow(Parent root) throws IOException {
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("TTB PDF");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     @FXML public void saveDraft(){

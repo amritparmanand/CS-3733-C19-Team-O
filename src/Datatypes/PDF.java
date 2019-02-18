@@ -1,12 +1,20 @@
 package Datatypes;
 
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.rendering.PDFRenderer;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -55,10 +63,43 @@ public class PDF {
         contentStream.drawImage(pdfLabel, x, y, height, width);
     }
 
-    public void close() throws IOException {
+    public void closeStream() throws IOException {
         contentStream.close();
         formPDF.save(new File("./testfile.pdf"));
+    }
+
+    public void close() throws IOException {
         formPDF.close();
+    }
+
+    public Image renderPDF() throws IOException{
+        PDFRenderer pdfRenderer = new PDFRenderer(PDDocument.load(new File("./testfile.pdf")));
+        System.out.println("renderpdf");
+        pdfRenderer.renderImage(0);
+        Image image = SwingFXUtils.toFXImage(pdfRenderer.renderImage(0), null);
+        return image;
+    }
+
+    public void savePDF(PDF pdf, Node node) throws IOException{
+
+        //Create a file chooser
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        //Select the extentions we allow for the files
+        //Actually get the folder
+        directoryChooser.setInitialDirectory(null);
+
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        File folder = directoryChooser.showDialog(null);
+
+        if(folder!= null){
+            System.out.println("saving!");
+
+            formPDF.save(new File(folder +"/ttbformtest.pdf"));
+        }
+
+
+
     }
 
 
