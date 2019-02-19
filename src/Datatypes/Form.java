@@ -496,4 +496,17 @@ public class Form {
 
         return status;
     }
+
+    public String parseGarbage(String s){
+        String result;
+
+        if(s.contains("#")){
+            result = s.substring(0, s.indexOf('-'));
+        }
+        else{
+            result = s;
+        }
+
+        return result;
+    }
 }
