@@ -509,4 +509,17 @@ public class Form {
 
         return result;
     }
+    
+    public String parseStyle(String s){
+        String result;
+
+        if(s.contains("#")){
+            result = s.substring(s.indexOf('-'));
+        }
+        else{
+            result = s;
+        }
+
+        return result;
+    }
 }
