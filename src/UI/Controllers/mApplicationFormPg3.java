@@ -22,6 +22,7 @@ public class mApplicationFormPg3 {
     private CacheManager cacheM;
     private LabelImage image = new LabelImage();
     private Form form;
+    String style = "-fx-background-color: #94BDFF;";
 
     @FXML private JFXTextField onlyState;
     @FXML private JFXTextField ttbID;
@@ -71,6 +72,7 @@ public class mApplicationFormPg3 {
         if(!certificateOfExemption.isSelected()) {
             onlyState.setText("");
             onlyState.setDisable(true);
+            onlyState.setText(form.parseGarbage(form.getOnlyState()));
         }else {
             onlyState.setDisable(false);
         }
@@ -110,7 +112,11 @@ public class mApplicationFormPg3 {
             form.setCertificateOfApproval(certificateOfApproval.isSelected());
             form.setCertificateOfExemption(certificateOfExemption.isSelected());
             if(certificateOfExemption.isSelected()) {
-                form.setOnlyState(onlyState.getText());
+                if (!onlyState.getText().isEmpty()) {
+                    if(!form.getOnlyState().contains(style)){
+                        form.setOnlyState(onlyState.getText());
+                    }
+                }
             }else {
                 form.setOnlyState(null);
             }
@@ -132,40 +138,11 @@ public class mApplicationFormPg3 {
 
     }
 
-//    /**
-//     * The multi-thread function
-//     * Saves draft every 5 seconds
-//     */
-//    callableFunction cf = new callableFunction() {
-//        @Override
-//        @SuppressWarnings("Duplicates")
-//        public void call() {
-//            if(onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null &&
-//                    certificateOfExemption!= null && DistinctiveLiquor!= null && resubmission!= null &&
-//                    imagePreview!= null && imagePreview!= null){
-//                saveDraft();
-//                System.out.println("Pg3 saved!");
-//            }
-//
-//        }
-//    };
-//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
-
-    /*
-    @FXML public void nextPage() throws IOException {
-        multiThreadWaitFor.onShutDown();
-        if(saveDraft()) {
-            System.out.println("on to page 4");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
-            sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM));
-        }
-    }
-    */
     public void checkDiff() {
 
         //@FXML private JFXTextField onlyState;
         String style = "-fx-background-color: #94BDFF;";
-        if (onlyState.getText() != form.getOnlyState()) {
+        if (!onlyState.getText().equals(form.getOnlyState()) && !onlyState.getText().contains(style)) {
             form.setPrintName(onlyState.getText() + style);
         }
     }

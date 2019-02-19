@@ -25,6 +25,7 @@ public class mApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
+    String style = "-fx-background-color: #94BDFF;";
 
     @FXML
     private Button previous;
@@ -75,7 +76,11 @@ public class mApplicationFormPg4 {
             //Form form = cacheM.getForm();
 
             form.setDateOfApplication(dateOfApplication.getValue().toString());
-            form.setPrintName(applicantNamePrint.getText());
+        if (!applicantNamePrint.getText().isEmpty()) {
+            if(!form.getPrintName().contains(style)){
+                form.setPrintName(applicantNamePrint.getText());
+            }
+        }
 
         if (form.getTtbID() != 0) {
             checkDiff();
@@ -129,16 +134,10 @@ public class mApplicationFormPg4 {
 
     public void checkDiff() {
 
-        //@FXML private JFXTextField onlyState;
-//        @FXML
-//        private JFXTextField applicantSig;
-//        @FXML
-//        private JFXTextField applicantNamePrint;
-        String style = "-fx-background-color: #94BDFF;";
-        if (applicantSig.getText() != form.getSignature()) {
+        if (!applicantSig.getText().equals(form.getSignature()) && applicantSig.getText().contains(style)) {
             form.setSignature(applicantSig.getText() + style);
         }
-        if (applicantNamePrint.getText() != form.getPrintName()) {
+        if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(style)) {
             form.setPrintName(applicantNamePrint.getText() + style);
         }
     }
