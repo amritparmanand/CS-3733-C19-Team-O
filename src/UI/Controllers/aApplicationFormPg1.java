@@ -93,32 +93,38 @@ public class aApplicationFormPg1 {
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
 
-        if(form.getBrewerNumber().contains("#")) {
-            System.out.println("change detected");
-            int position = form.getBrewerNumber().indexOf('-');
-            String style = form.getBrewerNumber().substring(position);
-            brewerNO.setText(form.getBrewerNumber().substring(0,position));
-            brewerNO.setStyle(style);
-        }
-        else{
-            brewerNO.setText(form.getBrewerNumber());
-            System.out.println("nope!!!!");
-        }
+        brewerNO.setText(form.parseGarbage(form.getBrewerNumber()));
+        brewerNO.setStyle(form.parseStyle(form.getBrewerNumber()));
 
         domestic.setDisable(true);
         imported.setDisable(true);
-        serialNO.setText(form.getSerialNumber());
+
+        serialNO.setText(form.parseGarbage(form.getSerialNumber()));
+        serialNO.setStyle(form.parseStyle(form.getSerialNumber()));
+
         wine.setDisable(true);
         spirits.setDisable(true);
         malt.setDisable(true);
-        brand.setText(form.getBrandName());
-        fanciful.setText(form.getFancifulName());
-        alcoholPercentage.setText(form.getAlcoholPercent());
-        phLevel.setText(form.getpHLevel());
-        vintageYear.setText(form.getVintageYear());
+
+        brand.setText(form.parseGarbage(form.getBrandName()));
+        brand.setStyle(form.parseStyle(form.getBrandName()));
+
+        fanciful.setText(form.parseGarbage(form.getFancifulName()));
+        fanciful.setStyle(form.parseStyle(form.getFancifulName()));
+
+        alcoholPercentage.setText(form.parseGarbage(form.getAlcoholPercent()));
+        alcoholPercentage.setStyle(form.parseStyle(form.getAlcoholPercent()));
+
+        phLevel.setText(form.parseGarbage(form.getpHLevel()));
+        phLevel.setStyle(form.parseStyle(form.getpHLevel()));
+
+        vintageYear.setText(form.parseGarbage(form.getVintageYear()));
+        vintageYear.setStyle(form.parseStyle(form.getVintageYear()));
+
         wine2.setDisable(true);
         spirits2.setDisable(true);
         beer2.setDisable(true);
+
         System.out.println("starting");
     }
 
