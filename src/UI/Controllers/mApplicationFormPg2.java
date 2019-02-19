@@ -41,6 +41,8 @@ public class mApplicationFormPg2 {
     @FXML private JFXTextField phoneNumber;
     @FXML private JFXTextField email;
 
+    String style = "-fx-background-color: #94BDFF;";
+
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -55,23 +57,26 @@ public class mApplicationFormPg2 {
     @FXML public void initialize(){
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        printName.setText(form.getPrintName());
-        mailAddress.setText(form.getMailingAddress());
-        formula.setText(form.getFormula());
-        grapes.setText(form.getGrapeVarietal());
+        printName.setText(form.parseGarbage(form.getPrintName()));
+        mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
+        formula.setText(form.parseGarbage(form.getFormula()));
+        grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
         appellation.setText(form.getAppellation());
         if(!form.getPhoneNumber().equals(""))
-            phoneNumber.setText(form.getPhoneNumber());
+            phoneNumber.setText(form.parseGarbage(form.getPhoneNumber()));
         else
             phoneNumber.setText(manAcc.getPhone());
         if(!form.getEmailAddress().equals(""))
-            email.setText(form.getEmailAddress());
+            email.setText(form.parseGarbage(form.getEmailAddress()));
         else
             email.setText(manAcc.getEmail());
     }
 
     @FXML public void saveDraft() {
-        //Form form = cacheM.getForm();
+        
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
@@ -112,10 +117,6 @@ public class mApplicationFormPg2 {
 
             System.out.println("save Draft executed");
         }
-
-        if (form.getTtbID() != 0) {
-            checkDiff();
-        }
     }
 
     @FXML public void wineFieldCheck(){
@@ -128,8 +129,6 @@ public class mApplicationFormPg2 {
     }
 
     public void checkDiff() {
-
-        String style = "-fx-background-color: #94BDFF;";
         if (printName.getText() != form.getPrintName()) {
             form.setPrintName(printName.getText() + style);
         }
@@ -156,44 +155,22 @@ public class mApplicationFormPg2 {
         }
 
     }
-//    /**
-//     * The multi-thread function
-//     * Saves draft every 5 seconds
-//     */
-//    callableFunction cf = new callableFunction() {
-//        @Override
-//        public void call() {
-//            if(printName != null && mailAddress != null && formula != null && grapes != null && appellation != null
-//                    && phoneNumber != null && email != null){
-//                saveDraft();
-//            }
-//        }
-//    };
-//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
-
 
     @FXML public void nextPage() throws IOException {
         saveDraft();
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM, form));
     }
     @FXML public void previousPage() throws IOException {
         saveDraft();
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM, form));
     }
-    @FXML public void searchPage() throws IOException {
-//        multiThreadWaitFor.onShutDown();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-    }
     @FXML public void goToHomePage() throws IOException {
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
+
     /**
      * @author Clay Oshiro-Leavitt
      * @version It 2

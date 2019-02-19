@@ -128,26 +128,24 @@ public class mApplicationFormPg1 {
         else
             repID.setText(Integer.toString(manAcc.getRepID()));
 
-        // Parse the style
         brewerNO.setText(form.parseGarbage(form.getBrewerNumber()));
-
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
-        serialNumber.setText(form.getSerialNumber());
+        serialNumber.setText(form.parseGarbage(form.getSerialNumber()));
         wine.setSelected(isWine);
         distilled.setSelected(isSpirit);
         malt.setSelected(isMalt);
         if (!form.getBrandName().equals(""))
-            brandName.setText(form.getBrandName());
+            brandName.setText(form.parseGarbage(form.getBrandName()));
         else
             brandName.setText(manAcc.getCompanyName());
-        fancifulName.setText(form.getFancifulName());
+        fancifulName.setText(form.parseGarbage(form.getFancifulName()));
         wine2.setSelected(isWine);
         spirits2.setSelected(isSpirit);
         beer2.setSelected(isMalt);
-        alcoholPercentage.setText(form.getAlcoholPercent());
-        phLevel.setText(form.getpHLevel());
-        vintageYear.setText(form.getVintageYear());
+        alcoholPercentage.setText(form.parseGarbage(form.getAlcoholPercent()));
+        phLevel.setText(form.parseGarbage(form.getpHLevel()));
+        vintageYear.setText(form.parseGarbage(form.getVintageYear()));
     }
 
 
@@ -226,28 +224,6 @@ public class mApplicationFormPg1 {
 
         System.out.println("Pg1 saved!");
     }
-
-//    /**
-//     * The multi-thread function
-//     * Saves draft every 5 seconds
-//     */
-//    callableFunction cf = new callableFunction() {
-//        @Override
-//        @SuppressWarnings("Duplicates")
-//        public void call() {
-//            if(repID != null && brewerNO != null && serialNumber != null && brandName != null && fancifulName != null &&
-//                    alcoholPercentage != null && wine2 != null && spirits2 != null && beer2 != null && wine != null &&
-//                    distilled != null && malt != null && domestic != null && imported != null){
-//                saveDraft();
-//            }
-//            else{
-//                System.out.println("null detected!");
-//            }
-//        }
-//    };
-//
-//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
-
 
     @FXML
     private VBox phVBox;
