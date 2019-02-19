@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Form;
-import Datatypes.LabelImage;
-import Datatypes.PDF;
-import Datatypes.SearchResult;
+import Datatypes.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
@@ -33,6 +30,8 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -86,6 +85,112 @@ public class mOnePageForm {
     @FXML private JFXTextField applicantNamePrint;
     @FXML private LabelImage image = new LabelImage();
     @FXML private Button button;
+
+    @SuppressWarnings("Duplicates")
+    @FXML public void initialize(){
+        Form form = cacheM.getForm();
+        Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
+
+        switch(form.getProductSource()){
+            case "DOMESTIC":
+                domestic.setSelected(true);
+            case "IMPORTED":
+                imported.setSelected(true);
+
+        }
+        switch(form.getProductType()){
+            case "WINE":
+                wine.setSelected(true);
+            case "DISTILLED":
+                distilled.setSelected(true);
+            case "MALT":
+                malt.setSelected(true);
+        }
+        switch(form.getBeerWineSpirit()){
+            case "WINE":
+                wine2.setSelected(true);
+            case "SPIRITS":
+                spirits2.setSelected(true);
+            case "BEER":
+                beer2.setSelected(true);
+        }
+        if(form.getRepID() != 0)
+            repID.setText(Integer.toString(form.getRepID()));
+        else
+            repID.setText(Integer.toString(manAcc.getRepID()));
+        brewerNO.setText(form.getBrewerNumber());
+        serialNumber.setText(form.getSerialNumber());
+        if(!form.getBrandName().equals(""))
+            brandName.setText(form.getBrandName());
+        else
+            brandName.setText(manAcc.getCompanyName());
+        fancifulName.setText(form.getFancifulName());
+        alcoholPercentage.setText(form.getAlcoholPercent());
+        phLevel.setText(form.getpHLevel());
+        vintageYear.setText(form.getVintageYear());
+        printName.setText(form.getApplicantName());
+        mailAddress.setText(form.getMailingAddress());
+        formula.setText(form.getFormula());
+        grapes.setText(form.getGrapeVarietal());
+        appellation.setText(form.getAppellation());
+        if(!form.getPhoneNumber().equals(""))
+            phoneNumber.setText(form.getPhoneNumber());
+        else
+            phoneNumber.setText(manAcc.getPhone());
+        if(!form.getEmailAddress().equals(""))
+            email.setText(form.getEmailAddress());
+        else
+            email.setText(manAcc.getEmail());
+        wineFieldCheck();
+
+        certificateOfApproval.setSelected(form.getCertificateOfApproval());
+        certificateOfExemption.setSelected(form.getCertificateOfExemption());
+        DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
+        resubmission.setSelected(form.getResubmission());
+        onlyState.setText(form.getOnlyState());
+        if(form.getTtbID() != 0)
+            ttbID.setText(String.valueOf(form.getTtbID()));
+        bottleCapacity.setText(form.getBottleCapacity());
+        if(form.getLabel().getLabelImage() != null)
+            imagePreview.setImage(form.getLabel().getLabelImage());
+        validateStateField();
+        validateBottleCapacity();
+        validateTTBID();
+        if(!form.getPrintName().equals(""))
+            applicantNamePrint.setText(form.getPrintName());
+        else
+            applicantNamePrint.setText(manAcc.getFullName());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        System.out.println("starting");
+//        if(!form.getDateOfApplication().isEmpty()){
+//            dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
+//        }
+    }
+
+    @FXML public void validateStateField() {
+        if(!certificateOfExemption.isSelected()) {
+            onlyState.setText("");
+            onlyState.setDisable(true);
+        }else {
+            onlyState.setDisable(false);
+        }
+    }
+    @FXML public void validateBottleCapacity() {
+        if(!DistinctiveLiquor.isSelected()) {
+            bottleCapacity.setText("");
+            bottleCapacity.setDisable(true);
+        }else{
+            bottleCapacity.setDisable(false);
+        }
+    }
+    @FXML public void validateTTBID() {
+        if(!resubmission.isSelected()) {
+            ttbID.setText("");
+            ttbID.setDisable(true);
+        }else {
+            ttbID.setDisable(false);
+        }
+    }
 
     @FXML public boolean validFormPhone(String phoneNumber){
         if(phoneNumber.matches("^[0]{8,20}$")){
