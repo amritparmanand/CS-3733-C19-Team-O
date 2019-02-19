@@ -24,12 +24,14 @@ public class CacheManager {
     private String passer;
     private String receiver;
     private String fuzzy;
-    private Character format;
+    private Character format = ',';
+
+
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
         this.form = new Form();
-    }
+            }
 
     // Getters and Setters
     public DatabaseManager getDbM() {
@@ -72,6 +74,10 @@ public class CacheManager {
 
     public void setSelectedResult(SearchResult selectedResult) {
         this.selectedResult = selectedResult;
+    }
+
+    public Character getFormat() {
+        return format;
     }
 
     // Facade stuff

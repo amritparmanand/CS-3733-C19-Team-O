@@ -12,7 +12,7 @@ public class Setting {
 
     private int formLimit = 5; // Default is 5
     private String fuzzy = "hiddenScore";
-    private Character format = ',';
+    private Character format = ','; // default delimiter
 
     private static Setting instance = new Setting();
 

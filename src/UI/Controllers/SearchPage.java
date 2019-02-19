@@ -9,6 +9,7 @@ import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import com.opencsv.CSVWriter;
 import javafx.event.EventHandler;
@@ -50,6 +51,7 @@ public class SearchPage {
     boolean DLevi = false;
     boolean hiddenS = true;
 
+
     private int searchPageNumber = 1;
     private int lowerBound = (searchPageNumber-1)*15;
 
@@ -84,6 +86,8 @@ public class SearchPage {
     @FXML private JFXTextField pageNumber;
     @FXML private JFXButton pageButton;
     @FXML private JFXTextField delimiterChooser;
+    @FXML private JFXRadioButton embedded;
+    @FXML private JFXRadioButton online;
 
     //rob
     @FXML
@@ -362,7 +366,9 @@ public class SearchPage {
 
 
     public void download(){
-//        Character delimiter;
+        Character delimiter;
+        System.out.println(cacheM.getFormat());
+        delimiter = cacheM.getFormat();
 //        if(!delimiterChooser.getText().isEmpty()){
 //            delimiter = delimiterChooser.getText().charAt(0);
 //        }else{
@@ -383,7 +389,7 @@ public class SearchPage {
             FileWriter searchResults = new FileWriter(file);
 
             CSVWriter writer = new CSVWriter(searchResults,
-                    Setting.getInstance().getFormat(),
+                    delimiter,
                     CSVWriter.NO_QUOTE_CHARACTER,
                     CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                     CSVWriter.DEFAULT_LINE_END);
