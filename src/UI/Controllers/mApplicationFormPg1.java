@@ -189,19 +189,19 @@ public class mApplicationFormPg1 {
         if (!repID.getText().isEmpty()) {
             form.setRepID(Integer.parseInt(repID.getText()));
         }
-        if (!brewerNO.getText().isEmpty()) {
+        if (!brewerNO.getText().isEmpty() && !brewerNO.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setBrewerNumber(brewerNO.getText());
         }
-        if (!serialNumber.getText().isEmpty()) {
+        if (!serialNumber.getText().isEmpty() && !serialNumber.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setSerialNumber(serialNumber.getText());
         }
-        if (!brandName.getText().isEmpty()) {
+        if (!brandName.getText().isEmpty() && !brandName.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setBrandName(brandName.getText());
         }
-        if (!fancifulName.getText().isEmpty()) {
+        if (!fancifulName.getText().isEmpty() && !fancifulName.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setFancifulName(fancifulName.getText());
         }
-        if (!alcoholPercentage.getText().isEmpty()) {
+        if (!alcoholPercentage.getText().isEmpty() && alcoholPercentage.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setAlcoholPercent(alcoholPercentage.getText());
         }
 
@@ -283,8 +283,7 @@ public class mApplicationFormPg1 {
         if (brandName.getText() != form.getBrandName()) {
             form.setBrandName(brandName.getText() + style);
         }
-        if(alcoholPercentage.getText() != form.getAlcoholPercent())
-        {
+        if(alcoholPercentage.getText() != form.getAlcoholPercent()) {
             form.setAlcoholPercent(alcoholPercentage.getText() + style);
         }
         //How do you handle this one
