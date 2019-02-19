@@ -53,7 +53,7 @@ public class aHomepage {
     }
 
     public void help() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpaHome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpPages/helpaHome.fxml"));
         helpPopWindow(root);
     }
 
