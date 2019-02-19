@@ -224,8 +224,8 @@ public class LoginPage implements SerialPortDataListener {
     @FXML
     public void aboutUs() throws IOException {
         // Search
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
-        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
+        sceneM.changeScene(loader, new AboutUs(sceneM, cacheM));
     }
 
     @FXML
