@@ -24,7 +24,7 @@ public class CacheManager {
     private String passer;
     private String receiver;
     private String fuzzy;
-    private String format;
+    private Character format;
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
@@ -102,7 +102,7 @@ public class CacheManager {
         this.fuzzy = fuzzy;
     }
 
-    public void setFormat(String format) {
+    public void setFormat(Character format) {
         this.format = format;
     }
 }

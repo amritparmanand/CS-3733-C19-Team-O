@@ -11,8 +11,10 @@ public class FirebaseHandler {
     public void printString()
     {
         try {
-            String thirteen = Unirest.get("https://web-quickstart-ea367.firebaseio.com/0/FORMID.json").asString().getBody();
-            System.out.println(thirteen);
+            //for(int i = 0; i < 100; i++) {
+                String thirteen = Unirest.get("https://web-quickstart-ea367.firebaseio.com/0/FORMID.json").asString().getBody();
+                System.out.println(thirteen);
+            //}
         }
         catch(Exception e)
         {

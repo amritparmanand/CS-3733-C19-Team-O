@@ -12,7 +12,7 @@ public class Setting {
 
     private int formLimit = 5; // Default is 5
     private String fuzzy = "hiddenScore";
-    private String format = ",";
+    private Character format = ',';
 
     private static Setting instance = new Setting();
 
@@ -37,10 +37,10 @@ public class Setting {
     public void setFuzzy(String fuzzy) {
         this.fuzzy = fuzzy;
     }
-    public String getFormat() {
+    public Character getFormat() {
         return format;
     }
-    public void setFormat(String format) {
+    public void setFormat(Character format) {
         this.format = format;
     }
 

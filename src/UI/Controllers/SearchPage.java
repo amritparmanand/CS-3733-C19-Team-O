@@ -3,6 +3,7 @@ package UI.Controllers;
 import java.io.*;
 
 import Datatypes.SearchResult;
+import Datatypes.Setting;
 import Fuzzy.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -361,12 +362,12 @@ public class SearchPage {
 
 
     public void download(){
-        Character delimiter;
-        if(!delimiterChooser.getText().isEmpty()){
-            delimiter = delimiterChooser.getText().charAt(0);
-        }else{
-            delimiter = ',';
-        }
+//        Character delimiter;
+//        if(!delimiterChooser.getText().isEmpty()){
+//            delimiter = delimiterChooser.getText().charAt(0);
+//        }else{
+//            delimiter = ',';
+//        }
 
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -382,7 +383,7 @@ public class SearchPage {
             FileWriter searchResults = new FileWriter(file);
 
             CSVWriter writer = new CSVWriter(searchResults,
-                    delimiter,
+                    Setting.getInstance().getFormat(),
                     CSVWriter.NO_QUOTE_CHARACTER,
                     CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                     CSVWriter.DEFAULT_LINE_END);
