@@ -70,18 +70,16 @@ public class mApplicationFormPg3 {
 
     @FXML public void validateStateField() {
         if(!certificateOfExemption.isSelected()) {
-            onlyState.setText("");
-            onlyState.setDisable(true);
             onlyState.setText(form.parseGarbage(form.getOnlyState()));
+            onlyState.setDisable(true);
         }else {
             onlyState.setDisable(false);
         }
     }
     @FXML public void validateBottleCapacity() {
         if(!DistinctiveLiquor.isSelected()) {
-            bottleCapacity.setText("");
-            bottleCapacity.setDisable(true);
             bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
+            bottleCapacity.setDisable(true);
         }else{
             bottleCapacity.setDisable(false);
         }
@@ -113,11 +111,9 @@ public class mApplicationFormPg3 {
             form.setCertificateOfApproval(certificateOfApproval.isSelected());
             form.setCertificateOfExemption(certificateOfExemption.isSelected());
             if(certificateOfExemption.isSelected()) {
-                if (!onlyState.getText().isEmpty()) {
-                    if(!form.getOnlyState().contains(style)){
+                if (!onlyState.getText().isEmpty() && (form.getOnlyState().contains(style))){
                         form.setOnlyState(onlyState.getText());
                     }
-                }
             }else {
                 form.setOnlyState(null);
             }
