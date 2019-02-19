@@ -52,6 +52,12 @@ public class mApplicationFormViewPg3 {
         validateStateField();
         validateBottleCapacity();
         validateTTBID();
+        onlyState.setText(form.getOnlyState());
+        if(form.getTtbID() != 0)
+            ttbID.setText(String.valueOf(form.getTtbID()));
+        bottleCapacity.setText(form.getBottleCapacity());
+        if(form.getLabel().getLabelImage() != null)
+            imagePreview.setImage(form.getLabel().getLabelImage());
     }
 
 

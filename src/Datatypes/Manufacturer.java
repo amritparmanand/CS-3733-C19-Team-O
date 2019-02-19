@@ -1,6 +1,12 @@
 package Datatypes;
 
+import javafx.scene.image.Image;
+
+import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -78,9 +84,11 @@ public class Manufacturer extends Account {
             }
             setWorkingForms(jeans);
             ps.close();
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
+        } catch (Exception e) {
+            if(e instanceof  SQLException) {
+                if (!((SQLException) e).getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
         }
     }
 
@@ -117,7 +125,8 @@ public class Manufacturer extends Account {
         }
     }
     @SuppressWarnings("Duplicates")
-    private Form formFromResultSet(ResultSet rs) throws SQLException {
+    private Form formFromResultSet(ResultSet rs) throws SQLException, IOException, ClassNotFoundException {
+        Image img;
         Form f = new Form();
         f.setFormID(rs.getLong("formID"));
         f.setRepID(rs.getInt("repID"));
@@ -147,9 +156,12 @@ public class Manufacturer extends Account {
         f.setVintageYear(rs.getString("vintageYear"));
         f.setpHLevel(rs.getString("pHLevel"));
         LabelImage formLabel = new LabelImage();
-        Blob picture = rs.getBlob("labelImage");
-        if (picture != null) {
-            InputStream is = picture.getBinaryStream();
+        Blob blobert = rs.getBlob("labelImage");
+        if (blobert != null) {
+            ObjectInputStream ois = null;
+            ois = new ObjectInputStream(blobert.getBinaryStream());
+            img = (Image) ois.readObject();
+            f.getLabel().setLabelImage(img);
         }
 //        f.getLabel().setLabelImage(img);
 //        Image img = new Image();

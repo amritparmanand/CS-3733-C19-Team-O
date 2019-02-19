@@ -91,8 +91,7 @@ public class aApplicationFormPg1 {
             case "BEER":
                 beer2.setSelected(true);
         }
-        if(form.getRepID() != 0)
-            repID.setText(Integer.toString(form.getRepID()));
+        repID.setText(Integer.toString(form.getRepID()));
         brewerNO.setText(form.getBrewerNumber());
         domestic.setDisable(true);
         imported.setDisable(true);

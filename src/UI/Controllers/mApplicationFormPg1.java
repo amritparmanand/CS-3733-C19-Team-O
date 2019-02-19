@@ -61,58 +61,40 @@ public class mApplicationFormPg1 {
         Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
-        boolean isDomestic = false;
-        boolean isImported = false;
-        boolean isWine = false;
-        boolean isSpirit = false;
-        boolean isMalt = false;
-        phVBox.setVisible(false);
-        vintageVBox.setVisible(false);
+        switch(form.getProductSource()){
+            case "DOMESTIC":
+                domestic.setSelected(true);
+            case "IMPORTED":
+                imported.setSelected(true);
 
-        if (form.getProductSource() == "DOMESTIC") {
-            isDomestic = true;
-            isImported = false;
         }
-        if (form.getPrintName() == "IMPORTED") {
-            isDomestic = false;
-            isImported = true;
+        switch(form.getProductType()){
+            case "WINE":
+                wine.setSelected(true);
+            case "DISTILLED":
+                distilled.setSelected(true);
+            case "MALT":
+                malt.setSelected(true);
         }
-        if (form.getBeerWineSpirit() == "WINE") {
-            isWine = true;
-            isSpirit = false;
-            isMalt = false;
-            phLevel.setDisable(false);
-            vintageYear.setDisable(false);
-        }
-        else if (form.getBeerWineSpirit() == "SPIRITS") {
-            isWine = false;
-            isSpirit = true;
-            isMalt = false;
-        }
-        else if (form.getBeerWineSpirit() == "BEER") {
-            isWine = false;
-            isSpirit = false;
-            isMalt = true;
+        switch(form.getBeerWineSpirit()){
+            case "WINE":
+                wine2.setSelected(true);
+            case "SPIRITS":
+                spirits2.setSelected(true);
+            case "BEER":
+                beer2.setSelected(true);
         }
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
         else
-                repID.setText(Integer.toString(manAcc.getRepID()));
+            repID.setText(Integer.toString(manAcc.getRepID()));
         brewerNO.setText(form.getBrewerNumber());
-        domestic.setSelected(isDomestic);
-        imported.setSelected(isImported);
         serialNumber.setText(form.getSerialNumber());
-        wine.setSelected(isWine);
-        distilled.setSelected(isSpirit);
-        malt.setSelected(isMalt);
         if(!form.getBrandName().equals(""))
             brandName.setText(form.getBrandName());
         else
             brandName.setText(manAcc.getCompanyName());
         fancifulName.setText(form.getFancifulName());
-        wine2.setSelected(isWine);
-        spirits2.setSelected(isSpirit);
-        beer2.setSelected(isMalt);
         alcoholPercentage.setText(form.getAlcoholPercent());
         phLevel.setText(form.getpHLevel());
         vintageYear.setText(form.getVintageYear());

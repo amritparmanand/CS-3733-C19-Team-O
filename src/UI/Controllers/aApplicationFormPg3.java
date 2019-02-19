@@ -73,6 +73,13 @@ public class aApplicationFormPg3 {
         certificateOfExemption.setDisable(true);
         DistinctiveLiquor.setDisable(true);
         resubmission.setDisable(true);
+        onlyState.setText(form.getOnlyState());
+        if(form.getTtbID() != 0)
+            ttbID.setText(String.valueOf(form.getTtbID()));
+        bottleCapacity.setText(form.getBottleCapacity());
+        if(form.getLabel().getLabelImage() != null)
+            imagePreview.setImage(form.getLabel().getLabelImage());
+
     }
     @FXML
     public void search() throws IOException {

@@ -113,7 +113,7 @@
                   </HBox>
                </children>
             </HBox>
-            <JFXButton fx:id="about" alignment="BOTTOM_RIGHT" onAction="#about" onMousePressed="#aboutUs" styleClass="searchButtonStyle" text="About Us" translateX="1200.0" />
+            <JFXButton fx:id="about" alignment="BOTTOM_RIGHT" onAction="#aboutUs" onMousePressed="#aboutUs" styleClass="searchButtonStyle" text="About Us" translateX="1200.0" />
          </children>
       </VBox>
    </children>

@@ -47,8 +47,7 @@ public class mApplicationFormPg4 {
         Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
-        System.out.println("starting");
-        if(!form.getApplicantName().equals(""))
+        if(!form.getPrintName().equals(""))
             applicantNamePrint.setText(form.getPrintName());
         else
             applicantNamePrint.setText(manAcc.getFullName());
@@ -65,7 +64,7 @@ public class mApplicationFormPg4 {
 
         if(dateOfApplication.getValue() != null)
             form.setDateOfApplication(dateOfApplication.getValue().toString());
-        if(applicantNamePrint.getText().isEmpty())
+        if(!applicantNamePrint.getText().isEmpty())
             form.setPrintName(applicantNamePrint.getText());
 
         cacheM.setForm(form);

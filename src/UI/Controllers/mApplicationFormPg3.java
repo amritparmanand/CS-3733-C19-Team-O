@@ -38,22 +38,16 @@ public class mApplicationFormPg3 {
 
     @FXML public void initialize() {
         Form form = cacheM.getForm();
-        if(form.getCertificateOfApproval() == null)
-            certificateOfApproval.setSelected(false);
-        else if(form.getCertificateOfApproval())
-            certificateOfApproval.setSelected(true);
-        if(form.getCertificateOfExemption() == null)
-            certificateOfExemption.setSelected(false);
-        else if(form.getCertificateOfExemption())
-            certificateOfExemption.setSelected(true);
-        if(form.getDistinctiveLiquor() == null)
-            DistinctiveLiquor.setSelected(false);
-        else if(form.getDistinctiveLiquor())
-            DistinctiveLiquor.setSelected(true);
-        if(form.getResubmission() == null)
-            resubmission.setSelected(false);
-        else if(form.getResubmission())
-            resubmission.setSelected(true);
+        certificateOfApproval.setSelected(form.getCertificateOfApproval());
+        certificateOfExemption.setSelected(form.getCertificateOfExemption());
+        DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
+        resubmission.setSelected(form.getResubmission());
+        onlyState.setText(form.getOnlyState());
+        if(form.getTtbID() != 0)
+            ttbID.setText(String.valueOf(form.getTtbID()));
+        bottleCapacity.setText(form.getBottleCapacity());
+        if(form.getLabel().getLabelImage() != null)
+            imagePreview.setImage(form.getLabel().getLabelImage());
         validateStateField();
         validateBottleCapacity();
         validateTTBID();
@@ -110,8 +104,8 @@ public class mApplicationFormPg3 {
             else
                 form.setTtbID(Integer.parseInt(ttbID.getText()));
             form.setBottleCapacity(bottleCapacity.getText());
-            form.setLabel(image);
             errorLabel.setText(" ");
+            form.setLabel(image);
             cacheM.setForm(form);
             return true;
         }

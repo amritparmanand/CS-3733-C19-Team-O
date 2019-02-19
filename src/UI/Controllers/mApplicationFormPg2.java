@@ -50,7 +50,7 @@ public class mApplicationFormPg2 {
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
         Form form = cacheM.getForm();
-        printName.setText(form.getPrintName());
+        printName.setText(form.getApplicantName());
         mailAddress.setText(form.getMailingAddress());
         formula.setText(form.getFormula());
         grapes.setText(form.getGrapeVarietal());
@@ -63,6 +63,7 @@ public class mApplicationFormPg2 {
             email.setText(form.getEmailAddress());
         else
             email.setText(manAcc.getEmail());
+        wineFieldCheck();
     }
 
     @FXML public void saveDraft() {
@@ -71,7 +72,7 @@ public class mApplicationFormPg2 {
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
 
-        form.setPrintName(printName.getText());
+        form.setApplicantName(printName.getText());
         form.setMailingAddress(mailAddress.getText());
         form.setFormula(formula.getText());
         form.setGrapeVarietal(grapes.getText());

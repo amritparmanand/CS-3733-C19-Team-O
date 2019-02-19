@@ -3,7 +3,6 @@ package UI.Controllers;
 import Datatypes.Agent;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
-import Datatypes.NumberAssigned;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;

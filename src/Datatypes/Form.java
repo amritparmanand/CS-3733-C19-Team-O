@@ -79,6 +79,7 @@ public class Form {
         this.bottleCapacity = "";
         this.signature = "";
         this.dateIssued = "";
+        this.label = new LabelImage();
     }
 
     // Getters and setters
@@ -325,10 +326,11 @@ public class Form {
 
     public boolean isValid(){
         if(brewerNumber == "" || productSource == "" || serialNumber == "" || productType == "" || brandName == "" ||
-        applicantName == "" || alcoholPercent == "" || applicantName == "" || phoneNumber == "" || emailAddress == "" ||
-                (!certificateOfExemption && !certificateOfApproval && !distinctiveLiquor && !resubmission) ||
-                label.getFile() == null || dateOfApplication == "" || printName == "")
+        applicantName == "" || alcoholPercent == "" || phoneNumber == "" || emailAddress == ""  ||
+        dateOfApplication == "" || printName == "") {
+
             return false;
+        }
         else
             return true;
     }
