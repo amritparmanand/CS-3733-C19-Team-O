@@ -189,19 +189,19 @@ public class mApplicationFormPg1 {
         if (!repID.getText().isEmpty()) {
             form.setRepID(Integer.parseInt(repID.getText()));
         }
-        if (!brewerNO.getText().isEmpty() && !brewerNO.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!brewerNO.getText().isEmpty()) {
             form.setBrewerNumber(brewerNO.getText());
         }
-        if (!serialNumber.getText().isEmpty() && !serialNumber.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!serialNumber.getText().isEmpty()) {
             form.setSerialNumber(serialNumber.getText());
         }
-        if (!brandName.getText().isEmpty() && !brandName.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!brandName.getText().isEmpty()) {
             form.setBrandName(brandName.getText());
         }
-        if (!fancifulName.getText().isEmpty() && !fancifulName.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!fancifulName.getText().isEmpty()) {
             form.setFancifulName(fancifulName.getText());
         }
-        if (!alcoholPercentage.getText().isEmpty() && alcoholPercentage.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!alcoholPercentage.getText().isEmpty()) {
             form.setAlcoholPercent(alcoholPercentage.getText());
         }
 
