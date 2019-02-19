@@ -189,20 +189,26 @@ public class mApplicationFormPg1 {
         if (!repID.getText().isEmpty()) {
             form.setRepID(Integer.parseInt(repID.getText()));
         }
-        if (!brewerNO.getText().isEmpty() && !brewerNO.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!brewerNO.getText().isEmpty()) {
             form.setBrewerNumber(brewerNO.getText());
         }
-        if (!serialNumber.getText().isEmpty() && !serialNumber.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!serialNumber.getText().isEmpty()) {
             form.setSerialNumber(serialNumber.getText());
         }
-        if (!brandName.getText().isEmpty() && !brandName.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!brandName.getText().isEmpty() ) {
             form.setBrandName(brandName.getText());
         }
-        if (!fancifulName.getText().isEmpty() && !fancifulName.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!fancifulName.getText().isEmpty() ) {
             form.setFancifulName(fancifulName.getText());
         }
-        if (!alcoholPercentage.getText().isEmpty() && alcoholPercentage.getText().contains("-fx-background-color: #94BDFF;")) {
+        if (!alcoholPercentage.getText().isEmpty() ) {
             form.setAlcoholPercent(alcoholPercentage.getText());
+        }
+        if (!vintageYear.getText().isEmpty() ) {
+            form.setVintageYear(vintageYear.getText());
+        }
+        if(!phLevel.getText().isEmpty()){
+            form.setpHLevel(phLevel.getText());
         }
 
         if (form.getTtbID() != 0) {
@@ -271,19 +277,25 @@ public class mApplicationFormPg1 {
     //starting with textboxes, not sure how to handle radio buttons and checkboxes
     public void checkDiff() {
         String style = "-fx-background-color: #94BDFF;";
-        if (brewerNO.getText() != form.getBrewerNumber()) {
+        if (brewerNO.getText() != form.getBrewerNumber() && !brewerNO.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setBrewerNumber(brewerNO.getText() + style);
         }
-        if (phLevel.getText() != form.getpHLevel()) {
+        if (phLevel.getText() != form.getpHLevel() && !phLevel.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setpHLevel(phLevel.getText() + style);
         }
-        if (vintageYear.getText() != form.getVintageYear()) {
+        if(serialNumber.getText() != form.getSerialNumber() && !serialNumber.getText().contains("-fx-background-color: #94BDFF;")){
+            form.setSerialNumber((serialNumber.getText() + style));
+        }
+        if (vintageYear.getText() != form.getVintageYear() && !vintageYear.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setVintageYear(vintageYear.getText() + style);
         }
-        if (brandName.getText() != form.getBrandName()) {
+        if (brandName.getText() != form.getBrandName() && !brandName.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setBrandName(brandName.getText() + style);
         }
-        if(alcoholPercentage.getText() != form.getAlcoholPercent()) {
+        if (fancifulName.getText() != form.getFancifulName() && !fancifulName.getText().contains("-fx-background-color: #94BDFF;")) {
+            form.setFancifulName(fancifulName.getText() + style);
+        }
+        if(alcoholPercentage.getText() != form.getAlcoholPercent() && !alcoholPercentage.getText().contains("-fx-background-color: #94BDFF;")) {
             form.setAlcoholPercent(alcoholPercentage.getText() + style);
         }
         //How do you handle this one
