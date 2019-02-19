@@ -415,8 +415,6 @@ public class SearchPage {
     }
     @FXML
     public void help() throws IOException{
-        helpBox helpBox = new helpBox();
-        helpBox.loginPage();
         Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpViews/helpSearch.fxml"));
         helpPopWindow(root);
     }
