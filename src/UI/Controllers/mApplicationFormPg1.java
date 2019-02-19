@@ -21,6 +21,11 @@ import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.time.Year;
 import java.util.Calendar;
+import com.jfoenix.controls.JFXButton;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.Modality;
 
 /**
  * @author Amrit Parmanand & Elizabeth Del Monaco

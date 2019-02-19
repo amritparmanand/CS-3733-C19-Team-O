@@ -8,6 +8,12 @@ import com.jfoenix.controls.JFXRadioButton;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import com.jfoenix.controls.JFXButton;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.Modality;
+
 /**
  * @author Percy Jiang
  * @version It 1

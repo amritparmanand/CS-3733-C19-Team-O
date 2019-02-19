@@ -11,6 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import com.jfoenix.controls.JFXButton;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.Modality;
 
 /**
  * @author Amrit Parmanand, Elizabeth Del Monaco, & Gabriel Entov
