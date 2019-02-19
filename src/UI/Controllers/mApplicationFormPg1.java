@@ -129,12 +129,7 @@ public class mApplicationFormPg1 {
             repID.setText(Integer.toString(manAcc.getRepID()));
 
         // Parse the style
-        if(form.getBrewerNumber().contains(style)){
-            brewerNO.setText(form.getBrewerNumber().substring(0,form.getBrewerNumber().indexOf('-')));
-        }
-        else{
-            brewerNO.setText(form.getBrewerNumber());
-        }
+        brewerNO.setText(form.parseGarbage(form.getBrewerNumber()));
 
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
