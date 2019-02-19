@@ -449,7 +449,33 @@ public class Form {
     @SuppressWarnings("Duplicates")
     public void resubmitForm(Connection connection) throws SQLException, FileNotFoundException {
 
-        String SQL = "UPDATE FORMS SET BREWERNUMBER = '" + this.getBrewerNumber() + "' WHERE FORMID ="
+        String SQL = "UPDATE FORMS SET BREWERNUMBER = '" + this.getBrewerNumber() + "'" +
+                ", PHLEVEL = '" + this.getpHLevel() + "'" +
+                ", PRODUCTSOURCE = '" + this.getProductSource() + "'" +
+                ", SERIALNUMBER = '" + this.getSerialNumber() + "'" +
+                ", PRODUCTTYPE = '" + this.getProductType() + "'" +
+                ", BRANDNAME = '" + this.getBrandName() + "'" +
+                ", FANCIFULNAME = '" + this.getFancifulName() + "'" +
+                ", APPLICANTNAME = '" + this.getApplicantName() + "'" +
+                ", MAILINGADDRESS = '" + this.getMailingAddress() + "'" +
+                ", FORMULA = '" + this.getFormula() + "'" +
+                ", GRAPEVARIETAL = '" + this.getGrapeVarietal() + "'" +
+                ", APPELLATION = '" + this.getAppellation() + "'" +
+                ", PHONENUMBER = '" + this.getPhoneNumber() + "'" +
+                ", EMAILADDRESS = '" + this.getEmailAddress() + "'" +
+                ", CERTIFICATEOFAPPROVAL = '" + this.getCertificateOfApproval() + "'" +
+                ", CERTIFICATEOFEXEMPTION = '" + this.getCertificateOfExemption() + "'" +
+                ", ONLYSTATE = '" + this.getOnlyState() + "'" +
+                ", DISTINCTIVELIQUOR = '" + this.getDistinctiveLiquor() + "'" +
+                ", BOTTLECAPACITY = '" + this.getBottleCapacity() + "'" +
+                ", RESUBMISSION = '" + this.getResubmission() + "'" +
+                ", DATEOFAPPLICATION = '" + this.getDateOfApplication() + "'" +
+                ", PRINTNAME = '" + this.getPrintName() + "'" +
+                ", BEERWINESPIRIT = '" + this.getBeerWineSpirit() + "'" +
+                ", ALCOHOLPERCENT = '" + this.getAlcoholPercent() + "'" +
+                ", VINTAGEYEAR = '" + this.getVintageYear() + "'" +
+
+                " WHERE FORMID ="
                 + this.formID;
         try {
             PreparedStatement ps = connection.prepareStatement(SQL);

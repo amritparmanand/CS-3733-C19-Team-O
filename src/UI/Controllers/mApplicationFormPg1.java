@@ -185,8 +185,12 @@ public class mApplicationFormPg1 {
                 type2 = "BEER";
             form.setBeerWineSpirit(type2);
             if (type2 == "WINE") {
-                form.setpHLevel(phLevel.getText());
-                form.setVintageYear(vintageYear.getText());
+                if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(style)) {
+                    form.setpHLevel(phLevel.getText());
+                }
+                if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(style)) {
+                    form.setVintageYear(vintageYear.getText());
+                }
             } else {
                 form.setpHLevel(null);
                 form.setVintageYear(null);
@@ -198,25 +202,25 @@ public class mApplicationFormPg1 {
         }
         if (!brewerNO.getText().isEmpty() && !form.getBrewerNumber().contains(style)) {
             form.setBrewerNumber(brewerNO.getText());
+            System.out.println("overwritten");
         }
         if (!serialNumber.getText().isEmpty() && !form.getSerialNumber().contains(style)) {
             form.setSerialNumber(serialNumber.getText());
+            System.out.println("overwritten");
         }
         if (!brandName.getText().isEmpty() && !form.getBrandName().contains(style)) {
             form.setBrandName(brandName.getText());
+            System.out.println("overwritten");
         }
         if (!fancifulName.getText().isEmpty() && !form.getFancifulName().contains(style)) {
             form.setFancifulName(fancifulName.getText());
+            System.out.println("overwritten");
         }
         if (!alcoholPercentage.getText().isEmpty() && !form.getAlcoholPercent().contains(style)) {
             form.setAlcoholPercent(alcoholPercentage.getText());
         }
-        if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(style)) {
-            form.setVintageYear(vintageYear.getText());
-        }
-        if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(style)) {
-            form.setpHLevel(phLevel.getText());
-        }
+
+
 
         //cacheM.setForm(form);
 
@@ -257,6 +261,7 @@ public class mApplicationFormPg1 {
 
     //starting with textboxes, not sure how to handle radio buttons and checkboxes
     public void checkDiff() {
+        System.out.println("here");
 
         if (!brewerNO.getText().equals(form.getBrewerNumber()) && !brewerNO.getText().contains(style)) {
             form.setBrewerNumber(brewerNO.getText() + style);

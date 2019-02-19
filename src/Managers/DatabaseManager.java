@@ -199,8 +199,8 @@ public class DatabaseManager {
                 "formula varchar(120), " +
                 "grapeVarietal varchar(200),    " +
                 "appellation varchar(200), " +
-                "phoneNumber varchar(20), " +
-                "emailAddress varchar(50), " +
+                "phoneNumber varchar(120), " +
+                "emailAddress varchar(120), " +
                 "certificateOfApproval BOOLEAN," +   //begin new
                 "certificateOfExemption BOOLEAN," +
                 "onlyState varchar(100)," +
