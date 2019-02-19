@@ -72,10 +72,14 @@ public class mApplicationFormPg4 {
     }
 
     public void saveDraft(){
-            Form form = cacheM.getForm();
+            //Form form = cacheM.getForm();
 
             form.setDateOfApplication(dateOfApplication.getValue().toString());
             form.setPrintName(applicantNamePrint.getText());
+
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
             cacheM.setForm(form);
             System.out.println("Pg4 Saved!");
@@ -123,6 +127,21 @@ public class mApplicationFormPg4 {
 
     }
 
+    public void checkDiff() {
+
+        //@FXML private JFXTextField onlyState;
+//        @FXML
+//        private JFXTextField applicantSig;
+//        @FXML
+//        private JFXTextField applicantNamePrint;
+        String style = "-fx-background-color: #94BDFF;";
+        if (applicantSig.getText() != form.getSignature()) {
+            form.setSignature(applicantSig.getText() + style);
+        }
+        if (applicantNamePrint.getText() != form.getPrintName()) {
+            form.setPrintName(applicantNamePrint.getText() + style);
+        }
+    }
 
     @FXML public void previousPage() throws IOException {
         //multiThreadWaitFor.onShutDown();

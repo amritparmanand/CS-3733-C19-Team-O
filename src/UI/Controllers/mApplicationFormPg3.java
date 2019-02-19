@@ -93,6 +93,10 @@ public class mApplicationFormPg3 {
     }
 
     @FXML public boolean saveDraft(){
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
+
         if (onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null
                 &&certificateOfExemption!= null && DistinctiveLiquor!= null
                 && resubmission!= null && imagePreview!= null) {
@@ -101,7 +105,7 @@ public class mApplicationFormPg3 {
                 errorLabel.setText("Please select a type of application.");
                 return false;
             }
-            Form form = cacheM.getForm();
+           // Form form = cacheM.getForm();
 
             form.setCertificateOfApproval(certificateOfApproval.isSelected());
             form.setCertificateOfExemption(certificateOfExemption.isSelected());
@@ -125,6 +129,7 @@ public class mApplicationFormPg3 {
         else{
             return false;
         }
+
     }
 
 //    /**
@@ -156,6 +161,15 @@ public class mApplicationFormPg3 {
         }
     }
     */
+    public void checkDiff() {
+
+        //@FXML private JFXTextField onlyState;
+        String style = "-fx-background-color: #94BDFF;";
+        if (onlyState.getText() != form.getOnlyState()) {
+            form.setPrintName(onlyState.getText() + style);
+        }
+    }
+
     @FXML public void nextPage() throws IOException {
         saveDraft();
 //        multiThreadWaitFor.onShutDown();

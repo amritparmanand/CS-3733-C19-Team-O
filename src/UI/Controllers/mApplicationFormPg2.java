@@ -71,7 +71,7 @@ public class mApplicationFormPg2 {
     }
 
     @FXML public void saveDraft() {
-        Form form = cacheM.getForm();
+        //Form form = cacheM.getForm();
 
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
@@ -112,6 +112,10 @@ public class mApplicationFormPg2 {
 
             System.out.println("save Draft executed");
         }
+
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
     }
 
     @FXML public void wineFieldCheck(){
@@ -123,6 +127,35 @@ public class mApplicationFormPg2 {
         }
     }
 
+    public void checkDiff() {
+
+        String style = "-fx-background-color: #94BDFF;";
+        if (printName.getText() != form.getPrintName()) {
+            form.setPrintName(printName.getText() + style);
+        }
+        if (mailAddress.getText() != form.getMailingAddress()) {
+            form.setMailingAddress(mailAddress.getText() + style);
+        }
+        if (formula.getText() != form.getFormula()) {
+            form.setFormula(formula.getText() + style);
+        }
+        if (grapes.getText() != form.getGrapeVarietal()) {
+            form.setGrapeVarietal(grapes.getText() + style);
+        }
+        if(appellation.getText() != form.getAppellation())
+        {
+            form.setAlcoholPercent(appellation.getText() + style);
+        }
+        if(phoneNumber.getText() != form.getPhoneNumber())
+        {
+            form.setPhoneNumber(phoneNumber.getText() + style);
+        }
+        if(email.getText() != form.getEmailAddress())
+        {
+            form.setEmailAddress(email.getText() + style);
+        }
+
+    }
 //    /**
 //     * The multi-thread function
 //     * Saves draft every 5 seconds
