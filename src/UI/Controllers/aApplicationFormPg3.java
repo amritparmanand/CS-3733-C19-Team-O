@@ -1,14 +1,18 @@
 package UI.Controllers;
 
 
+import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,11 +26,13 @@ public class aApplicationFormPg3 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
+    private Comments comments;
 
-    public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form) {
+    public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.form = form;
+        this.comments = comments;
     }
 
 
@@ -42,13 +48,31 @@ public class aApplicationFormPg3 {
     @FXML private JFXButton uploadImage;
     @FXML private JFXTextArea Q14Comment;
     @FXML private JFXTextArea Q15Comment;
+    @FXML private JFXTextField onlyState;
+    @FXML private JFXTextField ttbID;
+    @FXML private JFXTextField bottleCapacity; //will be int, for future reference
+    @FXML private JFXCheckBox certificateOfApproval;
+    @FXML private JFXCheckBox certificateOfExemption;
+    @FXML private JFXCheckBox DistinctiveLiquor;
+    @FXML private JFXCheckBox resubmission;
+    @FXML private ImageView imagePreview;
+    @FXML private Label errorLabel;
     @FXML private JFXTextField receiver;
 
 
+    @SuppressWarnings("Duplicates")
     public void initialize(){
-        Form form = this.form;
-
-
+        Q14Comment.setText(comments.getComment14());
+        Q15Comment.setText(comments.getComment15());
+        Form form = cacheM.getForm();
+        certificateOfApproval.setSelected(form.getCertificateOfApproval());
+        certificateOfExemption.setSelected(form.getCertificateOfExemption());
+        DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
+        resubmission.setSelected(form.getResubmission());
+        certificateOfApproval.setDisable(true);
+        certificateOfExemption.setDisable(true);
+        DistinctiveLiquor.setDisable(true);
+        resubmission.setDisable(true);
     }
     @FXML
     public void search() throws IOException {
@@ -58,14 +82,17 @@ public class aApplicationFormPg3 {
 
     @FXML
     public void back() throws IOException {
+        comments.setComment14(Q14Comment.getText());
+        comments.setComment15(Q15Comment.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg2.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form,comments));
     }
     @FXML
     public void nextPage() throws IOException {
-
+        comments.setComment14(Q14Comment.getText());
+        comments.setComment15(Q15Comment.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg4.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM, form,comments));
     }
     @FXML
     public void goToHomePage() throws IOException {
@@ -79,8 +106,11 @@ public class aApplicationFormPg3 {
 
 
     @FXML
-    public void denyForm() throws IOException {
+    public void denyForm() throws Exception {
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        comments.setComment14(Q14Comment.getText());
+        comments.setComment15(Q15Comment.getText());
+        System.out.println(comments.generateComments(comments));
     }
 
     @FXML
@@ -90,7 +120,7 @@ public class aApplicationFormPg3 {
 
 
     @FXML public void passForm() throws IOException{
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), Integer.parseInt(receiver.getText()));
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
         back();
     }
 

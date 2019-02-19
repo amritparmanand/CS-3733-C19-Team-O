@@ -73,7 +73,12 @@ public class CacheManager {
     // Facade stuff
     // Form
     public void approveForm(Connection conn){
+        System.out.println("cManager approve Form");
+        System.out.println(form.getFormID());
+        System.out.println(form.getSignature());
+        System.out.println(form.getDateIssued());
         form.approve(conn);
+
     }
     public void denyForm(Connection conn){
         form.deny(conn);
@@ -84,8 +89,8 @@ public class CacheManager {
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
         return form.getApprovedApplications(conn);
     }
-    public void passForm(Connection connection, long f, int r) {
-        form.passForm(connection, f, r);
+    public void passForm(Connection connection, long formID,  String ttbUsername) {
+        form.passForm(connection, formID, ttbUsername);
     }
 
 }

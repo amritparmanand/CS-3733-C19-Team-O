@@ -7,8 +7,8 @@ import java.math.BigInteger;
 import java.sql.*;
 import java.util.Date;
 /**
- * @author Harry James and Gabriel Entov
- * @version It 2
+ * @author Harry James and Gabriel Entov & Percy
+ * @version It 3
  * object to hold information in a form
  */
 public class Form {
@@ -43,12 +43,14 @@ public class Form {
     private String pHLevel;
     private String bottleCapacity;
     private long formID;
+    private String signature;
+    private String dateIssued;
 
 
     // Constructor
     public Form() {
         this.repID = 0;
-        this.formID = 0;
+        this.formID = 20;
         this.brewerNumber = "";
         this.productSource = "";
         this.serialNumber = "";
@@ -75,6 +77,8 @@ public class Form {
         this.resubmission = false;
         this.ttbID = 0;
         this.bottleCapacity = "";
+        this.signature = "";
+        this.dateIssued = "";
     }
 
     // Getters and setters
@@ -248,12 +252,25 @@ public class Form {
     public void setLabel(LabelImage label) {
         this.label = label;
     }
+    public String getSignature() {
+        return signature;
+    }
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+    public String getDateIssued() {
+        return dateIssued;
+    }
+    public void setDateIssued(String dateIssued) {
+        this.dateIssued = dateIssued;
+    }
 
     @SuppressWarnings("Duplicates")
     public void approve(Connection conn) {
-        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, STATUS = 'APPROVED' WHERE FORMID ="
+        System.out.println("in Form Approve");
+        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, STATUS = 'APPROVED' , DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
                 + this.formID;
-
+        System.out.println(SQL);
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
@@ -267,8 +284,7 @@ public class Form {
     }
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) {
-        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED' WHERE FORMID ="
-                + this.formID;
+        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED' WHERE FORMID ="+ this.formID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
@@ -282,8 +298,20 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void passForm(Connection connection, long f, int r){
-        String s = "UPDATE APPLICATIONS SET TTBID = " + r + " WHERE FORMID = " + f;
+    public void passForm(Connection connection, long formID, String username){
+        //take in a username of an Agent, query the agent table for the ID, the rest is the same
+        int id = 0;
+        String getID = "SELECT TTBID FROM AGENTS WHERE USERNAME = '" + username + "'";
+        try {
+            ResultSet rset = connection.createStatement().executeQuery(getID);
+            while(rset.next())
+                id = rset.getInt("ttbID");
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        String s = "UPDATE APPLICATIONS SET TTBID = " + id + " WHERE FORMID = " + formID;
         try {
             PreparedStatement ps = connection.prepareStatement(s);
             ps.executeUpdate();
@@ -295,6 +323,16 @@ public class Form {
         }
     }
 
+    public boolean isValid(){
+        if(brewerNumber == "" || productSource == "" || serialNumber == "" || productType == "" || brandName == "" ||
+        applicantName == "" || alcoholPercent == "" || applicantName == "" || phoneNumber == "" || emailAddress == "" ||
+                (!certificateOfExemption && !certificateOfApproval && !distinctiveLiquor && !resubmission) ||
+                label.getFile() == null || dateOfApplication == "" || printName == "")
+            return false;
+        else
+            return true;
+    }
+
     /**
      * Automatically generates and inserts an Application into database when Form is inserted
      * @param connection
@@ -303,9 +341,9 @@ public class Form {
      * @param dateSubmitted
      * @throws SQLException
      */
-    public void addApp(Connection connection, int formID, int repID, String dateSubmitted) throws SQLException{
-        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS) " +
-                "VALUES(?,?,?,?,?,?,?,?)";
+    public void addApp(Connection connection, int formID, int repID, String dateSubmitted, String dateIssued, String signature) throws SQLException{
+        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS, DATEISSUED, SIGNATURE) " +
+                "VALUES(?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Apps1);
         ResultSet seqVal;
         try {
@@ -319,6 +357,8 @@ public class Form {
             prepStmt.setNull(6, Types.VARCHAR);
             prepStmt.setNull(7, Types.VARCHAR);
             prepStmt.setString(8, "PENDING");
+            prepStmt.setString(9, dateIssued);
+            prepStmt.setString(10,signature);
             prepStmt.executeUpdate();
             prepStmt.close();
 
@@ -380,9 +420,11 @@ public class Form {
             File slimebert = getLabel().getLabelFile();
             FileInputStream blobert = new FileInputStream(slimebert);
             prepStmt.setBinaryStream(29, blobert, (int) slimebert.length());
-            addApp(connection, seqVal.getInt(1),getRepID(), getDateOfApplication());
+
+            addApp(connection, seqVal.getInt(1),getRepID(), getDateOfApplication(), dateIssued, signature);
             prepStmt.executeUpdate();
             prepStmt.close();
+
 
         } catch (SQLException e) {
             e.printStackTrace();

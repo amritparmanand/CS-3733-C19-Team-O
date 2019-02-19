@@ -31,20 +31,13 @@ public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML
-    private FlowPane loadForms;
-    @FXML
-    private JFXButton getFormsButton;
-    @FXML
-    private JFXButton back;
-    @FXML
-    private JFXButton logout;
-    @FXML
-    private JFXButton search;
-    @FXML
-    private VBox getApp;
-    @FXML
-    private JFXTextField formLimit;
+    @FXML private FlowPane loadForms;
+    @FXML private JFXButton getFormsButton;
+    @FXML private JFXButton back;
+    @FXML private JFXButton logout;
+    @FXML private JFXButton search;
+    @FXML private VBox getApp;
+    @FXML private JFXTextField formLimit;
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -69,6 +62,7 @@ public class aFormStorage {
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
 
+    @SuppressWarnings("Duplicates")
     @FXML
     public void assignNewForms(){
 
@@ -89,7 +83,18 @@ public class aFormStorage {
 
                     ((Label) fName).setText(form.getFancifulName());
                     ((Label) bName).setText(form.getBrandName());
-                    ((Label) aType).setText(form.getProductType());
+                    switch(form.getProductType()){
+                        case "WINE":
+                            ((Label) aType).setText("Wine");
+                            break;
+                        case "DISTILLED":
+                            ((Label) aType).setText("Distilled Beverage");
+                            break;
+                        case "MALT":
+                            ((Label) aType).setText("Malt Beverage");
+                            break;
+                    }
+
 
                 }
                 loadForms.getChildren().add(formResult);
@@ -109,7 +114,8 @@ public class aFormStorage {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }}
+        }
+    }
 
     @FXML
     public void logout() throws IOException {

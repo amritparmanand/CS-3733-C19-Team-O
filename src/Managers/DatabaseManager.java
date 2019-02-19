@@ -43,6 +43,10 @@ public class DatabaseManager {
         Statement stmt = null;
         try {
             connection = DriverManager.getConnection("jdbc:derby:ttbDB;create=true");
+            CallableStatement cs = connection.prepareCall
+                    ("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.language.sequence.preallocator', '1')");
+            cs.execute();
+            cs.close();
             stmt = connection.createStatement();
         }
         catch(SQLException e){
@@ -132,7 +136,9 @@ public class DatabaseManager {
                 "dateApproved VARCHAR(20)," +
                 "dateRejected VARCHAR(20)," +
                 "dateExpired VARCHAR(20)," +
-                "status VARCHAR(15))";
+                "status VARCHAR(15)," +
+                "dateIssued VARCHAR(20)," +
+                "signature VARCHAR(40))";
         String createRepresentatives = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
                 "username varchar(20),	" +
@@ -208,7 +214,7 @@ public class DatabaseManager {
                 "alcoholPercent varchar(60),   " +
                 "vintageYear varchar(60), " +
                 "phLevel varchar(60), "+
-                "labelImage blob(32M))";
+                "labelImage blob(32M)) ";
         String createUniqueReps = "create unique index Representatives_username_uindex " +
                 "on Representatives (username)";
         String createUniqueAgents = "create unique index Agents_username_uindex " +
@@ -391,7 +397,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File(classLoader.getResource("/Resources/ApplicationsXLSX.csv").getFile()));
+            FileReader filereader = new FileReader(new File(classLoader.getResource("Resources/ApplicationsXLSX.csv").getFile()));
             // create csvReader object passing
             // file reader as a parameter
             CSVReader csvReader = new CSVReader(filereader);
@@ -421,7 +427,7 @@ public class DatabaseManager {
                         {
                             output+="'" + splitRecord[j]+"','";
                         }
-                        else if(counter == 8)
+                        else if(counter == 10)
                     {
                         output += splitRecord[j] + "')";
                         break;
@@ -432,7 +438,7 @@ public class DatabaseManager {
                     }
 
                         counter++;
-                        if(counter>8)
+                        if(counter>10)
                         {
                             counter = 0;
                             output = "";
@@ -442,7 +448,7 @@ public class DatabaseManager {
 
                 }
 
-                if(counter == 8) {
+                if(counter == 10) {
 
 //                    || output.charAt(2) == 2 || output.charAt(2) == 3
                     if (numOfOutput < 999) {
@@ -462,11 +468,12 @@ public class DatabaseManager {
                 if(numOfOutput == 1000)
                 {
                     System.out.println(numOfSqlExecute);
-                    if(numOfSqlExecute==6)
-                    {
-                        System.out.println(bigString);
-                    }
-                    stmt.executeUpdate(bigString);
+
+//                        System.out.println(bigString);
+
+
+                        stmt.executeUpdate(bigString);
+
                     bigString = "INSERT INTO APPLICATIONS VALUES";
                     numOfOutput = 0;
                     numOfSqlExecute++;
