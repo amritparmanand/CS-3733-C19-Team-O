@@ -81,23 +81,40 @@ public class mApplicationFormPg2 {
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
 
-        form.setPrintName(printName.getText());
-        form.setMailingAddress(mailAddress.getText());
-        form.setFormula(formula.getText());
-        form.setGrapeVarietal(grapes.getText());
-        form.setAppellation(appellation.getText());
+        if (!printName.getText().isEmpty() && !form.getPrintName().contains(style)) {
+            form.setPrintName(printName.getText());
+        }
+        if (!mailAddress.getText().isEmpty() && !form.getMailingAddress().contains(style)) {
+            form.setMailingAddress(mailAddress.getText());
+        }
+        if (!formula.getText().isEmpty() && !form.getFormula().contains(style)) {
+            form.setFormula(formula.getText());
+        }
+        if (!grapes.getText().isEmpty() && !form.getGrapeVarietal().contains(style)) {
+            form.setGrapeVarietal(grapes.getText());
+        }
+        if (!appellation.getText().isEmpty() && !form.getAppellation().contains(style)) {
+            form.setAppellation(appellation.getText());
+        }
+
         if (validFormPhone(phoneNumberString)) {
-            form.setPhoneNumber(phoneNumberString);
+            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+                form.setPhoneNumber(phoneNumberString);
+            }
             System.out.println("valid phone number");
         } else {
             System.out.println("invalid phone number");
         }
+
         if (validFormEmail(formEmail)) {
-            form.setEmailAddress(email.getText());
+            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
+                form.setEmailAddress(email.getText());
+            }
             System.out.println("valid email");
         } else {
             System.out.println("invalid email");
         }
+
         if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
             form.setGrapeVarietal("");
             form.setAppellation("");
@@ -111,14 +128,19 @@ public class mApplicationFormPg2 {
         }
         else {
             saveDraftMessage.setText("");
-            form.setPhoneNumber(phoneNumberString);
-            form.setEmailAddress(formEmail);
+            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+                form.setPhoneNumber(phoneNumberString);
+            }
+            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
+                form.setEmailAddress(formEmail);
+            }
             cacheM.setForm(form);
 
             System.out.println("save Draft executed");
         }
     }
 
+    @SuppressWarnings("Duplicates")
     @FXML public void wineFieldCheck(){
         if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
             grapes.setEditable(false);

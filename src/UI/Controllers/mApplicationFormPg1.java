@@ -196,27 +196,25 @@ public class mApplicationFormPg1 {
         if (!repID.getText().isEmpty()) {
             form.setRepID(Integer.parseInt(repID.getText()));
         }
-        if (!brewerNO.getText().isEmpty()) {
-            if(!form.getBrewerNumber().contains(style)){
-                form.setBrewerNumber(brewerNO.getText());
-            }
+        if (!brewerNO.getText().isEmpty() && !form.getBrewerNumber().contains(style)) {
+            form.setBrewerNumber(brewerNO.getText());
         }
-        if (!serialNumber.getText().isEmpty()) {
+        if (!serialNumber.getText().isEmpty() && !form.getSerialNumber().contains(style)) {
             form.setSerialNumber(serialNumber.getText());
         }
-        if (!brandName.getText().isEmpty()) {
+        if (!brandName.getText().isEmpty() && !form.getBrandName().contains(style)) {
             form.setBrandName(brandName.getText());
         }
-        if (!fancifulName.getText().isEmpty()) {
+        if (!fancifulName.getText().isEmpty() && !form.getFancifulName().contains(style)) {
             form.setFancifulName(fancifulName.getText());
         }
-        if (!alcoholPercentage.getText().isEmpty()) {
+        if (!alcoholPercentage.getText().isEmpty() && !form.getAlcoholPercent().contains(style)) {
             form.setAlcoholPercent(alcoholPercentage.getText());
         }
-        if (!vintageYear.getText().isEmpty()) {
+        if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(style)) {
             form.setVintageYear(vintageYear.getText());
         }
-        if (!phLevel.getText().isEmpty()) {
+        if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(style)) {
             form.setpHLevel(phLevel.getText());
         }
 
