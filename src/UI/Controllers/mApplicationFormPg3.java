@@ -186,7 +186,7 @@ public class mApplicationFormPg3 {
     }
 
     public void help() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpmAppMulti.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpViews/helpmAppMulti.fxml"));
         helpPopWindow(root);
     }
     public void helpPopWindow(Parent root){
