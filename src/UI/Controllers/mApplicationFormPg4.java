@@ -26,20 +26,13 @@ public class mApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML
-    private Button previous;
-    @FXML
-    private Button search;
-    @FXML
-    private Button back;
-    @FXML
-    private Button submit;
-    @FXML
-    private JFXDatePicker dateOfApplication;
-    @FXML
-    private JFXTextField applicantSig;
-    @FXML
-    private JFXTextField applicantNamePrint;
+    @FXML private Button previous;
+    @FXML private Button search;
+    @FXML private Button back;
+    @FXML private Button submit;
+    @FXML private JFXDatePicker dateOfApplication;
+    @FXML private JFXTextField applicantSig;
+    @FXML private JFXTextField applicantNamePrint;
     @FXML private Label errorLabel2;
 
 

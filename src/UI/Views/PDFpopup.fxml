@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="840" prefWidth="640.0" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.PDFpopup">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" minHeight="50.0" minWidth="200.0" prefHeight="50.0" prefWidth="200.0" spacing="300.0" styleClass="navheader">
+               <children>
+                  <Label fx:id="fancifulLabel" style="-fx-text-fill: white;" styleClass="h1" text="FancifulLabel" />
+                  <JFXButton fx:id="savePDFButton" text="Save PDF">
+                     <styleClass>
+                        <String fx:value="searchButtonStyle" />
+                     </styleClass>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets left="50.0" right="50.0" />
+               </padding>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="pdfImageView" fitHeight="800.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

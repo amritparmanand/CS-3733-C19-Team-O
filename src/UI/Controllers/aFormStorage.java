@@ -3,7 +3,7 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Form;
-import Datatypes.NumberAssigned;
+import Datatypes.Setting;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
@@ -19,7 +19,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -32,20 +31,13 @@ public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML
-    private FlowPane loadForms;
-    @FXML
-    private JFXButton getFormsButton;
-    @FXML
-    private JFXButton back;
-    @FXML
-    private JFXButton logout;
-    @FXML
-    private JFXButton search;
-    @FXML
-    private VBox getApp;
-    @FXML
-    private JFXTextField formLimit;
+    @FXML private FlowPane loadForms;
+    @FXML private JFXButton getFormsButton;
+    @FXML private JFXButton back;
+    @FXML private JFXButton logout;
+    @FXML private JFXButton search;
+    @FXML private VBox getApp;
+    @FXML private JFXTextField formLimit;
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -72,9 +64,9 @@ public class aFormStorage {
 
     @SuppressWarnings("Duplicates")
     @FXML
-    public void assignNewForms() throws IOException {
+    public void assignNewForms(){
 
-        int limit = 5;
+        int limit = cacheM.getFormLimit();
 
         ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
