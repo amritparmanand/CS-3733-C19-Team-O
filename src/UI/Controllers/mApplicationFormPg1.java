@@ -71,6 +71,8 @@ public class mApplicationFormPg1 {
     @FXML
     private Label serialMessage;
 
+    String style = "-fx-background-color: #94BDFF;";
+
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -125,7 +127,15 @@ public class mApplicationFormPg1 {
             repID.setText(Integer.toString(form.getRepID()));
         else
             repID.setText(Integer.toString(manAcc.getRepID()));
-        brewerNO.setText(form.getBrewerNumber());
+
+        // Parse the style
+        if(form.getBrewerNumber().contains(style)){
+            brewerNO.setText(form.getBrewerNumber().substring(0,form.getBrewerNumber().indexOf('-')));
+        }
+        else{
+            brewerNO.setText(form.getBrewerNumber());
+        }
+
         domestic.setSelected(isDomestic);
         imported.setSelected(isImported);
         serialNumber.setText(form.getSerialNumber());
@@ -194,7 +204,9 @@ public class mApplicationFormPg1 {
             form.setRepID(Integer.parseInt(repID.getText()));
         }
         if (!brewerNO.getText().isEmpty()) {
-            form.setBrewerNumber(brewerNO.getText());
+            if(!form.getBrewerNumber().contains(style)){
+                form.setBrewerNumber(brewerNO.getText());
+            }
         }
         if (!serialNumber.getText().isEmpty()) {
             form.setSerialNumber(serialNumber.getText());
@@ -276,8 +288,7 @@ public class mApplicationFormPg1 {
 
     //starting with textboxes, not sure how to handle radio buttons and checkboxes
     public void checkDiff() {
-        String style = "-fx-background-color: #94BDFF;";
-        System.out.println(form.getBrewerNumber());
+
         if (!brewerNO.getText().equals(form.getBrewerNumber()) && !brewerNO.getText().contains(style)) {
             form.setBrewerNumber(brewerNO.getText() + style);
         }

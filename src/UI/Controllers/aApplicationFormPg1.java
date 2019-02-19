@@ -93,17 +93,17 @@ public class aApplicationFormPg1 {
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
 
-//        if(form.getBrewerNumber().contains("#")) {
-//            System.out.println("change detected");
-//            int position = form.getBrewerNumber().indexOf('-');
-//            String style = form.getBrewerNumber().substring(position);
-//            brewerNO.setText(form.getBrewerNumber().substring(0,position));
-//            brewerNO.setStyle(style);
-//        }
-//        else{
-//            brewerNO.setText(form.getBrewerNumber());
-//            System.out.println("nope!!!!");
-//        }
+        if(form.getBrewerNumber().contains("#")) {
+            System.out.println("change detected");
+            int position = form.getBrewerNumber().indexOf('-');
+            String style = form.getBrewerNumber().substring(position);
+            brewerNO.setText(form.getBrewerNumber().substring(0,position));
+            brewerNO.setStyle(style);
+        }
+        else{
+            brewerNO.setText(form.getBrewerNumber());
+            System.out.println("nope!!!!");
+        }
 
         domestic.setDisable(true);
         imported.setDisable(true);
