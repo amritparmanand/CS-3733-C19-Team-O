@@ -152,22 +152,22 @@ public class DatabaseManager {
                 "username varchar(20), " +
                 "password varchar(65), " +
                 "fullName varchar(50),	" +
-                "email varchar(60),	" +
-                "phone varchar(15))";
+                "email varchar(100),	" +
+                "phone varchar(40))";
 //        String createForms = "create table Forms(" +
 //                "formID int	constraint Forms_pk	primary key, " +
 //                "repID int, " +
-//                "brewerNumber varchar(60),	" +
-//                "productSource varchar(60),	" +
-//                "serialNumber varchar(60),	" +
-//                "productType varchar(60),	" +
-//                "brandName varchar(60),	" +
-//                "fancifulName varchar(60),	" +
+//                "brewerNumber varchar(100),	" +
+//                "productSource varchar(100),	" +
+//                "serialNumber varchar(100),	" +
+//                "productType varchar(100),	" +
+//                "brandName varchar(100),	" +
+//                "fancifulName varchar(100),	" +
 //                "applicantName varchar(200),	" +
 //                "mailingAddress varchar(80), " +
 //                "formula varchar(80), " +
 //                "grapeVarietal varchar(80),	" +
-//                "appellation varchar(60), " +
+//                "appellation varchar(100), " +
 //                "phoneNumber varchar(20), " +
 //                "emailAddress varchar(50),	" +
 //                "certificateOfApproval boolean," +   //begin new
@@ -179,18 +179,18 @@ public class DatabaseManager {
 //                "ttbID int ," + //end new
 //                "dateOfApplication VARCHAR(30) , " +
 //                "printName varchar(40),	" +
-//                "beerWineSpirit varchar(60), " +
-//                "alcoholPercent varchar(60),	" +
-//                "vintageYear varchar(60), " +
-//                "phLevel varchar(60))";
+//                "beerWineSpirit varchar(100), " +
+//                "alcoholPercent varchar(100),	" +
+//                "vintageYear varchar(100), " +
+//                "phLevel varchar(100))";
 
 
         String createForms = "create table Forms(" +
                 "formID bigint   constraint Forms_pk primary key, " +
                 "repID varchar (20), " +
-                "brewerNumber varchar(60), " +
-                "productSource varchar(60),    " +
-                "serialNumber varchar(60), " +
+                "brewerNumber varchar(100), " +
+                "productSource varchar(100),    " +
+                "serialNumber varchar(100), " +
                 "productType varchar(100),  " +
                 "brandName varchar(100),    " +
                 "fancifulName varchar(100), " +
@@ -203,17 +203,17 @@ public class DatabaseManager {
                 "emailAddress varchar(50), " +
                 "certificateOfApproval BOOLEAN," +   //begin new
                 "certificateOfExemption BOOLEAN," +
-                "onlyState varchar(2)," +
+                "onlyState varchar(100)," +
                 "distinctiveLiquor BOOLEAN," +
                 "bottleCapacity VARCHAR(300)," +
                 "resubmission BOOLEAN," +
                 "ttbID int," + //end new
-                "dateOfApplication VARCHAR(30) , " +
-                "printName varchar(40),    " +
-                "beerWineSpirit varchar(60), " +
-                "alcoholPercent varchar(60),   " +
-                "vintageYear varchar(60), " +
-                "phLevel varchar(60), "+
+                "dateOfApplication VARCHAR(100) , " +
+                "printName varchar(100),    " +
+                "beerWineSpirit varchar(100), " +
+                "alcoholPercent varchar(100),   " +
+                "vintageYear varchar(100), " +
+                "phLevel varchar(100), "+
                 "labelImage blob(32M)) ";
         String createUniqueReps = "create unique index Representatives_username_uindex " +
                 "on Representatives (username)";
