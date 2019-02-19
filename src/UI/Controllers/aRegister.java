@@ -254,7 +254,7 @@ public class aRegister {
     }
 
     public void help() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpPages/helpaRegister.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpViews/helpaRegister.fxml"));
         helpPopWindow(root);
     }
 
