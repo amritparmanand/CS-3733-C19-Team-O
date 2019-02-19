@@ -81,6 +81,7 @@ public class mApplicationFormPg3 {
         if(!DistinctiveLiquor.isSelected()) {
             bottleCapacity.setText("");
             bottleCapacity.setDisable(true);
+            bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
         }else{
             bottleCapacity.setDisable(false);
         }
@@ -121,6 +122,15 @@ public class mApplicationFormPg3 {
                 form.setOnlyState(null);
             }
             form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
+            if(DistinctiveLiquor.isSelected()) {
+                if (!bottleCapacity.getText().isEmpty()) {
+                    if(!form.getBottleCapacity().contains(style)){
+                        form.setBottleCapacity(bottleCapacity.getText());
+                    }
+                }
+            }else {
+                form.setOnlyState(null);
+            }
             form.setResubmission(resubmission.isSelected());
             if(!resubmission.isSelected())
                 form.setTtbID(0);
@@ -145,6 +155,10 @@ public class mApplicationFormPg3 {
         if (!onlyState.getText().equals(form.getOnlyState()) && !onlyState.getText().contains(style)) {
             form.setPrintName(onlyState.getText() + style);
         }
+        if (!bottleCapacity.getText().equals(form.getBottleCapacity()) && !bottleCapacity.getText().contains(style)) {
+            form.setPrintName(bottleCapacity.getText() + style);
+        }
+
     }
 
     @FXML public void nextPage() throws IOException {

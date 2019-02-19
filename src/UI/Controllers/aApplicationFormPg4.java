@@ -68,7 +68,8 @@ public class aApplicationFormPg4 {
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
         dateOfApplication.setEditable(false);
-        printName.setText(form.getPrintName());
+        printName.setText(form.parseGarbage(form.getPrintName()));
+        printName.setStyle(form.parseStyle(form.getPrintName()));
         printName.setEditable(false);
         signature.setText(form.getSignature());
         if(!form.getDateIssued().isEmpty()){

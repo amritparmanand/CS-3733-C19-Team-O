@@ -509,7 +509,7 @@ public class Form {
 
         return result;
     }
-    
+
     public String parseStyle(String s){
         String result;
 
@@ -517,7 +517,7 @@ public class Form {
             result = s.substring(s.indexOf('-'));
         }
         else{
-            result = s;
+            result = null;
         }
 
         return result;

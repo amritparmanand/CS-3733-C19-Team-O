@@ -72,6 +72,10 @@ public class aApplicationFormPg3 {
         certificateOfApproval.setDisable(true);
         certificateOfExemption.setDisable(true);
         DistinctiveLiquor.setDisable(true);
+        onlyState.setText(form.parseGarbage(form.getOnlyState()));
+        onlyState.setStyle(form.parseStyle(form.getOnlyState()));
+        bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
+        bottleCapacity.setStyle(form.parseStyle(form.getBottleCapacity()));
         resubmission.setDisable(true);
     }
     @FXML
