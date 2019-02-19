@@ -50,6 +50,7 @@ public class mApplicationFormPg1 {
     @FXML private RadioButton beer2;
     @FXML private JFXButton saveDraft;
     @FXML private Label serialMessage;
+    @FXML private JFXButton help;
 
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -278,6 +279,17 @@ public class mApplicationFormPg1 {
         serialMessage.setText("Serial Number must be an integer of 6 digits");
             return false;
     }
+    public void help() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpmAppMulti.fxml"));
+        helpPopWindow(root);
+    }
 
-
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
 }

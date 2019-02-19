@@ -5,6 +5,7 @@ import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXRadioButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -47,6 +48,7 @@ public class mRegister {
     @FXML private JFXTextField phone;
     @FXML private JFXTextField repID;
     @FXML private JFXTextField companyName;
+    @FXML private JFXButton help;
 
     @FXML
     @SuppressWarnings("Duplicates")
@@ -225,5 +227,18 @@ public class mRegister {
         if(username.matches("^[a-zA-Z0-9]+")){
             return true;
         }else return false;
+    }
+    public void help() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpmRegister.fxml"));
+        helpPopWindow(root);
+    }
+
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 }

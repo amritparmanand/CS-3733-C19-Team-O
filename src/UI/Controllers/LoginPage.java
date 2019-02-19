@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,9 +54,6 @@ public class LoginPage implements SerialPortDataListener {
     private Button about;
     @FXML
     private JFXButton help;
-
-    @FXML private Image image = new Image(getClass().getResourceAsStream("/HelpGifs/login.gif"));
-    ImageView helpGif = new ImageView(image);
 
 
 
@@ -253,11 +249,10 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML
     public void help() throws IOException{
-//        helpBox helpBox = new helpBox();
-//        helpBox.loginPage();
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpBox.fxml"));
+        helpBox helpBox = new helpBox();
+        helpBox.loginPage();
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpLogin.fxml"));
         helpPopWindow(root);
-
     }
 
     public void helpPopWindow(Parent root){
@@ -267,6 +262,5 @@ public class LoginPage implements SerialPortDataListener {
         stage.setTitle("Help Window");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-
     }
 }

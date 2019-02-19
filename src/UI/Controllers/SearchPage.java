@@ -80,6 +80,7 @@ public class SearchPage {
     @FXML private MenuButton algChoose;
     @FXML private JFXTextField pageNumber;
     @FXML private JFXButton pageButton;
+    @FXML private JFXButton help;
 
     //rob
     @FXML
@@ -411,5 +412,21 @@ public class SearchPage {
         }
 
 
+    }
+    @FXML
+    public void help() throws IOException{
+        helpBox helpBox = new helpBox();
+        helpBox.loginPage();
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpSearch.fxml"));
+        helpPopWindow(root);
+    }
+
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 }

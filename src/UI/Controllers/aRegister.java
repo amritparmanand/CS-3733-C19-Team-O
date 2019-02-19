@@ -58,6 +58,7 @@ public class aRegister {
     @FXML private Label emailMessage;
     @FXML private Label IDMessage;
     @FXML private Label passwordMessage;
+    @FXML private JFXButton help;
 
 
     @FXML
@@ -245,6 +246,20 @@ public class aRegister {
         if(username.matches("^[a-zA-Z0-9]+")){
             return true;
         }else return false;
+    }
+
+    public void help() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpaRegister.fxml"));
+        helpPopWindow(root);
+    }
+
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
 }

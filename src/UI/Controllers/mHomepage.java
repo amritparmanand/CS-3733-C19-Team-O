@@ -4,6 +4,7 @@ import Managers.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import com.jfoenix.controls.JFXRadioButton;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class mHomepage {
     @FXML private Button search;
     @FXML private VBox newForm;
     @FXML private VBox storage;
+    @FXML private JFXButton help;
 
 
     @FXML
@@ -50,5 +52,17 @@ public class mHomepage {
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+    public void help() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpmAppMulti.fxml"));
+        helpPopWindow(root);
+    }
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 }

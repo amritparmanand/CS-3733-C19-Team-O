@@ -150,8 +150,7 @@ public class aApplicationFormPg1 {
 
     }
     public void help() throws IOException{
-        helpBox.imageSeter("aAppMulti");
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpBox.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpaAppMulti.fxml"));
         helpPopWindow(root);
     }
 

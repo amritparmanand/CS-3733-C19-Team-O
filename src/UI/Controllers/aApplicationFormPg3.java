@@ -43,6 +43,7 @@ public class aApplicationFormPg3 {
     @FXML private JFXTextArea Q14Comment;
     @FXML private JFXTextArea Q15Comment;
     @FXML private JFXTextField receiver;
+    @FXML private JFXButton help;
 
 
     public void initialize(){
@@ -99,6 +100,20 @@ public class aApplicationFormPg3 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
+    }
+
+    public void help() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpaAppMulti.fxml"));
+        helpPopWindow(root);
+    }
+
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
 }

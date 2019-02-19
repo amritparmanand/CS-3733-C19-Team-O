@@ -40,6 +40,7 @@ public class mApplicationFormPg2 {
     @FXML private JFXTextField appellation;
     @FXML private JFXTextField phoneNumber;
     @FXML private JFXTextField email;
+    @FXML private JFXButton help;
 
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -199,6 +200,19 @@ public class mApplicationFormPg2 {
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+    public void help() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpmAppMulti.fxml"));
+        helpPopWindow(root);
+    }
+
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
 }

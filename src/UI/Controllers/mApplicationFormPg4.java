@@ -39,6 +39,7 @@ public class mApplicationFormPg4 {
     private JFXTextField applicantSig;
     @FXML
     private JFXTextField applicantNamePrint;
+    @FXML private JFXButton help;
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
@@ -132,5 +133,18 @@ public class mApplicationFormPg4 {
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+
+    public void help() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpmAppMulti.fxml"));
+        helpPopWindow(root);
+    }
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 }

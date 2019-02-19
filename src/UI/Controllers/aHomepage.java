@@ -26,6 +26,7 @@ public class aHomepage {
     @FXML private JFXButton logout;
     @FXML private JFXButton search;
     @FXML private VBox getApp;
+    @FXML private JFXButton help;
 
     @FXML
     public void search() throws IOException {
@@ -44,6 +45,20 @@ public class aHomepage {
     public void getApp() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aFormStorage.fxml"));
         sceneM.changeScene(loader, new aFormStorage(sceneM, cacheM));
+    }
+
+    public void help() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/helpaHome.fxml"));
+        helpPopWindow(root);
+    }
+
+    public void helpPopWindow(Parent root){
+        Stage stage;
+        stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Help Window");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
 }
