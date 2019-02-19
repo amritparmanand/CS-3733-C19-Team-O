@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Managers.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ public class helpBox {
     @FXML
     private Image image = new Image(getClass().getResourceAsStream("/HelpGifs/login.gif"));
     private ImageView helpGif = new ImageView(image);
+//    private SceneManager sceneM;
 
 //    private String prevLocation;
 
@@ -28,12 +30,13 @@ public class helpBox {
     public helpBox() throws FileNotFoundException {
 //        this.prevLocation = prevLocation;
 //        imageSeter(prevLocation);
+
     }
 
     public void loginPage(){
         Stage stage = new Stage();
-        helpGif.setFitHeight(480);
-        helpGif.setFitWidth(270);
+        helpGif.setFitHeight(270);
+        helpGif.setFitWidth(480);
         helpGif.setImage(image);
         Group root = new Group(helpGif);
         Scene scene = new Scene(root, 500, 270);
