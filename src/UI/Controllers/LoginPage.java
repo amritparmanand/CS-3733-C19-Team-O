@@ -242,11 +242,7 @@ public class LoginPage implements SerialPortDataListener {
             login.setDisable(true);
         }
     }
-    @FXML
-    public void about() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
-        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM));
-    }
+
 
 
 }
