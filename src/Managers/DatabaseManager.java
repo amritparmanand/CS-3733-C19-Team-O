@@ -209,7 +209,7 @@ public class DatabaseManager {
                 "alcoholPercent varchar(60),   " +
                 "vintageYear varchar(60), " +
                 "phLevel varchar(60), "+
-                "labelImage blob(32M)), ";
+                "labelImage blob(32M)) ";
         String createUniqueReps = "create unique index Representatives_username_uindex " +
                 "on Representatives (username)";
         String createUniqueAgents = "create unique index Agents_username_uindex " +
@@ -288,7 +288,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File(classLoader.getResource("/Resources/forPresentation.csv").getFile()));
+            FileReader filereader = new FileReader(new File("./src/Resources/forPresentation.csv"));
 
             // create csvReader object passing
             // file reader as a parameter
@@ -392,7 +392,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File(classLoader.getResource("/Resources/ApplicationsXLSX.csv").getFile()));
+            FileReader filereader = new FileReader(new File("src/Resources/ApplicationsXLSX.csv"));
             // create csvReader object passing
             // file reader as a parameter
             CSVReader csvReader = new CSVReader(filereader);
