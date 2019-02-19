@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.image.Image?>
@@ -59,17 +58,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
                         <FlowPane fx:id="loadFormPane" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <JFXButton fx:id="getFormsButton" onMousePressed="#loadForms" text="Get Forms">
-                                 <styleClass>
-                                    <String fx:value="h1" />
-                                    <String fx:value="changeColorButton" />
-                                    <String fx:value="largeBorderRadius" />
-                                 </styleClass>
-                              </JFXButton>
-                           </children>
-                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>

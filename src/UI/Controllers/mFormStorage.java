@@ -32,9 +32,6 @@ public class mFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private Button backToMHome;
-    @FXML private JFXButton search;
-    @FXML private JFXButton newForm;
     @FXML private JFXCheckBox approved;
     @FXML private JFXCheckBox pending;
     @FXML private JFXCheckBox denied;
@@ -45,16 +42,8 @@ public class mFormStorage {
         this.cacheM = cacheM;
     }
 
-
-
-    @FXML
-    public void newForm() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
-    }
-
     @SuppressWarnings("Duplicates")
-    @FXML public void getForms() throws IOException {
+    @FXML public void initialize(){
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
         if(!manAcc.getHasFetchedForms())
             manAcc.setAssignedForms(cacheM.getDbM().getConnection());
@@ -117,7 +106,8 @@ public class mFormStorage {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }}
+        }
+    }
 
     @FXML
     public void mApplicationFormControl(Form form) throws IOException {
@@ -130,10 +120,11 @@ public class mFormStorage {
             sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM, form));
         }
     }
+
     @FXML
-    public void searchPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
 
     @FXML
