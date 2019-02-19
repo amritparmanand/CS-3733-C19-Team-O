@@ -73,7 +73,7 @@ public class mApplicationFormPg2 {
     }
 
     @FXML public void saveDraft() {
-        
+
         if (form.getTtbID() != 0) {
             checkDiff();
         }
@@ -129,28 +129,25 @@ public class mApplicationFormPg2 {
     }
 
     public void checkDiff() {
-        if (printName.getText() != form.getPrintName()) {
+        if (!printName.getText().equals(form.getPrintName()) && !printName.getText().contains(style)) {
             form.setPrintName(printName.getText() + style);
         }
-        if (mailAddress.getText() != form.getMailingAddress()) {
+        if (!mailAddress.getText().equals(form.getMailingAddress()) && !mailAddress.getText().contains(style)) {
             form.setMailingAddress(mailAddress.getText() + style);
         }
-        if (formula.getText() != form.getFormula()) {
+        if (!formula.getText().equals(form.getFormula()) && !formula.getText().contains(style)) {
             form.setFormula(formula.getText() + style);
         }
-        if (grapes.getText() != form.getGrapeVarietal()) {
+        if (!grapes.getText().equals(form.getGrapeVarietal()) && !grapes.getText().contains(style)) {
             form.setGrapeVarietal(grapes.getText() + style);
         }
-        if(appellation.getText() != form.getAppellation())
-        {
+        if(!appellation.getText().equals(form.getAppellation()) && !appellation.getText().contains(style)) {
             form.setAlcoholPercent(appellation.getText() + style);
         }
-        if(phoneNumber.getText() != form.getPhoneNumber())
-        {
+        if(!phoneNumber.getText().equals(form.getPhoneNumber()) && !phoneNumber.getText().contains(style)) {
             form.setPhoneNumber(phoneNumber.getText() + style);
         }
-        if(email.getText() != form.getEmailAddress())
-        {
+        if(!email.getText().equals(form.getEmailAddress()) && !email.getText().contains(style)) {
             form.setEmailAddress(email.getText() + style);
         }
 
