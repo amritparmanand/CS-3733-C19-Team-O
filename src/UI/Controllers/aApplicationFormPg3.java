@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 
+import Datatypes.Agent;
 import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
@@ -114,6 +115,8 @@ public class aApplicationFormPg3 {
     @FXML
     public void acceptForm() throws IOException {
         cacheM.approveForm(cacheM.getDbM().getConnection());
+        Agent A = (Agent) cacheM.getAcct();
+        A.approveOrDeny(form);
     }
 
 
@@ -124,6 +127,8 @@ public class aApplicationFormPg3 {
         cacheM.getForm().setComments(comments);
         System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        Agent A = (Agent) cacheM.getAcct();
+        A.approveOrDeny(form);
         goToHomePage();
     }
 

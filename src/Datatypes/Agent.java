@@ -255,4 +255,13 @@ public class Agent extends Account {
 
         return f;
     }
+
+    public void approveOrDeny(Form form){
+        this.reviewedForms.add(form);
+        this.workingForms.remove(form);
+    }
+
+    public void pass(Form form){
+        this.workingForms.remove(form);
+    }
 }

@@ -143,6 +143,9 @@ public class mApplicationFormPg4 {
             e.printStackTrace();
         }
 
+        Manufacturer M = (Manufacturer) cacheM.getAcct();
+        M.submitForm(form);
+
         Form cleanForm = new Form();
         cacheM.setForm(cleanForm);
         goToHomePage();
