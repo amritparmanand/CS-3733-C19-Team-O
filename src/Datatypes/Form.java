@@ -601,29 +601,32 @@ public class Form {
         return status;
     }
 
-    public String parseGarbage(String s){
+    public String parseGarbage(String s) {
         String result;
+        if (s != null) {
+            if (s.contains("#")) {
+                result = s.substring(0, s.indexOf('-'));
+            } else {
+                result = s;
+            }
 
-        if(s.contains("#")){
-            result = s.substring(0, s.indexOf('-'));
+            return result;
         }
-        else{
-            result = s;
-        }
-
-        return result;
+        return null;
     }
 
-    public String parseStyle(String s){
+
+    public String parseStyle(String s) {
         String result;
+        if (s != null) {
+            if (s.contains("#")) {
+                result = s.substring(s.indexOf('-'));
+            } else {
+                result = null;
+            }
 
-        if(s.contains("#")){
-            result = s.substring(s.indexOf('-'));
+            return result;
         }
-        else{
-            result = null;
-        }
-
-        return result;
+        return null;
     }
 }

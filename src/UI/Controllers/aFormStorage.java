@@ -35,6 +35,7 @@ public class aFormStorage {
     private CacheManager cacheM;
 
     @FXML private FlowPane loadForms;
+    ArrayList<Form> fucker = new ArrayList<>();
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -118,7 +119,6 @@ public class aFormStorage {
         }
 
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getNewForms();
-        ArrayList<Form> fucker = new ArrayList<>();
 
         for (Form form : populatedForms) {
 
