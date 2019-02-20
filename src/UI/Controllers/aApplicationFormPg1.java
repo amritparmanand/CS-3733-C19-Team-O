@@ -229,6 +229,8 @@ public class aApplicationFormPg1 {
     @FXML
     public void acceptForm() throws IOException {
         cacheM.approveForm(cacheM.getDbM().getConnection());
+        Agent A = (Agent) cacheM.getAcct();
+        A.approveOrDeny(form);
     }
 
     @FXML
@@ -242,11 +244,15 @@ public class aApplicationFormPg1 {
         comments.setComment7(Q7Comment.getText());
         System.out.println(comments.generateComments(comments));
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        Agent A = (Agent) cacheM.getAcct();
+        A.approveOrDeny(form);
         goToHomePage();
     }
 
     @FXML public void passForm() throws IOException{
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
+        Agent A = (Agent) cacheM.getAcct();
+        A.pass(form);
         goToHomePage();
     }
 

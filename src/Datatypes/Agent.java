@@ -214,6 +214,7 @@ public class Agent extends Account {
     }
 
     //    // Parse a Form from database to object
+    @SuppressWarnings("Duplicates")
     private Form formFromResultSet(ResultSet rs) throws SQLException {
         Form f = new Form();
         f.setFormID(rs.getLong("formID"));
@@ -252,5 +253,14 @@ public class Agent extends Account {
 //        Image img = new Image();
 
         return f;
+    }
+
+    public void approveOrDeny(Form form){
+        this.reviewedForms.add(form);
+        this.workingForms.remove(form);
+    }
+
+    public void pass(Form form){
+        this.workingForms.remove(form);
     }
 }
