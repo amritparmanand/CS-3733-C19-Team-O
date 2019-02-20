@@ -94,10 +94,13 @@ public class mApplicationFormViewPg1 {
         }
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
+        repID.setEditable(false);
         brewerNO.setText(form.getBrewerNumber());
+        brewerNO.setEditable(false);
         domestic.setDisable(true);
         imported.setDisable(true);
         serialNumber.setText(form.getSerialNumber());
+        serialNumber.setEditable(false);
         wine.setDisable(true);
         distilled.setDisable(true);
         malt.setDisable(true);
