@@ -7,10 +7,7 @@ import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,6 +77,9 @@ public class mApplicationFormPg1 {
     @FXML
     private Label serialMessage;
 
+    @FXML private VBox commentVBox;
+    @FXML private JFXTextArea aComment;
+
     String style = "-fx-background-color: #94BDFF;";
 
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
@@ -99,6 +99,12 @@ public class mApplicationFormPg1 {
     public void initialize() {
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
+
+        if(form.getCommentString() == ""){
+            commentVBox.setVisible(false);
+        }
+
+        aComment.setText(form.getCommentString());
 
         phVBox.setVisible(false);
         vintageVBox.setVisible(false);

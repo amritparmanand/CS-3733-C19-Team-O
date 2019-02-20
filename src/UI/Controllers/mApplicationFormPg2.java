@@ -7,6 +7,7 @@ import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +52,8 @@ public class mApplicationFormPg2 {
     @FXML private JFXTextField phoneNumber;
     @FXML private JFXTextField email;
     @FXML private JFXButton pdfButton;
+    @FXML private VBox commentVBox;
+    @FXML private JFXTextArea aComment;
 
     String style = "-fx-background-color: #94BDFF;";
 
@@ -68,6 +71,12 @@ public class mApplicationFormPg2 {
     @FXML public void initialize(){
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
+
+        aComment.setText(form.getCommentString());
+
+        if(form.getCommentString() == ""){
+            commentVBox.setVisible(false);
+        }
         printName.setText(form.parseGarbage(form.getApplicantName()));
         mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
         formula.setText(form.parseGarbage(form.getFormula()));

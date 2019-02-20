@@ -8,6 +8,7 @@ import UI.MultiThreadWaitFor;
 import UI.callableFunction;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +49,8 @@ public class mApplicationFormPg4 {
     @FXML private JFXTextField applicantNamePrint;
     @FXML private Label errorLabel2;
     @FXML private JFXButton pdfButton;
+    @FXML private VBox commentVBox;
+    @FXML private JFXTextArea aComment;
 
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
@@ -66,6 +69,8 @@ public class mApplicationFormPg4 {
     @FXML
     public void initialize() {
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
+
+        aComment.setText(form.getCommentString());
 
         if(!form.getPrintName().equals(""))
             applicantNamePrint.setText(form.getPrintName());
@@ -117,6 +122,9 @@ public class mApplicationFormPg4 {
         //multiThreadWaitFor.onShutDown();
         saveDraft();
         Form form = cacheM.getForm();
+        if(form.getCommentString() == ""){
+            commentVBox.setVisible(false);
+        }
 
         form.setDateOfApplication(dateOfApplication.getValue().toString());
         // form.setSignatureOfApplicant(applicantSig.getText());

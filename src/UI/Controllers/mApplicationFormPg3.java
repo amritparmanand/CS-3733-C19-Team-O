@@ -6,6 +6,7 @@ import Datatypes.PDF;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +45,8 @@ public class mApplicationFormPg3 {
     @FXML private ImageView imagePreview;
     @FXML private Label errorLabel;
     @FXML private JFXButton pdfButton;
+    @FXML private VBox commentVBox;
+    @FXML private JFXTextArea aComment;
 
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM,Form form) {
         this.sceneM = sceneM;
@@ -57,6 +60,12 @@ public class mApplicationFormPg3 {
     }
 
     @FXML public void initialize() {
+
+        aComment.setText(form.getCommentString());
+
+        if(form.getCommentString() == ""){
+            commentVBox.setVisible(false);
+        }
         image = form.getLabel();
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
