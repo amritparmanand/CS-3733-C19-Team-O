@@ -60,7 +60,6 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
-
         Q1Comment.setText(comments.getComment1());
         Q2Comment.setText(comments.getComment2());
         Q3Comment.setText(comments.getComment3());
@@ -219,6 +218,7 @@ public class aApplicationFormPg1 {
         comments.setComment5(Q5Comment.getText());
         comments.setComment6(Q6Comment.getText());
         comments.setComment7(Q7Comment.getText());
+        cacheM.getForm().setComments(comments);
         System.out.println(comments.generateComments(comments));
         cacheM.denyForm(cacheM.getDbM().getConnection());
         goToHomePage();

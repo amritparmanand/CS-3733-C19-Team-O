@@ -46,6 +46,7 @@ public class Form {
     private long formID;
     private String signature;
     private String dateIssued;
+    private Comments comments;
 
 
     // Constructor
@@ -81,6 +82,7 @@ public class Form {
         this.signature = "";
         this.dateIssued = "";
         this.label = new LabelImage();
+        this.comments = new Comments();
     }
 
     // Getters and setters
@@ -265,6 +267,12 @@ public class Form {
     }
     public void setDateIssued(String dateIssued) {
         this.dateIssued = dateIssued;
+    }
+    public Comments getComments() {
+        return comments;
+    }
+    public void setComments(Comments comments) {
+        this.comments = comments;
     }
 
     @SuppressWarnings("Duplicates")

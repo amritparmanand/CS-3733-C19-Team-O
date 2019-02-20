@@ -86,10 +86,10 @@ public class mApplicationFormViewPg3 {
     }
 
     @FXML public void goToHomePage() throws IOException {
-        cacheM.setForm(new Form());
 //        multiThreadWaitFor.onShutDown();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+        cacheM.setForm(new Form());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mFormStorage.fxml"));
+        sceneM.changeScene(loader, new mFormStorage(sceneM, cacheM));
     }
 
     @FXML public void nextPage() throws IOException {

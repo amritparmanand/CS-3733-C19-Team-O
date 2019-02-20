@@ -108,6 +108,7 @@ public class aApplicationFormPg2 {
         comments.setComment11(Q11Comment.getText());
         comments.setComment12(Q12Comment.getText());
         comments.setComment13(Q13Comment.getText());
+        cacheM.getForm().setComments(comments);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form, comments));
     }
