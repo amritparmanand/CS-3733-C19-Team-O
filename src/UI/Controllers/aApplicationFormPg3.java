@@ -76,6 +76,7 @@ public class aApplicationFormPg3 {
         onlyState.setStyle(form.parseStyle(form.getOnlyState()));
         bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
         bottleCapacity.setStyle(form.parseStyle(form.getBottleCapacity()));
+        System.out.println(form.parseStyle(form.getBottleCapacity()));
         resubmission.setDisable(true);
     }
     @FXML
@@ -115,6 +116,7 @@ public class aApplicationFormPg3 {
         comments.setComment14(Q14Comment.getText());
         comments.setComment15(Q15Comment.getText());
         System.out.println(comments.generateComments(comments));
+        goToHomePage();
     }
 
     @FXML

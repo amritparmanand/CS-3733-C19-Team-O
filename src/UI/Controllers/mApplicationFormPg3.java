@@ -70,17 +70,18 @@ public class mApplicationFormPg3 {
 
     @FXML public void validateStateField() {
         if(!certificateOfExemption.isSelected()) {
-            onlyState.setText(form.parseGarbage(form.getOnlyState()));
             onlyState.setDisable(true);
         }else {
+            onlyState.setText(form.parseGarbage(form.getOnlyState()));
+            System.out.println(form.getOnlyState());
             onlyState.setDisable(false);
         }
     }
     @FXML public void validateBottleCapacity() {
         if(!DistinctiveLiquor.isSelected()) {
-            bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
             bottleCapacity.setDisable(true);
         }else{
+            bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
             bottleCapacity.setDisable(false);
         }
     }
@@ -104,14 +105,14 @@ public class mApplicationFormPg3 {
             if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
                     !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
                 errorLabel.setText("Please select a type of application.");
-                return false;
             }
            // Form form = cacheM.getForm();
 
             form.setCertificateOfApproval(certificateOfApproval.isSelected());
             form.setCertificateOfExemption(certificateOfExemption.isSelected());
             if(certificateOfExemption.isSelected()) {
-                if (!onlyState.getText().isEmpty() && (form.getOnlyState().contains(style))){
+                if (!onlyState.getText().isEmpty() && (!form.getOnlyState().contains(style))){
+                    System.out.println("this is weird this shouldn't pass");
                         form.setOnlyState(onlyState.getText());
                     }
             }else {
@@ -132,7 +133,7 @@ public class mApplicationFormPg3 {
                 form.setTtbID(0);
             else
                 form.setTtbID(Integer.parseInt(ttbID.getText()));
-            form.setBottleCapacity(bottleCapacity.getText());
+            //form.setBottleCapacity(bottleCapacity.getText());
             form.setLabel(image);
             errorLabel.setText(" ");
             cacheM.setForm(form);
@@ -149,10 +150,11 @@ public class mApplicationFormPg3 {
         //@FXML private JFXTextField onlyState;
         String style = "-fx-background-color: #94BDFF;";
         if (!onlyState.getText().equals(form.getOnlyState()) && !onlyState.getText().contains(style)) {
-            form.setPrintName(onlyState.getText() + style);
+            form.setOnlyState(onlyState.getText() + style);
+            System.out.println("added garbage");
         }
         if (!bottleCapacity.getText().equals(form.getBottleCapacity()) && !bottleCapacity.getText().contains(style)) {
-            form.setPrintName(bottleCapacity.getText() + style);
+            form.setBottleCapacity(bottleCapacity.getText() + style);
         }
 
     }

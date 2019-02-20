@@ -13,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.*;
 import java.sql.*;
+import java.util.Objects;
+
 /**
  * @author Amrit Parmanand & Percy
  * @version It 2
@@ -293,7 +295,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File(classLoader.getResource("Resources/forPresentation.csv").getFile()));
+            FileReader filereader = new FileReader(new File("src/Resources/forPresentation.csv"));
 
             // create csvReader object passing
             // file reader as a parameter
@@ -397,7 +399,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File(classLoader.getResource("Resources/ApplicationsXLSX.csv").getFile()));
+            FileReader filereader = new FileReader(new File("src/Resources/ApplicationsXLSX.csv"));
             // create csvReader object passing
             // file reader as a parameter
             CSVReader csvReader = new CSVReader(filereader);

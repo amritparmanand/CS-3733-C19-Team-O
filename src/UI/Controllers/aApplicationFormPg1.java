@@ -184,6 +184,7 @@ public class aApplicationFormPg1 {
         comments.setComment7(Q7Comment.getText());
         System.out.println(comments.generateComments(comments));
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        goToHomePage();
     }
 
     @FXML public void passForm() throws IOException{

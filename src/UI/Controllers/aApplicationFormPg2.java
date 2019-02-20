@@ -130,6 +130,11 @@ public class aApplicationFormPg2 {
         cacheM.approveForm(cacheM.getDbM().getConnection());
     }
 
+    @FXML
+    public void goToHomePage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+    }
 
     @FXML
     public void denyForm() throws Exception {
@@ -142,6 +147,7 @@ public class aApplicationFormPg2 {
         comments.setComment12(Q12Comment.getText());
         comments.setComment13(Q13Comment.getText());
         System.out.println(comments.generateComments(comments));
+        goToHomePage();
     }
 
     @FXML

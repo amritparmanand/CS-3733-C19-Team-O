@@ -121,12 +121,13 @@ public class mApplicationFormPg2 {
         }
 
 
-        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
-            System.out.println("Unable to save. Invalid fields entered");
-            saveDraftMessage.setTextFill(Color.RED);
-            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
-        }
-        else {
+        //I think this call is extraneous
+//        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
+//            System.out.println("Unable to save. Invalid fields entered");
+//            saveDraftMessage.setTextFill(Color.RED);
+//            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
+//        }
+ //       else {
             saveDraftMessage.setText("");
             if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
                 form.setPhoneNumber(phoneNumberString);
@@ -137,7 +138,7 @@ public class mApplicationFormPg2 {
             cacheM.setForm(form);
 
             System.out.println("save Draft executed");
-        }
+     //   }
     }
 
     @SuppressWarnings("Duplicates")
