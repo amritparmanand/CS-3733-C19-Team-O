@@ -80,6 +80,7 @@ public class Form {
         this.bottleCapacity = "";
         this.signature = "";
         this.dateIssued = "";
+        this.label = new LabelImage();
     }
 
     // Getters and setters
@@ -324,8 +325,7 @@ public class Form {
     }
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) {
-        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED' WHERE FORMID ="
-                + this.formID;
+        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED' WHERE FORMID ="+ this.formID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
@@ -419,6 +419,17 @@ public class Form {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+    }
+
+    public boolean isValid(){
+        if(brewerNumber == "" || productSource == "" || serialNumber == "" || productType == "" || brandName == "" ||
+        applicantName == "" || alcoholPercent == "" || phoneNumber == "" || emailAddress == ""  ||
+        dateOfApplication == "" || printName == "") {
+
+            return false;
+        }
+        else
+            return true;
     }
 
     /**
@@ -577,7 +588,8 @@ public class Form {
      * @throws SQLException
      */
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{
-        String retrieve = "SELECT * FROM APPLICATIONS JOIN FORMS " +
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT," +
+                "VINTAGEYEAR FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
                 "WHERE APPLICATIONS.STATUS='APPROVED'";
         ResultSet rset = conn.createStatement().executeQuery(retrieve);

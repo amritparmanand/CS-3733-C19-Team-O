@@ -258,7 +258,8 @@ public class DatabaseManager {
         String mPassword = this.passwordEncoder.encode("manu");
         String aPassword = this.passwordEncoder.encode("ttb");
 
-        String mDefault = "insert into REPRESENTATIVES values (1, 'manu', '" + mPassword + "', 'manu', 'manu', 'manu', 'manu')";
+        String mDefault = "insert into REPRESENTATIVES values (1, 'manu', '" + mPassword + "', 'Manufacturer Example'," +
+                " 'Manufacturer', 'manu@manu.com', '1234567890')";
         String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb')";
         try {
             this.stmt.execute(mDefault);

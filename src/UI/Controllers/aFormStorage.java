@@ -3,7 +3,7 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Form;
-import Datatypes.NumberAssigned;
+import Datatypes.Setting;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;

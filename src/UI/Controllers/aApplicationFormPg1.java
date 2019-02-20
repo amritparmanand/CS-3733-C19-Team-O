@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
+ * @author Clay Oshiro-Leavitt
  * @version It 2
  * Controller for aApplicationFormPg1 of UI
  */
@@ -60,6 +60,7 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+
         Q1Comment.setText(comments.getComment1());
         Q2Comment.setText(comments.getComment2());
         Q3Comment.setText(comments.getComment3());
@@ -123,6 +124,7 @@ public class aApplicationFormPg1 {
                 beer2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
         }
+      
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
 
