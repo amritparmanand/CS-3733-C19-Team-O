@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Form;
 import Datatypes.Manufacturer;
+import Datatypes.PDF;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
@@ -51,7 +52,6 @@ public class mApplicationFormViewPg2 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
-        Form form = this.form;
 
         printName.setText(form.getPrintName());
         printName.setEditable(false);
@@ -93,16 +93,21 @@ public class mApplicationFormViewPg2 {
     }
 
     @FXML public void goToHomePage() throws IOException {
-        cacheM.setForm(new Form());
 //        multiThreadWaitFor.onShutDown();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+        cacheM.setForm(new Form());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mFormStorage.fxml"));
+        sceneM.changeScene(loader, new mFormStorage(sceneM, cacheM));
     }
 
     @FXML
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+
+    @FXML public void savePDF() throws IOException {
+        PDF pdf = new PDF();
+        pdf.savePDF(cacheM.getForm());
     }
 
 }

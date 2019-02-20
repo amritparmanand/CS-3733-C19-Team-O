@@ -12,6 +12,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AboutUs">
+
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -37,7 +38,7 @@
                         </Text>
                   <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="873.0">
                      <children>
-                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
+                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Back">
                            <HBox.margin>
                               <Insets left="10.0" right="20.0" />
                            </HBox.margin>
@@ -49,7 +50,7 @@
             </HBox>
                 <HBox alignment="CENTER" prefHeight="869.0" prefWidth="1280.0">
                     <children>
-                  <ScrollPane prefHeight="660.0" prefWidth="697.0" vvalue="1.0">
+                  <ScrollPane prefHeight="660.0" prefWidth="697.0">
                      <padding>
                         <Insets left="10.0" right="10.0" top="5.0" />
                      </padding>
@@ -380,11 +381,6 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <ImageView fitHeight="116.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@aboutUsPictures/logo.png" />
-                                       </image>
-                                    </ImageView>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="146.0" prefWidth="663.0">

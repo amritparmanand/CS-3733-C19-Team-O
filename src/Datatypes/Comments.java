@@ -7,27 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Comments {
-    //comments 1 through 19
-//    String comment1 = "";
-//    String comment2 = "";
-//    String comment3 = "";
-//    String comment4 = "";
-//    String comment5 = "";
-//    String comment6 = "";
-//    String comment7 = "";
-//    String comment8 = "";
-//    String comment8a = "";
-//    String comment9 = "";
-//    String comment10 = "";
-//    String comment11 = "";
-//    String comment12 = "";
-//    String comment13 = "";
-//    String comment14 = "";
-//    String comment15 = "";
-//    String comment16 = "";
-//    String comment17 = "";
-//    String comment18 = "";
-//    String comment19 = "";
 
     //Method[] methods = getClass().getMethods();
     ArrayList<String> comments = new ArrayList<String> (20);
@@ -198,7 +177,7 @@ public class Comments {
         comments.set(19, comment19);
     }
 
-    public String generateComments(Object c) throws Exception
+    public String generateComments() throws Exception
     {
         String commentBlurb = "";
 

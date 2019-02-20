@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -59,7 +60,6 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
-
         Q1Comment.setText(comments.getComment1());
         Q2Comment.setText(comments.getComment2());
         Q3Comment.setText(comments.getComment3());
@@ -68,52 +68,99 @@ public class aApplicationFormPg1 {
         Q6Comment.setText(comments.getComment6());
         Q7Comment.setText(comments.getComment7());
         cacheM.setForm(form);
-        switch(form.getProductSource()){
+
+        System.out.println(form.getProductSource());
+        switch(form.parseGarbage(form.getProductSource())){
             case "DOMESTIC":
                 domestic.setSelected(true);
+                domestic.setOpacity(1);
+                domestic.setStyle(form.parseStyle(form.getProductSource()));
+                System.out.println(form.parseStyle(form.getProductSource()));
                 break;
             case "IMPORTED":
                 imported.setSelected(true);
+                imported.setOpacity(1);
+                imported.setStyle(form.parseStyle(form.getProductSource()));
+                System.out.println(form.parseStyle(form.getProductSource()));
+                break;
 
         }
-        switch(form.getProductType()){
+
+        System.out.println(form.getProductType());
+        switch(form.parseGarbage(form.getProductType())){
             case "WINE":
                 wine.setSelected(true);
+                wine.setOpacity(1);
+                wine.setStyle(form.parseStyle(form.getProductType()));
                 break;
             case "DISTILLED":
                 spirits.setSelected(true);
+                spirits.setOpacity(1);
+                spirits.setStyle(form.parseStyle(form.getProductType()));
                 break;
             case "MALT":
                 malt.setSelected(true);
+                malt.setOpacity(1);
+                malt.setStyle(form.parseStyle(form.getProductType()));
                 break;
         }
-        switch(form.getBeerWineSpirit()){
+
+        System.out.println(form.getBeerWineSpirit());
+        switch(form.parseGarbage(form.getBeerWineSpirit())){
             case "WINE":
                 wine2.setSelected(true);
+                wine2.setOpacity(1);
+                wine2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "SPIRITS":
                 spirits2.setSelected(true);
+                spirits2.setOpacity(1);
+                spirits2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "BEER":
                 beer2.setSelected(true);
+                beer2.setOpacity(1);
+                beer2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
         }
-        repID.setText(Integer.toString(form.getRepID()));
-        brewerNO.setText(form.getBrewerNumber());
+      
+        if(form.getRepID() != 0)
+            repID.setText(Integer.toString(form.getRepID()));
+
+        brewerNO.setText(form.parseGarbage(form.getBrewerNumber()));
+        brewerNO.setStyle(form.parseStyle(form.getBrewerNumber()));
+
         domestic.setDisable(true);
         imported.setDisable(true);
-        serialNO.setText(form.getSerialNumber());
-        wine2.setDisable(true);
-        beer2.setDisable(true);
-        spirits2.setDisable(true);
+
+        serialNO.setText(form.parseGarbage(form.getSerialNumber()));
+        serialNO.setStyle(form.parseStyle(form.getSerialNumber()));
+
         wine.setDisable(true);
         spirits.setDisable(true);
         malt.setDisable(true);
-        brand.setText(form.getBrandName());
-        fanciful.setText(form.getFancifulName());
-        alcoholPercentage.setText(form.getAlcoholPercent());
-        phLevel.setText(form.getpHLevel());
-        vintageYear.setText(form.getVintageYear());
+
+        brand.setText(form.parseGarbage(form.getBrandName()));
+        brand.setStyle(form.parseStyle(form.getBrandName()));
+
+        fanciful.setText(form.parseGarbage(form.getFancifulName()));
+        fanciful.setStyle(form.parseStyle(form.getFancifulName()));
+
+        alcoholPercentage.setText(form.parseGarbage(form.getAlcoholPercent()));
+        alcoholPercentage.setStyle(form.parseStyle(form.getAlcoholPercent()));
+
+        if (wine.isSelected()) {
+            phLevel.setText(form.parseGarbage(form.getpHLevel()));
+            phLevel.setStyle(form.parseStyle(form.getpHLevel()));
+
+            vintageYear.setText(form.parseGarbage(form.getVintageYear()));
+            vintageYear.setStyle(form.parseStyle(form.getVintageYear()));
+        }
+
+        wine2.setDisable(true);
+        spirits2.setDisable(true);
+        beer2.setDisable(true);
+
         System.out.println("starting");
     }
 
@@ -171,8 +218,10 @@ public class aApplicationFormPg1 {
         comments.setComment5(Q5Comment.getText());
         comments.setComment6(Q6Comment.getText());
         comments.setComment7(Q7Comment.getText());
-        System.out.println(comments.generateComments(comments));
+        cacheM.getForm().setComments(comments);
+        System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        goToHomePage();
     }
 
     @FXML public void passForm() throws IOException{

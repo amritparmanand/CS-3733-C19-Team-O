@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Form;
 import Datatypes.Manufacturer;
+import Datatypes.PDF;
 import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
@@ -51,6 +52,7 @@ public class mApplicationFormViewPg1 {
     @FXML private RadioButton beer2;
     @FXML private JFXButton saveDraft;
     @FXML private Label serialMessage;
+    @FXML private JFXButton savePDF;
 
     public mApplicationFormViewPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -94,18 +96,26 @@ public class mApplicationFormViewPg1 {
         }
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
+        repID.setEditable(false);
         brewerNO.setText(form.getBrewerNumber());
+        brewerNO.setEditable(false);
         domestic.setDisable(true);
         imported.setDisable(true);
         serialNumber.setText(form.getSerialNumber());
+        serialNumber.setEditable(false);
         wine.setDisable(true);
         distilled.setDisable(true);
         malt.setDisable(true);
         brandName.setText(form.getBrandName());
+        brandName.setEditable(false);
         fancifulName.setText(form.getFancifulName());
+        fancifulName.setEditable(false);
         alcoholPercentage.setText(form.getAlcoholPercent());
+        alcoholPercentage.setEditable(false);
         phLevel.setText(form.getpHLevel());
+        phLevel.setEditable(false);
         vintageYear.setText(form.getVintageYear());
+        vintageYear.setEditable(false);
         wine2.setDisable(true);
         spirits2.setDisable(true);
         beer2.setDisable(true);
@@ -133,8 +143,8 @@ public class mApplicationFormViewPg1 {
     @FXML public void goToHomePage() throws IOException {
 //        multiThreadWaitFor.onShutDown();
         cacheM.setForm(new Form());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mFormStorage.fxml"));
+        sceneM.changeScene(loader, new mFormStorage(sceneM, cacheM));
     }
 
     @FXML
@@ -150,6 +160,11 @@ public class mApplicationFormViewPg1 {
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+
+    @FXML public void savePDF() throws IOException {
+        PDF pdf = new PDF();
+        pdf.savePDF(cacheM.getForm());
     }
 
 

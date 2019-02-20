@@ -37,7 +37,7 @@ import java.io.IOException;
 
 public class PDF {
 
-    File NrawPDF = new File("/Users/robertrinearson/Documents/iteration2/src/Resources/ttbpdf.pdf");
+    File NrawPDF = new File("src/Resources/ttbpdf.pdf");
     PDDocument NformPDF = PDDocument.load(NrawPDF);
 
     PDPage NformPage1 = NformPDF.getPage(0);
@@ -147,9 +147,9 @@ public class PDF {
         pdf.appendText(form.getBrewerNumber(), 24, 865, 10);
 
         if(form.getProductSource() == "DOMESTIC")
-            pdf.appendText("X", 143,870, 10);
+            pdf.appendText("X", 142,871, 10);
         else if(form.getProductSource() == "IMPORTED")
-            pdf.appendText("X", 202,870, 10);
+            pdf.appendText("X", 201,871, 10);
 
         if(form.getSerialNumber() != "") {
             pdf.appendText(Character.toString(form.getSerialNumber().charAt(0)), 24, 811, 10);
@@ -162,7 +162,7 @@ public class PDF {
 
         //type of product
         if (form.getProductType() =="WINE")
-            pdf.appendText("X", 146,833, 10);
+            pdf.appendText("X", 152,828, 10);
         else if(form.getProductType()=="DISTILLED")
             pdf.appendText("X", 146,816, 10);
         else if(form.getProductType()== "MALT")
@@ -182,7 +182,7 @@ public class PDF {
 
         //type of application
         if(form.getCertificateOfApproval()){
-            pdf.appendText("X", 398, 736, 10);
+            pdf.appendText("X", 398, 732, 10);
         }
         if(form.getCertificateOfExemption()){
             pdf.appendText("X", 398,720, 10);

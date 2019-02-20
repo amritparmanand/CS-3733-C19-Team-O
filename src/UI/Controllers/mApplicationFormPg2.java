@@ -7,6 +7,7 @@ import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +36,7 @@ public class mApplicationFormPg2 {
     private CacheManager cacheM;
     private String phoneNumberString;
     private String formEmail;
-
+    private Form form;
     @FXML private AnchorPane mainPane;
 
     @FXML private VBox hideBox;
@@ -51,76 +52,117 @@ public class mApplicationFormPg2 {
     @FXML private JFXTextField phoneNumber;
     @FXML private JFXTextField email;
     @FXML private JFXButton pdfButton;
+    @FXML private VBox commentVBox;
+    @FXML private JFXTextArea aComment;
+
+    String style = "-fx-background-color: #94BDFF;";
+
+    public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
 
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        form = cacheM.getForm();
     }
-
     @FXML public void initialize(){
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        Form form = cacheM.getForm();
-        printName.setText(form.getApplicantName());
-        mailAddress.setText(form.getMailingAddress());
-        formula.setText(form.getFormula());
-        grapes.setText(form.getGrapeVarietal());
+
+        aComment.setText(form.getCommentString());
+
+        if(form.getCommentString() == ""){
+            commentVBox.setVisible(false);
+        }
+        printName.setText(form.parseGarbage(form.getApplicantName()));
+        mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
+        formula.setText(form.parseGarbage(form.getFormula()));
+        grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
         appellation.setText(form.getAppellation());
         if(!form.getPhoneNumber().equals(""))
-            phoneNumber.setText(form.getPhoneNumber());
+            phoneNumber.setText(form.parseGarbage(form.getPhoneNumber()));
         else
             phoneNumber.setText(manAcc.getPhone());
         if(!form.getEmailAddress().equals(""))
-            email.setText(form.getEmailAddress());
+            email.setText(form.parseGarbage(form.getEmailAddress()));
         else
             email.setText(manAcc.getEmail());
         wineFieldCheck();
     }
 
     @FXML public void saveDraft() {
-        Form form = cacheM.getForm();
+
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
 
-        form.setApplicantName(printName.getText());
-        form.setMailingAddress(mailAddress.getText());
-        form.setFormula(formula.getText());
-        form.setGrapeVarietal(grapes.getText());
-        form.setAppellation(appellation.getText());
+        if (!printName.getText().isEmpty() && !form.getApplicantName().contains(style)) {
+            form.setApplicantName(printName.getText());
+        }
+        if (!mailAddress.getText().isEmpty() && !form.getMailingAddress().contains(style)) {
+            form.setMailingAddress(mailAddress.getText());
+        }
+        if (!formula.getText().isEmpty() && !form.getFormula().contains(style)) {
+            form.setFormula(formula.getText());
+        }
+        if (!grapes.getText().isEmpty() && !form.getGrapeVarietal().contains(style)) {
+            form.setGrapeVarietal(grapes.getText());
+        }
+        if (!appellation.getText().isEmpty() && !form.getAppellation().contains(style)) {
+            form.setAppellation(appellation.getText());
+        }
+
         if (validFormPhone(phoneNumberString)) {
-            form.setPhoneNumber(phoneNumberString);
+            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+                form.setPhoneNumber(phoneNumberString);
+            }
             System.out.println("valid phone number");
         } else {
             System.out.println("invalid phone number");
         }
+
         if (validFormEmail(formEmail)) {
-            form.setEmailAddress(email.getText());
+            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
+                form.setEmailAddress(email.getText());
+            }
             System.out.println("valid email");
         } else {
             System.out.println("invalid email");
         }
+
         if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
             form.setGrapeVarietal("");
             form.setAppellation("");
         }
 
 
-        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
-            System.out.println("Unable to save. Invalid fields entered");
-            saveDraftMessage.setTextFill(Color.RED);
-            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
-        }
-        else {
+        //I think this call is extraneous
+//        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
+//            System.out.println("Unable to save. Invalid fields entered");
+//            saveDraftMessage.setTextFill(Color.RED);
+//            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
+//        }
+ //       else {
             saveDraftMessage.setText("");
-            form.setPhoneNumber(phoneNumberString);
-            form.setEmailAddress(formEmail);
+            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+                form.setPhoneNumber(phoneNumberString);
+            }
+            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
+                form.setEmailAddress(formEmail);
+            }
             cacheM.setForm(form);
 
             System.out.println("save Draft executed");
-        }
+     //   }
     }
 
+    @SuppressWarnings("Duplicates")
     @FXML public void wineFieldCheck(){
         if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
             grapes.setEditable(false);
@@ -130,50 +172,52 @@ public class mApplicationFormPg2 {
         }
     }
 
-//    /**
-//     * The multi-thread function
-//     * Saves draft every 5 seconds
-//     */
-//    callableFunction cf = new callableFunction() {
-//        @Override
-//        public void call() {
-//            if(printName != null && mailAddress != null && formula != null && grapes != null && appellation != null
-//                    && phoneNumber != null && email != null){
-//                saveDraft();
-//            }
-//        }
-//    };
-//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
+    public void checkDiff() {
+        if (!printName.getText().equals(form.getApplicantName()) && !printName.getText().contains(style)) {
+            form.setApplicantName(printName.getText() + style);
+        }
+        if (!mailAddress.getText().equals(form.getMailingAddress()) && !mailAddress.getText().contains(style)) {
+            form.setMailingAddress(mailAddress.getText() + style);
+        }
+        if (!formula.getText().equals(form.getFormula()) && !formula.getText().contains(style)) {
+            form.setFormula(formula.getText() + style);
+        }
+        if (!grapes.getText().equals(form.getGrapeVarietal()) && !grapes.getText().contains(style)) {
+            form.setGrapeVarietal(grapes.getText() + style);
+        }
+        if(!appellation.getText().equals(form.getAppellation()) && !appellation.getText().contains(style)) {
+            form.setAlcoholPercent(appellation.getText() + style);
+        }
+        if(!phoneNumber.getText().equals(form.getPhoneNumber()) && !phoneNumber.getText().contains(style)) {
+            form.setPhoneNumber(phoneNumber.getText() + style);
+        }
+        if(!email.getText().equals(form.getEmailAddress()) && !email.getText().contains(style)) {
+            form.setEmailAddress(email.getText() + style);
+        }
 
+    }
 
     @FXML public void nextPage() throws IOException {
         saveDraft();
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM, form));
     }
     @FXML public void previousPage() throws IOException {
         saveDraft();
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
-    }
-    @FXML public void searchPage() throws IOException {
-//        multiThreadWaitFor.onShutDown();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM, form));
     }
     @FXML public void goToHomePage() throws IOException {
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
+
 
     @FXML
     public void onePage() throws IOException {
         saveDraft();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
-        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM));
+        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM, form));
     }
     /**
      * @author Clay Oshiro-Leavitt
@@ -227,142 +271,5 @@ public class mApplicationFormPg2 {
         PDF pdf = new PDF();
         pdf.savePDF(cacheM.getForm());
     }
-//    //PDF BY ROB oops i mean
-//    /**@author Rob**/
-//
-//    @FXML public void savePDF() throws IOException {
-//
-//        saveDraft();
-//
-//        Form form = cacheM.getForm();
-//
-//        System.out.println("saving pdf");
-//        PDF pdf = new PDF();
-//
-//        pdf.open();
-//
-//        pdf.appendText(Integer.toString(form.getRepID()), 24, 912, 10);
-//        pdf.appendText(form.getBrewerNumber(), 24, 865, 10);
-//
-//        if(form.getProductSource() == "DOMESTIC")
-//            pdf.appendText("X", 143,870, 10);
-//        else
-//            pdf.appendText("X", 202,870, 10);
-//
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(0)), 24, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(1)), 42, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(2)), 70, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(3)), 88, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(4)), 106, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(5)), 122, 811, 10);
-//
-//        //type of product
-//        if (form.getProductType() =="WINE")
-//            pdf.appendText("X", 146,833, 10);
-//        else if(form.getProductType()=="DISTILLED")
-//            pdf.appendText("X", 146,816, 10);
-//        else
-//            pdf.appendText("X", 146, 804, 10);
-//
-//
-//        pdf.appendText(form.getBrandName(), 24,780, 10);
-//        pdf.appendText(form.getFancifulName(), 24,755, 10);
-//        pdf.appendText(form.getPrintName(), 268, 846, 10);
-//        pdf.appendText(form.getMailingAddress(), 268,780, 10);
-//        pdf.appendText(form.getFormula(), 24,722, 10);
-//        pdf.appendText(form.getGrapeVarietal(), 153, 722, 10);
-//        pdf.appendText(form.getAppellation(), 24,688, 10);
-//        pdf.appendText(form.getEmailAddress(), 153, 656, 10);
-//        pdf.appendText(form.getPhoneNumber(), 24, 656, 10);
-//
-//
-//        //type of application
-//        if(form.getCertificateOfApproval()){
-//            pdf.appendText("X", 398, 736, 10);
-//        }
-//        if(form.getCertificateOfExemption()){
-//            pdf.appendText("X", 398,720, 10);
-//            pdf.appendText(form.getOnlyState(), 451, 710, 10);
-//        }
-//        if(form.getDistinctiveLiquor()){
-//            pdf.appendText("X", 398, 700, 10);
-//            pdf.appendText(form.getBottleCapacity(), 541, 690, 10);
-//        }
-//        if(form.getResubmission()){
-//            pdf.appendText("X", 398,668, 10);
-//            pdf.appendText(Integer.toString(form.getTtbID()), 437, 658, 10);
-//        }
-//
-//        //Label fix later
-//        //pdf.appendImage(image.getLabelFile().getPath(), 200, 66, 200, 200);
-//
-//        pdf.appendText(form.getDateOfApplication(), 24, 500, 10);
-//        //pdf.appendText(applicantSig.getText(), 138, 500, 10);
-//        pdf.appendText(form.getApplicantName(), 366, 500, 10);
-//
-//        pdf.appendText("Additional Fields:", 24, 620, 10 );
-//        pdf.appendText("Alcohol Percentage: "+ form.getAlcoholPercent(), 24, 610, 10);
-//        pdf.appendText("pH Level: "+ form.getpHLevel(), 24, 600, 10);
-//        pdf.appendText("Vintage Year: "+ form.getVintageYear(), 24, 590, 10);
-//
-//        pdf.closeStream();
-//
-//        pdfPopupWindow(pdf);
-//        pdf.close();
-//
-//        System.out.println("saved!");
-//    }
-//
-//
-//    //PoPup
-//
-//
-//    //POPUP WINDOW
-//
-//    public void pdfPopupWindow(PDF pdf) throws IOException {
-//        Form form = cacheM.getForm();
-//        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/PDFpopup.fxml"));
-//
-//        //time for the
-//        Node vbox = root.getChildrenUnmodifiable().get(0);
-//        ImageView pdfImage = new ImageView();
-//        pdfImage.setImage(pdf.renderPDF());
-//
-//        if (vbox instanceof VBox) {
-//            System.out.println("vboxinstance");
-//            Node navBox = ((VBox) vbox).getChildren().get(0);
-//            Node scrollPane = ((VBox) vbox).getChildren().get(1);
-//
-//            if (navBox instanceof HBox){
-//                Node fancifulLabel = ((HBox) navBox).getChildren().get(0);
-//                Node saveButton = ((HBox) navBox).getChildren().get(1);
-//
-//                ((Label) fancifulLabel).setText(form.getFancifulName());
-//                ((JFXButton) saveButton).setOnAction((event -> {
-//                    try {
-//                        pdf.savePDFtoDirectory(pdf, vbox);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                }));
-//            }
-//
-//            if (scrollPane instanceof ScrollPane){
-//                System.out.println("scrollpane instance");
-//                ((ScrollPane) scrollPane).setContent(pdfImage);
-//            }
-//        }
-//        popWindow(root);
-//    }
-//
-//    @FXML public void popWindow(Parent root) throws IOException {
-//        Stage stage;
-//        stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.setTitle("TTB PDF");
-//        stage.initModality(Modality.APPLICATION_MODAL);
-//        stage.showAndWait();
-//    }
 
 }

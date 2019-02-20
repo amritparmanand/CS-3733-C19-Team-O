@@ -68,7 +68,7 @@ public class aApplicationFormPg4 {
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
         dateOfApplication.setEditable(false);
-        printName.setText(form.getPrintName());
+        printName.setText(form.parseGarbage(form.getPrintName()));
         printName.setEditable(false);
         signature.setText(form.getSignature());
         if(!form.getDateIssued().isEmpty()){
@@ -116,8 +116,10 @@ public class aApplicationFormPg4 {
         comments.setComment19(Q19Comment.getText());
         form.setSignature(signature.getText());
         form.setDateIssued(dateIssued.getValue().toString());
-        System.out.println(comments.generateComments(comments));
+        cacheM.getForm().setComments(comments);
+        System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        goToHomePage();
     }
 
     @FXML

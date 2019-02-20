@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Form;
 import Datatypes.LabelImage;
+import Datatypes.PDF;
 import Managers.*;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
@@ -40,7 +41,6 @@ public class mApplicationFormViewPg3 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
-        Form form = cacheM.getForm();
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
@@ -87,10 +87,10 @@ public class mApplicationFormViewPg3 {
     }
 
     @FXML public void goToHomePage() throws IOException {
-        cacheM.setForm(new Form());
 //        multiThreadWaitFor.onShutDown();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
-        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+        cacheM.setForm(new Form());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mFormStorage.fxml"));
+        sceneM.changeScene(loader, new mFormStorage(sceneM, cacheM));
     }
 
     @FXML public void nextPage() throws IOException {
@@ -109,6 +109,11 @@ public class mApplicationFormViewPg3 {
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+
+    @FXML public void savePDF() throws IOException {
+        PDF pdf = new PDF();
+        pdf.savePDF(cacheM.getForm());
     }
 
 }

@@ -93,7 +93,7 @@
                                 <Font name="Book Antiqua" size="32.0" />
                             </font>
                         </Label>
-                  <JFXTextField fx:id="ttbID" maxWidth="300.0" promptText="TTB ID">
+                  <JFXTextField fx:id="ttbID" maxWidth="300.0" onKeyReleased="#validateButton" promptText="TTB ID">
                      <VBox.margin>
                         <Insets bottom="5.0" top="20.0" />
                      </VBox.margin>

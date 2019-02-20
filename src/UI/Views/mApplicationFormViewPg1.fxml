@@ -65,6 +65,7 @@
                                  </children>
                               </HBox>
                               <Label fx:id="saveDraftMessage" />
+                              <JFXButton fx:id="pdfButton" onAction="#savePDF" styleClass="changeColorButton" text="Display PDF" />
                               <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
                                  <VBox.margin>
                                     <Insets top="20.0" />

@@ -4,7 +4,6 @@ import Datatypes.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.*;
-//import com.sun.tools.hat.internal.model.Root;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -40,7 +39,14 @@ import java.util.ArrayList;
 public class mOnePageForm {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private Form form;
+    String style = "-fx-background-color: #94BDFF;";
 
+    public mOnePageForm(SceneManager sceneM, CacheManager cacheM, Form form){
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
 
     public mOnePageForm(SceneManager sceneM, CacheManager cacheM){
         this.sceneM = sceneM;
@@ -130,27 +136,28 @@ public class mOnePageForm {
             repID.setText(Integer.toString(form.getRepID()));
         else
             repID.setText(Integer.toString(manAcc.getRepID()));
-        brewerNO.setText(form.getBrewerNumber());
-        serialNumber.setText(form.getSerialNumber());
+        brewerNO.setText(form.parseGarbage(form.getBrewerNumber()));
+        serialNumber.setText(form.parseGarbage(form.getSerialNumber()));
         if(!form.getBrandName().equals(""))
-            brandName.setText(form.getBrandName());
+            brandName.setText(form.parseGarbage(form.getBrandName()));
         else
             brandName.setText(manAcc.getCompanyName());
-        fancifulName.setText(form.getFancifulName());
-        alcoholPercentage.setText(form.getAlcoholPercent());
-        phLevel.setText(form.getpHLevel());
-        vintageYear.setText(form.getVintageYear());
-        printName.setText(form.getApplicantName());
-        mailAddress.setText(form.getMailingAddress());
-        formula.setText(form.getFormula());
-        grapes.setText(form.getGrapeVarietal());
-        appellation.setText(form.getAppellation());
+        fancifulName.setText(form.parseGarbage(form.getFancifulName()));
+        alcoholPercentage.setText(form.parseGarbage(form.getAlcoholPercent()));
+        phLevel.setText(form.parseGarbage(form.getpHLevel()));
+        vintageYear.setText(form.parseGarbage(form.getVintageYear()));
+        printName.setText(form.parseGarbage(form.getApplicantName()));
+        applicantNamePrint.setText(form.parseGarbage(form.getPrintName()));
+        mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
+        formula.setText(form.parseGarbage(form.getFormula()));
+        grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
+        appellation.setText(form.parseGarbage(form.getAppellation()));
         if(!form.getPhoneNumber().equals(""))
-            phoneNumber.setText(form.getPhoneNumber());
+            phoneNumber.setText(form.parseGarbage(form.getPhoneNumber()));
         else
             phoneNumber.setText(manAcc.getPhone());
         if(!form.getEmailAddress().equals(""))
-            email.setText(form.getEmailAddress());
+            email.setText(form.parseGarbage(form.getEmailAddress()));
         else
             email.setText(manAcc.getEmail());
         wineFieldCheck();
@@ -159,7 +166,7 @@ public class mOnePageForm {
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
         resubmission.setSelected(form.getResubmission());
-        onlyState.setText(form.getOnlyState());
+        onlyState.setText(form.parseGarbage(form.getOnlyState()));
         if(form.getTtbID() != 0)
             ttbID.setText(String.valueOf(form.getTtbID()));
         bottleCapacity.setText(form.getBottleCapacity());
@@ -172,7 +179,7 @@ public class mOnePageForm {
         validateBottleCapacity();
         validateTTBID();
         if(!form.getPrintName().equals(""))
-            applicantNamePrint.setText(form.getPrintName());
+            applicantNamePrint.setText(form.parseGarbage(form.getPrintName())); //getPrintName
         else
             applicantNamePrint.setText(manAcc.getFullName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
@@ -190,26 +197,30 @@ public class mOnePageForm {
 
     @FXML public void validateStateField() {
         if(!certificateOfExemption.isSelected()) {
-            onlyState.setText("");
             onlyState.setDisable(true);
         }else {
+            onlyState.setText(form.parseGarbage(form.getOnlyState()));
+            System.out.println(form.getOnlyState());
             onlyState.setDisable(false);
         }
     }
+
     @FXML public void validateBottleCapacity() {
         if(!DistinctiveLiquor.isSelected()) {
-            bottleCapacity.setText("");
             bottleCapacity.setDisable(true);
         }else{
+            bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
             bottleCapacity.setDisable(false);
         }
     }
+
     @FXML public void validateTTBID() {
         if(!resubmission.isSelected()) {
             ttbID.setText("");
             ttbID.setDisable(true);
         }else {
-            ttbID.setDisable(false);
+            ttbID.setText(Integer.toString(form.getTtbID()));
+            ttbID.setEditable(false);
         }
     }
 
@@ -269,132 +280,204 @@ public class mOnePageForm {
     }
 
     @FXML public void saveDraft(){
-        Form form = cacheM.getForm();
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
-        // Page 1
-        if (domestic.isSelected() || imported.isSelected()) {
-            if(domestic.isSelected()) {
-                form.setProductSource("DOMESTIC");
-            }
-            else if(imported.isSelected()){
-                form.setProductSource("IMPORTED");
-            }
-        }
-        if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
-            if(wine.isSelected()){
-                form.setProductType("WINE");
-            }
-            else if(distilled.isSelected()){
-                form.setProductType("DISTILLED");
-            }
-            else if(malt.isSelected()) {
-                form.setProductType("MALT");
+        String phoneNumberString = phoneNumber.getText().trim();
+        String formEmail = email.getText().trim();
+
+        if (!form.getProductSource().contains(style)) {
+            if (domestic.isSelected() || imported.isSelected()) {
+                if (domestic.isSelected()) {
+                    form.setProductSource("DOMESTIC");
+                } else if (imported.isSelected()) {
+                    form.setProductSource("IMPORTED");
+                }
             }
         }
-        String type2 = "WINE";
-        if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
-            if(wine2.isSelected())
-                type2 = "WINE";
-            else if(spirits2.isSelected())
-                type2 = "SPIRITS";
-            else if(beer2.isSelected())
-                type2 = "BEER";
-            form.setBeerWineSpirit(type2);
-            if(type2 == "WINE") {
-                form.setpHLevel(phLevel.getText());
-                form.setVintageYear(vintageYear.getText());
-            }else{
-                form.setpHLevel(null);
-                form.setVintageYear(null);
+
+        if (!form.getProductType().contains(style)) {
+            if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
+                if (wine.isSelected()) {
+                    form.setProductType("WINE");
+                } else if (distilled.isSelected()) {
+                    form.setProductType("DISTILLED");
+                } else if (malt.isSelected()) {
+                    form.setProductType("MALT");
+                }
             }
         }
-        if (!repID.getText().isEmpty()){
+
+        if (!form.getBeerWineSpirit().contains(style)) {
+            if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
+                if (wine2.isSelected())
+                    form.setBeerWineSpirit("WINE");
+                else if (spirits2.isSelected())
+                    form.setBeerWineSpirit("SPIRITS");
+                else if (beer2.isSelected())
+                    form.setBeerWineSpirit("BEER");
+                if (wine2.isSelected()) {
+                    if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(style)) {
+                        form.setpHLevel(phLevel.getText());
+                    }
+                    if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(style)) {
+                        form.setVintageYear(vintageYear.getText());
+                    }
+                }
+                else {
+                    form.setpHLevel(null);
+                    form.setVintageYear(null);
+                }
+            }
+        }
+
+        if (!repID.getText().isEmpty()) {
             form.setRepID(Integer.parseInt(repID.getText()));
         }
-        if (!brewerNO.getText().isEmpty()){
+        if (!brewerNO.getText().isEmpty() && !form.getBrewerNumber().contains(style)) {
             form.setBrewerNumber(brewerNO.getText());
+            System.out.println("overwritten");
         }
-        if (!serialNumber.getText().isEmpty()){
+        if (!serialNumber.getText().isEmpty() && !form.getSerialNumber().contains(style)) {
             form.setSerialNumber(serialNumber.getText());
+            System.out.println("overwritten");
         }
-        if (!brandName.getText().isEmpty()) {
+        if (!brandName.getText().isEmpty() && !form.getBrandName().contains(style)) {
             form.setBrandName(brandName.getText());
+            System.out.println("overwritten");
         }
-        if (!fancifulName.getText().isEmpty()) {
+        if (!fancifulName.getText().isEmpty() && !form.getFancifulName().contains(style)) {
             form.setFancifulName(fancifulName.getText());
+            System.out.println("overwritten");
         }
-        if (!alcoholPercentage.getText().isEmpty()) {
+        if (!alcoholPercentage.getText().isEmpty() && !form.getAlcoholPercent().contains(style)) {
             form.setAlcoholPercent(alcoholPercentage.getText());
         }
 
-        // Page 2
-        if (!printName.getText().isEmpty()) {
-            form.setPrintName(printName.getText());
+
+
+        //cacheM.setForm(form);
+
+        System.out.println("Pg1 saved!");
+        phoneNumberString = phoneNumber.getText().trim();
+        formEmail = email.getText().trim();
+
+        if (!printName.getText().isEmpty() && !form.getApplicantName().contains(style)) {
+            form.setApplicantName(printName.getText());
         }
-        if (!mailAddress.getText().isEmpty()) {
+        if (!applicantNamePrint.getText().isEmpty() && !form.getPrintName().contains(style)) {
+            form.setPrintName(applicantNamePrint.getText());
+        }
+        if (!mailAddress.getText().isEmpty() && !form.getMailingAddress().contains(style)) {
             form.setMailingAddress(mailAddress.getText());
         }
-        if (!formula.getText().isEmpty()) {
+        if (!formula.getText().isEmpty() && !form.getFormula().contains(style)) {
             form.setFormula(formula.getText());
         }
-        if (!grapes.getText().isEmpty()) {
+        if (!grapes.getText().isEmpty() && !form.getGrapeVarietal().contains(style)) {
             form.setGrapeVarietal(grapes.getText());
         }
-        if (!appellation.getText().isEmpty()) {
+        if (!appellation.getText().isEmpty() && !form.getAppellation().contains(style)) {
             form.setAppellation(appellation.getText());
         }
-        if (!phoneNumber.getText().isEmpty()) {
-            if (validFormPhone(phoneNumber.getText().trim())) {
-                form.setPhoneNumber(phoneNumber.getText().trim());
-                System.out.println("valid phone number");
+
+        if (validFormPhone(phoneNumberString)) {
+            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+                form.setPhoneNumber(phoneNumberString);
             }
-            else {
-                System.out.println("invalid phone number");
-            }
+            System.out.println("valid phone number");
+        } else {
+            System.out.println("invalid phone number");
         }
-        if (!email.getText().isEmpty()) {
-            if (validFormEmail(email.getText().trim())) {
+
+        if (validFormEmail(formEmail)) {
+            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
                 form.setEmailAddress(email.getText());
-                System.out.println("valid email");
             }
-            else {
-                System.out.println("invalid email");
-            }
+            System.out.println("valid email");
+        } else {
+            System.out.println("invalid email");
         }
+
         if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
             form.setGrapeVarietal("");
             form.setAppellation("");
         }
 
-        // Page 3
-        form.setCertificateOfApproval(certificateOfApproval.isSelected());
-        form.setCertificateOfExemption(certificateOfExemption.isSelected());
-        if(certificateOfExemption.isSelected()) {
-            form.setOnlyState(onlyState.getText());
-        }
-        else {
-            form.setOnlyState(null);
-        }
-        form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
-        form.setResubmission(resubmission.isSelected());
-        if(!resubmission.isSelected())
-            form.setTtbID(0);
-        else
-            form.setTtbID(Integer.parseInt(ttbID.getText()));
-        if (!bottleCapacity.getText().isEmpty()) {
-            form.setBottleCapacity(bottleCapacity.getText());
-        }
-        form.setLabel(image);
 
-        // Page 4
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        //I think this call is extraneous
+//        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
+//            System.out.println("Unable to save. Invalid fields entered");
+//            saveDraftMessage.setTextFill(Color.RED);
+//            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
+//        }
+        //       else {
+        if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+            form.setPhoneNumber(phoneNumberString);
+        }
+        if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
+            form.setEmailAddress(formEmail);
+        }
+
+        //cacheM.setForm(form);
+        ////////////////////////////////////////////
+        if (onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null
+                &&certificateOfExemption!= null && DistinctiveLiquor!= null
+                && resubmission!= null && imagePreview!= null) {
+//            if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
+//                    !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
+//                errorLabel.setText("Please select a type of application.");
+//            }
+            // Form form = cacheM.getForm();
+
+            form.setCertificateOfApproval(certificateOfApproval.isSelected());
+            form.setCertificateOfExemption(certificateOfExemption.isSelected());
+            if(certificateOfExemption.isSelected()) {
+                if (!onlyState.getText().isEmpty() && (!form.getOnlyState().contains(style))){
+                    System.out.println("this is weird this shouldn't pass");
+                    form.setOnlyState(onlyState.getText());
+                }
+            }else {
+                form.setOnlyState(null);
+            }
+            form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
+            if(DistinctiveLiquor.isSelected()) {
+                if (!bottleCapacity.getText().isEmpty()) {
+                    if(!form.getBottleCapacity().contains(style)){
+                        form.setBottleCapacity(bottleCapacity.getText());
+                    }
+                }
+            }else {
+                form.setOnlyState(null);
+            }
+            form.setResubmission(resubmission.isSelected());
+            if(!resubmission.isSelected())
+                form.setTtbID(0);
+            else
+                form.setTtbID(Integer.parseInt(ttbID.getText()));
+            //form.setBottleCapacity(bottleCapacity.getText());
+            form.setLabel(image);
+//            errorLabel.setText(" ");
+            form.setLabel(image);
+           // cacheM.setForm(form);
+        }
         if(dateOfApplication.getValue() != null)
             form.setDateOfApplication(dateOfApplication.getValue().toString());
-        form.setApplicantName(applicantNamePrint.getText());
+        if (!applicantNamePrint.getText().isEmpty()) {
+            if(!form.getPrintName().contains(style)){
+                form.setPrintName(applicantNamePrint.getText());
+            }
+        }
+
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
         cacheM.setForm(form);
+        System.out.println("Pg4 Saved!");
+        System.out.println("save Draft executed");
 
-        System.out.println("Form Saved!");
     }
 
     @FXML public void logout() throws IOException {
@@ -414,7 +497,7 @@ public class mOnePageForm {
     }
 
 
-    @SuppressWarnings("Duplicates") @FXML public void submit()throws IOException{
+    @SuppressWarnings("Duplicates") @FXML public void submit()throws Exception{
         saveDraft();
 
         if (!validFormEmail(email.getText().trim()) || !validFormPhone(phoneNumber.getText().trim())) {
@@ -434,6 +517,97 @@ public class mOnePageForm {
             goToHomePage();
         }
 
+    }
+    //starting with textboxes, not sure how to handle radio buttons and checkboxes
+    @SuppressWarnings("Duplicates")
+    public void checkDiff() {
+        if (!printName.getText().equals(form.getApplicantName()) && !printName.getText().contains(style)) {
+            form.setApplicantName(printName.getText() + style);
+        }
+        if (!mailAddress.getText().equals(form.getMailingAddress()) && !mailAddress.getText().contains(style)) {
+            form.setMailingAddress(mailAddress.getText() + style);
+        }
+        if (!formula.getText().equals(form.getFormula()) && !formula.getText().contains(style)) {
+            form.setFormula(formula.getText() + style);
+            System.out.println(form.getFormula());
+        }
+        if (!grapes.getText().equals(form.getGrapeVarietal()) && !grapes.getText().contains(style)) {
+            form.setGrapeVarietal(grapes.getText() + style);
+            System.out.println(form.getGrapeVarietal());
+        }
+        if(!appellation.getText().equals(form.getAppellation()) && !appellation.getText().contains(style)) {
+            form.setAlcoholPercent(appellation.getText() + style);
+        }
+        if(!phoneNumber.getText().equals(form.getPhoneNumber()) && !phoneNumber.getText().contains(style)) {
+            form.setPhoneNumber(phoneNumber.getText() + style);
+        }
+        if(!email.getText().equals(form.getEmailAddress()) && !email.getText().contains(style)) {
+            form.setEmailAddress(email.getText() + style);
+        }
+        if (wine2.isSelected()) {
+            if (!phLevel.getText().equals(form.getpHLevel()) && !phLevel.getText().contains(style)) {
+                form.setpHLevel(phLevel.getText() + style);
+            }
+            if (!vintageYear.getText().equals(form.getVintageYear()) && !vintageYear.getText().contains(style)) {
+                form.setVintageYear(vintageYear.getText() + style);
+            }
+        }
+
+        if (!brewerNO.getText().equals(form.getBrewerNumber()) && !brewerNO.getText().contains(style)) {
+            form.setBrewerNumber(brewerNO.getText() + style);
+        }
+        if (!serialNumber.getText().equals(form.getSerialNumber()) && !serialNumber.getText().contains(style)) {
+            form.setSerialNumber((serialNumber.getText() + style));
+        }
+        if (!brandName.getText().equals(form.getBrandName()) && !brandName.getText().contains(style)) {
+            form.setBrandName(brandName.getText() + style);
+        }
+        if (!fancifulName.getText().equals(form.getFancifulName()) && !fancifulName.getText().contains(style)) {
+            form.setFancifulName(fancifulName.getText() + style);
+        }
+        if (!alcoholPercentage.getText().equals(form.getAlcoholPercent()) && !alcoholPercentage.getText().contains(style)) {
+            form.setAlcoholPercent(alcoholPercentage.getText() + style);
+        }
+
+        if(domestic.isSelected() && !form.getProductSource().equals("DOMESTIC")){
+            form.setProductSource("DOMESTIC" + style);
+        }
+        if(imported.isSelected() && !form.getProductSource().equals("IMPORTED")){
+            form.setProductSource("IMPORTED" + style);
+        }
+
+        if(wine.isSelected() && !form.getProductType().equals("WINE")){
+            form.setProductType("WINE" + style);
+        }
+        if(distilled.isSelected() && !form.getProductType().equals("DISTILLED")){
+            form.setProductType("DISTILLED" + style);
+        }
+        if(malt.isSelected() && !form.getProductType().equals("MALT")){
+            form.setProductType("MALT" + style);
+        }
+
+        if(wine2.isSelected() && !form.getBeerWineSpirit().equals("WINE")){
+            form.setBeerWineSpirit("WINE" + style);
+        }
+        if(spirits2.isSelected() && !form.getBeerWineSpirit().equals("SPIRITS")){
+            form.setBeerWineSpirit("SPIRITS" + style);
+        }
+        if(beer2.isSelected() && !form.getBeerWineSpirit().equals("BEER")){
+            form.setBeerWineSpirit("BEER" + style);
+        }
+        if (!onlyState.getText().equals(form.getOnlyState()) && !onlyState.getText().contains(style)) {
+            form.setOnlyState(onlyState.getText() + style);
+            System.out.println("added garbage");
+        }
+        if (!bottleCapacity.getText().equals(form.getBottleCapacity()) && !bottleCapacity.getText().contains(style)) {
+            form.setBottleCapacity(bottleCapacity.getText() + style);
+        }
+//        if (!applicantSig.getText().equals(form.getSignature()) && applicantSig.getText().contains(style)) {
+//            form.setSignature(applicantSig.getText() + style);
+//        }
+        if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(style)) {
+            form.setPrintName(applicantNamePrint.getText() + style);
+        }
     }
 
 

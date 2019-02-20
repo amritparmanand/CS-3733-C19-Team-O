@@ -135,7 +135,7 @@ public class aRegister {
             if(validAgentEmail(agentEmail)){
                 emailMessage.setText("");
             }
-            if(!confirmPass(password.getText(), confirmP.getText())){
+            if(!confirmPass(password.getText(), confirmP.getText()) && (!password.getText().isEmpty() && !confirmP.getText().isEmpty())){
                 passwordMessage.setTextFill(Color.RED);
                 passwordMessage.setText("Passwords do not match");
 
@@ -143,7 +143,7 @@ public class aRegister {
             if(confirmPass(password.getText(), confirmP.getText())){
                 passwordMessage.setText("");
             }
-            if(!validUsername(agentUsername)){
+            if(!validUsername(agentUsername) && !agentUsername.isEmpty()){
                 usernameMessage.setTextFill(Color.RED);
                 usernameMessage.setText("Username cannot have spaces, special characters");
             }
@@ -210,7 +210,7 @@ public class aRegister {
      */
     @FXML
     public boolean invalidID(String ID){
-        if(ID.isEmpty() || ID.matches("^[a-zA-Z]+") || Integer.parseInt(ID) < 0) {
+        if(ID.isEmpty() || !ID.matches("^[0-9]+") || Integer.parseInt(ID) < 0) {
             return true;
         }else{
             return false;

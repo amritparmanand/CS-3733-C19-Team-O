@@ -8,6 +8,7 @@ import UI.MultiThreadWaitFor;
 import UI.callableFunction;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,8 @@ import java.time.format.DateTimeFormatter;
 public class mApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private Form form;
+    String style = "-fx-background-color: #94BDFF;";
 
     @FXML private Button previous;
     @FXML private Button search;
@@ -46,18 +49,28 @@ public class mApplicationFormPg4 {
     @FXML private JFXTextField applicantNamePrint;
     @FXML private Label errorLabel2;
     @FXML private JFXButton pdfButton;
+    @FXML private VBox commentVBox;
+    @FXML private JFXTextArea aComment;
 
 
+    public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
+
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        this.form = cacheM.getForm();
     }
 
     @FXML
     public void initialize() {
-        Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
+
+        aComment.setText(form.getCommentString());
 
         if(!form.getPrintName().equals(""))
             applicantNamePrint.setText(form.getPrintName());
@@ -72,12 +85,18 @@ public class mApplicationFormPg4 {
     }
 
     public void saveDraft(){
-        Form form = cacheM.getForm();
 
         if(dateOfApplication.getValue() != null)
             form.setDateOfApplication(dateOfApplication.getValue().toString());
-        if(!applicantNamePrint.getText().isEmpty())
-            form.setPrintName(applicantNamePrint.getText());
+        if (!applicantNamePrint.getText().isEmpty()) {
+            if(!form.getPrintName().contains(style)){
+                form.setPrintName(applicantNamePrint.getText());
+            }
+        }
+
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
         cacheM.setForm(form);
         System.out.println("Pg4 Saved!");
@@ -99,20 +118,28 @@ public class mApplicationFormPg4 {
 //    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
     @FXML
-    public void submit() throws SQLException, IOException {
+    public void submit() throws Exception{
         //multiThreadWaitFor.onShutDown();
         saveDraft();
         Form form = cacheM.getForm();
-        System.out.println(form.isValid());
-        if(!form.isValid()) {
-            errorLabel2.setText("Missing required fields.");
-            return;
-        }else {
-            try {
-                cacheM.insertForm(cacheM.getDbM().getConnection());
-            } catch (SQLException e) {
-                e.printStackTrace();
+        if(form.getCommentString() == ""){
+            commentVBox.setVisible(false);
+        }
+
+        form.setDateOfApplication(dateOfApplication.getValue().toString());
+        // form.setSignatureOfApplicant(applicantSig.getText());
+        form.setPrintName(applicantNamePrint.getText());
+//        form.setDateIssued("");
+
+        try{
+            if(cacheM.getForm().getResubmission()){
+                cacheM.getForm().resubmitForm(cacheM.getDbM().getConnection());
             }
+            else{
+                form.insertForm(cacheM.getDbM().getConnection());
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
         }
 
         Form cleanForm = new Form();
@@ -121,11 +148,20 @@ public class mApplicationFormPg4 {
 
     }
 
+    public void checkDiff() {
+
+//        if (!applicantSig.getText().equals(form.getSignature()) && applicantSig.getText().contains(style)) {
+//            form.setSignature(applicantSig.getText() + style);
+//        }
+        if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(style)) {
+            form.setPrintName(applicantNamePrint.getText() + style);
+        }
+    }
 
     @FXML public void previousPage() throws IOException {
         //multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM, form));
     }
     @FXML public void searchPage() throws IOException {
         //multiThreadWaitFor.onShutDown();
@@ -148,7 +184,7 @@ public class mApplicationFormPg4 {
     public void onePage() throws IOException {
         saveDraft();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
-        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM));
+        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM,form));
     }
 
 
@@ -158,142 +194,4 @@ public class mApplicationFormPg4 {
         pdf.savePDF(cacheM.getForm());
     }
 
-//    //PDF BY ROB oops i mean
-//    /**@author Rob**/
-//
-//    @FXML public void savePDF() throws IOException {
-//
-//        saveDraft();
-//
-//        Form form = cacheM.getForm();
-//
-//        System.out.println("saving pdf");
-//        PDF pdf = new PDF();
-//
-//        pdf.open();
-//
-//        pdf.appendText(Integer.toString(form.getRepID()), 24, 912, 10);
-//        pdf.appendText(form.getBrewerNumber(), 24, 865, 10);
-//
-//        if(form.getProductSource() == "DOMESTIC")
-//            pdf.appendText("X", 143,870, 10);
-//        else
-//            pdf.appendText("X", 202,870, 10);
-//
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(0)), 24, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(1)), 42, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(2)), 70, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(3)), 88, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(4)), 106, 811, 10);
-//        pdf.appendText(Character.toString(form.getSerialNumber().charAt(5)), 122, 811, 10);
-//
-//        //type of product
-//        if (form.getProductType() =="WINE")
-//            pdf.appendText("X", 146,833, 10);
-//        else if(form.getProductType()=="DISTILLED")
-//            pdf.appendText("X", 146,816, 10);
-//        else
-//            pdf.appendText("X", 146, 804, 10);
-//
-//
-//        pdf.appendText(form.getBrandName(), 24,780, 10);
-//        pdf.appendText(form.getFancifulName(), 24,755, 10);
-//        pdf.appendText(form.getPrintName(), 268, 846, 10);
-//        pdf.appendText(form.getMailingAddress(), 268,780, 10);
-//        pdf.appendText(form.getFormula(), 24,722, 10);
-//        pdf.appendText(form.getGrapeVarietal(), 153, 722, 10);
-//        pdf.appendText(form.getAppellation(), 24,688, 10);
-//        pdf.appendText(form.getEmailAddress(), 153, 656, 10);
-//        pdf.appendText(form.getPhoneNumber(), 24, 656, 10);
-//
-//
-//        //type of application
-//        if(form.getCertificateOfApproval()){
-//            pdf.appendText("X", 398, 736, 10);
-//        }
-//        if(form.getCertificateOfExemption()){
-//            pdf.appendText("X", 398,720, 10);
-//            pdf.appendText(form.getOnlyState(), 451, 710, 10);
-//        }
-//        if(form.getDistinctiveLiquor()){
-//            pdf.appendText("X", 398, 700, 10);
-//            pdf.appendText(form.getBottleCapacity(), 541, 690, 10);
-//        }
-//        if(form.getResubmission()){
-//            pdf.appendText("X", 398,668, 10);
-//            pdf.appendText(Integer.toString(form.getTtbID()), 437, 658, 10);
-//        }
-//
-//        //Label fix later
-//        //pdf.appendImage(image.getLabelFile().getPath(), 200, 66, 200, 200);
-//
-//        pdf.appendText(form.getDateOfApplication(), 24, 500, 10);
-//        //pdf.appendText(applicantSig.getText(), 138, 500, 10);
-//        pdf.appendText(form.getApplicantName(), 366, 500, 10);
-//
-//        pdf.appendText("Additional Fields:", 24, 620, 10 );
-//        pdf.appendText("Alcohol Percentage: "+ form.getAlcoholPercent(), 24, 610, 10);
-//        pdf.appendText("pH Level: "+ form.getpHLevel(), 24, 600, 10);
-//        pdf.appendText("Vintage Year: "+ form.getVintageYear(), 24, 590, 10);
-//
-//        pdf.closeStream();
-//
-//        pdfPopupWindow(pdf);
-//        pdf.close();
-//
-//        System.out.println("saved!");
-//    }
-//
-//
-//    //PoPup
-//
-//
-//    //POPUP WINDOW
-//
-//    public void pdfPopupWindow(PDF pdf) throws IOException {
-//        Form form = cacheM.getForm();
-//        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/PDFpopup.fxml"));
-//
-//        //time for the
-//        Node vbox = root.getChildrenUnmodifiable().get(0);
-//        ImageView pdfImage = new ImageView();
-//        pdfImage.setImage(pdf.renderPDF());
-//
-//        if (vbox instanceof VBox) {
-//            System.out.println("vboxinstance");
-//            Node navBox = ((VBox) vbox).getChildren().get(0);
-//            Node scrollPane = ((VBox) vbox).getChildren().get(1);
-//
-//            if (navBox instanceof HBox){
-//                Node fancifulLabel = ((HBox) navBox).getChildren().get(0);
-//                Node saveButton = ((HBox) navBox).getChildren().get(1);
-//
-//                ((Label) fancifulLabel).setText(form.getFancifulName());
-//                ((JFXButton) saveButton).setOnAction((event -> {
-//                    try {
-//                        pdf.savePDFtoDirectory(pdf, vbox);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                }));
-//            }
-//
-//            if (scrollPane instanceof ScrollPane){
-//                System.out.println("scrollpane instance");
-//                ((ScrollPane) scrollPane).setContent(pdfImage);
-//            }
-//        }
-//        popWindow(root);
-//    }
-//
-//    @FXML public void popWindow(Parent root) throws IOException {
-//        Stage stage;
-//        stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.setTitle("TTB PDF");
-//        stage.initModality(Modality.APPLICATION_MODAL);
-//        stage.showAndWait();
-//    }
-//
 }

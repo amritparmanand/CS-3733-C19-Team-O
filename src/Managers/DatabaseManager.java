@@ -13,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.*;
 import java.sql.*;
+import java.util.Objects;
+
 /**
  * @author Amrit Parmanand & Percy
  * @version It 2
@@ -138,7 +140,8 @@ public class DatabaseManager {
                 "dateExpired VARCHAR(20)," +
                 "status VARCHAR(15)," +
                 "dateIssued VARCHAR(20)," +
-                "signature VARCHAR(40))";
+                "signature VARCHAR(40)," +
+                "comments VARCHAR(1000))";
         String createRepresentatives = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
                 "username varchar(20),	" +
@@ -152,22 +155,22 @@ public class DatabaseManager {
                 "username varchar(20), " +
                 "password varchar(65), " +
                 "fullName varchar(50),	" +
-                "email varchar(60),	" +
-                "phone varchar(15))";
+                "email varchar(100),	" +
+                "phone varchar(40))";
 //        String createForms = "create table Forms(" +
 //                "formID int	constraint Forms_pk	primary key, " +
 //                "repID int, " +
-//                "brewerNumber varchar(60),	" +
-//                "productSource varchar(60),	" +
-//                "serialNumber varchar(60),	" +
-//                "productType varchar(60),	" +
-//                "brandName varchar(60),	" +
-//                "fancifulName varchar(60),	" +
+//                "brewerNumber varchar(100),	" +
+//                "productSource varchar(100),	" +
+//                "serialNumber varchar(100),	" +
+//                "productType varchar(100),	" +
+//                "brandName varchar(100),	" +
+//                "fancifulName varchar(100),	" +
 //                "applicantName varchar(200),	" +
 //                "mailingAddress varchar(80), " +
 //                "formula varchar(80), " +
 //                "grapeVarietal varchar(80),	" +
-//                "appellation varchar(60), " +
+//                "appellation varchar(100), " +
 //                "phoneNumber varchar(20), " +
 //                "emailAddress varchar(50),	" +
 //                "certificateOfApproval boolean," +   //begin new
@@ -179,18 +182,18 @@ public class DatabaseManager {
 //                "ttbID int ," + //end new
 //                "dateOfApplication VARCHAR(30) , " +
 //                "printName varchar(40),	" +
-//                "beerWineSpirit varchar(60), " +
-//                "alcoholPercent varchar(60),	" +
-//                "vintageYear varchar(60), " +
-//                "phLevel varchar(60))";
+//                "beerWineSpirit varchar(100), " +
+//                "alcoholPercent varchar(100),	" +
+//                "vintageYear varchar(100), " +
+//                "phLevel varchar(100))";
 
 
         String createForms = "create table Forms(" +
                 "formID bigint   constraint Forms_pk primary key, " +
                 "repID varchar (20), " +
-                "brewerNumber varchar(60), " +
-                "productSource varchar(60),    " +
-                "serialNumber varchar(60), " +
+                "brewerNumber varchar(100), " +
+                "productSource varchar(100),    " +
+                "serialNumber varchar(100), " +
                 "productType varchar(100),  " +
                 "brandName varchar(100),    " +
                 "fancifulName varchar(100), " +
@@ -199,21 +202,21 @@ public class DatabaseManager {
                 "formula varchar(120), " +
                 "grapeVarietal varchar(200),    " +
                 "appellation varchar(200), " +
-                "phoneNumber varchar(20), " +
-                "emailAddress varchar(50), " +
+                "phoneNumber varchar(120), " +
+                "emailAddress varchar(120), " +
                 "certificateOfApproval BOOLEAN," +   //begin new
                 "certificateOfExemption BOOLEAN," +
-                "onlyState varchar(2)," +
+                "onlyState varchar(100)," +
                 "distinctiveLiquor BOOLEAN," +
                 "bottleCapacity VARCHAR(300)," +
                 "resubmission BOOLEAN," +
                 "ttbID int," + //end new
-                "dateOfApplication VARCHAR(30) , " +
-                "printName varchar(40),    " +
-                "beerWineSpirit varchar(60), " +
-                "alcoholPercent varchar(60),   " +
-                "vintageYear varchar(60), " +
-                "phLevel varchar(60), "+
+                "dateOfApplication VARCHAR(100) , " +
+                "printName varchar(100),    " +
+                "beerWineSpirit varchar(100), " +
+                "alcoholPercent varchar(100),   " +
+                "vintageYear varchar(100), " +
+                "phLevel varchar(100), "+
                 "labelImage blob(32M)) ";
         String createUniqueReps = "create unique index Representatives_username_uindex " +
                 "on Representatives (username)";
@@ -294,7 +297,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File(classLoader.getResource("Resources/forPresentation.csv").getFile()));
+            FileReader filereader = new FileReader(new File("src/Resources/forPresentation.csv"));
 
             // create csvReader object passing
             // file reader as a parameter
@@ -398,7 +401,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File(classLoader.getResource("Resources/ApplicationsXLSX.csv").getFile()));
+            FileReader filereader = new FileReader(new File("src/Resources/ApplicationsXLSX.csv"));
             // create csvReader object passing
             // file reader as a parameter
             CSVReader csvReader = new CSVReader(filereader);
@@ -430,7 +433,7 @@ public class DatabaseManager {
                         }
                         else if(counter == 10)
                     {
-                        output += splitRecord[j] + "')";
+                        output += splitRecord[j] + "', null)";
                         break;
 
                     }

@@ -32,14 +32,6 @@ public class aApplicationFormPg2 {
         this.comments = comments;
     }
 
-    @FXML private JFXButton acceptForm;
-    @FXML private JFXButton denyForm;
-    @FXML private JFXButton saveDraft;
-    @FXML private JFXButton homePage;
-    @FXML private JFXButton previous;
-    @FXML private JFXButton next;
-    @FXML private JFXButton search;
-    @FXML private JFXButton logout;
     @FXML private JFXTextField applicantName;
     @FXML private JFXTextField mailAddress;
     @FXML private JFXTextField formula;
@@ -67,21 +59,36 @@ public class aApplicationFormPg2 {
         Q11Comment.setText(comments.getComment11());
         Q12Comment.setText(comments.getComment12());
         Q13Comment.setText(comments.getComment13());
-        Form form = this.form;
-        applicantName.setText(form.getPrintName());
+//        Form form = this.form;
+
+        applicantName.setText(form.parseGarbage(form.getPrintName()));
+        applicantName.setStyle(form.parseStyle(form.getPrintName()));
         applicantName.setEditable(false);
-        mailAddress.setText(form.getMailingAddress());
+
+        mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
+        mailAddress.setStyle(form.parseStyle(form.getMailingAddress()));
         mailAddress.setEditable(false);
-        formula.setText(form.getFormula());
+
+        formula.setText(form.parseGarbage(form.getFormula()));
+        formula.setStyle(form.parseStyle(form.getFormula()));
         formula.setEditable(false);
-        grapes.setText(form.getGrapeVarietal());
+
+        grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
+        grapes.setStyle(form.parseStyle(form.getGrapeVarietal()));
         grapes.setEditable(false);
-        appellation.setText(form.getAppellation());
+
+        appellation.setText(form.parseGarbage(form.getAppellation()));
+        appellation.setStyle(form.parseStyle(form.getAppellation()));
         appellation.setEditable(false);
-        phoneNumber.setText(form.getPhoneNumber());
+
+        phoneNumber.setText(form.parseGarbage(form.getPhoneNumber()));
+        phoneNumber.setStyle(form.parseStyle(form.getPhoneNumber()));
         phoneNumber.setEditable(false);
-        email.setText(form.getEmailAddress());
+
+        email.setText(form.parseGarbage(form.getEmailAddress()));
+        email.setStyle(form.parseStyle(form.getEmailAddress()));
         email.setEditable(false);
+
         System.out.println("filled in info page 2");
 
     }
@@ -101,6 +108,7 @@ public class aApplicationFormPg2 {
         comments.setComment11(Q11Comment.getText());
         comments.setComment12(Q12Comment.getText());
         comments.setComment13(Q13Comment.getText());
+        cacheM.getForm().setComments(comments);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form, comments));
     }
@@ -123,6 +131,11 @@ public class aApplicationFormPg2 {
         cacheM.approveForm(cacheM.getDbM().getConnection());
     }
 
+    @FXML
+    public void goToHomePage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+    }
 
     @FXML
     public void denyForm() throws Exception {
@@ -134,7 +147,8 @@ public class aApplicationFormPg2 {
         comments.setComment11(Q11Comment.getText());
         comments.setComment12(Q12Comment.getText());
         comments.setComment13(Q13Comment.getText());
-        System.out.println(comments.generateComments(comments));
+        System.out.println(comments.generateComments());
+        goToHomePage();
     }
 
     @FXML
