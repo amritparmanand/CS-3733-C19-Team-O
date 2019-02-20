@@ -17,21 +17,25 @@ public class startPage {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
-
-    @FXML private JFXTextField search;
-    @FXML private JFXButton about;
     
     @FXML public void login() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }
+
     @FXML public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
-     @FXML public void about() throws IOException {
+
+    @FXML public void about() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new AboutUs(sceneM, cacheM));
+    }
+
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
     }
 
 }

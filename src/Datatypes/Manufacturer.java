@@ -68,7 +68,7 @@ public class Manufacturer extends Account {
     public void setAssignedForms(Connection conn) {
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID" +
-                    " WHERE APPLICATIONS.REPID ="+ this.repID +" AND NOT (FORMS.TTBID IS NULL  AND APPLICATIONS.STATUS = 'DENIED')";
+                    " WHERE APPLICATIONS.REPID ="+ this.repID;
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
