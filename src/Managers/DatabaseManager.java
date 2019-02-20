@@ -140,7 +140,8 @@ public class DatabaseManager {
                 "dateExpired VARCHAR(20)," +
                 "status VARCHAR(15)," +
                 "dateIssued VARCHAR(20)," +
-                "signature VARCHAR(40))";
+                "signature VARCHAR(40)," +
+                "comments VARCHAR(1000))";
         String createRepresentatives = "create table Representatives" +
                 "(repID int constraint Representatives_pk	primary key, " +
                 "username varchar(20),	" +
@@ -432,7 +433,7 @@ public class DatabaseManager {
                         }
                         else if(counter == 10)
                     {
-                        output += splitRecord[j] + "')";
+                        output += splitRecord[j] + "', null)";
                         break;
 
                     }
