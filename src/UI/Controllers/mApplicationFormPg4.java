@@ -176,7 +176,7 @@ public class mApplicationFormPg4 {
     public void onePage() throws IOException {
         saveDraft();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
-        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM));
+        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM,form));
     }
 
 

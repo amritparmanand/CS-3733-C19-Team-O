@@ -4,7 +4,6 @@ import Datatypes.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.*;
-import com.sun.tools.hat.internal.model.Root;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -41,6 +40,7 @@ public class mOnePageForm {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
+    String style = "-fx-background-color: #94BDFF;";
 
     public mOnePageForm(SceneManager sceneM, CacheManager cacheM, Form form){
         this.sceneM = sceneM;
@@ -136,27 +136,27 @@ public class mOnePageForm {
             repID.setText(Integer.toString(form.getRepID()));
         else
             repID.setText(Integer.toString(manAcc.getRepID()));
-        brewerNO.setText(form.getBrewerNumber());
-        serialNumber.setText(form.getSerialNumber());
+        brewerNO.setText(form.parseGarbage(form.getBrewerNumber()));
+        serialNumber.setText(form.parseGarbage(form.getSerialNumber()));
         if(!form.getBrandName().equals(""))
-            brandName.setText(form.getBrandName());
+            brandName.setText(form.parseGarbage(form.getBrandName()));
         else
             brandName.setText(manAcc.getCompanyName());
-        fancifulName.setText(form.getFancifulName());
-        alcoholPercentage.setText(form.getAlcoholPercent());
-        phLevel.setText(form.getpHLevel());
-        vintageYear.setText(form.getVintageYear());
-        printName.setText(form.getApplicantName());
-        mailAddress.setText(form.getMailingAddress());
-        formula.setText(form.getFormula());
-        grapes.setText(form.getGrapeVarietal());
-        appellation.setText(form.getAppellation());
+        fancifulName.setText(form.parseGarbage(form.getFancifulName()));
+        alcoholPercentage.setText(form.parseGarbage(form.getAlcoholPercent()));
+        phLevel.setText(form.parseGarbage(form.getpHLevel()));
+        vintageYear.setText(form.parseGarbage(form.getVintageYear()));
+        printName.setText(form.parseGarbage(form.getApplicantName()));
+        mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
+        formula.setText(form.parseGarbage(form.getFormula()));
+        grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
+        appellation.setText(form.parseGarbage(form.getAppellation()));
         if(!form.getPhoneNumber().equals(""))
-            phoneNumber.setText(form.getPhoneNumber());
+            phoneNumber.setText(form.parseGarbage(form.getPhoneNumber()));
         else
             phoneNumber.setText(manAcc.getPhone());
         if(!form.getEmailAddress().equals(""))
-            email.setText(form.getEmailAddress());
+            email.setText(form.parseGarbage(form.getEmailAddress()));
         else
             email.setText(manAcc.getEmail());
         wineFieldCheck();
@@ -165,7 +165,7 @@ public class mOnePageForm {
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
         resubmission.setSelected(form.getResubmission());
-        onlyState.setText(form.getOnlyState());
+        onlyState.setText(form.parseGarbage(form.getOnlyState()));
         if(form.getTtbID() != 0)
             ttbID.setText(String.valueOf(form.getTtbID()));
         bottleCapacity.setText(form.getBottleCapacity());
@@ -178,7 +178,7 @@ public class mOnePageForm {
         validateBottleCapacity();
         validateTTBID();
         if(!form.getPrintName().equals(""))
-            applicantNamePrint.setText(form.getPrintName());
+            applicantNamePrint.setText(form.parseGarbage(form.getPrintName()));
         else
             applicantNamePrint.setText(manAcc.getFullName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
@@ -196,26 +196,30 @@ public class mOnePageForm {
 
     @FXML public void validateStateField() {
         if(!certificateOfExemption.isSelected()) {
-            onlyState.setText("");
             onlyState.setDisable(true);
         }else {
+            onlyState.setText(form.parseGarbage(form.getOnlyState()));
+            System.out.println(form.getOnlyState());
             onlyState.setDisable(false);
         }
     }
+
     @FXML public void validateBottleCapacity() {
         if(!DistinctiveLiquor.isSelected()) {
-            bottleCapacity.setText("");
             bottleCapacity.setDisable(true);
         }else{
+            bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
             bottleCapacity.setDisable(false);
         }
     }
+
     @FXML public void validateTTBID() {
         if(!resubmission.isSelected()) {
             ttbID.setText("");
             ttbID.setDisable(true);
         }else {
-            ttbID.setDisable(false);
+            ttbID.setText(Integer.toString(form.getTtbID()));
+            ttbID.setEditable(false);
         }
     }
 
@@ -277,6 +281,9 @@ public class mOnePageForm {
     @FXML public void saveDraft(){
         //Form form = cacheM.getForm();
 
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
         // Page 1
         if (domestic.isSelected() || imported.isSelected()) {
             if(domestic.isSelected()) {
@@ -442,6 +449,7 @@ public class mOnePageForm {
 
     }
     //starting with textboxes, not sure how to handle radio buttons and checkboxes
+    @SuppressWarnings("Duplicates")
     public void checkDiff() {
         if (!printName.getText().equals(form.getPrintName()) && !printName.getText().contains(style)) {
             form.setPrintName(printName.getText() + style);
@@ -451,9 +459,11 @@ public class mOnePageForm {
         }
         if (!formula.getText().equals(form.getFormula()) && !formula.getText().contains(style)) {
             form.setFormula(formula.getText() + style);
+            System.out.println(form.getFormula());
         }
         if (!grapes.getText().equals(form.getGrapeVarietal()) && !grapes.getText().contains(style)) {
             form.setGrapeVarietal(grapes.getText() + style);
+            System.out.println(form.getGrapeVarietal());
         }
         if(!appellation.getText().equals(form.getAppellation()) && !appellation.getText().contains(style)) {
             form.setAlcoholPercent(appellation.getText() + style);
@@ -522,9 +532,9 @@ public class mOnePageForm {
         if (!bottleCapacity.getText().equals(form.getBottleCapacity()) && !bottleCapacity.getText().contains(style)) {
             form.setBottleCapacity(bottleCapacity.getText() + style);
         }
-        if (!applicantSig.getText().equals(form.getSignature()) && applicantSig.getText().contains(style)) {
-            form.setSignature(applicantSig.getText() + style);
-        }
+//        if (!applicantSig.getText().equals(form.getSignature()) && applicantSig.getText().contains(style)) {
+//            form.setSignature(applicantSig.getText() + style);
+//        }
         if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(style)) {
             form.setPrintName(applicantNamePrint.getText() + style);
         }
