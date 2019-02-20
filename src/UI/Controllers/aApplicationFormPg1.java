@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
+ * @author Clay Oshiro-Leavitt
  * @version It 2
  * Controller for aApplicationFormPg1 of UI
  */
@@ -60,6 +60,7 @@ public class aApplicationFormPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+
         Q1Comment.setText(comments.getComment1());
         Q2Comment.setText(comments.getComment2());
         Q3Comment.setText(comments.getComment3());
@@ -71,6 +72,7 @@ public class aApplicationFormPg1 {
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);
+                break;
             case "IMPORTED":
                 imported.setSelected(true);
 
@@ -78,19 +80,26 @@ public class aApplicationFormPg1 {
         switch(form.getProductType()){
             case "WINE":
                 wine.setSelected(true);
+                break;
             case "DISTILLED":
                 spirits.setSelected(true);
+                break;
             case "MALT":
                 malt.setSelected(true);
+                break;
         }
         switch(form.getBeerWineSpirit()){
             case "WINE":
                 wine2.setSelected(true);
+                break;
             case "SPIRITS":
                 spirits2.setSelected(true);
+                break;
             case "BEER":
                 beer2.setSelected(true);
+                break;
         }
+      
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
 

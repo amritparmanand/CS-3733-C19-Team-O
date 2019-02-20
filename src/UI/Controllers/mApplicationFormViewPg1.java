@@ -64,25 +64,33 @@ public class mApplicationFormViewPg1 {
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);
+                break;
             case "IMPORTED":
                 imported.setSelected(true);
+                break;
 
         }
         switch(form.getProductType()){
             case "WINE":
                 wine.setSelected(true);
+                break;
             case "DISTILLED":
                 distilled.setSelected(true);
+                break;
             case "MALT":
                 malt.setSelected(true);
+                break;
         }
         switch(form.getBeerWineSpirit()){
             case "WINE":
                 wine2.setSelected(true);
+                break;
             case "SPIRITS":
                 spirits2.setSelected(true);
+                break;
             case "BEER":
                 beer2.setSelected(true);
+                break;
         }
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
@@ -129,6 +137,7 @@ public class mApplicationFormViewPg1 {
 
     @FXML public void goToHomePage() throws IOException {
 //        multiThreadWaitFor.onShutDown();
+        cacheM.setForm(new Form());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }

@@ -54,13 +54,11 @@ public class mApplicationFormViewPg4 {
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
         System.out.println("starting");
-        if(!form.getApplicantName().equals(""))
             applicantNamePrint.setText(form.getPrintName());
         else
             applicantNamePrint.setText(manAcc.getFullName());
         applicantNamePrint.setEditable(false);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-        System.out.println("starting");
         if(!form.getDateOfApplication().isEmpty()){
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
@@ -93,6 +91,7 @@ public class mApplicationFormViewPg4 {
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
     @FXML public void goToHomePage() throws IOException {
+        cacheM.setForm(new Form());
         //multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));

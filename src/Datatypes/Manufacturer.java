@@ -1,6 +1,12 @@
 package Datatypes;
 
+import javafx.scene.image.Image;
+
+import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -65,23 +71,31 @@ public class Manufacturer extends Account {
     // Query the database to select forms where the TTB ID matches this agent's id
     // Call formFromResultSet into object and add it into the working Forms of this agent
     @SuppressWarnings("Duplicates")
-    public void setAssignedForms(Connection conn) {
+    public void retrieveAssignedForms(Connection conn) {
         try {
+            ArrayList<Form> jeans = new ArrayList<>();
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE APPLICATIONS.REPID = " + this.getRepID();
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                workingForms.add(formFromResultSet(rs));
+                jeans.add(formFromResultSet(rs));
             }
+            setWorkingForms(jeans);
             ps.close();
-            this.hasFetchedForms = true;
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
+        } catch (Exception e) {
+            if(e instanceof  SQLException) {
+                if (!((SQLException) e).getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
         }
     }
+
+    public void setWorkingForms(ArrayList<Form> workingForms) {
+        this.workingForms = workingForms;
+    }
+
     public ArrayList<Form> getAssignedForms() {
         return workingForms;
     }
@@ -111,7 +125,8 @@ public class Manufacturer extends Account {
         }
     }
     @SuppressWarnings("Duplicates")
-    private Form formFromResultSet(ResultSet rs) throws SQLException {
+    private Form formFromResultSet(ResultSet rs) throws SQLException, IOException, ClassNotFoundException {
+        Image img;
         Form f = new Form();
         f.setFormID(rs.getLong("formID"));
         f.setRepID(rs.getInt("repID"));
@@ -141,9 +156,12 @@ public class Manufacturer extends Account {
         f.setVintageYear(rs.getString("vintageYear"));
         f.setpHLevel(rs.getString("pHLevel"));
         LabelImage formLabel = new LabelImage();
-        Blob picture = rs.getBlob("labelImage");
-        if (picture != null) {
-            InputStream is = picture.getBinaryStream();
+        Blob blobert = rs.getBlob("labelImage");
+        if (blobert != null) {
+            ObjectInputStream ois = null;
+            ois = new ObjectInputStream(blobert.getBinaryStream());
+            img = (Image) ois.readObject();
+            f.getLabel().setLabelImage(img);
         }
 //        f.getLabel().setLabelImage(img);
 //        Image img = new Image();

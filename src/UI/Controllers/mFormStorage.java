@@ -3,7 +3,6 @@ package UI.Controllers;
 import Datatypes.Agent;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
-import Datatypes.NumberAssigned;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
@@ -45,8 +44,7 @@ public class mFormStorage {
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        if(!manAcc.getHasFetchedForms())
-            manAcc.setAssignedForms(cacheM.getDbM().getConnection());
+        manAcc.retrieveAssignedForms(cacheM.getDbM().getConnection());
 
         ArrayList<Form> populatedForms = (manAcc.getAssignedForms());
 

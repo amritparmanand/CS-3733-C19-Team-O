@@ -52,6 +52,12 @@ public class mApplicationFormViewPg3 {
         validateStateField();
         validateBottleCapacity();
         validateTTBID();
+        onlyState.setText(form.getOnlyState());
+        if(form.getTtbID() != 0)
+            ttbID.setText(String.valueOf(form.getTtbID()));
+        bottleCapacity.setText(form.getBottleCapacity());
+        if(form.getLabel().getLabelImage() != null)
+            imagePreview.setImage(form.getLabel().getLabelImage());
     }
 
 
@@ -81,6 +87,7 @@ public class mApplicationFormViewPg3 {
     }
 
     @FXML public void goToHomePage() throws IOException {
+        cacheM.setForm(new Form());
 //        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
