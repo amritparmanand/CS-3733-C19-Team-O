@@ -12,7 +12,7 @@ public class Setting {
 
     private int formLimit = 5; // Default is 5
     private String fuzzy = "hiddenScore";
-    private String format = ",";
+    private char format = ',';
 
     private static Setting instance = new Setting();
 
@@ -27,7 +27,6 @@ public class Setting {
     public int getFormLimit() {
         return formLimit;
     }
-
     public void setFormLimit(int formLimit) {
         this.formLimit = formLimit;
     }
@@ -37,10 +36,10 @@ public class Setting {
     public void setFuzzy(String fuzzy) {
         this.fuzzy = fuzzy;
     }
-    public String getFormat() {
+    public char getFormat() {
         return format;
     }
-    public void setFormat(String format) {
+    public void setFormat(char format) {
         this.format = format;
     }
 

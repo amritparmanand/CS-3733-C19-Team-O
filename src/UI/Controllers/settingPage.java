@@ -59,10 +59,10 @@ public class settingPage {
 
         // Set download format
         if(delimiter.getText().isEmpty()){
-            object.setFormat(",");
+            object.setFormat(',');
         }
         else{
-            object.setFormLimit(Integer.parseInt(formLimit.getText()));
+            object.setFormat(delimiter.getText().charAt(0));
         }
 
         System.out.println("Settings: ");

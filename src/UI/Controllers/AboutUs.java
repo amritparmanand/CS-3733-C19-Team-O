@@ -18,11 +18,9 @@ public class AboutUs{
         this.cacheM = cacheM;
     }
 
-    @FXML private JFXButton back;
-
     @FXML
     public void logout() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
-        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
+        sceneM.changeScene(loader, new startPage(sceneM, cacheM));
     }
 }

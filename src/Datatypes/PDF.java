@@ -169,15 +169,15 @@ public class PDF {
             pdf.appendText("X", 146, 804, 10);
 
 
-        pdf.appendText(form.getBrandName(), 24,780, 10);
-        pdf.appendText(form.getFancifulName(), 24,755, 10);
-        pdf.appendText(form.getApplicantName(), 268, 846, 10);
-        pdf.appendText(form.getMailingAddress(), 268,780, 10);
-        pdf.appendText(form.getFormula(), 24,722, 10);
-        pdf.appendText(form.getGrapeVarietal(), 153, 722, 10);
-        pdf.appendText(form.getAppellation(), 24,688, 10);
-        pdf.appendText(form.getEmailAddress(), 153, 656, 10);
-        pdf.appendText(form.getPhoneNumber(), 24, 656, 10);
+        pdf.appendText(form.parseGarbage(form.getBrandName()), 24,780, 10);
+        pdf.appendText(form.parseGarbage(form.getFancifulName()), 24,755, 10);
+        pdf.appendText(form.parseGarbage(form.getApplicantName()), 268, 846, 10);
+        pdf.appendText(form.parseGarbage(form.getMailingAddress()), 268,780, 10);
+        pdf.appendText(form.parseGarbage(form.getFormula()), 24,722, 10);
+        pdf.appendText(form.parseGarbage(form.getGrapeVarietal()), 153, 722, 10);
+        pdf.appendText(form.parseGarbage(form.getAppellation()), 24,688, 10);
+        pdf.appendText(form.parseGarbage(form.getEmailAddress()), 153, 656, 10);
+        pdf.appendText(form.parseGarbage(form.getPhoneNumber()), 24, 656, 10);
 
 
         //type of application
@@ -241,7 +241,7 @@ public class PDF {
                 Node fancifulLabel = ((HBox) navBox).getChildren().get(0);
                 Node saveButton = ((HBox) navBox).getChildren().get(1);
 
-                ((Label) fancifulLabel).setText(form.getFancifulName());
+                ((Label) fancifulLabel).setText(form.parseGarbage(form.getFancifulName()));
                 ((JFXButton) saveButton).setOnAction((event -> {
                     try {
                         pdf.savePDFtoDirectory(pdf, vbox);

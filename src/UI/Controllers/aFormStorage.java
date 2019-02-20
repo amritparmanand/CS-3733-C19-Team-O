@@ -63,8 +63,8 @@ public class aFormStorage {
 
                     if(form.getLabel().getLabelImage() != null)
                         ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
-                    ((Label) fName).setText(form.getFancifulName());
-                    ((Label) bName).setText(form.getBrandName());
+                    ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
+                    ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
                     switch(form.getProductType()){
                         case "WINE":
                             ((Label) aType).setText("Wine");
@@ -115,7 +115,7 @@ public class aFormStorage {
     @FXML
     public void assignNewForms() throws IOException {
 
-        int limit = 5;
+        int limit = cacheM.getFormLimit();
 
         Agent A = (Agent) cacheM.getAcct();
         if(!A.isHasFetchedForms()){
@@ -137,8 +137,8 @@ public class aFormStorage {
                         Node bName = ((VBox) vbox).getChildren().get(2);
                         Node aType = ((VBox) vbox).getChildren().get(3);
 
-                        ((Label) fName).setText(form.getFancifulName());
-                        ((Label) bName).setText(form.getBrandName());
+                        ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
+                        ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
                         switch(form.getProductType()){
                             case "WINE":
                                 ((Label) aType).setText("Wine");

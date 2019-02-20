@@ -20,9 +20,10 @@ public class CacheManager {
     private Form form;
     private Account acct;
     private SearchResult selectedResult;
-    private int formLimit;
-    private String fuzzy;
-    private String format;
+    private int formLimit = 5;
+    private String fuzzy = "hiddenScore";
+    private char format = ',';
+    private String search = "";
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
@@ -63,11 +64,17 @@ public class CacheManager {
     public void setFuzzy(String fuzzy) {
         this.fuzzy = fuzzy;
     }
-    public String getFormat() {
+    public char getFormat() {
         return format;
     }
-    public void setFormat(String format) {
+    public void setFormat(char format) {
         this.format = format;
+    }
+    public String getSearch() {
+        return search;
+    }
+    public void setSearch(String search) {
+        this.search = search;
     }
 
     // Facade stuff
