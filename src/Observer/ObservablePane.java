@@ -146,7 +146,7 @@ public class ObservablePane implements IObservable {
                     e.printStackTrace();
                 }
 
-                sceneManager.popWindow(root);
+                sceneManager.popWindow(root, fancy);
             }
         });
     }
