@@ -163,44 +163,48 @@ public class mApplicationFormPg1 {
             checkDiff();
         }
 
-        if (domestic.isSelected() || imported.isSelected()) {
-            if (domestic.isSelected()) {
-                form.setProductSource("DOMESTIC");
-            } else if (imported.isSelected()) {
-                form.setProductSource("IMPORTED");
+        if (!form.getProductSource().contains(style)) {
+            if (domestic.isSelected() || imported.isSelected()) {
+                if (domestic.isSelected()) {
+                    form.setProductSource("DOMESTIC");
+                } else if (imported.isSelected()) {
+                    form.setProductSource("IMPORTED");
+                }
             }
         }
 
-        if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
-            if (wine.isSelected()) {
-                form.setProductType("WINE");
-            } else if (distilled.isSelected()) {
-                form.setProductType("DISTILLED");
-            } else if (malt.isSelected()) {
-                form.setProductType("MALT");
+        if (!form.getProductType().contains(style)) {
+            if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
+                if (wine.isSelected()) {
+                    form.setProductType("WINE");
+                } else if (distilled.isSelected()) {
+                    form.setProductType("DISTILLED");
+                } else if (malt.isSelected()) {
+                    form.setProductType("MALT");
+                }
             }
         }
 
-        String type2 = "WINE";
-        if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
-            if (wine2.isSelected())
-                type2 = "WINE";
-            else if (spirits2.isSelected())
-                type2 = "SPIRITS";
-            else if (beer2.isSelected())
-                type2 = "BEER";
-            form.setBeerWineSpirit(type2);
-            if (type2 == "WINE") {
-                if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(style)) {
-                    form.setpHLevel(phLevel.getText());
+        if (!form.getBeerWineSpirit().contains(style)) {
+            if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
+                if (wine2.isSelected())
+                    form.setBeerWineSpirit("WINE");
+                else if (spirits2.isSelected())
+                    form.setBeerWineSpirit("SPIRITS");
+                else if (beer2.isSelected())
+                    form.setBeerWineSpirit("BEER");
+                if (wine2.isSelected()) {
+                    if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(style)) {
+                        form.setpHLevel(phLevel.getText());
+                    }
+                    if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(style)) {
+                        form.setVintageYear(vintageYear.getText());
+                    }
                 }
-                if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(style)) {
-                    form.setVintageYear(vintageYear.getText());
+                else {
+                    form.setpHLevel(null);
+                    form.setVintageYear(null);
                 }
-            }
-            else {
-                form.setpHLevel(null);
-                form.setVintageYear(null);
             }
         }
 
