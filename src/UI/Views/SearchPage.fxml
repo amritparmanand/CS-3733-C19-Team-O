@@ -140,12 +140,6 @@
                            </VBox.margin>
                            <children>
                               <JFXButton fx:id="download" onAction="#download" styleClass="buttonStyle" text="Download" />
-                              <Label styleClass="labeltext" text="Delimiter: ">
-                                 <HBox.margin>
-                                    <Insets left="10.0" right="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <JFXTextField fx:id="delim" prefHeight="25.0" prefWidth="63.0" styleClass="textfield" />
                            </children>
                         </HBox>
                         <Button fx:id="back" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Back">

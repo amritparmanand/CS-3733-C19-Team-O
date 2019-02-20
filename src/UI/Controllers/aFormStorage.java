@@ -111,7 +111,7 @@ public class aFormStorage {
     @FXML
     public void assignNewForms() throws IOException {
 
-        int limit = 5;
+        int limit = cacheM.getFormLimit();
 
         Agent A = (Agent) cacheM.getAcct();
         if(!A.isHasFetchedForms()){

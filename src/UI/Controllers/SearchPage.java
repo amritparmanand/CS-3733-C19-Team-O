@@ -46,10 +46,6 @@ import java.util.ArrayList;
 public class SearchPage {
     private SceneManager sceneM;
     private CacheManager cacheM;
-    boolean SQL = false;
-    boolean Levi = false;
-    boolean DLevi = false;
-    boolean hiddenS = true;
 
     String oldSearch = "";
     ResultSet approvedResults;
@@ -86,8 +82,6 @@ public class SearchPage {
     @FXML
     private ScrollPane scroll;
     @FXML
-    private Button back;
-    @FXML
     private TextField searchBox;
     @FXML
     private JFXCheckBox beerCheck;
@@ -110,17 +104,11 @@ public class SearchPage {
     @FXML
     private FlowPane searchResults;
     @FXML
-    private Button searchButton;
-    @FXML
     private Label searchSuggest;
     @FXML
     private Label didYouMean;
     @FXML
     private Label pageNum;
-    @FXML
-    private JFXButton pageButton;
-    @FXML
-    private JFXTextField delim;
 
     @FXML
     public void back() throws IOException {
@@ -198,7 +186,7 @@ public class SearchPage {
      */
     @FXML
     public void download() {
-        String path = "";
+        String path;
 
         JFileChooser chooser = new JFileChooser();
         String choosertitle = "Select a destination";
@@ -218,10 +206,7 @@ public class SearchPage {
                 System.out.println(path);
                 PrintWriter writer = new PrintWriter(path + "/" + "search-results.csv", "UTF-8");
 
-                String delimi = delim.getText();
-                if (delimi == "" || delimi == null) {
-                    delimi = ",";
-                }
+                char delimi = cacheM.getFormat();
 
                 writer.println("sep=" + delimi);
                 writer.println("FANCIFUL NAME" + delimi +
