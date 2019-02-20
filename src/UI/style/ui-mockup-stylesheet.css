@@ -352,3 +352,14 @@
   -fx-background-color :rgb(23, 58, 141);
   -fx-background-insets : 2.0, 0.0, 0.0;
 }
+
+.jfx-toggle-button{
+  -jfx-toggle-color: #4A77DD;
+  -jfx-toggle-line-color:rgb(23, 58, 141);
+  -jfx-disable-visual-focus: false;
+}
+
+.jfx-date-picker{
+  -jfx-default-color:#4A77DD;
+
+}
