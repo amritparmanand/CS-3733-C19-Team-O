@@ -210,7 +210,7 @@ public class aRegister {
      */
     @FXML
     public boolean invalidID(String ID){
-        if(ID.isEmpty() || ID.matches("^[a-zA-Z]+") || Integer.parseInt(ID) < 0) {
+        if(ID.isEmpty() || !ID.matches("^[0-9]+") || Integer.parseInt(ID) < 0) {
             return true;
         }else{
             return false;
