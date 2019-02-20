@@ -157,43 +157,48 @@ public class mApplicationFormPg1 {
             checkDiff();
         }
 
-        if (domestic.isSelected() || imported.isSelected()) {
-            if (domestic.isSelected()) {
-                form.setProductSource("DOMESTIC");
-            } else if (imported.isSelected()) {
-                form.setProductSource("IMPORTED");
+        if (!form.getProductSource().contains(style)) {
+            if (domestic.isSelected() || imported.isSelected()) {
+                if (domestic.isSelected()) {
+                    form.setProductSource("DOMESTIC");
+                } else if (imported.isSelected()) {
+                    form.setProductSource("IMPORTED");
+                }
             }
         }
 
-        if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
-            if (wine.isSelected()) {
-                form.setProductType("WINE");
-            } else if (distilled.isSelected()) {
-                form.setProductType("DISTILLED");
-            } else if (malt.isSelected()) {
-                form.setProductType("MALT");
+        if (!form.getProductType().contains(style)) {
+            if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
+                if (wine.isSelected()) {
+                    form.setProductType("WINE");
+                } else if (distilled.isSelected()) {
+                    form.setProductType("DISTILLED");
+                } else if (malt.isSelected()) {
+                    form.setProductType("MALT");
+                }
             }
         }
 
-        String type2 = "WINE";
-        if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
-            if (wine2.isSelected())
-                type2 = "WINE";
-            else if (spirits2.isSelected())
-                type2 = "SPIRITS";
-            else if (beer2.isSelected())
-                type2 = "BEER";
-            form.setBeerWineSpirit(type2);
-            if (type2 == "WINE") {
-                if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(style)) {
-                    form.setpHLevel(phLevel.getText());
+        if (!form.getBeerWineSpirit().contains(style)) {
+            if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
+                if (wine2.isSelected())
+                    form.setBeerWineSpirit("WINE");
+                else if (spirits2.isSelected())
+                    form.setBeerWineSpirit("SPIRITS");
+                else if (beer2.isSelected())
+                    form.setBeerWineSpirit("BEER");
+                if (wine2.isSelected()) {
+                    if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(style)) {
+                        form.setpHLevel(phLevel.getText());
+                    }
+                    if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(style)) {
+                        form.setVintageYear(vintageYear.getText());
+                    }
                 }
-                if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(style)) {
-                    form.setVintageYear(vintageYear.getText());
+                else {
+                    form.setpHLevel(null);
+                    form.setVintageYear(null);
                 }
-            } else {
-                form.setpHLevel(null);
-                form.setVintageYear(null);
             }
         }
 
@@ -261,19 +266,21 @@ public class mApplicationFormPg1 {
 
     //starting with textboxes, not sure how to handle radio buttons and checkboxes
     public void checkDiff() {
-        System.out.println("here");
+
+        if (wine2.isSelected()) {
+            if (!phLevel.getText().equals(form.getpHLevel()) && !phLevel.getText().contains(style)) {
+                form.setpHLevel(phLevel.getText() + style);
+            }
+            if (!vintageYear.getText().equals(form.getVintageYear()) && !vintageYear.getText().contains(style)) {
+                form.setVintageYear(vintageYear.getText() + style);
+            }
+        }
 
         if (!brewerNO.getText().equals(form.getBrewerNumber()) && !brewerNO.getText().contains(style)) {
             form.setBrewerNumber(brewerNO.getText() + style);
         }
-        if (!phLevel.getText().equals(form.getpHLevel()) && !phLevel.getText().contains(style)) {
-            form.setpHLevel(phLevel.getText() + style);
-        }
         if (!serialNumber.getText().equals(form.getSerialNumber()) && !serialNumber.getText().contains(style)) {
             form.setSerialNumber((serialNumber.getText() + style));
-        }
-        if (!vintageYear.getText().equals(form.getVintageYear()) && !vintageYear.getText().contains(style)) {
-            form.setVintageYear(vintageYear.getText() + style);
         }
         if (!brandName.getText().equals(form.getBrandName()) && !brandName.getText().contains(style)) {
             form.setBrandName(brandName.getText() + style);
@@ -284,11 +291,33 @@ public class mApplicationFormPg1 {
         if (!alcoholPercentage.getText().equals(form.getAlcoholPercent()) && !alcoholPercentage.getText().contains(style)) {
             form.setAlcoholPercent(alcoholPercentage.getText() + style);
         }
-        //How do you handle this one
-//        if (Integer.parseInt(repID.getText()) != form.getRepID()) {
-//            form.setBrandName(brandName.getText() + style);
-//        }
 
+        if(domestic.isSelected() && !form.getProductSource().equals("DOMESTIC")){
+            form.setProductSource("DOMESTIC" + style);
+        }
+        if(imported.isSelected() && !form.getProductSource().equals("IMPORTED")){
+            form.setProductSource("IMPORTED" + style);
+        }
+
+        if(wine.isSelected() && !form.getProductType().equals("WINE")){
+            form.setProductType("WINE" + style);
+        }
+        if(distilled.isSelected() && !form.getProductType().equals("DISTILLED")){
+            form.setProductType("DISTILLED" + style);
+        }
+        if(malt.isSelected() && !form.getProductType().equals("MALT")){
+            form.setProductType("MALT" + style);
+        }
+
+        if(wine2.isSelected() && !form.getBeerWineSpirit().equals("WINE")){
+            form.setBeerWineSpirit("WINE" + style);
+        }
+        if(spirits2.isSelected() && !form.getBeerWineSpirit().equals("SPIRITS")){
+            form.setBeerWineSpirit("SPIRITS" + style);
+        }
+        if(beer2.isSelected() && !form.getBeerWineSpirit().equals("BEER")){
+            form.setBeerWineSpirit("BEER" + style);
+        }
     }
 
     //PROGRESSBAR 1
