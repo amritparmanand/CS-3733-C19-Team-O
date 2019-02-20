@@ -119,8 +119,6 @@ public class mApplicationFormPg2 {
 
             System.out.println("save Draft executed");
         }
-        System.out.println(form.getProductType());
-        System.out.println(form.getBeerWineSpirit());
     }
 
     @FXML public void wineFieldCheck(){

@@ -71,6 +71,7 @@ public class aApplicationFormPg1 {
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);
+                break;
             case "IMPORTED":
                 imported.setSelected(true);
 
@@ -78,18 +79,24 @@ public class aApplicationFormPg1 {
         switch(form.getProductType()){
             case "WINE":
                 wine.setSelected(true);
+                break;
             case "DISTILLED":
                 spirits.setSelected(true);
+                break;
             case "MALT":
                 malt.setSelected(true);
+                break;
         }
         switch(form.getBeerWineSpirit()){
             case "WINE":
                 wine2.setSelected(true);
+                break;
             case "SPIRITS":
                 spirits2.setSelected(true);
+                break;
             case "BEER":
                 beer2.setSelected(true);
+                break;
         }
         repID.setText(Integer.toString(form.getRepID()));
         brewerNO.setText(form.getBrewerNumber());

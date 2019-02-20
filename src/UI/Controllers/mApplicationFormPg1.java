@@ -72,8 +72,6 @@ public class mApplicationFormPg1 {
 
         Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        System.out.println(form.getProductType());
-        System.out.println(form.getBeerWineSpirit());
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);
