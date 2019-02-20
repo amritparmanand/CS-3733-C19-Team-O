@@ -115,7 +115,7 @@ public class aApplicationFormPg1 {
         alcoholPercentage.setText(form.parseGarbage(form.getAlcoholPercent()));
         alcoholPercentage.setStyle(form.parseStyle(form.getAlcoholPercent()));
 
-        phLevel.setText(form.parseGarbage(form.getpHLevel()));
+        phLevel.setText(form.parseGarbage(form.getpHLevel()));    // still run when the beverage is not a wine, throws NullPointer
         phLevel.setStyle(form.parseStyle(form.getpHLevel()));
 
         vintageYear.setText(form.parseGarbage(form.getVintageYear()));
