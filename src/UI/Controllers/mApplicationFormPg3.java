@@ -106,9 +106,7 @@ public class mApplicationFormPg3 {
             checkDiff();
         }
 
-        if (onlyState!= null && ttbID!= null && bottleCapacity!= null && certificateOfApproval!= null
-                &&certificateOfExemption!= null && DistinctiveLiquor!= null
-                && resubmission!= null && imagePreview!= null) {
+
             if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
                     !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
                 errorLabel.setText("Please select a type of application.");
@@ -136,6 +134,7 @@ public class mApplicationFormPg3 {
                 form.setBottleCapacity("");
             }
             form.setResubmission(resubmission.isSelected());
+        System.out.println(resubmission.isSelected());
             if(!resubmission.isSelected())
                 form.setTtbID(0);
             else
@@ -147,11 +146,7 @@ public class mApplicationFormPg3 {
             cacheM.setForm(form);
             return true;
         }
-        else{
-            return false;
-        }
 
-    }
 
     public void checkDiff() {
 
