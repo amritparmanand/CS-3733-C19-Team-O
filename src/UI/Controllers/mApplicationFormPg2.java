@@ -68,7 +68,7 @@ public class mApplicationFormPg2 {
     @FXML public void initialize(){
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        printName.setText(form.parseGarbage(form.getPrintName()));
+        printName.setText(form.parseGarbage(form.getApplicantName()));
         mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
         formula.setText(form.parseGarbage(form.getFormula()));
         grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
@@ -93,8 +93,8 @@ public class mApplicationFormPg2 {
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
 
-        if (!printName.getText().isEmpty() && !form.getPrintName().contains(style)) {
-            form.setPrintName(printName.getText());
+        if (!printName.getText().isEmpty() && !form.getApplicantName().contains(style)) {
+            form.setApplicantName(printName.getText());
         }
         if (!mailAddress.getText().isEmpty() && !form.getMailingAddress().contains(style)) {
             form.setMailingAddress(mailAddress.getText());
@@ -164,8 +164,8 @@ public class mApplicationFormPg2 {
     }
 
     public void checkDiff() {
-        if (!printName.getText().equals(form.getPrintName()) && !printName.getText().contains(style)) {
-            form.setPrintName(printName.getText() + style);
+        if (!printName.getText().equals(form.getApplicantName()) && !printName.getText().contains(style)) {
+            form.setApplicantName(printName.getText() + style);
         }
         if (!mailAddress.getText().equals(form.getMailingAddress()) && !mailAddress.getText().contains(style)) {
             form.setMailingAddress(mailAddress.getText() + style);
