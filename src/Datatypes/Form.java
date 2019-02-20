@@ -305,7 +305,7 @@ public class Form {
                 ", RESUBMISSION = '" + this.getResubmission() + "'" +
                 ", DATEOFAPPLICATION = '" + this.parseGarbage(this.getDateOfApplication()) + "'" +
                 ", PRINTNAME = '" + this.parseGarbage(this.getPrintName()) + "'" +
-                ", BEERWINESPIRIT = '" + this.getBeerWineSpirit() + "'" +
+                ", BEERWINESPIRIT = '" + this.parseGarbage(this.getBeerWineSpirit()) + "'" +
                 ", ALCOHOLPERCENT = '" + this.parseGarbage(this.getAlcoholPercent()) + "'" +
                 ", VINTAGEYEAR = '" + this.parseGarbage(this.getVintageYear()) + "'" +
 
@@ -359,7 +359,7 @@ public class Form {
                 ", RESUBMISSION = '" + this.getResubmission() + "'" +
                 ", DATEOFAPPLICATION = '" + this.parseGarbage(this.getDateOfApplication()) + "'" +
                 ", PRINTNAME = '" + this.parseGarbage(this.getPrintName()) + "'" +
-                ", BEERWINESPIRIT = '" + this.getBeerWineSpirit() + "'" +
+                ", BEERWINESPIRIT = '" + this.parseGarbage(this.getBeerWineSpirit()) + "'" +
                 ", ALCOHOLPERCENT = '" + this.parseGarbage(this.getAlcoholPercent()) + "'" +
                 ", VINTAGEYEAR = '" + this.parseGarbage(this.getVintageYear()) + "'" +
 
