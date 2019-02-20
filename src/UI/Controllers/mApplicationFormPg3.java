@@ -122,8 +122,9 @@ public class mApplicationFormPg3 {
                     System.out.println("this is weird this shouldn't pass");
                         form.setOnlyState(onlyState.getText());
                     }
-            }else {
-                form.setOnlyState(null);
+            }
+            else {
+                form.setOnlyState("");
             }
             form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
             if(DistinctiveLiquor.isSelected()) {
@@ -201,7 +202,7 @@ public class mApplicationFormPg3 {
     public void onePage() throws IOException {
         saveDraft();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
-        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM));
+        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM,form));
     }
 
     @FXML public void savePDF() throws IOException {
