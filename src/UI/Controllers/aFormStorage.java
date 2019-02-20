@@ -17,8 +17,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -33,6 +35,7 @@ public class aFormStorage {
     private CacheManager cacheM;
 
     @FXML private FlowPane loadForms;
+    ArrayList<Form> fucker = new ArrayList<>();
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -40,6 +43,10 @@ public class aFormStorage {
     }
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
+        Agent A = (Agent) cacheM.getAcct();
+        if(!A.isGotCurrentForms()){
+            ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
+        }
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
 
         for (Form form : populatedForms) {
@@ -89,12 +96,6 @@ public class aFormStorage {
     }
 
     @FXML
-    public void search() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-    }
-
-    @FXML
     public void back() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
         sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
@@ -112,51 +113,61 @@ public class aFormStorage {
 
         int limit = 5;
 
-        ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
-        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
+        Agent A = (Agent) cacheM.getAcct();
+        if(!A.isHasFetchedForms()){
+            ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
+        }
+
+        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getNewForms();
 
         for (Form form : populatedForms) {
-            Pane formResult;
-            try {
-                formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
-                Node vbox = formResult.getChildren().get(0);
-                if (vbox instanceof VBox) {
-                    Node fName = ((VBox) vbox).getChildren().get(1);
-                    Node bName = ((VBox) vbox).getChildren().get(2);
-                    Node aType = ((VBox) vbox).getChildren().get(3);
 
-                    ((Label) fName).setText(form.getFancifulName());
-                    ((Label) bName).setText(form.getBrandName());
-                    switch(form.getProductType()){
-                        case "WINE":
-                            ((Label) aType).setText("Wine");
-                            break;
-                        case "DISTILLED":
-                            ((Label) aType).setText("Distilled Beverage");
-                            break;
-                        case "MALT":
-                            ((Label) aType).setText("Malt Beverage");
-                            break;
-                    }
+            if(!fucker.contains(form)){
+                System.out.println("adding fucker failed");
+                Pane formResult;
+                try {
+                    formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
+                    Node vbox = formResult.getChildren().get(0);
+                    if (vbox instanceof VBox) {
+                        Node fName = ((VBox) vbox).getChildren().get(1);
+                        Node bName = ((VBox) vbox).getChildren().get(2);
+                        Node aType = ((VBox) vbox).getChildren().get(3);
 
-
-                }
-                loadForms.getChildren().add(formResult);
-                formResult.setId("Alcoholbox");
-
-                formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        try {
-                            aApplicationFormControl(form);
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        ((Label) fName).setText(form.getFancifulName());
+                        ((Label) bName).setText(form.getBrandName());
+                        switch(form.getProductType()){
+                            case "WINE":
+                                ((Label) aType).setText("Wine");
+                                break;
+                            case "DISTILLED":
+                                ((Label) aType).setText("Distilled Beverage");
+                                break;
+                            case "MALT":
+                                ((Label) aType).setText("Malt Beverage");
+                                break;
                         }
-                    }
-                });
 
-            } catch (IOException e) {
-                e.printStackTrace();
+
+                    }
+                    loadForms.getChildren().add(formResult);
+                    formResult.setId("Alcoholbox");
+
+                    formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            try {
+                                aApplicationFormControl(form);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                fucker.add(form);
             }
         }
     }

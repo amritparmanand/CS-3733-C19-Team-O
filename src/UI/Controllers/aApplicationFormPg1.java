@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -115,11 +116,13 @@ public class aApplicationFormPg1 {
         alcoholPercentage.setText(form.parseGarbage(form.getAlcoholPercent()));
         alcoholPercentage.setStyle(form.parseStyle(form.getAlcoholPercent()));
 
-        phLevel.setText(form.parseGarbage(form.getpHLevel()));    // still run when the beverage is not a wine, throws NullPointer
-        phLevel.setStyle(form.parseStyle(form.getpHLevel()));
+        if (wine.isSelected()) {
+            phLevel.setText(form.parseGarbage(form.getpHLevel()));
+            phLevel.setStyle(form.parseStyle(form.getpHLevel()));
 
-        vintageYear.setText(form.parseGarbage(form.getVintageYear()));
-        vintageYear.setStyle(form.parseStyle(form.getVintageYear()));
+            vintageYear.setText(form.parseGarbage(form.getVintageYear()));
+            vintageYear.setStyle(form.parseStyle(form.getVintageYear()));
+        }
 
         wine2.setDisable(true);
         spirits2.setDisable(true);

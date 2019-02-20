@@ -37,8 +37,12 @@ public class aGetApplication {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
-        System.out.println("here");
-        ((Agent) cacheM.getAcct()).getReviewedForms(cacheM.getDbM().getConnection());
+        Agent A = (Agent) cacheM.getAcct();
+
+        if(!A.isGotOldForms()){
+            ((Agent) cacheM.getAcct()).getReviewedForms(cacheM.getDbM().getConnection());
+        }
+
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getReviewedForms();
 
         for (Form form : populatedForms) {
@@ -85,6 +89,8 @@ public class aGetApplication {
                 e.printStackTrace();
             }
         }
+
+        cacheM.setAcct(A);
     }
 
     @FXML
