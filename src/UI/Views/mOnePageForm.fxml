@@ -448,15 +448,6 @@
                                     </VBox>
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
-                                          <Label text="17. Signature of Applicant or Authorized Agent" />
-                                          <JFXTextField fx:id="applicantSig" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </VBox>
-                                    <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                       <children>
                                           <Label text="18. Print Name of Applicant or Authorized Agent" />
                                           <JFXTextField fx:id="applicantNamePrint" />
                                        </children>
