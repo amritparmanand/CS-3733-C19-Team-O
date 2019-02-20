@@ -60,8 +60,8 @@ public class mFormStorage {
                     Node bName = ((VBox) vbox).getChildren().get(2);
                     Node aType = ((VBox) vbox).getChildren().get(3);
 
-                    ((Label) fName).setText(form.getFancifulName());
-                    ((Label) bName).setText(form.getBrandName());
+                    ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
+                    ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
                     switch(form.getProductType()){
                         case "WINE":
                             ((Label) aType).setText("Wine");
