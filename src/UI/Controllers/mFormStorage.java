@@ -104,7 +104,6 @@ public class mFormStorage {
                         }
                         vbox.setStyle(style);
 
-
                     }
                     loadForms.getChildren().add(formResult);
                     formResult.setId("Alcoholbox");
@@ -127,7 +126,9 @@ public class mFormStorage {
     }
 
     @FXML public void reInitialize() throws IOException {
-        System.out.println("hi");
+        System.out.println("restarting this page");
+        initialize();
+
     }
 
     @FXML
