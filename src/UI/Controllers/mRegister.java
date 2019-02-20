@@ -115,12 +115,11 @@ public class mRegister {
             if(validManuEmail(manuEmail)){
                 emailMessage.setText("");
             }
-            if(!confirmPass(password.getText(), confirmP.getText())){
+            if(!confirmPass(password.getText(), confirmP.getText()) && (!password.getText().isEmpty() && !confirmP.getText().isEmpty())){
                 passwordMessage.setTextFill(Color.RED);
                 passwordMessage.setText("Passwords do not match");
 
-            }
-            if(confirmPass(password.getText(), confirmP.getText())){
+            }else{
                 passwordMessage.setText("");
             }
 
