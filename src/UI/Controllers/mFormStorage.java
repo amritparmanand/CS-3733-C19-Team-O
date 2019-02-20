@@ -126,8 +126,8 @@ public class mFormStorage {
         }
     }
 
-    @FXML public void reInitialize() {
-        initialize();
+    @FXML public void reInitialize() throws IOException {
+        System.out.println("hi");
     }
 
     @FXML
