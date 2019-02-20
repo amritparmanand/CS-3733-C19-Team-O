@@ -121,7 +121,7 @@ public class mApplicationFormPg4 {
     public void submit() throws Exception{
         //multiThreadWaitFor.onShutDown();
         saveDraft();
-        Form form = cacheM.getForm();
+        //Form form = cacheM.getForm();
         if(form.getCommentString() == ""){
             commentVBox.setVisible(false);
         }
@@ -132,8 +132,9 @@ public class mApplicationFormPg4 {
 //        form.setDateIssued("");
 
         try{
-            if(cacheM.getForm().getResubmission()){
-                cacheM.getForm().resubmitForm(cacheM.getDbM().getConnection());
+            System.out.println(form.getResubmission());
+            if(form.getResubmission()){
+                form.resubmitForm(cacheM.getDbM().getConnection());
             }
             else{
                 form.insertForm(cacheM.getDbM().getConnection());
@@ -191,7 +192,7 @@ public class mApplicationFormPg4 {
     @FXML public void savePDF() throws IOException {
         saveDraft();
         PDF pdf = new PDF();
-        pdf.savePDF(cacheM.getForm());
+        pdf.savePDF(form);
     }
 
 }

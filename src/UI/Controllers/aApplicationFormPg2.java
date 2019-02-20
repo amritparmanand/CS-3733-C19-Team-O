@@ -61,8 +61,8 @@ public class aApplicationFormPg2 {
         Q13Comment.setText(comments.getComment13());
 //        Form form = this.form;
 
-        applicantName.setText(form.parseGarbage(form.getPrintName()));
-        applicantName.setStyle(form.parseStyle(form.getPrintName()));
+        applicantName.setText(form.parseGarbage(form.getApplicantName()));
+        applicantName.setStyle(form.parseStyle(form.getApplicantName()));
         applicantName.setEditable(false);
 
         mailAddress.setText(form.parseGarbage(form.getMailingAddress()));

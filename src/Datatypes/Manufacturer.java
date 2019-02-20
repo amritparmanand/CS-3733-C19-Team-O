@@ -67,7 +67,8 @@ public class Manufacturer extends Account {
     @SuppressWarnings("Duplicates")
     public void setAssignedForms(Connection conn) {
         try {
-            String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE APPLICATIONS.REPID = " + this.getRepID();
+            String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID" +
+                    " WHERE APPLICATIONS.REPID ="+ this.repID +" AND NOT (FORMS.TTBID IS NULL  AND APPLICATIONS.STATUS = 'DENIED')";
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
