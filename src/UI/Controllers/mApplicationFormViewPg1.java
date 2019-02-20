@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Form;
 import Datatypes.Manufacturer;
+import Datatypes.PDF;
 import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
@@ -51,6 +52,7 @@ public class mApplicationFormViewPg1 {
     @FXML private RadioButton beer2;
     @FXML private JFXButton saveDraft;
     @FXML private Label serialMessage;
+    @FXML private JFXButton savePDF;
 
     public mApplicationFormViewPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -60,6 +62,7 @@ public class mApplicationFormViewPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+        cacheM.setForm(form);
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);
@@ -157,6 +160,11 @@ public class mApplicationFormViewPg1 {
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+
+    @FXML public void savePDF() throws IOException {
+        PDF pdf = new PDF();
+        pdf.savePDF(cacheM.getForm());
     }
 
 

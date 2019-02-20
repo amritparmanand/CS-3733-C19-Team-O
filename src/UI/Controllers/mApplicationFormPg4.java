@@ -113,7 +113,7 @@ public class mApplicationFormPg4 {
 //    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
     @FXML
-    public void submit() throws SQLException, IOException {
+    public void submit() throws Exception{
         //multiThreadWaitFor.onShutDown();
         saveDraft();
         Form form = cacheM.getForm();
@@ -142,9 +142,9 @@ public class mApplicationFormPg4 {
 
     public void checkDiff() {
 
-        if (!applicantSig.getText().equals(form.getSignature()) && applicantSig.getText().contains(style)) {
-            form.setSignature(applicantSig.getText() + style);
-        }
+//        if (!applicantSig.getText().equals(form.getSignature()) && applicantSig.getText().contains(style)) {
+//            form.setSignature(applicantSig.getText() + style);
+//        }
         if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(style)) {
             form.setPrintName(applicantNamePrint.getText() + style);
         }

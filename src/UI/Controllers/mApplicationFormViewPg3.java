@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Form;
 import Datatypes.LabelImage;
+import Datatypes.PDF;
 import Managers.*;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
@@ -108,6 +109,11 @@ public class mApplicationFormViewPg3 {
     public void logout() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
+    }
+
+    @FXML public void savePDF() throws IOException {
+        PDF pdf = new PDF();
+        pdf.savePDF(cacheM.getForm());
     }
 
 }
