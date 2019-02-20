@@ -641,7 +641,7 @@ public class Form {
 
             return result;
         }
-        return null;
+        return "";
     }
 
 
@@ -651,11 +651,11 @@ public class Form {
             if (s.contains("#")) {
                 result = s.substring(s.indexOf('-'));
             } else {
-                result = null;
+                result = "";
             }
 
             return result;
         }
-        return null;
+        return "";
     }
 }
