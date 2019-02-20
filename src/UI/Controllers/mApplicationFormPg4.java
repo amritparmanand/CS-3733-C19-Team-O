@@ -70,6 +70,9 @@ public class mApplicationFormPg4 {
     public void initialize() {
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
+        if(form.getCommentString() == ""){
+            commentVBox.setVisible(false);
+        }
         aComment.setText(form.getCommentString());
 
         if(!form.getPrintName().equals(""))

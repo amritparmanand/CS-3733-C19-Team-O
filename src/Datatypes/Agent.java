@@ -1,5 +1,7 @@
 package Datatypes;
 
+import javafx.scene.image.Image;
+
 import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -245,10 +247,12 @@ public class Agent extends Account {
         f.setVintageYear(rs.getString("vintageYear"));
         f.setpHLevel(rs.getString("pHLevel"));
         f.setCommentString(rs.getString("comments"));
+
         LabelImage formLabel = new LabelImage();
         Blob picture = rs.getBlob("labelImage");
         if (picture != null) {
             InputStream is = picture.getBinaryStream();
+            f.getLabel().setLabelImage(new Image(is));
         }
 //        f.getLabel().setLabelImage(img);
 //        Image img = new Image();

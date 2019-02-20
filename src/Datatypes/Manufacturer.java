@@ -1,5 +1,7 @@
 package Datatypes;
 
+import javafx.scene.image.Image;
+
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -68,7 +70,8 @@ public class Manufacturer extends Account {
     public void setAssignedForms(Connection conn) {
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID" +
-                    " WHERE APPLICATIONS.REPID ="+ this.repID +" AND NOT (FORMS.TTBID IS NULL  AND APPLICATIONS.STATUS = 'DENIED')";
+                    " WHERE APPLICATIONS.REPID ="+ this.repID;
+            //+ " AND NOT (FORMS.TTBID IS NULL  AND APPLICATIONS.STATUS = 'DENIED')";
             PreparedStatement ps = conn.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();
@@ -146,9 +149,8 @@ public class Manufacturer extends Account {
         Blob picture = rs.getBlob("labelImage");
         if (picture != null) {
             InputStream is = picture.getBinaryStream();
+            f.getLabel().setLabelImage(new Image(is));
         }
-//        f.getLabel().setLabelImage(img);
-//        Image img = new Image();
 
         return f;
     }

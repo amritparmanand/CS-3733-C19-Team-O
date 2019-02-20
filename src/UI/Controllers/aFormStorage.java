@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.FlowPane;
@@ -55,10 +56,13 @@ public class aFormStorage {
                 formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                 Node vbox = formResult.getChildren().get(0);
                 if (vbox instanceof VBox) {
+                    Node imgView = ((VBox) vbox).getChildren().get(0);
                     Node fName = ((VBox) vbox).getChildren().get(1);
                     Node bName = ((VBox) vbox).getChildren().get(2);
                     Node aType = ((VBox) vbox).getChildren().get(3);
 
+                    if(form.getLabel().getLabelImage() != null)
+                        ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
                     ((Label) fName).setText(form.getFancifulName());
                     ((Label) bName).setText(form.getBrandName());
                     switch(form.getProductType()){
