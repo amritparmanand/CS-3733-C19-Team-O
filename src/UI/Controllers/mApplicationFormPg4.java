@@ -132,8 +132,9 @@ public class mApplicationFormPg4 {
 //        form.setDateIssued("");
 
         try{
-            if(cacheM.getForm().getResubmission()){
-                cacheM.getForm().resubmitForm(cacheM.getDbM().getConnection());
+            System.out.println(form.getResubmission());
+            if(form.getResubmission()){
+                form.resubmitForm(cacheM.getDbM().getConnection());
             }
             else{
                 form.insertForm(cacheM.getDbM().getConnection());
