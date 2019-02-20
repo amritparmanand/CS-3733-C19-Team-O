@@ -19,7 +19,10 @@ public class Agent extends Account {
     private int ttbID;
     private ArrayList<Form> workingForms = new ArrayList<>();
     private ArrayList<Form> reviewedForms = new ArrayList<>();
+    private ArrayList<Form> newForms = new ArrayList<>();
     private boolean hasFetchedForms = false;
+    private boolean gotOldForms = false;
+    private boolean gotCurrentForms = false;
 
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID) {
         super(username, password, fullName, email, phone);
@@ -69,8 +72,38 @@ public class Agent extends Account {
     public ArrayList<Form> getReviewedForms() {
         return reviewedForms;
     }
+    public ArrayList<Form> getWorkingForms() {
+        return workingForms;
+    }
+    public ArrayList<Form> getNewForms() {
+        return newForms;
+    }
+    public boolean isHasFetchedForms() {
+        return hasFetchedForms;
+    }
+    public void setNewForms(ArrayList<Form> newForms) {
+        this.newForms = newForms;
+    }
+    public void setWorkingForms(ArrayList<Form> workingForms) {
+        this.workingForms = workingForms;
+    }
     public void setReviewedForms(ArrayList<Form> reviewedForms) {
         this.reviewedForms = reviewedForms;
+    }
+    public void setHasFetchedForms(boolean hasFetchedForms) {
+        this.hasFetchedForms = hasFetchedForms;
+    }
+    public void setGotOldForms(boolean gotOldForms) {
+        this.gotOldForms = gotOldForms;
+    }
+    public void setGotCurrentForms(boolean gotCurrentForms) {
+        this.gotCurrentForms = gotCurrentForms;
+    }
+    public boolean isGotOldForms() {
+        return gotOldForms;
+    }
+    public boolean isGotCurrentForms() {
+        return gotCurrentForms;
     }
 
     // Parse an agent object into database
@@ -101,8 +134,8 @@ public class Agent extends Account {
     // Insert this agent's ID into the selected forms
     public void assignNewForms(Connection conn, int limit) {
 
-        if (!hasFetchedForms)
-            getAssignedForms(conn);
+//        if (!hasFetchedForms)
+//            getAssignedForms(conn);
 
         System.out.println("working forms size:"+workingForms.size());
         System.out.println("limit:"+limit);
@@ -118,26 +151,19 @@ public class Agent extends Account {
                 while (rs.next() && this.workingForms.size() < limit) {
                     String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
                     insertingAgentID = insertingAgentID.concat(rs.getLong("FORMID") + ")");
-                    this.workingForms.add(formFromResultSet(rs));
+                    this.newForms.add(formFromResultSet(rs));
                     System.out.println(insertingAgentID);
                     stmt = conn.createStatement();
                     stmt.executeUpdate(insertingAgentID);
                 }
 
-//                stmt.close();
-
-//                stmt = conn.createStatement();
-//                stmt.executeUpdate(insertingAgentID);
                 stmt.close();
+                this.hasFetchedForms = true;
             } catch (SQLException e) {
                 if (!e.getSQLState().equals("X0Y32"))
                     e.printStackTrace();
             }
         }
-    }
-
-    public ArrayList<Form> getWorkingForms() {
-        return workingForms;
     }
 
     // Query the database to select forms where the TTB ID matches this agent's id
@@ -155,7 +181,7 @@ public class Agent extends Account {
                 workingForms.add(formFromResultSet(rs));
             }
             ps.close();
-            this.hasFetchedForms = true;
+            this.gotCurrentForms = true;
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
@@ -180,6 +206,7 @@ public class Agent extends Account {
                 reviewedForms.add(formFromResultSet(rs));
             }
             ps.close();
+            this.gotOldForms = true;
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
