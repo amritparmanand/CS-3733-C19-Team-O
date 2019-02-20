@@ -147,8 +147,7 @@ public class mOnePageForm {
         phLevel.setText(form.parseGarbage(form.getpHLevel()));
         vintageYear.setText(form.parseGarbage(form.getVintageYear()));
         printName.setText(form.parseGarbage(form.getApplicantName()));
-        applicantNamePrint.setText(form.parseGarbage(form.getApplicantName()));
-        System.out.println(form.getApplicantName());
+        applicantNamePrint.setText(form.parseGarbage(form.getPrintName()));
         mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
         formula.setText(form.parseGarbage(form.getFormula()));
         grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
@@ -364,10 +363,10 @@ public class mOnePageForm {
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
 
-        if (!printName.getText().isEmpty() && !form.getPrintName().contains(style)) {
+        if (!printName.getText().isEmpty() && !form.getApplicantName().contains(style)) {
             form.setApplicantName(printName.getText());
         }
-        if (!applicantNamePrint.getText().isEmpty() && !form.getApplicantName().contains(style)) {
+        if (!applicantNamePrint.getText().isEmpty() && !form.getPrintName().contains(style)) {
             form.setPrintName(applicantNamePrint.getText());
         }
         if (!mailAddress.getText().isEmpty() && !form.getMailingAddress().contains(style)) {
@@ -498,7 +497,7 @@ public class mOnePageForm {
     }
 
 
-    @SuppressWarnings("Duplicates") @FXML public void submit()throws IOException{
+    @SuppressWarnings("Duplicates") @FXML public void submit()throws Exception{
         saveDraft();
 
         if (!validFormEmail(email.getText().trim()) || !validFormPhone(phoneNumber.getText().trim())) {
