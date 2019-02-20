@@ -54,11 +54,11 @@ public class SceneManager {
     /**
      * Pop-up windows
      */
-    public void popWindow(Parent root) {
+    public void popWindow(Parent root, String title) {
         Stage stage;
         stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.setTitle("hi");
+        stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }

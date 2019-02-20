@@ -604,12 +604,18 @@ public class Form {
      * @return the result set of approved applications
      * @throws SQLException
      */
-    public ResultSet getApprovedApplications(Connection conn) throws SQLException{
+    public ResultSet getApprovedApplications(Connection conn, String condition, String type) throws SQLException{
         String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT," +
                 "VINTAGEYEAR FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
-                "WHERE APPLICATIONS.STATUS='APPROVED'";
-        ResultSet rset = conn.createStatement().executeQuery(retrieve);
+                "WHERE APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
+
+        System.out.println(retrieve);
+        PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ps.setString(1, "%"+condition+"%");
+        ps.setString(2, "%"+condition+"%");
+
+        ResultSet rset = ps.executeQuery();
         return rset;
     }
 
