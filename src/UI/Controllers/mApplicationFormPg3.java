@@ -62,7 +62,7 @@ public class mApplicationFormPg3 {
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
         resubmission.setSelected(form.getResubmission());
-        onlyState.setText(form.getOnlyState());
+        onlyState.setText(form.parseGarbage(form.getOnlyState()));
         if(form.getTtbID() != 0)
             ttbID.setText(String.valueOf(form.getTtbID()));
         bottleCapacity.setText(form.getBottleCapacity());
@@ -119,7 +119,6 @@ public class mApplicationFormPg3 {
             form.setCertificateOfExemption(certificateOfExemption.isSelected());
             if(certificateOfExemption.isSelected()) {
                 if (!onlyState.getText().isEmpty() && (!form.getOnlyState().contains(style))){
-                    System.out.println("this is weird this shouldn't pass");
                         form.setOnlyState(onlyState.getText());
                     }
             }
@@ -134,7 +133,7 @@ public class mApplicationFormPg3 {
                     }
                 }
             }else {
-                form.setOnlyState(null);
+                form.setBottleCapacity("");
             }
             form.setResubmission(resubmission.isSelected());
             if(!resubmission.isSelected())
