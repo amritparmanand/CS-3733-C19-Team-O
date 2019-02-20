@@ -98,37 +98,38 @@ public class mApplicationFormPg1 {
     @FXML
     public void initialize() {
 
-        //Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        switch(form.getProductSource()){
-            case "DOMESTIC":
-                domestic.setSelected(true);
-                break;
-            case "IMPORTED":
-                imported.setSelected(true);
-                break;
+
+        boolean isDomestic = false;
+        boolean isImported = false;
+        boolean isWine = false;
+        boolean isSpirit = false;
+        boolean isMalt = false;
+        phVBox.setVisible(false);
+        vintageVBox.setVisible(false);
+
+        if (form.getProductSource() == "DOMESTIC") {
+            isDomestic = true;
+            isImported = false;
         }
-        switch(form.getProductType()){
-            case "WINE":
-                wine.setSelected(true);
-                break;
-            case "DISTILLED":
-                distilled.setSelected(true);
-                break;
-            case "MALT":
-                malt.setSelected(true);
-                break;
+        if (form.getPrintName() == "IMPORTED") {
+            isDomestic = false;
+            isImported = true;
         }
-        switch(form.getBeerWineSpirit()){
-            case "WINE":
-                wine2.setSelected(true);
-                break;
-            case "SPIRITS":
-                spirits2.setSelected(true);
-                break;
-            case "BEER":
-                beer2.setSelected(true);
-                break;
+        if (form.getBeerWineSpirit() == "WINE") {
+            isWine = true;
+            isSpirit = false;
+            isMalt = false;
+            phLevel.setDisable(false);
+            vintageYear.setDisable(false);
+        } else if (form.getBeerWineSpirit() == "SPIRITS") {
+            isWine = false;
+            isSpirit = true;
+            isMalt = false;
+        } else if (form.getBeerWineSpirit() == "BEER") {
+            isWine = false;
+            isSpirit = false;
+            isMalt = true;
         }
         if (form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
@@ -155,10 +156,8 @@ public class mApplicationFormPg1 {
         vintageYear.setText(form.parseGarbage(form.getVintageYear()));
     }
 
-
     @FXML
     public void saveDraft() {
-//        Form form = cacheM.getForm();
 
         if (form.getTtbID() != 0) {
             checkDiff();

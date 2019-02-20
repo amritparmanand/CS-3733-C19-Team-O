@@ -40,7 +40,6 @@ public class mApplicationFormViewPg3 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
-        Form form = cacheM.getForm();
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());

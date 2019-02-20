@@ -51,7 +51,6 @@ public class mApplicationFormViewPg2 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
-        Form form = this.form;
 
         printName.setText(form.getPrintName());
         printName.setEditable(false);

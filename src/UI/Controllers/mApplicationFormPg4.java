@@ -128,10 +128,7 @@ public class mApplicationFormPg4 {
                 cacheM.getForm().resubmitForm(cacheM.getDbM().getConnection());
             }
             else{
-                if(!form.isValid()) {
-                  errorLabel2.setText("Missing required fields.");
-                  return;
-                }
+                form.insertForm(cacheM.getDbM().getConnection());
             }
         }catch(SQLException e){
             e.printStackTrace();

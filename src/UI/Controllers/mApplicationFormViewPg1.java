@@ -60,7 +60,6 @@ public class mApplicationFormViewPg1 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
-        cacheM.setForm(form);
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);

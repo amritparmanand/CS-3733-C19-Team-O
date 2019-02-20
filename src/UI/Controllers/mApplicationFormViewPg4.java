@@ -50,10 +50,10 @@ public class mApplicationFormViewPg4 {
 
     @FXML
     public void initialize() {
-        Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
         System.out.println("starting");
+        if(form.getPrintName() != "")
             applicantNamePrint.setText(form.getPrintName());
         else
             applicantNamePrint.setText(manAcc.getFullName());

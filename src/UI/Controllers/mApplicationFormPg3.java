@@ -57,7 +57,6 @@ public class mApplicationFormPg3 {
     }
 
     @FXML public void initialize() {
-        Form form = cacheM.getForm();
         image = form.getLabel();
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());

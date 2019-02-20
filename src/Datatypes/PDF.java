@@ -37,7 +37,7 @@ import java.io.IOException;
 
 public class PDF {
 
-    File NrawPDF = new File("/Users/robertrinearson/Documents/iteration2/src/Resources/ttbpdf.pdf");
+    File NrawPDF = new File("src/Resources/ttbpdf.pdf");
     PDDocument NformPDF = PDDocument.load(NrawPDF);
 
     PDPage NformPage1 = NformPDF.getPage(0);

@@ -37,7 +37,7 @@
                         </Text>
                   <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="873.0">
                      <children>
-                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
+                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Back">
                            <HBox.margin>
                               <Insets left="10.0" right="20.0" />
                            </HBox.margin>
