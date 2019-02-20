@@ -162,6 +162,11 @@ public class LoginPage implements SerialPortDataListener {
     public void serialEvent(SerialPortEvent event) {
     }
 
+    @FXML public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
+        sceneM.changeScene(loader, new startPage(sceneM, cacheM));
+    }
+
     @FXML
     @SuppressWarnings("Duplicates")
     public void login() throws IOException {
@@ -219,13 +224,6 @@ public class LoginPage implements SerialPortDataListener {
         // Search
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-    }
-
-    @FXML
-    public void aboutUs() throws IOException {
-        // Search
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
-        sceneM.changeScene(loader, new AboutUs(sceneM, cacheM));
     }
 
     @FXML

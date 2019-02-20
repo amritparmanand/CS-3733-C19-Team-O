@@ -17,6 +17,8 @@ public class startPage {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
+
+    @FXML JFXTextField search;
     
     @FXML public void login() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
@@ -24,6 +26,7 @@ public class startPage {
     }
 
     @FXML public void search() throws IOException {
+        cacheM.setSearch(search.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }

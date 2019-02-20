@@ -58,7 +58,7 @@ public class SearchPage {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         ObservablePane op = null;
 
         for (int i = 0; i < 15; i++) {
@@ -69,6 +69,11 @@ public class SearchPage {
                 System.out.println(e.fillInStackTrace());
             }
             searchTether.subscribe(op);
+        }
+
+        searchBox.setText(cacheM.getSearch());
+        if(!searchBox.getText().isEmpty()){
+            search();
         }
     }
 
@@ -249,6 +254,7 @@ public class SearchPage {
             }
         } else {
             System.out.println("User cancelled the operation");
+            System.out.println(cacheM.getFormat());
         }
     }
 
