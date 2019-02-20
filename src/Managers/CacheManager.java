@@ -20,9 +20,9 @@ public class CacheManager {
     private Form form;
     private Account acct;
     private SearchResult selectedResult;
-    private int formLimit;
-    private String fuzzy;
-    private char format;
+    private int formLimit = 5;
+    private String fuzzy = "hiddenScore";
+    private char format = ',';
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;

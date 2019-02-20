@@ -39,8 +39,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author Amrit Parmanand & Robert Rinearson
- * @version It 1
+ * @author Amrit Parmanand & Robert Rinearson & Percy
+ * @version It 3
  * Controller for SearchPage of UI
  */
 public class SearchPage {
@@ -53,6 +53,7 @@ public class SearchPage {
 
     String oldSearch = "";
     ResultSet approvedResults;
+    String searchType;
 
     public SearchPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -115,66 +116,18 @@ public class SearchPage {
     @FXML
     private Label didYouMean;
     @FXML
-    private MenuItem sqlSearch;
-    @FXML
-    private MenuItem lSearch;
-    @FXML
-    private MenuItem dlSearch;
-    @FXML
-    private MenuItem hiddenScore;
-    @FXML
-    private MenuButton algChoose;
-    @FXML
     private Label pageNum;
     @FXML
     private JFXButton pageButton;
     @FXML
     private JFXTextField delim;
 
-
-    @FXML
-    public void searchSQL() throws IOException {
-        SQL = true;
-        Levi = false;
-        DLevi = false;
-        hiddenS = false;
-        algChoose.setText("SQL");
-    }
-
-    @FXML
-    public void searchLevi() throws IOException {
-        SQL = false;
-        Levi = true;
-        DLevi = false;
-        hiddenS = false;
-        algChoose.setText("Levenshtein");
-    }
-
-    @FXML
-    public void searchDLevi() throws IOException {
-        SQL = false;
-        Levi = false;
-        DLevi = true;
-        hiddenS = false;
-        algChoose.setText("Damerau-Levenshtein");
-    }
-
-    @FXML
-    public void searchHiddenS() throws IOException {
-        SQL = false;
-        Levi = false;
-        DLevi = false;
-        hiddenS = true;
-        algChoose.setText("Hidden Score");
-    }
-
     @FXML
     public void back() throws IOException {
         //sceneM.backScene();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
-        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
+        sceneM.changeScene(loader, new startPage(sceneM, cacheM));
     }
-
 
     @FXML
     public void searchSuggest() throws SQLException {
@@ -196,15 +149,16 @@ public class SearchPage {
         oldSearch = searchBox.getText();
 
         // Perform fuzzy search based on user's choice
-        String suggestion = "";
+        String suggestion;
         FuzzyContext fc = new FuzzyContext();
-        if (SQL) {
+        this.searchType = cacheM.getFuzzy();
+        if (this.searchType.equals("SQL")) {
             fc.setF(new SQL());
-        } else if (Levi) {
+        } else if (this.searchType.equals("Levenshtein")) {
             fc.setF(new Levenshtein());
-        } else if (DLevi) {
+        } else if (this.searchType.equals("Damerau")) {
             fc.setF(new Damerau_Levenshtein());
-        } else if (hiddenS) {
+        } else if (this.searchType.equals("hiddenScore")) {
             fc.setF(new hiddenScore());
         }
         suggestion = fc.fuzzy(searchBox.getText(), cacheM.getDbM().getConnection());
