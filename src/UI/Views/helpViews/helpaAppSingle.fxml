@@ -30,6 +30,9 @@
             <Image url="@../../Icons/TTB-logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="281.0" fitWidth="495.0" layoutX="3.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="281.0" fitWidth="495.0" layoutX="3.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@HelpGifs/aAppMulti.gif" />
+         </image></ImageView>
    </children>
 </AnchorPane>

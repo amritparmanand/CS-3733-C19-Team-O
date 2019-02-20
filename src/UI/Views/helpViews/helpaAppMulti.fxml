@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="501.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.helpBox">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="501.0" styleClass="backPane" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.helpBox">
    <children>
       <Rectangle arcHeight="40.0" fill="DODGERBLUE" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="cardtext" width="501.0" AnchorPane.bottomAnchor="285.0" AnchorPane.topAnchor="0.0" />
       <Text fill="WHITE" layoutX="217.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Help" textAlignment="CENTER" wrappingWidth="66.11975231766701">
@@ -30,6 +31,13 @@
             <Image url="@../../Icons/TTB-logo.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="281.0" fitWidth="495.0" layoutX="2.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="281.0" fitWidth="495.0" layoutX="3.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@HelpGifs/aAppMulti.gif" />
+         </image></ImageView>
    </children>
+   <stylesheets>
+      <URL value="@../../style/ui-mockup-stylesheet.css" />
+      <URL value="@../../style/ui-mockup-stylesheet.css" />
+   </stylesheets>
 </AnchorPane>
