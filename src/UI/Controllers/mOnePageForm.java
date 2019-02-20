@@ -264,7 +264,7 @@ public class mOnePageForm {
     @FXML public void savePDF() throws IOException {
         saveDraft();
         PDF pdf = new PDF();
-        pdf.savePDF(cacheM.getForm());
+        pdf.savePDF(form);
     }
 
     @FXML

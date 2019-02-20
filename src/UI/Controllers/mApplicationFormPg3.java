@@ -143,7 +143,7 @@ public class mApplicationFormPg3 {
                 form.setBottleCapacity("");
             }
             form.setResubmission(resubmission.isSelected());
-        System.out.println(resubmission.isSelected());
+            System.out.println(form.getResubmission());
             if(!resubmission.isSelected())
                 form.setTtbID(0);
             else
@@ -211,7 +211,7 @@ public class mApplicationFormPg3 {
     @FXML public void savePDF() throws IOException {
         saveDraft();
         PDF pdf = new PDF();
-        pdf.savePDF(cacheM.getForm());
+        pdf.savePDF(form);
     }
 
 
