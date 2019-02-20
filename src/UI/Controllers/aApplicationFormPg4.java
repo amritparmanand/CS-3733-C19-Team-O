@@ -117,7 +117,7 @@ public class aApplicationFormPg4 {
         form.setSignature(signature.getText());
         form.setDateIssued(dateIssued.getValue().toString());
         cacheM.getForm().setComments(comments);
-        System.out.println(comments.generateComments(comments));
+        System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
         goToHomePage();
     }

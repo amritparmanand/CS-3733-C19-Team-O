@@ -80,10 +80,10 @@ public class CacheManager {
         form.approve(conn);
 
     }
-    public void denyForm(Connection conn){
+    public void denyForm(Connection conn) throws Exception{
         form.deny(conn);
     }
-    public void insertForm(Connection connection) throws SQLException, FileNotFoundException {
+    public void insertForm(Connection connection) throws Exception {
         form.insertForm(connection);
     }
     public ResultSet getApprovedApplications(Connection conn) throws SQLException{

@@ -219,7 +219,7 @@ public class aApplicationFormPg1 {
         comments.setComment6(Q6Comment.getText());
         comments.setComment7(Q7Comment.getText());
         cacheM.getForm().setComments(comments);
-        System.out.println(comments.generateComments(comments));
+        System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
         goToHomePage();
     }

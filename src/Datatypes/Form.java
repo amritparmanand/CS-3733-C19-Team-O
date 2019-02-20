@@ -341,7 +341,7 @@ public class Form {
     }
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) throws Exception{
-        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED',COMMENTS = "+ comments.generateComments() + " WHERE FORMID ="+ this.formID;
+        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED', COMMENTS = '"+ comments.generateComments() + "' WHERE FORMID ="+ this.formID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 

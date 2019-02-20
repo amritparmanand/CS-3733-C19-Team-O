@@ -147,7 +147,7 @@ public class aApplicationFormPg2 {
         comments.setComment11(Q11Comment.getText());
         comments.setComment12(Q12Comment.getText());
         comments.setComment13(Q13Comment.getText());
-        System.out.println(comments.generateComments(comments));
+        System.out.println(comments.generateComments());
         goToHomePage();
     }
 
