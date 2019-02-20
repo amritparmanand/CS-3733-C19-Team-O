@@ -47,6 +47,7 @@ public class Form {
     private String signature;
     private String dateIssued;
     private Comments comments;
+    private String commentString;
 
 
     // Constructor
@@ -83,6 +84,7 @@ public class Form {
         this.dateIssued = "";
         this.label = new LabelImage();
         this.comments = new Comments();
+        this.commentString = "";
     }
 
     // Getters and setters
@@ -274,6 +276,12 @@ public class Form {
     public void setComments(Comments comments) {
         this.comments = comments;
     }
+    public String getCommentString() {
+        return commentString;
+    }
+    public void setCommentString(String commentString) {
+        this.commentString = commentString;
+    }
 
     @SuppressWarnings("Duplicates")
     public void approve(Connection conn) {
@@ -332,8 +340,8 @@ public class Form {
         }
     }
     @SuppressWarnings("Duplicates")
-    public void deny(Connection conn) {
-        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED' WHERE FORMID ="+ this.formID;
+    public void deny(Connection conn) throws Exception{
+        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED',COMMENTS = "+ comments.generateComments() + " WHERE FORMID ="+ this.formID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
@@ -448,9 +456,9 @@ public class Form {
      * @param dateSubmitted
      * @throws SQLException
      */
-    public void addApp(Connection connection, int formID, int repID, String dateSubmitted, String dateIssued, String signature) throws SQLException{
-        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS, DATEISSUED, SIGNATURE) " +
-                "VALUES(?,?,?,?,?,?,?,?,?,?)";
+    public void addApp(Connection connection, int formID, int repID, String dateSubmitted, String dateIssued, String signature) throws SQLException, Exception{
+        String Apps1 = "INSERT INTO Applications(APPID, FORMID, REPID, TTBID, DATESUBMITTED, DATEAPPROVED, DATEREJECTED,STATUS, DATEISSUED, SIGNATURE, COMMENTS) " +
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(Apps1);
         ResultSet seqVal;
         try {
@@ -466,6 +474,7 @@ public class Form {
             prepStmt.setString(8, "PENDING");
             prepStmt.setString(9, dateIssued);
             prepStmt.setString(10,signature);
+            prepStmt.setNull(11, Types.VARCHAR);
             prepStmt.executeUpdate();
             prepStmt.close();
 
@@ -479,7 +488,7 @@ public class Form {
      * @param connection
      * @throws SQLException
      */
-    public void insertForm(Connection connection) throws SQLException, FileNotFoundException {
+    public void insertForm(Connection connection) throws  Exception {
 
         String Forms1 = "INSERT INTO Forms(FORMID, REPID, BREWERNUMBER, PRODUCTSOURCE, SERIALNUMBER, " +
                 "PRODUCTTYPE, BRANDNAME, FANCIFULNAME, APPLICANTNAME, MAILINGADDRESS, FORMULA, GRAPEVARIETAL, " +

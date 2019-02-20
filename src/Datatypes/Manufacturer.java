@@ -140,6 +140,7 @@ public class Manufacturer extends Account {
         f.setAlcoholPercent(rs.getString("alcoholPercent"));
         f.setVintageYear(rs.getString("vintageYear"));
         f.setpHLevel(rs.getString("pHLevel"));
+        f.setCommentString(rs.getString("comments"));
         LabelImage formLabel = new LabelImage();
         Blob picture = rs.getBlob("labelImage");
         if (picture != null) {

@@ -177,7 +177,7 @@ public class Comments {
         comments.set(19, comment19);
     }
 
-    public String generateComments(Object c) throws Exception
+    public String generateComments() throws Exception
     {
         String commentBlurb = "";
 
