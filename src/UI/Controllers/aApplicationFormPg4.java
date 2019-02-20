@@ -68,7 +68,7 @@ public class aApplicationFormPg4 {
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
         dateOfApplication.setEditable(false);
-        printName.setText(form.getPrintName());
+        printName.setText(form.parseGarbage(form.getPrintName()));
         printName.setEditable(false);
         signature.setText(form.getSignature());
         if(!form.getDateIssued().isEmpty()){
@@ -118,6 +118,7 @@ public class aApplicationFormPg4 {
         form.setDateIssued(dateIssued.getValue().toString());
         System.out.println(comments.generateComments(comments));
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        goToHomePage();
     }
 
     @FXML

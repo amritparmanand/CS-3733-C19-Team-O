@@ -31,9 +31,6 @@ public class mFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private Button backToMHome;
-    @FXML private JFXButton search;
-    @FXML private JFXButton newForm;
     @FXML private JFXCheckBox approved;
     @FXML private JFXCheckBox pending;
     @FXML private JFXCheckBox denied;
@@ -44,16 +41,8 @@ public class mFormStorage {
         this.cacheM = cacheM;
     }
 
-
-
-    @FXML
-    public void newForm() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
-    }
-
     @SuppressWarnings("Duplicates")
-    @FXML public void getForms() throws IOException {
+    @FXML public void initialize(){
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
         manAcc.retrieveAssignedForms(cacheM.getDbM().getConnection());
 
@@ -83,11 +72,24 @@ public class mFormStorage {
                             break;
                     }
 
+                    String style = "";
+                    switch(form.getFormStatus(cacheM.getDbM().getConnection())){
+                        case "APPROVED":
+                            style = "-fx-background-color: #e4f7ef;\n";
+                            break;
+                        case "DENIED":
+                            style = "-fx-background-color: #fcedec;\n";
+                            break;
+                        case "PENDING":
+                            style = "-fx-background-color: #fbf8e1;\n";
+                            break;
+                    }
+                    vbox.setStyle(style);
+
 
                 }
                 loadForms.getChildren().add(formResult);
                 formResult.setId("Alcoholbox");
-
                 formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -102,17 +104,25 @@ public class mFormStorage {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }}
+        }
+    }
 
     @FXML
     public void mApplicationFormControl(Form form) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
+        if (!form.getFormStatus(cacheM.getDbM().getConnection()).equals("DENIED")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
+            sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
+        }
+        else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
+            sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM, form));
+        }
     }
+
     @FXML
-    public void searchPage() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+    public void logout() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
 
     @FXML

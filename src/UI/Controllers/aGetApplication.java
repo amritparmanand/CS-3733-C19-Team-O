@@ -35,23 +35,14 @@ public class aGetApplication {
 
     @FXML private FlowPane loadFormPane;
 
-    @FXML
-    public void back() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
-        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
-    }
-
-    @FXML
-    public void aApplicationFormControl(Form form) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
-    }
-
     @SuppressWarnings("Duplicates")
-    @FXML
-    public void loadForms() {
-        System.out.println("here");
-        ((Agent) cacheM.getAcct()).getReviewedForms(cacheM.getDbM().getConnection());
+    @FXML public void initialize(){
+        Agent A = (Agent) cacheM.getAcct();
+
+        if(!A.isGotOldForms()){
+            ((Agent) cacheM.getAcct()).getReviewedForms(cacheM.getDbM().getConnection());
+        }
+
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getReviewedForms();
 
         for (Form form : populatedForms) {
@@ -98,6 +89,20 @@ public class aGetApplication {
                 e.printStackTrace();
             }
         }
+
+        cacheM.setAcct(A);
+    }
+
+    @FXML
+    public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
+        sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+    }
+
+    @FXML
+    public void aApplicationFormControl(Form form) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
+        sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
 
     @FXML

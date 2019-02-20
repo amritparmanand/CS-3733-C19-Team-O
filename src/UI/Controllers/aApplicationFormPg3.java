@@ -72,6 +72,11 @@ public class aApplicationFormPg3 {
         certificateOfApproval.setDisable(true);
         certificateOfExemption.setDisable(true);
         DistinctiveLiquor.setDisable(true);
+        onlyState.setText(form.parseGarbage(form.getOnlyState()));
+        onlyState.setStyle(form.parseStyle(form.getOnlyState()));
+        bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
+        bottleCapacity.setStyle(form.parseStyle(form.getBottleCapacity()));
+        System.out.println(form.parseStyle(form.getBottleCapacity()));
         resubmission.setDisable(true);
         onlyState.setText(form.getOnlyState());
         if(form.getTtbID() != 0)
@@ -118,6 +123,7 @@ public class aApplicationFormPg3 {
         comments.setComment14(Q14Comment.getText());
         comments.setComment15(Q15Comment.getText());
         System.out.println(comments.generateComments(comments));
+        goToHomePage();
     }
 
     @FXML

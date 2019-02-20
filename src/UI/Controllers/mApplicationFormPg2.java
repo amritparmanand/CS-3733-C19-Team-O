@@ -35,7 +35,7 @@ public class mApplicationFormPg2 {
     private CacheManager cacheM;
     private String phoneNumberString;
     private String formEmail;
-
+    private Form form;
     @FXML private AnchorPane mainPane;
 
     @FXML private VBox hideBox;
@@ -52,75 +52,108 @@ public class mApplicationFormPg2 {
     @FXML private JFXTextField email;
     @FXML private JFXButton pdfButton;
 
+    String style = "-fx-background-color: #94BDFF;";
+
+    public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
+
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        form = cacheM.getForm();
     }
-
     @FXML public void initialize(){
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        Form form = cacheM.getForm();
-        printName.setText(form.getApplicantName());
-        mailAddress.setText(form.getMailingAddress());
-        formula.setText(form.getFormula());
-        grapes.setText(form.getGrapeVarietal());
+        printName.setText(form.parseGarbage(form.getPrintName()));
+        mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
+        formula.setText(form.parseGarbage(form.getFormula()));
+        grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
         appellation.setText(form.getAppellation());
         if(!form.getPhoneNumber().equals(""))
-            phoneNumber.setText(form.getPhoneNumber());
+            phoneNumber.setText(form.parseGarbage(form.getPhoneNumber()));
         else
             phoneNumber.setText(manAcc.getPhone());
         if(!form.getEmailAddress().equals(""))
-            email.setText(form.getEmailAddress());
+            email.setText(form.parseGarbage(form.getEmailAddress()));
         else
             email.setText(manAcc.getEmail());
         wineFieldCheck();
     }
 
     @FXML public void saveDraft() {
-        Form form = cacheM.getForm();
+
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
 
-        form.setApplicantName(printName.getText());
-        form.setMailingAddress(mailAddress.getText());
-        form.setFormula(formula.getText());
-        form.setGrapeVarietal(grapes.getText());
-        form.setAppellation(appellation.getText());
+        if (!printName.getText().isEmpty() && !form.getPrintName().contains(style)) {
+            form.setPrintName(printName.getText());
+        }
+        if (!mailAddress.getText().isEmpty() && !form.getMailingAddress().contains(style)) {
+            form.setMailingAddress(mailAddress.getText());
+        }
+        if (!formula.getText().isEmpty() && !form.getFormula().contains(style)) {
+            form.setFormula(formula.getText());
+        }
+        if (!grapes.getText().isEmpty() && !form.getGrapeVarietal().contains(style)) {
+            form.setGrapeVarietal(grapes.getText());
+        }
+        if (!appellation.getText().isEmpty() && !form.getAppellation().contains(style)) {
+            form.setAppellation(appellation.getText());
+        }
+
         if (validFormPhone(phoneNumberString)) {
-            form.setPhoneNumber(phoneNumberString);
+            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+                form.setPhoneNumber(phoneNumberString);
+            }
             System.out.println("valid phone number");
         } else {
             System.out.println("invalid phone number");
         }
+
         if (validFormEmail(formEmail)) {
-            form.setEmailAddress(email.getText());
+            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
+                form.setEmailAddress(email.getText());
+            }
             System.out.println("valid email");
         } else {
             System.out.println("invalid email");
         }
+
         if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
             form.setGrapeVarietal("");
             form.setAppellation("");
         }
 
 
-        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
-            System.out.println("Unable to save. Invalid fields entered");
-            saveDraftMessage.setTextFill(Color.RED);
-            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
-        }
-        else {
+        //I think this call is extraneous
+//        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
+//            System.out.println("Unable to save. Invalid fields entered");
+//            saveDraftMessage.setTextFill(Color.RED);
+//            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
+//        }
+ //       else {
             saveDraftMessage.setText("");
-            form.setPhoneNumber(phoneNumberString);
-            form.setEmailAddress(formEmail);
+            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+                form.setPhoneNumber(phoneNumberString);
+            }
+            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
+                form.setEmailAddress(formEmail);
+            }
             cacheM.setForm(form);
 
             System.out.println("save Draft executed");
-        }
+     //   }
     }
 
+    @SuppressWarnings("Duplicates")
     @FXML public void wineFieldCheck(){
         if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
             grapes.setEditable(false);
@@ -130,44 +163,46 @@ public class mApplicationFormPg2 {
         }
     }
 
-//    /**
-//     * The multi-thread function
-//     * Saves draft every 5 seconds
-//     */
-//    callableFunction cf = new callableFunction() {
-//        @Override
-//        public void call() {
-//            if(printName != null && mailAddress != null && formula != null && grapes != null && appellation != null
-//                    && phoneNumber != null && email != null){
-//                saveDraft();
-//            }
-//        }
-//    };
-//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
+    public void checkDiff() {
+        if (!printName.getText().equals(form.getPrintName()) && !printName.getText().contains(style)) {
+            form.setPrintName(printName.getText() + style);
+        }
+        if (!mailAddress.getText().equals(form.getMailingAddress()) && !mailAddress.getText().contains(style)) {
+            form.setMailingAddress(mailAddress.getText() + style);
+        }
+        if (!formula.getText().equals(form.getFormula()) && !formula.getText().contains(style)) {
+            form.setFormula(formula.getText() + style);
+        }
+        if (!grapes.getText().equals(form.getGrapeVarietal()) && !grapes.getText().contains(style)) {
+            form.setGrapeVarietal(grapes.getText() + style);
+        }
+        if(!appellation.getText().equals(form.getAppellation()) && !appellation.getText().contains(style)) {
+            form.setAlcoholPercent(appellation.getText() + style);
+        }
+        if(!phoneNumber.getText().equals(form.getPhoneNumber()) && !phoneNumber.getText().contains(style)) {
+            form.setPhoneNumber(phoneNumber.getText() + style);
+        }
+        if(!email.getText().equals(form.getEmailAddress()) && !email.getText().contains(style)) {
+            form.setEmailAddress(email.getText() + style);
+        }
 
+    }
 
     @FXML public void nextPage() throws IOException {
         saveDraft();
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM, form));
     }
     @FXML public void previousPage() throws IOException {
         saveDraft();
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
-    }
-    @FXML public void searchPage() throws IOException {
-//        multiThreadWaitFor.onShutDown();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM, form));
     }
     @FXML public void goToHomePage() throws IOException {
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
+
 
     @FXML
     public void onePage() throws IOException {

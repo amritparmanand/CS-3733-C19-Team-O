@@ -118,9 +118,7 @@ public class mRegister {
             if(!confirmPass(password.getText(), confirmP.getText())){
                 passwordMessage.setTextFill(Color.RED);
                 passwordMessage.setText("Passwords do not match");
-
-            }
-            if(confirmPass(password.getText(), confirmP.getText())){
+            }else{
                 passwordMessage.setText("");
             }
 

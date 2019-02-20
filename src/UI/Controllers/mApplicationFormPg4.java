@@ -36,6 +36,8 @@ import java.time.format.DateTimeFormatter;
 public class mApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private Form form;
+    String style = "-fx-background-color: #94BDFF;";
 
     @FXML private Button previous;
     @FXML private Button search;
@@ -48,15 +50,21 @@ public class mApplicationFormPg4 {
     @FXML private JFXButton pdfButton;
 
 
+    public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
+
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
+    }
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM) {
 
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        this.form = cacheM.getForm();
     }
 
     @FXML
     public void initialize() {
-        Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 
         if(!form.getPrintName().equals(""))
@@ -72,12 +80,18 @@ public class mApplicationFormPg4 {
     }
 
     public void saveDraft(){
-        Form form = cacheM.getForm();
 
         if(dateOfApplication.getValue() != null)
             form.setDateOfApplication(dateOfApplication.getValue().toString());
-        if(!applicantNamePrint.getText().isEmpty())
-            form.setPrintName(applicantNamePrint.getText());
+        if (!applicantNamePrint.getText().isEmpty()) {
+            if(!form.getPrintName().contains(style)){
+                form.setPrintName(applicantNamePrint.getText());
+            }
+        }
+
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
         cacheM.setForm(form);
         System.out.println("Pg4 Saved!");
@@ -103,16 +117,24 @@ public class mApplicationFormPg4 {
         //multiThreadWaitFor.onShutDown();
         saveDraft();
         Form form = cacheM.getForm();
-        System.out.println(form.isValid());
-        if(!form.isValid()) {
-            errorLabel2.setText("Missing required fields.");
-            return;
-        }else {
-            try {
-                cacheM.insertForm(cacheM.getDbM().getConnection());
-            } catch (SQLException e) {
-                e.printStackTrace();
+
+        form.setDateOfApplication(dateOfApplication.getValue().toString());
+        // form.setSignatureOfApplicant(applicantSig.getText());
+        form.setPrintName(applicantNamePrint.getText());
+//        form.setDateIssued("");
+
+        try{
+            if(cacheM.getForm().getResubmission()){
+                cacheM.getForm().resubmitForm(cacheM.getDbM().getConnection());
             }
+            else{
+                if(!form.isValid()) {
+                  errorLabel2.setText("Missing required fields.");
+                  return;
+                }
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
         }
 
         Form cleanForm = new Form();
@@ -121,11 +143,20 @@ public class mApplicationFormPg4 {
 
     }
 
+    public void checkDiff() {
+
+        if (!applicantSig.getText().equals(form.getSignature()) && applicantSig.getText().contains(style)) {
+            form.setSignature(applicantSig.getText() + style);
+        }
+        if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(style)) {
+            form.setPrintName(applicantNamePrint.getText() + style);
+        }
+    }
 
     @FXML public void previousPage() throws IOException {
         //multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM));
+        sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM, form));
     }
     @FXML public void searchPage() throws IOException {
         //multiThreadWaitFor.onShutDown();

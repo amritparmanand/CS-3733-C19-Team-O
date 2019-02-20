@@ -55,6 +55,9 @@ public class mApplicationFormViewPg4 {
 
         System.out.println("starting");
             applicantNamePrint.setText(form.getPrintName());
+        else
+            applicantNamePrint.setText(manAcc.getFullName());
+        applicantNamePrint.setEditable(false);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         if(!form.getDateOfApplication().isEmpty()){
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));

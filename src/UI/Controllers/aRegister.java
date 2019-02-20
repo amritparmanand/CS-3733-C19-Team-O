@@ -143,7 +143,7 @@ public class aRegister {
             if(confirmPass(password.getText(), confirmP.getText())){
                 passwordMessage.setText("");
             }
-            if(!validUsername(agentUsername)){
+            if(!validUsername(agentUsername) && !agentUsername.isEmpty()){
                 usernameMessage.setTextFill(Color.RED);
                 usernameMessage.setText("Username cannot have spaces, special characters");
             }
