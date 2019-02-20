@@ -74,16 +74,21 @@ public class aApplicationFormPg1 {
             case "DOMESTIC":
                 domestic.setSelected(true);
                 domestic.setOpacity(1);
+                if(!form.getProductSource().contains("#")){
+                    domestic.setOpacity(0.4);
+                }
                 domestic.setStyle(form.parseStyle(form.getProductSource()));
                 System.out.println(form.parseStyle(form.getProductSource()));
                 break;
             case "IMPORTED":
                 imported.setSelected(true);
                 imported.setOpacity(1);
+                if(!form.getProductSource().contains("#")){
+                    imported.setOpacity(0.4);
+                }
                 imported.setStyle(form.parseStyle(form.getProductSource()));
                 System.out.println(form.parseStyle(form.getProductSource()));
                 break;
-
         }
 
         System.out.println(form.getProductType());
@@ -91,16 +96,25 @@ public class aApplicationFormPg1 {
             case "WINE":
                 wine.setSelected(true);
                 wine.setOpacity(1);
+                if(!form.getProductType().contains("#")){
+                    wine.setOpacity(0.4);
+                }
                 wine.setStyle(form.parseStyle(form.getProductType()));
                 break;
             case "DISTILLED":
                 spirits.setSelected(true);
                 spirits.setOpacity(1);
+                if(!form.getProductType().contains("#")){
+                    spirits.setOpacity(0.4);
+                }
                 spirits.setStyle(form.parseStyle(form.getProductType()));
                 break;
             case "MALT":
                 malt.setSelected(true);
                 malt.setOpacity(1);
+                if(!form.getProductType().contains("#")){
+                    malt.setOpacity(0.4);
+                }
                 malt.setStyle(form.parseStyle(form.getProductType()));
                 break;
         }
@@ -110,16 +124,25 @@ public class aApplicationFormPg1 {
             case "WINE":
                 wine2.setSelected(true);
                 wine2.setOpacity(1);
+                if(!form.getBeerWineSpirit().contains("#")){
+                    wine2.setOpacity(0.4);
+                }
                 wine2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "SPIRITS":
                 spirits2.setSelected(true);
                 spirits2.setOpacity(1);
+                if(!form.getBeerWineSpirit().contains("#")){
+                    spirits2.setOpacity(0.4);
+                }
                 spirits2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "BEER":
                 beer2.setSelected(true);
                 beer2.setOpacity(1);
+                if(!form.getBeerWineSpirit().contains("#")){
+                    beer2.setOpacity(0.4);
+                }
                 beer2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
         }
