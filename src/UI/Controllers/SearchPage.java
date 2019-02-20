@@ -128,6 +128,8 @@ public class SearchPage {
     private Label pageNum;
     @FXML
     private JFXButton pageButton;
+    @FXML
+    private JFXTextField delim;
 
 
     @FXML
@@ -190,6 +192,7 @@ public class SearchPage {
 
         if (searchBox.getText() == oldSearch)
             return;
+
         oldSearch = searchBox.getText();
 
         // Perform fuzzy search based on user's choice
@@ -261,8 +264,13 @@ public class SearchPage {
                 System.out.println(path);
                 PrintWriter writer = new PrintWriter(path + "/" + "search-results.csv", "UTF-8");
 
-                writer.println("sep=;");
-                writer.println("FANCIFUL NAME;COMPANY NAME;ALCOHOL TYPE;ALCOHOL TYPE2;PH LEVEL;ALCOHOL PERCENT;YEAR");
+                String delimi = delim.getText();
+                if(delimi == "" || delimi == null) {
+                    delimi = ",";
+                }
+
+                writer.println("sep=" + delimi);
+                writer.println("FANCIFUL NAME"+delimi+"COMPANY NAME"+delimi+"ALCOHOL TYPE"+delimi+"ALCOHOL TYPE2"+delimi+"PH LEVEL"+delimi+"ALCOHOL PERCENT"+delimi+"YEAR");
 
                 int row = approvedResults.getRow();
                 if (approvedResults.first()) {
@@ -271,7 +279,7 @@ public class SearchPage {
                         //holder variable to hold the type of alcohol for printing
                         String alcoholType = approvedResults.getString("PRODUCTTYPE");
 
-                        writer.println(approvedResults.getString("FANCIFULNAME") + ";" + approvedResults.getString("BRANDNAME") + ";" + alcoholType + ";" + alcoholType + ";" + approvedResults.getString("PHLEVEL") + ";" + approvedResults.getString("ALCOHOLPERCENT") + ";" + approvedResults.getString("VINTAGEYEAR"));
+                        writer.println(approvedResults.getString("FANCIFULNAME") + delimi + approvedResults.getString("BRANDNAME") + delimi + alcoholType + delimi + alcoholType + delimi + approvedResults.getString("PHLEVEL") + delimi + approvedResults.getString("ALCOHOLPERCENT") + delimi + approvedResults.getString("VINTAGEYEAR"));
                     }
                     while (approvedResults.next());
                 }
