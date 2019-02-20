@@ -32,24 +32,60 @@ public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML
-    private FlowPane loadForms;
-    @FXML
-    private JFXButton getFormsButton;
-    @FXML
-    private JFXButton back;
-    @FXML
-    private JFXButton logout;
-    @FXML
-    private JFXButton search;
-    @FXML
-    private VBox getApp;
-    @FXML
-    private JFXTextField formLimit;
+    @FXML private FlowPane loadForms;
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+    }
+
+    @SuppressWarnings("Duplicates") @FXML public void initialize(){
+        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
+
+        for (Form form : populatedForms) {
+            Pane formResult;
+            try {
+                formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
+                Node vbox = formResult.getChildren().get(0);
+                if (vbox instanceof VBox) {
+                    Node fName = ((VBox) vbox).getChildren().get(1);
+                    Node bName = ((VBox) vbox).getChildren().get(2);
+                    Node aType = ((VBox) vbox).getChildren().get(3);
+
+                    ((Label) fName).setText(form.getFancifulName());
+                    ((Label) bName).setText(form.getBrandName());
+                    switch(form.getProductType()){
+                        case "WINE":
+                            ((Label) aType).setText("Wine");
+                            break;
+                        case "DISTILLED":
+                            ((Label) aType).setText("Distilled Beverage");
+                            break;
+                        case "MALT":
+                            ((Label) aType).setText("Malt Beverage");
+                            break;
+                    }
+
+
+                }
+                loadForms.getChildren().add(formResult);
+                formResult.setId("Alcoholbox");
+
+                formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        try {
+                            aApplicationFormControl(form);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
