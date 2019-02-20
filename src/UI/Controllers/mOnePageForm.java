@@ -3,9 +3,7 @@ package UI.Controllers;
 import Datatypes.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import com.sun.tools.hat.internal.model.Root;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -80,39 +78,53 @@ public class mOnePageForm {
     @FXML private JFXCheckBox DistinctiveLiquor;
     @FXML private JFXCheckBox resubmission;
     @FXML private ImageView imagePreview;
-    @FXML private JFXTextField dateOfApplication;
+    @FXML private JFXDatePicker dateOfApplication;
     @FXML private JFXTextField applicantSig;
     @FXML private JFXTextField applicantNamePrint;
     @FXML private LabelImage image = new LabelImage();
     @FXML private Button button;
+    @FXML private JFXToggleButton switchButton;
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+
+        switchButton.setSelected(true);
+
         Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
+        image = form.getLabel();
+
 
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);
+                break;
             case "IMPORTED":
                 imported.setSelected(true);
+                break;
 
         }
         switch(form.getProductType()){
             case "WINE":
                 wine.setSelected(true);
+                break;
             case "DISTILLED":
                 distilled.setSelected(true);
+                break;
             case "MALT":
                 malt.setSelected(true);
+                break;
         }
         switch(form.getBeerWineSpirit()){
             case "WINE":
                 wine2.setSelected(true);
+                break;
             case "SPIRITS":
                 spirits2.setSelected(true);
+                break;
             case "BEER":
                 beer2.setSelected(true);
+                break;
         }
         if(form.getRepID() != 0)
             repID.setText(Integer.toString(form.getRepID()));
@@ -151,8 +163,11 @@ public class mOnePageForm {
         if(form.getTtbID() != 0)
             ttbID.setText(String.valueOf(form.getTtbID()));
         bottleCapacity.setText(form.getBottleCapacity());
-        if(form.getLabel().getLabelImage() != null)
+        try {
             imagePreview.setImage(form.getLabel().getLabelImage());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         validateStateField();
         validateBottleCapacity();
         validateTTBID();
@@ -162,9 +177,15 @@ public class mOnePageForm {
             applicantNamePrint.setText(manAcc.getFullName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         System.out.println("starting");
-//        if(!form.getDateOfApplication().isEmpty()){
-//            dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
-//        }
+        if(!form.getDateOfApplication().isEmpty()){
+            dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
+        }
+    }
+    @FXML
+    public void onePage() throws IOException {
+        saveDraft();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg1.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormPg1(sceneM, cacheM));
     }
 
     @FXML public void validateStateField() {
@@ -208,155 +229,43 @@ public class mOnePageForm {
     }
     @FXML public void wineFieldCheck(){
         if(cacheM.getForm().getBeerWineSpirit() != "WINE") {
-            grapes.setEditable(false);
+            grapes.setDisable(true);
             grapes.setPromptText("n/a");
-            appellation.setEditable(false);
+            appellation.setDisable(true);
+            appellation.setPromptText("n/a");
+        }
+    }
+    @FXML public void validateWineFields(){
+        if(wine.isSelected()){
+            grapes.setDisable(false);
+            grapes.setPromptText("n/a");
+            appellation.setDisable(false);
+            appellation.setPromptText("n/a");
+        }else{
+            grapes.setDisable(true);
+            grapes.setPromptText("n/a");
+            appellation.setDisable(true);
             appellation.setPromptText("n/a");
         }
     }
 
+
     @FXML public void savePDF() throws IOException {
-
-        System.out.println("saving pdf");
+        saveDraft();
         PDF pdf = new PDF();
-
-        pdf.open();
-
-        pdf.appendText(repID.getText(), 24, 912, 10);
-        pdf.appendText(brewerNO.getText(), 24, 865, 10);
-
-        if(domestic.isSelected())
-            pdf.appendText("X", 143,870, 10);
-        else
-            pdf.appendText("X", 190,870, 10);
-
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(0)), 24, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(1)), 42, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(2)), 70, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(3)), 88, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(4)), 106, 811, 10);
-        pdf.appendText(Character.toString(serialNumber.getText().charAt(5)), 122, 811, 10);
-
-        //type of product
-        if (wine.isSelected())
-            pdf.appendText("X", 146,833, 10);
-        else if(distilled.isSelected())
-            pdf.appendText("X", 146,828, 10);
-        else
-            pdf.appendText("X", 146, 823, 10);
-
-
-        pdf.appendText(brandName.getText(), 24,780, 10);
-        pdf.appendText(fancifulName.getText(), 24,755, 10);
-        pdf.appendText(printName.getText(), 268, 846, 10);
-        pdf.appendText(mailAddress.getText(), 268,780, 10);
-        pdf.appendText(formula.getText(), 24,722, 10);
-        pdf.appendText(grapes.getText(), 153, 722, 10);
-        pdf.appendText(appellation.getText(), 24,688, 10);
-        pdf.appendText(email.getText(), 153, 656, 10);
-        pdf.appendText(phoneNumber.getText(), 24, 656, 10);
-
-
-        //type of application
-        if(certificateOfApproval.isSelected()){
-            pdf.appendText("X", 398, 736, 10);
-        }
-        if(certificateOfExemption.isSelected()){
-            pdf.appendText("X", 398,720, 10);
-            pdf.appendText(onlyState.getText(), 451, 710, 10);
-        }
-        if(DistinctiveLiquor.isSelected()){
-            pdf.appendText("X", 398, 700, 10);
-            pdf.appendText(bottleCapacity.getText(), 541, 690, 10);
-        }
-        if(resubmission.isSelected()){
-            pdf.appendText("X", 398,668, 10);
-            pdf.appendText(ttbID.getText(), 437, 658, 10);
-        }
-
-        //Label
-        pdf.appendImage(image.getLabelFile().getPath(), 200, 66, 200, 200);
-
-        pdf.appendText(dateOfApplication.getText(), 24, 500, 10);
-        pdf.appendText(applicantSig.getText(), 138, 500, 10);
-        pdf.appendText(applicantNamePrint.getText(), 366, 500, 10);
-
-        pdf.appendText("Additional Fields:", 24, 620, 10 );
-        pdf.appendText("Alcohol Percentage: "+alcoholPercentage.getText(), 24, 610, 10);
-        pdf.appendText("pH Level: "+phLevel.getText(), 24, 600, 10);
-        pdf.appendText("Vintage Year: "+vintageYear.getText(), 24, 590, 10);
-
-        pdf.closeStream();
-
-        pdfPopupWindow(pdf);
-        pdf.close();
-
-        System.out.println("saved!");
+        pdf.savePDF(cacheM.getForm());
     }
 
-
-    //PoPup
-
-
-                //POPUP WINDOW
-
-    public void pdfPopupWindow(PDF pdf) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/Views/PDFpopup.fxml"));
-
-        //time for the
-        Node vbox = root.getChildrenUnmodifiable().get(0);
-        ImageView pdfImage = new ImageView();
-        pdfImage.setImage(pdf.renderPDF());
-
-        if (vbox instanceof VBox) {
-            System.out.println("vboxinstance");
-            Node navBox = ((VBox) vbox).getChildren().get(0);
-            Node scrollPane = ((VBox) vbox).getChildren().get(1);
-
-            if (navBox instanceof HBox){
-                Node fancifulLabel = ((HBox) navBox).getChildren().get(0);
-                Node saveButton = ((HBox) navBox).getChildren().get(1);
-
-                ((Label) fancifulLabel).setText(fancifulName.getText());
-                ((JFXButton) saveButton).setOnAction((event -> {
-                    try {
-                        pdf.savePDF(pdf, vbox);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                }));
-            }
-
-            if (scrollPane instanceof ScrollPane){
-                System.out.println("scrollpane instance");
-                ((ScrollPane) scrollPane).setContent(pdfImage);
-//                if(pdfVBox instanceof VBox){
-//                    Node pdfImage = ((VBox) vbox).getChildren().get(0);
-//                    if (pdfImage instanceof ImageView){
-//                        System.out.println("imageview sout");
-//                        ((ImageView) pdfImage).setImage(pdf.renderPDF());
-//                    }
-//                }
-
-
-            }
-        }
-        popWindow(root);
+    @FXML
+    public void hideWineFields() {
+        phLevel.setDisable(true);
+        vintageYear.setDisable(true);
     }
 
-    @FXML public void printPDF(){
-
-    }
-
-
-    @FXML public void popWindow(Parent root) throws IOException {
-        Stage stage;
-        stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("TTB PDF");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
+    @FXML
+    public void showWineFields() {
+        phLevel.setDisable(false);
+        vintageYear.setDisable(false);
     }
 
     @FXML public void saveDraft(){
@@ -478,12 +387,10 @@ public class mOnePageForm {
         form.setLabel(image);
 
         // Page 4
-        if (!dateOfApplication.getText().isEmpty()) {
-            dateOfApplication.setText(form.getDateOfApplication());
-        }
-        if (!applicantNamePrint.getText().isEmpty()) {
-            applicantNamePrint.setText(form.getApplicantName());
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        if(dateOfApplication.getValue() != null)
+            form.setDateOfApplication(dateOfApplication.getValue().toString());
+        form.setApplicantName(applicantNamePrint.getText());
 
         cacheM.setForm(form);
 
