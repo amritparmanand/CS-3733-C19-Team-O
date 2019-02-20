@@ -51,11 +51,6 @@ public class SearchPage {
     boolean DLevi = false;
     boolean hiddenS = true;
 
-    @FXML
-    JFXButton previous;
-    @FXML
-    JFXButton next;
-
     String oldSearch = "";
     ResultSet approvedResults;
 
@@ -82,6 +77,11 @@ public class SearchPage {
 
     SearchTether searchTether = new SearchTether();
 
+
+    @FXML
+    private JFXButton previous;
+    @FXML
+    private JFXButton next;
     @FXML
     private ScrollPane scroll;
     @FXML
@@ -265,12 +265,12 @@ public class SearchPage {
                 PrintWriter writer = new PrintWriter(path + "/" + "search-results.csv", "UTF-8");
 
                 String delimi = delim.getText();
-                if(delimi == "" || delimi == null) {
+                if (delimi == "" || delimi == null) {
                     delimi = ",";
                 }
 
                 writer.println("sep=" + delimi);
-                writer.println("FANCIFUL NAME"+delimi+"COMPANY NAME"+delimi+"ALCOHOL TYPE"+delimi+"ALCOHOL TYPE2"+delimi+"PH LEVEL"+delimi+"ALCOHOL PERCENT"+delimi+"YEAR");
+                writer.println("FANCIFUL NAME" + delimi + "COMPANY NAME" + delimi + "ALCOHOL TYPE" + delimi + "ALCOHOL TYPE2" + delimi + "PH LEVEL" + delimi + "ALCOHOL PERCENT" + delimi + "YEAR");
 
                 int row = approvedResults.getRow();
                 if (approvedResults.first()) {
