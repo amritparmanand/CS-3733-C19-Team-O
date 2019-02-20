@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 
+import Datatypes.Agent;
 import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
@@ -105,6 +106,9 @@ public class aApplicationFormPg4 {
         System.out.println(form.getDateIssued());
         cacheM.approveForm(cacheM.getDbM().getConnection());
         System.out.println("acceptForm Called");
+        Agent A = (Agent) cacheM.getAcct();
+        A.approveOrDeny(form);
+        goToHomePage();
     }
 
 
@@ -119,6 +123,8 @@ public class aApplicationFormPg4 {
         cacheM.getForm().setComments(comments);
         System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        Agent A = (Agent) cacheM.getAcct();
+        A.approveOrDeny(form);
         goToHomePage();
     }
 
