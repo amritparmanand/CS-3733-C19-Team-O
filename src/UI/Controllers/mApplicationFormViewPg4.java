@@ -64,6 +64,7 @@ public class mApplicationFormViewPg4 {
         if(!form.getDateOfApplication().isEmpty()){
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
+        dateOfApplication.setEditable(false);
 
     }
 
