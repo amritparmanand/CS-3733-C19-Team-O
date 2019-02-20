@@ -199,7 +199,7 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <content>
-                                    <JFXTextArea fx:id="aComment" />
+                                    <JFXTextArea fx:id="aComment" editable="false" />
                                  </content>
                               </TitledPane>
                            </panes>
