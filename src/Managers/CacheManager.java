@@ -22,7 +22,7 @@ public class CacheManager {
     private SearchResult selectedResult;
     private int formLimit;
     private String fuzzy;
-    private String format;
+    private char format;
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
@@ -63,10 +63,10 @@ public class CacheManager {
     public void setFuzzy(String fuzzy) {
         this.fuzzy = fuzzy;
     }
-    public String getFormat() {
+    public char getFormat() {
         return format;
     }
-    public void setFormat(String format) {
+    public void setFormat(char format) {
         this.format = format;
     }
 
