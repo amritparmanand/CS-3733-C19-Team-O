@@ -27,7 +27,6 @@ public class Setting {
     public int getFormLimit() {
         return formLimit;
     }
-
     public void setFormLimit(int formLimit) {
         this.formLimit = formLimit;
     }
