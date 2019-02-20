@@ -294,7 +294,6 @@ public class SearchPage {
             result.setProductType(rs.getString("PRODUCTTYPE"));
             //IMAGE REEEEEEE
             // result set label image
-//
 
             if(searchBox.getText().isEmpty()) {
                 System.out.println("foo");
