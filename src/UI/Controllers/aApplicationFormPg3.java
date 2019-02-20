@@ -119,11 +119,11 @@ public class aApplicationFormPg3 {
 
     @FXML
     public void denyForm() throws Exception {
-        cacheM.denyForm(cacheM.getDbM().getConnection());
         comments.setComment14(Q14Comment.getText());
         comments.setComment15(Q15Comment.getText());
         cacheM.getForm().setComments(comments);
         System.out.println(comments.generateComments());
+        cacheM.denyForm(cacheM.getDbM().getConnection());
         goToHomePage();
     }
 

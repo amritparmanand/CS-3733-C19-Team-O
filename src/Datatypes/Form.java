@@ -286,7 +286,7 @@ public class Form {
     @SuppressWarnings("Duplicates")
     public void approve(Connection conn) {
         System.out.println("in Form Approve");
-        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, STATUS = 'APPROVED' , DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
+        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, DATEREJECTED = null, STATUS = 'APPROVED' , DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
                 + this.formID;
         System.out.println(SQL);
         try {
