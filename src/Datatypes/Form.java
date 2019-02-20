@@ -282,6 +282,45 @@ public class Form {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+        //parseGarbage
+        String SQLClearGarbage = "UPDATE FORMS SET BREWERNUMBER = '" + this.parseGarbage(this.getBrewerNumber()) + "'" +
+                ", PHLEVEL = '" + this.parseGarbage(this.getpHLevel()) + "'" +
+                ", PRODUCTSOURCE = '" + this.parseGarbage(this.getProductSource()) + "'" +
+                ", SERIALNUMBER = '" + this.parseGarbage(this.getSerialNumber()) + "'" +
+                ", PRODUCTTYPE = '" + this.parseGarbage(this.getProductType()) + "'" +
+                ", BRANDNAME = '" + this.parseGarbage(this.getBrandName()) + "'" +
+                ", FANCIFULNAME = '" + this.parseGarbage(this.getFancifulName()) + "'" +
+                ", APPLICANTNAME = '" + this.parseGarbage(this.getApplicantName()) + "'" +
+                ", MAILINGADDRESS = '" + this.parseGarbage(this.getMailingAddress()) + "'" +
+                ", FORMULA = '" + this.parseGarbage(this.getFormula()) + "'" +
+                ", GRAPEVARIETAL = '" + this.parseGarbage(this.getGrapeVarietal()) + "'" +
+                ", APPELLATION = '" + this.parseGarbage(this.getAppellation()) + "'" +
+                ", PHONENUMBER = '" + this.parseGarbage(this.getPhoneNumber()) + "'" +
+                ", EMAILADDRESS = '" + this.parseGarbage(this.getEmailAddress()) + "'" +
+                ", CERTIFICATEOFAPPROVAL = '" + this.getCertificateOfApproval() + "'" +
+                ", CERTIFICATEOFEXEMPTION = '" + this.getCertificateOfExemption() + "'" +
+                ", ONLYSTATE = '" + this.parseGarbage(this.getOnlyState()) + "'" +
+                ", DISTINCTIVELIQUOR = '" + this.getDistinctiveLiquor() + "'" +
+                ", BOTTLECAPACITY = '" + this.parseGarbage(this.getBottleCapacity()) + "'" +
+                ", RESUBMISSION = '" + this.getResubmission() + "'" +
+                ", DATEOFAPPLICATION = '" + this.parseGarbage(this.getDateOfApplication()) + "'" +
+                ", PRINTNAME = '" + this.parseGarbage(this.getPrintName()) + "'" +
+                ", BEERWINESPIRIT = '" + this.getBeerWineSpirit() + "'" +
+                ", ALCOHOLPERCENT = '" + this.parseGarbage(this.getAlcoholPercent()) + "'" +
+                ", VINTAGEYEAR = '" + this.parseGarbage(this.getVintageYear()) + "'" +
+
+                " WHERE FORMID ="
+                + this.formID;
+        try {
+            PreparedStatement ps = conn.prepareStatement(SQLClearGarbage);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
     }
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) {
@@ -289,6 +328,45 @@ public class Form {
                 + this.formID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        //parseGarbage
+        String SQLClearGarbage = "UPDATE FORMS SET BREWERNUMBER = '" + this.parseGarbage(this.getBrewerNumber()) + "'" +
+                ", PHLEVEL = '" + this.parseGarbage(this.getpHLevel()) + "'" +
+                ", PRODUCTSOURCE = '" + this.parseGarbage(this.getProductSource()) + "'" +
+                ", SERIALNUMBER = '" + this.parseGarbage(this.getSerialNumber()) + "'" +
+                ", PRODUCTTYPE = '" + this.parseGarbage(this.getProductType()) + "'" +
+                ", BRANDNAME = '" + this.parseGarbage(this.getBrandName()) + "'" +
+                ", FANCIFULNAME = '" + this.parseGarbage(this.getFancifulName()) + "'" +
+                ", APPLICANTNAME = '" + this.parseGarbage(this.getApplicantName()) + "'" +
+                ", MAILINGADDRESS = '" + this.parseGarbage(this.getMailingAddress()) + "'" +
+                ", FORMULA = '" + this.parseGarbage(this.getFormula()) + "'" +
+                ", GRAPEVARIETAL = '" + this.parseGarbage(this.getGrapeVarietal()) + "'" +
+                ", APPELLATION = '" + this.parseGarbage(this.getAppellation()) + "'" +
+                ", PHONENUMBER = '" + this.parseGarbage(this.getPhoneNumber()) + "'" +
+                ", EMAILADDRESS = '" + this.parseGarbage(this.getEmailAddress()) + "'" +
+                ", CERTIFICATEOFAPPROVAL = '" + this.getCertificateOfApproval() + "'" +
+                ", CERTIFICATEOFEXEMPTION = '" + this.getCertificateOfExemption() + "'" +
+                ", ONLYSTATE = '" + this.parseGarbage(this.getOnlyState()) + "'" +
+                ", DISTINCTIVELIQUOR = '" + this.getDistinctiveLiquor() + "'" +
+                ", BOTTLECAPACITY = '" + this.parseGarbage(this.getBottleCapacity()) + "'" +
+                ", RESUBMISSION = '" + this.getResubmission() + "'" +
+                ", DATEOFAPPLICATION = '" + this.parseGarbage(this.getDateOfApplication()) + "'" +
+                ", PRINTNAME = '" + this.parseGarbage(this.getPrintName()) + "'" +
+                ", BEERWINESPIRIT = '" + this.getBeerWineSpirit() + "'" +
+                ", ALCOHOLPERCENT = '" + this.parseGarbage(this.getAlcoholPercent()) + "'" +
+                ", VINTAGEYEAR = '" + this.parseGarbage(this.getVintageYear()) + "'" +
+
+                " WHERE FORMID ="
+                + this.formID;
+        try {
+            PreparedStatement ps = conn.prepareStatement(SQLClearGarbage);
 
             ps.executeUpdate();
 
