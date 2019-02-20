@@ -11,3 +11,4 @@ derby.log
 *.lock
 *.iml
 .DS_Store
+testfile.pdf
