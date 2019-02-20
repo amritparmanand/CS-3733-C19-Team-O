@@ -73,13 +73,13 @@ public class aApplicationFormPg1 {
         switch(form.parseGarbage(form.getProductSource())){
             case "DOMESTIC":
                 domestic.setSelected(true);
-                domestic.setOpacity(100);
+                domestic.setOpacity(1);
                 domestic.setStyle(form.parseStyle(form.getProductSource()));
                 System.out.println(form.parseStyle(form.getProductSource()));
                 break;
             case "IMPORTED":
                 imported.setSelected(true);
-                domestic.setOpacity(100);
+                imported.setOpacity(1);
                 imported.setStyle(form.parseStyle(form.getProductSource()));
                 System.out.println(form.parseStyle(form.getProductSource()));
                 break;
@@ -90,17 +90,17 @@ public class aApplicationFormPg1 {
         switch(form.parseGarbage(form.getProductType())){
             case "WINE":
                 wine.setSelected(true);
-                domestic.setOpacity(100);
+                wine.setOpacity(1);
                 wine.setStyle(form.parseStyle(form.getProductType()));
                 break;
             case "DISTILLED":
                 spirits.setSelected(true);
-                domestic.setOpacity(100);
+                spirits.setOpacity(1);
                 spirits.setStyle(form.parseStyle(form.getProductType()));
                 break;
             case "MALT":
                 malt.setSelected(true);
-                domestic.setOpacity(100);
+                malt.setOpacity(1);
                 malt.setStyle(form.parseStyle(form.getProductType()));
                 break;
         }
@@ -109,17 +109,17 @@ public class aApplicationFormPg1 {
         switch(form.parseGarbage(form.getBeerWineSpirit())){
             case "WINE":
                 wine2.setSelected(true);
-                domestic.setOpacity(100);
+                wine2.setOpacity(1);
                 wine2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "SPIRITS":
                 spirits2.setSelected(true);
-                domestic.setOpacity(100);
+                spirits2.setOpacity(1);
                 spirits2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "BEER":
                 beer2.setSelected(true);
-                domestic.setOpacity(100);
+                beer2.setOpacity(1);
                 beer2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
         }
