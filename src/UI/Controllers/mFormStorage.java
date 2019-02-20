@@ -131,7 +131,6 @@ public class mFormStorage {
 
     @FXML public void reInitialize() throws IOException {
         System.out.println("restarting this page");
-        initialize();
 
     }
 
