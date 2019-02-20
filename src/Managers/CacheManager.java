@@ -86,8 +86,8 @@ public class CacheManager {
     public void insertForm(Connection connection) throws SQLException, FileNotFoundException {
         form.insertForm(connection);
     }
-    public ResultSet getApprovedApplications(Connection conn) throws SQLException{
-        return form.getApprovedApplications(conn);
+    public ResultSet getApprovedApplications(Connection conn, String condition, String type) throws SQLException{
+        return form.getApprovedApplications(conn, condition, type);
     }
     public void passForm(Connection connection, long formID,  String ttbUsername) {
         form.passForm(connection, formID, ttbUsername);
