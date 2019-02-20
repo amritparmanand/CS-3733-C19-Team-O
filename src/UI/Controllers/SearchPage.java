@@ -234,7 +234,7 @@ public class SearchPage {
     }
 
     public ResultSet getApprovedApplications(String condition, String type) throws SQLException {
-        return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type); //we have to limit so it doesnt overload our program with 1M icons
+        return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type);
     }
 
     /**
@@ -270,7 +270,13 @@ public class SearchPage {
                 }
 
                 writer.println("sep=" + delimi);
-                writer.println("FANCIFUL NAME" + delimi + "COMPANY NAME" + delimi + "ALCOHOL TYPE" + delimi + "ALCOHOL TYPE2" + delimi + "PH LEVEL" + delimi + "ALCOHOL PERCENT" + delimi + "YEAR");
+                writer.println("FANCIFUL NAME" + delimi +
+                        "COMPANY NAME" + delimi +
+                        "ALCOHOL TYPE" + delimi +
+                        "ALCOHOL TYPE2" + delimi +
+                        "PH LEVEL" + delimi +
+                        "ALCOHOL PERCENT" + delimi +
+                        "YEAR");
 
                 int row = approvedResults.getRow();
                 if (approvedResults.first()) {
@@ -279,7 +285,12 @@ public class SearchPage {
                         //holder variable to hold the type of alcohol for printing
                         String alcoholType = approvedResults.getString("PRODUCTTYPE");
 
-                        writer.println(approvedResults.getString("FANCIFULNAME") + delimi + approvedResults.getString("BRANDNAME") + delimi + alcoholType + delimi + alcoholType + delimi + approvedResults.getString("PHLEVEL") + delimi + approvedResults.getString("ALCOHOLPERCENT") + delimi + approvedResults.getString("VINTAGEYEAR"));
+                        writer.println(approvedResults.getString("FANCIFULNAME") + delimi +
+                                approvedResults.getString("BRANDNAME") + delimi +
+                                alcoholType + delimi + alcoholType + delimi +
+                                approvedResults.getString("PHLEVEL") + delimi +
+                                approvedResults.getString("ALCOHOLPERCENT") + delimi +
+                                approvedResults.getString("VINTAGEYEAR"));
                     }
                     while (approvedResults.next());
                 }
