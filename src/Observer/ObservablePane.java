@@ -25,6 +25,10 @@ public class ObservablePane implements IObservable {
     String fancy;
     String brand;
     String type;
+    String alcPercent;
+    String phLevel;
+    String year;
+
     SceneManager sceneManager;
 
     public ObservablePane(Pane self, FlowPane searchResults, SceneManager sceneManager) {
@@ -51,6 +55,9 @@ public class ObservablePane implements IObservable {
             fancy = rs.getString("FANCIFULNAME");
             brand = rs.getString("BRANDNAME");
             type = rs.getString("PRODUCTTYPE");
+            alcPercent = rs.getString("ALCOHOLPERCENT");
+            phLevel = rs.getString("PHLEVEL");
+            year = rs.getString("VINTAGEYEAR");
             ((Label) fName).setText(fancy);
             ((Label) bName).setText(brand);
             ((Label) aType).setText(type);
@@ -99,17 +106,17 @@ public class ObservablePane implements IObservable {
 
                                 if (alcoholPercentBox instanceof HBox) {
                                     Node alcoholPercentName = ((HBox) alcoholPercentBox).getChildren().get(1);
-                                    ((Label) alcoholPercentName).setText(rs.getString("ALCOHOLPERCENT"));
+                                    ((Label) alcoholPercentName).setText(alcPercent);
                                 }
 
                                 if (pHBox instanceof HBox) {
                                     Node pHName = ((HBox) pHBox).getChildren().get(1);
-                                    ((Label) pHName).setText(rs.getString("PHLEVEL"));
+                                    ((Label) pHName).setText(phLevel);
                                 }
 
                                 if (yearBox instanceof HBox) {
                                     Node yearName = ((HBox) yearBox).getChildren().get(1);
-                                    ((Label) yearName).setText(rs.getString("VINTAGEYEAR"));
+                                    ((Label) yearName).setText(year);
                                 }
 
                             }

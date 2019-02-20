@@ -443,10 +443,10 @@ public class Form {
         String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT," +
                 "VINTAGEYEAR FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
-                "WHERE APPLICATIONS.STATUS='APPROVED' AND ((FANCIFULNAME LIKE ?) OR (BRANDNAME LIKE ?)) AND " + type;
+                "WHERE APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
 
         System.out.println(retrieve);
-        PreparedStatement ps = conn.prepareStatement(retrieve);
+        PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ps.setString(1, "%"+condition+"%");
         ps.setString(2, "%"+condition+"%");
 

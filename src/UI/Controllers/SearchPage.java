@@ -52,8 +52,7 @@ public class SearchPage {
     boolean hiddenS = true;
 
     String oldSearch = "";
-    private int searchPageNumber = 1;
-    private int lowerBound = (searchPageNumber - 1) * 15;
+    ResultSet approvedResults;
 
     public SearchPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -217,139 +216,72 @@ public class SearchPage {
         if (!type.equals("TRUE"))
             type = type.substring(0, type.length() - 18) + ")";
 
-        ResultSet rs = getApprovedApplications(oldSearch, type);
-        searchTether.setRs(rs);
+        approvedResults = getApprovedApplications(oldSearch, type);
+
+        searchTether.setRs(approvedResults);
         searchTether.setBools(beerCheck.isSelected(), wineCheck.isSelected(), liquorCheck.isSelected());
         searchTether.notifyObservers();
 
-        // For each of the approved applications  NOW we have to limit this punk
-        //make the array
-
-//        while (rs.next()) {
-//            SearchResult result = new SearchResult();
-//            result.setFancifulName(rs.getString("FANCIFULNAME"));
-//            result.setCompanyName(rs.getString("BRANDNAME"));
-//            result.setPhLevel(rs.getString("PHLEVEL"));
-//            result.setAlcohol(rs.getString("ALCOHOLPERCENT"));
-//            result.setYear(rs.getString("VINTAGEYEAR"));
-//            result.setProductType(rs.getString("PRODUCTTYPE"));
-//            //IMAGE REEEEEEE
-//            // result set label image
-////
-//
-//            if (searchBox.getText().isEmpty()) {
-//                System.out.println("foo");
-//                if (!beerCheck.isSelected() && !wineCheck.isSelected() && !liquorCheck.isSelected()) {
-//                    searchTether.addSearchList(result);
-//                } else {
-//                    if (beerCheck.isSelected() && result.getProductType().toLowerCase().equals("malt")) {
-//                        searchTether.addSearchList(result);
-//                    }
-//                    if (wineCheck.isSelected() && result.getProductType().toLowerCase().equals("wine")) {
-//                        searchTether.addSearchList(result);
-//                    }
-//                    if (liquorCheck.isSelected() && result.getProductType().toLowerCase().equals("distilled")) {
-//                        searchList.add(result);
-//                    }
-//                }
-//            } else if (!searchBox.getText().isEmpty() &&
-//                    ((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
-//                            || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))) {
-//                //if ^^ this is not empty, we do a fuzzy search, and check if it's empty again
-//                //see if fuzzy returns anything
-//                //if it does: set did you mean to "Did you Mean"
-//                //set the searchSuggest to return value
-//                System.out.println("bar");
-//                if (!beerCheck.isSelected() && !wineCheck.isSelected()) {
-//                    searchList.add(result);
-//                } else {
-//                    if (beerCheck.isSelected() && result.getProductType().toLowerCase().equals("malt")) {
-//                        searchList.add(result);
-//                    }
-//                    if (wineCheck.isSelected() && result.getProductType().toLowerCase().equals("wine")) {
-//                        searchList.add(result);
-//                    }
-//                    if (liquorCheck.isSelected() && result.getProductType().toLowerCase().equals("distilled")) {
-//                        searchList.add(result);
-//                    }
-//                }
-//            }
-//            //I added a conditional else so that the else doesn't always print stuff... I know it's ugly
-//            else if (!searchBox.getText().isEmpty() &&
-//                    !((result.getFancifulName().toLowerCase().contains(searchBox.getText().toLowerCase()))
-//                            || (result.getCompanyName().toLowerCase().contains(searchBox.getText().toLowerCase())))) { //a bunch of approved forms go into this else because they don't pass the first two conditions
-//                didYouMean.setText("Did you mean: ");
-//                searchSuggest.setText(suggestion);
-//            }
-//        }
-
-
-//        loadAlcohol(searchTether.getChildren());
-
-        //populate the hos in the for
     }
-
-    //put them together
-//    public void searchBuild(){
-//        searchResults.getChildren().clear();
-//        for(int i = lowerBound; i <lowerBound+15; i++){
-//            loadAlcohol(searchList);
-//        }
-//    }
 
     public ResultSet getApprovedApplications(String condition, String type) throws SQLException {
         return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type); //we have to limit so it doesnt overload our program with 1M icons
     }
 
     /**
-     * @author Jonathan Luna and Liz Del Monaco
-     * downloads all searches from a query into a csv file
+     * @author Samuel Silver And Jonathan Luna
+     * downloads
+     * all searches from a query into a csv file
      */
+    @FXML
     public void download() {
-//        System.out.println(";)");
-//
-//        String path = "";
-//
-//        JFileChooser chooser = new JFileChooser();
-//        String choosertitle = "Select a destination";
-//
-//        chooser.setCurrentDirectory(new java.io.File("."));
-//        chooser.setDialogTitle(choosertitle);
-//        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-//
-//        chooser.setAcceptAllFileFilterUsed(false);
-//
-//        int r = chooser.showSaveDialog(null);
-//
-//        if (r == JFileChooser.APPROVE_OPTION) {
-//            path = chooser.getSelectedFile().getAbsolutePath();
-//
-//            try {
-//                System.out.println(path);
-//                PrintWriter writer = new PrintWriter(path + "/" + "search-results.csv", "UTF-8");
-//
-//                writer.println("sep=;");
-//                writer.println("FANCIFUL NAME;COMPANY NAME;ALCOHOL TYPE;ALCOHOL TYPE2;PH LEVEL;ALCOHOL PERCENT;YEAR");
-//
-//                for (SearchResult s : searchList) {
-//                    //holder variable to hold the type of alcohol for printing
-//                    String alcoholType = s.getProductType();
-//
-//                    writer.println(s.getFancifulName() + ";" + s.getCompanyName() + ";" + s.getAlcoholType() + ";" + alcoholType + ";" + s.getPhLevel() + ";" + s.getAlcohol() + ";" + s.getYear());
-//                }
-//                writer.close();
-//            } catch (FileNotFoundException e) {
-//                System.out.println("File not found.");
-//                e.printStackTrace();
-//            } catch (UnsupportedEncodingException e) {
-//                System.out.println("Unsupported encoding exception.");
-//                e.printStackTrace();
-//            }
-//        } else {
-//            System.out.println("User cancelled the operation");
-//        }
+        String path = "";
 
+        JFileChooser chooser = new JFileChooser();
+        String choosertitle = "Select a destination";
 
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle(choosertitle);
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        int r = chooser.showSaveDialog(null);
+
+        if (r == JFileChooser.APPROVE_OPTION) {
+            path = chooser.getSelectedFile().getAbsolutePath();
+
+            try {
+                System.out.println(path);
+                PrintWriter writer = new PrintWriter(path + "/" + "search-results.csv", "UTF-8");
+
+                writer.println("sep=;");
+                writer.println("FANCIFUL NAME;COMPANY NAME;ALCOHOL TYPE;ALCOHOL TYPE2;PH LEVEL;ALCOHOL PERCENT;YEAR");
+
+                int row = approvedResults.getRow();
+                approvedResults.first();
+                while (approvedResults.next()) {
+                    //holder variable to hold the type of alcohol for printing
+                    String alcoholType = approvedResults.getString("PRODUCTTYPE");
+
+                    writer.println(approvedResults.getString("FANCIFULNAME") + ";" + approvedResults.getString("BRANDNAME") + ";" + alcoholType + ";" + alcoholType + ";" + approvedResults.getString("PHLEVEL") + ";" + approvedResults.getString("ALCOHOLPERCENT") + ";" + approvedResults.getString("VINTAGEYEAR"));
+                }
+                writer.close();
+
+                approvedResults.absolute(row);
+
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found.");
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                System.out.println("Unsupported encoding exception.");
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("User cancelled the operation");
+        }
     }
 
     @FXML
