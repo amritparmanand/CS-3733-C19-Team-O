@@ -51,6 +51,11 @@ public class SearchPage {
     boolean DLevi = false;
     boolean hiddenS = true;
 
+    @FXML
+    JFXButton previous;
+    @FXML
+    JFXButton next;
+
     String oldSearch = "";
     ResultSet approvedResults;
 
@@ -180,7 +185,8 @@ public class SearchPage {
     @SuppressWarnings("Duplicates")
     @FXML
     public void search() throws SQLException {
-        pageNum.setText("1");
+        pageNum.setText("0");
+        previous.setDisable(true);
 
         if (searchBox.getText() == oldSearch)
             return;
@@ -220,7 +226,7 @@ public class SearchPage {
 
         searchTether.setRs(approvedResults);
         searchTether.setBools(beerCheck.isSelected(), wineCheck.isSelected(), liquorCheck.isSelected());
-        searchTether.notifyObservers();
+        searchTether.notifyObservers(0, next);
 
     }
 
@@ -259,13 +265,17 @@ public class SearchPage {
                 writer.println("FANCIFUL NAME;COMPANY NAME;ALCOHOL TYPE;ALCOHOL TYPE2;PH LEVEL;ALCOHOL PERCENT;YEAR");
 
                 int row = approvedResults.getRow();
-                approvedResults.first();
-                while (approvedResults.next()) {
-                    //holder variable to hold the type of alcohol for printing
-                    String alcoholType = approvedResults.getString("PRODUCTTYPE");
+                if (approvedResults.first()) {
 
-                    writer.println(approvedResults.getString("FANCIFULNAME") + ";" + approvedResults.getString("BRANDNAME") + ";" + alcoholType + ";" + alcoholType + ";" + approvedResults.getString("PHLEVEL") + ";" + approvedResults.getString("ALCOHOLPERCENT") + ";" + approvedResults.getString("VINTAGEYEAR"));
+                    do {
+                        //holder variable to hold the type of alcohol for printing
+                        String alcoholType = approvedResults.getString("PRODUCTTYPE");
+
+                        writer.println(approvedResults.getString("FANCIFULNAME") + ";" + approvedResults.getString("BRANDNAME") + ";" + alcoholType + ";" + alcoholType + ";" + approvedResults.getString("PHLEVEL") + ";" + approvedResults.getString("ALCOHOLPERCENT") + ";" + approvedResults.getString("VINTAGEYEAR"));
+                    }
+                    while (approvedResults.next());
                 }
+
                 writer.close();
 
                 approvedResults.absolute(row);
@@ -286,12 +296,29 @@ public class SearchPage {
 
     @FXML
     public void next() {
+        int page = Integer.parseInt(this.pageNum.getText());
+        page++;
+        notifyOthers(page);
+    }
+
+    @FXML
+    public void prev() {
+        int page = Integer.parseInt(this.pageNum.getText());
+        page--;
+        notifyOthers(page);
+    }
+
+    public void notifyOthers(int page) {
+        this.pageNum.setText((page) + "");
         try {
-            int page = Integer.parseInt(this.pageNum.getText());
-            this.pageNum.setText((page + 1) + "");
-            searchTether.notifyObservers();
+            searchTether.notifyObservers(page, next);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        if (page <= 0)
+            previous.setDisable(true);
+        else
+            previous.setDisable(false);
     }
 }

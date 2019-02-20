@@ -9,5 +9,6 @@ import java.util.ArrayList;
 
 public interface IObservable {
     public void update(ResultSet rs) throws SQLException;
+    public void setBlank();
     Node getSelf();
 }

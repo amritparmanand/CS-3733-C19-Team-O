@@ -1,6 +1,7 @@
 package Observer;
 
 import Datatypes.SearchResult;
+import com.jfoenix.controls.JFXButton;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.scene.layout.FlowPane;
 
@@ -35,11 +36,19 @@ public class SearchTether {
         this.children.add(child);
     }
 
-    public void notifyObservers() throws SQLException {
+    public void notifyObservers(int row, JFXButton next) throws SQLException {
+        rs.absolute(row * 15);
+        next.setDisable(false);
         for(IObservable child : children) {
             System.out.println(child);
-            if(rs.next())
+            if(rs.next()) {
                 child.update(rs);
+            }
+            else {
+                child.setBlank();
+                next.setDisable(true);
+            }
+
         }
     }
 }

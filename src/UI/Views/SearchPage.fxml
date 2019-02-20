@@ -164,19 +164,28 @@
                         </HBox>
                         <Label style="-fx-font-weight: 700;" text="Page: ">
                            <VBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="105.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="pageNum" text="1">
+                        <Label fx:id="pageNum" text="0">
                            <VBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="115.0" />
                            </VBox.margin>
                         </Label>
-                        <JFXButton fx:id="next" onMousePressed="#next" styleClass="buttonStyle" text="Next">
-                           <VBox.margin>
-                              <Insets left="160.0" />
-                           </VBox.margin>
-                        </JFXButton>
+                        <HBox>
+                           <children>
+                              <JFXButton fx:id="previous" disable="true" onMousePressed="#prev" styleClass="buttonStyle" text="Prev">
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="next" onMousePressed="#next" styleClass="buttonStyle" text="Next">
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                   <ScrollPane fx:id="scroll" fitToWidth="true" hbarPolicy="NEVER" prefHeight="562.0" prefWidth="998.0" vbarPolicy="NEVER">

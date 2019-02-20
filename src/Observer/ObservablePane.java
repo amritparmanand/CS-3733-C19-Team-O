@@ -42,6 +42,22 @@ public class ObservablePane implements IObservable {
         return this.self;
     }
 
+    public void setBlank() {
+        Node vbox = this.self.getChildren().get(0);
+
+        if (vbox instanceof VBox) {
+            Node fName = ((VBox) vbox).getChildren().get(1);
+            Node bName = ((VBox) vbox).getChildren().get(2);
+            Node aType = ((VBox) vbox).getChildren().get(3);
+
+            ((Label) fName).setText("");
+            ((Label) bName).setText("");
+            ((Label) aType).setText("");
+        }
+
+        vbox.setOnMousePressed(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent me) {}});
+    }
 
     public void update(ResultSet rs) throws SQLException {
 
