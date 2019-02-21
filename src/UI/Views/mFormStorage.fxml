@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mFormStorage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mFormStorage">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -55,10 +55,9 @@
                     <children>
                         <VBox prefHeight="200.0" prefWidth="200.0" spacing="20.0" styleClass="toolbar">
                             <children>
-                                <TextField promptText="Search forms" styleClass="textfield" />
-                        <JFXCheckBox fx:id="approved" text="Approved" />
-                        <JFXCheckBox fx:id="pending" text="Pending" />
-                        <JFXCheckBox fx:id="denied" text="Denied" />
+                        <JFXCheckBox fx:id="approved" onMouseReleased="#initialize" text="Approved" />
+                        <JFXCheckBox fx:id="pending" onMouseReleased="#initialize" text="Pending" />
+                        <JFXCheckBox fx:id="denied" onMouseReleased="#initialize" text="Denied" />
                         <JFXButton fx:id="backToMHome" onMousePressed="#goToHomePage" styleClass="buttonStyle" text="Back" />
                             </children>
                             <padding>

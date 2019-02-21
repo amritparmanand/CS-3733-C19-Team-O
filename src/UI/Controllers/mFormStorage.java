@@ -44,6 +44,7 @@ public class mFormStorage {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+        loadForms.getChildren().clear();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
         if(!manAcc.getHasFetchedForms())
             manAcc.setAssignedForms(cacheM.getDbM().getConnection());
@@ -90,7 +91,23 @@ public class mFormStorage {
 
 
                 }
-                loadForms.getChildren().add(formResult);
+                //right here
+                if (!approved.isSelected() && !denied.isSelected() && !pending.isSelected()) {
+                    //searchList.add(result);
+                    loadForms.getChildren().add(formResult);
+                }
+                else {
+                    if (approved.isSelected() && form.getFormStatus(cacheM.getDbM().getConnection()).equals("APPROVED")) {
+                        loadForms.getChildren().add(formResult);
+                    }
+                    if (denied.isSelected() && form.getFormStatus(cacheM.getDbM().getConnection()).equals("DENIED")) {
+                        loadForms.getChildren().add(formResult);
+                    }
+                    if (pending.isSelected() && form.getFormStatus(cacheM.getDbM().getConnection()).equals("PENDING")) {
+                        loadForms.getChildren().add(formResult);
+                    }
+                }
+                //loadForms.getChildren().add(formResult);
                 formResult.setId("Alcoholbox");
                 formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
                     @Override

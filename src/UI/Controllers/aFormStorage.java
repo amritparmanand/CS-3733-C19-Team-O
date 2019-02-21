@@ -73,7 +73,6 @@ public class aFormStorage {
                             break;
                     }
 
-
                 }
                 loadForms.getChildren().add(formResult);
                 formResult.setId("Alcoholbox");

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -45,12 +43,8 @@
                     </children></HBox>
             <HBox prefWidth="1280.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="200.0" spacing="20.0" styleClass="toolbar">
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0" styleClass="toolbar">
                      <children>
-                        <JFXTextField fx:id="formLimit" promptText="Form Limit" styleClass="jfx-text-field" />
-                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Approved" />
-                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Pending" />
-                        <CheckBox mnemonicParsing="false" styleClass="labeltext" text="Denied" />
                         <JFXButton fx:id="back" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
                      </children>
                      <padding>
