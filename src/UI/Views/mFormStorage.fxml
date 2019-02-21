@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -56,13 +55,9 @@
                     <children>
                         <VBox prefHeight="200.0" prefWidth="200.0" spacing="20.0" styleClass="toolbar">
                             <children>
-                        <JFXRadioButton fx:id="approved" onAction="#reInitialize" text="Approved">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="g1" />
-                           </toggleGroup>
-                        </JFXRadioButton>
-                        <JFXRadioButton fx:id="pending" onAction="#reInitialize" text="Pending" toggleGroup="$g1" />
-                        <JFXRadioButton fx:id="denied" onAction="#reInitialize" text="Denied" toggleGroup="$g1" />
+                        <JFXCheckBox fx:id="approved" onAction="#initialize" text="Approved" />
+                        <JFXCheckBox fx:id="pending" onAction="#initialize" text="Pending" />
+                        <JFXCheckBox fx:id="denied" onAction="#initialize" text="Denied" />
                         <JFXButton fx:id="backToMHome" onMousePressed="#goToHomePage" styleClass="buttonStyle" text="Back" />
                             </children>
                             <padding>

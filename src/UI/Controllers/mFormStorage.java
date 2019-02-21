@@ -34,12 +34,15 @@ public class mFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private JFXRadioButton approved;
-    @FXML private JFXRadioButton pending;
-    @FXML private JFXRadioButton denied;
+    @FXML private JFXCheckBox approved;
+    @FXML private JFXCheckBox pending;
+    @FXML private JFXCheckBox denied;
     @FXML private FlowPane loadForms;
 
-    private String filter = "";
+    private String filterA = "";
+    private String filterP = "";
+    private String filterD = "";
+    private boolean noFilter = false;
 
     public mFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -47,17 +50,34 @@ public class mFormStorage {
     }
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
+        loadForms.getChildren().clear();
+
         if(approved.isSelected()){
-            filter = "APPROVED";
-        }
-        else if(pending.isSelected()){
-            filter = "PENDING";
-        }
-        else if(denied.isSelected()){
-            filter = "DENIED";
+            filterA = "APPROVED";
         }
         else{
-            filter = "all";
+            filterA = "no";
+        }
+
+        if(pending.isSelected()){
+            filterP = "PENDING";
+        }
+        else{
+            filterP = "no";
+        }
+
+        if(denied.isSelected()){
+            filterD = "DENIED";
+        }
+        else{
+            filterD = "no";
+        }
+
+        if(!approved.isSelected() && !pending.isSelected() && !denied.isSelected()){
+            noFilter = true;
+        }
+        else{
+            noFilter = false;
         }
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
@@ -68,7 +88,10 @@ public class mFormStorage {
 
         for (Form form : populatedForms) {
 
-            if (form.getFormStatus(cacheM.getDbM().getConnection()).equals(filter) || filter.equals("all")) {
+            if (form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterA) ||
+                    form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterP) ||
+                    form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterD) ||
+                    noFilter) {
                 Pane formResult;
                 try {
                     formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
@@ -127,11 +150,6 @@ public class mFormStorage {
                 }
             }
         }
-    }
-
-    @FXML public void reInitialize() throws IOException {
-        System.out.println("restarting this page");
-
     }
 
     @FXML
