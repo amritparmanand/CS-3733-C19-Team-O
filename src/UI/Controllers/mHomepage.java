@@ -1,6 +1,8 @@
 package UI.Controllers;
 
+import Datatypes.Manufacturer;
 import Managers.*;
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -22,10 +24,17 @@ public class mHomepage {
         this.cacheM = cacheM;
     }
 
-    @FXML private Button back;
-    @FXML private Button search;
-    @FXML private VBox newForm;
-    @FXML private VBox storage;
+    @FXML private JFXButton accepted;
+    @FXML private JFXButton pending;
+    @FXML private JFXButton denied;
+
+    @FXML public void initialize(){
+        Manufacturer M = (Manufacturer) cacheM.getAcct();
+
+        accepted.setText("Accepted: " + M.countStatus(cacheM.getDbM().getConnection(), "APPROVED"));
+        pending.setText("Pending: " + M.countStatus(cacheM.getDbM().getConnection(), "PENDING"));
+        denied.setText("Denied: " + M.countStatus(cacheM.getDbM().getConnection(), "DENIED"));
+    }
 
 
     @FXML

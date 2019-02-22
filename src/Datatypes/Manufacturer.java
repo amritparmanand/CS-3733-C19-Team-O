@@ -1,5 +1,7 @@
 package Datatypes;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
 import java.io.InputStream;
@@ -156,5 +158,21 @@ public class Manufacturer extends Account {
 
     public void submitForm(){
         this.hasFetchedForms = false;
+    }
+
+    @SuppressWarnings("Duplicates") public int countStatus(Connection connection, String status){
+        int result = 0;
+
+        String getNum = "SELECT count(APPID) as c FROM APPLICATIONS where STATUS = '" + status +"' and REPID = " + this.getRepID();
+        try {
+            ResultSet rset = connection.createStatement().executeQuery(getNum);
+            while(rset.next())
+                result = rset.getInt("c");
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        return result;
     }
 }
