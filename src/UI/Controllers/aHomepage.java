@@ -23,10 +23,6 @@ public class aHomepage {
         this.cacheM = cacheM;
     }
 
-    @FXML private JFXButton logout;
-    @FXML private JFXButton search;
-    @FXML private VBox getApp;
-
     @FXML
     public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
