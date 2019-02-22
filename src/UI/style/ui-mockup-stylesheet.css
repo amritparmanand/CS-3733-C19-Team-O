@@ -363,3 +363,34 @@
   -jfx-default-color:#4A77DD;
 
 }
+
+.goButtonStyle{
+  -fx-background-color: white;
+  -fx-text-fill: #4A77DD;
+  -fx-font-weight: 800;
+  /*-fx-background-radius: 0 3 3 0;
+  -fx-border-radius: 0 3 3 0;*/
+  -fx-border-style: solid solid solid hidden;
+  -fx-border-color: #4A77DD;
+}
+
+.goButtonStyle:hover{
+  -fx-background-color: #4A77DD;
+  -fx-text-fill: white;
+
+}
+
+.goTextfield{
+  -fx-background-color: white;
+  -jfx-unfocus-color: #17263d;
+  -jfx-disable-animation: false;
+  -jfx-focus-color: none;
+  -jfx-label-float: true;
+  /*-fx-backround-radius:3 0 0 3;
+  -fx-border-radius: 3 0 0 3;*/
+  -fx-border-style: solid hidden solid solid;
+  -fx-border-color: #4A77DD;
+}
+
+
+
