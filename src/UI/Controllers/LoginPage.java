@@ -196,6 +196,7 @@ public class LoginPage implements SerialPortDataListener {
             if (uname.equals(username.getText()) && passwordDecoder.matches(password.getText(), hashedPassword)) {
                 cacheM.setAcct(cacheM.getDbM().aCreate(theID));
                 System.out.println("Login Successful!");
+                //System.out.println("My score: ";
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
                 sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
             } else {

@@ -30,7 +30,7 @@ public class Agent extends Account {
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
-        this.score = 0;
+        this.score = score;
     }
 
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score) {
@@ -59,6 +59,7 @@ public class Agent extends Account {
             super.setFullName(result.getString("fullName"));
             super.setEmail(result.getString("email"));
             super.setPhone(result.getString("phone"));
+            this.setScore(result.getInt("score"));
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
@@ -66,7 +67,6 @@ public class Agent extends Account {
         }
 
         this.ttbID = id;
-        this.score = score;
     }
 
     public int getTtbID() {
@@ -74,6 +74,12 @@ public class Agent extends Account {
     }
     public void setTtbID(int ttbID) {
         this.ttbID = ttbID;
+    }
+    public int getScore() {
+        return score;
+    }
+    public void setScore(int score) {
+        this.score = score;
     }
     public ArrayList<Form> getReviewedForms() {
         return reviewedForms;
@@ -126,7 +132,7 @@ public class Agent extends Account {
             prepStmt.setString(4, this.getFullName());
             prepStmt.setString(5, this.getEmail());
             prepStmt.setString(6, this.getPhone());
-            prepStmt.setInt(7, 0);
+            prepStmt.setInt(7, this.getScore());
 
             prepStmt.executeUpdate();
             prepStmt.close();
@@ -268,7 +274,7 @@ public class Agent extends Account {
     public void approveOrDeny(Form form){
         this.reviewedForms.add(form);
         this.workingForms.remove(form);
-        score += 5;
+        this.setScore(this.getScore() + 5);
         System.out.println("score: " + score);
     }
 

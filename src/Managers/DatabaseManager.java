@@ -156,7 +156,8 @@ public class DatabaseManager {
                 "password varchar(65), " +
                 "fullName varchar(50),	" +
                 "email varchar(100),	" +
-                "phone varchar(40))";
+                "phone varchar(40),     " +
+                "score int )";
         String createForms = "create table Forms(" +
                 "formID bigint   constraint Forms_pk primary key, " +
                 "repID varchar (20), " +
@@ -230,7 +231,7 @@ public class DatabaseManager {
 
         String mDefault = "insert into REPRESENTATIVES values (1, 'manu', '" + mPassword + "', 'Manufacturer Example'," +
                 " 'Manufacturer', 'manu@manu.com', '1234567890')";
-        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb')";
+        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb', 0)";
         try {
             this.stmt.execute(mDefault);
             this.stmt.execute(aDefault);
