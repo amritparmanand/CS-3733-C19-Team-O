@@ -23,6 +23,7 @@
 }
 .root{
   -fx-font-size: 14;
+  -fx-text-fill: #17263d;
 }
 
 *{
