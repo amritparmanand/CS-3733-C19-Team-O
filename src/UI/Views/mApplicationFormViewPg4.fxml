@@ -24,34 +24,45 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
                <children>
-                  <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Icons/TTB-logo.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="100.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Text>
-                  <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
-                     <HBox.margin>
-                        <Insets left="800.0" />
-                     </HBox.margin>
-                  </JFXButton>
+                  <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1470.0">
+                     <children>
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/TTB-logo.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Text>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
+                                 <HBox.margin>
+                                    <Insets left="800.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="100.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0" styleClass="toolbar">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
@@ -75,9 +86,9 @@
                         <Insets top="20.0" />
                      </HBox.margin>
                   </VBox>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
                      <content>
-                        <VBox prefHeight="900.0" prefWidth="620.0" styleClass="backPane">
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="850.0" prefHeight="1080.0" prefWidth="850.0" styleClass="backPane">
                            <children>
                               <Label text="TTB Label Form- APPLICANT'S CERTIFICATION">
                                  <padding>
@@ -135,9 +146,9 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <VBox prefHeight="720.0" prefWidth="320.0">
+                  <VBox prefHeight="720.0" prefWidth="320.0" styleClass="toolbar" HBox.hgrow="ALWAYS">
                      <children>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" opacity="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
