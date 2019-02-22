@@ -438,8 +438,9 @@ public class mOnePageForm {
                     System.out.println("this is weird this shouldn't pass");
                     form.setOnlyState(onlyState.getText());
                 }
-            }else {
-                form.setOnlyState(null);
+            }
+            else {
+                form.setOnlyState("");
             }
             form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
             if(DistinctiveLiquor.isSelected()) {
@@ -449,7 +450,7 @@ public class mOnePageForm {
                     }
                 }
             }else {
-                form.setOnlyState(null);
+                form.setOnlyState("");
             }
             form.setResubmission(resubmission.isSelected());
             if(!resubmission.isSelected())

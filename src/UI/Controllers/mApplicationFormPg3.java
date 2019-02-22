@@ -125,9 +125,9 @@ public class mApplicationFormPg3 {
             form.setCertificateOfApproval(certificateOfApproval.isSelected());
             form.setCertificateOfExemption(certificateOfExemption.isSelected());
             if(certificateOfExemption.isSelected()) {
-                if (!onlyState.getText().isEmpty() && (!form.getOnlyState().contains(style))){
+                if (!onlyState.getText().isEmpty() && !form.getOnlyState().contains(style)){
                         form.setOnlyState(onlyState.getText());
-                    }
+                }
             }
             else {
                 form.setOnlyState("");
