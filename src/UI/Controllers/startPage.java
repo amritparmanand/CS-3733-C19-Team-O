@@ -3,11 +3,16 @@ package UI.Controllers;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import org.controlsfx.control.textfield.TextFields;
 
+import javax.xml.soap.Text;
+import java.awt.*;
 import java.io.IOException;
+import java.util.Collection;
 
 public class startPage {
     private SceneManager sceneM;
@@ -18,7 +23,11 @@ public class startPage {
         this.cacheM = cacheM;
     }
 
-    @FXML JFXTextField search;
+    @FXML private JFXTextField search;
+
+    @FXML public void initialize(){
+        TextFields.bindAutoCompletion(search, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
+    }
     
     @FXML public void login() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
