@@ -33,7 +33,6 @@ public class mApplicationFormPg3 {
     private CacheManager cacheM;
     private LabelImage image = new LabelImage();
     private Form form;
-    String style = "-fx-background-color: #94BDFF;";
 
     @FXML private JFXTextField onlyState;
     @FXML private JFXTextField ttbID;
@@ -125,7 +124,7 @@ public class mApplicationFormPg3 {
             form.setCertificateOfApproval(certificateOfApproval.isSelected());
             form.setCertificateOfExemption(certificateOfExemption.isSelected());
             if(certificateOfExemption.isSelected()) {
-                if (!onlyState.getText().isEmpty() && !form.getOnlyState().contains(style)){
+                if (!onlyState.getText().isEmpty() && !form.getOnlyState().contains(cacheM.getStyle())){
                         form.setOnlyState(onlyState.getText());
                 }
             }
@@ -135,7 +134,7 @@ public class mApplicationFormPg3 {
             form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
             if(DistinctiveLiquor.isSelected()) {
                 if (!bottleCapacity.getText().isEmpty()) {
-                    if(!form.getBottleCapacity().contains(style)){
+                    if(!form.getBottleCapacity().contains(cacheM.getStyle())){
                         form.setBottleCapacity(bottleCapacity.getText());
                     }
                 }

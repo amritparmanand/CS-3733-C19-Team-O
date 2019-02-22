@@ -38,7 +38,6 @@ public class mApplicationFormPg4 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
-    String style = "-fx-background-color: #94BDFF;";
 
     @FXML private Button previous;
     @FXML private Button search;
@@ -92,7 +91,7 @@ public class mApplicationFormPg4 {
         if(dateOfApplication.getValue() != null)
             form.setDateOfApplication(dateOfApplication.getValue().toString());
         if (!applicantNamePrint.getText().isEmpty()) {
-            if(!form.getPrintName().contains(style)){
+            if(!form.getPrintName().contains(cacheM.getStyle())){
                 form.setPrintName(applicantNamePrint.getText());
             }
         }
@@ -105,20 +104,6 @@ public class mApplicationFormPg4 {
         System.out.println("Pg4 Saved!");
 
     }
-
-    /**
-     * The multi-thread function
-     * Saves draft every 5 seconds
-     */
-//    callableFunction cf = new callableFunction() {
-//        @Override
-//        public void call() {
-//            if (dateOfApplication!=null && applicantNamePrint!=null){
-//                saveDraft();
-//            }
-//        }
-//    };
-//    MultiThreadWaitFor multiThreadWaitFor = new MultiThreadWaitFor(5, cf);
 
     @FXML
     public void submit() throws Exception{
@@ -156,12 +141,8 @@ public class mApplicationFormPg4 {
     }
 
     public void checkDiff() {
-
-//        if (!applicantSig.getText().equals(form.getSignature()) && applicantSig.getText().contains(style)) {
-//            form.setSignature(applicantSig.getText() + style);
-//        }
-        if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(style)) {
-            form.setPrintName(applicantNamePrint.getText() + style);
+        if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(cacheM.getStyle())) {
+            form.setPrintName(applicantNamePrint.getText() + cacheM.getStyle());
         }
     }
 
@@ -170,11 +151,7 @@ public class mApplicationFormPg4 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg3(sceneM, cacheM, form));
     }
-    @FXML public void searchPage() throws IOException {
-        //multiThreadWaitFor.onShutDown();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-    }
+
     @FXML public void goToHomePage() throws IOException {
         //multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));

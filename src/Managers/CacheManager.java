@@ -24,6 +24,7 @@ public class CacheManager {
     private String fuzzy = "hiddenScore";
     private char format = ',';
     private String search = "";
+    private String style = "-fx-background-color: #ff9395;";
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
@@ -75,6 +76,12 @@ public class CacheManager {
     }
     public void setSearch(String search) {
         this.search = search;
+    }
+    public String getStyle() {
+        return style;
+    }
+    public void setStyle(String style) {
+        this.style = style;
     }
 
     // Facade stuff
