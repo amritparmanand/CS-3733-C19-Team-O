@@ -80,8 +80,6 @@ public class mApplicationFormPg1 {
     @FXML private VBox commentVBox;
     @FXML private JFXTextArea aComment;
 
-    String style = "-fx-background-color: #94BDFF;";
-
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -157,14 +155,13 @@ public class mApplicationFormPg1 {
         vintageYear.setText(form.parseGarbage(form.getVintageYear()));
     }
 
-    @FXML
-    public void saveDraft() {
+    @SuppressWarnings("Duplicates") @FXML public void saveDraft() {
 
         if (form.getTtbID() != 0) {
             checkDiff();
         }
 
-        if (!form.getProductSource().contains(style)) {
+        if (!form.getProductSource().contains(cacheM.getStyle())) {
             if (domestic.isSelected() || imported.isSelected()) {
                 if (domestic.isSelected()) {
                     form.setProductSource("DOMESTIC");
@@ -174,7 +171,7 @@ public class mApplicationFormPg1 {
             }
         }
 
-        if (!form.getProductType().contains(style)) {
+        if (!form.getProductType().contains(cacheM.getStyle())) {
             if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
                 if (wine.isSelected()) {
                     form.setProductType("WINE");
@@ -186,7 +183,7 @@ public class mApplicationFormPg1 {
             }
         }
 
-        if (!form.getBeerWineSpirit().contains(style)) {
+        if (!form.getBeerWineSpirit().contains(cacheM.getStyle())) {
             if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
                 if (wine2.isSelected())
                     form.setBeerWineSpirit("WINE");
@@ -195,10 +192,10 @@ public class mApplicationFormPg1 {
                 else if (beer2.isSelected())
                     form.setBeerWineSpirit("BEER");
                 if (wine2.isSelected()) {
-                    if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(style)) {
+                    if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(cacheM.getStyle())) {
                         form.setpHLevel(phLevel.getText());
                     }
-                    if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(style)) {
+                    if (!vintageYear.getText().isEmpty() && !form.getVintageYear().contains(cacheM.getStyle())) {
                         form.setVintageYear(vintageYear.getText());
                     }
                 }
@@ -212,23 +209,23 @@ public class mApplicationFormPg1 {
         if (!repID.getText().isEmpty()) {
             form.setRepID(Integer.parseInt(repID.getText()));
         }
-        if (!brewerNO.getText().isEmpty() && !form.getBrewerNumber().contains(style)) {
+        if (!brewerNO.getText().isEmpty() && !form.getBrewerNumber().contains(cacheM.getStyle())) {
             form.setBrewerNumber(brewerNO.getText());
             System.out.println("overwritten");
         }
-        if (!serialNumber.getText().isEmpty() && !form.getSerialNumber().contains(style)) {
+        if (!serialNumber.getText().isEmpty() && !form.getSerialNumber().contains(cacheM.getStyle())) {
             form.setSerialNumber(serialNumber.getText());
             System.out.println("overwritten");
         }
-        if (!brandName.getText().isEmpty() && !form.getBrandName().contains(style)) {
+        if (!brandName.getText().isEmpty() && !form.getBrandName().contains(cacheM.getStyle())) {
             form.setBrandName(brandName.getText());
             System.out.println("overwritten");
         }
-        if (!fancifulName.getText().isEmpty() && !form.getFancifulName().contains(style)) {
+        if (!fancifulName.getText().isEmpty() && !form.getFancifulName().contains(cacheM.getStyle())) {
             form.setFancifulName(fancifulName.getText());
             System.out.println("overwritten");
         }
-        if (!alcoholPercentage.getText().isEmpty() && !form.getAlcoholPercent().contains(style)) {
+        if (!alcoholPercentage.getText().isEmpty() && !form.getAlcoholPercent().contains(cacheM.getStyle())) {
             form.setAlcoholPercent(alcoholPercentage.getText());
         }
 
@@ -275,55 +272,55 @@ public class mApplicationFormPg1 {
     public void checkDiff() {
 
         if (wine2.isSelected()) {
-            if (!phLevel.getText().equals(form.getpHLevel()) && !phLevel.getText().contains(style)) {
-                form.setpHLevel(phLevel.getText() + style);
+            if (!phLevel.getText().equals(form.getpHLevel()) && !phLevel.getText().contains(cacheM.getStyle())) {
+                form.setpHLevel(phLevel.getText() + cacheM.getStyle());
             }
-            if (!vintageYear.getText().equals(form.getVintageYear()) && !vintageYear.getText().contains(style)) {
-                form.setVintageYear(vintageYear.getText() + style);
+            if (!vintageYear.getText().equals(form.getVintageYear()) && !vintageYear.getText().contains(cacheM.getStyle())) {
+                form.setVintageYear(vintageYear.getText() + cacheM.getStyle());
             }
         }
 
-        if (!brewerNO.getText().equals(form.getBrewerNumber()) && !brewerNO.getText().contains(style)) {
-            form.setBrewerNumber(brewerNO.getText() + style);
+        if (!brewerNO.getText().equals(form.getBrewerNumber()) && !brewerNO.getText().contains(cacheM.getStyle())) {
+            form.setBrewerNumber(brewerNO.getText() + cacheM.getStyle());
         }
-        if (!serialNumber.getText().equals(form.getSerialNumber()) && !serialNumber.getText().contains(style)) {
-            form.setSerialNumber((serialNumber.getText() + style));
+        if (!serialNumber.getText().equals(form.getSerialNumber()) && !serialNumber.getText().contains(cacheM.getStyle())) {
+            form.setSerialNumber((serialNumber.getText() + cacheM.getStyle()));
         }
-        if (!brandName.getText().equals(form.getBrandName()) && !brandName.getText().contains(style)) {
-            form.setBrandName(brandName.getText() + style);
+        if (!brandName.getText().equals(form.getBrandName()) && !brandName.getText().contains(cacheM.getStyle())) {
+            form.setBrandName(brandName.getText() + cacheM.getStyle());
         }
-        if (!fancifulName.getText().equals(form.getFancifulName()) && !fancifulName.getText().contains(style)) {
-            form.setFancifulName(fancifulName.getText() + style);
+        if (!fancifulName.getText().equals(form.getFancifulName()) && !fancifulName.getText().contains(cacheM.getStyle())) {
+            form.setFancifulName(fancifulName.getText() + cacheM.getStyle());
         }
-        if (!alcoholPercentage.getText().equals(form.getAlcoholPercent()) && !alcoholPercentage.getText().contains(style)) {
-            form.setAlcoholPercent(alcoholPercentage.getText() + style);
+        if (!alcoholPercentage.getText().equals(form.getAlcoholPercent()) && !alcoholPercentage.getText().contains(cacheM.getStyle())) {
+            form.setAlcoholPercent(alcoholPercentage.getText() + cacheM.getStyle());
         }
 
         if(domestic.isSelected() && !form.getProductSource().equals("DOMESTIC")){
-            form.setProductSource("DOMESTIC" + style);
+            form.setProductSource("DOMESTIC" + cacheM.getStyle());
         }
         if(imported.isSelected() && !form.getProductSource().equals("IMPORTED")){
-            form.setProductSource("IMPORTED" + style);
+            form.setProductSource("IMPORTED" + cacheM.getStyle());
         }
 
         if(wine.isSelected() && !form.getProductType().equals("WINE")){
-            form.setProductType("WINE" + style);
+            form.setProductType("WINE" + cacheM.getStyle());
         }
         if(distilled.isSelected() && !form.getProductType().equals("DISTILLED")){
-            form.setProductType("DISTILLED" + style);
+            form.setProductType("DISTILLED" + cacheM.getStyle());
         }
         if(malt.isSelected() && !form.getProductType().equals("MALT")){
-            form.setProductType("MALT" + style);
+            form.setProductType("MALT" + cacheM.getStyle());
         }
 
         if(wine2.isSelected() && !form.getBeerWineSpirit().equals("WINE")){
-            form.setBeerWineSpirit("WINE" + style);
+            form.setBeerWineSpirit("WINE" + cacheM.getStyle());
         }
         if(spirits2.isSelected() && !form.getBeerWineSpirit().equals("SPIRITS")){
-            form.setBeerWineSpirit("SPIRITS" + style);
+            form.setBeerWineSpirit("SPIRITS" + cacheM.getStyle());
         }
         if(beer2.isSelected() && !form.getBeerWineSpirit().equals("BEER")){
-            form.setBeerWineSpirit("BEER" + style);
+            form.setBeerWineSpirit("BEER" + cacheM.getStyle());
         }
     }
 

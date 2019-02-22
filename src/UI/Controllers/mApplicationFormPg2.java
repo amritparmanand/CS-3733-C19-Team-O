@@ -55,8 +55,6 @@ public class mApplicationFormPg2 {
     @FXML private VBox commentVBox;
     @FXML private JFXTextArea aComment;
 
-    String style = "-fx-background-color: #94BDFF;";
-
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -102,24 +100,24 @@ public class mApplicationFormPg2 {
         phoneNumberString = phoneNumber.getText().trim();
         formEmail = email.getText().trim();
 
-        if (!printName.getText().isEmpty() && !form.getApplicantName().contains(style)) {
+        if (!printName.getText().isEmpty() && !form.getApplicantName().contains(cacheM.getStyle())) {
             form.setApplicantName(printName.getText());
         }
-        if (!mailAddress.getText().isEmpty() && !form.getMailingAddress().contains(style)) {
+        if (!mailAddress.getText().isEmpty() && !form.getMailingAddress().contains(cacheM.getStyle())) {
             form.setMailingAddress(mailAddress.getText());
         }
-        if (!formula.getText().isEmpty() && !form.getFormula().contains(style)) {
+        if (!formula.getText().isEmpty() && !form.getFormula().contains(cacheM.getStyle())) {
             form.setFormula(formula.getText());
         }
-        if (!grapes.getText().isEmpty() && !form.getGrapeVarietal().contains(style)) {
+        if (!grapes.getText().isEmpty() && !form.getGrapeVarietal().contains(cacheM.getStyle())) {
             form.setGrapeVarietal(grapes.getText());
         }
-        if (!appellation.getText().isEmpty() && !form.getAppellation().contains(style)) {
+        if (!appellation.getText().isEmpty() && !form.getAppellation().contains(cacheM.getStyle())) {
             form.setAppellation(appellation.getText());
         }
 
         if (validFormPhone(phoneNumberString)) {
-            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(cacheM.getStyle())) {
                 form.setPhoneNumber(phoneNumberString);
             }
             System.out.println("valid phone number");
@@ -128,7 +126,7 @@ public class mApplicationFormPg2 {
         }
 
         if (validFormEmail(formEmail)) {
-            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
+            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(cacheM.getStyle())) {
                 form.setEmailAddress(email.getText());
             }
             System.out.println("valid email");
@@ -150,10 +148,10 @@ public class mApplicationFormPg2 {
 //        }
  //       else {
             saveDraftMessage.setText("");
-            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(style)) {
+            if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(cacheM.getStyle())) {
                 form.setPhoneNumber(phoneNumberString);
             }
-            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(style)) {
+            if (!email.getText().isEmpty() && !form.getEmailAddress().contains(cacheM.getStyle())) {
                 form.setEmailAddress(formEmail);
             }
             cacheM.setForm(form);
@@ -173,26 +171,26 @@ public class mApplicationFormPg2 {
     }
 
     public void checkDiff() {
-        if (!printName.getText().equals(form.getApplicantName()) && !printName.getText().contains(style)) {
-            form.setApplicantName(printName.getText() + style);
+        if (!printName.getText().equals(form.getApplicantName()) && !printName.getText().contains(cacheM.getStyle())) {
+            form.setApplicantName(printName.getText() + cacheM.getStyle());
         }
-        if (!mailAddress.getText().equals(form.getMailingAddress()) && !mailAddress.getText().contains(style)) {
-            form.setMailingAddress(mailAddress.getText() + style);
+        if (!mailAddress.getText().equals(form.getMailingAddress()) && !mailAddress.getText().contains(cacheM.getStyle())) {
+            form.setMailingAddress(mailAddress.getText() + cacheM.getStyle());
         }
-        if (!formula.getText().equals(form.getFormula()) && !formula.getText().contains(style)) {
-            form.setFormula(formula.getText() + style);
+        if (!formula.getText().equals(form.getFormula()) && !formula.getText().contains(cacheM.getStyle())) {
+            form.setFormula(formula.getText() + cacheM.getStyle());
         }
-        if (!grapes.getText().equals(form.getGrapeVarietal()) && !grapes.getText().contains(style)) {
-            form.setGrapeVarietal(grapes.getText() + style);
+        if (!grapes.getText().equals(form.getGrapeVarietal()) && !grapes.getText().contains(cacheM.getStyle())) {
+            form.setGrapeVarietal(grapes.getText() + cacheM.getStyle());
         }
-        if(!appellation.getText().equals(form.getAppellation()) && !appellation.getText().contains(style)) {
-            form.setAlcoholPercent(appellation.getText() + style);
+        if(!appellation.getText().equals(form.getAppellation()) && !appellation.getText().contains(cacheM.getStyle())) {
+            form.setAlcoholPercent(appellation.getText() + cacheM.getStyle());
         }
-        if(!phoneNumber.getText().equals(form.getPhoneNumber()) && !phoneNumber.getText().contains(style)) {
-            form.setPhoneNumber(phoneNumber.getText() + style);
+        if(!phoneNumber.getText().equals(form.getPhoneNumber()) && !phoneNumber.getText().contains(cacheM.getStyle())) {
+            form.setPhoneNumber(phoneNumber.getText() + cacheM.getStyle());
         }
-        if(!email.getText().equals(form.getEmailAddress()) && !email.getText().contains(style)) {
-            form.setEmailAddress(email.getText() + style);
+        if(!email.getText().equals(form.getEmailAddress()) && !email.getText().contains(cacheM.getStyle())) {
+            form.setEmailAddress(email.getText() + cacheM.getStyle());
         }
 
     }
