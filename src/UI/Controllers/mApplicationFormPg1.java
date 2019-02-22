@@ -326,11 +326,7 @@ public class mApplicationFormPg1 {
 
     //PROGRESSBAR 1
     //GET THIS DATA FROM CACHE
-    @FXML
-    public void updateProgressBar(int questions1) {
-        ProgressBar progressBar1 = new ProgressBar();
-        progressBar1.updateProgressBar1(questions1);
-    }
+   
 
     @FXML
     public void logout() throws IOException {

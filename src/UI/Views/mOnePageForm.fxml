@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -27,7 +28,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1800.0" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mOnePageForm">
+<AnchorPane prefHeight="1080.0" prefWidth="1800.0" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mOnePageForm">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -64,6 +65,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="116.0" prefWidth="317.0">
                            <children>
+                              <JFXProgressBar fx:id="progressBarElement" />
                               <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
                               <JFXButton onMousePressed="#saveDraft" prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
                            </children>
@@ -114,7 +116,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="1. REP. ID. NO. (If any)" />
-                                          <JFXTextField fx:id="repID" prefHeight="26.0" prefWidth="554.0" />
+                                          <JFXTextField fx:id="repID" onInputMethodTextChanged="#updateProgress" onKeyPressed="#updateProgress" onKeyReleased="#updateProgress" prefHeight="26.0" prefWidth="554.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -126,7 +128,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="2. Plant Registry/Basic Permit/ Brewer's NO. (Required)" />
-                                          <JFXTextField fx:id="brewerNO" />
+                                          <JFXTextField fx:id="brewerNO" onKeyReleased="#updateProgress" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -140,7 +142,7 @@
                                           <Label styleClass="labeltext" text="3. Source of Product (Required)" />
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <JFXRadioButton fx:id="domestic" text="Domestic">
+                                                <JFXRadioButton fx:id="domestic" onAction="#updateProgress" onKeyReleased="#updateProgress" text="Domestic">
                                                    <HBox.margin>
                                                       <Insets right="20.0" />
                                                    </HBox.margin>
@@ -148,7 +150,7 @@
                                                       <ToggleGroup fx:id="DI" />
                                                    </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="imported" text="Imported" toggleGroup="$DI" />
+                                                <JFXRadioButton fx:id="imported" onAction="#updateProgress" onKeyReleased="#updateProgress" text="Imported" toggleGroup="$DI" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -159,7 +161,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="4. Serial Number (Required)" />
-                                          <JFXTextField fx:id="serialNumber" />
+                                          <JFXTextField fx:id="serialNumber" onKeyReleased="#updateProgress" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -171,7 +173,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0" />
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <JFXRadioButton fx:id="wine" onMouseClicked="#validateWineFields" text="Wine">
+                                                <JFXRadioButton fx:id="wine" onAction="#updateProgress" onMouseClicked="#validateWineFields" text="Wine">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
@@ -179,12 +181,12 @@
                                                       <ToggleGroup fx:id="WDM1" />
                                                    </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="distilled" onMouseClicked="#validateWineFields" text="Distilled Spirits" toggleGroup="$WDM1">
+                                                <JFXRadioButton fx:id="distilled" onAction="#updateProgress" onMouseClicked="#validateWineFields" text="Distilled Spirits" toggleGroup="$WDM1">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="malt" onMouseClicked="#validateWineFields" text="Malt Beverages" toggleGroup="$WDM1">
+                                                <JFXRadioButton fx:id="malt" onAction="#updateProgress" onMouseClicked="#validateWineFields" text="Malt Beverages" toggleGroup="$WDM1">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" />
                                                    </HBox.margin>
@@ -199,7 +201,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="6. Brand Name (Required)" />
-                                          <JFXTextField fx:id="brandName" />
+                                          <JFXTextField fx:id="brandName" onKeyReleased="#updateProgress" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -208,7 +210,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="7. Fanciful Name (If any)" />
-                                          <JFXTextField fx:id="fancifulName" />
+                                          <JFXTextField fx:id="fancifulName" onKeyReleased="#updateProgress" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -217,7 +219,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name and Address of Applicant as shown on Plant Registry, Basic Permit, or Brewer's Notice. Include Approved DBA or Tradename if Used on the Label (Required)" wrappingWidth="580.0" />
-                                          <JFXTextField fx:id="printName" />
+                                          <JFXTextField fx:id="printName" onKeyReleased="#updateProgress" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -226,7 +228,7 @@
                                     <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
                                        <children>
                                           <Label styleClass="labeltext" text="8a. Mailing Address if Different" />
-                                          <JFXTextField fx:id="mailAddress" />
+                                          <JFXTextField fx:id="mailAddress" onKeyReleased="#updateProgress" />
                                        </children>
                                        <padding>
                                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
