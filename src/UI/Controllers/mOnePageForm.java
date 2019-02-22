@@ -40,11 +40,13 @@ public class mOnePageForm {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
+    private ProgressBar progressBar;
 
     public mOnePageForm(SceneManager sceneM, CacheManager cacheM, Form form){
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.form = form;
+        progressBar = new ProgressBar(this.sceneM,this.cacheM, this.form);
     }
 
     public mOnePageForm(SceneManager sceneM, CacheManager cacheM){
@@ -89,6 +91,7 @@ public class mOnePageForm {
     @FXML private LabelImage image = new LabelImage();
     @FXML private Button button;
     @FXML private JFXToggleButton switchButton;
+    @FXML private JFXProgressBar progressBarElement;
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
@@ -477,6 +480,9 @@ public class mOnePageForm {
         cacheM.setForm(form);
         System.out.println("Pg4 Saved!");
         System.out.println("save Draft executed");
+        //call the progress bar
+        System.out.println(progressBar.updateProgressBar());
+        progressBarElement.setProgress(progressBar.updateProgressBar());
 
     }
 
@@ -495,7 +501,11 @@ public class mOnePageForm {
         image.getFile();
         imagePreview.setImage(image.getLabelImage());
     }
-
+    @FXML
+    public void updateProgress()
+    {
+        progressBarElement.setProgress(progressBar.updateProgressBar());
+    }
 
     @SuppressWarnings("Duplicates") @FXML public void submit()throws Exception{
         saveDraft();
@@ -608,6 +618,8 @@ public class mOnePageForm {
         if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(cacheM.getStyle())) {
             form.setPrintName(applicantNamePrint.getText() + cacheM.getStyle());
         }
+
+
     }
 
 
