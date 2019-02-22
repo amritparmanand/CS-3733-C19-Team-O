@@ -230,6 +230,8 @@ public class aApplicationFormPg1 {
 
     @FXML public void passForm() throws IOException{
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
+        Agent A = (Agent) cacheM.getAcct();
+        A.pass(form);
         goToHomePage();
     }
 

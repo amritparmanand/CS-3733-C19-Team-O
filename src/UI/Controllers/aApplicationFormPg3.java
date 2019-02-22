@@ -66,6 +66,7 @@ public class aApplicationFormPg3 {
         Q14Comment.setText(comments.getComment14());
         Q15Comment.setText(comments.getComment15());
         Form form = cacheM.getForm();
+
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
@@ -73,16 +74,20 @@ public class aApplicationFormPg3 {
         certificateOfApproval.setDisable(true);
         certificateOfExemption.setDisable(true);
         DistinctiveLiquor.setDisable(true);
+
         onlyState.setText(form.parseGarbage(form.getOnlyState()));
         onlyState.setStyle(form.parseStyle(form.getOnlyState()));
+
         bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
         bottleCapacity.setStyle(form.parseStyle(form.getBottleCapacity()));
         System.out.println(form.parseStyle(form.getBottleCapacity()));
+
         resubmission.setDisable(true);
-        onlyState.setText(form.getOnlyState());
+
+//        onlyState.setText(form.getOnlyState());
         if(form.getTtbID() != 0)
             ttbID.setText(String.valueOf(form.getTtbID()));
-        bottleCapacity.setText(form.getBottleCapacity());
+//        bottleCapacity.setText(form.getBottleCapacity());
         if(form.getLabel().getLabelImage() != null)
             imagePreview.setImage(form.getLabel().getLabelImage());
 
@@ -140,7 +145,9 @@ public class aApplicationFormPg3 {
 
     @FXML public void passForm() throws IOException{
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
-        back();
+        Agent A = (Agent) cacheM.getAcct();
+        A.pass(form);
+        goToHomePage();
     }
 
     @FXML

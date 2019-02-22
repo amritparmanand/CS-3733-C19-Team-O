@@ -24,8 +24,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * @author Amrit Parmanand, Elizabeth Del Monaco, & Gabriel Entov
- * @version It 2
+ * @author Amrit Parmanand, Elizabeth Del Monaco, & Gabriel Entov & Percy
+ * @version It 3
  * Controller for mApplicationFormPg3 of UI
  */
 public class mApplicationFormPg3 {
@@ -153,37 +153,31 @@ public class mApplicationFormPg3 {
             form.setLabel(image);
             cacheM.setForm(form);
             return true;
-        }
+    }
 
 
-    public void checkDiff() {
-
-        //@FXML private JFXTextField onlyState;
-        String style = "-fx-background-color: #94BDFF;";
-        if (!onlyState.getText().equals(form.getOnlyState()) && !onlyState.getText().contains(style)) {
-            form.setOnlyState(onlyState.getText() + style);
+    @SuppressWarnings("Duplicates") public void checkDiff() {
+        if (!onlyState.getText().equals(form.getOnlyState()) && !onlyState.getText().contains(cacheM.getStyle())) {
+            form.setOnlyState(onlyState.getText() + cacheM.getStyle());
             System.out.println("added garbage");
         }
-        if (!bottleCapacity.getText().equals(form.getBottleCapacity()) && !bottleCapacity.getText().contains(style)) {
-            form.setBottleCapacity(bottleCapacity.getText() + style);
+        if (!bottleCapacity.getText().equals(form.getBottleCapacity()) && !bottleCapacity.getText().contains(cacheM.getStyle())) {
+            form.setBottleCapacity(bottleCapacity.getText() + cacheM.getStyle());
         }
 
     }
 
     @FXML public void nextPage() throws IOException {
         saveDraft();
-//        multiThreadWaitFor.onShutDown();
         System.out.println("on to page 4");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg4.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg4(sceneM, cacheM, form));
     }
     @FXML public void previousPage() throws IOException {
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new mApplicationFormPg2(sceneM, cacheM, form));
     }
     @FXML public void goToHomePage() throws IOException {
-//        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mHomepage.fxml"));
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }

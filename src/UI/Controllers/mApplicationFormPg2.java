@@ -91,7 +91,7 @@ public class mApplicationFormPg2 {
         wineFieldCheck();
     }
 
-    @FXML public void saveDraft() {
+    @SuppressWarnings("Duplicates") @FXML public void saveDraft() {
 
         if (form.getTtbID() != 0) {
             checkDiff();

@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import org.springframework.cglib.core.Local;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
+ * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco & Percy
  * @version It 2
  * Controller for aApplicationFormPg4 of UI
  */
@@ -36,13 +37,6 @@ public class aApplicationFormPg4 {
         this.comments = comments;
     }
 
-    @FXML private JFXButton acceptForm;
-    @FXML private JFXButton denyForm;
-    @FXML private JFXButton search;
-    @FXML private JFXButton homePage;
-    @FXML private JFXButton previous;
-    @FXML private JFXButton submit;
-    @FXML private JFXButton logout;
     @FXML private JFXDatePicker dateOfApplication;
     @FXML private JFXTextField printName;
     @FXML private JFXTextArea Q16Comment;
@@ -53,10 +47,7 @@ public class aApplicationFormPg4 {
     @FXML private JFXDatePicker dateIssued;
     @FXML private JFXTextField signature;
 
-
-
-
-    @FXML public void initialize () {
+    @SuppressWarnings("Duplicates") @FXML public void initialize () {
         //load all the comments for this page
         Q16Comment.setText(comments.getComment16());
         Q17Comment.setText(comments.getComment17());
@@ -69,8 +60,12 @@ public class aApplicationFormPg4 {
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
         dateOfApplication.setEditable(false);
+
         printName.setText(form.parseGarbage(form.getPrintName()));
+        printName.setStyle(form.parseStyle(form.getPrintName()));
         printName.setEditable(false);
+        System.out.println("it didn't get passed to agent");
+
         signature.setText(form.getSignature());
         if(!form.getDateIssued().isEmpty()){
             dateIssued.setValue(LocalDate.parse(form.getDateIssued(), formatter));
@@ -100,32 +95,38 @@ public class aApplicationFormPg4 {
 
     @FXML
     public void acceptForm() throws IOException {
-        form.setSignature(signature.getText());
-        System.out.println(form.getSignature());
-        form.setDateIssued(dateIssued.getValue().toString());
-        System.out.println(form.getDateIssued());
-        cacheM.approveForm(cacheM.getDbM().getConnection());
-        System.out.println("acceptForm Called");
-        Agent A = (Agent) cacheM.getAcct();
-        A.approveOrDeny(form);
-        goToHomePage();
+        if (!signature.getText().isEmpty() && dateIssued.getValue().isAfter(LocalDate.now().minusYears(1000))) {
+            form.setSignature(signature.getText());
+            form.setDateIssued(dateIssued.getValue().toString());
+
+            cacheM.approveForm(cacheM.getDbM().getConnection());
+            Agent A = (Agent) cacheM.getAcct();
+            A.approveOrDeny(form);
+            goToHomePage();
+        } else {
+            System.out.println("invalid signature or date");
+        }
     }
 
 
-    @FXML
-    public void denyForm() throws Exception {
+    @SuppressWarnings("Duplicates") @FXML public void denyForm() throws Exception {
         comments.setComment16(Q16Comment.getText());
         comments.setComment17(Q17Comment.getText());
         comments.setComment18(Q18Comment.getText());
         comments.setComment19(Q19Comment.getText());
-        form.setSignature(signature.getText());
-        form.setDateIssued(dateIssued.getValue().toString());
         cacheM.getForm().setComments(comments);
-        System.out.println(comments.generateComments());
-        cacheM.denyForm(cacheM.getDbM().getConnection());
-        Agent A = (Agent) cacheM.getAcct();
-        A.approveOrDeny(form);
-        goToHomePage();
+
+        if (!signature.getText().isEmpty() && dateIssued.getValue().isAfter(LocalDate.now().minusYears(1000))) {
+            form.setSignature(signature.getText());
+            form.setDateIssued(dateIssued.getValue().toString());
+
+            cacheM.denyForm(cacheM.getDbM().getConnection());
+            Agent A = (Agent) cacheM.getAcct();
+            A.approveOrDeny(form);
+            goToHomePage();
+        } else {
+            System.out.println("invalid signature or date");
+        }
     }
 
     @FXML
@@ -135,7 +136,9 @@ public class aApplicationFormPg4 {
 
     @FXML public void passForm() throws IOException{
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
-        back();
+        Agent A = (Agent) cacheM.getAcct();
+        A.pass(form);
+        goToHomePage();
     }
 
     @FXML

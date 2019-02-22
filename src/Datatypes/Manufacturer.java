@@ -154,7 +154,7 @@ public class Manufacturer extends Account {
         return f;
     }
 
-    public void submitForm(Form form){
-        this.workingForms.add(form);
+    public void submitForm(){
+        this.hasFetchedForms = false;
     }
 }

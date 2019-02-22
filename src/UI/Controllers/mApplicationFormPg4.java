@@ -86,7 +86,10 @@ public class mApplicationFormPg4 {
 
     }
 
-    public void saveDraft(){
+    @SuppressWarnings("Duplicates") public void saveDraft(){
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
         if(dateOfApplication.getValue() != null)
             form.setDateOfApplication(dateOfApplication.getValue().toString());
@@ -96,28 +99,18 @@ public class mApplicationFormPg4 {
             }
         }
 
-        if (form.getTtbID() != 0) {
-            checkDiff();
-        }
-
         cacheM.setForm(form);
         System.out.println("Pg4 Saved!");
 
     }
 
-    @FXML
-    public void submit() throws Exception{
+    @FXML public void submit() throws Exception{
         //multiThreadWaitFor.onShutDown();
         saveDraft();
         //Form form = cacheM.getForm();
         if(form.getCommentString() == ""){
             commentVBox.setVisible(false);
         }
-
-        form.setDateOfApplication(dateOfApplication.getValue().toString());
-        // form.setSignatureOfApplicant(applicantSig.getText());
-        form.setPrintName(applicantNamePrint.getText());
-//        form.setDateIssued("");
 
         try{
             System.out.println(form.getResubmission());
@@ -132,7 +125,7 @@ public class mApplicationFormPg4 {
         }
 
         Manufacturer M = (Manufacturer) cacheM.getAcct();
-        M.submitForm(form);
+        M.submitForm();
 
         Form cleanForm = new Form();
         cacheM.setForm(cleanForm);
@@ -141,8 +134,9 @@ public class mApplicationFormPg4 {
     }
 
     public void checkDiff() {
-        if (!applicantNamePrint.getText().equals(form.getPrintName()) && applicantNamePrint.getText().contains(cacheM.getStyle())) {
+        if (!applicantNamePrint.getText().equals(form.getPrintName()) && !applicantNamePrint.getText().contains(cacheM.getStyle())) {
             form.setPrintName(applicantNamePrint.getText() + cacheM.getStyle());
+            System.out.println("check diff called, it looks like: " + form.getPrintName());
         }
     }
 
