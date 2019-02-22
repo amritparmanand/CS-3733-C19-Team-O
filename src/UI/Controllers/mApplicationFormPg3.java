@@ -58,7 +58,7 @@ public class mApplicationFormPg3 {
         this.form = cacheM.getForm();
     }
 
-    @FXML public void initialize() {
+    @SuppressWarnings("Duplicates") @FXML public void initialize() {
 
         aComment.setText(form.getCommentString());
 
@@ -71,9 +71,12 @@ public class mApplicationFormPg3 {
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
         resubmission.setSelected(form.getResubmission());
         onlyState.setText(form.parseGarbage(form.getOnlyState()));
+
         if(form.getTtbID() != 0)
+            resubmission.setSelected(true);
             ttbID.setText(String.valueOf(form.getTtbID()));
         bottleCapacity.setText(form.getBottleCapacity());
+
         if(form.getLabel().getLabelImage() != null)
             imagePreview.setImage(form.getLabel().getLabelImage());
         validateStateField();

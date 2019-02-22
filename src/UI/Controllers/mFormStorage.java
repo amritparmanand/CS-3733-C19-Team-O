@@ -92,6 +92,11 @@ public class mFormStorage {
                     form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterP) ||
                     form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterD) ||
                     noFilter) {
+
+                if(form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterD)){
+                    form.setResubmission(true);
+                }
+
                 Pane formResult;
                 try {
                     formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
