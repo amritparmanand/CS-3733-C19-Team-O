@@ -45,10 +45,10 @@ public class DatabaseManager {
         Statement stmt = null;
         try {
             connection = DriverManager.getConnection("jdbc:derby:ttbDB;create=true");
-            CallableStatement cs = connection.prepareCall
-                    ("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.language.sequence.preallocator', '1')");
-            cs.execute();
-            cs.close();
+//            CallableStatement cs = connection.prepareCall
+//                    ("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY(tessdata, '1')");
+//            cs.execute();
+//            cs.close();
             stmt = connection.createStatement();
         }
         catch(SQLException e){
