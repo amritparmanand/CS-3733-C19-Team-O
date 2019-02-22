@@ -1,5 +1,8 @@
 package Datatypes;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import javax.security.auth.Subject;
 import java.io.File;
 import java.io.FileInputStream;
@@ -664,4 +667,21 @@ public class Form {
         }
         return "";
     }
+
+    @SuppressWarnings("Duplicates") public ObservableList<String> autoSearch(Connection connection){
+        ObservableList<String> result = FXCollections.observableArrayList();
+
+        String getID = "SELECT distinct BRANDNAME, FANCIFULNAME FROM FORMS";
+        try {
+            ResultSet rset = connection.createStatement().executeQuery(getID);
+            while(rset.next())
+                result.add(rset.getString("brandName"));
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        return result;
+    }
+
 }

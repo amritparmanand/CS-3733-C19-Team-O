@@ -157,37 +157,6 @@ public class DatabaseManager {
                 "fullName varchar(50),	" +
                 "email varchar(100),	" +
                 "phone varchar(40))";
-//        String createForms = "create table Forms(" +
-//                "formID int	constraint Forms_pk	primary key, " +
-//                "repID int, " +
-//                "brewerNumber varchar(100),	" +
-//                "productSource varchar(100),	" +
-//                "serialNumber varchar(100),	" +
-//                "productType varchar(100),	" +
-//                "brandName varchar(100),	" +
-//                "fancifulName varchar(100),	" +
-//                "applicantName varchar(200),	" +
-//                "mailingAddress varchar(80), " +
-//                "formula varchar(80), " +
-//                "grapeVarietal varchar(80),	" +
-//                "appellation varchar(100), " +
-//                "phoneNumber varchar(20), " +
-//                "emailAddress varchar(50),	" +
-//                "certificateOfApproval boolean," +   //begin new
-//                "certificateOfExemption boolean," +
-//                "onlyState varchar(2)," +
-//                "distinctiveLiquor boolean," +
-//                "bottleCapacity VARCHAR(5)," +
-//                "resubmission boolean," +
-//                "ttbID int ," + //end new
-//                "dateOfApplication VARCHAR(30) , " +
-//                "printName varchar(40),	" +
-//                "beerWineSpirit varchar(100), " +
-//                "alcoholPercent varchar(100),	" +
-//                "vintageYear varchar(100), " +
-//                "phLevel varchar(100))";
-
-
         String createForms = "create table Forms(" +
                 "formID bigint   constraint Forms_pk primary key, " +
                 "repID varchar (20), " +

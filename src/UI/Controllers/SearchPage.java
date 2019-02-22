@@ -28,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
@@ -59,6 +60,8 @@ public class SearchPage {
 
     @FXML
     public void initialize() throws SQLException {
+        TextFields.bindAutoCompletion(searchBox, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
+
         ObservablePane op = null;
 
         for (int i = 0; i < 15; i++) {
