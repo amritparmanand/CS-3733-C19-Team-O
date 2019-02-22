@@ -158,8 +158,14 @@ public class SearchPage {
             fc.setF(new hiddenScore());
         }
         suggestion = fc.fuzzy(searchBox.getText(), cacheM.getDbM().getConnection());
-        didYouMean.setText("Did you mean: ");
-        searchSuggest.setText(suggestion);
+
+        if (!oldSearch.equals(suggestion)) {
+            didYouMean.setText("Did you mean: ");
+            searchSuggest.setText(suggestion);
+        } else{
+            didYouMean.setText("");
+            searchSuggest.setText("");
+        }
 
         String type = "(PRODUCTTYPE = ";
 
