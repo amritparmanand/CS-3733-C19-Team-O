@@ -3,11 +3,8 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Form;
-import Datatypes.Setting;
 import Managers.CacheManager;
 import Managers.SceneManager;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
-import java.sql.Array;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -35,13 +29,14 @@ public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private FlowPane loadForms;
-    ArrayList<Form> fucker = new ArrayList<>();
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
+
+    @FXML private FlowPane loadForms;
+    private ArrayList<Form> repeated = new ArrayList<>();
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
         Agent A = (Agent) cacheM.getAcct();
@@ -126,8 +121,8 @@ public class aFormStorage {
 
         for (Form form : populatedForms) {
 
-            if(!fucker.contains(form)){
-                System.out.println("adding fucker failed");
+            if(!repeated.contains(form)){
+                System.out.println("adding repeated failed");
                 Pane formResult;
                 try {
                     formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
@@ -171,7 +166,7 @@ public class aFormStorage {
                     e.printStackTrace();
                 }
 
-                fucker.add(form);
+                repeated.add(form);
             }
         }
     }

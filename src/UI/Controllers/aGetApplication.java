@@ -5,12 +5,14 @@ import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
@@ -34,9 +36,38 @@ public class aGetApplication {
     }
 
     @FXML private FlowPane loadFormPane;
+    @FXML private JFXCheckBox approved;
+    @FXML private JFXCheckBox denied;
+
+    private String filterA = "";
+    private String filterD = "";
+    private boolean noFilter = false;
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+        loadFormPane.getChildren().clear();
+
+        if(approved.isSelected()){
+            filterA = "APPROVED";
+        }
+        else{
+            filterA = "no";
+        }
+
+        if(denied.isSelected()){
+            filterD = "DENIED";
+        }
+        else{
+            filterD = "no";
+        }
+
+        if(!approved.isSelected() && !denied.isSelected()){
+            noFilter = true;
+        }
+        else{
+            noFilter = false;
+        }
+
         Agent A = (Agent) cacheM.getAcct();
 
         if(!A.isGotOldForms()){
@@ -46,47 +77,66 @@ public class aGetApplication {
         ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getReviewedForms();
 
         for (Form form : populatedForms) {
-            Pane formResult;
-            try {
-                formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
-                Node vbox = formResult.getChildren().get(0);
-                if (vbox instanceof VBox) {
-                    Node fName = ((VBox) vbox).getChildren().get(1);
-                    Node bName = ((VBox) vbox).getChildren().get(2);
-                    Node aType = ((VBox) vbox).getChildren().get(3);
-
-                    ((Label) fName).setText(form.getFancifulName());
-                    ((Label) bName).setText(form.getBrandName());
-                    switch(form.getProductType()){
-                        case "WINE":
-                            ((Label) aType).setText("Wine");
-                            break;
-                        case "DISTILLED":
-                            ((Label) aType).setText("Distilled Beverage");
-                            break;
-                        case "MALT":
-                            ((Label) aType).setText("Malt Beverage");
-                            break;
-                    }
-
-
-                }
-                loadFormPane.getChildren().add(formResult);
-                formResult.setId("Alcoholbox");
-
-                formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        try {
-                            aApplicationFormControl(form);
-                        } catch (IOException e) {
-                            e.printStackTrace();
+            if (form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterA) ||
+                    form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterD) ||
+                    noFilter) {
+                Pane formResult;
+                try {
+                    formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
+                    Node vbox = formResult.getChildren().get(0);
+                    if (vbox instanceof VBox) {
+                        Node imgView = ((VBox) vbox).getChildren().get(0);
+                        Node fName = ((VBox) vbox).getChildren().get(1);
+                        Node bName = ((VBox) vbox).getChildren().get(2);
+                        Node aType = ((VBox) vbox).getChildren().get(3);
+                        if(form.getLabel().getLabelImage() != null)
+                            ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
+                        ((Label) fName).setText(form.getFancifulName());
+                        ((Label) bName).setText(form.getBrandName());
+                        switch(form.getProductType()){
+                            case "WINE":
+                                ((Label) aType).setText("Wine");
+                                break;
+                            case "DISTILLED":
+                                ((Label) aType).setText("Distilled Beverage");
+                                break;
+                            case "MALT":
+                                ((Label) aType).setText("Malt Beverage");
+                                break;
                         }
-                    }
-                });
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                        String style = "";
+                        switch(form.getFormStatus(cacheM.getDbM().getConnection())){
+                            case "APPROVED":
+                                style = "-fx-background-color: #e4f7ef;\n";
+                                break;
+                            case "DENIED":
+                                style = "-fx-background-color: #fcedec;\n";
+                                break;
+                            case "PENDING":
+                                style = "-fx-background-color: #fbf8e1;\n";
+                                break;
+                        }
+                        vbox.setStyle(style);
+
+                    }
+                    loadFormPane.getChildren().add(formResult);
+                    formResult.setId("Alcoholbox");
+
+                    formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            try {
+                                aApplicationFormControl(form);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
