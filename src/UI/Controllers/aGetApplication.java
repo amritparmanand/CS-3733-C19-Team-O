@@ -113,9 +113,6 @@ public class aGetApplication {
                             case "DENIED":
                                 style = "-fx-background-color: #fcedec;\n";
                                 break;
-                            case "PENDING":
-                                style = "-fx-background-color: #fbf8e1;\n";
-                                break;
                         }
                         vbox.setStyle(style);
 
@@ -151,8 +148,8 @@ public class aGetApplication {
 
     @FXML
     public void aApplicationFormControl(Form form) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
     }
 
     @FXML
