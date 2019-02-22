@@ -21,10 +21,15 @@
   font-family: "Roboto Bold";
   src: url("../font/roboto/Roboto-Bold.ttf");
 }
+.root{
+  -fx-font-size: 14;
+}
 
 *{
   -fx-font-family: "Roboto", "Arial";
   -fx-text-fill: #17263d;
+  -fx-font-size: 14;
+
 }
 
 .toolbar{

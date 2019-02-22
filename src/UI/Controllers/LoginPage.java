@@ -9,6 +9,7 @@ import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -21,6 +22,8 @@ import java.io.InputStream;
 import java.sql.Statement;
 import java.util.EventListener;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -155,6 +158,7 @@ public class LoginPage implements SerialPortDataListener {
 
     @Override
     public int getListeningEvents() {
+
         return 0;
     }
 

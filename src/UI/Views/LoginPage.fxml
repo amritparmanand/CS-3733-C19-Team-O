@@ -12,16 +12,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.LoginPage">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.LoginPage">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="25.0" prefWidth="200.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="148.0" prefWidth="1280.0" styleClass="navheader">
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1920.0" styleClass="navheader">
                <children>
                   <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,16 +39,11 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
-                  <JFXButton fx:id="search" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
-                     <HBox.margin>
-                        <Insets left="800.0" />
-                     </HBox.margin>
-                  </JFXButton>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1280.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1920.0">
                <children>
-                  <HBox fx:id="ID" alignment="CENTER" prefHeight="300.0" prefWidth="951.0" HBox.hgrow="ALWAYS">
+                  <HBox fx:id="ID" alignment="CENTER" prefHeight="300.0" prefWidth="1920.0" HBox.hgrow="ALWAYS">
                      <children>
                         <VBox alignment="CENTER" prefHeight="332.0" prefWidth="346.0">
                            <children>
@@ -115,10 +108,22 @@
                            </children>
                         </VBox>
                      </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </HBox>
                </children>
             </HBox>
          </children>
       </VBox>
+      <HBox alignment="CENTER_RIGHT" maxWidth="1920.0" prefHeight="75.0" prefWidth="1920.0" AnchorPane.bottomAnchor="1004.8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="search" alignment="TOP_LEFT" contentDisplay="RIGHT" nodeOrientation="LEFT_TO_RIGHT" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
