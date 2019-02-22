@@ -266,7 +266,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File("forPresentation.csv"));
+            FileReader filereader = new FileReader(new File("/Users/Clayol/Desktop/WPI/Sophomore/CS3733/CS-3733-C19-Team-O/src/Resources/forPresentation.csv"));
 
             // create csvReader object passing
             // file reader as a parameter
@@ -370,7 +370,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File("ApplicationsXLSX.csv"));
+            FileReader filereader = new FileReader(new File("/Users/Clayol/Desktop/WPI/Sophomore/CS3733/CS-3733-C19-Team-O/src/Resources/ApplicationsXLSX.csv"));
             // create csvReader object passing
             // file reader as a parameter
             CSVReader csvReader = new CSVReader(filereader);
@@ -492,6 +492,7 @@ public class DatabaseManager {
         String fname = "";
         String email = "";
         String phone = "";
+        int score = 0;
         try {
             String getData = "select * from AGENTS where TTBID = " + id;
             ResultSet result = this.getStmt().executeQuery(getData);
@@ -501,12 +502,13 @@ public class DatabaseManager {
                 fname = result.getString("fullName");
                 email = result.getString("email");
                 phone = result.getString("phone");
+                score = result.getInt("score");
             }
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-        Agent a = new Agent(uname,pword,fname,email,phone,id);
+        Agent a = new Agent(uname,pword,fname,email,phone,id,score);
         return a;
     }
 }

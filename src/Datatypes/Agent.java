@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 /**
  * @author Percy Jiang & Gabe Entov
- * @version It 2
+ * @version It 3
  * @since It 1
  * Class for an agent account
  */
@@ -25,16 +25,19 @@ public class Agent extends Account {
     private boolean hasFetchedForms = false;
     private boolean gotOldForms = false;
     private boolean gotCurrentForms = false;
+    private int score;
 
-    public Agent(String username, String password, String fullName, String email, String phone, int ttbID) {
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
+        this.score = 0;
     }
 
-    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms) {
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
         this.hasFetchedForms = hasFetchedForms;
+        this.score = score;
 
         if (this.hasFetchedForms) {
             this.getWorkingForms();
@@ -63,6 +66,7 @@ public class Agent extends Account {
         }
 
         this.ttbID = id;
+        this.score = score;
     }
 
     public int getTtbID() {
@@ -112,8 +116,8 @@ public class Agent extends Account {
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {
-            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone) " +
-                    "VALUES(?,?,?,?,?,?)";
+            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score) " +
+                    "VALUES(?,?,?,?,?,?,?)";
 
             PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
             prepStmt.setInt(1, this.getTtbID());
@@ -122,6 +126,7 @@ public class Agent extends Account {
             prepStmt.setString(4, this.getFullName());
             prepStmt.setString(5, this.getEmail());
             prepStmt.setString(6, this.getPhone());
+            prepStmt.setInt(7, 0);
 
             prepStmt.executeUpdate();
             prepStmt.close();
@@ -263,6 +268,8 @@ public class Agent extends Account {
     public void approveOrDeny(Form form){
         this.reviewedForms.add(form);
         this.workingForms.remove(form);
+        score += 5;
+        System.out.println("score: " + score);
     }
 
     public void pass(Form form){
