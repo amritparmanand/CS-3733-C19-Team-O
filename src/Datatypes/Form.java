@@ -291,8 +291,9 @@ public class Form {
         System.out.println("in Form Approve");
         String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, DATEREJECTED = null, STATUS = 'APPROVED' , DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
                 + this.formID;
+
         System.out.println(SQL);
-        try {
+                try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
             ps.executeUpdate();
@@ -345,17 +346,13 @@ public class Form {
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) throws Exception{
         String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED', COMMENTS = '"+ comments.generateComments() + "' WHERE FORMID ="+ this.formID;
-        String updateScore = "UPDATE AGENTS SET SCORE ="+ 10 + " WHERE TTBID =" + this.ttbID;
-        try {
+               try {
             PreparedStatement ps = conn.prepareStatement(SQL);
-            PreparedStatement update = conn.prepareStatement(updateScore);
 
             ps.executeUpdate();
-            update.executeUpdate();
 
             ps.close();
-            update.close();
-        } catch (SQLException e) {
+               } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }

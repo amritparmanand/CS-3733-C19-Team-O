@@ -62,7 +62,7 @@ public class Agent extends Account {
             super.setEmail(result.getString("email"));
             super.setPhone(result.getString("phone"));
             this.setScore(result.getInt("score"));
-            this.setAchievments(result.getintArray("achievments"));
+   //         this.setAchievments(result.getintArray("achievments"));
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
@@ -142,7 +142,7 @@ public class Agent extends Account {
             prepStmt.setString(5, this.getEmail());
             prepStmt.setString(6, this.getPhone());
             prepStmt.setInt(7, 0);
-            prepStmt.setArray(8, [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+  //          prepStmt.setArray(8, [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
             prepStmt.executeUpdate();
             prepStmt.close();
@@ -234,6 +234,27 @@ public class Agent extends Account {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+        calculateScore(connection);
+    }
+
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 4
+     * @param connection
+     */
+    public void calculateScore(Connection connection){
+        score = reviewedForms.size()*5;
+        try {
+            String updateScore = "UPDATE AGENTS SET SCORE ="+ score + " WHERE TTBID =" + this.ttbID;
+
+            PreparedStatement update = connection.prepareStatement(updateScore);
+            update.executeUpdate();
+            update.close();
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
     }
 
     //    // Parse a Form from database to object
@@ -284,20 +305,6 @@ public class Agent extends Account {
     public void approveOrDeny(Form form){
         this.reviewedForms.add(form);
         this.workingForms.remove(form);
-//        this.setScore(this.getScore() + 5);
-//        System.out.println("score: " + score);
-//        String updateScore = "UPDATE AGENTS SET SCORE = '"+ this.getScore() +"'WHERE TTBID =" + this.getTtbID();
-//
-//        try{
-//            PreparedStatement ps = conn.prepareStatement(updateScore);
-//
-//            ps.executeUpdate();
-//
-//            ps.close();
-//        } catch (SQLException e) {
-//            if (!e.getSQLState().equals("X0Y32"))
-//                e.printStackTrace();
-//        }
     }
 
     public void pass(Form form){
