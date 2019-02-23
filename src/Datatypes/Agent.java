@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 /**
  * @author Percy Jiang & Gabe Entov
- * @version It 3
+ * @version It 4
  * @since It 1
  * Class for an agent account
  */
@@ -21,18 +21,27 @@ public class Agent extends Account {
     private int ttbID;
     private ArrayList<Form> workingForms = new ArrayList<>();
     private ArrayList<Form> reviewedForms = new ArrayList<>();
+    private ArrayList<Form> approvedForms = new ArrayList<>();
+    private ArrayList<Form> deniedForms = new ArrayList<>();
+    private ArrayList<Form> passedForms = new ArrayList<>();
     private ArrayList<Form> newForms = new ArrayList<>();
     private boolean hasFetchedForms = false;
     private boolean gotOldForms = false;
     private boolean gotCurrentForms = false;
     private int score;
+    private int numberPassed;
+    private int numberApproved;
+    private int numberDenied;
     private int[] achievments = new int[20];
 
-    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score, int[] achievments){
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score, int numberApproved, int numberDenied, int numberPassed){
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
         this.score = score;
-        this.achievments = achievments;
+        this.numberApproved = numberApproved;
+        this.numberDenied = numberDenied;
+        this.numberPassed = numberPassed;
+   //     this.achievments = achievments;
     }
 
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score) {
@@ -62,6 +71,7 @@ public class Agent extends Account {
             super.setEmail(result.getString("email"));
             super.setPhone(result.getString("phone"));
             this.setScore(result.getInt("score"));
+
    //         this.setAchievments(result.getintArray("achievments"));
 
         } catch (SQLException e) {
@@ -127,12 +137,36 @@ public class Agent extends Account {
         return gotCurrentForms;
     }
 
+    public int getNumberPassed() {
+        return numberPassed;
+    }
+
+    public void setNumberPassed(int numberPassed) {
+        this.numberPassed = numberPassed;
+    }
+
+    public int getNumberApproved() {
+        return numberApproved;
+    }
+
+    public void setNumberApproved(int numberApproved) {
+        this.numberApproved = numberApproved;
+    }
+
+    public int getNumberDenied() {
+        return numberDenied;
+    }
+
+    public void setNumberDenied(int numberDenied) {
+        this.numberDenied = numberDenied;
+    }
+
     // Parse an agent object into database
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {
-            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, achievments) " +
-                    "VALUES(?,?,?,?,?,?,?)";
+            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied, achievments) " +
+                    "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
             prepStmt.setInt(1, this.getTtbID());
@@ -142,6 +176,9 @@ public class Agent extends Account {
             prepStmt.setString(5, this.getEmail());
             prepStmt.setString(6, this.getPhone());
             prepStmt.setInt(7, 0);
+            prepStmt.setInt(8,0);
+            prepStmt.setInt(9,0);
+            prepStmt.setInt(10,0);
   //          prepStmt.setArray(8, [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
             prepStmt.executeUpdate();
@@ -245,7 +282,34 @@ public class Agent extends Account {
     public void calculateScore(Connection connection){
         score = reviewedForms.size()*5;
         try {
-            String updateScore = "UPDATE AGENTS SET SCORE ="+ score + " WHERE TTBID =" + this.ttbID;
+            String approvedFormSQL = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
+                    "APPLICATIONS.TTBID = " + this.getTtbID()+ " and APPLICATIONS.STATUS = 'APPROVED'";
+
+            String deniedFormSQL = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
+                    "APPLICATIONS.TTBID = " + this.getTtbID()+ " and APPLICATIONS.STATUS = 'DENIED'";
+            PreparedStatement ps = connection.prepareStatement(approvedFormSQL);
+            PreparedStatement psDenied = connection.prepareStatement(deniedFormSQL);
+
+            ResultSet rs = ps.executeQuery();
+            ResultSet rsDenied = psDenied.executeQuery();
+
+            while (rs.next()) {
+                approvedForms.add(formFromResultSet(rs));
+            }
+            while (rsDenied.next()){
+                deniedForms.add(formFromResultSet(rsDenied));
+            }
+            ps.close();
+            psDenied.close();
+            this.gotOldForms = true;
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        numberApproved = approvedForms.size();
+        numberDenied = deniedForms.size();
+        try {
+            String updateScore = "UPDATE AGENTS SET SCORE ="+ score + " and SET NUMBERAPPROVED =" + numberApproved + "and SET NUMBERDENIED =" + numberDenied + "WHERE TTBID =" + this.ttbID;
 
             PreparedStatement update = connection.prepareStatement(updateScore);
             update.executeUpdate();

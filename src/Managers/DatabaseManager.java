@@ -157,7 +157,10 @@ public class DatabaseManager {
                 "fullName varchar(50),	" +
                 "email varchar(100),	" +
                 "phone varchar(40),     " +
-                "score int )";
+                "score int " +
+                "numberApproved int " +
+                "numberDenied int " +
+                "numberPassed int)";
         String createForms = "create table Forms(" +
                 "formID bigint   constraint Forms_pk primary key, " +
                 "repID varchar (20), " +
@@ -494,6 +497,9 @@ public class DatabaseManager {
         String email = "";
         String phone = "";
         int score = 0;
+        int numberApproved = 0;
+        int numberDenied = 0;
+        int numberPassed = 0;
         try {
             String getData = "select * from AGENTS where TTBID = " + id;
             ResultSet result = this.getStmt().executeQuery(getData);
@@ -504,12 +510,15 @@ public class DatabaseManager {
                 email = result.getString("email");
                 phone = result.getString("phone");
                 score = result.getInt("score");
+                numberApproved = result.getInt("numberApproved");
+                numberDenied = result.getInt("numberDenied");
+                numberPassed = result.getInt("numberPassed");
             }
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-        Agent a = new Agent(uname,pword,fname,email,phone,id,score);
+        Agent a = new Agent(uname,pword,fname,email,phone,id,score, numberApproved, numberDenied, numberPassed);
         return a;
     }
 }
