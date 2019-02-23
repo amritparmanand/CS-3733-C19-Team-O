@@ -14,7 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -86,8 +90,24 @@ public class aApplicationFormPg3 {
 
         if(form.getResubmission())
             ttbID.setText(String.valueOf(form.getTtbID()));
-        if(form.getLabel().getLabelImage() != null)
+
+        // Deal with image
+        if(form.getLabel().getLabelImage() != null){
             imagePreview.setImage(form.getLabel().getLabelImage());
+
+            File image = (form.getLabel().getLabelFile());
+            File imageFile = new File("src/UI/Images/winelabel-example.jpg");
+            ITesseract instance = new Tesseract();
+            instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
+            instance.setLanguage("eng");
+
+            try {
+                String result = instance.doOCR(imageFile);
+                System.out.println(result);
+            } catch (TesseractException e) {
+                System.err.println(e.getMessage());
+            }
+        }
 
     }
     @FXML

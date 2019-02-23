@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 public class Reader {
 
     public static void main(String[] args) {
-        String input="C:\\Users\\jiang\\Documents\\CS3733\\CS-3733-C19-Team-O\\src\\OCR\\eng_bw.png";
+        String input="C:\\Users\\jiang\\Documents\\CS3733\\CS-3733-C19-Team-O\\src\\OCR\\testocr.png";
         String output="C:\\Users\\jiang\\Documents\\CS3733\\CS-3733-C19-Team-O\\src\\OCR\\output";
         String tesseract="C:\\Users\\jiang\\Documents\\CS3733\\CS-3733-C19-Team-O\\src\\OCR\\tesseract.exe";
         String[] command =

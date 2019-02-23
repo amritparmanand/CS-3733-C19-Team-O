@@ -1,9 +1,10 @@
-Mild Splendour of the various-vested Night!
-Mother of wildly-working visions! hail!
-I watch thy gliding, while with watery light
-Thy weak eye glimmers through a ﬂeecy veil;
-And when thou lovest thy pale orb to shroud
-Behind the gather’d blackness lost on high;
-And when thou dartest from the wind-rent cloud
-Thy placid lightning o’er the awaken’d sky.
+This is a lot of 12 point text to test the
+ocr code and see if it works on all types
+of file format.
+
+The quick brown dog jumped over the
+lazy fox. The quick brown dog jumped
+over the lazy fox. The quick brown dog
+jumped over the lazy fox. The quick
+brown dog jumped over the lazy fox.
 

@@ -6,12 +6,10 @@ import net.sourceforge.tess4j.*;
 public class test{
 
     public static void main(String[] args) {
-        File imageFile = new File("src/OCR/Tess4J/images/36ebe13f5edb8ead661f0d979f5e0bae.jpg");
-        ITesseract instance = new Tesseract();  // JNA Interface Mapping
+        File imageFile = new File("src/OCR/Tess4J/images/Question+Signs+appear+in+restaurants+and+other+locations+where+alcohol+is+stating.+Government+Warning_.tiff");
+        ITesseract instance = new Tesseract();
         instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
         instance.setLanguage("eng");
-        // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
-        //instance.setDatapath("tessdata"); // path to tessdata directory
 
         try {
             String result = instance.doOCR(imageFile);
