@@ -345,12 +345,16 @@ public class Form {
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) throws Exception{
         String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED', COMMENTS = '"+ comments.generateComments() + "' WHERE FORMID ="+ this.formID;
+        String updateScore = "UPDATE AGENTS SET SCORE ="+ 10 + " WHERE TTBID =" + this.ttbID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
+            PreparedStatement update = conn.prepareStatement(updateScore);
 
             ps.executeUpdate();
+            update.executeUpdate();
 
             ps.close();
+            update.close();
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();

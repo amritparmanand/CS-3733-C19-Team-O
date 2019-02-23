@@ -132,7 +132,7 @@ public class Agent extends Account {
             prepStmt.setString(4, this.getFullName());
             prepStmt.setString(5, this.getEmail());
             prepStmt.setString(6, this.getPhone());
-            prepStmt.setInt(7, this.getScore());
+            prepStmt.setInt(7, 0);
 
             prepStmt.executeUpdate();
             prepStmt.close();
@@ -274,8 +274,20 @@ public class Agent extends Account {
     public void approveOrDeny(Form form){
         this.reviewedForms.add(form);
         this.workingForms.remove(form);
-        this.setScore(this.getScore() + 5);
-        System.out.println("score: " + score);
+//        this.setScore(this.getScore() + 5);
+//        System.out.println("score: " + score);
+//        String updateScore = "UPDATE AGENTS SET SCORE = '"+ this.getScore() +"'WHERE TTBID =" + this.getTtbID();
+//
+//        try{
+//            PreparedStatement ps = conn.prepareStatement(updateScore);
+//
+//            ps.executeUpdate();
+//
+//            ps.close();
+//        } catch (SQLException e) {
+//            if (!e.getSQLState().equals("X0Y32"))
+//                e.printStackTrace();
+//        }
     }
 
     public void pass(Form form){
