@@ -29,28 +29,24 @@
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
                     <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                              <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-                                  <image>
-                                      <Image url="@../Icons/TTB-logo.png" />
-                                  </image>
-                                  <HBox.margin>
-                                      <Insets left="100.0" />
-                                  </HBox.margin>
-                              </ImageView>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB" HBox.hgrow="ALWAYS">
-                                  <HBox.margin>
-                                      <Insets left="10.0" />
-                                  </HBox.margin>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0" HBox.hgrow="ALWAYS">
-                                  <HBox.margin>
-                                      <Insets left="5.0" />
-                                  </HBox.margin>
-                              </Text>
-                     </children>
-                  </HBox>
+                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                            <image>
+                                <Image url="@../Icons/TTB-logo.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets left="100.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0" HBox.hgrow="ALWAYS">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                        </Text>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.LoginPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.LoginPage">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -60,7 +60,15 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="332.0" prefWidth="346.0">
                            <children>
-                              <Label style="-fx-font-size: 32;" styleClass="h1" text="Log In to Your Account" />
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="247.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                       <image>
+                                          <Image url="@../Icons/TTB-logo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
                                     <JFXRadioButton fx:id="m" onAction="#validateButton" text="Manufacturer">
@@ -124,7 +132,7 @@
                               </JFXButton>
                               <Label fx:id="loginMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="346.0" wrapText="true">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </Label>
                               <JFXButton fx:id="programChip" onAction="#validateButton" onMousePressed="#programChip" prefHeight="42.0" prefWidth="168.0" styleClass="changeColorButton" text="Program This Chip" />
