@@ -26,11 +26,13 @@ public class Agent extends Account {
     private boolean gotOldForms = false;
     private boolean gotCurrentForms = false;
     private int score;
+    private int[] achievments = new int[20];
 
-    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score) {
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score, int[] achievments){
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
         this.score = score;
+        this.achievments = achievments;
     }
 
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score) {
@@ -60,6 +62,7 @@ public class Agent extends Account {
             super.setEmail(result.getString("email"));
             super.setPhone(result.getString("phone"));
             this.setScore(result.getInt("score"));
+            this.setAchievments(result.getintArray("achievments"));
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
@@ -80,6 +83,12 @@ public class Agent extends Account {
     }
     public void setScore(int score) {
         this.score = score;
+    }
+    public int[] getAchievments(){
+        return achievments;
+    }
+    public void setAchievments(int[] achievments){
+        this.achievments=achievments;
     }
     public ArrayList<Form> getReviewedForms() {
         return reviewedForms;
@@ -122,7 +131,7 @@ public class Agent extends Account {
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {
-            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score) " +
+            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, achievments) " +
                     "VALUES(?,?,?,?,?,?,?)";
 
             PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
@@ -133,6 +142,7 @@ public class Agent extends Account {
             prepStmt.setString(5, this.getEmail());
             prepStmt.setString(6, this.getPhone());
             prepStmt.setInt(7, 0);
+            prepStmt.setArray(8, [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
             prepStmt.executeUpdate();
             prepStmt.close();
