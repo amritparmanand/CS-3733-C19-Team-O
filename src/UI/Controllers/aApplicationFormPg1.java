@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -209,6 +210,12 @@ public class aApplicationFormPg1 {
         cacheM.approveForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
+
+        String repEmail = form.getEmailAddress();
+        // Different attempt:
+        String email = cacheM.getDbM().findRepEmail(form.getRepID());
+
+
     }
 
     @FXML

@@ -204,6 +204,8 @@ public class LoginPage implements SerialPortDataListener {
                 System.out.println("The username and password you entered did not match our records. Please double-check and try again.");
             }
         }
+
+        System.out.println(cacheM.getDbM().findRepEmail(1));
     }
 
     @FXML

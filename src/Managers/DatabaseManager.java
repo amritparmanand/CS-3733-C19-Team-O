@@ -509,4 +509,26 @@ public class DatabaseManager {
         Agent a = new Agent(uname,pword,fname,email,phone,id);
         return a;
     }
+
+    /**
+     * Delete this function if it doesn't work
+     * getEmail
+     */
+
+    public String findRepEmail(int id){
+        String repEmail = "";
+        try {
+            String getData = "select EMAIL from REPRESENTATIVES where REPID = " + id;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                repEmail = result.getString("email");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals(""))
+                e.printStackTrace();
+        }
+        return repEmail;
+
+    }
+
 }
