@@ -107,9 +107,6 @@ public class aApplicationFormPg3 {
 
             File imageFile = new File(image.getPath());
             ITesseract instance = new Tesseract();
-            ImageIO.scanForPlugins();
-            String datapath = "src\\OCR\\Tess4J\\tessdata";
-//            instance.setDatapath (new File(datapath).getPath());
             instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
             instance.setLanguage("eng");
 

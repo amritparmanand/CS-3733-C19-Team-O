@@ -6,7 +6,7 @@ import net.sourceforge.tess4j.*;
 public class test{
 
     public static void main(String[] args) {
-        File imageFile = new File("src/UI/Images/surgeon.jpg");
+        File imageFile = new File("C:\\Users\\jiang\\Pictures\\Pine-Ridge-Back-Label-1024x1019.jpg");
         ITesseract instance = new Tesseract();
         instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
         instance.setLanguage("eng");

@@ -254,18 +254,9 @@ public class Agent extends Account {
         Blob picture = rs.getBlob("labelImage");
         if (picture != null) {
 
-            // InputStream
             BufferedImage is = ImageIO.read(picture.getBinaryStream());
-//            byte[] buffer = new byte[is.available()];
-//            is.read(buffer);
-
             File outputFile = new File("src/OCR/targetFile.jpg");
-
             ImageIO.write(is, "JPG", outputFile);
-            //OutputStream
-//            File targetFile = new File("src/OCR/targetFile.tmp");
-//            OutputStream outStream = new FileOutputStream(targetFile);
-//            outStream.write(buffer);
 
             f.getLabel().setLabelImage(new Image(picture.getBinaryStream()));
             f.getLabel().setLabelFile(outputFile);
