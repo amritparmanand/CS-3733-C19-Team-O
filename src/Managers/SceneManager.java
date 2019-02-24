@@ -1,5 +1,6 @@
 package Managers;
 
+import javafx.concurrent.Service;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,9 +23,12 @@ public class SceneManager {
 
     private Scene lastScene;
 
+    private Service service;
     public SceneManager(Stage main) {
         this.main = main;
         //main.setMaximized(true);
+
+
     }
 
     //WARNING: Object isn't a good thing to settle on. We will create a super class later to call here.
@@ -33,7 +37,9 @@ public class SceneManager {
 
         Parent root = loader.load();
         main.setScene(new Scene(root));
-        main.setMaximized(true);
+//        main.getScene().setRoot(root);
+
+//        main.setMaximized(true);
         main.show();
     }
 
@@ -46,6 +52,7 @@ public class SceneManager {
         Parent root = loader.load();
 
         main.setScene(new Scene(root));
+//        main.getScene().setRoot(root);
         main.setTitle(title);
         main.show();
     }

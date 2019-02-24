@@ -1,5 +1,6 @@
 package Datatypes;
 
+import Managers.CacheManager;
 import javafx.animation.*;
 import javafx.beans.value.ObservableDoubleValue;
 import javafx.fxml.FXML;
@@ -31,6 +32,11 @@ public class Alcy {
     private int imageIndex = 0;
     private int frameTime = 100;
     private ArrayList<Image> actionList = new ArrayList<>();
+    private CacheManager cacheManager;
+
+    public Alcy(CacheManager cacheManager) {
+        this.cacheManager = cacheManager;
+    }
 
     public ImageView getImageView() { return imageView; }
     public void setImageView(ImageView imageView) {
