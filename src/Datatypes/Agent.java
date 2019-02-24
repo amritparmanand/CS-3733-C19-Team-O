@@ -315,17 +315,22 @@ public class Agent extends Account {
             String updateScore = "UPDATE AGENTS SET SCORE ="+ score + "WHERE TTBID =" + this.ttbID;
             String updateApproved = "UPDATE AGENTS SET NUMBERAPPROVED =" + numberApproved + "WHERE TTBID =" + this.ttbID;
             String updateDenied = "UPDATE AGENTS SET NUMBERDENIED =" + numberDenied + "WHERE TTBID =" + this.ttbID;
+            String updatePassed = "UPDATE AGENTS SET NUMBERPASSED =" + numberPassed + "WHERE TTBID =" + this.ttbID;
 
             PreparedStatement update = connection.prepareStatement(updateScore);
             PreparedStatement updateA = connection.prepareStatement(updateApproved);
             PreparedStatement updateD = connection.prepareStatement(updateDenied);
+            PreparedStatement updateP = connection.prepareStatement(updatePassed);
+
             update.executeUpdate();
             updateA.executeUpdate();
             updateD.executeUpdate();
+            updateP.executeUpdate();
 
             update.close();
             updateA.close();
             updateD.close();
+            updateP.close();
 
 
         } catch (SQLException e) {
@@ -386,5 +391,6 @@ public class Agent extends Account {
 
     public void pass(Form form){
         this.workingForms.remove(form);
+        this.numberPassed = this.numberPassed+1;
     }
 }
