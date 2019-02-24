@@ -18,6 +18,7 @@ import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -103,9 +104,12 @@ public class aApplicationFormPg3 {
                 System.out.println("label file isn't null");
             }
 
-            File imageFile = new File("src/UI/Images/surgeon.jpg");
+//            File imageFile = new File("src/UI/Images/surgeon.jpg");
             ITesseract instance = new Tesseract();
-            instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
+            ImageIO.scanForPlugins();
+            String datapath = "src\\OCR\\Tess4J\\tessdata";
+            instance.setDatapath (new File(datapath).getPath());
+//            instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
             instance.setLanguage("eng");
 
             try {

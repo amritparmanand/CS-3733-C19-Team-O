@@ -262,7 +262,7 @@ public class Agent extends Account {
             outStream.write(buffer);
 
             f.getLabel().setLabelImage(new Image(is));
-            f.getLabel().setLabelFile((File) picture);
+            f.getLabel().setLabelFile(targetFile);
         }
 
         return f;
