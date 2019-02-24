@@ -398,5 +398,11 @@
   -fx-border-color: #4A77DD;
 }
 
+.iconCard{
+  -fx-background-color: #4A77DD;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+  -fx-background-radius: 3;
+}
+
 
 

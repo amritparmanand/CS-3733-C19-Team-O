@@ -65,7 +65,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="116.0" prefWidth="317.0">
                            <children>
-                              <JFXProgressBar fx:id="progressBarElement" />
+                              <JFXProgressBar fx:id="progressBarElement" progress="0.0" />
                               <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
                               <JFXButton onMousePressed="#saveDraft" prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
                            </children>
@@ -638,6 +638,16 @@
                   </VBox>
                </children>
             </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="100.0" layoutY="600.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label fx:id="alcyLabel">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
          </children>
       </VBox>
    </children>

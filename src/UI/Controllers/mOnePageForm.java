@@ -92,6 +92,8 @@ public class mOnePageForm {
     @FXML private Button button;
     @FXML private JFXToggleButton switchButton;
     @FXML private JFXProgressBar progressBarElement;
+    @FXML private ImageView alcyView;
+    @FXML private Label alcyLabel;
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
@@ -101,6 +103,9 @@ public class mOnePageForm {
         Form form = cacheM.getForm();
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
         image = form.getLabel();
+        Alcy alcy = cacheM.getAlcy();
+        alcy.setImageView(alcyView);
+        alcy.start();
 
 
         switch(form.getProductSource()){
@@ -231,8 +236,13 @@ public class mOnePageForm {
             return false;
         } else if(phoneNumber.matches("(^([0-9]( |-|.|/)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|.|/)?([0-9]{3}( |-|.|/)?[0-9]{4}|[a-zA-Z0-9]{7})$)")){
             return true;
-        }else
+        }else {
+            cacheM.getAlcy().sad();
+            alcyLabel.setText("im straight...");
             return false;
+
+        }
+
 
     }
     @FXML public boolean validFormEmail(String email){

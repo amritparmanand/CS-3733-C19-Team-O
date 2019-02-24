@@ -103,6 +103,6 @@
             </VBox>
          </children>
       </VBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="1920.0" />
+      <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
    </children>
 </AnchorPane>
