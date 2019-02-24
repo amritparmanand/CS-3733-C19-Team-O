@@ -23,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1880.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormPg1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormPg1">
 
     <children>
         <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -235,59 +235,41 @@
                                           </VBox>
                                           <Label text="Additional Fields">
                                              <padding>
-                                                <Insets left="20.0" top="20.0" />
+                                                <Insets bottom="20.0" left="20.0" top="20.0" />
                                              </padding>
                                              <styleClass>
                                                 <String fx:value="labeltext" />
                                                 <String fx:value="h2" />
                                              </styleClass>
                                           </Label>
-                                          <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                             <children>
-                                                <Label styleClass="labeltext" text="5. Type of Product (Again)" />
-                                                <HBox prefHeight="100.0" prefWidth="200.0" />
-                                                <HBox prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
-                                                         <children>
-                                                            <JFXRadioButton fx:id="wine2" onMousePressed="#showWineFields" text="Wine">
-                                                               <toggleGroup>
-                                                                  <ToggleGroup fx:id="WDM1" />
-                                                               </toggleGroup>
-                                                            </JFXRadioButton>
-                                                            <JFXRadioButton fx:id="spirits2" onMousePressed="#hideWineFields" text="Liquor" toggleGroup="$WDM1" />
-                                                            <JFXRadioButton fx:id="beer2" onMousePressed="#hideWineFields" text="Beer" toggleGroup="$WDM1" />
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                             </padding>
-                                          </VBox>
-                                          <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                          <VBox prefHeight="40.0" prefWidth="620.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="labeltext" text="Alcohol Percentage" />
-                                                <JFXTextField fx:id="alcoholPercentage" />
+                                                <JFXTextField fx:id="alcoholPercentage" maxWidth="-Infinity" prefHeight="28.0" prefWidth="75.0" />
                                              </children>
                                              <padding>
                                                 <Insets left="20.0" right="20.0" />
                                              </padding>
                                           </VBox>
-                                          <VBox fx:id="phVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                          <VBox fx:id="phVBox" prefHeight="43.0" prefWidth="620.0" spacing="10.0">
                                              <children>
-                                                <Label styleClass="labeltext" text="pH Level" />
-                                                <JFXTextField fx:id="phLevel" />
+                                                <Label styleClass="labeltext" text="pH Level">
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin></Label>
+                                                <JFXTextField fx:id="phLevel" maxWidth="-Infinity" prefHeight="28.0" prefWidth="74.0" />
                                              </children>
                                              <padding>
                                                 <Insets left="20.0" right="20.0" />
                                              </padding>
                                           </VBox>
-                                          <VBox fx:id="vintageVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                          <VBox fx:id="vintageVBox" prefHeight="126.0" prefWidth="620.0" spacing="10.0">
                                              <children>
-                                                <Label styleClass="labeltext" text="Vintage Year" />
-                                                <JFXTextField fx:id="vintageYear">
+                                                <Label styleClass="labeltext" text="Vintage Year">
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin></Label>
+                                                <JFXTextField fx:id="vintageYear" maxWidth="-Infinity" prefHeight="28.0" prefWidth="73.0">
                                                    <VBox.margin>
                                                       <Insets bottom="100.0" />
                                                    </VBox.margin></JFXTextField>
