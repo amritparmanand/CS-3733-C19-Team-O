@@ -17,7 +17,7 @@ import java.util.Objects;
 
 /**
  * @author Amrit Parmanand & Percy
- * @version It 2
+ * @version It 4
  * @since It 1
  * Manages the database, handles accessing and inserting data
  */
@@ -157,9 +157,9 @@ public class DatabaseManager {
                 "fullName varchar(50),	" +
                 "email varchar(100),	" +
                 "phone varchar(40),     " +
-                "score int " +
-                "numberApproved int " +
-                "numberDenied int " +
+                "score int, " +
+                "numberApproved int, " +
+                "numberDenied int, " +
                 "numberPassed int)";
         String createForms = "create table Forms(" +
                 "formID bigint   constraint Forms_pk primary key, " +
@@ -234,7 +234,7 @@ public class DatabaseManager {
 
         String mDefault = "insert into REPRESENTATIVES values (1, 'manu', '" + mPassword + "', 'Manufacturer Example'," +
                 " 'Manufacturer', 'manu@manu.com', '1234567890')";
-        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb', 0)";
+        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb', 0, 0, 0, 0)";
         try {
             this.stmt.execute(mDefault);
             this.stmt.execute(aDefault);

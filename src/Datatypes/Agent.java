@@ -44,11 +44,14 @@ public class Agent extends Account {
    //     this.achievments = achievments;
     }
 
-    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score) {
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score, int numberApproved, int numberDenied, int numberPassed) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
         this.hasFetchedForms = hasFetchedForms;
         this.score = score;
+        this.numberApproved = numberApproved;
+        this.numberDenied = numberDenied;
+        this.numberPassed = numberPassed;
 
         if (this.hasFetchedForms) {
             this.getWorkingForms();
