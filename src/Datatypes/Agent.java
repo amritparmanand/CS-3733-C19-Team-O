@@ -23,7 +23,6 @@ public class Agent extends Account {
     private ArrayList<Form> reviewedForms = new ArrayList<>();
     private ArrayList<Form> approvedForms = new ArrayList<>();
     private ArrayList<Form> deniedForms = new ArrayList<>();
-    private ArrayList<Form> passedForms = new ArrayList<>();
     private ArrayList<Form> newForms = new ArrayList<>();
     private boolean hasFetchedForms = false;
     private boolean gotOldForms = false;
@@ -139,27 +138,21 @@ public class Agent extends Account {
     public boolean isGotCurrentForms() {
         return gotCurrentForms;
     }
-
     public int getNumberPassed() {
         return numberPassed;
     }
-
     public void setNumberPassed(int numberPassed) {
         this.numberPassed = numberPassed;
     }
-
     public int getNumberApproved() {
         return numberApproved;
     }
-
     public void setNumberApproved(int numberApproved) {
         this.numberApproved = numberApproved;
     }
-
     public int getNumberDenied() {
         return numberDenied;
     }
-
     public void setNumberDenied(int numberDenied) {
         this.numberDenied = numberDenied;
     }
@@ -274,7 +267,7 @@ public class Agent extends Account {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-        calculateScore(connection);
+   //     calculateScore(connection);
     }
 
     /**
@@ -297,10 +290,12 @@ public class Agent extends Account {
             ResultSet rsDenied = psDenied.executeQuery();
 
             while (rs.next()) {
-                approvedForms.add(formFromResultSet(rs));
+               // approvedForms.add(formFromResultSet(rs));
+                numberApproved++;
             }
             while (rsDenied.next()){
-                deniedForms.add(formFromResultSet(rsDenied));
+                //deniedForms.add(formFromResultSet(rsDenied));
+                numberDenied++;
             }
             ps.close();
             psDenied.close();
@@ -309,8 +304,8 @@ public class Agent extends Account {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-        numberApproved = approvedForms.size();
-        numberDenied = deniedForms.size();
+//        numberApproved = approvedForms.size();
+//        numberDenied = deniedForms.size();
         try {
             String updateScore = "UPDATE AGENTS SET SCORE ="+ score + "WHERE TTBID =" + this.ttbID;
             String updateApproved = "UPDATE AGENTS SET NUMBERAPPROVED =" + numberApproved + "WHERE TTBID =" + this.ttbID;
@@ -391,6 +386,6 @@ public class Agent extends Account {
 
     public void pass(Form form){
         this.workingForms.remove(form);
-        this.numberPassed = this.numberPassed+1;
+      numberPassed++;
     }
 }

@@ -28,6 +28,7 @@ public class Scores {
 
     @FXML public void initialize() {
         Agent A = (Agent) cacheM.getAcct();
+        A.calculateScore(cacheM.getDbM().getConnection());
         score.setText(Integer.toString(A.getScore()));
         approved.setText(Integer.toString(A.getNumberApproved()));
         denied.setText(Integer.toString(A.getNumberDenied()));
