@@ -25,7 +25,7 @@ public class Scores {
 
     @FXML private Label score;
     @FXML private Label approved;
-    @FXML private Label denied;
+    @FXML private Label numDenied;
     @FXML private Label passed;
     @FXML private JFXButton back;
     @FXML private Label first;
@@ -54,7 +54,7 @@ public class Scores {
         A.calculateScore(connection);
         score.setText(Integer.toString(A.getScore()));
         approved.setText(Integer.toString(A.getNumberApproved()));
-        denied.setText(Integer.toString(A.getNumberDenied()));
+        numDenied.setText(Integer.toString(A.getNumberDenied()));
         passed.setText(Integer.toString(A.getNumberPassed()));
         first.setText(A.getAgentPlaces().get(0).getAgentName());
         second.setText(A.getAgentPlaces().get(1).getAgentName());
