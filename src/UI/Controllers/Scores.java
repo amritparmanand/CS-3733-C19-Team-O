@@ -59,63 +59,63 @@ public class Scores {
         first.setText(A.getAgentPlaces().get(0).getAgentName());
         second.setText(A.getAgentPlaces().get(1).getAgentName());
         third.setText(A.getAgentPlaces().get(2).getAgentName());
-        if (A.getAchievments[1]==1){
+        if (A.getAchievments()[1]==1){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/1.png").toExternalForm());
             theRookie= new ImageView(image);
         }
-        if (A.getAchievments[2]==2){
+        if (A.getAchievments()[2]==2){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/2.png").toExternalForm());
             gettingStarted= new ImageView(image);
         }
-        if (A.getAchievments[3]==3){
+        if (A.getAchievments()[3]==3){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/3.png").toExternalForm());
             seasonedPro= new ImageView(image);
         }
-        if (A.getAchievments[4]==4){
+        if (A.getAchievments()[4]==4){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/4.png").toExternalForm());
             threePointer= new ImageView(image);
         }
-        if (A.getAchievments[5]==5){
+        if (A.getAchievments()[5]==5){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/5.png").toExternalForm());
             backFromTheDead= new ImageView(image);
         }
-        if (A.getAchievments[6]==6){
+        if (A.getAchievments()[6]==6){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/6.png").toExternalForm());
             strikeThree= new ImageView(image);
         }
-        if (A.getAchievments[7]==7){
+        if (A.getAchievments()[7]==7){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/7.png").toExternalForm());
             passingTheBuck= new ImageView(image);
         }
-        if (A.getAchievments[8]==8){
+        if (A.getAchievments()[8]==8){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/8.png").toExternalForm());
             expertProcrastination= new ImageView(image);
         }
-        if (A.getAchievments[9]==9){
+        if (A.getAchievments()[9]==9){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/9.png").toExternalForm());
             expertDelegation= new ImageView(image);
         }
-        if (A.getAchievments[10]==10){
+        if (A.getAchievments()[10]==10){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/10.png").toExternalForm());
             pleasantMood= new ImageView(image);
         }
-        if (A.getAchievments[11]==11){
+        if (A.getAchievments()[11]==11){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/11.png").toExternalForm());
             yesMan= new ImageView(image);
         }
-        if (A.getAchievments[12]==12){
+        if (A.getAchievments()[12]==12){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/12.png").toExternalForm());
             goodVibrations= new ImageView(image);
         }
-        if (A.getAchievments[13]==13){
+        if (A.getAchievments()[13]==13){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/13.png").toExternalForm());
             highStandards= new ImageView(image);
         }
-        if (A.getAchievments[14]==14){
+        if (A.getAchievments()[14]==14){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/14.png").toExternalForm());
             denied= new ImageView(image);
         }
-        if (A.getAchievments[15]==15){
+        if (A.getAchievments()[15]==15){
             Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/15.png").toExternalForm());
             itsAllWrong= new ImageView(image);
         }
