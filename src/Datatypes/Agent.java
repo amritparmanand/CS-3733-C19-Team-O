@@ -2,7 +2,10 @@ package Datatypes;
 
 import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -252,17 +255,20 @@ public class Agent extends Account {
         if (picture != null) {
 
             // InputStream
-            InputStream is = picture.getBinaryStream();
-            byte[] buffer = new byte[is.available()];
-            is.read(buffer);
+            BufferedImage is = ImageIO.read(picture.getBinaryStream());
+//            byte[] buffer = new byte[is.available()];
+//            is.read(buffer);
 
+            File outputFile = new File("src/OCR/targetFile.jpg");
+
+            ImageIO.write(is, "JPG", outputFile);
             //OutputStream
-            File targetFile = new File("src/OCR/targetFile.tmp");
-            OutputStream outStream = new FileOutputStream(targetFile);
-            outStream.write(buffer);
+//            File targetFile = new File("src/OCR/targetFile.tmp");
+//            OutputStream outStream = new FileOutputStream(targetFile);
+//            outStream.write(buffer);
 
-            f.getLabel().setLabelImage(new Image(is));
-            f.getLabel().setLabelFile(targetFile);
+            f.getLabel().setLabelImage(new Image(picture.getBinaryStream()));
+            f.getLabel().setLabelFile(outputFile);
         }
 
         return f;
