@@ -102,18 +102,19 @@ public class aApplicationFormPg3 {
                 System.out.println("label file is null");
             }else{
                 System.out.println("label file isn't null");
+                System.out.println(image.getPath());
             }
 
-//            File imageFile = new File("src/UI/Images/surgeon.jpg");
+            File imageFile = new File(image.getPath());
             ITesseract instance = new Tesseract();
             ImageIO.scanForPlugins();
             String datapath = "src\\OCR\\Tess4J\\tessdata";
-            instance.setDatapath (new File(datapath).getPath());
-//            instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
+//            instance.setDatapath (new File(datapath).getPath());
+            instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
             instance.setLanguage("eng");
 
             try {
-                String result = instance.doOCR(image);
+                String result = instance.doOCR(imageFile);
                 System.out.println(result);
             } catch (TesseractException e) {
                 System.err.println(e.getMessage());
