@@ -32,7 +32,7 @@ public class Agent extends Account{
     private int numberPassed;
     private int numberApproved;
     private int numberDenied;
-    private int[] achievments = new int[20];
+    private int[] achievments = new int[15];
 
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score, int numberApproved, int numberDenied, int numberPassed){
         super(username, password, fullName, email, phone);
