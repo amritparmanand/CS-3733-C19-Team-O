@@ -3,9 +3,7 @@ package Datatypes;
 import javafx.scene.image.Image;
 
 import java.awt.*;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -134,7 +132,7 @@ public class Agent extends Account {
     // As long as there are less than 3 forms in workingForms
     // Query the database to select forms where ttb ID is empty
     // Insert this agent's ID into the selected forms
-    public void assignNewForms(Connection conn, int limit) {
+    public void assignNewForms(Connection conn, int limit) throws IOException {
 
 //        if (!hasFetchedForms)
 //            getAssignedForms(conn);
@@ -171,7 +169,7 @@ public class Agent extends Account {
     // Query the database to select forms where the TTB ID matches this agent's id
     // Call formFromResultSet into object and add it into the working Forms of this agent
     @SuppressWarnings("Duplicates")
-    public void getAssignedForms(Connection conn) {
+    public void getAssignedForms(Connection conn) throws IOException {
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE" +
                     " APPLICATIONS.TTBID = " + this.getTtbID() + " and APPLICATIONS.STATUS = 'PENDING'";
@@ -196,7 +194,7 @@ public class Agent extends Account {
      * @param connection
      */
     @SuppressWarnings("Duplicates")
-    public void getReviewedForms(Connection connection){
+    public void getReviewedForms(Connection connection) throws IOException{
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
                     "APPLICATIONS.TTBID = " + this.getTtbID()+ " and APPLICATIONS.STATUS = 'APPROVED' or APPLICATIONS.STATUS = 'DENIED'";
@@ -217,7 +215,7 @@ public class Agent extends Account {
 
     //    // Parse a Form from database to object
 
-    private Form formFromResultSet(ResultSet rs) throws SQLException {
+    private Form formFromResultSet(ResultSet rs) throws SQLException, IOException {
         Form f = new Form();
         f.setFormID(rs.getLong("formID"));
         f.setRepID(rs.getInt("repID"));
@@ -248,14 +246,24 @@ public class Agent extends Account {
         f.setpHLevel(rs.getString("pHLevel"));
         f.setCommentString(rs.getString("comments"));
 
+        // Deal with image
         LabelImage formLabel = new LabelImage();
         Blob picture = rs.getBlob("labelImage");
         if (picture != null) {
+
+            // InputStream
             InputStream is = picture.getBinaryStream();
+            byte[] buffer = new byte[is.available()];
+            is.read(buffer);
+
+            //OutputStream
+            File targetFile = new File("src/OCR/targetFile.tmp");
+            OutputStream outStream = new FileOutputStream(targetFile);
+            outStream.write(buffer);
+
             f.getLabel().setLabelImage(new Image(is));
+            f.getLabel().setLabelFile((File) picture);
         }
-//        f.getLabel().setLabelImage(img);
-//        Image img = new Image();
 
         return f;
     }

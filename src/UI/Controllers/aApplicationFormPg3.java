@@ -99,6 +99,8 @@ public class aApplicationFormPg3 {
             File image = form.getLabel().getLabelFile();
             if(form.getLabel().getLabelFile() == null){
                 System.out.println("label file is null");
+            }else{
+                System.out.println("label file isn't null");
             }
 
             File imageFile = new File("src/UI/Images/surgeon.jpg");
@@ -160,12 +162,6 @@ public class aApplicationFormPg3 {
         A.approveOrDeny(form);
         goToHomePage();
     }
-
-    @FXML
-    public void uploadImage() throws IOException{
-
-    }
-
 
     @FXML public void passForm() throws IOException{
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());

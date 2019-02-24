@@ -536,6 +536,8 @@ public class Form {
             prepStmt.setString(26, getAlcoholPercent());
             prepStmt.setString(27, getVintageYear());
             prepStmt.setString(28, getpHLevel());
+
+            // Deal with image
             File slimebert = getLabel().getLabelFile();
             FileInputStream blobert = new FileInputStream(slimebert);
             prepStmt.setBinaryStream(29, blobert, (int) slimebert.length());

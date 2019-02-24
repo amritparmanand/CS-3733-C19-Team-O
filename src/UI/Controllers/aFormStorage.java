@@ -38,7 +38,7 @@ public class aFormStorage {
     @FXML private FlowPane loadForms;
     private ArrayList<Form> repeated = new ArrayList<>();
 
-    @SuppressWarnings("Duplicates") @FXML public void initialize(){
+    @SuppressWarnings("Duplicates") @FXML public void initialize() throws IOException {
         Agent A = (Agent) cacheM.getAcct();
         if(!A.isGotCurrentForms()){
             ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
@@ -170,6 +170,7 @@ public class aFormStorage {
                 }
 
                 repeated.add(form);
+                A.getWorkingForms().add(form);
             }
         }
     }

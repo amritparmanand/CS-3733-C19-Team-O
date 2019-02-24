@@ -186,7 +186,12 @@ public class mApplicationFormPg3 {
 
     @FXML
     public void uploadImage(){
-        image.getFile();
+        form.getLabel().setLabelFile(image.getFile());
+        if(form.getLabel().getLabelFile() == null){
+            System.out.println("failed to set label file");
+        }else{
+            System.out.println("set label file from manufacturer");
+        }
         imagePreview.setImage(image.getLabelImage());
     }
 

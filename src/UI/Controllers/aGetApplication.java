@@ -44,7 +44,7 @@ public class aGetApplication {
     private boolean noFilter = false;
 
     @SuppressWarnings("Duplicates")
-    @FXML public void initialize(){
+    @FXML public void initialize() throws IOException {
         loadFormPane.getChildren().clear();
 
         if(approved.isSelected()){
