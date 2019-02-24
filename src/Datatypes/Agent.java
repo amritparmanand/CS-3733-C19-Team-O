@@ -312,11 +312,21 @@ public class Agent extends Account {
         numberApproved = approvedForms.size();
         numberDenied = deniedForms.size();
         try {
-            String updateScore = "UPDATE AGENTS SET SCORE ="+ score + " and SET NUMBERAPPROVED =" + numberApproved + "and SET NUMBERDENIED =" + numberDenied + "WHERE TTBID =" + this.ttbID;
+            String updateScore = "UPDATE AGENTS SET SCORE ="+ score + "WHERE TTBID =" + this.ttbID;
+            String updateApproved = "UPDATE AGENTS SET NUMBERAPPROVED =" + numberApproved + "WHERE TTBID =" + this.ttbID;
+            String updateDenied = "UPDATE AGENTS SET NUMBERDENIED =" + numberDenied + "WHERE TTBID =" + this.ttbID;
 
             PreparedStatement update = connection.prepareStatement(updateScore);
+            PreparedStatement updateA = connection.prepareStatement(updateApproved);
+            PreparedStatement updateD = connection.prepareStatement(updateDenied);
             update.executeUpdate();
+            updateA.executeUpdate();
+            updateD.executeUpdate();
+
             update.close();
+            updateA.close();
+            updateD.close();
+
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
