@@ -150,7 +150,6 @@ public class mApplicationFormPg3 {
                 form.setTtbID(0);
             else
                 form.setTtbID(Integer.parseInt(ttbID.getText()));
-            //form.setBottleCapacity(bottleCapacity.getText());
             form.setLabel(image);
             errorLabel.setText(" ");
             form.setLabel(image);

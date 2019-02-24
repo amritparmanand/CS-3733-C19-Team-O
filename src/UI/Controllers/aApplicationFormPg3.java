@@ -19,6 +19,7 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -95,14 +96,18 @@ public class aApplicationFormPg3 {
         if(form.getLabel().getLabelImage() != null){
             imagePreview.setImage(form.getLabel().getLabelImage());
 
-            File image = (form.getLabel().getLabelFile());
-            File imageFile = new File("src/UI/Images/winelabel-example.jpg");
+            File image = form.getLabel().getLabelFile();
+            if(form.getLabel().getLabelFile() == null){
+                System.out.println("label file is null");
+            }
+
+            File imageFile = new File("src/UI/Images/surgeon.jpg");
             ITesseract instance = new Tesseract();
             instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
             instance.setLanguage("eng");
 
             try {
-                String result = instance.doOCR(imageFile);
+                String result = instance.doOCR(image);
                 System.out.println(result);
             } catch (TesseractException e) {
                 System.err.println(e.getMessage());
@@ -140,6 +145,7 @@ public class aApplicationFormPg3 {
         cacheM.approveForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
+        goToHomePage();
     }
 
 

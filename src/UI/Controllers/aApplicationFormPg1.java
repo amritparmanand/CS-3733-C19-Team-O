@@ -209,6 +209,7 @@ public class aApplicationFormPg1 {
         cacheM.approveForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
+        goToHomePage();
     }
 
     @FXML

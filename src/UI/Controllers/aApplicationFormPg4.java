@@ -106,6 +106,7 @@ public class aApplicationFormPg4 {
         } else {
             System.out.println("invalid signature or date");
         }
+        goToHomePage();
     }
 
 

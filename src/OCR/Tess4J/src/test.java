@@ -6,7 +6,7 @@ import net.sourceforge.tess4j.*;
 public class test{
 
     public static void main(String[] args) {
-        File imageFile = new File("src/OCR/Tess4J/images/Question+Signs+appear+in+restaurants+and+other+locations+where+alcohol+is+stating.+Government+Warning_.tiff");
+        File imageFile = new File("src/UI/Images/surgeon.jpg");
         ITesseract instance = new Tesseract();
         instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
         instance.setLanguage("eng");
