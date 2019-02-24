@@ -521,4 +521,8 @@ public class DatabaseManager {
         Agent a = new Agent(uname,pword,fname,email,phone,id,score, numberApproved, numberDenied, numberPassed);
         return a;
     }
+
+    public void agentRank(){
+
+    }
 }

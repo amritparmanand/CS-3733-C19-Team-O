@@ -2,28 +2,29 @@ package Datatypes;
 
 import javafx.scene.image.Image;
 
+import javax.xml.transform.Result;
 import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+
 /**
  * @author Percy Jiang & Gabe Entov
  * @version It 4
  * @since It 1
  * Class for an agent account
  */
-public class Agent extends Account {
+public class Agent extends Account{
     private int ttbID;
     private ArrayList<Form> workingForms = new ArrayList<>();
     private ArrayList<Form> reviewedForms = new ArrayList<>();
-    private ArrayList<Form> approvedForms = new ArrayList<>();
-    private ArrayList<Form> deniedForms = new ArrayList<>();
     private ArrayList<Form> newForms = new ArrayList<>();
+    private ArrayList<agentScore> agentPlaces = new ArrayList<>();
     private boolean hasFetchedForms = false;
     private boolean gotOldForms = false;
     private boolean gotCurrentForms = false;
@@ -161,7 +162,7 @@ public class Agent extends Account {
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {
-            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied, achievments) " +
+            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied) " +
                     "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
@@ -267,12 +268,15 @@ public class Agent extends Account {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-   //     calculateScore(connection);
-    }
+     }
+
+
 
     /**
      * @author Clay Oshiro-Leavitt
      * @version It 4
+     * keeps track of agent's points, number of forms approved, denied, passed
+     * 5 points for each form processed
      * @param connection
      */
     public void calculateScore(Connection connection){
@@ -290,11 +294,9 @@ public class Agent extends Account {
             ResultSet rsDenied = psDenied.executeQuery();
 
             while (rs.next()) {
-               // approvedForms.add(formFromResultSet(rs));
                 numberApproved++;
             }
             while (rsDenied.next()){
-                //deniedForms.add(formFromResultSet(rsDenied));
                 numberDenied++;
             }
             ps.close();
@@ -304,8 +306,6 @@ public class Agent extends Account {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-//        numberApproved = approvedForms.size();
-//        numberDenied = deniedForms.size();
         try {
             String updateScore = "UPDATE AGENTS SET SCORE ="+ score + "WHERE TTBID =" + this.ttbID;
             String updateApproved = "UPDATE AGENTS SET NUMBERAPPROVED =" + numberApproved + "WHERE TTBID =" + this.ttbID;
@@ -388,4 +388,44 @@ public class Agent extends Account {
         this.workingForms.remove(form);
       numberPassed++;
     }
+
+
+    public ArrayList<agentScore> getAgentPlaces() {
+        return agentPlaces;
+    }
+
+    public void setAgentPlaces(ArrayList<agentScore> agentPlaces) {
+        this.agentPlaces = agentPlaces;
+    }
+
+    public void rankAgents(Connection connection){
+        try {
+
+            String agents = "SELECT USERNAME, SCORE FROM AGENTS";
+
+            PreparedStatement ps = connection.prepareStatement(agents);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                agentScore aScore = new agentScore(rs.getString("USERNAME"), rs.getInt("SCORE"));
+                agentPlaces.add(aScore);
+            }
+            ps.close();
+
+            Collections.sort(agentPlaces);
+
+            for(int i = 0; i< agentPlaces.size(); i++) {
+                System.out.println(agentPlaces.get(i).getAgentName());
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+    }
+
+//    public void agentScorefromRS(ResultSet rs){
+//        agentScore agentScore = new agentScore();
+//
+//    }
 }
