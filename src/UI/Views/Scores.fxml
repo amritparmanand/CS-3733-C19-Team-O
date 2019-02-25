@@ -139,12 +139,12 @@
                         <Image url="@../Icons/SoftEngAchieveBW/6.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="passingtheBuck" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="passingTheBuck" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Icons/SoftEngAchieveBW/7.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="expectProcrastination" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="expertProcrastination" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Icons/SoftEngAchieveBW/8.png" />
                      </image>

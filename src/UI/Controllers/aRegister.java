@@ -82,7 +82,7 @@ public class aRegister {
     @SuppressWarnings("Duplicates")
     public void register() throws IOException {
         if(confirmPass(password.getText(), confirmP.getText())){
-            Agent a = new Agent(username.getText(), password.getText(), fullName.getText(), email.getText(), phone.getText(), Integer.parseInt(ttbID.getText()), 0, 0, 0, 0);
+            Agent a = new Agent(username.getText(), password.getText(), fullName.getText(), email.getText(), phone.getText(), Integer.parseInt(ttbID.getText()), 0, 0, 0, 0, 0);
             cacheM.setAcct(a);
             cacheM.getAcct().register(cacheM.getDbM().getConnection());
             System.out.println("Registration Successful! Welcome!");

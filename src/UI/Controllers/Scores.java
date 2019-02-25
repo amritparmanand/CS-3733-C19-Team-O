@@ -95,142 +95,71 @@ public class Scores {
 
             }
         }
-        if (A.reviewedForms.size()>1){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            rookie = new ImageView();
-            rookie.setImage(image);
+System.out.println(A);
+        int numberOfForms = A.getNumberProcessed();
+        if (numberOfForms>0){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/1.png");
+                 rookie.setImage(image);
         }
-        if (A.reviewedForms.size()>100){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            gettingStarted = new ImageView();
-            gettingStarted.setImage(image);
+        if (numberOfForms>100){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/2.png");
+                 gettingStarted.setImage(image);
         }
-        if (A.reviewedForms.size()>10000){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            seasonedPro = new ImageView();
-            seasonedPro.setImage(image);
+        if (numberOfForms>10000){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/3.png");
+                 seasonedPro.setImage(image);
         }
-        if (A.numberApproved > 1){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            pleasantMood = new ImageView();
-            pleasantMood.setImage(image);
+        if (A.getNumberApproved() > 1){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/10.png");
+                 pleasantMood.setImage(image);
         }
-        if (A.numberApproved > 100){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            yesMan = new ImageView();
-            yesMan.setImage(image);
-        }
-        if (A.numberApproved > 10000){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            goodVibrations = new ImageView();
-            goodVibrations.setImage(image);
-        }
-        if (A.numberDenied > 1){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            denied = new ImageView();
-            denied.setImage(image);
-        }
-        if (A.numberDenied > 100){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            highStandards = new ImageView();
-            highStandards.setImage(image);
-        }
-        if (A.numberDenied > 10000){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            itsAllWrong = new ImageView();
-            itsAllWrong.setImage(image);
-        }
-        if (A.numberPassed > 1){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            passingTheBuck = new ImageView();
-            passingTheBuck.setImage(image);
-        }
-        if (A.numberPassed > 100){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            expertProcrastination = new ImageView();
-            expertProcrastination.setImage(image);
-        }
-        if (A.numberPassed > 10000){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            expertDelegation = new ImageView();
-            expertDelegation.setImage(image);
-        }
-        if (A.gotOldForms==true){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            backFromTheDead = new ImageView();
-            backFromTheDead.setImage(image);
-        }
-        if (A.rowAD > 3){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            threePointer = new ImageView();
-            threePointer.setImage(image);
-        }
-        if (A.rowP > 3){
-            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
-            strikeThree = new ImageView();
-            strikeThree.setImage(image);
-        }
+        System.out.println(A.getNumberApproved());
 
-//        if (A.getAchievments()[0]==1){
-
-//        }
-//        if (A.getAchievments()[1]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/2.png").toExternalForm());
-//            gettingStarted= new ImageView(image);
-//        }
-//        if (A.getAchievments()[2]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/3.png").toExternalForm());
-//            seasonedPro= new ImageView(image);
-//        }
-//        if (A.getAchievments()[3]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/4.png").toExternalForm());
-//            threePointer= new ImageView(image);
-//        }
-//        if (A.getAchievments()[4]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/5.png").toExternalForm());
-//            backFromTheDead= new ImageView(image);
-//        }
-//        if (A.getAchievments()[5]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/6.png").toExternalForm());
-//            strikeThree= new ImageView(image);
-//        }
-//        if (A.getAchievments()[6]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/7.png").toExternalForm());
-//            passingTheBuck= new ImageView(image);
-//        }
-//        if (A.getAchievments()[7]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/8.png").toExternalForm());
-//            expertProcrastination= new ImageView(image);
-//        }
-//        if (A.getAchievments()[8]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/9.png").toExternalForm());
-//            expertDelegation= new ImageView(image);
-//        }
-//        if (A.getAchievments()[9]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/10.png").toExternalForm());
-//            pleasantMood= new ImageView(image);
-//        }
-//        if (A.getAchievments()[10]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/11.png").toExternalForm());
-//            yesMan= new ImageView(image);
-//        }
-//        if (A.getAchievments()[11]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/12.png").toExternalForm());
-//            goodVibrations= new ImageView(image);
-//        }
-//        if (A.getAchievments()[12]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/13.png").toExternalForm());
-//            highStandards= new ImageView(image);
-//        }
-//        if (A.getAchievments()[13]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/14.png").toExternalForm());
-//            denied= new ImageView(image);
-//        }
-//        if (A.getAchievments()[14]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/15.png").toExternalForm());
-//            itsAllWrong= new ImageView(image);
-//        }
-
+        if (A.getNumberApproved() > 100){
+            System.out.println(A.getNumberApproved() + " got here");
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/11.png");
+                 yesMan.setImage(image);
+        }
+        if (A.getNumberApproved() > 10000){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/12.png");
+                 goodVibrations.setImage(image);
+        }
+        if (A.getNumberDenied() > 1){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/14.png");
+                 denied.setImage(image);
+        }
+        if (A.getNumberDenied() > 100){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/13.png");
+                 highStandards.setImage(image);
+        }
+        if (A.getNumberDenied() > 10000){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/15.png");
+                 itsAllWrong.setImage(image);
+        }
+        if (A.getNumberPassed() > 1){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/7.png");
+                 passingTheBuck.setImage(image);
+        }
+        if (A.getNumberPassed() > 100){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/8.png");
+                 expertProcrastination.setImage(image);
+        }
+        if (A.getNumberPassed() > 10000){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/9.png");
+                 expertDelegation.setImage(image);
+        }
+        if (A.isGotOldForms()==true){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/5.png");
+                 backFromTheDead.setImage(image);
+        }
+        if (A.getRowAD() > 3){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/6.png");
+                 threePointer.setImage(image);
+        }
+        if (A.getRowP() > 3){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/4.png");
+                 strikeThree.setImage(image);
+        }
 
 
     }

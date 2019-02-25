@@ -160,7 +160,8 @@ public class DatabaseManager {
                 "score int, " +
                 "numberApproved int, " +
                 "numberDenied int, " +
-                "numberPassed int)";
+                "numberPassed int," +
+                "numberProcssed int)";
         String createForms = "create table Forms(" +
                 "formID bigint   constraint Forms_pk primary key, " +
                 "repID varchar (20), " +
@@ -234,7 +235,7 @@ public class DatabaseManager {
 
         String mDefault = "insert into REPRESENTATIVES values (1, 'manu', '" + mPassword + "', 'Manufacturer Example'," +
                 " 'Manufacturer', 'manu@manu.com', '1234567890')";
-        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb', 0, 0, 0, 0)";
+        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb', 0, 0, 0, 0, 0)";
         try {
             this.stmt.execute(mDefault);
             this.stmt.execute(aDefault);
@@ -500,6 +501,7 @@ public class DatabaseManager {
         int numberApproved = 0;
         int numberDenied = 0;
         int numberPassed = 0;
+        int numberProcessed = 0;
         try {
             String getData = "select * from AGENTS where TTBID = " + id;
             ResultSet result = this.getStmt().executeQuery(getData);
@@ -518,7 +520,7 @@ public class DatabaseManager {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-        Agent a = new Agent(uname,pword,fname,email,phone,id,score, numberApproved, numberDenied, numberPassed);
+        Agent a = new Agent(uname,pword,fname,email,phone,id,score, numberApproved, numberDenied, numberPassed, numberProcessed);
         return a;
     }
 

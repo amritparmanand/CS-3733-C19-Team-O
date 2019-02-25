@@ -32,21 +32,23 @@ public class Agent extends Account{
     private int numberPassed;
     private int numberApproved;
     private int numberDenied;
+    private int numberProcessed;
     private int threeRow;
     private int rowAD = 0;
     private int rowP = 0;
 
-    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score, int numberApproved, int numberDenied, int numberPassed){
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score, int numberApproved, int numberDenied, int numberPassed, int numberProcessed){
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
         this.score = score;
         this.numberApproved = numberApproved;
         this.numberDenied = numberDenied;
         this.numberPassed = numberPassed;
+        this.numberProcessed = numberProcessed;
 
     }
 
-    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score, int numberApproved, int numberDenied, int numberPassed) {
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score, int numberApproved, int numberDenied, int numberPassed, int numberProcessed) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
         this.hasFetchedForms = hasFetchedForms;
@@ -54,6 +56,7 @@ public class Agent extends Account{
         this.numberApproved = numberApproved;
         this.numberDenied = numberDenied;
         this.numberPassed = numberPassed;
+        this.numberProcessed = numberProcessed;
 
         if (this.hasFetchedForms) {
             this.getWorkingForms();
@@ -76,6 +79,7 @@ public class Agent extends Account{
             super.setEmail(result.getString("email"));
             super.setPhone(result.getString("phone"));
             this.setScore(result.getInt("score"));
+            this.setNumberProcessed(result.getInt("numberProcessed"));
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
@@ -83,6 +87,14 @@ public class Agent extends Account{
         }
 
         this.ttbID = id;
+    }
+
+    public int getNumberProcessed() {
+        return numberProcessed;
+    }
+
+    public void setNumberProcessed(int numberProcessed) {
+        this.numberProcessed = numberProcessed;
     }
 
     public int getTtbID() {
@@ -158,8 +170,8 @@ public class Agent extends Account{
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {
-            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied) " +
-                    "VALUES(?,?,?,?,?,?,?,?,?,?)";
+            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied, numberProcessed) " +
+                    "VALUES(?,?,?,?,?,?,?,?,?,?, ?)";
 
             PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
             prepStmt.setInt(1, this.getTtbID());
@@ -172,6 +184,7 @@ public class Agent extends Account{
             prepStmt.setInt(8,0);
             prepStmt.setInt(9,0);
             prepStmt.setInt(10,0);
+            prepStmt.setInt(11,0);
 
 
             prepStmt.executeUpdate();
@@ -276,7 +289,6 @@ public class Agent extends Account{
      * @param connection
      */
     public void calculateScore(Connection connection){
-        score = reviewedForms.size()*5;
         try {
             String approvedFormSQL = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
                     "APPLICATIONS.TTBID = " + this.getTtbID()+ " and APPLICATIONS.STATUS = 'APPROVED'";
@@ -291,9 +303,11 @@ public class Agent extends Account{
 
             while (rs.next()) {
                 numberApproved++;
+                numberProcessed++;
             }
             while (rsDenied.next()){
                 numberDenied++;
+                numberProcessed++;
             }
             ps.close();
             psDenied.close();
@@ -302,26 +316,32 @@ public class Agent extends Account{
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+        score = numberProcessed*5;
         try {
             String updateScore = "UPDATE AGENTS SET SCORE ="+ score + "WHERE TTBID =" + this.ttbID;
             String updateApproved = "UPDATE AGENTS SET NUMBERAPPROVED =" + numberApproved + "WHERE TTBID =" + this.ttbID;
             String updateDenied = "UPDATE AGENTS SET NUMBERDENIED =" + numberDenied + "WHERE TTBID =" + this.ttbID;
             String updatePassed = "UPDATE AGENTS SET NUMBERPASSED =" + numberPassed + "WHERE TTBID =" + this.ttbID;
+            String updateNumberProcessed = "UPDATE AGENTS SET NUMBERPROCESSED =" + numberProcessed + "WHERE TTBID =" + this.ttbID;
 
             PreparedStatement update = connection.prepareStatement(updateScore);
             PreparedStatement updateA = connection.prepareStatement(updateApproved);
             PreparedStatement updateD = connection.prepareStatement(updateDenied);
             PreparedStatement updateP = connection.prepareStatement(updatePassed);
+            PreparedStatement updateNum = connection.prepareStatement(updateNumberProcessed);
+
 
             update.executeUpdate();
             updateA.executeUpdate();
             updateD.executeUpdate();
             updateP.executeUpdate();
+            updateNum.executeUpdate();
 
             update.close();
             updateA.close();
             updateD.close();
             updateP.close();
+            updateNum.close();
 
 
         } catch (SQLException e) {
