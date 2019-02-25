@@ -64,7 +64,7 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="983.0" prefWidth="470.0" spacing="10.0" styleClass="toolbar">
+                        <VBox alignment="TOP_CENTER" prefHeight="983.0" prefWidth="450.0" spacing="10.0" styleClass="toolbar">
                             <HBox.margin>
                                 <Insets top="20.0" />
                             </HBox.margin>
@@ -97,14 +97,14 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="1200.0" prefWidth="738.0" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
+                        <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="925.0" prefWidth="750.0" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                      <content>
-                        <AnchorPane prefHeight="1184.0" prefWidth="861.0" styleClass="backPane">
+                        <AnchorPane prefHeight="1184.0" prefWidth="750.0" styleClass="backPane">
                            <children>
-                              <VBox alignment="CENTER" layoutX="-14.0" layoutY="37.0" prefHeight="1184.0" prefWidth="1238.0" styleClass="backPane" AnchorPane.bottomAnchor="-37.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="37.0">
+                              <VBox alignment="CENTER" layoutX="-14.0" layoutY="37.0" prefHeight="1184.0" prefWidth="750.0" styleClass="backPane" AnchorPane.bottomAnchor="-37.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="37.0">
                                  <children>
                                     <VBox alignment="CENTER_LEFT" maxWidth="620.0" prefHeight="900.0" prefWidth="620.0" styleClass="backPane" VBox.vgrow="ALWAYS">
                                        <children>
@@ -286,7 +286,7 @@
                         </AnchorPane>
                      </content>
                         </ScrollPane>
-                  <VBox fx:id="commentVBox" prefHeight="1004.0" prefWidth="544.0" styleClass="toolbar">
+                  <VBox fx:id="commentVBox" prefHeight="925.0" prefWidth="500.0" styleClass="toolbar">
                      <children>
                         <Accordion prefWidth="320.0">
                            <panes>

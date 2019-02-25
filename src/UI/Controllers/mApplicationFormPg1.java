@@ -129,13 +129,13 @@ public class mApplicationFormPg1 {
         }
         switch(form.getBeerWineSpirit()){
             case "WINE":
-                wine2.setSelected(true);
+                wine.setSelected(true);
                 break;
-            case "SPIRITS":
-                spirits2.setSelected(true);
+            case "DISTILLED":
+                distilled.setSelected(true);
                 break;
-            case "BEER":
-                beer2.setSelected(true);
+            case "MALT":
+                malt.setSelected(true);
                 break;
         }
         if (form.getRepID() != 0)
@@ -184,14 +184,14 @@ public class mApplicationFormPg1 {
         }
 
         if (!form.getBeerWineSpirit().contains(cacheM.getStyle())) {
-            if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
-                if (wine2.isSelected())
+            if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
+                if (wine.isSelected())
                     form.setBeerWineSpirit("WINE");
-                else if (spirits2.isSelected())
+                else if (distilled.isSelected())
                     form.setBeerWineSpirit("SPIRITS");
-                else if (beer2.isSelected())
+                else if (malt.isSelected())
                     form.setBeerWineSpirit("BEER");
-                if (wine2.isSelected()) {
+                if (wine.isSelected()) {
                     if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(cacheM.getStyle())) {
                         form.setpHLevel(phLevel.getText());
                     }
@@ -271,7 +271,7 @@ public class mApplicationFormPg1 {
     //starting with textboxes, not sure how to handle radio buttons and checkboxes
     public void checkDiff() {
 
-        if (wine2.isSelected()) {
+        if (wine.isSelected()) {
             if (!phLevel.getText().equals(form.getpHLevel()) && !phLevel.getText().contains(cacheM.getStyle())) {
                 form.setpHLevel(phLevel.getText() + cacheM.getStyle());
             }
@@ -313,13 +313,13 @@ public class mApplicationFormPg1 {
             form.setProductType("MALT" + cacheM.getStyle());
         }
 
-        if(wine2.isSelected() && !form.getBeerWineSpirit().equals("WINE")){
+        if(wine.isSelected() && !form.getBeerWineSpirit().equals("WINE")){
             form.setBeerWineSpirit("WINE" + cacheM.getStyle());
         }
-        if(spirits2.isSelected() && !form.getBeerWineSpirit().equals("SPIRITS")){
+        if(distilled.isSelected() && !form.getBeerWineSpirit().equals("SPIRITS")){
             form.setBeerWineSpirit("SPIRITS" + cacheM.getStyle());
         }
-        if(beer2.isSelected() && !form.getBeerWineSpirit().equals("BEER")){
+        if(malt.isSelected() && !form.getBeerWineSpirit().equals("BEER")){
             form.setBeerWineSpirit("BEER" + cacheM.getStyle());
         }
     }
