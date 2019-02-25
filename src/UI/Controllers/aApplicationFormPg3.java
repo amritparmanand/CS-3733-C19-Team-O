@@ -66,6 +66,9 @@ public class aApplicationFormPg3 {
     @FXML private JFXCheckBox DistinctiveLiquor;
     @FXML private JFXCheckBox resubmission;
     @FXML private ImageView imagePreview;
+    @FXML private Label volMatch;
+    @FXML private Label appellationMatch;
+    @FXML private Label alcPerc;
     @FXML private Label errorLabel;
     @FXML private JFXTextField receiver;
 
@@ -149,6 +152,7 @@ public class aApplicationFormPg3 {
                             System.out.println(form.parseGarbage(form.getBottleCapacity()));
                             if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
                                 System.out.println("bottle capacity MATCHED");
+                                volMatch.setText("✔");
                             } else {
                                 System.out.println("bottle capacity NO MATCH");
                             }
@@ -168,6 +172,7 @@ public class aApplicationFormPg3 {
                             System.out.println(form.parseGarbage(form.getBottleCapacity()));
                             if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
                                 System.out.println("bottle capacity MATCHED");
+                                volMatch.setText("✔");
                             } else {
                                 System.out.println("bottle capacity NO MATCH");
                             }
@@ -191,8 +196,11 @@ public class aApplicationFormPg3 {
                             System.out.println(form.parseGarbage(form.getAlcoholPercent()));
                             if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage1)) {
                                 System.out.println("alcohol percentage MATCHED");
+                                alcPerc.setText("✔");
+
                             } else if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage2)) {
                                 System.out.println("alcohol percentage MATCHED");
+                                alcPerc.setText("✔");
                             } else {
                                 System.out.println("alcohol percentage NO MATCH");
                             }
@@ -216,6 +224,7 @@ public class aApplicationFormPg3 {
 
                             if (form.parseGarbage(form.getAppellation()).equals(appellation)) {
                                 System.out.println("appellation MATCHED");
+                                appellationMatch.setText("✔");
                             } else {
                                 System.out.println("appellation NO MATCH");
                             }
