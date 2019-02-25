@@ -37,11 +37,11 @@ public class newPasswordInput extends StageContainingScene {
     public void reset(Connection connection) throws SQLException{
         if (password.equals(confirmP)){
             String setData = "UPDATE ? SET PASSWORD = ? WHERE EMAIL = ?";
-            PreparedStatement ps = connection.prepareStatement(setData);
+            PreparedStatement ps = cacheM.getDbM().getConnection().prepareStatement(setData);
             ps.setString(1, Agent ? "AGENTS":"REPRESENTATIVES");
             ps.setString(2, confirmP.getText());
             ps.setString(3, email);
-            ResultSet rs = ps.executeQuery();
+            ps.executeUpdate();
             System.out.println("Password reset! Please login to continue");
             super.getStage().close();
         }

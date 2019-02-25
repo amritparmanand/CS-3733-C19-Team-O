@@ -4,6 +4,8 @@ import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -36,11 +38,12 @@ public class passwordReset {
     private CacheManager cacheM;
     private String ResetKey;
 
-    @FXML private TextField email;
-    @FXML private TextField ID;
-    @FXML private RadioButton m;
-    @FXML private RadioButton a;
+    @FXML private JFXTextField email;
+    @FXML private JFXTextField ID;
+    @FXML private JFXRadioButton m;
+    @FXML private JFXRadioButton a;
     @FXML private Label emailMessage;
+    @FXML private JFXButton go;
 
 
     public passwordReset(SceneManager sceneM, CacheManager cacheM){
@@ -52,10 +55,10 @@ public class passwordReset {
      * Sends a reset email if an account is associated with the given email
      */
     @FXML
-    public void sendResetEmail(Connection connection) throws SQLException, java.io.IOException {
+    public void sendResetEmail() throws SQLException, java.io.IOException {
 
         String getData = "SELECT EMAIL FROM ? WHERE EMAIL = ? AND ? = ?";
-        PreparedStatement ps = connection.prepareStatement(getData);
+        PreparedStatement ps = cacheM.getDbM().getConnection().prepareStatement(getData);
         ps.setString(1, a.isSelected() ? "AGENTS":"REPRESENTATIVES");
         ps.setString(2, email.getText());
         ps.setString(3, a.isSelected() ? "TTBID":"REPID");
@@ -163,5 +166,22 @@ public class passwordReset {
             throw new RuntimeException(e);
         }
 
+    }
+    @FXML
+    public void validateButton() {
+        if (m.isSelected() || a.isSelected()) {
+            go.setDisable(false);
+            if (ID.getText().isEmpty() || email.getText().isEmpty()) {
+                go.setDisable(true);
+            } else {
+                go.setDisable(false);
+            }
+        } else {
+            go.setDisable(true);
+        }
+    }
+    @FXML public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }
 }

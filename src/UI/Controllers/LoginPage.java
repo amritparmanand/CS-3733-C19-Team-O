@@ -1,7 +1,5 @@
 package UI.Controllers;
 
-import Datatypes.Agent;
-import Datatypes.Manufacturer;
 import Managers.*;
 
 import Managers.SceneManager;
@@ -9,7 +7,6 @@ import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -18,19 +15,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Statement;
-import java.util.EventListener;
-import java.util.Properties;
 
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 public class LoginPage implements SerialPortDataListener {
     private SceneManager sceneM;
