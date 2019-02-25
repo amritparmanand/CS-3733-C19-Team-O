@@ -131,15 +131,17 @@ public class aApplicationFormPg3 {
 
     }
 
-    @FXML public void OCR() throws IOException {
+    @FXML
+    public void OCR() throws IOException {
         // Check label file
-        if(form.getLabel().getLabelFile() == null){
+        if (form.getLabel().getLabelFile() == null) {
             System.out.println("label file NO");
-        }else{
+        } else {
             System.out.println("label file detected");
             System.out.println(form.getLabel().getLabelFile().getPath());
         }
-        if(form.getLabel().getLabelImage() != null){
+
+        if (form.getLabel().getLabelImage() != null) {
             // Convert to black and white
             BufferedImage bw = ImageIO.read(form.getLabel().getLabelFile());
             BufferedImage bw_result = new BufferedImage(bw.getWidth(), bw.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
@@ -148,6 +150,7 @@ public class aApplicationFormPg3 {
             graphic.dispose();
             File output = new File("src/Tess4J/images/Black&White.jpg");
             ImageIO.write(bw_result, "jpg", output);
+
             // The Tesseract
             ITesseract instance = new Tesseract();
             instance.setDatapath("src/Tess4J.tessdata");
@@ -155,11 +158,13 @@ public class aApplicationFormPg3 {
             try {
                 String result = instance.doOCR(output);
                 System.out.println(result);
+
                 // Check for Bottle Capacity
                 if (!form.getBottleCapacity().isEmpty()) {
                     if (result.contains("ml")) {
                         System.out.println("bottle capacity DETECTED");
                         int position_ml = result.indexOf("ml");
+
                         // Initialize capacity
                         String capacity;
                         if (result.substring(position_ml - 1, position_ml).equals(" ")) {
@@ -167,6 +172,7 @@ public class aApplicationFormPg3 {
                         } else {
                             capacity = result.substring(position_ml - 3, position_ml);
                         }
+
                         System.out.println(capacity);
                         System.out.println(form.parseGarbage(form.getBottleCapacity()));
                         if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
@@ -174,11 +180,11 @@ public class aApplicationFormPg3 {
                             volMatch.setText("✔");
                         } else {
                             System.out.println("bottle capacity NO MATCH");
+                            volMatch.setText("X");
                         }
                     } else if (result.contains("mL")) {
                         System.out.println("bottle capacity DETECTED");
                         int position_mL = result.indexOf("mL");
-                        // Initialize capacity
                         String capacity;
                         if (result.substring(position_mL - 1, position_mL).equals(" ")) {
                             capacity = result.substring(position_mL - 4, position_mL - 1);
@@ -193,44 +199,76 @@ public class aApplicationFormPg3 {
                         } else {
                             System.out.println("bottle capacity NO MATCH");
                         }
+                    } else if (result.contains("mL")) {
+                        System.out.println("bottle capacity DETECTED");
+                        int position_mL = result.indexOf("mL");
+
+                        // Initialize capacity
+                        String capacity;
+                        if (result.substring(position_mL - 1, position_mL).equals(" ")) {
+                            capacity = result.substring(position_mL - 4, position_mL - 1);
+                        } else {
+                            capacity = result.substring(position_mL - 3, position_mL);
+                        }
+
+                        System.out.println(capacity);
+                        System.out.println(form.parseGarbage(form.getBottleCapacity()));
+                        if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
+                            System.out.println("bottle capacity MATCHED");
+                            volMatch.setText("✔");
+                        } else {
+                            System.out.println("bottle capacity NO MATCH");
+                            volMatch.setText("X");
+                        }
                     } else {
                         System.out.println("bottle capacity NOT DETECTED");
+                        volMatch.setText("Alcohol Volume Not Found");
                     }
                     System.out.println("\n");
                 }
+
                 // Check for Alcohol Percentage
                 if (!form.getAlcoholPercent().isEmpty()) {
                     if (result.contains("%")) {
                         System.out.println("alcohol percentage DETECTED");
                         int position = result.indexOf("%");
+
                         String percentage1 = result.substring(position - 2, position);
                         System.out.println(percentage1);
                         String percentage2 = result.substring(position - 4, position);
                         System.out.println(percentage2);
+
                         System.out.println(form.parseGarbage(form.getAlcoholPercent()));
                         if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage1)) {
                             System.out.println("alcohol percentage MATCHED");
                             alcPerc.setText("✔");
+
                         } else if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage2)) {
                             System.out.println("alcohol percentage MATCHED");
                             alcPerc.setText("✔");
                         } else {
                             System.out.println("alcohol percentage NO MATCH");
+                            alcPerc.setText("X");
                         }
                     } else {
                         System.out.println("alcohol percentage NOT DETECTED");
+                        alcPerc.setText("Alcohol Percentage Not Found");
                     }
                     System.out.println("\n");
                 }
+
                 // Check for Appellation
                 if (!form.getAppellation().isEmpty()) {
                     int aLength = form.getAppellation().length();
+
                     if (result.contains("VALLEY")) {
                         System.out.println("appellation DETECTED");
                         int position = result.indexOf("VALLEY");
+
                         String appellation = result.substring(position - aLength - 1, position - 1);
                         System.out.println(appellation);
                         System.out.println(form.parseGarbage(form.getAppellation()));
+
                         if (form.parseGarbage(form.getAppellation()).equals(appellation)) {
                             System.out.println("appellation MATCHED");
                             appellationMatch.setText("✔");
@@ -239,17 +277,32 @@ public class aApplicationFormPg3 {
                         }
                     } else {
                         System.out.println("appellation NOT DETECTED");
+                        appellationMatch.setText("Appellation Not Found");
                     }
                     System.out.println("\n");
                 }
+
             } catch (TesseractException e) {
                 System.err.println(e.getMessage());
+                appellationMatch.setText("Appellation Not Found");
+                volMatch.setText("Alcohol Volume Not Found");
+                alcPerc.setText("Alcohol Percentage Not Found");
+
             }
-        }else{
+        }
+        else
+        {
             System.out.println("there is no image to parse");
         }
+        // Delete the stored file
+        if (form.getLabel().getLabelFile().delete()) {
+            System.out.println("File deleted successfully");
+        } else {
+            System.out.println("Failed to delete the file");
+        }
+
     }
-    
+
     @FXML
     public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
