@@ -260,7 +260,7 @@ public class Agent extends Account {
 
             LabelImage percy = new LabelImage();
             percy.setLabelImage(new Image(picture.getBinaryStream()));
-            percy.setLabelFile(outputFile);
+            percy.setLabelFile(new File(outputFile.toString()));
             f.setLabel(percy);
         }
 
