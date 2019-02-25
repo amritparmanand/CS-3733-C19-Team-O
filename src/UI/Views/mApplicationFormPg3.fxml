@@ -222,5 +222,22 @@
                 </HBox>
             </children>
         </VBox>
+      <VBox alignment="BOTTOM_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="210.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="1294.6" AnchorPane.topAnchor="485.0">
+         <children>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="139.0" prefWidth="210.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="15.0" prefWidth="210.0" styleClass="alcyLabel">
+                     <children>
+                        <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
+         </children>
+      </VBox>
     </children>
 </AnchorPane>
