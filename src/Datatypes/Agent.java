@@ -151,6 +151,8 @@ public class Agent extends Account{
     public void setNumberDenied(int numberDenied) {
         this.numberDenied = numberDenied;
     }
+    public int getRowAD(){return rowAD;}
+    public int getRowP(){return rowP;}
 
     // Parse an agent object into database
     @SuppressWarnings("Duplicates")
@@ -376,15 +378,23 @@ public class Agent extends Account{
     public void approveOrDeny(Form form){
         this.reviewedForms.add(form);
         this.workingForms.remove(form);
-        rowAD++;
-        rowP=0;
+        if(rowAD < 3) {
+            rowAD++;
+        }
+        if (rowP < 3){
+            rowP = 0;
+        }
     }
 
     public void pass(Form form){
         this.workingForms.remove(form);
       numberPassed++;
-      rowP++;
-      rowAD = 0;
+      if(rowP < 3){
+          rowP++;
+      }
+      if(rowAD < 3){
+          rowAD = 0;
+      }
     }
 
 
