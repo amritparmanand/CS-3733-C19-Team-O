@@ -23,9 +23,14 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+
+/**
+ * @author Clay Oshiro-Leavitt
+ */
 public class Scores {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private ArrayList<agentScore> agents;
 
     public Scores(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -71,11 +76,11 @@ public class Scores {
  //       second.setText(A.getAgentPlaces().get(1).getAgentName());
 //        third.setText(A.getAgentPlaces().get(2).getAgentName());
 
-        ArrayList<agentScore> agents = ((Agent) cacheM.getAcct()).getAgentPlaces();
+        agents = ((Agent) cacheM.getAcct()).getAgentPlaces();
 
         for (agentScore agent : agents) {
             Pane leaderBoard;
-     //       System.out.println(agent.getAgentName());
+
             try {
                 leaderBoard = FXMLLoader.load(getClass().getResource("/UI/Views/leaderboard.fxml"));
                 Node hbox = leaderBoard.getChildren().get(0);
@@ -88,10 +93,10 @@ public class Scores {
                     ((Label) score).setText(Integer.toString(agent.getAgentScore()));
 
                 }
-//                if(!loadScores.getChildren().contains(leaderBoard)) {
-//                    System.out.println(agent.getAgentName() + " not in leaderboard. Adding.");
+
+                    System.out.println(agent.getAgentName() + " not in leaderboard. Adding.");
                     loadScores.getChildren().add(leaderBoard);
-//                }
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -168,7 +173,10 @@ System.out.println(A);
     }
     @FXML
     public void back() throws IOException {
+
+        agents.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
         sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+
     }
 }

@@ -305,21 +305,21 @@ public class Agent extends Account{
 
             while (rs.next()) {
                 localApprove++;
-//                numberApproved++;
-//                numberProcessed++;
             }
             while (rsDenied.next()){
                 localDeny++;
-//                numberDenied++;
-//                numberProcessed++;
             }
             ps.close();
             psDenied.close();
             this.gotOldForms = true;
+
+            // update number approved if there are newly approved forms
             if(localApprove>numberApproved){
                 numberApproved = localApprove;
                 numberProcessed = numberProcessed + (localApprove-numberApproved);
             }
+
+            // update number denied if there are newly denied forms
             if(localDeny>numberDenied){
                 numberDenied = localDeny;
                 numberProcessed = numberProcessed + (localDeny-numberDenied);
@@ -330,6 +330,8 @@ public class Agent extends Account{
                 e.printStackTrace();
         }
         score = numberProcessed*5;
+
+        // update scores in DB
         try {
             String updateScore = "UPDATE AGENTS SET SCORE ="+ score + "WHERE TTBID =" + this.ttbID;
             String updateApproved = "UPDATE AGENTS SET NUMBERAPPROVED =" + numberApproved + "WHERE TTBID =" + this.ttbID;
