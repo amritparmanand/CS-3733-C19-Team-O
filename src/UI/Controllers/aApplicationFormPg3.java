@@ -214,7 +214,7 @@ public class aApplicationFormPg3 {
             } catch (TesseractException e) {
                 System.err.println(e.getMessage());
             }
-            
+
         }else{
             System.out.println("there is no image to parse");
         }
