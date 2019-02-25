@@ -29,21 +29,23 @@ public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
 
     @FXML private FlowPane loadForms;
+
     private ArrayList<Form> repeated = new ArrayList<>();
+    private Agent A;
 
     @SuppressWarnings("Duplicates") @FXML public void initialize() throws IOException {
-        Agent A = (Agent) cacheM.getAcct();
+        A = (Agent) cacheM.getAcct();
+
         if(!A.isGotCurrentForms()){
-            ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
+            A.getAssignedForms(cacheM.getDbM().getConnection());
         }
-        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
+        ArrayList<Form> populatedForms = A.getWorkingForms();
 
         for (Form form : populatedForms) {
             Pane formResult;
@@ -96,12 +98,22 @@ public class aFormStorage {
 
     @FXML
     public void back() throws IOException {
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
         sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
     }
 
     @FXML
     public void aApplicationFormControl(Form form) throws IOException {
+        for(Form f : A.getWorkingForms()){
+            if(f != form){
+                if(f.getLabel().getLabelFile().delete()){
+                    System.out.println("File deleted successfully");
+                }else{
+                    System.out.println("Failed to delete the file");
+                }
+            }
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }
@@ -112,12 +124,11 @@ public class aFormStorage {
 
         int limit = cacheM.getFormLimit();
 
-        Agent A = (Agent) cacheM.getAcct();
         if(!A.isHasFetchedForms()){
-            ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
+            A.assignNewForms(cacheM.getDbM().getConnection(), limit);
         }
 
-        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getNewForms();
+        ArrayList<Form> populatedForms = A.getNewForms();
 
         for (Form form : populatedForms) {
 
@@ -177,6 +188,7 @@ public class aFormStorage {
 
     @FXML
     public void logout() throws IOException {
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }

@@ -191,6 +191,16 @@ public class Agent extends Account {
         }
     }
 
+    public void deleteLabels(){
+        for(Form form : workingForms){
+            if(form.getLabel().getLabelFile().delete()){
+                System.out.println("File deleted successfully");
+            }else{
+                System.out.println("Failed to delete the file");
+            }
+        }
+    }
+
     /**
      * @author Percy
      * @version It3

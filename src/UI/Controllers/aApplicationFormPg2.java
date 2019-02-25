@@ -60,7 +60,6 @@ public class aApplicationFormPg2 {
         Q11Comment.setText(comments.getComment11());
         Q12Comment.setText(comments.getComment12());
         Q13Comment.setText(comments.getComment13());
-//        Form form = this.form;
 
         applicantName.setText(form.parseGarbage(form.getApplicantName()));
         applicantName.setStyle(form.parseStyle(form.getApplicantName()));
@@ -129,6 +128,11 @@ public class aApplicationFormPg2 {
 
     @FXML
     public void acceptForm() throws IOException {
+        if(form.getLabel().getLabelFile().delete()){
+            System.out.println("File deleted successfully");
+        }else{
+            System.out.println("Failed to delete the file");
+        }
         cacheM.approveForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
@@ -137,12 +141,22 @@ public class aApplicationFormPg2 {
 
     @FXML
     public void goToHomePage() throws IOException {
+        if(form.getLabel().getLabelFile().delete()){
+            System.out.println("File deleted successfully");
+        }else{
+            System.out.println("Failed to delete the file");
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
         sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
     }
 
     @FXML
     public void denyForm() throws Exception {
+        if(form.getLabel().getLabelFile().delete()){
+            System.out.println("File deleted successfully");
+        }else{
+            System.out.println("Failed to delete the file");
+        }
         cacheM.denyForm(cacheM.getDbM().getConnection());
         comments.setComment8(Q8Comment.getText());
         comments.setComment8a(Q8aComment.getText());
@@ -157,11 +171,12 @@ public class aApplicationFormPg2 {
         goToHomePage();
     }
 
-    @FXML
-    public void saveDraft() throws IOException{
-
-    }
     @FXML public void passForm() throws IOException{
+        if(form.getLabel().getLabelFile().delete()){
+            System.out.println("File deleted successfully");
+        }else{
+            System.out.println("Failed to delete the file");
+        }
         cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
         Agent A = (Agent) cacheM.getAcct();
         A.pass(form);
@@ -170,6 +185,11 @@ public class aApplicationFormPg2 {
 
     @FXML
     public void logout() throws IOException {
+        if(form.getLabel().getLabelFile().delete()){
+            System.out.println("File deleted successfully");
+        }else{
+            System.out.println("Failed to delete the file");
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
