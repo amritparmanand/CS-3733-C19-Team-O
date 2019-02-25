@@ -266,7 +266,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File("forPresentation.csv"));
+            FileReader filereader = new FileReader(new File("src/Resources/forPresentation.csv"));
 
             // create csvReader object passing
             // file reader as a parameter
@@ -370,7 +370,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File("ApplicationsXLSX.csv"));
+            FileReader filereader = new FileReader(new File("src/resources/ApplicationsXLSX.csv"));
             // create csvReader object passing
             // file reader as a parameter
             CSVReader csvReader = new CSVReader(filereader);

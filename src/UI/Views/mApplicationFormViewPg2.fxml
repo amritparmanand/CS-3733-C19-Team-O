@@ -18,7 +18,7 @@
 
 <AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#wineFieldCheck" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormViewPg2">
    <children>
-      <VBox onMouseEntered="#wineFieldCheck" onMouseMoved="#wineFieldCheck" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox onMouseEntered="#wineFieldCheck" onMouseMoved="#wineFieldCheck" prefHeight="200.0" prefWidth="100.0" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
                <children>
@@ -60,7 +60,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
@@ -82,9 +82,9 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="800.0">
                      <content>
-                        <VBox prefHeight="900.0" prefWidth="620.0" styleClass="backPane">
+                        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" styleClass="backPane">
                            <children>
                               <Label text="TTB Label Form">
                                  <padding>
@@ -184,7 +184,7 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <VBox prefHeight="720.0" prefWidth="320.0">
+                  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="400.0" styleClass="toolbar">
                      <children>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </children>

@@ -96,7 +96,7 @@
                      <content>
                         <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0">
                            <children>
-                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="750.0" styleClass="backPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" styleClass="backPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Label text="TTB Label Form">
                                        <padding>
@@ -198,7 +198,7 @@
                         </AnchorPane>
                      </content>
                         </ScrollPane>
-                  <VBox fx:id="commentVBox" minWidth="-Infinity" prefHeight="925.0" prefWidth="450.0" styleClass="toolbar">
+                  <VBox fx:id="commentVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="925.0" prefWidth="400.0" styleClass="toolbar">
                      <children>
                         <Accordion prefWidth="320.0">
                            <panes>
