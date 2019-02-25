@@ -1,6 +1,8 @@
 package OCR.Tess4J.Lept4J.src.net.sourceforge.lept4j;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+import net.sourceforge.lept4j.L_Rbtree_Node;
+
 import java.util.Arrays;
 import java.util.List;
 /**
