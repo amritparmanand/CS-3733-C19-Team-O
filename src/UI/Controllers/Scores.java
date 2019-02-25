@@ -98,9 +98,9 @@ public class Scores {
 
 
 //        if (A.getAchievments()[0]==1){
-            FileInputStream input = new FileInputStream ("src/UI/Icons/SoftEngAchieveColor/1.png");
-            Image image = new Image(input);
-            theRookie= new ImageView(image);
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            theRookie = new ImageView();
+            theRookie.setImage(image);
 //        }
 //        if (A.getAchievments()[1]==1){
 //            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/2.png").toExternalForm());
