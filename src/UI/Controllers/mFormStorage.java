@@ -21,6 +21,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class mFormStorage {
     @FXML private JFXCheckBox pending;
     @FXML private JFXCheckBox denied;
     @FXML private FlowPane loadForms;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     private String filterA = "";
     private String filterP = "";
@@ -50,6 +53,7 @@ public class mFormStorage {
     }
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         loadForms.getChildren().clear();
 
         if(approved.isSelected()){

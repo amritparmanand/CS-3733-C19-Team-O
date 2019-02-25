@@ -1,0 +1,66 @@
+<component name="libraryTable">
+  <library name="aopalliance-1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/aopalliance-1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-beanutils-1.9.3-tests.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-beanutils-1.9.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-collections4-4.3-tests.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-collections4-4.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-lang3-3.8.1-tests.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-lang3-3.8.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-logging-1.1.0.jboss.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-logging-1.1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-text-1.6-tests.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-text-1.6.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/controlsfx-8.40.11.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/fontbox-2.0.13.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/jfoenix-8.0.8.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/jSerialComm-2.4.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/opencsv-4.5.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/pdfbox-2.0.13.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-aop-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-aspects-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-beans-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-context-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-context-support-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-core-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-expression-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-instrument-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-instrument-tomcat-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-jdbc-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-jms-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-messaging-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-orm-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-oxm-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-acl-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-aspects-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-cas-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-config-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-core-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-crypto-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-ldap-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-openid-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-remoting-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-taglibs-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-security-web-3.2.5.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-test-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/spring-tx-4.3.18.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-beanutils-1.9.3-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-collections4-4.3-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-lang3-3.8.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-beanutils-1.9.3-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-beanutils-1.9.3-test-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-collections4-4.3-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-collections4-4.3-test-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-lang3-3.8.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-lang3-3.8.1-test-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-text-1.6-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/lib/commons-text-1.6-test-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

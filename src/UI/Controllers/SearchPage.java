@@ -26,6 +26,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
@@ -48,6 +49,7 @@ public class SearchPage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
+
     String oldSearch = "";
     ResultSet approvedResults;
     String searchType;
@@ -61,7 +63,7 @@ public class SearchPage {
     @FXML
     public void initialize() throws SQLException {
         TextFields.bindAutoCompletion(searchBox, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
-
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         ObservablePane op = null;
 
         for (int i = 0; i < 15; i++) {
@@ -117,6 +119,8 @@ public class SearchPage {
     private Label didYouMean;
     @FXML
     private Label pageNum;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     @FXML
     public void back() throws IOException {

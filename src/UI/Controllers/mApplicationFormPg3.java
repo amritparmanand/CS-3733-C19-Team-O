@@ -18,6 +18,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -46,6 +47,8 @@ public class mApplicationFormPg3 {
     @FXML private JFXButton pdfButton;
     @FXML private VBox commentVBox;
     @FXML private JFXTextArea aComment;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM,Form form) {
         this.sceneM = sceneM;
@@ -60,8 +63,9 @@ public class mApplicationFormPg3 {
 
     @SuppressWarnings("Duplicates") @FXML public void initialize() {
 
-        try {
-            aComment.setText(form.getCommentString());
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+
+        aComment.setText(form.getCommentString());
 
             if (form.getCommentString() == "") {
                 commentVBox.setVisible(false);
@@ -79,17 +83,11 @@ public class mApplicationFormPg3 {
             ttbID.setText(String.valueOf(form.getTtbID()));
             bottleCapacity.setText(form.getBottleCapacity());
 
-            if (form.getLabel().getLabelImage() != null)
-                imagePreview.setImage(form.getLabel().getLabelImage());
-            validateStateField();
-            validateBottleCapacity();
-            validateTTBID();
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.toString());
-
-        }
+        if(form.getLabel().getLabelImage() != null)
+            imagePreview.setImage(form.getLabel().getLabelImage());
+        validateStateField();
+        validateBottleCapacity();
+        validateTTBID();
     }
 
 
@@ -121,10 +119,9 @@ public class mApplicationFormPg3 {
     }
 
     @FXML public boolean saveDraft(){
-        try {
-            if (form.getTtbID() != 0) {
-                checkDiff();
-            }
+        if (form.getTtbID() != 0) {
+            checkDiff();
+        }
 
 
             if (!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
@@ -164,12 +161,6 @@ public class mApplicationFormPg3 {
             form.setLabel(image);
             cacheM.setForm(form);
             return true;
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
-        return true;
     }
 
 

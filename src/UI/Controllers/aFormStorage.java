@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,10 +37,13 @@ public class aFormStorage {
     }
 
     @FXML private FlowPane loadForms;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
     private ArrayList<Form> repeated = new ArrayList<>();
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
         Agent A = (Agent) cacheM.getAcct();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         if(!A.isGotCurrentForms()){
             ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
         }

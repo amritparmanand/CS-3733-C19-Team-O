@@ -21,6 +21,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -50,6 +51,8 @@ public class mApplicationFormPg4 {
     @FXML private JFXButton pdfButton;
     @FXML private VBox commentVBox;
     @FXML private JFXTextArea aComment;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
@@ -68,6 +71,7 @@ public class mApplicationFormPg4 {
     @FXML
     public void initialize() {
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
 
         if(form.getCommentString() == ""){
             commentVBox.setVisible(false);

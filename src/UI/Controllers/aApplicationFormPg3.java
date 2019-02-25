@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -59,10 +60,13 @@ public class aApplicationFormPg3 {
     @FXML private ImageView imagePreview;
     @FXML private Label errorLabel;
     @FXML private JFXTextField receiver;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
 
     @SuppressWarnings("Duplicates")
     public void initialize(){
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         Q14Comment.setText(comments.getComment14());
         Q15Comment.setText(comments.getComment15());
         Form form = cacheM.getForm();

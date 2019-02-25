@@ -12,6 +12,8 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 //import org.springframework.cglib.core.Local;
 
 import java.io.IOException;
@@ -46,9 +48,12 @@ public class aApplicationFormPg4 {
     @FXML private JFXTextField receiver;
     @FXML private JFXDatePicker dateIssued;
     @FXML private JFXTextField signature;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     @SuppressWarnings("Duplicates") @FXML public void initialize () {
         //load all the comments for this page
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         Q16Comment.setText(comments.getComment16());
         Q17Comment.setText(comments.getComment17());
         Q18Comment.setText(comments.getComment18());

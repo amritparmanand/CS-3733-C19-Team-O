@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -41,6 +43,8 @@ public class mApplicationFormViewPg4 {
     private JFXTextField applicantSig;
     @FXML
     private JFXTextField applicantNamePrint;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public mApplicationFormViewPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
 
@@ -52,6 +56,7 @@ public class mApplicationFormViewPg4 {
     @FXML
     public void initialize() {
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
 
         System.out.println("starting");
         if(form.getPrintName() != "")

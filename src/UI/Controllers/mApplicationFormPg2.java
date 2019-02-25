@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -54,6 +55,8 @@ public class mApplicationFormPg2 {
     @FXML private JFXButton pdfButton;
     @FXML private VBox commentVBox;
     @FXML private JFXTextArea aComment;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -67,6 +70,8 @@ public class mApplicationFormPg2 {
         form = cacheM.getForm();
     }
     @FXML public void initialize(){
+
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 

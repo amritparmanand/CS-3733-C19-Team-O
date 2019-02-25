@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
@@ -57,9 +59,12 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextArea Q7Comment;
     @FXML private JFXTextField receiver;
     @FXML private JFXTextField TTBID;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         Q1Comment.setText(comments.getComment1());
         Q2Comment.setText(comments.getComment2());
         Q3Comment.setText(comments.getComment3());
