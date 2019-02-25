@@ -103,26 +103,23 @@ public class aApplicationFormPg3 {
     }
 
     @FXML public void OCR() throws IOException {
+        // Check label file
+        if(form.getLabel().getLabelFile() == null){
+            System.out.println("label file NO");
+        }else{
+            System.out.println("label file detected");
+            System.out.println(form.getLabel().getLabelFile().getPath());
+        }
+
         if(form.getLabel().getLabelImage() != null){
-            File image = form.getLabel().getLabelFile();
-
-            // Check label file
-            if(form.getLabel().getLabelFile() == null){
-                System.out.println("label file NO");
-            }else{
-                System.out.println("label file detected");
-                System.out.println(image.getPath());
-            }
-
-            File imageFile = new File(image.getPath());
 
             // Convert to black and white
-            BufferedImage bw = ImageIO.read(imageFile);
+            BufferedImage bw = ImageIO.read(form.getLabel().getLabelFile());
             BufferedImage bw_result = new BufferedImage(bw.getWidth(), bw.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
             Graphics2D graphic = bw_result.createGraphics();
             graphic.drawImage(bw, 0, 0, Color.WHITE, null);
             graphic.dispose();
-            File output = new File("src/Tess4J/images/targetFile.jpg");
+            File output = new File("src/Tess4J/images/Black&White.jpg");
             ImageIO.write(bw_result, "jpg", output);
 
             // The Tesseract

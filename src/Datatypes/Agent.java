@@ -250,16 +250,18 @@ public class Agent extends Account {
         f.setCommentString(rs.getString("comments"));
 
         // Deal with image
-        LabelImage formLabel = new LabelImage();
         Blob picture = rs.getBlob("labelImage");
         if (picture != null) {
 
             BufferedImage is = ImageIO.read(picture.getBinaryStream());
-            File outputFile = new File("src/Tess4J/images/targetFile.jpg");
+            File outputFile = new File("src/Tess4J/images/Storing.jpg");
             ImageIO.write(is, "JPG", outputFile);
+            System.out.println("Storing called");
 
-            f.getLabel().setLabelImage(new Image(picture.getBinaryStream()));
-            f.getLabel().setLabelFile(outputFile);
+            LabelImage percy = new LabelImage();
+            percy.setLabelImage(new Image(picture.getBinaryStream()));
+            percy.setLabelFile(outputFile);
+            f.setLabel(percy);
         }
 
         return f;
