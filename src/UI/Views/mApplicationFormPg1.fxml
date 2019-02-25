@@ -303,7 +303,7 @@
                 </HBox>
             </children>
         </VBox>
-      <VBox alignment="BOTTOM_LEFT" layoutX="80.0" layoutY="507.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="210.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="1289.6" AnchorPane.topAnchor="485.0">
+      <VBox alignment="BOTTOM_LEFT" layoutX="80.0" layoutY="507.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="210.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="1294.6" AnchorPane.topAnchor="485.0">
          <children>
             <VBox alignment="BOTTOM_CENTER" prefHeight="139.0" prefWidth="210.0" VBox.vgrow="ALWAYS">
                <children>

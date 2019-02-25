@@ -50,10 +50,12 @@ public class mApplicationFormPg3 {
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
 
+
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM,Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.form = form;
+        aComment = new JFXTextArea();
     }
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
