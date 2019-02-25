@@ -63,7 +63,6 @@ public class Damerau_Levenshtein implements IFuzzy {
         String best = "this is complete garbage";
         String brandI = "";
         String fanciI = "";
-        int size = 0;
 
         try {
             String getEverything = "select BRANDNAME, FANCIFULNAME from FORMS";
@@ -84,5 +83,10 @@ public class Damerau_Levenshtein implements IFuzzy {
         }
 
         return best;
+    }
+
+    @Override
+    public String fuzzy(String filter, String input, Connection conn) {
+        return null;
     }
 }
