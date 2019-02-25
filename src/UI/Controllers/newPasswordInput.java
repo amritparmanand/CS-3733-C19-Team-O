@@ -3,6 +3,7 @@ package UI.Controllers;
 import Datatypes.StageContainingScene;
 import Managers.*;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,7 +23,7 @@ public class newPasswordInput extends StageContainingScene {
 
     @FXML private JFXPasswordField password;
     @FXML private JFXPasswordField confirmP;
-    @FXML private Button reset;
+    @FXML private JFXButton reset;
     @FXML private Label passwordMessage;
 
     public newPasswordInput(SceneManager sceneM, CacheManager cacheM, String email, Boolean Agent, Stage stage) {
@@ -34,7 +35,7 @@ public class newPasswordInput extends StageContainingScene {
     }
     //fix connection
     @FXML
-    public void reset(Connection connection) throws SQLException{
+    public void reset() throws SQLException{
         if (password.equals(confirmP)){
             String setData = "UPDATE ? SET PASSWORD = ? WHERE EMAIL = ?";
             PreparedStatement ps = cacheM.getDbM().getConnection().prepareStatement(setData);

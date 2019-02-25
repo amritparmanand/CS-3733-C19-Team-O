@@ -100,7 +100,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <JFXButton fx:id="passwordReset" styleClass="searchButtonStyle" text="Forgot password?" />
+                                          <JFXButton fx:id="passwordReset" onAction="#passwordReset" styleClass="searchButtonStyle" text="Forgot password?" />
                                        </children>
                                     </HBox>
                                  </children>
