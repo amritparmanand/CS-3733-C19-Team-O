@@ -24,7 +24,7 @@ public class Alcy {
     private CacheManager cacheM;
     private Form form;
 
-    private boolean demonicSeance = true;
+    private boolean demonicSeance = false;
 
     final static Image alcyHappy1 = new Image("UI/Icons/alcyImages/alcyhappy-01.png");
     final static Image alcyAngry1 = new Image("UI/Icons/alcyImages/alcyangry-01.png");
@@ -282,4 +282,87 @@ public class Alcy {
             happy();
         }
     }
+
+    @FXML public void sayLogin(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Hey dude, you wanna log in?");
+            drunk();
+        }else{
+            alcyLabel.setText("Time to log in! Let's get to work!");
+            happy();
+        }
+    }
+
+    @FXML public void sayRegister(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Oh, registering a new account I see... Nice choice!");
+            happy();
+        }else{
+            alcyLabel.setText("Where better to sign up to than an alcohol database!");
+            happy();
+        }
+    }
+
+    @FXML public void sayMHomePage(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Welcome, " + cacheM.getAcct().getFullName() +"! Here's your homepage! This is where you can fill out new forms and view your past ones!");
+            drunk();
+        }else{
+            alcyLabel.setText("Ahhh... What a good looking homepage, don't ya think, "+ cacheM.getAcct().getFullName()+"?");
+            drunk();
+        }
+    }
+
+    @FXML public void sayAHomePage(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Welcome, " + cacheM.getAcct().getFullName()+ ". Get back to work now!");
+            happy();
+        }else{
+            alcyLabel.setText("Do you think the govermnent pays enough for you to sit around doing nothing, "+cacheM.getAcct().getFullName()+"?!");
+            drunk();
+        }
+    }
+
+    @FXML public void sayMForm(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Oh nice! Another one for me to try!");
+            happy();
+        }else{
+            alcyLabel.setText("I can't wait for the government to approve this in a couple months!");
+            drunk();
+        }
+    }
+
+    @FXML public void sayMViewForm(){
+        double random = Math.random();
+        if(random>.6){
+            alcyLabel.setText("Jeez Louis, what'd you do wrong now!");
+            confused();
+        }if(random<.3){
+            alcyLabel.setText("Ahh... "+cacheM.getForm().getFancifulName()+"... I watched you fill this out wrong... Oops...");
+        }else{
+            alcyLabel.setText("Can't even file paperwork correctly, huh?");
+            sassy();
+        }
+    }
+
+    @FXML public void sayAForm(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Man, reading these things will kill ya faster than the stuff thats on em! "+ cacheM.getForm().getFancifulName()+" does sound pretty deadly, however...");
+            sad();
+        }else{
+            alcyLabel.setText("Oh man! I can't wait for "+cacheM.getForm().getBrandName()+"'s newest hit!");
+            happy();
+        }
+    }
+
+
+
+
 }

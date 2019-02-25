@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
 import java.lang.System;
 
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -80,6 +81,9 @@ public class mApplicationFormPg1 {
     @FXML private VBox commentVBox;
     @FXML private JFXTextArea aComment;
 
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -95,6 +99,8 @@ public class mApplicationFormPg1 {
     @SuppressWarnings("Duplicates")
     @FXML
     public void initialize() {
+
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 

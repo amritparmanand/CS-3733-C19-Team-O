@@ -14,10 +14,12 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import java.lang.System;
 
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.time.Year;
@@ -53,6 +55,8 @@ public class mApplicationFormViewPg1 {
     @FXML private JFXButton saveDraft;
     @FXML private Label serialMessage;
     @FXML private JFXButton savePDF;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public mApplicationFormViewPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -63,6 +67,7 @@ public class mApplicationFormViewPg1 {
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         cacheM.setForm(form);
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);

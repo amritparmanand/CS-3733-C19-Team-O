@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class aGetApplication {
     @FXML private FlowPane loadFormPane;
     @FXML private JFXCheckBox approved;
     @FXML private JFXCheckBox denied;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     private String filterA = "";
     private String filterD = "";
@@ -46,6 +49,7 @@ public class aGetApplication {
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         loadFormPane.getChildren().clear();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
 
         if(approved.isSelected()){
             filterA = "APPROVED";

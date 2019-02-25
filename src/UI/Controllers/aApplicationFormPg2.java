@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -48,11 +50,14 @@ public class aApplicationFormPg2 {
     @FXML private JFXTextArea Q12Comment;
     @FXML private JFXTextArea Q13Comment;
     @FXML private JFXTextField receiver;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
 
 
 
     @FXML public void initialize() {
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         Q8Comment.setText(comments.getComment8());
         Q8aComment.setText(comments.getComment8a());
         Q9Comment.setText(comments.getComment9());
