@@ -13975,7 +13975,7 @@ public interface Leptonica extends Library, ILeptonica {
      * Original signature : <code>PIX* pixRead(const char*)</code><br>
      * <i>native declaration : allheaders.h:4230</i>
      */
-    Pix pixRead(String filename);
+    net.sourceforge.lept4j.Pix pixRead(String filename);
 
     /**
      * Original signature :
