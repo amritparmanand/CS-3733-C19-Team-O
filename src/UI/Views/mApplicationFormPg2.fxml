@@ -21,9 +21,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#wineFieldCheck" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormPg2">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#wineFieldCheck" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormPg2">
     <children>
-        <VBox onMouseEntered="#wineFieldCheck" onMouseMoved="#wineFieldCheck" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox onMouseEntered="#wineFieldCheck" onMouseMoved="#wineFieldCheck" prefHeight="200.0" prefWidth="100.0" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
                     <children>
@@ -63,19 +63,15 @@
                   </HBox>
                     </children>
                 </HBox>
-                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                     <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />
-                        <JFXProgressBar progress="0.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
-                        <JFXProgressBar progress="0.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 3 Progress" />
-                        <JFXProgressBar progress="0.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
-                        <JFXProgressBar progress="0.0" />
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                        <JFXProgressBar progress="0.0">
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin></JFXProgressBar>
+                        <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                            <children>
                               <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
                                  <children>
@@ -99,118 +95,122 @@
                         </VBox>
                      </children>
                   </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
-                            <content>
-                                <VBox prefHeight="900.0" prefWidth="620.0" styleClass="backPane">
-                                    <children>
-                                        <Label text="TTB Label Form">
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                            <font>
-                                                <Font size="20.0" />
-                                            </font>
-                                            <styleClass>
-                                                <String fx:value="labeltext" />
-                                                <String fx:value="h1" />
-                                            </styleClass>
-                                        </Label>
-                                        <Label styleClass="h2" text="Page 2">
-                                            <padding>
-                                                <Insets left="20.0" />
-                                            </padding>
-                                        </Label>
-                                        <Separator prefWidth="200.0">
-                                            <VBox.margin>
-                                                <Insets />
-                                            </VBox.margin>
-                                            <padding>
-                                                <Insets left="20.0" right="20.0" />
-                                            </padding>
-                                        </Separator>
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name and Address of Applicant as shown on Plant Registry, Basic Permit, or Brewer's Notice. Include Approved DBA or Tradename if Used on the Label (Required)" wrappingWidth="580.0" />
-                                    <JFXTextField fx:id="printName" />
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Label styleClass="labeltext" text="8a. Mailing Address if Different" />
-                                    <JFXTextField fx:id="mailAddress" />
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Label styleClass="labeltext" text="9. Formula" />
-                                    <JFXTextField fx:id="formula" />
-                                            </children>
-                                            <VBox.margin>
-                                                <Insets />
-                                            </VBox.margin>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox fx:id="varietalVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Label styleClass="labeltext" text="10. Grape Variental(s) Wine Only" />
-                                    <JFXTextField fx:id="grapes" />
-                                            </children>
-                                            <VBox.margin>
-                                                <Insets />
-                                            </VBox.margin>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox fx:id="appellationVBox" prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Label styleClass="labeltext" text="11. Wine Appellation (If on label)" />
-                                    <JFXTextField fx:id="appellation" />
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Label styleClass="labeltext" text="12. Phone Number" />
-                                    <JFXTextField fx:id="phoneNumber" />
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
-                                            <children>
-                                                <Label styleClass="labeltext" text="13. Email Address" />
-                                    <JFXTextField fx:id="email" />
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                            </padding>
-                                        </VBox>
-                                    </children>
-                                </VBox>
-                            </content>
+                        <ScrollPane hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0">
+                     <content>
+                        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" styleClass="backPane">
+                           <children>
+                              <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" styleClass="backPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-50.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label text="TTB Label Form">
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="h1" />
+                                       </styleClass>
+                                    </Label>
+                                    <Label styleClass="h2" text="Page 2">
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" />
+                                       </padding>
+                                    </Separator>
+                                    <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name and Address of Applicant as shown on Plant Registry, Basic Permit, or Brewer's Notice. Include Approved DBA or Tradename if Used on the Label (Required)" wrappingWidth="580.0" />
+                                          <JFXTextField fx:id="printName" maxWidth="-Infinity" prefColumnCount="40" prefHeight="28.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="46.0" prefWidth="850.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="8a. Mailing Address (if Different)" />
+                                          <JFXTextField fx:id="mailAddress" maxWidth="-Infinity" prefColumnCount="50" prefHeight="28.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="40.0" left="20.0" right="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="15.0" prefWidth="850.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="9. Formula" />
+                                          <JFXTextField fx:id="formula" maxWidth="-Infinity" prefColumnCount="5" prefHeight="28.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox fx:id="varietalVBox" prefHeight="18.0" prefWidth="850.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="10. Grape Varietal(s) Wine Only" />
+                                          <JFXTextField fx:id="grapes" maxWidth="-Infinity" prefColumnCount="20" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox fx:id="appellationVBox" prefHeight="64.0" prefWidth="850.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="11. Wine Appellation (If on label)" />
+                                          <JFXTextField fx:id="appellation" maxWidth="-Infinity" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="40.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="56.0" prefWidth="850.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="12. Phone Number" />
+                                          <JFXTextField fx:id="phoneNumber" maxWidth="-Infinity" prefColumnCount="10" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox fillWidth="false" prefHeight="170.0" prefWidth="850.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="labeltext" text="13. Email Address" />
+                                          <JFXTextField fx:id="email" prefColumnCount="35" prefHeight="28.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
                         </ScrollPane>
-                  <VBox fx:id="commentVBox" prefHeight="720.0" prefWidth="320.0">
+                  <VBox fx:id="commentVBox" minWidth="-Infinity" prefHeight="925.0" prefWidth="400.0" styleClass="toolbar">
                      <children>
-                        <Accordion prefWidth="320.0">
+                        <Accordion prefWidth="320.0" styleClass="toolbar">
                            <panes>
-                              <TitledPane animated="false" prefHeight="476.0" prefWidth="320.0" text="Agent Comments">
+                              <TitledPane animated="false" prefHeight="476.0" prefWidth="320.0" styleClass="toolbar" text="Agent Comments">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <content>
-                                    <JFXTextArea fx:id="aComment" editable="false" />
+                                    <JFXTextArea fx:id="aComment" editable="false" prefHeight="683.0" prefWidth="522.0" styleClass="toolbar" />
                                  </content>
                               </TitledPane>
                            </panes>
@@ -219,6 +219,23 @@
                   </VBox>
                     </children>
                 </HBox>
+            </children>
+        </VBox>
+        <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">
+            <children>
+                <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <HBox alignment="BOTTOM_LEFT" styleClass="alcyLabel">
+                            <children>
+                                <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </VBox>
+                <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
             </children>
         </VBox>
     </children>

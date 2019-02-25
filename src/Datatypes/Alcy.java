@@ -24,6 +24,8 @@ public class Alcy {
     private CacheManager cacheM;
     private Form form;
 
+//    private boolean demonicSeance = false;
+
     final static Image alcyHappy1 = new Image("UI/Icons/alcyImages/alcyhappy-01.png");
     final static Image alcyAngry1 = new Image("UI/Icons/alcyImages/alcyangry-01.png");
     final static Image alcyConfused1 = new Image("UI/Icons/alcyImages/alcyconfused-01.png");
@@ -46,6 +48,8 @@ public class Alcy {
     public void setImageView(ImageView imageView) { this.imageView = imageView; }
     public Text getAlcyLabel() { return alcyLabel; }
     public void setAlcyLabel(Text alcyLabel) { this.alcyLabel = alcyLabel; }
+//    public boolean isDemonicSeance() { return demonicSeance; }
+//    public void setDemonicSeance(boolean demonicSeance) { this.demonicSeance = demonicSeance; }
 
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(frameTime), (javafx.event.ActionEvent event) -> {
         imageView.setImage(actionList.get(imageIndex++));
@@ -54,6 +58,16 @@ public class Alcy {
     public Alcy(CacheManager cacheManager) {
         this.cacheM = cacheManager;
     }
+
+//    @FXML public void summonAlcy(ImageView alcyView, Text alcyLabel){
+//        if(demonicSeance){
+//            Alcy alcy = cacheM.getAlcy();
+//            alcy.setImageView(alcyView);
+//            alcy.setAlcyLabel(alcyLabel);
+//            alcy.start();
+//        }else
+//            return;
+//    }
 
     @FXML
     public void resetTimeline(){
@@ -73,7 +87,7 @@ public class Alcy {
     @FXML
     public void start(){
         resetTimeline();
-        actionList.add(alcyHappy1);
+        actionList.add(alcyDrunk1);
         playTimeline();
     }
 
@@ -259,13 +273,4 @@ public class Alcy {
             happy();
         }
     }
-
-
-
-
-
-
-
-
-
 }

@@ -411,5 +411,22 @@
                 </HBox>
             </children>
         </VBox>
+       <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">
+          <children>
+             <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
+                <children>
+                   <HBox alignment="BOTTOM_LEFT" styleClass="alcyLabel">
+                      <children>
+                         <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
+                      </children>
+                      <padding>
+                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                      </padding>
+                   </HBox>
+                </children>
+             </VBox>
+             <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
+          </children>
+       </VBox>
     </children>
 </AnchorPane>
