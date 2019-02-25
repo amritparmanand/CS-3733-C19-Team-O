@@ -227,6 +227,13 @@ public class aApplicationFormPg3 {
 
                 } catch (TesseractException e) {
                     System.err.println(e.getMessage());
+                    bw = ImageIO.read(form.getLabel().getLabelFile());
+                    bw_result = new BufferedImage(bw.getWidth(), bw.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+                    graphic = bw_result.createGraphics();
+                    graphic.drawImage(bw, 0, 0, Color.WHITE, null);
+                    graphic.dispose();
+                    output = new File("src/Tess4J/images/Black&White.jpg");
+                    ImageIO.write(bw_result, "jpg", output);
                 }
             }
         }else{
