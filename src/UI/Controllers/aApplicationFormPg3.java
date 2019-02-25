@@ -294,12 +294,6 @@ public class aApplicationFormPg3 {
         {
             System.out.println("there is no image to parse");
         }
-        // Delete the stored file
-        if (form.getLabel().getLabelFile().delete()) {
-            System.out.println("File deleted successfully");
-        } else {
-            System.out.println("Failed to delete the file");
-        }
 
     }
 
@@ -362,7 +356,6 @@ public class aApplicationFormPg3 {
         A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
-
     }
 
 }
