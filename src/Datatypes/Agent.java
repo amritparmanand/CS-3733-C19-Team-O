@@ -32,9 +32,7 @@ public class Agent extends Account{
     private int numberPassed;
     private int numberApproved;
     private int numberDenied;
-  //  private int[] defAchieves = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     private int threeRow;
-  //  private ArrayList<Integer> achievments = new ArrayList<>();
     private int rowAD = 0;
     private int rowP = 0;
 
@@ -45,7 +43,7 @@ public class Agent extends Account{
         this.numberApproved = numberApproved;
         this.numberDenied = numberDenied;
         this.numberPassed = numberPassed;
-     //   this.achievments = achievments;
+
     }
 
     public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score, int numberApproved, int numberDenied, int numberPassed) {
@@ -56,7 +54,6 @@ public class Agent extends Account{
         this.numberApproved = numberApproved;
         this.numberDenied = numberDenied;
         this.numberPassed = numberPassed;
-     //   this.achievments = achievments;
 
         if (this.hasFetchedForms) {
             this.getWorkingForms();
@@ -79,7 +76,6 @@ public class Agent extends Account{
             super.setEmail(result.getString("email"));
             super.setPhone(result.getString("phone"));
             this.setScore(result.getInt("score"));
-      //      this.setAchievments(result.getArrayList("achievements"));
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
@@ -101,12 +97,6 @@ public class Agent extends Account{
     public void setScore(int score) {
         this.score = score;
     }
-//    public int[] getAchievments(){
-//        return achievments;
-//    }
-//    public void setAchievments(int[] achievments){
-//        this.achievments=achievments;
-//    }
     public ArrayList<Form> getReviewedForms() {
         return reviewedForms;
     }
@@ -166,7 +156,7 @@ public class Agent extends Account{
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {
-            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied, achievments) " +
+            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied) " +
                     "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
@@ -180,7 +170,7 @@ public class Agent extends Account{
             prepStmt.setInt(8,0);
             prepStmt.setInt(9,0);
             prepStmt.setInt(10,0);
-       //     prepStmt.setArray(11, defAchieves);
+
 
             prepStmt.executeUpdate();
             prepStmt.close();
@@ -279,58 +269,12 @@ public class Agent extends Account{
     /**
      * @author Clay Oshiro-Leavitt & Trevor Dowd
      * @version It 4
-     * keeps track of agent's points, number of forms approved, denied, passed, and achievments
+     * keeps track of agent's points, number of forms approved, denied, passed
      * 5 points for each form processed
      * @param connection
      */
     public void calculateScore(Connection connection){
         score = reviewedForms.size()*5;
-        if (reviewedForms.size()>1){
-            //achievments[0] = 1;
-        }
-        if (reviewedForms.size()>100){
-       //     achievments[1] = 1;
-        }
-        if (reviewedForms.size()>10000){
-        //    achievments[2] = 1;
-        }
-        if (numberApproved > 1){
-       //     achievments[3] = 1;
-        }
-        if (numberApproved > 100){
-         //   achievments[4] = 1;
-        }
-        if (numberApproved > 10000){
-        //    achievments[5] = 1;
-        }
-        if (numberDenied > 1){
-        //    achievments[6]=1;
-        }
-        if (numberDenied > 100){
-         //   achievments[7]=1;
-        }
-        if (numberDenied > 10000){
-         //   achievments[8]=1;
-        }
-        if (numberPassed > 1){
-         //   achievments[9]=1;
-        }
-        if (numberPassed > 100){
-        //    achievments[10]=1;
-        }
-        if (numberPassed > 10000){
-         //   achievments[11]=1;
-        }
-        if (gotOldForms==true){
-         //   achievments[12]=1;
-        }
-        if (rowAD > 3){
-        //    achievments[13]=1;
-        }
-        if (rowP > 3){
-         //   achievments[14]=1;
-        }
-
         try {
             String approvedFormSQL = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
                     "APPLICATIONS.TTBID = " + this.getTtbID()+ " and APPLICATIONS.STATUS = 'APPROVED'";
