@@ -70,9 +70,9 @@ public class mOnePageForm {
     @FXML private JFXTextField alcoholPercentage;
     @FXML private JFXTextField phLevel;
     @FXML private JFXTextField vintageYear;
-    @FXML private RadioButton wine2;
-    @FXML private RadioButton spirits2;
-    @FXML private RadioButton beer2;
+//    @FXML private RadioButton wine;
+//    @FXML private RadioButton distilled;
+//    @FXML private RadioButton beer2;
     @FXML private JFXTextField printName;
     @FXML private JFXTextField mailAddress;
     @FXML private JFXTextField formula;
@@ -233,13 +233,13 @@ public class mOnePageForm {
         }
         switch(form.getBeerWineSpirit()){
             case "WINE":
-                wine2.setSelected(true);
+                wine.setSelected(true);
                 break;
             case "SPIRITS":
-                spirits2.setSelected(true);
+                distilled.setSelected(true);
                 break;
             case "BEER":
-                beer2.setSelected(true);
+                malt.setSelected(true);
                 break;
         }
         if(form.getRepID() != 0)
@@ -428,14 +428,14 @@ public class mOnePageForm {
         }
 
         if (!form.getBeerWineSpirit().contains(cacheM.getStyle())) {
-            if (wine2.isSelected() || spirits2.isSelected() || beer2.isSelected()) {
-                if (wine2.isSelected())
+            if (wine.isSelected() || distilled.isSelected() || malt.isSelected()) {
+                if (wine.isSelected())
                     form.setBeerWineSpirit("WINE");
-                else if (spirits2.isSelected())
+                else if (distilled.isSelected())
                     form.setBeerWineSpirit("SPIRITS");
-                else if (beer2.isSelected())
+                else if (malt.isSelected())
                     form.setBeerWineSpirit("BEER");
-                if (wine2.isSelected()) {
+                if (wine.isSelected()) {
                     if (!phLevel.getText().isEmpty() && !form.getpHLevel().contains(cacheM.getStyle())) {
                         form.setpHLevel(phLevel.getText());
                     }
@@ -671,7 +671,7 @@ public class mOnePageForm {
         if(!email.getText().equals(form.getEmailAddress()) && !email.getText().contains(cacheM.getStyle())) {
             form.setEmailAddress(email.getText() + cacheM.getStyle());
         }
-        if (wine2.isSelected()) {
+        if (wine.isSelected()) {
             if (!phLevel.getText().equals(form.getpHLevel()) && !phLevel.getText().contains(cacheM.getStyle())) {
                 form.setpHLevel(phLevel.getText() + cacheM.getStyle());
             }
@@ -713,13 +713,13 @@ public class mOnePageForm {
             form.setProductType("MALT" + cacheM.getStyle());
         }
 
-        if(wine2.isSelected() && !form.getBeerWineSpirit().equals("WINE")){
+        if(wine.isSelected() && !form.getBeerWineSpirit().equals("WINE")){
             form.setBeerWineSpirit("WINE" + cacheM.getStyle());
         }
-        if(spirits2.isSelected() && !form.getBeerWineSpirit().equals("SPIRITS")){
+        if(distilled.isSelected() && !form.getBeerWineSpirit().equals("SPIRITS")){
             form.setBeerWineSpirit("SPIRITS" + cacheM.getStyle());
         }
-        if(beer2.isSelected() && !form.getBeerWineSpirit().equals("BEER")){
+        if(malt.isSelected() && !form.getBeerWineSpirit().equals("BEER")){
             form.setBeerWineSpirit("BEER" + cacheM.getStyle());
         }
         if (!onlyState.getText().equals(form.getOnlyState()) && !onlyState.getText().contains(cacheM.getStyle())) {

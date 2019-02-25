@@ -179,7 +179,7 @@
                                           <VBox prefHeight="32.0" prefWidth="620.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="labeltext" text="4. Serial Number (Required)" />
-                                                <JFXTextField fx:id="serialNumber" maxWidth="-Infinity" onKeyReleased="#validSerial" prefHeight="28.0" prefWidth="62.0" />
+                                                <JFXTextField fx:id="serialNumber" maxWidth="-Infinity" minWidth="-Infinity" onKeyReleased="#validSerial" prefColumnCount="6" />
                                                 <Label fx:id="serialMessage" />
                                              </children>
                                              <padding>
@@ -215,7 +215,7 @@
                                           <VBox prefHeight="0.0" prefWidth="620.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="labeltext" text="6. Brand Name (Required)" />
-                                                <JFXTextField fx:id="brandName" />
+                                                <JFXTextField fx:id="brandName" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="40" />
                                              </children>
                                              <padding>
                                                 <Insets left="20.0" right="20.0" top="20.0" />
@@ -224,7 +224,7 @@
                                           <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="800.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="labeltext" text="7. Fanciful Name (If any)" />
-                                                <JFXTextField fx:id="fancifulName" />
+                                                <JFXTextField fx:id="fancifulName" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="30" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="60.0" left="20.0" right="20.0" top="20.0" />
@@ -242,7 +242,7 @@
                                           <VBox prefHeight="40.0" prefWidth="620.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="labeltext" text="Alcohol Percentage" />
-                                                <JFXTextField fx:id="alcoholPercentage" maxWidth="-Infinity" prefHeight="28.0" prefWidth="75.0" />
+                                                <JFXTextField fx:id="alcoholPercentage" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="4" prefHeight="28.0" />
                                              </children>
                                              <padding>
                                                 <Insets left="20.0" right="20.0" />
@@ -254,7 +254,7 @@
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin></Label>
-                                                <JFXTextField fx:id="phLevel" maxWidth="-Infinity" prefHeight="28.0" prefWidth="74.0" />
+                                                <JFXTextField fx:id="phLevel" maxWidth="-Infinity" prefColumnCount="4" prefHeight="28.0" />
                                              </children>
                                              <padding>
                                                 <Insets left="20.0" right="20.0" />
@@ -266,7 +266,7 @@
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin></Label>
-                                                <JFXTextField fx:id="vintageYear" maxWidth="-Infinity" prefHeight="28.0" prefWidth="73.0">
+                                                <JFXTextField fx:id="vintageYear" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="4" prefHeight="28.0">
                                                    <VBox.margin>
                                                       <Insets bottom="100.0" />
                                                    </VBox.margin></JFXTextField>
