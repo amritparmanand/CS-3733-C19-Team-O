@@ -123,6 +123,14 @@ public class DatabaseManager {
         }
         return hashedPassword;
     }
+    public Boolean mFindEmail(String qEmail){
+
+        return false;
+    }
+    public Boolean aFindEmail(String qEmail){
+
+        return false;
+    }
 
     /**
      * Generate the tables in database and create the sequences for ids
