@@ -3,6 +3,8 @@ package UI.Controllers;
 import Datatypes.StageContainingScene;
 import Managers.CacheManager;
 import Managers.SceneManager;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -19,7 +21,8 @@ import java.io.IOException;
  *
  */
 public class passwordKeyPopup extends StageContainingScene {
-    @FXML private TextField keyInput;
+    @FXML private JFXTextField keyInput;
+    @FXML private JFXButton checkKey;
     @FXML private Label keyMessage;
 
     private SceneManager sceneM;

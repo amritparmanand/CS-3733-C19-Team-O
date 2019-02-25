@@ -32,7 +32,7 @@ public class newPasswordInput extends StageContainingScene {
         this.email = email;
         this.Agent = Agent;
     }
-
+    //fix connection
     @FXML
     public void reset(Connection connection) throws SQLException{
         if (password.equals(confirmP)){
@@ -47,7 +47,7 @@ public class newPasswordInput extends StageContainingScene {
         }
         else{
             passwordMessage.setTextFill(Color.RED);
-            passwordMessage.setText("Passwords do not match. Please try again.");
+            passwordMessage.setText("Passwords do not match.");
         }
     }
 

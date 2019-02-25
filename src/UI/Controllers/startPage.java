@@ -25,8 +25,8 @@ public class startPage {
     }
     
     @FXML public void login() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/passwordReset.fxml"));
-        sceneM.changeScene(loader, new passwordReset(sceneM, cacheM));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }
 
     @FXML public void search() throws IOException {
