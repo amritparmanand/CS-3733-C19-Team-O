@@ -214,7 +214,7 @@ public class LoginPage implements SerialPortDataListener {
     @FXML
     public void passwordReset() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/passwordReset.fxml"));
-        sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
+        sceneM.changeScene(loader, new passwordReset(sceneM, cacheM));
     }
 
     @FXML

@@ -124,11 +124,37 @@ public class DatabaseManager {
         return hashedPassword;
     }
     public Boolean mFindEmail(String qEmail){
-
+        String dEmail = "";
+        try {
+            String getData = "select EMAIL from REPRESENTATIVES where EMAIL = '" + qEmail +"'" ;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                dEmail = result.getString("email");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        if (!dEmail.equals("")){
+            return true;
+        }
         return false;
     }
     public Boolean aFindEmail(String qEmail){
-
+        String dEmail = "";
+        try {
+            String getData = "select EMAIL from AGENTS where EMAIL = '" + qEmail +"'" ;
+            ResultSet result = this.getStmt().executeQuery(getData);
+            while(result.next()){
+                dEmail = result.getString("email");
+            }
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+        if (!dEmail.equals("")){
+            return true;
+        }
         return false;
     }
 

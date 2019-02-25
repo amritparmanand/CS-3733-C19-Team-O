@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -29,8 +30,11 @@ public class passwordReset {
     private String ResetKey;
 
     @FXML private TextField email;
+    @FXML private TextField keyInput;
     @FXML private RadioButton m;
     @FXML private RadioButton a;
+    @FXML private Label keyMessage;
+    @FXML private Label emailMessage;
 
 
     public passwordReset(SceneManager sceneM, CacheManager cacheM){
@@ -47,12 +51,33 @@ public class passwordReset {
             System.out.println("Checking for email");
             if (cacheM.getDbM().mFindEmail(email.getText())) {
                 this.send("ttb.database@gmail.com","OnyxOgopogo",email.getText(),"TTB Password Reset",generateEmailBody());
+                emailMessage.setText("Password reset email sent");
+                System.out.println("Password reset email sent");
             }
         } else if (a.isSelected()) {
             System.out.println("checking for email");
-            if (cacheM.getDbM().mFindEmail(email.getText())) {
+            if (cacheM.getDbM().aFindEmail(email.getText())) {
                 this.send("ttb.database@gmail.com","OnyxOgopogo",email.getText(),"TTB Password Reset",generateEmailBody());
+                emailMessage.setText("Password reset email sent");
+                System.out.println("Password reset email sent");
             }
+        }
+    }
+
+    /**
+     * changes page only if the key matches the most recent one sent
+     * @throws IOException
+     */
+    @FXML
+    public void checkKey() throws IOException{
+        if (keyInput.getText().equals(ResetKey)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/newPasswordInput.fxml"));
+            sceneM.changeScene(loader, new newPasswordInput(sceneM, cacheM));
+        }
+        else{
+            keyMessage.setTextFill(Color.RED);
+            keyMessage.setText("Key not valid. Please try again.");
+            System.out.println("The key you entered was not valid. Please double-check your email and try again.");
         }
     }
 
