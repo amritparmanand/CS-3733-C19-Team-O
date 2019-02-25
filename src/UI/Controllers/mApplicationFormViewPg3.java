@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Datatypes.PDF;
@@ -44,7 +45,9 @@ public class mApplicationFormViewPg3 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMViewForm();
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());

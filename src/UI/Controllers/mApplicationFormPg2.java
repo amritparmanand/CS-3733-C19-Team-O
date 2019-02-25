@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
 import Datatypes.PDF;
@@ -71,7 +72,9 @@ public class mApplicationFormPg2 {
     }
     @FXML public void initialize(){
 
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMForm();
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 

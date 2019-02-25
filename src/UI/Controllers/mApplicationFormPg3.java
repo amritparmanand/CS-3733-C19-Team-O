@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Datatypes.PDF;
@@ -63,7 +64,9 @@ public class mApplicationFormPg3 {
 
     @SuppressWarnings("Duplicates") @FXML public void initialize() {
 
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMForm();
 
         aComment.setText(form.getCommentString());
 

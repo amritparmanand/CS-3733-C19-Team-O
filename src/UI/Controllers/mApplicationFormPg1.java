@@ -1,8 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.PDF;
+import Datatypes.*;
 import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
@@ -100,7 +98,9 @@ public class mApplicationFormPg1 {
     @FXML
     public void initialize() {
 
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMForm();
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 

@@ -1,8 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.PDF;
+import Datatypes.*;
 import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
@@ -67,7 +65,9 @@ public class mApplicationFormViewPg1 {
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         cacheM.setForm(form);
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMViewForm();
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);

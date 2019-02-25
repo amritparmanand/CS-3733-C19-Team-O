@@ -101,6 +101,7 @@ public class mOnePageForm {
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().sayMForm();
 
         repID.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override

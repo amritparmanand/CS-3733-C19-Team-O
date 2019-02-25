@@ -35,6 +35,7 @@ public class mHomepage {
     @FXML public void initialize(){
         Manufacturer M = (Manufacturer) cacheM.getAcct();
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().sayMHomePage();
 
         accepted.setText("Accepted: " + M.countStatus(cacheM.getDbM().getConnection(), "APPROVED"));
         pending.setText("Pending: " + M.countStatus(cacheM.getDbM().getConnection(), "PENDING"));
