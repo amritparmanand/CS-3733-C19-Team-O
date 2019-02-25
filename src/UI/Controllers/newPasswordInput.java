@@ -33,10 +33,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class newPasswordInput {
     private SceneManager sceneM;
     private CacheManager cacheM;
-    private BCryptPasswordEncoder passwordDecoder = new BCryptPasswordEncoder();
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @FXML private JFXPasswordField password;
     @FXML private JFXPasswordField confirmP;
+    @FXML private Button reset;
 
     public newPasswordInput(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;

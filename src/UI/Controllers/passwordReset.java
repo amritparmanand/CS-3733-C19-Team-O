@@ -16,6 +16,10 @@ import java.io.IOException;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Random;
 
@@ -30,10 +34,8 @@ public class passwordReset {
     private String ResetKey;
 
     @FXML private TextField email;
-    @FXML private TextField keyInput;
     @FXML private RadioButton m;
     @FXML private RadioButton a;
-    @FXML private Label keyMessage;
     @FXML private Label emailMessage;
 
 
@@ -46,8 +48,28 @@ public class passwordReset {
      * Sends a reset email if an account is associated with the given email
      */
     @FXML
-    public void sendResetEmail(){
-        if (m.isSelected()) {
+    public void sendResetEmail(Connection connection) throws SQLException {
+
+        String getData = "SELECT EMAIL FROM ? WHERE EMAIL = ? AND ? = ?";
+        PreparedStatement ps = connection.prepareStatement(getData);
+        ps.setString(1, a.isSelected() ? "AGENTS":"REPRESENTATIVES");
+        ps.setString(2, "getemailtext");
+        ps.setString(3, a.isSelected() ? "TTBID":"REPID");
+        ps.setString(4, "getIDtext");
+        ResultSet rs = ps.executeQuery();
+
+        if(rs != null){
+            if(rs.next()) {
+                //too many records
+                System.out.println("Database error");
+            }
+            else{
+                this.send("ttb.database@gmail.com","OnyxOgopogo",email.getText(),"TTB Password Reset",generateEmailBody());
+
+            }
+        }
+        //bad not safe code, bad Luna
+        /*if (m.isSelected()) {
             System.out.println("Checking for email");
             if (cacheM.getDbM().mFindEmail(email.getText())) {
                 this.send("ttb.database@gmail.com","OnyxOgopogo",email.getText(),"TTB Password Reset",generateEmailBody());
@@ -61,24 +83,7 @@ public class passwordReset {
                 emailMessage.setText("Password reset email sent");
                 System.out.println("Password reset email sent");
             }
-        }
-    }
-
-    /**
-     * changes page only if the key matches the most recent one sent
-     * @throws IOException
-     */
-    @FXML
-    public void checkKey() throws IOException{
-        if (keyInput.getText().equals(ResetKey)){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/newPasswordInput.fxml"));
-            sceneM.changeScene(loader, new newPasswordInput(sceneM, cacheM));
-        }
-        else{
-            keyMessage.setTextFill(Color.RED);
-            keyMessage.setText("Key not valid. Please try again.");
-            System.out.println("The key you entered was not valid. Please double-check your email and try again.");
-        }
+        }*/
     }
 
     @FXML
