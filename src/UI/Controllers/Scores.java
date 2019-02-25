@@ -17,6 +17,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import java.io.FileInputStream;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -96,14 +97,10 @@ public class Scores {
         }
 
 
-
-
-
-//
-//
 //        if (A.getAchievments()[0]==1){
-//            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/1.png").toExternalForm());
-//            theRookie= new ImageView(image);
+            FileInputStream input = new FileInputStream ("src/UI/Icons/SoftEngAchieveColor/1.png");
+            Image image = new Image(input);
+            theRookie= new ImageView(image);
 //        }
 //        if (A.getAchievments()[1]==1){
 //            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/2.png").toExternalForm());
