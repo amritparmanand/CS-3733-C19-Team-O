@@ -101,50 +101,50 @@ System.out.println(A);
             Image image = new Image("UI/Icons/SoftEngAchieveColor/1.png");
                  rookie.setImage(image);
         }
-        if (numberOfForms>100){
+        if (numberOfForms>99){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/2.png");
                  gettingStarted.setImage(image);
         }
-        if (numberOfForms>10000){
+        if (numberOfForms>9999){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/3.png");
                  seasonedPro.setImage(image);
         }
-        if (A.getNumberApproved() > 1){
+        if (A.getNumberApproved() > 0){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/10.png");
                  pleasantMood.setImage(image);
         }
         System.out.println(A.getNumberApproved());
 
-        if (A.getNumberApproved() > 100){
+        if (A.getNumberApproved() > 99){
             System.out.println(A.getNumberApproved() + " got here");
             Image image = new Image("UI/Icons/SoftEngAchieveColor/11.png");
                  yesMan.setImage(image);
         }
-        if (A.getNumberApproved() > 10000){
+        if (A.getNumberApproved() > 9999){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/12.png");
                  goodVibrations.setImage(image);
         }
-        if (A.getNumberDenied() > 1){
+        if (A.getNumberDenied() > 0){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/14.png");
                  denied.setImage(image);
         }
-        if (A.getNumberDenied() > 100){
+        if (A.getNumberDenied() > 99){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/13.png");
                  highStandards.setImage(image);
         }
-        if (A.getNumberDenied() > 10000){
+        if (A.getNumberDenied() > 9999){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/15.png");
                  itsAllWrong.setImage(image);
         }
-        if (A.getNumberPassed() > 1){
+        if (A.getNumberPassed() > 0){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/7.png");
                  passingTheBuck.setImage(image);
         }
-        if (A.getNumberPassed() > 100){
+        if (A.getNumberPassed() > 99){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/8.png");
                  expertProcrastination.setImage(image);
         }
-        if (A.getNumberPassed() > 10000){
+        if (A.getNumberPassed() > 9999){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/9.png");
                  expertDelegation.setImage(image);
         }
@@ -152,11 +152,11 @@ System.out.println(A);
             Image image = new Image("UI/Icons/SoftEngAchieveColor/5.png");
                  backFromTheDead.setImage(image);
         }
-        if (A.getRowAD() > 3){
+        if (A.getRowAD() > 2){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/6.png");
                  threePointer.setImage(image);
         }
-        if (A.getRowP() > 3){
+        if (A.getRowP() > 2){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/4.png");
                  strikeThree.setImage(image);
         }
