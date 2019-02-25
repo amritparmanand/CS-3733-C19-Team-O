@@ -132,7 +132,7 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0" vvalue="1.0">
+                        <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0">
                             <content>
                                 <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" styleClass="backPane">
                                     <children>
