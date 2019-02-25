@@ -60,28 +60,36 @@ public class mApplicationFormPg3 {
 
     @SuppressWarnings("Duplicates") @FXML public void initialize() {
 
-        aComment.setText(form.getCommentString());
+        try {
+            aComment.setText(form.getCommentString());
 
-        if(form.getCommentString() == ""){
-            commentVBox.setVisible(false);
-        }
-        image = form.getLabel();
-        certificateOfApproval.setSelected(form.getCertificateOfApproval());
-        certificateOfExemption.setSelected(form.getCertificateOfExemption());
-        DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
-        resubmission.setSelected(form.getResubmission());
-        onlyState.setText(form.parseGarbage(form.getOnlyState()));
+            if (form.getCommentString() == "") {
+                commentVBox.setVisible(false);
+            }
+            image = form.getLabel();
 
-        if(form.getTtbID() != 0)
-            resubmission.setSelected(true);
+            certificateOfApproval.setSelected(form.getCertificateOfApproval());
+            certificateOfExemption.setSelected(form.getCertificateOfExemption());
+            DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
+            resubmission.setSelected(form.getResubmission());
+            onlyState.setText(form.parseGarbage(form.getOnlyState()));
+
+            if (form.getTtbID() != 0)
+                resubmission.setSelected(true);
             ttbID.setText(String.valueOf(form.getTtbID()));
-        bottleCapacity.setText(form.getBottleCapacity());
+            bottleCapacity.setText(form.getBottleCapacity());
 
-        if(form.getLabel().getLabelImage() != null)
-            imagePreview.setImage(form.getLabel().getLabelImage());
-        validateStateField();
-        validateBottleCapacity();
-        validateTTBID();
+            if (form.getLabel().getLabelImage() != null)
+                imagePreview.setImage(form.getLabel().getLabelImage());
+            validateStateField();
+            validateBottleCapacity();
+            validateTTBID();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+
+        }
     }
 
 
@@ -113,40 +121,40 @@ public class mApplicationFormPg3 {
     }
 
     @FXML public boolean saveDraft(){
-        if (form.getTtbID() != 0) {
-            checkDiff();
-        }
+        try {
+            if (form.getTtbID() != 0) {
+                checkDiff();
+            }
 
 
-            if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
+            if (!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
                     !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
                 errorLabel.setText("Please select a type of application.");
             }
-           // Form form = cacheM.getForm();
+            // Form form = cacheM.getForm();
 
             form.setCertificateOfApproval(certificateOfApproval.isSelected());
             form.setCertificateOfExemption(certificateOfExemption.isSelected());
-            if(certificateOfExemption.isSelected()) {
-                if (!onlyState.getText().isEmpty() && !form.getOnlyState().contains(cacheM.getStyle())){
-                        form.setOnlyState(onlyState.getText());
+            if (certificateOfExemption.isSelected()) {
+                if (!onlyState.getText().isEmpty() && !form.getOnlyState().contains(cacheM.getStyle())) {
+                    form.setOnlyState(onlyState.getText());
                 }
-            }
-            else {
+            } else {
                 form.setOnlyState("");
             }
             form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
-            if(DistinctiveLiquor.isSelected()) {
+            if (DistinctiveLiquor.isSelected()) {
                 if (!bottleCapacity.getText().isEmpty()) {
-                    if(!form.getBottleCapacity().contains(cacheM.getStyle())){
+                    if (!form.getBottleCapacity().contains(cacheM.getStyle())) {
                         form.setBottleCapacity(bottleCapacity.getText());
                     }
                 }
-            }else {
+            } else {
                 form.setBottleCapacity("");
             }
             form.setResubmission(resubmission.isSelected());
             System.out.println(form.getResubmission());
-            if(!resubmission.isSelected())
+            if (!resubmission.isSelected())
                 form.setTtbID(0);
             else
                 form.setTtbID(Integer.parseInt(ttbID.getText()));
@@ -156,6 +164,12 @@ public class mApplicationFormPg3 {
             form.setLabel(image);
             cacheM.setForm(form);
             return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return true;
     }
 
 

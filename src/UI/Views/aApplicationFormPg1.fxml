@@ -60,7 +60,7 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox fx:id="pg4Progress" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0">
+                        <VBox fx:id="pg4Progress" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
@@ -392,7 +392,7 @@
                 </HBox>
             </children>
         </VBox>
-        <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">
+        <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="1289.6" AnchorPane.topAnchor="485.0">
             <children>
                 <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
                     <children>

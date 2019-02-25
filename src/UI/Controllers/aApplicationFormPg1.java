@@ -42,7 +42,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextField serialNO;
     @FXML private JFXTextField brand;
     @FXML private JFXTextField fanciful;
-    @FXML private JFXRadioButton wine2;
+//    @FXML private JFXRadioButton wine2;
     @FXML private JFXRadioButton spirits2;
     @FXML private JFXRadioButton beer2;
     @FXML private JFXTextField alcoholPercentage;
@@ -108,9 +108,9 @@ public class aApplicationFormPg1 {
         System.out.println(form.getBeerWineSpirit());
         switch(form.parseGarbage(form.getBeerWineSpirit())){
             case "WINE":
-                wine2.setSelected(true);
-                wine2.setOpacity(1);
-                wine2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
+                wine.setSelected(true);
+                wine.setOpacity(1);
+                wine.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "SPIRITS":
                 spirits2.setSelected(true);
@@ -157,9 +157,9 @@ public class aApplicationFormPg1 {
             vintageYear.setStyle(form.parseStyle(form.getVintageYear()));
         }
 
-        wine2.setDisable(true);
-        spirits2.setDisable(true);
-        beer2.setDisable(true);
+        wine.setDisable(true);
+        spirits.setDisable(true);
+        malt.setDisable(true);
 
         System.out.println("starting");
     }
