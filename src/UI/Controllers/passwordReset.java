@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -22,11 +23,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Random;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 /**
  * @author Jonathan Luna
  * @version It 4
- * password reset verification page, sends an email and has a field to put in your verification code
+ * password reset verification page, sends an email and opens passwordKeyPopup
  */
 public class passwordReset {
     private SceneManager sceneM;
@@ -34,6 +37,7 @@ public class passwordReset {
     private String ResetKey;
 
     @FXML private TextField email;
+    @FXML private TextField ID;
     @FXML private RadioButton m;
     @FXML private RadioButton a;
     @FXML private Label emailMessage;
@@ -48,14 +52,14 @@ public class passwordReset {
      * Sends a reset email if an account is associated with the given email
      */
     @FXML
-    public void sendResetEmail(Connection connection) throws SQLException {
+    public void sendResetEmail(Connection connection) throws SQLException, java.io.IOException {
 
         String getData = "SELECT EMAIL FROM ? WHERE EMAIL = ? AND ? = ?";
         PreparedStatement ps = connection.prepareStatement(getData);
         ps.setString(1, a.isSelected() ? "AGENTS":"REPRESENTATIVES");
-        ps.setString(2, "getemailtext");
+        ps.setString(2, email.getText());
         ps.setString(3, a.isSelected() ? "TTBID":"REPID");
-        ps.setString(4, "getIDtext");
+        ps.setString(4, ID.getText());
         ResultSet rs = ps.executeQuery();
 
         if(rs != null){
@@ -68,6 +72,13 @@ public class passwordReset {
 
             }
         }
+
+        FXMLLoader popLoader = new FXMLLoader(getClass().getResource("/UI/Views/passwordKeyPopup.fxml"));
+        sceneM.popWindowLoader(popLoader, new passwordKeyPopup(sceneM, cacheM, ResetKey, email.getText(), a.isSelected(), new Stage()), "Password Key Input");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
+
         //bad not safe code, bad Luna
         /*if (m.isSelected()) {
             System.out.println("Checking for email");
@@ -84,12 +95,6 @@ public class passwordReset {
                 System.out.println("Password reset email sent");
             }
         }*/
-    }
-
-    @FXML
-    public void logout() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
-        sceneM.changeScene(loader, new startPage(sceneM, cacheM));
     }
 
     /**

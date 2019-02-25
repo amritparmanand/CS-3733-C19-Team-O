@@ -140,6 +140,7 @@ public class DatabaseManager {
         }
         return false;
     }
+    /* shits not safe yo
     public Boolean aFindEmail(String qEmail){
         String dEmail = "";
         try {
@@ -157,7 +158,7 @@ public class DatabaseManager {
         }
         return false;
     }
-
+    */
     /**
      * Generate the tables in database and create the sequences for ids
      */

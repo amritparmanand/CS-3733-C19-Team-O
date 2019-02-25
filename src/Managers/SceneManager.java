@@ -1,5 +1,6 @@
 package Managers;
 
+import Datatypes.StageContainingScene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -61,6 +62,18 @@ public class SceneManager {
     public void popWindow(Parent root, String title) {
         Stage stage;
         stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+
+    public void popWindowLoader(FXMLLoader loader, StageContainingScene sceneClass, String title) throws IOException {
+        loader.setControllerFactory(c -> sceneClass);
+
+        Parent root = loader.load();
+
+        Stage stage = sceneClass.getStage();
         stage.setScene(new Scene(root));
         stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
