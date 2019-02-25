@@ -46,31 +46,56 @@ public class aApplicationFormPg3 {
     }
 
 
-    @FXML private JFXButton acceptForm;
-    @FXML private JFXButton denyForm;
-    @FXML private JFXButton saveDraft;
-    @FXML private JFXButton homePage;
-    @FXML private JFXButton previous;
-    @FXML private JFXButton next;
-    @FXML private JFXButton search;
-    @FXML private JFXButton logout;
-    @FXML private JFXTextField typeOfApp;
-    @FXML private JFXButton uploadImage;
-    @FXML private JFXTextArea Q14Comment;
-    @FXML private JFXTextArea Q15Comment;
-    @FXML private JFXTextField onlyState;
-    @FXML private JFXTextField ttbID;
-    @FXML private JFXTextField bottleCapacity; //will be int, for future reference
-    @FXML private JFXCheckBox certificateOfApproval;
-    @FXML private JFXCheckBox certificateOfExemption;
-    @FXML private JFXCheckBox DistinctiveLiquor;
-    @FXML private JFXCheckBox resubmission;
-    @FXML private ImageView imagePreview;
-    @FXML private Label volMatch;
-    @FXML private Label appellationMatch;
-    @FXML private Label alcPerc;
-    @FXML private Label errorLabel;
-    @FXML private JFXTextField receiver;
+    @FXML
+    private JFXButton acceptForm;
+    @FXML
+    private JFXButton denyForm;
+    @FXML
+    private JFXButton saveDraft;
+    @FXML
+    private JFXButton homePage;
+    @FXML
+    private JFXButton previous;
+    @FXML
+    private JFXButton next;
+    @FXML
+    private JFXButton search;
+    @FXML
+    private JFXButton logout;
+    @FXML
+    private JFXTextField typeOfApp;
+    @FXML
+    private JFXButton uploadImage;
+    @FXML
+    private JFXTextArea Q14Comment;
+    @FXML
+    private JFXTextArea Q15Comment;
+    @FXML
+    private JFXTextField onlyState;
+    @FXML
+    private JFXTextField ttbID;
+    @FXML
+    private JFXTextField bottleCapacity; //will be int, for future reference
+    @FXML
+    private JFXCheckBox certificateOfApproval;
+    @FXML
+    private JFXCheckBox certificateOfExemption;
+    @FXML
+    private JFXCheckBox DistinctiveLiquor;
+    @FXML
+    private JFXCheckBox resubmission;
+    @FXML
+    private ImageView imagePreview;
+    @FXML
+    private Label volMatch;
+    @FXML
+    private Label appellationMatch;
+    @FXML
+    private Label alcPerc;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private JFXTextField receiver;
 
 
     @SuppressWarnings("Duplicates")
@@ -96,11 +121,11 @@ public class aApplicationFormPg3 {
 
         resubmission.setDisable(true);
 
-        if(form.getResubmission())
+        if (form.getResubmission())
             ttbID.setText(String.valueOf(form.getTtbID()));
 
         // Deal with image
-        if(form.getLabel().getLabelImage() != null){
+        if (form.getLabel().getLabelImage() != null) {
             imagePreview.setImage(form.getLabel().getLabelImage());
         }
 
@@ -114,7 +139,6 @@ public class aApplicationFormPg3 {
             System.out.println("label file detected");
             System.out.println(form.getLabel().getLabelFile().getPath());
         }
-
         if(form.getLabel().getLabelImage() != null){
             // Convert to black and white
             BufferedImage bw = ImageIO.read(form.getLabel().getLabelFile());
@@ -124,143 +148,108 @@ public class aApplicationFormPg3 {
             graphic.dispose();
             File output = new File("src/Tess4J/images/Black&White.jpg");
             ImageIO.write(bw_result, "jpg", output);
-
             // The Tesseract
             ITesseract instance = new Tesseract();
             instance.setDatapath("src/Tess4J.tessdata");
             instance.setLanguage("eng");
-            while(!parsedImage) {
-                try {
-                    String result = instance.doOCR(output);
-                    System.out.println(result);
-                    parsedImage = true;
-                    // Check for Bottle Capacity
-                    if (!form.getBottleCapacity().isEmpty()) {
-                        if (result.contains("ml")) {
-                            System.out.println("bottle capacity DETECTED");
-                            int position_ml = result.indexOf("ml");
-
-                            // Initialize capacity
-                            String capacity;
-                            if (result.substring(position_ml - 1, position_ml).equals(" ")) {
-                                capacity = result.substring(position_ml - 4, position_ml - 1);
-                            } else {
-                                capacity = result.substring(position_ml - 3, position_ml);
-                            }
-
-                            System.out.println(capacity);
-                            System.out.println(form.parseGarbage(form.getBottleCapacity()));
-                            if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
-                                System.out.println("bottle capacity MATCHED");
-                                volMatch.setText("✔");
-                            } else {
-                                System.out.println("bottle capacity NO MATCH");
-                                volMatch.setText("X");
-                            }
-                        } else if (result.contains("mL")) {
-                            System.out.println("bottle capacity DETECTED");
-                            int position_mL = result.indexOf("mL");
-
-                            // Initialize capacity
-                            String capacity;
-                            if (result.substring(position_mL - 1, position_mL).equals(" ")) {
-                                capacity = result.substring(position_mL - 4, position_mL - 1);
-                            } else {
-                                capacity = result.substring(position_mL - 3, position_mL);
-                            }
-
-                            System.out.println(capacity);
-                            System.out.println(form.parseGarbage(form.getBottleCapacity()));
-                            if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
-                                System.out.println("bottle capacity MATCHED");
-                                volMatch.setText("✔");
-                            } else {
-                                System.out.println("bottle capacity NO MATCH");
-                                volMatch.setText("X");
-                            }
+            try {
+                String result = instance.doOCR(output);
+                System.out.println(result);
+                // Check for Bottle Capacity
+                if (!form.getBottleCapacity().isEmpty()) {
+                    if (result.contains("ml")) {
+                        System.out.println("bottle capacity DETECTED");
+                        int position_ml = result.indexOf("ml");
+                        // Initialize capacity
+                        String capacity;
+                        if (result.substring(position_ml - 1, position_ml).equals(" ")) {
+                            capacity = result.substring(position_ml - 4, position_ml - 1);
                         } else {
-                            System.out.println("bottle capacity NOT DETECTED");
-                            volMatch.setText("Alcohol Volume Not Found");
+                            capacity = result.substring(position_ml - 3, position_ml);
                         }
-                        System.out.println("\n");
-                    }
-
-                    // Check for Alcohol Percentage
-                    if (!form.getAlcoholPercent().isEmpty()) {
-                        if (result.contains("%")) {
-                            System.out.println("alcohol percentage DETECTED");
-                            int position = result.indexOf("%");
-
-                            String percentage1 = result.substring(position - 2, position);
-                            System.out.println(percentage1);
-                            String percentage2 = result.substring(position - 4, position);
-                            System.out.println(percentage2);
-
-                            System.out.println(form.parseGarbage(form.getAlcoholPercent()));
-                            if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage1)) {
-                                System.out.println("alcohol percentage MATCHED");
-                                alcPerc.setText("✔");
-
-                            } else if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage2)) {
-                                System.out.println("alcohol percentage MATCHED");
-                                alcPerc.setText("✔");
-                            } else {
-                                System.out.println("alcohol percentage NO MATCH");
-                                alcPerc.setText("X");
-                            }
+                        System.out.println(capacity);
+                        System.out.println(form.parseGarbage(form.getBottleCapacity()));
+                        if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
+                            System.out.println("bottle capacity MATCHED");
+                            volMatch.setText("✔");
                         } else {
-                            System.out.println("alcohol percentage NOT DETECTED");
-                            alcPerc.setText("Alcohol Percentage Not Found");
+                            System.out.println("bottle capacity NO MATCH");
                         }
-                        System.out.println("\n");
-                    }
-
-                    // Check for Appellation
-                    if (!form.getAppellation().isEmpty()) {
-                        int aLength = form.getAppellation().length();
-
-                        if (result.contains("VALLEY")) {
-                            System.out.println("appellation DETECTED");
-                            int position = result.indexOf("VALLEY");
-
-                            String appellation = result.substring(position - aLength - 1, position - 1);
-                            System.out.println(appellation);
-                            System.out.println(form.parseGarbage(form.getAppellation()));
-
-                            if (form.parseGarbage(form.getAppellation()).equals(appellation)) {
-                                System.out.println("appellation MATCHED");
-                                appellationMatch.setText("✔");
-                            } else {
-                                System.out.println("appellation NO MATCH");
-                            }
+                    } else if (result.contains("mL")) {
+                        System.out.println("bottle capacity DETECTED");
+                        int position_mL = result.indexOf("mL");
+                        // Initialize capacity
+                        String capacity;
+                        if (result.substring(position_mL - 1, position_mL).equals(" ")) {
+                            capacity = result.substring(position_mL - 4, position_mL - 1);
                         } else {
-                            System.out.println("appellation NOT DETECTED");
-                            appellationMatch.setText("Appellation Not Found");
+                            capacity = result.substring(position_mL - 3, position_mL);
                         }
-                        System.out.println("\n");
+                        System.out.println(capacity);
+                        System.out.println(form.parseGarbage(form.getBottleCapacity()));
+                        if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
+                            System.out.println("bottle capacity MATCHED");
+                            volMatch.setText("✔");
+                        } else {
+                            System.out.println("bottle capacity NO MATCH");
+                        }
+                    } else {
+                        System.out.println("bottle capacity NOT DETECTED");
                     }
-
-                } catch (TesseractException e) {
-                    System.err.println(e.getMessage());
-                    appellationMatch.setText("Appellation Not Found");
-                    volMatch.setText("Alcohol Volume Not Found");
-                    alcPerc.setText("Alcohol Percentage Not Found");
-
+                    System.out.println("\n");
                 }
+                // Check for Alcohol Percentage
+                if (!form.getAlcoholPercent().isEmpty()) {
+                    if (result.contains("%")) {
+                        System.out.println("alcohol percentage DETECTED");
+                        int position = result.indexOf("%");
+                        String percentage1 = result.substring(position - 2, position);
+                        System.out.println(percentage1);
+                        String percentage2 = result.substring(position - 4, position);
+                        System.out.println(percentage2);
+                        System.out.println(form.parseGarbage(form.getAlcoholPercent()));
+                        if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage1)) {
+                            System.out.println("alcohol percentage MATCHED");
+                            alcPerc.setText("✔");
+                        } else if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage2)) {
+                            System.out.println("alcohol percentage MATCHED");
+                            alcPerc.setText("✔");
+                        } else {
+                            System.out.println("alcohol percentage NO MATCH");
+                        }
+                    } else {
+                        System.out.println("alcohol percentage NOT DETECTED");
+                    }
+                    System.out.println("\n");
+                }
+                // Check for Appellation
+                if (!form.getAppellation().isEmpty()) {
+                    int aLength = form.getAppellation().length();
+                    if (result.contains("VALLEY")) {
+                        System.out.println("appellation DETECTED");
+                        int position = result.indexOf("VALLEY");
+                        String appellation = result.substring(position - aLength - 1, position - 1);
+                        System.out.println(appellation);
+                        System.out.println(form.parseGarbage(form.getAppellation()));
+                        if (form.parseGarbage(form.getAppellation()).equals(appellation)) {
+                            System.out.println("appellation MATCHED");
+                            appellationMatch.setText("✔");
+                        } else {
+                            System.out.println("appellation NO MATCH");
+                        }
+                    } else {
+                        System.out.println("appellation NOT DETECTED");
+                    }
+                    System.out.println("\n");
+                }
+            } catch (TesseractException e) {
+                System.err.println(e.getMessage());
             }
-
-            // Delete the stored file
-            if(form.getLabel().getLabelFile().delete()){
-                System.out.println("File deleted successfully");
-            }else{
-                System.out.println("Failed to delete the file");
-            }
-
         }else{
             System.out.println("there is no image to parse");
         }
     }
-
+    
     @FXML
     public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
