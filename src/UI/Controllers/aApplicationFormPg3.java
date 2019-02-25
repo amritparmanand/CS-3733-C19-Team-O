@@ -93,6 +93,12 @@ public class aApplicationFormPg3 {
     @FXML
     private Label alcPerc;
     @FXML
+    private Label volMatchLabel;
+    @FXML
+    private Label appellationMatchLabel;
+    @FXML
+    private Label alcPercLabel;
+    @FXML
     private Label errorLabel;
     @FXML
     private JFXTextField receiver;
@@ -111,7 +117,12 @@ public class aApplicationFormPg3 {
         certificateOfApproval.setDisable(true);
         certificateOfExemption.setDisable(true);
         DistinctiveLiquor.setDisable(true);
-
+        alcPerc.setVisible(false);
+        volMatch.setVisible(false);
+        appellationMatch.setVisible(false);
+        alcPercLabel.setVisible(false);
+        volMatchLabel.setVisible(false);
+        appellationMatchLabel.setVisible(false);
         onlyState.setText(form.parseGarbage(form.getOnlyState()));
         onlyState.setStyle(form.parseStyle(form.getOnlyState()));
 
@@ -281,7 +292,10 @@ public class aApplicationFormPg3 {
                     }
                     System.out.println("\n");
                 }
-
+                else
+                {
+                    appellationMatch.setText("Appellation Not Entered");
+                }
             } catch (TesseractException e) {
                 System.err.println(e.getMessage());
                 appellationMatch.setText("Appellation Not Found");
@@ -289,11 +303,19 @@ public class aApplicationFormPg3 {
                 alcPerc.setText("Alcohol Percentage Not Found");
 
             }
+            alcPerc.setVisible(true);
+            appellationMatch.setVisible(true);
+            volMatch.setVisible(true);
+            alcPercLabel.setVisible(true);
+            appellationMatchLabel.setVisible(true);
+            volMatchLabel.setVisible(true);
         }
+
         else
         {
             System.out.println("there is no image to parse");
         }
+
 
     }
 

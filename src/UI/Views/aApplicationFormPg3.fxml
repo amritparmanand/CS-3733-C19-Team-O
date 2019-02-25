@@ -247,35 +247,35 @@
                                                 </Pane>
                                     <JFXButton onMousePressed="#OCR" styleClass="buttonStyle" text="Check Label">
                                        <VBox.margin>
-                                          <Insets bottom="40.0" />
+                                          <Insets />
                                        </VBox.margin>
                                     </JFXButton>
-                                    <VBox alignment="TOP_CENTER" prefHeight="224.0" prefWidth="269.0">
+                                    <VBox alignment="TOP_CENTER" prefHeight="224.0" prefWidth="601.0">
                                        <children>
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER" prefHeight="41.0" prefWidth="601.0">
                                              <children>
-                                                <Label text="Alcohol Percentage" />
-                                                <Label fx:id="alcPerc" text="Label">
+                                                <Label fx:id="alcPercLabel" text="Alcohol Percentage" />
+                                                <Label fx:id="alcPerc">
                                                    <HBox.margin>
                                                       <Insets left="20.0" />
                                                    </HBox.margin>
                                                 </Label>
                                              </children>
                                           </HBox>
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER" prefHeight="35.0" prefWidth="601.0">
                                              <children>
-                                                <Label text="Bottle Capacity" />
-                                                <Label fx:id="volMatch" text="Label">
+                                                <Label fx:id="volMatchLabel" text="Bottle Capacity" />
+                                                <Label fx:id="volMatch">
                                                    <HBox.margin>
                                                       <Insets left="20.0" />
                                                    </HBox.margin>
                                                 </Label>
                                              </children>
                                           </HBox>
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER" prefHeight="26.0" prefWidth="601.0">
                                              <children>
-                                                <Label text="Appellation" />
-                                                <Label fx:id="appellationMatch" text="Label">
+                                                <Label fx:id="appellationMatchLabel" text="Appellation" />
+                                                <Label fx:id="appellationMatch">
                                                    <HBox.margin>
                                                       <Insets left="20.0" />
                                                    </HBox.margin>
@@ -319,6 +319,9 @@
                                     </panes>
                                 </Accordion>
                             </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                         </VBox>
                     </children>
                 </HBox>
