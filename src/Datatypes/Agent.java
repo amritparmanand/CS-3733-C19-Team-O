@@ -254,7 +254,7 @@ public class Agent extends Account {
         if (picture != null) {
 
             BufferedImage is = ImageIO.read(picture.getBinaryStream());
-            File outputFile = new File("src/Tess4J/images/Storing.jpg");
+            File outputFile = new File("src/Tess4J/images/Storing"+System.currentTimeMillis()+".jpg");
             ImageIO.write(is, "JPG", outputFile);
             System.out.println("Storing called");
 

@@ -112,6 +112,7 @@ public class aApplicationFormPg3 {
         }
 
         if(form.getLabel().getLabelImage() != null){
+            System.out.println(form.getLabel().getLabelFile().getPath());
 
             // Convert to black and white
             BufferedImage bw = ImageIO.read(form.getLabel().getLabelFile());
