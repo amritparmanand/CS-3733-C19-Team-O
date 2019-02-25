@@ -161,7 +161,7 @@ public class DatabaseManager {
                 "numberApproved int, " +
                 "numberDenied int, " +
                 "numberPassed int," +
-                "numberProcssed int)";
+                "numberProcessed int)";
         String createForms = "create table Forms(" +
                 "formID bigint   constraint Forms_pk primary key, " +
                 "repID varchar (20), " +
@@ -515,6 +515,7 @@ public class DatabaseManager {
                 numberApproved = result.getInt("numberApproved");
                 numberDenied = result.getInt("numberDenied");
                 numberPassed = result.getInt("numberPassed");
+                numberProcessed = result.getInt("numberProcessed");
             }
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))

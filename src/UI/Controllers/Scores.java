@@ -67,15 +67,15 @@ public class Scores {
         approved.setText(Integer.toString(A.getNumberApproved()));
         numDenied.setText(Integer.toString(A.getNumberDenied()));
         passed.setText(Integer.toString(A.getNumberPassed()));
-        first.setText(A.getAgentPlaces().get(0).getAgentName());
-        second.setText(A.getAgentPlaces().get(1).getAgentName());
-        third.setText(A.getAgentPlaces().get(2).getAgentName());
+ //       first.setText(A.getAgentPlaces().get(0).getAgentName());
+ //       second.setText(A.getAgentPlaces().get(1).getAgentName());
+//        third.setText(A.getAgentPlaces().get(2).getAgentName());
 
         ArrayList<agentScore> agents = ((Agent) cacheM.getAcct()).getAgentPlaces();
 
         for (agentScore agent : agents) {
             Pane leaderBoard;
-            System.out.println(agent.getAgentName());
+     //       System.out.println(agent.getAgentName());
             try {
                 leaderBoard = FXMLLoader.load(getClass().getResource("/UI/Views/leaderboard.fxml"));
                 Node hbox = leaderBoard.getChildren().get(0);
@@ -88,7 +88,10 @@ public class Scores {
                     ((Label) score).setText(Integer.toString(agent.getAgentScore()));
 
                 }
-                loadScores.getChildren().add(leaderBoard);
+//                if(!loadScores.getChildren().contains(leaderBoard)) {
+//                    System.out.println(agent.getAgentName() + " not in leaderboard. Adding.");
+                    loadScores.getChildren().add(leaderBoard);
+//                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -148,7 +151,7 @@ System.out.println(A);
             Image image = new Image("UI/Icons/SoftEngAchieveColor/9.png");
                  expertDelegation.setImage(image);
         }
-        if (A.isGotOldForms()==true){
+        if (A.isGotOldForms()==false){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/5.png");
                  backFromTheDead.setImage(image);
         }

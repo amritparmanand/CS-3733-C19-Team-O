@@ -284,11 +284,13 @@ public class Agent extends Account{
     /**
      * @author Clay Oshiro-Leavitt & Trevor Dowd
      * @version It 4
-     * keeps track of agent's points, number of forms approved, denied, passed
+     * keeps track of agent's points, number of forms approved, denied, passed, processed
      * 5 points for each form processed
      * @param connection
      */
     public void calculateScore(Connection connection){
+        int localApprove = 0;
+        int localDeny = 0;
         try {
             String approvedFormSQL = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
                     "APPLICATIONS.TTBID = " + this.getTtbID()+ " and APPLICATIONS.STATUS = 'APPROVED'";
@@ -302,16 +304,27 @@ public class Agent extends Account{
             ResultSet rsDenied = psDenied.executeQuery();
 
             while (rs.next()) {
-                numberApproved++;
-                numberProcessed++;
+                localApprove++;
+//                numberApproved++;
+//                numberProcessed++;
             }
             while (rsDenied.next()){
-                numberDenied++;
-                numberProcessed++;
+                localDeny++;
+//                numberDenied++;
+//                numberProcessed++;
             }
             ps.close();
             psDenied.close();
             this.gotOldForms = true;
+            if(localApprove>numberApproved){
+                numberApproved = localApprove;
+                numberProcessed = numberProcessed + (localApprove-numberApproved);
+            }
+            if(localDeny>numberDenied){
+                numberDenied = localDeny;
+                numberProcessed = numberProcessed + (localDeny-numberDenied);
+            }
+
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
