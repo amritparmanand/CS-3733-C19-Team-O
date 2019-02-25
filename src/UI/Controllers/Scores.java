@@ -17,12 +17,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
-import java.io.File;
 import java.io.FileInputStream;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -74,9 +71,6 @@ public class Scores {
         second.setText(A.getAgentPlaces().get(1).getAgentName());
         third.setText(A.getAgentPlaces().get(2).getAgentName());
 
-
-
-        // Creates Leaderboard
         ArrayList<agentScore> agents = ((Agent) cacheM.getAcct()).getAgentPlaces();
 
         for (agentScore agent : agents) {
@@ -101,20 +95,84 @@ public class Scores {
 
             }
         }
-
-
-
-
-
-//
-//
-//        if (A.getAchievments()[0]==1){
-        try {
-            Image image = new Image("UI/Icons/SoftEngAchieveColor/1.png");
+        if (A.reviewedForms.size()>1){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            rookie = new ImageView();
             rookie.setImage(image);
-        } catch (Exception e){
-            e.printStackTrace();
         }
+        if (A.reviewedForms.size()>100){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            gettingStarted = new ImageView();
+            gettingStarted.setImage(image);
+        }
+        if (A.reviewedForms.size()>10000){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            seasonedPro = new ImageView();
+            seasonedPro.setImage(image);
+        }
+        if (A.numberApproved > 1){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            pleasantMood = new ImageView();
+            pleasantMood.setImage(image);
+        }
+        if (A.numberApproved > 100){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            yesMan = new ImageView();
+            yesMan.setImage(image);
+        }
+        if (A.numberApproved > 10000){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            goodVibrations = new ImageView();
+            goodVibrations.setImage(image);
+        }
+        if (A.numberDenied > 1){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            denied = new ImageView();
+            denied.setImage(image);
+        }
+        if (A.numberDenied > 100){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            highStandards = new ImageView();
+            highStandards.setImage(image);
+        }
+        if (A.numberDenied > 10000){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            itsAllWrong = new ImageView();
+            itsAllWrong.setImage(image);
+        }
+        if (A.numberPassed > 1){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            passingTheBuck = new ImageView();
+            passingTheBuck.setImage(image);
+        }
+        if (A.numberPassed > 100){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            expertProcrastination = new ImageView();
+            expertProcrastination.setImage(image);
+        }
+        if (A.numberPassed > 10000){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            expertDelegation = new ImageView();
+            expertDelegation.setImage(image);
+        }
+        if (A.gotOldForms==true){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            backFromTheDead = new ImageView();
+            backFromTheDead.setImage(image);
+        }
+        if (A.rowAD > 3){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            threePointer = new ImageView();
+            threePointer.setImage(image);
+        }
+        if (A.rowP > 3){
+            Image image = new Image("C:\\Users\\Trevor Dowd\\Downloads\\CS-3733-C19-Team-O-Game\\src\\UI\\Icons\\SoftEngAchieveColor\\1.png");
+            strikeThree = new ImageView();
+            strikeThree.setImage(image);
+        }
+
+//        if (A.getAchievments()[0]==1){
+
 //        }
 //        if (A.getAchievments()[1]==1){
 //            Image image = new Image(getClass().getResource("@../SoftEngAchieveColor/2.png").toExternalForm());
