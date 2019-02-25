@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AdvancedSearchPage">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1800.0" styleClass="navheader">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/TTB-logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="1009.0" prefWidth="1800.0">
+               <children>
+                  <HBox fx:id="ID" alignment="CENTER" prefHeight="943.0" prefWidth="1800.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="842.0" prefWidth="1051.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="31.0" prefWidth="300.0" text="Date Completed" textAlignment="CENTER" />
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label prefHeight="50.0" prefWidth="36.0" text="From" />
+                                    <JFXDatePicker>
+                                       <HBox.margin>
+                                          <Insets right="50.0" />
+                                       </HBox.margin>
+                                    </JFXDatePicker>
+                                    <Label prefHeight="50.0" prefWidth="21.0" text="To" />
+                                    <JFXDatePicker />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="40.0" prefWidth="1051.0">
+                                 <children>
+                                    <JFXTextField prefHeight="28.0" prefWidth="337.0" promptText="Product Name" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="42.0" prefWidth="1051.0">
+                                 <children>
+                                    <JFXRadioButton text="Brand Name" />
+                                    <JFXRadioButton text="Fanciful Name">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton text="Either">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </JFXRadioButton>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Origin" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ScrollPane maxWidth="450.0" prefHeight="200.0" prefWidth="724.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                </content>
+                              </ScrollPane>
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Received Code" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="36.0" prefWidth="1051.0">
+                                 <children>
+                                    <JFXCheckBox text="000 - FRONT DESK (PAPER)" />
+                                    <JFXCheckBox text="001 - ELECTRONIC SUBMISSION">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </JFXCheckBox>
+                                    <JFXCheckBox text="002 - MAIL (PAPER)">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </JFXCheckBox>
+                                    <JFXCheckBox text="003 - OVERNIGHT (PAPER)">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </JFXCheckBox>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="TTB ID:" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1051.0">
+                                 <children>
+                                    <JFXTextField />
+                                    <Label prefHeight="50.0" prefWidth="20.0" text="To">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <JFXTextField>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </JFXTextField>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Serial #:" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1051.0">
+                                 <children>
+                                    <JFXTextField />
+                                    <Label prefHeight="50.0" prefWidth="17.0" text="To">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <JFXTextField>
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </JFXTextField>
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Plant Registry/Basic Permit/Brewer's No:" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <JFXTextField maxWidth="300.0" />
+                              <JFXButton styleClass="buttonStyle" text="OK!">
+                                 <VBox.margin>
+                                    <Insets top="40.0" />
+                                 </VBox.margin>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
