@@ -192,6 +192,8 @@ public class Agent extends Account {
     }
 
     public void deleteLabels(){
+        System.out.println("delete function called");
+
         for(Form form : workingForms){
             if(form.getLabel().getLabelFile().delete()){
                 System.out.println("File deleted successfully");

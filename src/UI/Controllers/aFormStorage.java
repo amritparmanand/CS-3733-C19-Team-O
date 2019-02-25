@@ -98,22 +98,12 @@ public class aFormStorage {
 
     @FXML
     public void back() throws IOException {
-        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
         sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
     }
 
     @FXML
     public void aApplicationFormControl(Form form) throws IOException {
-        for(Form f : A.getWorkingForms()){
-            if(f != form){
-                if(f.getLabel().getLabelFile().delete()){
-                    System.out.println("File deleted successfully");
-                }else{
-                    System.out.println("Failed to delete the file");
-                }
-            }
-        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg1.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg1(sceneM, cacheM, form));
     }

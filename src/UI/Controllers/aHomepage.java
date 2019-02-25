@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Agent;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
@@ -31,6 +32,8 @@ public class aHomepage {
 
     @FXML
     public void logout() throws IOException {
+        Agent A = (Agent) cacheM.getAcct();
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
