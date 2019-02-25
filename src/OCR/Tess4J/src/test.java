@@ -1,20 +1,16 @@
 package OCR.Tess4J.src;
 
-import com.sun.jna.ptr.PointerByReference;
-import net.sourceforge.lept4j.Leptonica;
-import net.sourceforge.lept4j.Pix;
-import net.sourceforge.lept4j.util.LeptUtils;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
+import org.bytedeco.javacpp.BytePointer;
+import org.bytedeco.javacpp.lept;
+import org.bytedeco.javacpp.tesseract;
+//import org.bytedeco.javacpp.tesseract.*;
+//import org.bytedeco.javacpp.tesseract.TessBaseAPI;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
-
-import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+import static org.bytedeco.javacpp.lept.pixDestroy;
 
 public class test{
 
@@ -32,15 +28,34 @@ public class test{
 //        pRef.setValue(pix.getPointer());
 //        leptInstance.pixDestroy(pRef);
 
-        ITesseract instance = new Tesseract();
-        instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
-        instance.setLanguage("eng");
+//        ITesseract instance = new Tesseract();
+//        instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
+//        instance.setLanguage("eng");
+//
+//        try {
+//            String real_result = instance.doOCR(imageFile);
+//            System.out.println(real_result);
+//        } catch (TesseractException e) {
+//            System.err.println(e.getMessage());
+//        }
 
-        try {
-            String real_result = instance.doOCR(imageFile);
-            System.out.println(real_result);
-        } catch (TesseractException e) {
-            System.err.println(e.getMessage());
-        }
+
+        BytePointer outText;
+
+        tesseract.TessBaseAPI api = new tesseract.TessBaseAPI();
+
+        // Open input image with leptonica library
+        lept.PIX image = lept.pixRead("C:\\Users\\jiang\\Pictures\\Organic-Wine-Certification-Statement-TTB-USDA.jpg");
+        api.SetImage(image);
+        // Get OCR result
+        outText = api.GetUTF8Text();
+        String string = outText.getString();
+        assertTrue(!string.isEmpty());
+        System.out.println("OCR output:\n" + string);
+
+        // Destroy used object and release memory
+        api.End();
+        outText.deallocate();
+        pixDestroy(image);
     }
 }
