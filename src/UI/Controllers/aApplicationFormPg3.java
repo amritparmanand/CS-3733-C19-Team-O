@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * @author Clay Oshiro-Leavitt & Elizabeth Del Monaco
+ * @author Clay Oshiro-Leavitt & Percy & Gabe
  * @version It 2
  * Controller for aApplicationFormPg3 of UI
  */
@@ -138,7 +138,15 @@ public class aApplicationFormPg3 {
                     if(result.contains("ml")){
                         System.out.println("bottle capacity DETECTED");
                         int position_ml = result.indexOf("ml");
-                        String capacity = result.substring(position_ml - 4, position_ml - 1);
+
+                        // Initialize capacity
+                        String capacity;
+                        if(result.substring(position_ml - 1, position_ml).equals(" ")){
+                            capacity = result.substring(position_ml - 4, position_ml - 1);
+                        }else{
+                            capacity = result.substring(position_ml - 3, position_ml);
+                        }
+
                         System.out.println(capacity);
                         System.out.println(form.parseGarbage(form.getBottleCapacity()));
                         if(form.parseGarbage(form.getBottleCapacity()).equals(capacity)){
@@ -149,7 +157,15 @@ public class aApplicationFormPg3 {
                     }else if(result.contains("mL")){
                         System.out.println("bottle capacity DETECTED");
                         int position_mL = result.indexOf("mL");
-                        String capacity = result.substring(position_mL - 4, position_mL - 1);
+
+                        // Initialize capacity
+                        String capacity;
+                        if(result.substring(position_mL - 1, position_mL).equals(" ")){
+                            capacity = result.substring(position_mL - 4, position_mL - 1);
+                        }else{
+                            capacity = result.substring(position_mL - 3, position_mL);
+                        }
+
                         System.out.println(capacity);
                         System.out.println(form.parseGarbage(form.getBottleCapacity()));
                         if(form.parseGarbage(form.getBottleCapacity()).equals(capacity)){
@@ -196,10 +212,10 @@ public class aApplicationFormPg3 {
                         System.out.println("appellation DETECTED");
                         int position = result.indexOf("VALLEY");
 
-                        String appellation = result.substring(position - aLength + 1, position);
+                        String appellation = result.substring(position - aLength - 1, position - 1);
                         System.out.println(appellation);
-
                         System.out.println(form.parseGarbage(form.getAppellation()));
+
                         if(form.parseGarbage(form.getAppellation()).equals(appellation)){
                             System.out.println("appellation MATCHED");
                         }else{
