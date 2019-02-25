@@ -47,9 +47,9 @@ public class mApplicationFormViewPg1 {
     @FXML private JFXTextField alcoholPercentage;
     @FXML private JFXTextField phLevel;
     @FXML private JFXTextField vintageYear;
-    @FXML private RadioButton wine2;
-    @FXML private RadioButton spirits2;
-    @FXML private RadioButton beer2;
+//    @FXML private RadioButton wine2;
+//    @FXML private RadioButton spirits2;
+//    @FXML private RadioButton beer2;
     @FXML private JFXButton saveDraft;
     @FXML private Label serialMessage;
     @FXML private JFXButton savePDF;
@@ -85,13 +85,13 @@ public class mApplicationFormViewPg1 {
         }
         switch(form.getBeerWineSpirit()){
             case "WINE":
-                wine2.setSelected(true);
+                wine.setSelected(true);
                 break;
-            case "SPIRITS":
-                spirits2.setSelected(true);
+            case "DISTILLED":
+                distilled.setSelected(true);
                 break;
-            case "BEER":
-                beer2.setSelected(true);
+            case "MALT":
+                malt.setSelected(true);
                 break;
         }
         if(form.getRepID() != 0)
@@ -103,9 +103,9 @@ public class mApplicationFormViewPg1 {
         imported.setDisable(true);
         serialNumber.setText(form.getSerialNumber());
         serialNumber.setEditable(false);
-        wine.setDisable(true);
-        distilled.setDisable(true);
-        malt.setDisable(true);
+//        wine.setDisable(true);
+//        distilled.setDisable(true);
+//        malt.setDisable(true);
         brandName.setText(form.getBrandName());
         brandName.setEditable(false);
         fancifulName.setText(form.getFancifulName());
@@ -116,9 +116,9 @@ public class mApplicationFormViewPg1 {
         phLevel.setEditable(false);
         vintageYear.setText(form.getVintageYear());
         vintageYear.setEditable(false);
-        wine2.setDisable(true);
-        spirits2.setDisable(true);
-        beer2.setDisable(true);
+        wine.setDisable(true);
+        distilled.setDisable(true);
+        malt.setDisable(true);
         System.out.println("starting");
     }
 

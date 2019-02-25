@@ -1,9 +1,11 @@
 package Managers;
 
 import Datatypes.Account;
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.SearchResult;
 import Fuzzy.FuzzyContext;
+import javafx.scene.image.ImageView;
 
 import java.io.FileNotFoundException;
 import java.sql.Connection;
@@ -25,6 +27,7 @@ public class CacheManager {
     private char format = ',';
     private String search = "";
     private String style = "-fx-background-color: #ff9395;";
+    private Alcy alcy = new Alcy(this);
 
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
@@ -83,6 +86,8 @@ public class CacheManager {
     public void setStyle(String style) {
         this.style = style;
     }
+    public Alcy getAlcy() { return alcy; }
+    public void setAlcyImageView(ImageView imageView) { this.alcy.setImageView(imageView); }
 
     // Facade stuff
     // Form

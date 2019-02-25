@@ -18,45 +18,41 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormViewPg4">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormViewPg4">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1920.0" styleClass="navheader">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1470.0">
+                  <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/TTB-logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="1920.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Icons/TTB-logo.png" />
-                           </image>
+                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
                            <HBox.margin>
-                              <Insets left="100.0" />
+                              <Insets left="800.0" />
                            </HBox.margin>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </Text>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
-                                 <HBox.margin>
-                                    <Insets left="800.0" />
-                                 </HBox.margin>
-                              </JFXButton>
-                           </children>
-                           <HBox.margin>
-                              <Insets right="100.0" />
-                           </HBox.margin>
-                        </HBox>
+                        </JFXButton>
                      </children>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
                   </HBox>
                </children>
             </HBox>
@@ -88,7 +84,7 @@
                   </VBox>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
                      <content>
-                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="850.0" prefHeight="1080.0" prefWidth="850.0" styleClass="backPane">
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="850.0" styleClass="backPane">
                            <children>
                               <Label text="TTB Label Form- APPLICANT'S CERTIFICATION">
                                  <padding>
@@ -153,6 +149,23 @@
                   </VBox>
                </children>
             </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox alignment="BOTTOM_LEFT" styleClass="alcyLabel">
+                     <children>
+                        <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
          </children>
       </VBox>
    </children>

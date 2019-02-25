@@ -1,15 +1,18 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Service;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import org.controlsfx.control.textfield.TextFields;
 
-import javax.xml.soap.Text;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Collection;
@@ -21,12 +24,21 @@ public class startPage {
     public startPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+
     }
 
     @FXML private JFXTextField search;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+
 
     @FXML public void initialize(){
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         TextFields.bindAutoCompletion(search, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
+        cacheM.getAlcy().happy();
+        cacheM.getAlcy().sad();
+        cacheM.getAlcy().confused();
+
     }
     
     @FXML public void login() throws IOException {
@@ -35,6 +47,7 @@ public class startPage {
     }
 
     @FXML public void search() throws IOException {
+
         cacheM.setSearch(search.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
