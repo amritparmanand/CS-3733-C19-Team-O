@@ -64,7 +64,7 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="983.0" prefWidth="450.0" spacing="10.0" styleClass="toolbar">
+                        <VBox alignment="TOP_CENTER" prefHeight="983.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
                             <HBox.margin>
                                 <Insets top="20.0" />
                             </HBox.margin>
@@ -97,14 +97,14 @@
                                 </VBox>
                             </children>
                         </VBox>
-                        <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="925.0" prefWidth="750.0" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
+                        <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="925.0" prefWidth="800.0" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                      <content>
-                        <AnchorPane prefHeight="1184.0" prefWidth="750.0" styleClass="backPane">
+                        <AnchorPane prefHeight="1184.0" prefWidth="800.0" styleClass="backPane">
                            <children>
-                              <VBox alignment="CENTER" layoutX="-14.0" layoutY="37.0" prefHeight="1184.0" prefWidth="750.0" styleClass="backPane" AnchorPane.bottomAnchor="-37.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="37.0">
+                              <VBox alignment="CENTER" layoutX="-14.0" layoutY="37.0" prefHeight="1184.0" prefWidth="800.0" styleClass="backPane" AnchorPane.bottomAnchor="-37.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="37.0">
                                  <children>
                                     <VBox alignment="CENTER_LEFT" maxWidth="620.0" prefHeight="900.0" prefWidth="620.0" styleClass="backPane" VBox.vgrow="ALWAYS">
                                        <children>
@@ -145,7 +145,7 @@
                                                 <Insets left="20.0" right="20.0" top="20.0" />
                                              </padding>
                                           </VBox>
-                                          <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                          <VBox prefHeight="38.0" prefWidth="620.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="labeltext" text="2. Plant Registry/Basic Permit/ Brewer's NO. (Required)" />
                                                 <JFXTextField fx:id="brewerNO" maxWidth="-Infinity" onMouseExited="#saveDraft" prefHeight="28.0" prefWidth="156.0" />
@@ -154,10 +154,10 @@
                                                 <Insets />
                                              </VBox.margin>
                                              <padding>
-                                                <Insets left="20.0" right="20.0" top="20.0" />
+                                                <Insets left="20.0" right="20.0" />
                                              </padding>
                                           </VBox>
-                                          <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                          <VBox prefHeight="51.0" prefWidth="620.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="labeltext" text="3. Source of Product (Required)" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
@@ -179,14 +179,14 @@
                                                 <Insets left="20.0" right="20.0" top="20.0" />
                                              </padding>
                                           </VBox>
-                                          <VBox prefHeight="78.0" prefWidth="620.0" spacing="10.0">
+                                          <VBox prefHeight="41.0" prefWidth="620.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="labeltext" text="4. Serial Number (Required)" />
                                                 <JFXTextField fx:id="serialNumber" maxWidth="-Infinity" onKeyReleased="#validSerial" prefHeight="28.0" prefWidth="62.0" />
                                                 <Label fx:id="serialMessage" />
                                              </children>
                                              <padding>
-                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                                <Insets bottom="40.0" left="20.0" right="20.0" top="20.0" />
                                              </padding>
                                           </VBox>
                                           <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
@@ -224,13 +224,13 @@
                                                 <Insets left="20.0" right="20.0" top="20.0" />
                                              </padding>
                                           </VBox>
-                                          <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                          <VBox prefHeight="51.0" prefWidth="620.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="labeltext" text="7. Fanciful Name (If any)" />
                                                 <JFXTextField fx:id="fancifulName" />
                                              </children>
                                              <padding>
-                                                <Insets bottom="40.0" left="20.0" right="20.0" top="20.0" />
+                                                <Insets bottom="60.0" left="20.0" right="20.0" />
                                              </padding>
                                           </VBox>
                                           <Label text="Additional Fields">
@@ -286,16 +286,16 @@
                         </AnchorPane>
                      </content>
                         </ScrollPane>
-                  <VBox fx:id="commentVBox" prefHeight="925.0" prefWidth="500.0" styleClass="toolbar">
+                  <VBox fx:id="commentVBox" prefHeight="925.0" prefWidth="400.0" styleClass="toolbar">
                      <children>
-                        <Accordion prefWidth="320.0">
+                        <Accordion prefWidth="320.0" styleClass="toolbar">
                            <panes>
-                              <TitledPane animated="false" prefHeight="476.0" prefWidth="320.0" text="Agent Comments">
+                              <TitledPane animated="false" prefHeight="476.0" prefWidth="320.0" styleClass="toolbar" text="Agent Comments">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                                  <content>
-                                    <JFXTextArea fx:id="aComment" editable="false" prefHeight="683.0" prefWidth="522.0" />
+                                    <JFXTextArea fx:id="aComment" editable="false" prefHeight="683.0" prefWidth="522.0" styleClass="toolbar" />
                                  </content>
                               </TitledPane>
                            </panes>

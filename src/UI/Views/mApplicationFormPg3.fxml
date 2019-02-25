@@ -25,11 +25,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormPg3">
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox depthTest="DISABLE" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
+                <HBox alignment="CENTER_LEFT" depthTest="DISABLE" prefHeight="75.0" prefWidth="200.0" styleClass="navheader" translateZ="-1.0">
                     <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" depthTest="DISABLE" prefHeight="100.0" prefWidth="200.0" scaleZ="0.0" HBox.hgrow="ALWAYS">
                      <children>
                               <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
@@ -51,7 +51,7 @@
                               </Text>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" depthTest="DISABLE" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
                            <HBox.margin>
@@ -65,19 +65,15 @@
                   </HBox>
                     </children>
                 </HBox>
-                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                <HBox depthTest="DISABLE" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                     <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="1024.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1 Progress" />
-                        <JFXProgressBar fx:id="pg1Progress" progress="0.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2 Progress" />
-                        <JFXProgressBar fx:id="pg2Progress" progress="0.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 3 Progress" />
-                        <JFXProgressBar fx:id="pg3Progress" progress="0.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Page 4 Progress" />
-                        <JFXProgressBar progress="0.0" />
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                        <JFXProgressBar fx:id="pg1Progress" depthTest="DISABLE" progress="0.0">
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin></JFXProgressBar>
+                        <VBox alignment="CENTER" depthTest="DISABLE" prefHeight="200.0" prefWidth="400.0" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
                               <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
                                  <children>
@@ -103,9 +99,9 @@
                         <Insets top="20.0" />
                      </HBox.margin>
                   </VBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
+                        <ScrollPane depthTest="DISABLE" hbarPolicy="NEVER" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0">
                             <content>
-                                <VBox prefHeight="900.0" prefWidth="620.0" styleClass="backPane">
+                                <VBox prefHeight="900.0" prefWidth="800.0" styleClass="backPane">
                                     <children>
                                         <Label text="TTB Label Form">
                                             <padding>
@@ -225,7 +221,7 @@
                                 </VBox>
                             </content>
                         </ScrollPane>
-                  <VBox fx:id="commentVBox" prefHeight="720.0" prefWidth="320.0">
+                  <VBox fx:id="commentVBox" minWidth="-Infinity" prefHeight="720.0" prefWidth="400.0">
                      <children>
                         <Accordion prefWidth="320.0">
                            <panes>
