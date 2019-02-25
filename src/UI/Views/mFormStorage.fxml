@@ -53,7 +53,7 @@
                     </children></HBox>
                 <HBox prefWidth="1280.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <VBox prefHeight="200.0" prefWidth="200.0" spacing="20.0" styleClass="toolbar">
+                        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="20.0" styleClass="toolbar">
                             <children>
                         <JFXCheckBox fx:id="approved" onAction="#initialize" text="Approved" />
                         <JFXCheckBox fx:id="pending" onAction="#initialize" text="Pending" />
