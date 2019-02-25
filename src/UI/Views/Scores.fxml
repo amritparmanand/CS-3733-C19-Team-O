@@ -36,6 +36,11 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
+                  <JFXButton fx:id="back" onMousePressed="#back" styleClass="buttonStyle" text="Back">
+                     <HBox.margin>
+                        <Insets left="1300.0" />
+                     </HBox.margin>
+                  </JFXButton>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1280.0">
@@ -72,29 +77,6 @@
                                     <Label fx:id="passed" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-                                 <children>
-                                    <Label text="1st Place: " />
-                                    <Label fx:id="first" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-                                 <children>
-                                    <Label text="2nd Place: " />
-                                    <Label fx:id="second" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-                                 <children>
-                                    <Label text="3rd Place: " />
-                                    <Label fx:id="third" />
-                                 </children>
-                              </HBox>
-                              <JFXButton fx:id="back" onMousePressed="#back" styleClass="buttonStyle" text="Back">
-                                 <VBox.margin>
-                                    <Insets top="40.0" />
-                                 </VBox.margin>
-                              </JFXButton>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -124,19 +106,34 @@
                         <Image url="@../Icons/SoftEngAchieveBW/3.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="threePointer" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="pleasantMood" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/SoftEngAchieveBW/4.png" />
+                        <Image url="@../Icons/SoftEngAchieveBW/10.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="backFromTheDead" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="yesMan" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/SoftEngAchieveBW/5.png" />
+                        <Image url="@../Icons/SoftEngAchieveBW/11.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="strikeThree" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="goodVibrations" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/SoftEngAchieveBW/6.png" />
+                        <Image url="@../Icons/SoftEngAchieveBW/12.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="denied" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/14.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="highStandards" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/13.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="itsAllWrong" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/15.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="passingTheBuck" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -154,34 +151,19 @@
                         <Image url="@../Icons/SoftEngAchieveBW/9.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="pleasantMood" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="threePointer" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/SoftEngAchieveBW/10.png" />
+                        <Image url="@../Icons/SoftEngAchieveBW/4.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="yesMan" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="backFromTheDead" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/SoftEngAchieveBW/11.png" />
+                        <Image url="@../Icons/SoftEngAchieveBW/5.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="goodVibrations" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="strikeThree" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/SoftEngAchieveBW/12.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="highStandards" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Icons/SoftEngAchieveBW/13.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="denied" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Icons/SoftEngAchieveBW/14.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="itsAllWrong" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Icons/SoftEngAchieveBW/15.png" />
+                        <Image url="@../Icons/SoftEngAchieveBW/6.png" />
                      </image>
                   </ImageView>
                </children>

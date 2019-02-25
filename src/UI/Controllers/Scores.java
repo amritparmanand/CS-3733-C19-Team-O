@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 /**
  * @author Clay Oshiro-Leavitt
+ * @version It 4
  */
 public class Scores {
     private SceneManager sceneM;
@@ -44,9 +45,6 @@ public class Scores {
     @FXML private Label numDenied;
     @FXML private Label passed;
     @FXML private JFXButton back;
-    @FXML private Label first;
-    @FXML private Label second;
-    @FXML private Label third;
     @FXML private ImageView rookie;
     @FXML private ImageView gettingStarted;
     @FXML private ImageView seasonedPro;
@@ -63,6 +61,13 @@ public class Scores {
     @FXML private ImageView denied;
     @FXML private ImageView itsAllWrong;
 
+    /**
+     * @author Clay Oshiro-Leavitt & Trevor Dowd
+     * initializes the scores page, populating the page with:
+     * user statistics (score, forms approved, passed, denied)
+     * leaderboard showing current top ranking of agents (based off of score)
+     * user achievements
+     */
     @FXML public void initialize() {
         Connection connection = cacheM.getDbM().getConnection();
         Agent A = (Agent) cacheM.getAcct();
@@ -72,9 +77,6 @@ public class Scores {
         approved.setText(Integer.toString(A.getNumberApproved()));
         numDenied.setText(Integer.toString(A.getNumberDenied()));
         passed.setText(Integer.toString(A.getNumberPassed()));
- //       first.setText(A.getAgentPlaces().get(0).getAgentName());
- //       second.setText(A.getAgentPlaces().get(1).getAgentName());
-//        third.setText(A.getAgentPlaces().get(2).getAgentName());
 
         agents = ((Agent) cacheM.getAcct()).getAgentPlaces();
 
@@ -103,67 +105,83 @@ public class Scores {
 
             }
         }
-System.out.println(A);
+
+        // checking for achievements being unlocked
         int numberOfForms = A.getNumberProcessed();
+
+        // processed 1+ forms
         if (numberOfForms>0){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/1.png");
                  rookie.setImage(image);
         }
+        // processed 100+ forms
         if (numberOfForms>99){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/2.png");
                  gettingStarted.setImage(image);
         }
+        // processed 10000+ forms
         if (numberOfForms>9999){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/3.png");
                  seasonedPro.setImage(image);
         }
+        // approved 1+ forms
         if (A.getNumberApproved() > 0){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/10.png");
                  pleasantMood.setImage(image);
         }
-        System.out.println(A.getNumberApproved());
-
+        // approved 100+ forms
         if (A.getNumberApproved() > 99){
-            System.out.println(A.getNumberApproved() + " got here");
             Image image = new Image("UI/Icons/SoftEngAchieveColor/11.png");
                  yesMan.setImage(image);
         }
+        // approved 10000+ forms
         if (A.getNumberApproved() > 9999){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/12.png");
                  goodVibrations.setImage(image);
         }
+        // denied 1+ forms
         if (A.getNumberDenied() > 0){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/14.png");
                  denied.setImage(image);
         }
+        // denied 100+ forms
         if (A.getNumberDenied() > 99){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/13.png");
                  highStandards.setImage(image);
         }
+        // denied 10000+ forms
         if (A.getNumberDenied() > 9999){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/15.png");
                  itsAllWrong.setImage(image);
         }
+        // passed 1+ forms to another agent
         if (A.getNumberPassed() > 0){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/7.png");
                  passingTheBuck.setImage(image);
         }
+        // passed 100+ forms to another agent
         if (A.getNumberPassed() > 99){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/8.png");
                  expertProcrastination.setImage(image);
         }
+        // passed 10000+ forms to another agent
         if (A.getNumberPassed() > 9999){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/9.png");
                  expertDelegation.setImage(image);
         }
+
+        // reviewed a form that was previously denied
         if (A.isGotOldForms()==false){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/5.png");
                  backFromTheDead.setImage(image);
         }
+        // processed 3 forms in a row
         if (A.getRowAD() > 2){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/6.png");
                  threePointer.setImage(image);
         }
+
+        // passed three forms in a row
         if (A.getRowP() > 2){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/4.png");
                  strikeThree.setImage(image);

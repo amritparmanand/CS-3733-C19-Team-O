@@ -1,5 +1,11 @@
 package Datatypes;
 
+/**
+ * @author Clay Oshiro-Leavitt
+ * @version It 4
+ * datatype for holding agent score, name information
+ * used in leaderboard display on user score page
+ */
 public class agentScore implements Comparable<agentScore> {
     private String agentName;
     private int agentScore;

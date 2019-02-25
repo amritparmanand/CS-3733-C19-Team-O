@@ -441,6 +441,12 @@ public class Agent extends Account{
         this.agentPlaces = agentPlaces;
     }
 
+    /**
+     * @author Clay Oshiro-Leavitt
+     * @version It 4
+     * @param connection
+     * ranks agents for leaderboard based off of score
+     */
     public void rankAgents(Connection connection){
         try {
 
@@ -466,9 +472,4 @@ public class Agent extends Account{
                 e.printStackTrace();
         }
     }
-
-//    public void agentScorefromRS(ResultSet rs){
-//        agentScore agentScore = new agentScore();
-//
-//    }
 }
