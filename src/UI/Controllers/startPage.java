@@ -28,16 +28,18 @@ public class startPage {
     }
 
     @FXML private JFXTextField search;
-    @FXML private ImageView alcyView;
+//    @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+//    @FXML private ImageView imageView;
+
 
 
     @FXML public void initialize(){
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+//        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         TextFields.bindAutoCompletion(search, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
-        cacheM.getAlcy().happy();
-        cacheM.getAlcy().sad();
-        cacheM.getAlcy().confused();
+//        cacheM.getAlcy().happy();
+//        cacheM.getAlcy().sad();
+//        cacheM.getAlcy().confused();
 
     }
     
