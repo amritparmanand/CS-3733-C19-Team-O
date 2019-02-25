@@ -155,6 +155,7 @@ public class aApplicationFormPg3 {
                                 volMatch.setText("✔");
                             } else {
                                 System.out.println("bottle capacity NO MATCH");
+                                volMatch.setText("X");
                             }
                         } else if (result.contains("mL")) {
                             System.out.println("bottle capacity DETECTED");
@@ -175,9 +176,11 @@ public class aApplicationFormPg3 {
                                 volMatch.setText("✔");
                             } else {
                                 System.out.println("bottle capacity NO MATCH");
+                                volMatch.setText("X");
                             }
                         } else {
                             System.out.println("bottle capacity NOT DETECTED");
+                            volMatch.setText("Alcohol Volume Not Found");
                         }
                         System.out.println("\n");
                     }
@@ -203,9 +206,11 @@ public class aApplicationFormPg3 {
                                 alcPerc.setText("✔");
                             } else {
                                 System.out.println("alcohol percentage NO MATCH");
+                                alcPerc.setText("X");
                             }
                         } else {
                             System.out.println("alcohol percentage NOT DETECTED");
+                            alcPerc.setText("Alcohol Percentage Not Found");
                         }
                         System.out.println("\n");
                     }
@@ -230,19 +235,17 @@ public class aApplicationFormPg3 {
                             }
                         } else {
                             System.out.println("appellation NOT DETECTED");
+                            appellationMatch.setText("Appellation Not Found");
                         }
                         System.out.println("\n");
                     }
 
                 } catch (TesseractException e) {
                     System.err.println(e.getMessage());
-                    bw = ImageIO.read(form.getLabel().getLabelFile());
-                    bw_result = new BufferedImage(bw.getWidth(), bw.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
-                    graphic = bw_result.createGraphics();
-                    graphic.drawImage(bw, 0, 0, Color.WHITE, null);
-                    graphic.dispose();
-                    output = new File("src/Tess4J/images/Black&White.jpg");
-                    ImageIO.write(bw_result, "jpg", output);
+                    appellationMatch.setText("Appellation Not Found");
+                    volMatch.setText("Alcohol Volume Not Found");
+                    alcPerc.setText("Alcohol Percentage Not Found");
+
                 }
             }
 
