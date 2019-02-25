@@ -19,6 +19,8 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -68,7 +70,7 @@ public class aApplicationFormPg3 {
 
 
     @SuppressWarnings("Duplicates")
-    public void initialize(){
+    public void initialize() throws IOException {
         Q14Comment.setText(comments.getComment14());
         Q15Comment.setText(comments.getComment15());
         Form form = cacheM.getForm();
@@ -96,29 +98,128 @@ public class aApplicationFormPg3 {
         // Deal with image
         if(form.getLabel().getLabelImage() != null){
             imagePreview.setImage(form.getLabel().getLabelImage());
+        }
 
+    }
+
+    @FXML public void OCR() throws IOException {
+        if(form.getLabel().getLabelImage() != null){
             File image = form.getLabel().getLabelFile();
+
+            // Check label file
             if(form.getLabel().getLabelFile() == null){
-                System.out.println("label file is null");
+                System.out.println("label file NO");
             }else{
-                System.out.println("label file isn't null");
+                System.out.println("label file detected");
                 System.out.println(image.getPath());
             }
 
             File imageFile = new File(image.getPath());
-            ITesseract instance = new Tesseract();
-            instance.setDatapath("src\\OCR\\Tess4J\\tessdata");
-            instance.setLanguage("eng");
 
+            // Convert to black and white
+            BufferedImage bw = ImageIO.read(imageFile);
+            BufferedImage bw_result = new BufferedImage(bw.getWidth(), bw.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+            Graphics2D graphic = bw_result.createGraphics();
+            graphic.drawImage(bw, 0, 0, Color.WHITE, null);
+            graphic.dispose();
+            File output = new File("src/Tess4J/images/targetFile.jpg");
+            ImageIO.write(bw_result, "jpg", output);
+
+            // The Tesseract
+            ITesseract instance = new Tesseract();
+            instance.setDatapath("src/Tess4J.tessdata");
+            instance.setLanguage("eng");
             try {
-                String result = instance.doOCR(imageFile);
+                String result = instance.doOCR(output);
                 System.out.println(result);
+
+                // Check for Bottle Capacity
+                if(!form.getBottleCapacity().isEmpty()){
+                    if(result.contains("ml")){
+                        System.out.println("bottle capacity DETECTED");
+                        int position_ml = result.indexOf("ml");
+                        String capacity = result.substring(position_ml - 4, position_ml - 1);
+                        System.out.println(capacity);
+                        System.out.println(form.parseGarbage(form.getBottleCapacity()));
+                        if(form.parseGarbage(form.getBottleCapacity()).equals(capacity)){
+                            System.out.println("bottle capacity MATCHED");
+                        }else{
+                            System.out.println("bottle capacity NO MATCH");
+                        }
+                    }else if(result.contains("mL")){
+                        System.out.println("bottle capacity DETECTED");
+                        int position_mL = result.indexOf("mL");
+                        String capacity = result.substring(position_mL - 4, position_mL - 1);
+                        System.out.println(capacity);
+                        System.out.println(form.parseGarbage(form.getBottleCapacity()));
+                        if(form.parseGarbage(form.getBottleCapacity()).equals(capacity)){
+                            System.out.println("bottle capacity MATCHED");
+                        }else{
+                            System.out.println("bottle capacity NO MATCH");
+                        }
+                    }else{
+                        System.out.println("bottle capacity NOT DETECTED");
+                    }
+                    System.out.println("\n");
+                }
+
+                // Check for Alcohol Percentage
+                if(!form.getAlcoholPercent().isEmpty()){
+                    if(result.contains("%")){
+                        System.out.println("alcohol percentage DETECTED");
+                        int position = result.indexOf("%");
+
+                        String percentage1 = result.substring(position - 2, position);
+                        System.out.println(percentage1);
+                        String percentage2 = result.substring(position - 4, position);
+                        System.out.println(percentage2);
+
+                        System.out.println(form.parseGarbage(form.getAlcoholPercent()));
+                        if(form.parseGarbage(form.getAlcoholPercent()).equals(percentage1)){
+                            System.out.println("alcohol percentage MATCHED");
+                        }else if(form.parseGarbage(form.getAlcoholPercent()).equals(percentage2)){
+                            System.out.println("alcohol percentage MATCHED");
+                        }else{
+                            System.out.println("alcohol percentage NO MATCH");
+                        }
+                    }else{
+                        System.out.println("alcohol percentage NOT DETECTED");
+                    }
+                    System.out.println("\n");
+                }
+
+                // Check for Appellation
+                if(!form.getAppellation().isEmpty()){
+                    int aLength = form.getAppellation().length();
+
+                    if(result.contains("VALLEY")){
+                        System.out.println("appellation DETECTED");
+                        int position = result.indexOf("VALLEY");
+
+                        String appellation = result.substring(position - aLength + 1, position);
+                        System.out.println(appellation);
+
+                        System.out.println(form.parseGarbage(form.getAppellation()));
+                        if(form.parseGarbage(form.getAppellation()).equals(appellation)){
+                            System.out.println("appellation MATCHED");
+                        }else{
+                            System.out.println("appellation NO MATCH");
+                        }
+                    }else{
+                        System.out.println("appellation NOT DETECTED");
+                    }
+                    System.out.println("\n");
+                }
+
             } catch (TesseractException e) {
                 System.err.println(e.getMessage());
             }
+            
+        }else{
+            System.out.println("there is no image to parse");
         }
-
     }
+
     @FXML
     public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));

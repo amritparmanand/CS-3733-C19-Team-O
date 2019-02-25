@@ -255,7 +255,7 @@ public class Agent extends Account {
         if (picture != null) {
 
             BufferedImage is = ImageIO.read(picture.getBinaryStream());
-            File outputFile = new File("src/OCR/targetFile.jpg");
+            File outputFile = new File("src/Tess4J/images/targetFile.jpg");
             ImageIO.write(is, "JPG", outputFile);
 
             f.getLabel().setLabelImage(new Image(picture.getBinaryStream()));
