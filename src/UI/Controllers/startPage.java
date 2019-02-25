@@ -32,9 +32,6 @@ public class startPage {
 
     @FXML public void initialize(){
         TextFields.bindAutoCompletion(search, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
-        Alcy alcy = cacheM.getAlcy();
-        alcy.setImageView(imageView);
-        alcy.start();
     }
     
     @FXML public void login() throws IOException {

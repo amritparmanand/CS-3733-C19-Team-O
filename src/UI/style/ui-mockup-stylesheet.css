@@ -404,5 +404,15 @@
   -fx-background-radius: 3;
 }
 
+.alcyLabel{
+  -fx-background-color: white;
+  -fx-background-radius: 3;
+  -fx-border-color:#4A77DD;
+  -fx-border-radius: 3;
+  -fx-text-fill:#4A77DD;
+  -fx-fill:#4A77DD;
+  -fx-font-size: 16;
+}
+
 
 

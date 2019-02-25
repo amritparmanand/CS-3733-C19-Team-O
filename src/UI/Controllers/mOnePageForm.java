@@ -4,6 +4,8 @@ import Datatypes.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.pdfbox.rendering.PDFRenderer;
@@ -93,10 +96,110 @@ public class mOnePageForm {
     @FXML private JFXToggleButton switchButton;
     @FXML private JFXProgressBar progressBarElement;
     @FXML private ImageView alcyView;
-    @FXML private Label alcyLabel;
+    @FXML private Text alcyLabel;
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
+        cacheM.getAlcy().setAlcyLabel(alcyLabel);
+
+        repID.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { }
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        alcoholPercentage.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { }
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().sayWierdBeerPercentage();
+                }
+            }
+        });
+
+        fancifulName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { }
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().sayFancifulName();
+                }
+            }
+        });
+
+        brandName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { }
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().sayBrandName();
+                }
+            }
+        });
+
+        mailAddress.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { }
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().sayMailingAddress();
+                }
+            }
+        });
+
+        phLevel.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { }
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().saypHLevel();
+                }
+            }
+        });
+
+        phoneNumber.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { }
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().sayPhoneNumber();
+                }
+            }
+        });
+
 
         switchButton.setSelected(true);
 
@@ -242,9 +345,12 @@ public class mOnePageForm {
             return false;
 
         }
-
-
     }
+
+    @FXML public void goCrazy(){
+        cacheM.getAlcy().drunk();
+    }
+
     @FXML public boolean validFormEmail(String email){
         if(email.matches("^([a-zA-Z0-9_\\-\\.]+)@+([a-zA-Z]+).+([a-zA-Z]{2,3})$")){
             return true;
@@ -514,6 +620,7 @@ public class mOnePageForm {
     @FXML
     public void updateProgress()
     {
+        saveDraft();
         progressBarElement.setProgress(progressBar.updateProgressBar());
     }
 
