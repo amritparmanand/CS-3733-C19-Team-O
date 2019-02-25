@@ -32,19 +32,22 @@ public class Agent extends Account{
     private int numberPassed;
     private int numberApproved;
     private int numberDenied;
+    privat int[] defAchieves = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     private int[] achievments = new int[15];
+    private int rowAD = 0;
+    private int rowP = 0;
 
-    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score, int numberApproved, int numberDenied, int numberPassed){
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, int score, int numberApproved, int numberDenied, int numberPassed, int[] achievments){
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
         this.score = score;
         this.numberApproved = numberApproved;
         this.numberDenied = numberDenied;
         this.numberPassed = numberPassed;
-   //     this.achievments = achievments;
+        this.achievments = achievments;
     }
 
-    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score, int numberApproved, int numberDenied, int numberPassed) {
+    public Agent(String username, String password, String fullName, String email, String phone, int ttbID, boolean hasFetchedForms, int score, int numberApproved, int numberDenied, int numberPassed, int[] achievments) {
         super(username, password, fullName, email, phone);
         this.ttbID = ttbID;
         this.hasFetchedForms = hasFetchedForms;
@@ -52,6 +55,7 @@ public class Agent extends Account{
         this.numberApproved = numberApproved;
         this.numberDenied = numberDenied;
         this.numberPassed = numberPassed;
+        this.achievments = achievments;
 
         if (this.hasFetchedForms) {
             this.getWorkingForms();
@@ -74,8 +78,7 @@ public class Agent extends Account{
             super.setEmail(result.getString("email"));
             super.setPhone(result.getString("phone"));
             this.setScore(result.getInt("score"));
-
-   //         this.setAchievments(result.getintArray("achievments"));
+            this.setAchievments(result.getintArray("achievments"));
 
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
@@ -162,7 +165,7 @@ public class Agent extends Account{
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {
-            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied) " +
+            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied, achievments) " +
                     "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
@@ -176,7 +179,7 @@ public class Agent extends Account{
             prepStmt.setInt(8,0);
             prepStmt.setInt(9,0);
             prepStmt.setInt(10,0);
-  //          prepStmt.setArray(8, [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+            prepStmt.setArray(11, defAchieves);
 
             prepStmt.executeUpdate();
             prepStmt.close();
@@ -273,14 +276,60 @@ public class Agent extends Account{
 
 
     /**
-     * @author Clay Oshiro-Leavitt
+     * @author Clay Oshiro-Leavitt & Trevor Dowd
      * @version It 4
-     * keeps track of agent's points, number of forms approved, denied, passed
+     * keeps track of agent's points, number of forms approved, denied, passed, and achievments
      * 5 points for each form processed
      * @param connection
      */
     public void calculateScore(Connection connection){
         score = reviewedForms.size()*5;
+        if (reviewedForms.size()>1){
+            achievments[0] = 1;
+        }
+        if (reviewedForms.size()>100){
+            achievments[1] = 1;
+        }
+        if (reviewedForms.size()>10000){
+            achievments[2] = 1;
+        }
+        if (numberApproved > 1){
+            achievments[3] = 1;
+        }
+        if (numberApproved > 100){
+            achievments[4] = 1;
+        }
+        if (numberApproved > 10000){
+            achievments[5] = 1;
+        }
+        if (numberDenied > 1){
+            achievments[6]=1;
+        }
+        if (numberDenied > 100){
+            achievments[7]=1;
+        }
+        if (numberDenied > 10000){
+            achievments[8]=1;
+        }
+        if (numberPassed > 1){
+            achievments[9]=1;
+        }
+        if (numberPassed > 100){
+            achievments[10]=1;
+        }
+        if (numberPassed > 10000){
+            achievments[11]=1;
+        }
+        if (gotOldForms==true){
+            achievments[12]=1;
+        }
+        if (rowAD > 3){
+            achievments[13]=1;
+        }
+        if (rowP > 3){
+            achievments[14]=1;
+        }
+
         try {
             String approvedFormSQL = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
                     "APPLICATIONS.TTBID = " + this.getTtbID()+ " and APPLICATIONS.STATUS = 'APPROVED'";
@@ -382,11 +431,15 @@ public class Agent extends Account{
     public void approveOrDeny(Form form){
         this.reviewedForms.add(form);
         this.workingForms.remove(form);
+        rowAD++;
+        rowP=0;
     }
 
     public void pass(Form form){
         this.workingForms.remove(form);
       numberPassed++;
+      rowP++;
+      rowAD = 0;
     }
 
 
