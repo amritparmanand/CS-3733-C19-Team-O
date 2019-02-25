@@ -72,9 +72,9 @@
                            <VBox.margin>
                               <Insets top="50.0" />
                            </VBox.margin></JFXProgressBar>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                        <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
+                              <HBox alignment="CENTER" prefHeight="65.0" prefWidth="320.0" spacing="30.0">
                                  <children>
                                     <JFXButton fx:id="previous1" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
                                     <JFXButton fx:id="next1" disable="true" styleClass="buttonStyle" text="Next Page" />
@@ -84,7 +84,7 @@
                               <JFXButton onMousePressed="#saveDraft" prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
                               <JFXButton fx:id="pdfButton" onAction="#savePDF" styleClass="changeColorButton" text="Display PDF" />
                               <JFXToggleButton onAction="#onePage" text="One Page View" toggleColor="#32867e" toggleLineColor="BLACK" />
-                              <Button fx:id="back1" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="searchButtonStyle" text="Back to homepage">
+                              <Button fx:id="back1" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="searchButtonStyle" text="Back to Homepage">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
@@ -93,7 +93,7 @@
                         </VBox>
                      </children>
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets />
                      </HBox.margin>
                   </VBox>
                         <ScrollPane hbarPolicy="NEVER" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0">
@@ -174,7 +174,7 @@
                         </AnchorPane>
                      </content>
                         </ScrollPane>
-                  <VBox fx:id="commentVBox" minWidth="-Infinity" prefHeight="720.0" prefWidth="400.0" styleClass="toolbar">
+                  <VBox fx:id="commentVBox" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="400.0" styleClass="toolbar">
                      <children>
                         <Accordion prefWidth="320.0">
                            <panes>
@@ -194,11 +194,11 @@
                 </HBox>
             </children>
         </VBox>
-        <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">
+        <VBox alignment="BOTTOM_LEFT" layoutX="100.0" layoutY="485.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="210.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="1289.6" AnchorPane.topAnchor="485.0">
             <children>
-                <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
+                <VBox alignment="BOTTOM_CENTER" prefHeight="139.0" prefWidth="210.0">
                     <children>
-                        <HBox alignment="BOTTOM_LEFT" styleClass="alcyLabel">
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="15.0" prefWidth="210.0" styleClass="alcyLabel">
                             <children>
                                 <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
                             </children>

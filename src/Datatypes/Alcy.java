@@ -24,7 +24,7 @@ public class Alcy {
     private CacheManager cacheM;
     private Form form;
 
-//    private boolean demonicSeance = false;
+    private boolean demonicSeance = true;
 
     final static Image alcyHappy1 = new Image("UI/Icons/alcyImages/alcyhappy-01.png");
     final static Image alcyAngry1 = new Image("UI/Icons/alcyImages/alcyangry-01.png");
@@ -48,27 +48,25 @@ public class Alcy {
     public void setImageView(ImageView imageView) { this.imageView = imageView; }
     public Text getAlcyLabel() { return alcyLabel; }
     public void setAlcyLabel(Text alcyLabel) { this.alcyLabel = alcyLabel; }
-//    public boolean isDemonicSeance() { return demonicSeance; }
-//    public void setDemonicSeance(boolean demonicSeance) { this.demonicSeance = demonicSeance; }
+    public boolean isDemonicSeance() { return demonicSeance; }
+    public void setDemonicSeance(boolean demonicSeance) { this.demonicSeance = demonicSeance; }
 
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(frameTime), (javafx.event.ActionEvent event) -> {
-        imageView.setImage(actionList.get(imageIndex++));
+        if(isDemonicSeance())
+            imageView.setImage(actionList.get(imageIndex++));
     }));
 
     public Alcy(CacheManager cacheManager) {
         this.cacheM = cacheManager;
     }
 
-//    @FXML public void summonAlcy(ImageView alcyView, Text alcyLabel){
-//        if(demonicSeance){
-//            Alcy alcy = cacheM.getAlcy();
-//            alcy.setImageView(alcyView);
-//            alcy.setAlcyLabel(alcyLabel);
-//            alcy.start();
-//        }else
-//            return;
-//    }
-
+    @FXML public void summonAlcy(ImageView alcyView, Text alcyLabel) {
+        actionList.clear();
+        this.setImageView(alcyView);
+        this.setAlcyLabel(alcyLabel);
+        if(!this.isDemonicSeance())
+            alcyLabel.getParent().setVisible(false);
+    }
     @FXML
     public void resetTimeline(){
         actionList.clear();
@@ -147,6 +145,17 @@ public class Alcy {
             happy();
         }else{
             alcyLabel.setText("Hey, " + cacheM.getAcct().getFullName()+". I'm Alcy AKA Schmizzed");
+            drunk();
+        }
+    }
+
+    @FXML public void sayWelcome(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Howdy, I'm Alcy the Beer Can!");
+            happy();
+        }else{
+            alcyLabel.setText("Hey, I'm Alcy AKA Schmizzed");
             drunk();
         }
     }

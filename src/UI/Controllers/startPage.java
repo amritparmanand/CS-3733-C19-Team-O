@@ -33,11 +33,9 @@ public class startPage {
 
 
     @FXML public void initialize(){
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         TextFields.bindAutoCompletion(search, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
-        cacheM.getAlcy().happy();
-        cacheM.getAlcy().sad();
-        cacheM.getAlcy().confused();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().sayWelcome();
 
     }
     

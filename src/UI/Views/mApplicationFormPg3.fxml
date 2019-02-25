@@ -65,7 +65,7 @@
                   </HBox>
                     </children>
                 </HBox>
-                <HBox depthTest="DISABLE" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
+                <HBox depthTest="DISABLE" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1600.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                     <children>
                   <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="1024.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
                      <children>
@@ -73,9 +73,9 @@
                            <VBox.margin>
                               <Insets top="50.0" />
                            </VBox.margin></JFXProgressBar>
-                        <VBox alignment="CENTER" depthTest="DISABLE" prefHeight="200.0" prefWidth="400.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                        <VBox alignment="TOP_CENTER" depthTest="DISABLE" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
+                              <HBox alignment="CENTER" prefHeight="65.0" prefWidth="320.0" spacing="30.0">
                                  <children>
                                     <JFXButton fx:id="previous1" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
 
@@ -84,19 +84,19 @@
                                  </children>
                               </HBox>
                               <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
-                              <JFXButton onMousePressed="#saveDraft" prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
+                              <JFXButton fx:id="saveDraft" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#saveDraft" prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
                               <JFXButton fx:id="pdfButton" onAction="#savePDF" styleClass="changeColorButton" text="Display PDF" />
                               <JFXToggleButton onAction="#onePage" text="One Page View" toggleColor="#32867e" toggleLineColor="BLACK" />
                               <JFXButton fx:id="back" onMousePressed="#goToHomePage" styleClass="searchButtonStyle" text="Back to Homepage">
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
                               </JFXButton>
                            </children>
                         </VBox>
                      </children>
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets />
                      </HBox.margin>
                   </VBox>
                         <ScrollPane depthTest="DISABLE" hbarPolicy="NEVER" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0">
@@ -241,19 +241,19 @@
                 </HBox>
             </children>
         </VBox>
-        <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">
+        <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="1289.6" AnchorPane.topAnchor="485.0">
             <children>
                 <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
-                    <children>
-                        <HBox alignment="BOTTOM_LEFT" styleClass="alcyLabel">
-                            <children>
-                                <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
-                            </children>
-                            <padding>
-                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                            </padding>
-                        </HBox>
-                    </children>
+               <children>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="15.0" prefWidth="210.0" styleClass="alcyLabel">
+                     <children>
+                        <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </padding>
+                  </HBox>
+               </children>
                 </VBox>
                 <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
             </children>

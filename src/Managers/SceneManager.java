@@ -24,7 +24,7 @@ public class SceneManager {
 
     public SceneManager(Stage main) {
         this.main = main;
-        main.setMaximized(true);
+//        main.setMaximized(true);
     }
 
     //WARNING: Object isn't a good thing to settle on. We will create a super class later to call here.
@@ -33,7 +33,7 @@ public class SceneManager {
 
         Parent root = loader.load();
         main.setScene(new Scene(root));
-        main.setMaximized(true);
+//        main.setMaximized(true);
         main.show();
     }
 

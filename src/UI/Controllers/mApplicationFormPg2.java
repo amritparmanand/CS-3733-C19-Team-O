@@ -147,7 +147,7 @@ public class mApplicationFormPg2 {
 //            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
 //        }
  //       else {
-            saveDraftMessage.setText("");
+//            saveDraftMessage.setText("");
             if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(cacheM.getStyle())) {
                 form.setPhoneNumber(phoneNumberString);
             }
