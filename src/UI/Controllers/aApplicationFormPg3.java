@@ -113,6 +113,7 @@ public class aApplicationFormPg3 {
         }
 
         if(form.getLabel().getLabelImage() != null){
+
             // Convert to black and white
             BufferedImage bw = ImageIO.read(form.getLabel().getLabelFile());
             BufferedImage bw_result = new BufferedImage(bw.getWidth(), bw.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
@@ -126,122 +127,106 @@ public class aApplicationFormPg3 {
             ITesseract instance = new Tesseract();
             instance.setDatapath("src/Tess4J.tessdata");
             instance.setLanguage("eng");
-            while(!parsedImage) {
-                try {
-                    String result = instance.doOCR(output);
-                    System.out.println(result);
-                    parsedImage = true;
-                    // Check for Bottle Capacity
-                    if (!form.getBottleCapacity().isEmpty()) {
-                        if (result.contains("ml")) {
-                            System.out.println("bottle capacity DETECTED");
-                            int position_ml = result.indexOf("ml");
+            try {
+                String result = instance.doOCR(output);
+                System.out.println(result);
 
-                            // Initialize capacity
-                            String capacity;
-                            if (result.substring(position_ml - 1, position_ml).equals(" ")) {
-                                capacity = result.substring(position_ml - 4, position_ml - 1);
-                            } else {
-                                capacity = result.substring(position_ml - 3, position_ml);
-                            }
+                // Check for Bottle Capacity
+                if (!form.getBottleCapacity().isEmpty()) {
+                    if (result.contains("ml")) {
+                        System.out.println("bottle capacity DETECTED");
+                        int position_ml = result.indexOf("ml");
 
-                            System.out.println(capacity);
-                            System.out.println(form.parseGarbage(form.getBottleCapacity()));
-                            if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
-                                System.out.println("bottle capacity MATCHED");
-                            } else {
-                                System.out.println("bottle capacity NO MATCH");
-                            }
-                        } else if (result.contains("mL")) {
-                            System.out.println("bottle capacity DETECTED");
-                            int position_mL = result.indexOf("mL");
-
-                            // Initialize capacity
-                            String capacity;
-                            if (result.substring(position_mL - 1, position_mL).equals(" ")) {
-                                capacity = result.substring(position_mL - 4, position_mL - 1);
-                            } else {
-                                capacity = result.substring(position_mL - 3, position_mL);
-                            }
-
-                            System.out.println(capacity);
-                            System.out.println(form.parseGarbage(form.getBottleCapacity()));
-                            if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
-                                System.out.println("bottle capacity MATCHED");
-                            } else {
-                                System.out.println("bottle capacity NO MATCH");
-                            }
+                        // Initialize capacity
+                        String capacity;
+                        if (result.substring(position_ml - 1, position_ml).equals(" ")) {
+                            capacity = result.substring(position_ml - 4, position_ml - 1);
                         } else {
-                            System.out.println("bottle capacity NOT DETECTED");
+                            capacity = result.substring(position_ml - 3, position_ml);
                         }
-                        System.out.println("\n");
-                    }
 
-                    // Check for Alcohol Percentage
-                    if (!form.getAlcoholPercent().isEmpty()) {
-                        if (result.contains("%")) {
-                            System.out.println("alcohol percentage DETECTED");
-                            int position = result.indexOf("%");
-
-                            String percentage1 = result.substring(position - 2, position);
-                            System.out.println(percentage1);
-                            String percentage2 = result.substring(position - 4, position);
-                            System.out.println(percentage2);
-
-                            System.out.println(form.parseGarbage(form.getAlcoholPercent()));
-                            if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage1)) {
-                                System.out.println("alcohol percentage MATCHED");
-                            } else if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage2)) {
-                                System.out.println("alcohol percentage MATCHED");
-                            } else {
-                                System.out.println("alcohol percentage NO MATCH");
-                            }
+                        System.out.println(capacity);
+                        System.out.println(form.parseGarbage(form.getBottleCapacity()));
+                        if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
+                            System.out.println("bottle capacity MATCHED");
                         } else {
-                            System.out.println("alcohol percentage NOT DETECTED");
+                            System.out.println("bottle capacity NO MATCH");
                         }
-                        System.out.println("\n");
-                    }
+                    } else if (result.contains("mL")) {
+                        System.out.println("bottle capacity DETECTED");
+                        int position_mL = result.indexOf("mL");
 
-                    // Check for Appellation
-                    if (!form.getAppellation().isEmpty()) {
-                        int aLength = form.getAppellation().length();
-
-                        if (result.contains("VALLEY")) {
-                            System.out.println("appellation DETECTED");
-                            int position = result.indexOf("VALLEY");
-
-                            String appellation = result.substring(position - aLength - 1, position - 1);
-                            System.out.println(appellation);
-                            System.out.println(form.parseGarbage(form.getAppellation()));
-
-                            if (form.parseGarbage(form.getAppellation()).equals(appellation)) {
-                                System.out.println("appellation MATCHED");
-                            } else {
-                                System.out.println("appellation NO MATCH");
-                            }
+                        // Initialize capacity
+                        String capacity;
+                        if (result.substring(position_mL - 1, position_mL).equals(" ")) {
+                            capacity = result.substring(position_mL - 4, position_mL - 1);
                         } else {
-                            System.out.println("appellation NOT DETECTED");
+                            capacity = result.substring(position_mL - 3, position_mL);
                         }
-                        System.out.println("\n");
-                    }
 
-                } catch (TesseractException e) {
-                    System.err.println(e.getMessage());
-                    bw = ImageIO.read(form.getLabel().getLabelFile());
-                    bw_result = new BufferedImage(bw.getWidth(), bw.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
-                    graphic = bw_result.createGraphics();
-                    graphic.drawImage(bw, 0, 0, Color.WHITE, null);
-                    graphic.dispose();
-                    output = new File("src/Tess4J/images/Black&White.jpg");
-                    ImageIO.write(bw_result, "jpg", output);
+                        System.out.println(capacity);
+                        System.out.println(form.parseGarbage(form.getBottleCapacity()));
+                        if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
+                            System.out.println("bottle capacity MATCHED");
+                        } else {
+                            System.out.println("bottle capacity NO MATCH");
+                        }
+                    } else {
+                        System.out.println("bottle capacity NOT DETECTED");
+                    }
+                    System.out.println("\n");
                 }
-            }
 
-            // Delete the stored file
-            if(form.getLabel().getLabelFile().delete()){
-                System.out.println("File deleted successfully");
-            }else{
-                System.out.println("Failed to delete the file");
+                // Check for Alcohol Percentage
+                if (!form.getAlcoholPercent().isEmpty()) {
+                    if (result.contains("%")) {
+                        System.out.println("alcohol percentage DETECTED");
+                        int position = result.indexOf("%");
+
+                        String percentage1 = result.substring(position - 2, position);
+                        System.out.println(percentage1);
+                        String percentage2 = result.substring(position - 4, position);
+                        System.out.println(percentage2);
+
+                        System.out.println(form.parseGarbage(form.getAlcoholPercent()));
+                        if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage1)) {
+                            System.out.println("alcohol percentage MATCHED");
+                        } else if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage2)) {
+                            System.out.println("alcohol percentage MATCHED");
+                        } else {
+                            System.out.println("alcohol percentage NO MATCH");
+                        }
+                    } else {
+                        System.out.println("alcohol percentage NOT DETECTED");
+                    }
+                    System.out.println("\n");
+                }
+
+                // Check for Appellation
+                if (!form.getAppellation().isEmpty()) {
+                    int aLength = form.getAppellation().length();
+
+                    if (result.contains("VALLEY")) {
+                        System.out.println("appellation DETECTED");
+                        int position = result.indexOf("VALLEY");
+
+                        String appellation = result.substring(position - aLength - 1, position - 1);
+                        System.out.println(appellation);
+                        System.out.println(form.parseGarbage(form.getAppellation()));
+
+                        if (form.parseGarbage(form.getAppellation()).equals(appellation)) {
+                            System.out.println("appellation MATCHED");
+                        } else {
+                            System.out.println("appellation NO MATCH");
+                        }
+                    } else {
+                        System.out.println("appellation NOT DETECTED");
+                    }
+                    System.out.println("\n");
+                }
+
+            } catch (TesseractException e) {
+                System.err.println(e.getMessage());
             }
 
         }else{
