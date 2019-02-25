@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
@@ -94,6 +95,12 @@
                                     <Insets top="40.0" />
                                  </VBox.margin>
                               </JFXButton>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Leaderboard" />
+                              <FlowPane fx:id="loadScores" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </VBox>
                      </children>

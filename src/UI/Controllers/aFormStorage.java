@@ -35,13 +35,12 @@ public class aFormStorage {
         this.cacheM = cacheM;
     }
 
-    @FXML private Label score;
     @FXML private FlowPane loadForms;
     private ArrayList<Form> repeated = new ArrayList<>();
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
         Agent A = (Agent) cacheM.getAcct();
-        score.setText(Integer.toString(A.getScore()));
+       // score.setText(Integer.toString(A.getScore()));
         if(!A.isGotCurrentForms()){
             ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
         }
