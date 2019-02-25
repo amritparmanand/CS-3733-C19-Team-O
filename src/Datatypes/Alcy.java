@@ -149,6 +149,17 @@ public class Alcy {
         }
     }
 
+    @FXML public void sayWelcome(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Howdy, I'm Alcy the Beer Can!");
+            happy();
+        }else{
+            alcyLabel.setText("Hey, I'm Alcy AKA Schmizzed");
+            drunk();
+        }
+    }
+
     @FXML public void sayWrongAnswer(String error){
         alcyLabel.setText("Hey, Punk! You've gotta put in a valid "+error+" before you can continue!");
         angry();
