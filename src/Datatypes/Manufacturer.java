@@ -159,13 +159,13 @@ public class Manufacturer extends Account {
     public void submitForm(Connection connection){
         this.hasFetchedForms = false;
 
-        String getNum = "update APPLICATIONS set STATUS = 'APPROVED' where REPID = " + this.getRepID();
-        try {
-            connection.createStatement().executeQuery(getNum);
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
-        }
+//        String getNum = "update APPLICATIONS set STATUS = 'APPROVED' where REPID = " + this.getRepID();
+//        try {
+//            connection.createStatement().executeQuery(getNum);
+//        } catch (SQLException e) {
+//            if (!e.getSQLState().equals("X0Y32"))
+//                e.printStackTrace();
+//        }
     }
 
     @SuppressWarnings("Duplicates") public int countStatus(Connection connection, String status){

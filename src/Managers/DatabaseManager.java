@@ -210,9 +210,9 @@ public class DatabaseManager {
         }
     }
     public void createSequences(){
-        String repSequence = "create sequence repIDSequence as int start with 800 increment by 1";
-        String formSequence = "create sequence formIDSequence as int start with 800 increment by 1";
-        String appSequence = "create sequence appIDSequence as int start with 800 increment by 1";
+        String repSequence = "create sequence repIDSequence as int start with 100 increment by 1";
+        String formSequence = "create sequence formIDSequence as int start with 100 increment by 1";
+        String appSequence = "create sequence appIDSequence as int start with 100 increment by 1";
 
         try {
             this.stmt.execute(repSequence);

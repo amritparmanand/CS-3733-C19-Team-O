@@ -39,11 +39,6 @@ public class mFormStorage {
     @FXML private JFXCheckBox denied;
     @FXML private FlowPane loadForms;
 
-    private String filterA = "";
-    private String filterP = "";
-    private String filterD = "";
-    private boolean noFilter = false;
-
     public mFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -52,31 +47,32 @@ public class mFormStorage {
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
         loadForms.getChildren().clear();
 
+        String filterA;
+        String filterP;
+        String filterD;
+        boolean noFilter;
+
         if(approved.isSelected()){
             filterA = "APPROVED";
-        }
-        else{
+        } else{
             filterA = "no";
         }
 
         if(pending.isSelected()){
             filterP = "PENDING";
-        }
-        else{
+        } else{
             filterP = "no";
         }
 
         if(denied.isSelected()){
             filterD = "DENIED";
-        }
-        else{
+        } else{
             filterD = "no";
         }
 
         if(!approved.isSelected() && !pending.isSelected() && !denied.isSelected()){
             noFilter = true;
-        }
-        else{
+        } else{
             noFilter = false;
         }
 

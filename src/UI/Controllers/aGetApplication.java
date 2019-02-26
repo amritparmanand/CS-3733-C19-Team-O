@@ -39,13 +39,12 @@ public class aGetApplication {
     @FXML private JFXCheckBox approved;
     @FXML private JFXCheckBox denied;
 
-    private String filterA = "";
-    private String filterD = "";
-    private boolean noFilter = false;
-
-    @SuppressWarnings("Duplicates")
-    @FXML public void initialize() throws IOException {
+    @SuppressWarnings("Duplicates") @FXML public void initialize() throws IOException {
         loadFormPane.getChildren().clear();
+
+        String filterA;
+        String filterD;
+        boolean noFilter;
 
         if(approved.isSelected()){
             filterA = "APPROVED";

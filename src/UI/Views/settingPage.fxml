@@ -40,7 +40,7 @@
                   </Text>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="search" maxWidth="1980.0" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
+                        <JFXButton fx:id="search" maxWidth="1980.0" styleClass="searchButtonStyle" text="Search">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
