@@ -73,8 +73,8 @@ public class Scores {
     @FXML public void initialize() {
         Connection connection = cacheM.getDbM().getConnection();
         Agent A = (Agent) cacheM.getAcct();
-        A.rankAgents(connection);
         A.calculateScore(connection);
+        A.rankAgents(connection);
         score.setText(Integer.toString(A.getScore()));
         approved.setText(Integer.toString(A.getNumberApproved()));
         numDenied.setText(Integer.toString(A.getNumberDenied()));
@@ -94,6 +94,7 @@ public class Scores {
                     Node score = ((HBox) hbox).getChildren().get(1);
 
                     ((Label) uName).setText(agent.getAgentName());
+                    System.out.println(agent.getAgentScore());
                     ((Label) score).setText(Integer.toString(agent.getAgentScore()));
 
                 }
