@@ -442,14 +442,13 @@ public class Form {
     }
 
     public boolean isValid(){
-        if(brewerNumber == "" || productSource == "" || serialNumber == "" || productType == "" || brandName == "" ||
-        applicantName == "" || alcoholPercent == "" || phoneNumber == "" || emailAddress == ""  ||
-        dateOfApplication == "" || printName == "") {
-
+        if(brewerNumber.isEmpty() || productSource.isEmpty() || serialNumber.isEmpty() || productType.isEmpty() || brandName.isEmpty() ||
+        applicantName.isEmpty() || alcoholPercent.isEmpty() || phoneNumber.isEmpty() || emailAddress.isEmpty() ||
+        dateOfApplication.isEmpty() || printName.isEmpty()) {
             return false;
-        }
-        else
+        } else {
             return true;
+        }
     }
 
     /**

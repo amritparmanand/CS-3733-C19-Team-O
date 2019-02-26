@@ -157,7 +157,7 @@
                                     </JFXTextField>
                                  </children>
                               </HBox>
-                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Plant Registry/Basic Permit/Brewer's No:" textAlignment="CENTER">
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Brewer Number:" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
