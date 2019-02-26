@@ -244,6 +244,7 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
     }
+
     public boolean isFormsEmpty() throws SQLException{
         ResultSet rs = stmt.executeQuery("SELECT * from FORMS");
 
@@ -271,7 +272,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File("/Users/Clayol/Desktop/WPI/Sophomore/CS3733/CS-3733-C19-Team-O/src/Resources/forPresentation.csv"));
+            FileReader filereader = new FileReader(new File("src/Resources/forPresentation.csv"));
 
             // create csvReader object passing
             // file reader as a parameter
@@ -375,7 +376,7 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File("/Users/Clayol/Desktop/WPI/Sophomore/CS3733/CS-3733-C19-Team-O/src/Resources/ApplicationsXLSX.csv"));
+            FileReader filereader = new FileReader(new File("src/Resources/ApplicationsXLSX.csv"));
             // create csvReader object passing
             // file reader as a parameter
             CSVReader csvReader = new CSVReader(filereader);
@@ -525,7 +526,4 @@ public class DatabaseManager {
         return a;
     }
 
-    public void agentRank(){
-
-    }
 }

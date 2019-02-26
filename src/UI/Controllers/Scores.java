@@ -189,12 +189,12 @@ public class Scores {
                  strikeThree.setImage(image);
         }
        // if (){
-            Image image = new Image("UI/Icons/SoftEngAchieveColor/17.png");
-            inquisitive.setImage(image);
+            Image image2 = new Image("UI/Icons/SoftEngAchieveColor/17.png");
+            inquisitive.setImage(image2);
        // }
       //  if (){
-            Image image = new Image("UI/Icons/SoftEngAchieveColor/18.png");
-            aNewFriend.setImage(image);
+            Image image3 = new Image("UI/Icons/SoftEngAchieveColor/18.png");
+            aNewFriend.setImage(image3);
        // }
 
 
