@@ -71,6 +71,7 @@ public class SceneManager {
     /**
      * Pop-up windows
      */
+    @Deprecated
     @SuppressWarnings("Duplicates")
     public void popWindow(Parent root, String title) {
         Stage stage;
