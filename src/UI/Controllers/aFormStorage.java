@@ -64,7 +64,7 @@ public class aFormStorage {
                         ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
                     ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
                     ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                    switch(form.getProductType()){
+                    switch(form.parseGarbage(form.getProductType())){
                         case "WINE":
                             ((Label) aType).setText("Wine");
                             break;
@@ -132,13 +132,18 @@ public class aFormStorage {
                     formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                     Node vbox = formResult.getChildren().get(0);
                     if (vbox instanceof VBox) {
+                        Node imgView = ((VBox) vbox).getChildren().get(0);
                         Node fName = ((VBox) vbox).getChildren().get(1);
                         Node bName = ((VBox) vbox).getChildren().get(2);
                         Node aType = ((VBox) vbox).getChildren().get(3);
 
+                        if(form.getLabel().getLabelImage() != null) {
+                            ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
+                            System.out.println("scalamouse");
+                        }
                         ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
                         ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                        switch(form.getProductType()){
+                        switch(form.parseGarbage(form.getProductType())){
                             case "WINE":
                                 ((Label) aType).setText("Wine");
                                 break;

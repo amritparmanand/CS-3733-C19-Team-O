@@ -114,7 +114,7 @@ public class mFormStorage {
                             ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
                         ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
                         ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                        switch(form.getProductType()){
+                        switch(form.parseGarbage(form.getProductType())){
                             case "WINE":
                                 ((Label) aType).setText("Wine");
                                 break;

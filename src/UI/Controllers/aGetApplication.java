@@ -96,11 +96,13 @@ public class aGetApplication {
                         Node fName = ((VBox) vbox).getChildren().get(1);
                         Node bName = ((VBox) vbox).getChildren().get(2);
                         Node aType = ((VBox) vbox).getChildren().get(3);
-                        if(form.getLabel().getLabelImage() != null)
+                        if(form.getLabel().getLabelImage() != null) {
                             ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
-                        ((Label) fName).setText(form.getFancifulName());
-                        ((Label) bName).setText(form.getBrandName());
-                        switch(form.getProductType()){
+                            System.out.println("scalamouse");
+                        }
+                        ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
+                        ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
+                        switch(form.parseGarbage(form.getProductType())){
                             case "WINE":
                                 ((Label) aType).setText("Wine");
                                 break;
