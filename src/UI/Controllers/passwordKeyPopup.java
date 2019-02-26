@@ -50,7 +50,9 @@ public class passwordKeyPopup extends StageContainingScene {
     public void checkKey() throws IOException {
         if (keyInput.getText().equals(ResetKey)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/newPasswordInput.fxml"));
-            sceneM.changeScene(loader, new newPasswordInput(sceneM, cacheM, email, Agent, new Stage()));
+            sceneM.popWindowLoader(loader, new newPasswordInput(sceneM, cacheM, email, Agent, new Stage()), "Password Reset");
+            super.getStage().close();
+            System.out.println("Key accepted.");
         }
         else{
             keyMessage.setTextFill(Color.RED);
