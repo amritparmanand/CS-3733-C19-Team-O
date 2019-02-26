@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormViewPg3">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormViewPg3">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -42,42 +43,49 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
-                  <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
-                        <Insets left="800.0" />
+                        <Insets right="100.0" />
                      </HBox.margin>
-                  </JFXButton>
+                     <children>
+                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
+                           <HBox.margin>
+                              <Insets left="800.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="320.0" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                  <children>
-                                    <JFXButton fx:id="previous1" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
-                                    <JFXButton fx:id="next" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
+                                    <JFXButton fx:id="previous" onMouseClicked="#back" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton fx:id="next1" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
-                              <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
+                              <Label fx:id="saveDraftMessage" />
                               <JFXButton fx:id="pdfButton" onAction="#savePDF" styleClass="changeColorButton" text="Display PDF" />
-                              <JFXButton fx:id="back" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to Homepage">
+                              <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
-                              </JFXButton>
+                              </Button>
                            </children>
                         </VBox>
                      </children>
-                     <HBox.margin>
-                        <Insets top="20.0" />
-                     </HBox.margin>
                   </VBox>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="640.0">
+                  <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0">
                      <content>
-                        <VBox prefHeight="900.0" prefWidth="620.0" styleClass="backPane">
+                        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" styleClass="backPane">
                            <children>
                               <Label text="TTB Label Form">
                                  <padding>
