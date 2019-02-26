@@ -108,11 +108,40 @@ public class mOnePageForm {
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
                 if (newPropertyValue)
-                { }
+                { cacheM.getAlcy().sayMHelpRepID();}
                 else
                 {
                     saveDraft();
                     cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        brewerNO.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpBrewerNO();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+
+        serialNumber.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpSerialNumber();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
                 }
             }
         });
@@ -122,7 +151,7 @@ public class mOnePageForm {
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
                 if (newPropertyValue)
-                { }
+                { cacheM.getAlcy().sayMHelpAlcoholPercentage();}
                 else
                 {
                     saveDraft();
@@ -136,7 +165,7 @@ public class mOnePageForm {
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
                 if (newPropertyValue)
-                { }
+                { cacheM.getAlcy().sayMHelpFancifulName();}
                 else
                 {
                     saveDraft();
@@ -150,11 +179,25 @@ public class mOnePageForm {
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
                 if (newPropertyValue)
-                { }
+                {cacheM.getAlcy().sayMHelpBrandName(); }
                 else
                 {
                     saveDraft();
                     cacheM.getAlcy().sayBrandName();
+                }
+            }
+        });
+
+        printName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpCompanyName();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
                 }
             }
         });
@@ -164,7 +207,7 @@ public class mOnePageForm {
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
                 if (newPropertyValue)
-                { }
+                { cacheM.getAlcy().sayMHelpMailingAddress();}
                 else
                 {
                     saveDraft();
@@ -173,16 +216,44 @@ public class mOnePageForm {
             }
         });
 
-        phLevel.focusedProperty().addListener(new ChangeListener<Boolean>() {
+        formula.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
                 if (newPropertyValue)
-                { }
+                { cacheM.getAlcy().sayMHelpFormula();}
                 else
                 {
                     saveDraft();
-                    cacheM.getAlcy().saypHLevel();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        grapes.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpGrapeVariental();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        appellation.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpWineAppellation();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
                 }
             }
         });
@@ -192,7 +263,7 @@ public class mOnePageForm {
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
                 if (newPropertyValue)
-                { }
+                {cacheM.getAlcy().sayMHelpPhoneNumber(); }
                 else
                 {
                     saveDraft();
@@ -200,6 +271,63 @@ public class mOnePageForm {
                 }
             }
         });
+
+        email.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpEmail();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        phLevel.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                {cacheM.getAlcy().sayMHelppHLevel(); }
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().saypHLevel();
+                }
+            }
+        });
+
+        vintageYear.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpVintageYear();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        dateOfApplication.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpDate();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
 
 
         switchButton.setSelected(true);

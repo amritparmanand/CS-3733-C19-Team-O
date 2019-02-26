@@ -416,46 +416,179 @@ public class Alcy {
     /** ALCY HELPFUL TIPS **/
 
     //1
-    @FXML public void sayHelpRepID(){
+    @FXML public void sayMHelpRepID(){
         alcyLabel.setText("Include a third party representative ID Number if your application will be submitted by a third party representative, "+ cacheM.getAcct().getFullName()+".");
         happy();
     }
 
-    @FXML public void sayHelpBrewerNO(){
+    @FXML public void sayMHelpBrewerNO(){
         alcyLabel.setText("This should look something like BW- or TPWBH- or DSP- number. Importers must enter the TTB basic permit number and brewers must enter the brewer’s notice number.");
         happy();
     }
 
-    @FXML public void sayHelpProductSource(){
+    @FXML public void sayMHelpProductSource(){
         alcyLabel.setText("Tell me the source of the product by checking the appropriate box, ok?");
         happy();
     }
 
-    @FXML public void sayHelpSerialNumber(){
+    @FXML public void sayMHelpSerialNumber(){
         alcyLabel.setText("You must assign a sequential serial number beginning with the last two digits of the current calendar year to each application and its duplicate, not to exceed 6\n" +
                 "characters; e.g., 12-1, 12-2, etc.");
         happy();
     }
 
-    @FXML public void sayHelpBrandName(){
+    @FXML public void sayMHelpBrandName(){
         alcyLabel.setText("Hey! Enter the name of the bottler, packer, or importer here, pal.");
         happy();
     }
 
-    @FXML public void sayHelpFancifulName(){
+    @FXML public void sayMHelpFancifulName(){
+        alcyLabel.setText("Enter the name this drink is sold under!" );
+        happy();
+    }
+
+    @FXML public void sayMHelpCompanyName(){
+        alcyLabel.setText("Indicate your company name exactly as it appears on your plant registry, basic permit, or brewer’s notice.");
+        happy();
+    }
+
+    @FXML public void sayMHelpMailingAddress(){
+        alcyLabel.setText("Indicate your company address exactly as it appears on your plant registry, basic permit, or brewer’s notice.");
+        happy();
+    }
+
+    @FXML public void sayMHelpFormula(){
+        alcyLabel.setText("If you don't understand this one, look on our website guidelines! Heck if I know!");
+        happy();
+    }
+
+    @FXML public void sayMHelpGrapeVariental(){
+        alcyLabel.setText("You gotta list in this block each grape varietal that appears on wine labels.");
+        happy();
+    }
+
+    @FXML public void sayMHelpWineAppellation(){
+        alcyLabel.setText("Fill in only if a wine appellation of origin is stated on the label.");
+        happy();
+    }
+
+    @FXML public void sayMHelpPhoneNumber(){
+        alcyLabel.setText("Just type in your phone number here, I won't sell it...");
+        drunk();
+    }
+
+    @FXML public void sayMHelpEmail(){
+        alcyLabel.setText("Wherever you want alerts to be sent, put in THAT email address!");
+        happy();
+    }
+
+    @FXML public void sayMHelpAlcoholPercentage(){
+        alcyLabel.setText("So what is this thing closer to water or jet fuel?");
+        confused();
+    }
+
+    @FXML public void sayMHelppHLevel(){
+        alcyLabel.setText("This will USUALLY be between 0 and 14, but with your special abilities...");
+        happy();
+    }
+    @FXML public void sayMHelpVintageYear(){
+        alcyLabel.setText("I hope this is older than me!");
+        happy();
+    }
+
+    @FXML public void sayMHelpDate(){
+        alcyLabel.setText("No, the date is not 'Today'...");
+        sassy();
+    }
+
+    /**AGENT**/
+
+    @FXML public void sayAHelpRepID(){
+        alcyLabel.setText("Include a third party representative ID Number if your application will be submitted by a third party representative, "+ cacheM.getAcct().getFullName()+".");
+        happy();
+    }
+
+    @FXML public void sayAHelpBrewerNO(){
+        alcyLabel.setText("This should look something like BW- or TPWBH- or DSP- number. Importers must enter the TTB basic permit number and brewers must enter the brewer’s notice number.");
+        happy();
+    }
+
+    @FXML public void sayAHelpProductSource(){
+        alcyLabel.setText("Tell me the source of the product by checking the appropriate box, ok?");
+        happy();
+    }
+
+    @FXML public void sayAHelpSerialNumber(){
+        alcyLabel.setText("You must assign a sequential serial number beginning with the last two digits of the current calendar year to each application and its duplicate, not to exceed 6\n" +
+                "characters; e.g., 12-1, 12-2, etc.");
+        happy();
+    }
+
+    @FXML public void sayAHelpBrandName(){
+        alcyLabel.setText("Hey! Enter the name of the bottler, packer, or importer here, pal.");
+        happy();
+    }
+
+    @FXML public void sayAHelpFancifulName(){
         alcyLabel.setText("Enter the name this drink is sold under!" +
                 "applicable.");
         happy();
     }
 
-    @FXML public void sayHelpCompanyName(){
-        alcyLabel.setText("Indicate your company name and address exactly as they appear on your plant registry, basic permit, or brewer’s notice.");
+    @FXML public void sayAHelpCompanyName(){
+        alcyLabel.setText("Indicate your company name exactly as it appears on your plant registry, basic permit, or brewer’s notice.");
         happy();
     }
 
-    @FXML public void sayHelpMailingAddress(){
-        alcyLabel.setText("Indicate your company name and address exactly as they appear on your plant registry, basic permit, or brewer’s notice.");
+    @FXML public void sayAHelpMailingAddress(){
+        alcyLabel.setText("Indicate your company address exactly as it appears on your plant registry, basic permit, or brewer’s notice.");
         happy();
     }
+
+    @FXML public void sayAHelpFormula(){
+        alcyLabel.setText("If you don't understand this one, look on our website guidelines! Heck if I know!");
+        happy();
+    }
+
+    @FXML public void sayAHelpGrapeVariental(){
+        alcyLabel.setText("You gotta list in this block each grape varietal that appears on wine labels.");
+        happy();
+    }
+
+    @FXML public void sayAHelpWineAppellation(){
+        alcyLabel.setText("Fill in only if a wine appellation of origin is stated on the label.");
+        happy();
+    }
+
+    @FXML public void sayAHelpPhoneNumber(){
+        alcyLabel.setText("Just type in your phone number here, I won't sell it...");
+        drunk();
+    }
+
+    @FXML public void sayAHelpEmail(){
+        alcyLabel.setText("Wherever you want alerts to be sent, put in THAT email address!");
+        happy();
+    }
+
+    @FXML public void sayAHelpAlcoholPercentage(){
+        alcyLabel.setText("So what is this thing closer to water or jet fuel?");
+        confused();
+    }
+
+    @FXML public void sayAHelppHLevel(){
+        alcyLabel.setText("Just type in your phone number here, I won't sell it...");
+        happy();
+    }
+    @FXML public void sayAHelpVintageYear(){
+        alcyLabel.setText("I hope this is older than me!");
+        happy();
+    }
+
+    @FXML public void sayAHelpDate(){
+        alcyLabel.setText("No, the date is not 'Today'...");
+        sassy();
+    }
+
+
 }
 
