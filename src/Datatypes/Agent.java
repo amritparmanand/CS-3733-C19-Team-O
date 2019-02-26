@@ -218,7 +218,7 @@ public class Agent extends Account {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                reviewedForms.add(formFromResultSet(rs));
+                reviewedForms.add(initReviewedForm(rs));
             }
             ps.close();
             this.gotOldForms = true;
@@ -227,8 +227,6 @@ public class Agent extends Account {
                 e.printStackTrace();
         }
     }
-
-    //    // Parse a Form from database to object
 
     private Form formFromResultSet(ResultSet rs) throws SQLException, IOException {
         Form f = new Form();
@@ -273,6 +271,48 @@ public class Agent extends Account {
             LabelImage percy = new LabelImage();
             percy.setLabelImage(new Image(picture.getBinaryStream()));
             percy.setLabelFile(new File(outputFile.toString()));
+            f.setLabel(percy);
+        }
+
+        return f;
+    }
+
+    private Form initReviewedForm(ResultSet rs) throws SQLException, IOException {
+        Form f = new Form();
+        f.setFormID(rs.getLong("formID"));
+        f.setRepID(rs.getInt("repID"));
+        f.setBrewerNumber(rs.getString("brewerNumber"));
+        f.setProductSource(rs.getString("productSource"));
+        f.setSerialNumber(rs.getString("serialNumber"));
+        f.setProductType(rs.getString("productType"));
+        f.setBrandName(rs.getString("brandName"));
+        f.setFancifulName(rs.getString("fancifulName"));
+        f.setApplicantName(rs.getString("applicantName"));
+        f.setMailingAddress(rs.getString("mailingAddress"));
+        f.setFormula(rs.getString("formula"));
+        f.setGrapeVarietal(rs.getString("grapeVarietal"));
+        f.setAppellation(rs.getString("appellation"));
+        f.setPhoneNumber(rs.getString("phoneNumber"));
+        f.setEmailAddress(rs.getString("emailAddress"));
+        f.setCertificateOfApproval(rs.getBoolean("certificateOfApproval"));
+        f.setCertificateOfExemption(rs.getBoolean("certificateOfExemption"));
+        f.setOnlyState(rs.getString("onlyState"));
+        f.setDistinctiveLiquor(rs.getBoolean("distinctiveLiquor"));
+        f.setBottleCapacity(rs.getString("bottleCapacity"));
+        f.setTtbID(rs.getInt("TTBID"));
+        f.setDateOfApplication(rs.getString("dateOfApplication"));
+        f.setPrintName(rs.getString("printName"));
+        f.setBeerWineSpirit(rs.getString("beerWineSpirit"));
+        f.setAlcoholPercent(rs.getString("alcoholPercent"));
+        f.setVintageYear(rs.getString("vintageYear"));
+        f.setpHLevel(rs.getString("pHLevel"));
+        f.setCommentString(rs.getString("comments"));
+
+        // Deal with image
+        Blob picture = rs.getBlob("labelImage");
+        if (picture != null) {
+            LabelImage percy = new LabelImage();
+            percy.setLabelImage(new Image(picture.getBinaryStream()));
             f.setLabel(percy);
         }
 
