@@ -279,7 +279,7 @@ public class Agent extends Account{
     public void getReviewedForms(Connection connection) throws IOException{
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
-                    "APPLICATIONS.TTBID = " + this.getTtbID()+ " and APPLICATIONS.STATUS = 'APPROVED' or APPLICATIONS.STATUS = 'DENIED'";
+                    "APPLICATIONS.TTBID = " + this.getTtbID()+ " and (APPLICATIONS.STATUS = 'APPROVED' or APPLICATIONS.STATUS = 'DENIED')";
             PreparedStatement ps = connection.prepareStatement(assignedForms);
 
             ResultSet rs = ps.executeQuery();

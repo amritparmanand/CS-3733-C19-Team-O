@@ -57,5 +57,4 @@ public class aHomepage {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/Scores.fxml"));
         sceneM.changeScene(loader, new Scores(sceneM, cacheM));
     }
-
 }
