@@ -297,7 +297,7 @@ public class aApplicationFormPg3 {
                     appellationMatch.setText("Appellation Not Entered");
                 }
             } catch (TesseractException e) {
-                System.err.println(e.getMessage());
+//                System.err.println(e.getMessage());
                 appellationMatch.setText("Appellation Not Found");
                 volMatch.setText("Alcohol Volume Not Found");
                 alcPerc.setText("Alcohol Percentage Not Found");
