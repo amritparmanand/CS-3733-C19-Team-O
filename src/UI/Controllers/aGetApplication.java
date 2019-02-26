@@ -1,18 +1,31 @@
 package UI.Controllers;
 
+import Datatypes.Agent;
+import Datatypes.Alcy;
+import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 /**
- * @author Sam Silver & Jonathan Luna
- * @version It 1
+ * @author Sam Silver & Jonathan Luna & Percy & Gabe
+ * @version It 3
  * Controller for aGetApplication of UI
  */
 public class aGetApplication {
@@ -24,12 +37,117 @@ public class aGetApplication {
         this.cacheM = cacheM;
     }
 
-    @FXML private JFXButton back;
-    @FXML private JFXButton search;
-    @FXML private JFXButton getFormsButton;
-    @FXML private JFXButton logout;
-    //@FXML private VBox getApp;
     @FXML private FlowPane loadFormPane;
+    @FXML private JFXCheckBox approved;
+    @FXML private JFXCheckBox denied;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+
+    private String filterA = "";
+    private String filterD = "";
+    private boolean noFilter = false;
+
+    @SuppressWarnings("Duplicates")
+    @FXML public void initialize() throws Exception{
+        loadFormPane.getChildren().clear();
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAHomePage();
+
+        if(approved.isSelected()){
+            filterA = "APPROVED";
+        }
+        else{
+            filterA = "no";
+        }
+
+        if(denied.isSelected()){
+            filterD = "DENIED";
+        }
+        else{
+            filterD = "no";
+        }
+
+        if(!approved.isSelected() && !denied.isSelected()){
+            noFilter = true;
+        }
+        else{
+            noFilter = false;
+        }
+
+        Agent A = (Agent) cacheM.getAcct();
+
+        if(!A.isGotOldForms()){
+            ((Agent) cacheM.getAcct()).getReviewedForms(cacheM.getDbM().getConnection());
+        }
+
+        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getReviewedForms();
+
+        for (Form form : populatedForms) {
+            if (form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterA) ||
+                    form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterD) ||
+                    noFilter) {
+                Pane formResult;
+                try {
+                    formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
+                    Node vbox = formResult.getChildren().get(0);
+                    if (vbox instanceof VBox) {
+                        Node imgView = ((VBox) vbox).getChildren().get(0);
+                        Node fName = ((VBox) vbox).getChildren().get(1);
+                        Node bName = ((VBox) vbox).getChildren().get(2);
+                        Node aType = ((VBox) vbox).getChildren().get(3);
+                        if(form.getLabel().getLabelImage() != null) {
+                            ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
+                            System.out.println("scalamouse");
+                        }
+                        ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
+                        ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
+                        switch(form.parseGarbage(form.getProductType())){
+                            case "WINE":
+                                ((Label) aType).setText("Wine");
+                                break;
+                            case "DISTILLED":
+                                ((Label) aType).setText("Distilled Beverage");
+                                break;
+                            case "MALT":
+                                ((Label) aType).setText("Malt Beverage");
+                                break;
+                        }
+
+                        String style = "";
+                        switch(form.getFormStatus(cacheM.getDbM().getConnection())){
+                            case "APPROVED":
+                                style = "-fx-background-color: #e4f7ef;\n";
+                                break;
+                            case "DENIED":
+                                style = "-fx-background-color: #fcedec;\n";
+                                break;
+                        }
+                        vbox.setStyle(style);
+
+                    }
+                    loadFormPane.getChildren().add(formResult);
+                    formResult.setId("Alcoholbox");
+
+                    formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            try {
+                                aApplicationFormControl(form);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        cacheM.setAcct(A);
+    }
 
     @FXML
     public void back() throws IOException {
@@ -38,21 +156,9 @@ public class aGetApplication {
     }
 
     @FXML
-    public void search() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-    }
-
-    @FXML
-    public void loadForms(ActionEvent event) {
-        Pane formResult = null;
-        loadFormPane.getChildren().clear();
-        try {
-            formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
-            loadFormPane.getChildren().add(formResult);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void aApplicationFormControl(Form form) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
     }
 
     @FXML

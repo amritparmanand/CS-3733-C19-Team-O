@@ -9,7 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -47,6 +49,13 @@ public class mRegister {
     @FXML private JFXTextField phone;
     @FXML private JFXTextField repID;
     @FXML private JFXTextField companyName;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+
+    @FXML public void initialize(){
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().sayRegister();
+    }
 
     @FXML
     @SuppressWarnings("Duplicates")
@@ -115,12 +124,10 @@ public class mRegister {
             if(validManuEmail(manuEmail)){
                 emailMessage.setText("");
             }
-            if(!confirmPass(password.getText(), confirmP.getText())){
+            if(!confirmPass(password.getText(), confirmP.getText()) && (!password.getText().isEmpty() && !confirmP.getText().isEmpty())){
                 passwordMessage.setTextFill(Color.RED);
                 passwordMessage.setText("Passwords do not match");
-
-            }
-            if(confirmPass(password.getText(), confirmP.getText())){
+            }else{
                 passwordMessage.setText("");
             }
 
@@ -190,7 +197,7 @@ public class mRegister {
      */
     @FXML
     public boolean invalidID(String ID){
-        if(ID.isEmpty() || ID.matches("^[a-zA-Z]+") || Integer.parseInt(ID) < 0) {
+        if(ID.isEmpty() || !ID.matches("^[0-9]+") || Integer.parseInt(ID) < 0) {
             return true;
         }else{
             return false;

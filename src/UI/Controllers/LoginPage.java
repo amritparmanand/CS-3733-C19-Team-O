@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Manufacturer;
 import Managers.*;
 
@@ -9,6 +10,7 @@ import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -21,7 +23,11 @@ import java.io.InputStream;
 import java.sql.Statement;
 import java.util.EventListener;
 
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class LoginPage implements SerialPortDataListener {
@@ -52,6 +58,10 @@ public class LoginPage implements SerialPortDataListener {
     private Button programChip;
     @FXML
     private Button about;
+    @FXML
+    private Button pdf;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
 
 
@@ -63,6 +73,9 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML
     public void initialize() {
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayLogin();
         programChip.setVisible(false);
         if (ports.length > 0) {
             this.serialPort = ports[ports.length - 1];
@@ -153,11 +166,17 @@ public class LoginPage implements SerialPortDataListener {
 
     @Override
     public int getListeningEvents() {
+
         return 0;
     }
 
     @Override
     public void serialEvent(SerialPortEvent event) {
+    }
+
+    @FXML public void back() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
+        sceneM.changeScene(loader, new startPage(sceneM, cacheM));
     }
 
     @FXML
@@ -220,13 +239,6 @@ public class LoginPage implements SerialPortDataListener {
     }
 
     @FXML
-    public void aboutUs() throws IOException {
-        // Search
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
-        sceneM.changeScene(loader, new AboutUs(sceneM, cacheM));
-    }
-
-    @FXML
     public void validateButton() {
         if (m.isSelected() || a.isSelected()) {
             register.setDisable(false);
@@ -240,9 +252,7 @@ public class LoginPage implements SerialPortDataListener {
             login.setDisable(true);
         }
     }
-    @FXML 
-    public void about() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
-    }
+
+
+
 }

@@ -1,8 +1,11 @@
 package Managers;
 
+import Datatypes.StageContainingScene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,6 +25,7 @@ public class SceneManager {
 
     public SceneManager(Stage main) {
         this.main = main;
+//        main.setMaximized(true);
     }
 
     //WARNING: Object isn't a good thing to settle on. We will create a super class later to call here.
@@ -30,6 +34,7 @@ public class SceneManager {
 
         Parent root = loader.load();
         main.setScene(new Scene(root));
+//        main.setMaximized(true);
         main.show();
     }
 
@@ -51,14 +56,27 @@ public class SceneManager {
         main.show();
     }
 
+    @SuppressWarnings("Duplicates")
+    public void popWindowLoader(FXMLLoader loader, StageContainingScene sceneClass, String title) throws IOException {
+        loader.setControllerFactory(c -> sceneClass);
+
+        Parent root = loader.load();
+
+        Stage stage = sceneClass.getStage();
+        stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
     /**
      * Pop-up windows
      */
-    public void popWindow(Parent root) {
+    @SuppressWarnings("Duplicates")
+    public void popWindow(Parent root, String title) {
         Stage stage;
         stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.setTitle("hi");
+        stage.setTitle(title);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }

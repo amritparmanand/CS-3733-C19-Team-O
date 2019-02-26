@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1600.0" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mOnePageForm">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/TTB-logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
+                           <HBox.margin>
+                              <Insets left="800.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="939.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <JFXProgressBar fx:id="progressBarElement" depthTest="DISABLE" progress="0.0">
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </JFXProgressBar>
+                        <VBox alignment="TOP_CENTER" depthTest="DISABLE" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="320.0" spacing="30.0">
+                                 <children>
+                                    <JFXButton disable="true" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton disable="true" styleClass="buttonStyle" text="Next Page" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
+                              <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#saveDraft" prefHeight="32.0" prefWidth="134.0" styleClass="buttonStyle" text="Save Draft" />
+                              <JFXButton fx:id="pdfButton" onAction="#savePDF" styleClass="changeColorButton" text="Display PDF" />
+                              <JFXToggleButton fx:id="switchButton" onAction="#onePage" text="One Page View" toggleColor="#32867e" toggleLineColor="BLACK" />
+                              <JFXButton fx:id="back" onMousePressed="#goToHomePage" styleClass="searchButtonStyle" text="Back to Homepage">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="1400.0" prefWidth="800.0">
+                     <content>
+                        <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="-Infinity" prefWidth="800.0">
+                           <children>
+                              <VBox prefHeight="900.0" prefWidth="620.0" styleClass="backPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label text="TTB Label Form">
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="h1" />
+                                       </styleClass>
+                                    </Label>
+                                    <Label styleClass="h2" text="One Page View">
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" />
+                                       </padding>
+                                    </Separator>
+                                    <VBox prefHeight="30.0" prefWidth="800.0" spacing="10.0" VBox.vgrow="NEVER">
+                                       <children>
+                                          <Label styleClass="labeltext" text="1. REP. ID. NO. (If any)" />
+                                          <JFXTextField fx:id="repID" maxWidth="-Infinity" minWidth="-Infinity" onInputMethodTextChanged="#updateProgress" onKeyPressed="#updateProgress" onKeyReleased="#updateProgress" prefHeight="28.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="2. Plant Registry/Basic Permit/ Brewer's NO. (Required)" />
+                                          <JFXTextField fx:id="brewerNO" maxWidth="-Infinity" minWidth="-Infinity" onKeyReleased="#updateProgress" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="3. Source of Product (Required)" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                                   <children>
+                                                      <JFXRadioButton fx:id="domestic" text="Domestic">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="DI1" />
+                                                         </toggleGroup>
+                                                      </JFXRadioButton>
+                                                      <JFXRadioButton fx:id="imported" text="Imported" toggleGroup="$DI1" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="26.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="4. Serial Number (Required)" />
+                                          <JFXTextField fx:id="serialNumber" maxWidth="-Infinity" minWidth="-Infinity" onKeyReleased="#updateProgress" prefColumnCount="6" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="60.0" left="20.0" right="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="5. Type of Product (Required)" />
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                             <children>
+                                                <JFXRadioButton fx:id="wine" onKeyPressed="#showWineFields" onMousePressed="#showWineFields" text="Wine">
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="WDM" />
+                                                   </toggleGroup>
+                                                </JFXRadioButton>
+                                                <JFXRadioButton fx:id="distilled" onKeyPressed="#hideWineFields" onMousePressed="#hideWineFields" text="Distilled Spirits" toggleGroup="$WDM" />
+                                                <JFXRadioButton fx:id="malt" onKeyPressed="#hideWineFields" onMousePressed="#hideWineFields" text="Malt Beverages" toggleGroup="$WDM" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="38.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="6. Brand Name (Required)" />
+                                          <JFXTextField fx:id="brandName" maxWidth="-Infinity" minWidth="-Infinity" onKeyReleased="#updateProgress" prefColumnCount="40" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="7. Fanciful Name (If any)" />
+                                          <JFXTextField fx:id="fancifulName" maxWidth="-Infinity" minWidth="-Infinity" onKeyReleased="#updateProgress" prefColumnCount="20" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="60.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8. Name of Applicant as shown on Plant Registry, Basic Permit, or Brewer's Notice. Include Approved DBA or Tradename if Used on the Label (Required)" wrappingWidth="580.0" />
+                                          <JFXTextField fx:id="printName" maxWidth="-Infinity" minWidth="-Infinity" onKeyReleased="#updateProgress" prefColumnCount="40" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="8a. Mailing Address if Different" />
+                                          <JFXTextField fx:id="mailAddress" maxWidth="-Infinity" minWidth="-Infinity" onKeyReleased="#updateProgress" prefColumnCount="60" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="60.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="9. Formula" />
+                                          <JFXTextField fx:id="formula" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="30" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox fx:id="varietalVBox1" prefHeight="6.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="10. Grape Variental(s) Wine Only" />
+                                          <JFXTextField fx:id="grapes" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox fx:id="appellationVBox" prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="11. Wine Appellation (If on label)" />
+                                          <JFXTextField fx:id="appellation" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="50" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="60.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="15.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="12. Phone Number" />
+                                          <JFXTextField fx:id="phoneNumber" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="10" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="13. Email Address" />
+                                          <JFXTextField fx:id="email" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="40" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="60.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="14. Type of Application" />
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox prefWidth="400.0">
+                                                   <children>
+                                                      <JFXCheckBox fx:id="certificateOfApproval" text="CERTIFICATE OF LABEL APPROVAL" />
+                                                   </children>
+                                                   <FlowPane.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </FlowPane.margin>
+                                                </VBox>
+                                                <VBox prefWidth="400.0">
+                                                   <children>
+                                                      <JFXCheckBox fx:id="certificateOfExemption" onMouseClicked="#validateStateField" text="CERTIFICATE OF EXEMPTION FROM LABEL APPROVAL" />
+                                                      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+                                                         <children>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="&quot;For sale in " />
+                                                            <JFXTextField fx:id="onlyState" prefHeight="26.0" prefWidth="45.0" />
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text=" only&quot; (Fill in state abbreviation)" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <FlowPane.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </FlowPane.margin>
+                                                </VBox>
+                                                <VBox prefWidth="400.0">
+                                                   <children>
+                                                      <JFXCheckBox fx:id="DistinctiveLiquor" onMouseClicked="#validateBottleCapacity" text="DISTINCTIVE LIQUOR BOTTLE APPROVAL" />
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="484.0">
+                                                         <children>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TOTAL BOTTLE CAPACITY BEFORE CLOSURE " />
+                                                            <JFXTextField fx:id="bottleCapacity" prefHeight="26.0" prefWidth="94.0" />
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="(Fill in amount)" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <FlowPane.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </FlowPane.margin>
+                                                </VBox>
+                                                <VBox prefWidth="400.0">
+                                                   <children>
+                                                      <JFXCheckBox fx:id="resubmission" onMouseClicked="#validateTTBID" text="RESUBMISSION AFTER REJECTION" />
+                                                      <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+                                                         <children>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="TTB ID " />
+                                                            <JFXTextField fx:id="ttbID" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                   <FlowPane.margin>
+                                                      <Insets bottom="10.0" right="10.0" top="10.0" />
+                                                   </FlowPane.margin>
+                                                </VBox>
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="CENTER" minHeight="440.0" prefHeight="440.0" prefWidth="620.0" spacing="10.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="15. Show Any Information That is Blown, Branded, or Embossed on the Container (e.g., net contents) Only if it Does Not Appear on the Labels Affixed Below. Also, Show Translations of Foreign Language Text Appearing on Labels." wrappingWidth="580.0" />
+                                          <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                             <children>
+                                                <ImageView fx:id="imagePreview" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="textfield" />
+                                                <String fx:value="innerShadow" />
+                                             </styleClass>
+                                          </Pane>
+                                          <JFXButton fx:id="uploadImageButton" onMouseClicked="#uploadImage" onMouseReleased="#uploadImage" styleClass="buttonStyle" text="Upload" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <Label text="Additional Fields">
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                       <styleClass>
+                                          <String fx:value="labeltext" />
+                                          <String fx:value="h2" />
+                                       </styleClass>
+                                    </Label>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="Alcohol Percentage" />
+                                          <JFXTextField fx:id="alcoholPercentage" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="4" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox fx:id="phVBox" prefHeight="2.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="pH Level" />
+                                          <JFXTextField fx:id="phLevel" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="4" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox fx:id="vintageVBox" prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="labeltext" text="Vintage Year" />
+                                          <JFXTextField fx:id="vintageYear" maxWidth="-Infinity" minWidth="-Infinity" prefColumnCount="4" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="60.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <TextFlow prefWidth="200.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="Under the penalties of perjury, I declare: that all statements appearing on this application are true and correct to the best of my knowledge and belief; and , that the representations on the labels attached to this form, including supplemental documents, truly and correctly represent the content of the containers to which these labels will be applied. I also certify that i have read, understood, and complied with the conditions and instructions which are attatched to an original TTB F 5100.31, Certificate/Exemption of Label/Bottle Approval. I consent to the return of processed applications in the manner indicated on this application and set forth in the applicable instructions." wrappingWidth="500.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="20.0" right="20.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextFlow>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label text="16. Date of Application" />
+                                          <JFXDatePicker fx:id="dateOfApplication" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="0.0" prefWidth="800.0" spacing="10.0">
+                                       <children>
+                                          <Label text="18. Print Name of Applicant or Authorized Agent" />
+                                          <JFXTextField fx:id="applicantNamePrint" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="CENTER" minHeight="100.0" prefHeight="113.0" prefWidth="620.0">
+                                       <children>
+                                          <JFXButton onMousePressed="#submit" prefHeight="43.0" prefWidth="94.0" text="Submit">
+                                             <styleClass>
+                                                <String fx:value="h2" />
+                                                <String fx:value="buttonStyle" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="75.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="400.0">
+                     <children>
+                        <Accordion prefWidth="320.0">
+                           <panes>
+                              <TitledPane animated="false" prefHeight="476.0" prefWidth="320.0" text="Agent Comments">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <content>
+                                    <JFXTextArea fx:id="aComment" editable="false" prefHeight="683.0" prefWidth="522.0" />
+                                 </content>
+                              </TitledPane>
+                           </panes>
+                        </Accordion>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="BOTTOM_LEFT" layoutX="90.0" layoutY="517.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="210.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="1289.6" AnchorPane.topAnchor="485.0">
+         <children>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="139.0" prefWidth="210.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="15.0" prefWidth="210.0" styleClass="alcyLabel">
+                     <children>
+                        <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -12,16 +13,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.LoginPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.LoginPage">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="25.0" prefWidth="200.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="148.0" prefWidth="1280.0" styleClass="navheader">
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="1920.0" styleClass="navheader">
                <children>
                   <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,19 +40,35 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
-                  <JFXButton fx:id="search" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
-                     <HBox.margin>
-                        <Insets left="800.0" />
-                     </HBox.margin>
-                  </JFXButton>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="1920.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="search" alignment="TOP_LEFT" contentDisplay="RIGHT" nodeOrientation="LEFT_TO_RIGHT" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
+                  </HBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1280.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="1053.0" prefWidth="1920.0">
                <children>
-                  <HBox fx:id="ID" alignment="CENTER" prefHeight="300.0" prefWidth="951.0" HBox.hgrow="ALWAYS">
+                  <HBox fx:id="ID" alignment="CENTER" prefHeight="300.0" prefWidth="1920.0" HBox.hgrow="ALWAYS">
                      <children>
                         <VBox alignment="CENTER" prefHeight="332.0" prefWidth="346.0">
                            <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="247.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                                       <image>
+                                          <Image url="@../Icons/TTB-logo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <children>
                                     <JFXRadioButton fx:id="m" onAction="#validateButton" text="Manufacturer">
@@ -71,20 +86,34 @@
                                     </JFXRadioButton>
                                  </children>
                               </HBox>
-                              <JFXTextField fx:id="id" alignment="BOTTOM_LEFT" promptText="ID">
+                              <JFXTextField fx:id="id" alignment="BOTTOM_LEFT" prefWidth="350.0" promptText="ID">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin></JFXTextField>
-                              <JFXTextField fx:id="username" alignment="BOTTOM_LEFT" promptText="Username">
+                              <JFXTextField fx:id="username" alignment="BOTTOM_LEFT" prefWidth="350.0" promptText="Username">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin></JFXTextField>
-                              <JFXPasswordField fx:id="password" onKeyReleased="#validateButton" promptText="Password">
+                              <JFXPasswordField fx:id="password" onKeyReleased="#validateButton" prefWidth="350.0" promptText="Password">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </JFXPasswordField>
-                              <JFXButton fx:id="login" disable="true" onAction="#validateButton" onMousePressed="#login" prefHeight="30.0" prefWidth="86.0" text="Login">
+                              <HBox prefHeight="48.0" prefWidth="346.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <JFXCheckBox text="Remember Me" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <JFXButton styleClass="searchButtonStyle" text="Forgot password?" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <JFXButton fx:id="login" disable="true" onAction="#validateButton" onMousePressed="#login" prefHeight="40.0" prefWidth="350.0" text="Login">
                                  <styleClass>
                                     <String fx:value="buttonStyle" />
                                     <String fx:value="h2" />
@@ -93,7 +122,7 @@
                                     <Insets top="30.0" />
                                  </VBox.margin>
                               </JFXButton>
-                              <JFXButton fx:id="register" disable="true" minHeight="-Infinity" minWidth="-Infinity" onAction="#validateButton" onMousePressed="#register" styleClass="changeColorButton" text="Register">
+                              <JFXButton fx:id="register" disable="true" minHeight="-Infinity" minWidth="-Infinity" onAction="#validateButton" onMousePressed="#register" styleClass="searchButtonStyle" text="Register">
                                  <padding>
                                     <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                                  </padding>
@@ -101,19 +130,43 @@
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </JFXButton>
-                              <Label fx:id="loginMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="457.0" wrapText="true">
+                              <Label fx:id="loginMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="346.0" wrapText="true">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="15.0" />
                                  </VBox.margin>
                               </Label>
                               <JFXButton fx:id="programChip" onAction="#validateButton" onMousePressed="#programChip" prefHeight="42.0" prefWidth="168.0" styleClass="changeColorButton" text="Program This Chip" />
+                              <JFXButton onMousePressed="#back" styleClass="buttonStyle" text="Back" visible="false">
+                                 <VBox.margin>
+                                    <Insets bottom="-80.0" top="30.0" />
+                                 </VBox.margin>
+                              </JFXButton>
                            </children>
                         </VBox>
                      </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </HBox>
                </children>
             </HBox>
-            <JFXButton fx:id="about" alignment="BOTTOM_RIGHT" onMousePressed="#aboutUs" styleClass="searchButtonStyle" text="About Us" translateX="1200.0" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox alignment="BOTTOM_LEFT" styleClass="alcyLabel">
+                     <children>
+                        <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
          </children>
       </VBox>
    </children>

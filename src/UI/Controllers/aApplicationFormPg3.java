@@ -1,14 +1,23 @@
 package UI.Controllers;
 
 
+import Datatypes.Agent;
+import Datatypes.Alcy;
+import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,11 +31,13 @@ public class aApplicationFormPg3 {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
+    private Comments comments;
 
-    public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form) {
+    public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.form = form;
+        this.comments = comments;
     }
 
 
@@ -42,12 +53,50 @@ public class aApplicationFormPg3 {
     @FXML private JFXButton uploadImage;
     @FXML private JFXTextArea Q14Comment;
     @FXML private JFXTextArea Q15Comment;
+    @FXML private JFXTextField onlyState;
+    @FXML private JFXTextField ttbID;
+    @FXML private JFXTextField bottleCapacity; //will be int, for future reference
+    @FXML private JFXCheckBox certificateOfApproval;
+    @FXML private JFXCheckBox certificateOfExemption;
+    @FXML private JFXCheckBox DistinctiveLiquor;
+    @FXML private JFXCheckBox resubmission;
+    @FXML private ImageView imagePreview;
+    @FXML private Label errorLabel;
     @FXML private JFXTextField receiver;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
 
+    @SuppressWarnings("Duplicates")
     public void initialize(){
-        Form form = this.form;
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
+        Q14Comment.setText(comments.getComment14());
+        Q15Comment.setText(comments.getComment15());
+        Form form = cacheM.getForm();
 
+        certificateOfApproval.setSelected(form.getCertificateOfApproval());
+        certificateOfExemption.setSelected(form.getCertificateOfExemption());
+        DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
+        resubmission.setSelected(form.getResubmission());
+        certificateOfApproval.setDisable(true);
+        certificateOfExemption.setDisable(true);
+        DistinctiveLiquor.setDisable(true);
+
+        onlyState.setText(form.parseGarbage(form.getOnlyState()));
+        onlyState.setStyle(form.parseStyle(form.getOnlyState()));
+
+        bottleCapacity.setText(form.parseGarbage(form.getBottleCapacity()));
+        bottleCapacity.setStyle(form.parseStyle(form.getBottleCapacity()));
+        System.out.println(form.parseStyle(form.getBottleCapacity()));
+
+        resubmission.setDisable(true);
+
+        if(form.getResubmission())
+            ttbID.setText(String.valueOf(form.getTtbID()));
+        if(form.getLabel().getLabelImage() != null)
+            imagePreview.setImage(form.getLabel().getLabelImage());
 
     }
     @FXML
@@ -58,14 +107,17 @@ public class aApplicationFormPg3 {
 
     @FXML
     public void back() throws IOException {
+        comments.setComment14(Q14Comment.getText());
+        comments.setComment15(Q15Comment.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg2.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form,comments));
     }
     @FXML
     public void nextPage() throws IOException {
-
+        comments.setComment14(Q14Comment.getText());
+        comments.setComment15(Q15Comment.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg4.fxml"));
-        sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM, form));
+        sceneM.changeScene(loader, new aApplicationFormPg4(sceneM, cacheM, form,comments));
     }
     @FXML
     public void goToHomePage() throws IOException {
@@ -75,12 +127,21 @@ public class aApplicationFormPg3 {
     @FXML
     public void acceptForm() throws IOException {
         cacheM.approveForm(cacheM.getDbM().getConnection());
+        Agent A = (Agent) cacheM.getAcct();
+        A.approveOrDeny(form);
     }
 
 
     @FXML
-    public void denyForm() throws IOException {
+    public void denyForm() throws Exception {
+        comments.setComment14(Q14Comment.getText());
+        comments.setComment15(Q15Comment.getText());
+        cacheM.getForm().setComments(comments);
+        System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
+        Agent A = (Agent) cacheM.getAcct();
+        A.approveOrDeny(form);
+        goToHomePage();
     }
 
     @FXML
@@ -90,8 +151,10 @@ public class aApplicationFormPg3 {
 
 
     @FXML public void passForm() throws IOException{
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), Integer.parseInt(receiver.getText()));
-        back();
+        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
+        Agent A = (Agent) cacheM.getAcct();
+        A.pass(form);
+        goToHomePage();
     }
 
     @FXML

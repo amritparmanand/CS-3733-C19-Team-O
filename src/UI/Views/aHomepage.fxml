@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.aHomepage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.aHomepage">
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -34,15 +34,21 @@
                                 <Insets left="5.0" />
                             </HBox.margin>
                         </Text>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="873.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="873.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout" />
+                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></JFXButton>
                      </children>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
                   </HBox>
                     </children></HBox>
                 <HBox alignment="CENTER" prefHeight="756.0" prefWidth="1280.0" spacing="150.0">
                     <children>
-                            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" styleClass="card" stylesheets="@../style/ui-mockup-stylesheet.css">
+                            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#viewReviewed" prefHeight="450.0" prefWidth="300.0" styleClass="card" stylesheets="@../style/ui-mockup-stylesheet.css">
                                 <children>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
@@ -77,7 +83,27 @@
                                 </HBox.margin>
                             </VBox>
                     </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                 </HBox>
+            </children>
+        </VBox>
+        <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">
+            <children>
+                <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <HBox alignment="BOTTOM_LEFT" styleClass="alcyLabel">
+                            <children>
+                                <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </VBox>
+                <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
             </children>
         </VBox>
     </children>

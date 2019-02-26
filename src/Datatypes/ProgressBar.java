@@ -1,5 +1,16 @@
 package Datatypes;
 
+import Managers.CacheManager;
+import Managers.SceneManager;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.image.ImageView;
+
 /**
  * @author Robert Rinearson & Percy Jiang
  * @version It 1
@@ -7,6 +18,9 @@ package Datatypes;
  */
 
 public class ProgressBar {
+    private SceneManager sceneM;
+    private CacheManager cacheM;
+    private Form form;
 
     private float alpha;
     private float hue;
@@ -18,28 +32,154 @@ public class ProgressBar {
     private int questions3;
     private int questiosn4;
 
+    @FXML
+    private JFXTextField repID;
+    @FXML private JFXTextField brewerNO;
+    @FXML private RadioButton domestic;
+    @FXML private RadioButton imported;
+    @FXML private JFXTextField serialNumber;
+    @FXML private RadioButton wine;
+    @FXML private RadioButton distilled;
+    @FXML private RadioButton malt;
+    @FXML private JFXTextField brandName;
+    @FXML private JFXTextField fancifulName;
+    @FXML private JFXTextField alcoholPercentage;
+    @FXML private JFXTextField phLevel;
+    @FXML private JFXTextField vintageYear;
+    @FXML private RadioButton wine2;
+    @FXML private RadioButton spirits2;
+    @FXML private RadioButton beer2;
+    @FXML private JFXTextField printName;
+    @FXML private JFXTextField mailAddress;
+    @FXML private JFXTextField formula;
+    @FXML private JFXTextField grapes;
+    @FXML private JFXTextField appellation;
+    @FXML private JFXTextField phoneNumber;
+    @FXML private JFXTextField email;
+    @FXML private JFXTextField onlyState;
+    @FXML private JFXTextField ttbID;
+    @FXML private JFXTextField bottleCapacity;
+    @FXML private JFXCheckBox certificateOfApproval;
+    @FXML private JFXCheckBox certificateOfExemption;
+    @FXML private JFXCheckBox DistinctiveLiquor;
+    @FXML private JFXCheckBox resubmission;
+    @FXML private ImageView imagePreview;
+    @FXML private JFXDatePicker dateOfApplication;
+    @FXML private JFXTextField applicantSig;
+    @FXML private JFXTextField applicantNamePrint;
+    @FXML private LabelImage image = new LabelImage();
+    @FXML private Button button;
+    @FXML private JFXToggleButton switchButton;
+
+
+
+
     //rob
     //super lazy
 
-    public float updateProgressBar1(int questionsAnswered1){
-        float percentComplete = questionsAnswered1/questions1;
-        return percentComplete;
+
+    public ProgressBar(SceneManager sceneM, CacheManager cacheM, Form form) {
+        this.sceneM = sceneM;
+        this.cacheM = cacheM;
+        this.form = form;
     }
 
-    public float updateProgressBar2(int questionsAnswered2){
-        float percentComplete = questionsAnswered2/questions1;
-        return percentComplete;
+    public float updateProgressBar(){
+        System.out.println("progressbar");
+
+        float progressPercentage = 0;
+
+        if(form.getBrewerNumber()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getProductSource()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getSerialNumber()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getProductType()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getBrandName()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getFancifulName()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getApplicantName()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getMailingAddress()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getFormula()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getGrapeVarietal()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getAppellation()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getPhoneNumber()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getEmailAddress()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getDateOfApplication()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getPrintName()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getBeerWineSpirit()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getAlcoholPercent()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getVintageYear()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getpHLevel()!=""){
+            progressPercentage+=1;
+        }
+
+        if(form.getCertificateOfApproval() || form.getCertificateOfExemption()
+        || form.getDistinctiveLiquor() || form.getResubmission() ){
+            progressPercentage+=1;
+        }
+
+        if(form.getLabel()!=null){
+            progressPercentage+=1;
+        }
+
+        progressPercentage= progressPercentage/19;
+
+        return progressPercentage;
+
     }
 
-    public float updateProgressBar3(int questionsAnswered3){
-        float percentComplete = questionsAnswered3/questions1;
-        return percentComplete;
-    }
-
-    public float updateProgressBar4(int questionsAnswered4){
-        float percentComplete = questionsAnswered4/questions1;
-        return percentComplete;
-    }
 
     //we will make it change color later
 //    void _onChanged(double value) {

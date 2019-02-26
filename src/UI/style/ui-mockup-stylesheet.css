@@ -21,10 +21,16 @@
   font-family: "Roboto Bold";
   src: url("../font/roboto/Roboto-Bold.ttf");
 }
+.root{
+  -fx-font-size: 14;
+  -fx-text-fill: #17263d;
+}
 
 *{
   -fx-font-family: "Roboto", "Arial";
   -fx-text-fill: #17263d;
+  -fx-font-size: 14;
+
 }
 
 .toolbar{
@@ -299,3 +305,114 @@
 .menu-item:hover .label{
   -fx-text-fill: white;
 }
+
+/*scrollbar*/
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+  -fx-background-color :transparent;
+  -fx-border-color :transparent;
+  -fx-background-radius : 0.0em;
+  -fx-border-radius :2.0em;
+}
+
+
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+  -fx-background-color :transparent;
+  -fx-background-radius : 0.0em;
+  -fx-padding :0.0 0.0 10.0 0.0;
+
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+  -fx-background-color :transparent;
+  -fx-background-radius : 0.0em;
+  -fx-padding :0.0 10.0 0.0 0.0;
+
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow{
+  -fx-shape : " ";
+  -fx-padding :0.15em 0.0;
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow{
+  -fx-shape : " ";
+  -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+  -fx-background-color : #4A77DD;
+  -fx-background-insets : 2.0, 0.0, 0.0;
+  /*-fx-background-radius : 2.0em;*/
+
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+  -fx-background-color :rgb(23, 58, 141);
+  -fx-background-insets : 2.0, 0.0, 0.0;
+}
+
+.jfx-toggle-button{
+  -jfx-toggle-color: #4A77DD;
+  -jfx-toggle-line-color:rgb(23, 58, 141);
+  -jfx-disable-visual-focus: false;
+}
+
+.jfx-date-picker{
+  -jfx-default-color:#4A77DD;
+
+}
+
+.goButtonStyle{
+  -fx-background-color: white;
+  -fx-text-fill: #4A77DD;
+  -fx-font-weight: 800;
+  /*-fx-background-radius: 0 3 3 0;
+  -fx-border-radius: 0 3 3 0;*/
+  -fx-border-style: solid solid solid hidden;
+  -fx-border-color: #4A77DD;
+}
+
+.goButtonStyle:hover{
+  -fx-background-color: #4A77DD;
+  -fx-text-fill: white;
+
+}
+
+.goTextfield{
+  -fx-background-color: white;
+  -jfx-unfocus-color: #17263d;
+  -jfx-disable-animation: false;
+  -jfx-focus-color: none;
+  -jfx-label-float: true;
+  /*-fx-backround-radius:3 0 0 3;
+  -fx-border-radius: 3 0 0 3;*/
+  -fx-border-style: solid hidden solid solid;
+  -fx-border-color: #4A77DD;
+}
+
+.iconCard{
+  -fx-background-color: #4A77DD;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+  -fx-background-radius: 3;
+}
+
+.alcyLabel{
+  -fx-background-color: white;
+  -fx-background-radius: 3;
+  -fx-border-color:#4A77DD;
+  -fx-border-radius: 3;
+  -fx-text-fill:#4A77DD;
+  -fx-fill:#4A77DD;
+  -fx-font-size: 16;
+}
+
+
+

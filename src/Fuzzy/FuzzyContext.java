@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 public class FuzzyContext {
 
-    private IFuzzy f;
+    private IFuzzy f = new hiddenScore();
 
     public FuzzyContext(){}
 
