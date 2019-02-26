@@ -290,10 +290,11 @@ public class Form {
 
     @SuppressWarnings("Duplicates")
     public void approve(Connection conn) throws IOException {
-        ProcessBuilder pb = new ProcessBuilder("python","src\\Vector\\vectorDanceApproval.py");
+        ProcessBuilder pb = new ProcessBuilder("src/Vector/python.exe","src/Vector/vectorDanceApproval.py");
         Process p = pb.start();
         System.out.println("in Form Approve");
-        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, DATEREJECTED = null, STATUS = 'APPROVED' , DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
+        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, DATEREJECTED = null, STATUS = 'APPROVED' , " +
+                "DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
                 + this.formID;
 
         System.out.println(SQL);
@@ -334,8 +335,7 @@ public class Form {
                 ", ALCOHOLPERCENT = '" + this.parseGarbage(this.getAlcoholPercent()) + "'" +
                 ", VINTAGEYEAR = '" + this.parseGarbage(this.getVintageYear()) + "'" +
 
-                " WHERE FORMID ="
-                + this.formID;
+                " WHERE FORMID =" + this.formID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQLClearGarbage);
 
