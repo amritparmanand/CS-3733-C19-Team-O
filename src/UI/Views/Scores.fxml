@@ -161,14 +161,14 @@
                                     <Image url="@../Icons/SoftEngAchieveBW/9.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="535.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Icons/SoftEngAchieveColor/16.png" />
-                                 </image>
-                              </ImageView>
                               <ImageView fx:id="threePointer" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icons/SoftEngAchieveBW/4.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="strikeThree" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icons/SoftEngAchieveBW/6.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="inquisitive" fitHeight="150.0" fitWidth="200.0" layoutX="760.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
@@ -186,9 +186,9 @@
                                     <Image url="@../Icons/SoftEngAchieveBW/18.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="strikeThree" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="535.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/6.png" />
+                                    <Image url="@../Icons/SoftEngAchieveColor/16.png" />
                                  </image>
                               </ImageView>
                            </children>
