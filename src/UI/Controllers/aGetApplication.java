@@ -148,8 +148,8 @@ public class aGetApplication {
 
     @FXML
     public void aApplicationFormControl(Form form) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormViewPg1.fxml"));
+        sceneM.changeScene(loader, new aApplicationFormViewPg1(sceneM, cacheM, form));
     }
 
     @FXML

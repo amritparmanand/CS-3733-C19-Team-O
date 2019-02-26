@@ -36,11 +36,6 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
-                  <JFXButton fx:id="back" onMousePressed="#back" styleClass="buttonStyle" text="Back">
-                     <HBox.margin>
-                        <Insets left="1300.0" />
-                     </HBox.margin>
-                  </JFXButton>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1280.0">
@@ -77,6 +72,7 @@
                                     <Label fx:id="passed" />
                                  </children>
                               </HBox>
+                              <JFXButton fx:id="back" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
