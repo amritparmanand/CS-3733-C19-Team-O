@@ -41,6 +41,8 @@ public class aFormStorage {
     private ArrayList<Form> repeated = new ArrayList<>();
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
+
+        achievement.setText("");
         Agent A = (Agent) cacheM.getAcct();
        // score.setText(Integer.toString(A.getScore()));
         if(!A.isGotCurrentForms()){
