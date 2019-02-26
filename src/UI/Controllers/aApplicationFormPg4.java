@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
@@ -63,6 +65,36 @@ public class aApplicationFormPg4 {
         Q19Comment.setText(comments.getComment19());
 
         Form form = this.form;
+
+        printName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpCompanyName();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+
+
+        dateOfApplication.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpDate();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         if(!form.getDateOfApplication().isEmpty()){
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));

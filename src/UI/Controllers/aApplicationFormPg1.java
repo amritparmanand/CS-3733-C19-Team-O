@@ -71,6 +71,15 @@ public class aApplicationFormPg1 {
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayAForm();
 
+        Q1Comment.setText(comments.getComment1());
+        Q2Comment.setText(comments.getComment2());
+        Q3Comment.setText(comments.getComment3());
+        Q4Comment.setText(comments.getComment4());
+        Q5Comment.setText(comments.getComment5());
+        Q6Comment.setText(comments.getComment6());
+        Q7Comment.setText(comments.getComment7());
+        cacheM.setForm(form);
+
         repID.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
@@ -140,15 +149,6 @@ public class aApplicationFormPg1 {
                 }
             }
         });
-
-        Q1Comment.setText(comments.getComment1());
-        Q2Comment.setText(comments.getComment2());
-        Q3Comment.setText(comments.getComment3());
-        Q4Comment.setText(comments.getComment4());
-        Q5Comment.setText(comments.getComment5());
-        Q6Comment.setText(comments.getComment6());
-        Q7Comment.setText(comments.getComment7());
-        cacheM.setForm(form);
 
         System.out.println(form.getProductSource());
         switch(form.parseGarbage(form.getProductSource())){

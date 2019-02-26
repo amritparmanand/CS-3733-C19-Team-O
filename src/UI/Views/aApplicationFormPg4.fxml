@@ -70,7 +70,7 @@
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                  <children>
                                     <JFXButton fx:id="previous" styleClass="buttonStyle" text="Previous Page" />
-                                    <JFXButton fx:id="next" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
+                                    <JFXButton fx:id="next" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
