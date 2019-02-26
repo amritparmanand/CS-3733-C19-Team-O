@@ -65,6 +65,7 @@ public class aApplicationFormViewPg4 {
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
         dateOfApplication.setEditable(false);
+        dateOfApplication.setDisable(true);
 
     }
 
