@@ -139,8 +139,7 @@ public class mApplicationFormPg4 {
             System.out.println(form.getResubmission());
             if(form.getResubmission()){
                 form.resubmitForm(cacheM.getDbM().getConnection());
-            }
-            else{
+            } else{
                 form.insertForm(cacheM.getDbM().getConnection());
             }
         }catch(SQLException e){
@@ -148,7 +147,7 @@ public class mApplicationFormPg4 {
         }
 
         Manufacturer M = (Manufacturer) cacheM.getAcct();
-        M.submitForm();
+        M.submitForm(cacheM.getDbM().getConnection());
 
         Form cleanForm = new Form();
         cacheM.setForm(cleanForm);

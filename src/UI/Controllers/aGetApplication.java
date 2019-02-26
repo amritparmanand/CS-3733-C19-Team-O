@@ -43,16 +43,15 @@ public class aGetApplication {
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
 
-    private String filterA = "";
-    private String filterD = "";
-    private boolean noFilter = false;
-
-    @SuppressWarnings("Duplicates")
-    @FXML public void initialize() throws Exception{
+    @SuppressWarnings("Duplicates") @FXML public void initialize() throws Exception {
         loadFormPane.getChildren().clear();
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayAHomePage();
+
+        String filterA;
+        String filterD;
+        boolean noFilter;
 
         if(approved.isSelected()){
             filterA = "APPROVED";
@@ -96,11 +95,13 @@ public class aGetApplication {
                         Node fName = ((VBox) vbox).getChildren().get(1);
                         Node bName = ((VBox) vbox).getChildren().get(2);
                         Node aType = ((VBox) vbox).getChildren().get(3);
-                        if(form.getLabel().getLabelImage() != null)
+                        if(form.getLabel().getLabelImage() != null) {
                             ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
-                        ((Label) fName).setText(form.getFancifulName());
-                        ((Label) bName).setText(form.getBrandName());
-                        switch(form.getProductType()){
+                            System.out.println("scalamouse");
+                        }
+                        ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
+                        ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
+                        switch(form.parseGarbage(form.getProductType())){
                             case "WINE":
                                 ((Label) aType).setText("Wine");
                                 break;
@@ -155,8 +156,8 @@ public class aGetApplication {
 
     @FXML
     public void aApplicationFormControl(Form form) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormViewPg1.fxml"));
+        sceneM.changeScene(loader, new aApplicationFormViewPg1(sceneM, cacheM, form));
     }
 
     @FXML

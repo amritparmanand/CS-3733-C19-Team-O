@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Agent;
 import Datatypes.Alcy;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
@@ -43,6 +44,8 @@ public class aHomepage {
 
     @FXML
     public void logout() throws IOException {
+        Agent A = (Agent) cacheM.getAcct();
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
@@ -60,4 +63,9 @@ public class aHomepage {
         sceneM.changeScene(loader, new aGetApplication(sceneM, cacheM));
     }
 
+    @FXML
+    public void scores() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/Scores.fxml"));
+        sceneM.changeScene(loader, new Scores(sceneM, cacheM));
+    }
 }

@@ -180,15 +180,15 @@ public class Alcy {
     @FXML public void sayWierdBeerPercentage(){
         String percentage = cacheM.getForm().getAlcoholPercent();
         String type = cacheM.getForm().getProductType();
-        if(Integer.parseInt(percentage)>12.5 && type == "MALT"){
+        if(Float.parseFloat(percentage)>12.5 && type == "MALT"){
             alcyLabel.setText("Wow, thats a high percentage... Are you sure this is the correct value?");
             confused();
         }
-        if(Integer.parseInt(percentage)<12.5 && type == "DISTILLED") {
+        if(Float.parseFloat(percentage)<12.5 && type == "DISTILLED") {
             alcyLabel.setText("Wow, you're gonna have to drink a lot of this to get drunk! Are you sure this is the correct value?");
             sassy();
         }
-        if(Integer.parseInt(percentage)>16 && type == "WINE"){
+        if(Float.parseFloat(percentage)>16 && type == "WINE"){
             alcyLabel.setText("Wow, thats a high percentage... Are you sure this is a wine?");
             confused();
         }
@@ -230,7 +230,7 @@ public class Alcy {
     @FXML public void saypHLevel(){
 
         if(Double.parseDouble(cacheM.getForm().getpHLevel())<3) {
-            alcyLabel.setText("What are you drinking acid over here?");
+            alcyLabel.setText("What are you drinking over here, acid?");
             confused();
         }
         if(Double.parseDouble(cacheM.getForm().getpHLevel())>7) {
@@ -483,7 +483,7 @@ public class Alcy {
     }
 
     @FXML public void sayMHelpAlcoholPercentage(){
-        alcyLabel.setText("So what is this thing closer to water or jet fuel?");
+        alcyLabel.setText("So what is this thing closer to, water or jet fuel?");
         confused();
     }
 

@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
@@ -63,6 +65,36 @@ public class aApplicationFormPg4 {
         Q19Comment.setText(comments.getComment19());
 
         Form form = this.form;
+
+        printName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpCompanyName();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+
+
+        dateOfApplication.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpDate();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         if(!form.getDateOfApplication().isEmpty()){
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
@@ -95,6 +127,7 @@ public class aApplicationFormPg4 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form,comments));
     }
+
     @FXML
     public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
@@ -114,6 +147,7 @@ public class aApplicationFormPg4 {
         } else {
             System.out.println("invalid signature or date");
         }
+
         goToHomePage();
     }
 
@@ -132,26 +166,25 @@ public class aApplicationFormPg4 {
             cacheM.denyForm(cacheM.getDbM().getConnection());
             Agent A = (Agent) cacheM.getAcct();
             A.approveOrDeny(form);
+
             goToHomePage();
         } else {
             System.out.println("invalid signature or date");
         }
     }
 
-    @FXML
-    public void saveDraft() throws IOException{
-    }
-
-
     @FXML public void passForm() throws IOException{
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
-        Agent A = (Agent) cacheM.getAcct();
-        A.pass(form);
-        goToHomePage();
+        if (cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText())) {
+            Agent A = (Agent) cacheM.getAcct();
+            A.pass(form);
+            goToHomePage();
+        }
     }
 
     @FXML
     public void logout() throws IOException {
+        Agent A = (Agent) cacheM.getAcct();
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 

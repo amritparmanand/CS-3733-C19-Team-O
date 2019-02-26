@@ -60,7 +60,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                  <children>
-                                    <JFXButton fx:id="previous" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton fx:id="previous" onMouseClicked="#back" styleClass="buttonStyle" text="Previous Page" />
                                     <JFXButton fx:id="next" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
@@ -91,15 +91,6 @@
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </JFXButton>
-                                    <JFXButton fx:id="saveDraft" prefHeight="52.0" prefWidth="75.0" text="Save Draft" textAlignment="CENTER" wrapText="true">
-                                       <HBox.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </HBox.margin>
-                                       <styleClass>
-                                          <String fx:value="changeColorButton" />
-                                          <String fx:value="labeltext" />
-                                       </styleClass>
-                                    </JFXButton>
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
@@ -126,7 +117,7 @@
                   </VBox>
                         <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="800.0">
                             <content>
-                                <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="800.0" styleClass="backPane">
+                                <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="863.0" prefWidth="800.0" styleClass="backPane">
                                     <children>
                                         <Label text="TTB Label Form">
                                             <padding>
@@ -217,7 +208,7 @@
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                             </padding>
                                         </VBox>
-                                        <VBox alignment="CENTER" prefHeight="358.0" prefWidth="620.0" spacing="10.0">
+                                        <VBox alignment="CENTER" maxHeight="611.0" prefHeight="423.0" prefWidth="800.0" spacing="10.0" VBox.vgrow="ALWAYS">
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="15. Show Any Information That is Blown, Branded, or Embossed on the Container (e.g., net contents) Only if it Does Not Appear on the Labels Affixed Below. Also, Show Translations of Foreign Language Text Appearing on Labels." wrappingWidth="580.0" />
                                                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0">
@@ -232,6 +223,53 @@
                                                         <String fx:value="innerShadow" />
                                                     </styleClass>
                                                 </Pane>
+                                    <JFXButton onMousePressed="#OCR" styleClass="buttonStyle" text="Check Label">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </JFXButton>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label fx:id="appellationMatchLabel" style="-fx-font-size: 15;" text="Appellation:">
+                                                   <VBox.margin>
+                                                      <Insets right="55.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label fx:id="alcPercLabel" style="-fx-font-size: 15;" text="Alcohol Percentage:">
+                                                   <VBox.margin>
+                                                      <Insets right="2.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label fx:id="volMatchLabel" style="-fx-font-size: 15;" text="Bottle Capacity:">
+                                                   <VBox.margin>
+                                                      <Insets right="30.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label fx:id="appellationMatch" style="-fx-font-size: 25;">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label fx:id="alcPerc" style="-fx-font-size: 25;">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label fx:id="volMatch" style="-fx-font-size: 25;">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
                                             </children>
                                             <VBox.margin>
                                                 <Insets />
@@ -267,6 +305,9 @@
                                     </panes>
                                 </Accordion>
                             </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                         </VBox>
                     </children>
                 </HBox>

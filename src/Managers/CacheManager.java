@@ -1,6 +1,7 @@
 package Managers;
 
 import Datatypes.Account;
+import Datatypes.Agent;
 import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.SearchResult;
@@ -8,6 +9,7 @@ import Fuzzy.FuzzyContext;
 import javafx.scene.image.ImageView;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -91,15 +93,19 @@ public class CacheManager {
 
     // Facade stuff
     // Form
-    public void approveForm(Connection conn){
+    public void approveForm(Connection conn) throws IOException {
         System.out.println("cManager approve Form");
         System.out.println(form.getFormID());
         System.out.println(form.getSignature());
         System.out.println(form.getDateIssued());
+        ((Agent) this.getAcct()).setScore(((Agent) this.getAcct()).getScore() + 5);
+        ((Agent) this.getAcct()).setNumberProcessed(( ((Agent) this.getAcct()).getNumberProcessed() + 1));
         form.approve(conn);
 
     }
     public void denyForm(Connection conn) throws Exception{
+        ((Agent) this.getAcct()).setScore(((Agent) this.getAcct()).getScore() + 5);
+        ((Agent) this.getAcct()).setNumberProcessed(( ((Agent) this.getAcct()).getNumberProcessed() + 1));
         form.deny(conn);
     }
     public void insertForm(Connection connection) throws Exception {
@@ -108,8 +114,8 @@ public class CacheManager {
     public ResultSet getApprovedApplications(Connection conn, String condition, String type) throws SQLException{
         return form.getApprovedApplications(conn, condition, type);
     }
-    public void passForm(Connection connection, long formID,  String ttbUsername) {
-        form.passForm(connection, formID, ttbUsername);
+    public boolean passForm(Connection connection, long formID,  String ttbUsername) {
+        return form.passForm(connection, formID, ttbUsername);
     }
 
 }

@@ -42,11 +42,6 @@ public class mFormStorage {
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
 
-    private String filterA = "";
-    private String filterP = "";
-    private String filterD = "";
-    private boolean noFilter = false;
-
     public mFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -56,31 +51,32 @@ public class mFormStorage {
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         loadForms.getChildren().clear();
 
+        String filterA;
+        String filterP;
+        String filterD;
+        boolean noFilter;
+
         if(approved.isSelected()){
             filterA = "APPROVED";
-        }
-        else{
+        } else{
             filterA = "no";
         }
 
         if(pending.isSelected()){
             filterP = "PENDING";
-        }
-        else{
+        } else{
             filterP = "no";
         }
 
         if(denied.isSelected()){
             filterD = "DENIED";
-        }
-        else{
+        } else{
             filterD = "no";
         }
 
         if(!approved.isSelected() && !pending.isSelected() && !denied.isSelected()){
             noFilter = true;
-        }
-        else{
+        } else{
             noFilter = false;
         }
 
@@ -114,7 +110,7 @@ public class mFormStorage {
                             ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
                         ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
                         ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                        switch(form.getProductType()){
+                        switch(form.parseGarbage(form.getProductType())){
                             case "WINE":
                                 ((Label) aType).setText("Wine");
                                 break;

@@ -47,7 +47,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextField serialNO;
     @FXML private JFXTextField brand;
     @FXML private JFXTextField fanciful;
-//    @FXML private JFXRadioButton wine2;
+    @FXML private JFXRadioButton wine2;
     @FXML private JFXRadioButton spirits2;
     @FXML private JFXRadioButton beer2;
     @FXML private JFXTextField alcoholPercentage;
@@ -70,6 +70,15 @@ public class aApplicationFormPg1 {
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayAForm();
+
+        Q1Comment.setText(comments.getComment1());
+        Q2Comment.setText(comments.getComment2());
+        Q3Comment.setText(comments.getComment3());
+        Q4Comment.setText(comments.getComment4());
+        Q5Comment.setText(comments.getComment5());
+        Q6Comment.setText(comments.getComment6());
+        Q7Comment.setText(comments.getComment7());
+        cacheM.setForm(form);
 
         repID.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -140,15 +149,6 @@ public class aApplicationFormPg1 {
                 }
             }
         });
-
-        Q1Comment.setText(comments.getComment1());
-        Q2Comment.setText(comments.getComment2());
-        Q3Comment.setText(comments.getComment3());
-        Q4Comment.setText(comments.getComment4());
-        Q5Comment.setText(comments.getComment5());
-        Q6Comment.setText(comments.getComment6());
-        Q7Comment.setText(comments.getComment7());
-        cacheM.setForm(form);
 
         System.out.println(form.getProductSource());
         switch(form.parseGarbage(form.getProductSource())){
@@ -311,14 +311,17 @@ public class aApplicationFormPg1 {
     }
 
     @FXML public void passForm() throws IOException{
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
-        Agent A = (Agent) cacheM.getAcct();
-        A.pass(form);
-        goToHomePage();
+        if(cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText())){
+            Agent A = (Agent) cacheM.getAcct();
+            A.pass(form);
+            goToHomePage();
+        }
     }
 
     @FXML
     public void logout() throws IOException {
+        Agent A = (Agent) cacheM.getAcct();
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 

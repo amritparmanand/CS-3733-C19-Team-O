@@ -63,7 +63,7 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
                      <HBox.margin>
@@ -74,7 +74,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                  <children>
-                                    <JFXButton fx:id="previous" disable="true" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton fx:id="previous" disable="true" onMouseClicked="#back" styleClass="buttonStyle" text="Previous Page" />
                                     <JFXButton fx:id="next1" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>

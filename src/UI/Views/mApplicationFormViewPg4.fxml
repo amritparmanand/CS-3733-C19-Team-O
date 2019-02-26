@@ -56,21 +56,24 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="69.0" prefWidth="320.0" spacing="30.0">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                  <children>
-                                    <JFXButton fx:id="previous1" onMousePressed="#previousPage" styleClass="buttonStyle" text="Previous Page" />
-                                    <JFXButton fx:id="next1" disable="true" styleClass="buttonStyle" text="Next Page" />
+                                    <JFXButton fx:id="previous" onMouseClicked="#back" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton fx:id="next1" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
-                              <Label fx:id="errorLabel" style="-fx-text-fill: red;" />
+                              <Label fx:id="saveDraftMessage" />
                               <JFXButton fx:id="pdfButton" onAction="#savePDF" styleClass="changeColorButton" text="Display PDF" />
-                              <Button fx:id="back1" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
+                              <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
                                  <VBox.margin>
                                     <Insets top="20.0" />
                                  </VBox.margin>
@@ -78,9 +81,6 @@
                            </children>
                         </VBox>
                      </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
                   </VBox>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
                      <content>

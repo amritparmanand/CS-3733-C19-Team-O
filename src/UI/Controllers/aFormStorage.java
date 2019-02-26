@@ -30,24 +30,26 @@ public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
 
     @FXML private FlowPane loadForms;
+
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
     private ArrayList<Form> repeated = new ArrayList<>();
+    private Agent A;
 
-    @SuppressWarnings("Duplicates") @FXML public void initialize() throws Exception{
-        Agent A = (Agent) cacheM.getAcct();
+    @SuppressWarnings("Duplicates") @FXML public void initialize() throws Exception {
+        A = (Agent) cacheM.getAcct();
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+
         if(!A.isGotCurrentForms()){
-            ((Agent) cacheM.getAcct()).getAssignedForms(cacheM.getDbM().getConnection());
+            A.getAssignedForms(cacheM.getDbM().getConnection());
         }
-        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getWorkingForms();
+        ArrayList<Form> populatedForms = A.getWorkingForms();
 
         for (Form form : populatedForms) {
             Pane formResult;
@@ -64,7 +66,7 @@ public class aFormStorage {
                         ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
                     ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
                     ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                    switch(form.getProductType()){
+                    switch(form.parseGarbage(form.getProductType())){
                         case "WINE":
                             ((Label) aType).setText("Wine");
                             break;
@@ -112,71 +114,75 @@ public class aFormStorage {
 
     @SuppressWarnings("Duplicates")
     @FXML
-    public void assignNewForms() throws IOException, Exception{
+    public void assignNewForms() throws IOException, Exception {
 
         int limit = cacheM.getFormLimit();
 
-        Agent A = (Agent) cacheM.getAcct();
-        if(!A.isHasFetchedForms()){
-            ((Agent) cacheM.getAcct()).assignNewForms(cacheM.getDbM().getConnection(), limit);
+        if (!A.isHasFetchedForms()) {
+            A.assignNewForms(cacheM.getDbM().getConnection(), limit);
         }
 
-        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getNewForms();
+        ArrayList<Form> populatedForms = A.getNewForms();
 
         for (Form form : populatedForms) {
 
-            if(!repeated.contains(form)){
+            if (!repeated.contains(form)) {
                 System.out.println("adding repeated failed");
                 Pane formResult;
                 try {
                     formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                     Node vbox = formResult.getChildren().get(0);
                     if (vbox instanceof VBox) {
+                        Node imgView = ((VBox) vbox).getChildren().get(0);
                         Node fName = ((VBox) vbox).getChildren().get(1);
                         Node bName = ((VBox) vbox).getChildren().get(2);
                         Node aType = ((VBox) vbox).getChildren().get(3);
 
-                        ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
-                        ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                        switch(form.getProductType()){
-                            case "WINE":
-                                ((Label) aType).setText("Wine");
-                                break;
-                            case "DISTILLED":
-                                ((Label) aType).setText("Distilled Beverage");
-                                break;
-                            case "MALT":
-                                ((Label) aType).setText("Malt Beverage");
-                                break;
-                        }
+                        if (form.getLabel().getLabelImage() != null) {
+                            ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
+                            ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
+                            ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
+                            switch (form.parseGarbage(form.getProductType())) {
+                                case "WINE":
+                                    ((Label) aType).setText("Wine");
+                                    break;
+                                case "DISTILLED":
+                                    ((Label) aType).setText("Distilled Beverage");
+                                    break;
+                                case "MALT":
+                                    ((Label) aType).setText("Malt Beverage");
+                                    break;
+                            }
 
+
+                        }
+                        loadForms.getChildren().add(formResult);
+                        formResult.setId("Alcoholbox");
+
+                        formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                try {
+                                    aApplicationFormControl(form);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
 
                     }
-                    loadForms.getChildren().add(formResult);
-                    formResult.setId("Alcoholbox");
 
-                    formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            try {
-                                aApplicationFormControl(form);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
+                    repeated.add(form);
+                    A.getWorkingForms().add(form);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                repeated.add(form);
             }
         }
     }
 
-    @FXML
-    public void logout() throws IOException {
+    @FXML public void logout() throws IOException {
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }

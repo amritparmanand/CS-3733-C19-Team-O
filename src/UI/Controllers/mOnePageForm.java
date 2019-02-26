@@ -27,6 +27,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.pdfbox.rendering.PDFRenderer;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -338,7 +339,7 @@ public class mOnePageForm {
         Alcy alcy = cacheM.getAlcy();
         alcy.setImageView(alcyView);
         alcy.start();
-
+        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect(cacheM.getDbM().getConnection()));
 
         switch(form.getProductSource()){
             case "DOMESTIC":
@@ -427,6 +428,7 @@ public class mOnePageForm {
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
     }
+
     @FXML
     public void onePage() throws IOException {
         saveDraft();
@@ -652,14 +654,6 @@ public class mOnePageForm {
             form.setAppellation("");
         }
 
-
-        //I think this call is extraneous
-//        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
-//            System.out.println("Unable to save. Invalid fields entered");
-//            saveDraftMessage.setTextFill(Color.RED);
-//            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
-//        }
-        //       else {
         if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(cacheM.getStyle())) {
             form.setPhoneNumber(phoneNumberString);
         }
@@ -763,10 +757,18 @@ public class mOnePageForm {
             System.out.println("save Draft executed");
 
             try{
-                cacheM.insertForm(cacheM.getDbM().getConnection());
+                System.out.println(form.getResubmission());
+                if(form.getResubmission()){
+                    form.resubmitForm(cacheM.getDbM().getConnection());
+                } else{
+                    form.insertForm(cacheM.getDbM().getConnection());
+                }
             }catch(SQLException e){
                 e.printStackTrace();
             }
+
+            Manufacturer M = (Manufacturer) cacheM.getAcct();
+            M.submitForm(cacheM.getDbM().getConnection());
 
             Form cleanForm = new Form();
             cacheM.setForm(cleanForm);
