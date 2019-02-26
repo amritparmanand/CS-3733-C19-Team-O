@@ -36,10 +36,10 @@ public class aApplicationFormPg3 {
     private CacheManager cacheM;
     private Form form;
     private Comments comments;
-    boolean parsedImage = false;
-    String matchStyle = "-fx-text-fill: #32CD32;";
-    String mismatchStyle = "-fx-text-fill: #FF8C00;";
-    String fontSize = "-fx-font-size: 15;";
+    private String matchStyle = "-fx-text-fill: #32CD32;";
+    private String mismatchStyle = "-fx-text-fill: #FF8C00;";
+    private String fontSize = "-fx-font-size: 15;";
+
     public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -217,35 +217,16 @@ public class aApplicationFormPg3 {
                             volMatch.setStyle(mismatchStyle);
                             System.out.println("bottle capacity NO MATCH");
                         }
-                    } else if (result.contains("mL")) {
-                        System.out.println("bottle capacity DETECTED");
-                        int position_mL = result.indexOf("mL");
-
-                        // Initialize capacity
-                        String capacity;
-                        if (result.substring(position_mL - 1, position_mL).equals(" ")) {
-                            capacity = result.substring(position_mL - 4, position_mL - 1);
-                        } else {
-                            capacity = result.substring(position_mL - 3, position_mL);
-                        }
-
-                        System.out.println(capacity);
-                        System.out.println(form.parseGarbage(form.getBottleCapacity()));
-                        if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
-                            System.out.println("bottle capacity MATCHED");
-                            volMatch.setText("✔");
-                            volMatch.setStyle(matchStyle);
-                        } else {
-                            System.out.println("bottle capacity NO MATCH");
-                            volMatch.setText("X");
-                            volMatch.setStyle(mismatchStyle);
-                        }
                     } else {
                         volMatch.setStyle(fontSize);
                         System.out.println("bottle capacity NOT DETECTED");
-                        volMatch.setText("Alcohol Volume Not Found");
+                        volMatch.setText("Not Found");
                     }
                     System.out.println("\n");
+                }else{
+                    volMatch.setStyle(fontSize);
+                    System.out.println("bottle capacity NOT ENTERED");
+                    volMatch.setText("Not Entered");
                 }
 
                 // Check for Alcohol Percentage
@@ -277,9 +258,13 @@ public class aApplicationFormPg3 {
                     } else {
                         System.out.println("alcohol percentage NOT DETECTED");
                         alcPerc.setStyle(fontSize);
-                        alcPerc.setText("Alcohol Percentage Not Found");
+                        alcPerc.setText("Not Found");
                     }
                     System.out.println("\n");
+                }else{
+                    System.out.println("alcohol percentage NOT ENTERED");
+                    alcPerc.setStyle(fontSize);
+                    alcPerc.setText("Not Entered");
                 }
 
                 // Check for Appellation
@@ -303,28 +288,46 @@ public class aApplicationFormPg3 {
                             appellationMatch.setText("X");
                             appellationMatch.setStyle(mismatchStyle);
                         }
+                    }else if (result.contains("Valley")) {
+                        System.out.println("appellation DETECTED");
+                        int position = result.indexOf("Valley");
+
+                        String appellation = result.substring(position - aLength - 1, position - 1);
+                        System.out.println(appellation);
+                        System.out.println(form.parseGarbage(form.getAppellation()));
+
+                        if (form.parseGarbage(form.getAppellation()).equals(appellation)) {
+                            System.out.println("appellation MATCHED");
+                            appellationMatch.setText("✔");
+                            appellationMatch.setStyle(matchStyle);
+                        } else {
+                            System.out.println("appellation NO MATCH");
+                            appellationMatch.setText("X");
+                            appellationMatch.setStyle(mismatchStyle);
+                        }
                     } else {
                         System.out.println("appellation NOT DETECTED");
                         appellationMatch.setStyle(fontSize);
-                        appellationMatch.setText("Appellation Not Found");
+                        appellationMatch.setText("Not Found");
                     }
                     System.out.println("\n");
-                }
-                else
-                {
+                } else {
                     appellationMatch.setStyle(fontSize);
-                    appellationMatch.setText("Appellation Not Entered");
+                    appellationMatch.setText("Not Entered");
                 }
+
+
             } catch (TesseractException e) {
                 System.err.println(e.getMessage());
                 appellationMatch.setStyle(fontSize);
                 volMatch.setText(fontSize);
                 alcPerc.setText(fontSize);
-                appellationMatch.setText("Appellation Not Found");
-                volMatch.setText("Alcohol Volume Not Found");
-                alcPerc.setText("Alcohol Percentage Not Found");
+                appellationMatch.setText("Not Found");
+                volMatch.setText("Not Found");
+                alcPerc.setText("Not Found");
 
             }
+
             alcPerc.setVisible(true);
             appellationMatch.setVisible(true);
             volMatch.setVisible(true);
@@ -333,8 +336,7 @@ public class aApplicationFormPg3 {
             volMatchLabel.setVisible(true);
         }
 
-        else
-        {
+        else {
             System.out.println("there is no image to parse");
         }
 
