@@ -75,12 +75,8 @@ public class aGetApplication {
         }
 
         Agent A = (Agent) cacheM.getAcct();
-
-        if(!A.isGotOldForms()){
-            ((Agent) cacheM.getAcct()).getReviewedForms(cacheM.getDbM().getConnection());
-        }
-
-        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getReviewedForms();
+        A.getReviewedForms(cacheM.getDbM().getConnection());
+        ArrayList<Form> populatedForms = A.getReviewedForms();
 
         for (Form form : populatedForms) {
             if (form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterA) ||
@@ -144,8 +140,6 @@ public class aGetApplication {
                 }
             }
         }
-
-        cacheM.setAcct(A);
     }
 
     @FXML

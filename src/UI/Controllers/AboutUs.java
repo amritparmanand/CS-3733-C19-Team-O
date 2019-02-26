@@ -25,6 +25,7 @@ public class AboutUs{
 
     @FXML public void initialize(){
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().sayAboutUs();
     }
 
     @FXML

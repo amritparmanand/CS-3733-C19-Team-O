@@ -767,9 +767,6 @@ public class mOnePageForm {
                 e.printStackTrace();
             }
 
-            Manufacturer M = (Manufacturer) cacheM.getAcct();
-            M.submitForm(cacheM.getDbM().getConnection());
-
             Form cleanForm = new Form();
             cacheM.setForm(cleanForm);
             goToHomePage();
