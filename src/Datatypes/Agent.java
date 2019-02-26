@@ -303,6 +303,7 @@ public class Agent extends Account{
      * @param connection
      */
     public void calculateScore(Connection connection){
+        System.out.println("in calculate score");
         int localApprove = 0;
         int localDeny = 0;
         try {
@@ -318,6 +319,7 @@ public class Agent extends Account{
             ResultSet rsDenied = psDenied.executeQuery();
 
             while (rs.next()) {
+                System.out.println("localApprove increment");
                 localApprove++;
             }
             while (rsDenied.next()){
@@ -327,14 +329,20 @@ public class Agent extends Account{
             psDenied.close();
             this.gotOldForms = true;
 
+            System.out.println(localApprove + ": Local Approve, " + numberApproved + ": Number Approved");
             // update number approved if there are newly approved forms
             if(localApprove>numberApproved){
+                System.out.println("increase num approved");
+
                 numberApproved = localApprove;
+                System.out.println(numberApproved);
                 numberProcessed = numberProcessed + (localApprove-numberApproved);
             }
 
             // update number denied if there are newly denied forms
             if(localDeny>numberDenied){
+                System.out.println("increase num denied");
+
                 numberDenied = localDeny;
                 numberProcessed = numberProcessed + (localDeny-numberDenied);
             }
@@ -344,6 +352,7 @@ public class Agent extends Account{
                 e.printStackTrace();
         }
         score = numberProcessed*5;
+        System.out.println(score);
 
         // update scores in DB
         try {
