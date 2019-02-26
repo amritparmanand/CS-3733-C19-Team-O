@@ -419,7 +419,7 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void passForm(Connection connection, long formID, String username){
+    public boolean passForm(Connection connection, long formID, String username){
         //take in a username of an Agent, query the agent table for the ID, the rest is the same
         int id = 0;
         String getID = "SELECT TTBID FROM AGENTS WHERE USERNAME = '" + username + "'";
@@ -432,15 +432,21 @@ public class Form {
                 e.printStackTrace();
         }
 
-        String s = "UPDATE APPLICATIONS SET TTBID = " + id + " WHERE FORMID = " + formID;
-        try {
-            PreparedStatement ps = connection.prepareStatement(s);
-            ps.executeUpdate();
+        if (id != 0) {
+            String s = "UPDATE APPLICATIONS SET TTBID = " + id + " WHERE FORMID = " + formID;
+            try {
+                PreparedStatement ps = connection.prepareStatement(s);
+                ps.executeUpdate();
 
-            ps.close();
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
+                ps.close();
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+            return true;
+        } else {
+            System.out.println("agent not found");
+            return false;
         }
     }
 
