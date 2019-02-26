@@ -8,6 +8,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AdvancedSearchPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.161-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AdvancedSearchPage">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -47,6 +48,24 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="842.0" prefWidth="1051.0">
                            <children>
+                              <HBox alignment="CENTER" prefHeight="42.0" prefWidth="1051.0">
+                                 <children>
+                                    <JFXRadioButton fx:id="brandName" text="Brand Name">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="nameSubspec" />
+                                       </toggleGroup></JFXRadioButton>
+                                    <JFXRadioButton fx:id="fancyName" text="Fanciful Name" toggleGroup="$nameSubspec">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton fx:id="either" text="Either" toggleGroup="$nameSubspec">
+                                       <HBox.margin>
+                                          <Insets left="30.0" />
+                                       </HBox.margin>
+                                    </JFXRadioButton>
+                                 </children>
+                              </HBox>
                               <Label alignment="CENTER" prefHeight="31.0" prefWidth="300.0" text="Date Completed" textAlignment="CENTER" />
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <VBox.margin>
@@ -54,41 +73,18 @@
                                  </VBox.margin>
                                  <children>
                                     <Label prefHeight="50.0" prefWidth="36.0" text="From" />
-                                    <JFXDatePicker>
+                                    <JFXDatePicker fx:id="fromDate">
                                        <HBox.margin>
                                           <Insets right="50.0" />
                                        </HBox.margin>
                                     </JFXDatePicker>
                                     <Label prefHeight="50.0" prefWidth="21.0" text="To" />
-                                    <JFXDatePicker />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="40.0" prefWidth="1051.0">
-                                 <children>
-                                    <JFXTextField prefHeight="28.0" prefWidth="337.0" promptText="Product Name" />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets top="30.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="42.0" prefWidth="1051.0">
-                                 <children>
-                                    <JFXRadioButton text="Brand Name" />
-                                    <JFXRadioButton text="Fanciful Name">
-                                       <HBox.margin>
-                                          <Insets left="30.0" />
-                                       </HBox.margin>
-                                    </JFXRadioButton>
-                                    <JFXRadioButton text="Either">
-                                       <HBox.margin>
-                                          <Insets left="30.0" />
-                                       </HBox.margin>
-                                    </JFXRadioButton>
+                                    <JFXDatePicker fx:id="toDate" />
                                  </children>
                               </HBox>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Origin" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </Label>
                               <ScrollPane maxWidth="450.0" prefHeight="200.0" prefWidth="724.0">
@@ -98,23 +94,23 @@
                               </ScrollPane>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Received Code" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </Label>
                               <HBox alignment="CENTER" prefHeight="36.0" prefWidth="1051.0">
                                  <children>
-                                    <JFXCheckBox text="000 - FRONT DESK (PAPER)" />
-                                    <JFXCheckBox text="001 - ELECTRONIC SUBMISSION">
+                                    <JFXCheckBox fx:id="receivedCode000" text="000 - FRONT DESK (PAPER)" />
+                                    <JFXCheckBox fx:id="receivedCode001" text="001 - ELECTRONIC SUBMISSION">
                                        <HBox.margin>
                                           <Insets left="30.0" />
                                        </HBox.margin>
                                     </JFXCheckBox>
-                                    <JFXCheckBox text="002 - MAIL (PAPER)">
+                                    <JFXCheckBox fx:id="receivedCode002" text="002 - MAIL (PAPER)">
                                        <HBox.margin>
                                           <Insets left="30.0" />
                                        </HBox.margin>
                                     </JFXCheckBox>
-                                    <JFXCheckBox text="003 - OVERNIGHT (PAPER)">
+                                    <JFXCheckBox fx:id="receivedCode003" text="003 - OVERNIGHT (PAPER)">
                                        <HBox.margin>
                                           <Insets left="30.0" />
                                        </HBox.margin>
@@ -123,18 +119,18 @@
                               </HBox>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="TTB ID:" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </Label>
                               <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1051.0">
                                  <children>
-                                    <JFXTextField />
+                                    <JFXTextField fx:id="fromTTB" />
                                     <Label prefHeight="50.0" prefWidth="20.0" text="To">
                                        <HBox.margin>
                                           <Insets left="30.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <JFXTextField>
+                                    <JFXTextField fx:id="toTTB">
                                        <HBox.margin>
                                           <Insets left="30.0" />
                                        </HBox.margin>
@@ -143,18 +139,18 @@
                               </HBox>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Serial #:" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </Label>
                               <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1051.0">
                                  <children>
-                                    <JFXTextField />
+                                    <JFXTextField fx:id="fromSerial" />
                                     <Label prefHeight="50.0" prefWidth="17.0" text="To">
                                        <HBox.margin>
                                           <Insets left="30.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <JFXTextField>
+                                    <JFXTextField fx:id="toSerial">
                                        <HBox.margin>
                                           <Insets left="30.0" />
                                        </HBox.margin>
@@ -163,15 +159,27 @@
                               </HBox>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Plant Registry/Basic Permit/Brewer's No:" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </Label>
-                              <JFXTextField maxWidth="300.0" />
-                              <JFXButton styleClass="buttonStyle" text="OK!">
+                              <JFXTextField fx:id="brewerNumber" maxWidth="300.0" />
+                              <HBox>
                                  <VBox.margin>
-                                    <Insets top="40.0" />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
-                              </JFXButton>
+                                 <children>
+                                    <JFXButton onMousePressed="#applySearchSettings" styleClass="buttonStyle" text="OK!">
+                                       <HBox.margin>
+                                          <Insets left="430.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                    <JFXButton onMousePressed="#clearSettings" styleClass="buttonStyle" text="CLEAR">
+                                       <HBox.margin>
+                                          <Insets left="350.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.SearchPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.161-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.SearchPage">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -57,6 +57,11 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
+                  <JFXButton onMousePressed="#popupAdvanced" styleClass="searchButtonStyle" text="ADVANCED SETTINGS">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
                </children></HBox>
             <HBox prefHeight="600.0" prefWidth="200.0">
                <children>
@@ -139,7 +144,8 @@
                               <Insets bottom="10.0" left="30.0" />
                            </VBox.margin>
                            <children>
-                              <JFXButton fx:id="download" onAction="#download" styleClass="buttonStyle" text="Download" />
+                              <!--<JFXButton fx:id="download" onAction="#download" styleClass="buttonStyle" text="Download" />-->
+                              <JFXButton fx:id="download" onMousePressed="#download" styleClass="buttonStyle" text="Download" />
                            </children>
                         </HBox>
                         <Button fx:id="back" mnemonicParsing="false" onMousePressed="#back" styleClass="buttonStyle" text="Back">
