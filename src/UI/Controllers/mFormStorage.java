@@ -21,6 +21,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class mFormStorage {
     @FXML private JFXCheckBox pending;
     @FXML private JFXCheckBox denied;
     @FXML private FlowPane loadForms;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public mFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -45,6 +48,7 @@ public class mFormStorage {
     }
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         loadForms.getChildren().clear();
 
         String filterA;
@@ -106,7 +110,7 @@ public class mFormStorage {
                             ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
                         ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
                         ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                        switch(form.getProductType()){
+                        switch(form.parseGarbage(form.getProductType())){
                             case "WINE":
                                 ((Label) aType).setText("Wine");
                                 break;

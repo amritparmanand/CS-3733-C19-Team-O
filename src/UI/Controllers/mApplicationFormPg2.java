@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
 import Datatypes.PDF;
@@ -9,6 +10,8 @@ import UI.callableFunction;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -54,6 +58,8 @@ public class mApplicationFormPg2 {
     @FXML private JFXButton pdfButton;
     @FXML private VBox commentVBox;
     @FXML private JFXTextArea aComment;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -67,6 +73,108 @@ public class mApplicationFormPg2 {
         form = cacheM.getForm();
     }
     @FXML public void initialize(){
+
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMForm();
+
+        printName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpCompanyName();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        mailAddress.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpMailingAddress();}
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().sayMailingAddress();
+                }
+            }
+        });
+
+        formula.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpFormula();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        grapes.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpGrapeVariental();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        appellation.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpWineAppellation();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        phoneNumber.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                {cacheM.getAlcy().sayMHelpPhoneNumber(); }
+                else
+                {
+                    saveDraft();
+                    cacheM.getAlcy().sayPhoneNumber();
+                }
+            }
+        });
+
+        email.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpEmail();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
 

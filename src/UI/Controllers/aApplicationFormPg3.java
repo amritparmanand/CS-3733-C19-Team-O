@@ -2,6 +2,7 @@ package UI.Controllers;
 
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
@@ -10,6 +11,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -17,6 +20,7 @@ import javafx.scene.image.ImageView;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
+import javafx.scene.text.Text;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -48,66 +52,43 @@ public class aApplicationFormPg3 {
     }
 
 
-    @FXML
-    private JFXButton acceptForm;
-    @FXML
-    private JFXButton denyForm;
-    @FXML
-    private JFXButton saveDraft;
-    @FXML
-    private JFXButton homePage;
-    @FXML
-    private JFXButton previous;
-    @FXML
-    private JFXButton next;
-    @FXML
-    private JFXButton search;
-    @FXML
-    private JFXButton logout;
-    @FXML
-    private JFXTextField typeOfApp;
-    @FXML
-    private JFXButton uploadImage;
-    @FXML
-    private JFXTextArea Q14Comment;
-    @FXML
-    private JFXTextArea Q15Comment;
-    @FXML
-    private JFXTextField onlyState;
-    @FXML
-    private JFXTextField ttbID;
-    @FXML
-    private JFXTextField bottleCapacity; //will be int, for future reference
-    @FXML
-    private JFXCheckBox certificateOfApproval;
-    @FXML
-    private JFXCheckBox certificateOfExemption;
-    @FXML
-    private JFXCheckBox DistinctiveLiquor;
-    @FXML
-    private JFXCheckBox resubmission;
-    @FXML
-    private ImageView imagePreview;
-    @FXML
-    private Label volMatch;
-    @FXML
-    private Label appellationMatch;
-    @FXML
-    private Label alcPerc;
-    @FXML
-    private Label volMatchLabel;
-    @FXML
-    private Label appellationMatchLabel;
-    @FXML
-    private Label alcPercLabel;
-    @FXML
-    private Label errorLabel;
-    @FXML
-    private JFXTextField receiver;
+    @FXML private JFXButton acceptForm;
+    @FXML private JFXButton denyForm;
+    @FXML private JFXButton saveDraft;
+    @FXML private JFXButton homePage;
+    @FXML private JFXButton previous;
+    @FXML private JFXButton next;
+    @FXML private JFXButton search;
+    @FXML private JFXButton logout;
+    @FXML private JFXTextField typeOfApp;
+    @FXML private JFXButton uploadImage;
+    @FXML private JFXTextArea Q14Comment;
+    @FXML private JFXTextArea Q15Comment;
+    @FXML private JFXTextField onlyState;
+    @FXML private JFXTextField ttbID;
+    @FXML private JFXTextField bottleCapacity; //will be int, for future reference
+    @FXML private JFXCheckBox certificateOfApproval;
+    @FXML private JFXCheckBox certificateOfExemption;
+    @FXML private JFXCheckBox DistinctiveLiquor;
+    @FXML private JFXCheckBox resubmission;
+    @FXML private ImageView imagePreview;
+    @FXML private Label errorLabel;
+    @FXML private JFXTextField receiver;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+    @FXML private Label volMatch;
+    @FXML private Label appellationMatch;
+    @FXML private Label alcPerc;
+    @FXML private Label volMatchLabel;
+    @FXML private Label appellationMatchLabel;
+    @FXML private Label alcPercLabel;
 
 
     @SuppressWarnings("Duplicates")
-    public void initialize() throws IOException {
+    public void initialize() throws IOException{
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
         Q14Comment.setText(comments.getComment14());
         Q15Comment.setText(comments.getComment15());
         Form form = cacheM.getForm();
@@ -134,11 +115,11 @@ public class aApplicationFormPg3 {
 
         resubmission.setDisable(true);
 
-        if (form.getResubmission())
+        if(form.getResubmission())
             ttbID.setText(String.valueOf(form.getTtbID()));
 
         // Deal with image
-        if (form.getLabel().getLabelImage() != null) {
+        if(form.getLabel().getLabelImage() != null){
             imagePreview.setImage(form.getLabel().getLabelImage());
         }
 

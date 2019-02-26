@@ -1,10 +1,15 @@
 package Datatypes;
 
+//import io.undertow.websockets.core.BinaryOutputStream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
+import jdk.internal.util.xml.impl.Input;
 
-import java.io.InputStream;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -85,6 +90,8 @@ public class Manufacturer extends Account {
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     public ArrayList<Form> getAssignedForms() {
@@ -116,7 +123,7 @@ public class Manufacturer extends Account {
         }
     }
     @SuppressWarnings("Duplicates")
-    private Form formFromResultSet(ResultSet rs) throws SQLException {
+    private Form formFromResultSet(ResultSet rs) throws SQLException, IOException {
         Form f = new Form();
         f.setFormID(rs.getLong("formID"));
         f.setRepID(rs.getInt("repID"));
@@ -146,11 +153,15 @@ public class Manufacturer extends Account {
         f.setVintageYear(rs.getString("vintageYear"));
         f.setpHLevel(rs.getString("pHLevel"));
         f.setCommentString(rs.getString("comments"));
-        LabelImage formLabel = new LabelImage();
-        Blob picture = rs.getBlob("labelImage");
+        byte[] picture = rs.getBytes("labelImage");
+        FileOutputStream os = new FileOutputStream("temp.png");
         if (picture != null) {
-            InputStream is = picture.getBinaryStream();
-            f.getLabel().setLabelImage(new Image(is));
+            os.write(picture);
+            os.close();
+            File jimbus = new File("temp.png");
+            f.getLabel().setLabelFile(jimbus);
+            f.getLabel().setLabelImage(new Image(f.getLabel().getLabelFile().toURI().toString()));
+            jimbus.delete();
         }
 
         return f;

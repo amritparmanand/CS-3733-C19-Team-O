@@ -9,7 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -47,6 +49,13 @@ public class mRegister {
     @FXML private JFXTextField phone;
     @FXML private JFXTextField repID;
     @FXML private JFXTextField companyName;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+
+    @FXML public void initialize(){
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().sayRegister();
+    }
 
     @FXML
     @SuppressWarnings("Duplicates")

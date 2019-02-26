@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,11 +37,14 @@ public class aFormStorage {
 
     @FXML private FlowPane loadForms;
 
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
     private ArrayList<Form> repeated = new ArrayList<>();
     private Agent A;
 
     @SuppressWarnings("Duplicates") @FXML public void initialize() throws IOException {
         A = (Agent) cacheM.getAcct();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
 
         if(!A.isGotCurrentForms()){
             A.getAssignedForms(cacheM.getDbM().getConnection());
@@ -62,7 +66,7 @@ public class aFormStorage {
                         ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
                     ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
                     ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                    switch(form.getProductType()){
+                    switch(form.parseGarbage(form.getProductType())){
                         case "WINE":
                             ((Label) aType).setText("Wine");
                             break;
@@ -110,7 +114,7 @@ public class aFormStorage {
 
     @SuppressWarnings("Duplicates")
     @FXML
-    public void assignNewForms() throws IOException {
+    public void assignNewForms() throws IOException, Exception{
 
         int limit = cacheM.getFormLimit();
 
@@ -134,11 +138,11 @@ public class aFormStorage {
                         Node bName = ((VBox) vbox).getChildren().get(2);
                         Node aType = ((VBox) vbox).getChildren().get(3);
 
-                        if(form.getLabel().getLabelImage() != null)
+                        if(form.getLabel().getLabelImage() != null) {
                             ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
                         ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
                         ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                        switch(form.getProductType()){
+                        switch(form.parseGarbage(form.getProductType())){
                             case "WINE":
                                 ((Label) aType).setText("Wine");
                                 break;

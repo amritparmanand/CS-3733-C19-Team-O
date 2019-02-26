@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Manufacturer;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
@@ -9,7 +10,9 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.springframework.security.access.method.P;
 
 import java.io.IOException;
@@ -58,11 +61,16 @@ public class aRegister {
     @FXML private Label emailMessage;
     @FXML private Label IDMessage;
     @FXML private Label passwordMessage;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
 
     @FXML
     public void initialize()
     {
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayRegister();
         if(ttbIDFromChip >= 0)
             ttbID.setText(String.valueOf(ttbIDFromChip));
     }

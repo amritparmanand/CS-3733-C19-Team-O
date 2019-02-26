@@ -4,12 +4,14 @@ import Datatypes.SearchResult;
 import Fuzzy.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
+import Managers.SearchManager;
 import Observer.IObservable;
 import Observer.ObservablePane;
 import Observer.SearchTether;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
+import com.opencsv.CSVWriter;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,18 +28,22 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 import javax.swing.*;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Amrit Parmanand & Robert Rinearson & Percy
@@ -47,21 +53,25 @@ import java.util.ArrayList;
 public class SearchPage {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private SearchManager searchM;
+
+    private AdvancedSearchPage advancedSearchPage;
 
     String oldSearch = "";
-    ResultSet approvedResults;
+    LinkedList<SearchResult> srArr;
     String searchType;
 
     public SearchPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        //subscribe number of searches
+        this.searchM = new SearchManager();
     }
 
     @FXML
     public void initialize() throws SQLException {
+        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM, new Stage());
         TextFields.bindAutoCompletion(searchBox, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
-
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         ObservablePane op = null;
 
         for (int i = 0; i < 15; i++) {
@@ -75,7 +85,7 @@ public class SearchPage {
         }
 
         searchBox.setText(cacheM.getSearch());
-        if(!searchBox.getText().isEmpty()){
+        if (!searchBox.getText().isEmpty()) {
             search();
         }
     }
@@ -117,6 +127,17 @@ public class SearchPage {
     private Label didYouMean;
     @FXML
     private Label pageNum;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+
+    @FXML
+    public void popupAdvanced() throws IOException {
+        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM, new Stage());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AdvancedSearchPage.fxml"));
+        //advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, new Stage());
+        sceneM.popWindowLoader(loader, advancedSearchPage, "Advanced Search");
+    }
+
 
     @FXML
     public void back() throws IOException {
@@ -162,7 +183,7 @@ public class SearchPage {
         if (!oldSearch.equals(suggestion)) {
             didYouMean.setText("Did you mean: ");
             searchSuggest.setText(suggestion);
-        } else{
+        } else {
             didYouMean.setText("");
             searchSuggest.setText("");
         }
@@ -181,12 +202,122 @@ public class SearchPage {
         if (!type.equals("TRUE"))
             type = type.substring(0, type.length() - 18) + ")";
 
-        approvedResults = getApprovedApplications(oldSearch, type);
+        ResultSet approvedResults = getApprovedApplications(oldSearch, type);
+        this.searchM = advancedSearchPage.transferSearchManager();
+        System.out.println("SEARCH ACTIVE? " + searchM.isActive + " " + oldSearch);
 
-        searchTether.setRs(approvedResults);
+        srArr = linkedListify(approvedResults);
+        if (searchM.isActive) {
+            srArr = filter(srArr, searchM);
+        }
+
+        searchTether.setSrArray(srArr);
+
+        for (int i = 0; i < srArr.size(); i++) {
+            System.out.println(srArr.get(i).getCompanyName());
+        }
         searchTether.setBools(beerCheck.isSelected(), wineCheck.isSelected(), liquorCheck.isSelected());
         searchTether.notifyObservers(0, next);
 
+    }
+
+    private LinkedList<SearchResult> linkedListify(ResultSet rs) throws SQLException {
+        LinkedList<SearchResult> srArr = new LinkedList();
+        while (rs.next()) {
+            //String fancifulName, String companyName, String alcoholType, String phLevel,
+            //                        String alcohol, String year, String productType
+            srArr.add(new SearchResult(rs.getString("FANCIFULNAME"),
+                    rs.getString("BRANDNAME"),
+                    rs.getString("PRODUCTTYPE"),
+                    rs.getString("PHLEVEL"),
+                    rs.getString("ALCOHOLPERCENT"),
+                    rs.getString("VINTAGEYEAR"),
+                    rs.getString("PRODUCTTYPE"),
+                    rs.getString("DATEAPPROVED"),
+                    rs.getString("TTBID"),
+                    rs.getString("SERIALNUMBER"),
+                    rs.getString("BREWERNUMBER")));
+        }
+
+        return srArr;
+    }
+
+    public LinkedList<SearchResult> filter(LinkedList<SearchResult> approvedResults, SearchManager searchManager) {
+        LinkedList<SearchResult> filtered = new LinkedList<>();
+
+        for (int i = 0; i < approvedResults.size(); i++) {
+            SearchResult sr = approvedResults.get(i);
+            boolean invalidateRecord = false;
+
+            //date check
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/uuuu");
+            LocalDate recordDate = LocalDate.parse(sr.getApprovedDate(), formatter);
+            if (searchManager.exists(searchManager.getFromDate())) {
+                System.out.println("FROM DATE EXISTS");
+                if (recordDate.compareTo(searchManager.getFromDate()) < 0)
+                    invalidateRecord = true;
+            }
+            if (searchManager.exists(searchManager.getToDate())) {
+                System.out.println("TO DATE EXISTS");
+                if (recordDate.compareTo(searchManager.getToDate()) > 0)
+                    invalidateRecord = true;
+            }
+
+            //productName Check
+            if (searchManager.exists(searchManager.getBrandFancyEither())) {
+                //System.out.println("NAME AND BRAND EXIST");
+                switch (searchManager.getBrandFancyEither()) {
+                    case 3:
+                        break;
+                    case 2:
+                        if (!sr.getFancifulName().toLowerCase().contains(oldSearch.toLowerCase()))
+                            invalidateRecord = true;
+                        break;
+                    case 1:
+                        if (!sr.getCompanyName().toLowerCase().contains(oldSearch.toLowerCase()))
+                            invalidateRecord = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //ttbID range
+            int recordTTBID = Integer.parseInt(sr.getTTBID());
+            if (searchManager.exists(searchManager.getFromTTB())) {
+                System.out.println("FROM TTB EXISTS");
+                if (recordTTBID < Integer.parseInt(searchManager.getFromTTB()))
+                    invalidateRecord = true;
+            }
+            if (searchManager.exists(searchManager.getToTTB())) {
+                System.out.println("TO TTB EXISTS");
+                if (recordTTBID > Integer.parseInt(searchManager.getToTTB()))
+                    invalidateRecord = true;
+            }
+
+            //serialNumber range
+            if (searchManager.exists(searchManager.getFromSerial())) {
+                System.out.println("FROM SERIAL EXISTS");
+                if (sr.getSerialNum().compareTo(searchManager.getFromSerial()) < 0)
+                    invalidateRecord = true;
+            }
+            if (searchManager.exists(searchManager.getToSerial())) {
+                System.out.println("TO SERIAL EXISTS");
+                if (sr.getSerialNum().compareTo(searchManager.getToSerial()) > 0)
+                    invalidateRecord = true;
+            }
+
+            //brewerNumber exact
+            if (searchManager.exists(searchManager.getBrewerNumber())) {
+                System.out.println("BREWER NUMBER EXISTS");
+                if (!sr.getBrewerNum().toLowerCase().equals(searchManager.getBrewerNumber().toLowerCase()))
+                    invalidateRecord = true;
+            }
+
+            if (!invalidateRecord)
+                filtered.add(sr);
+        }
+        return filtered;
     }
 
     public ResultSet getApprovedApplications(String condition, String type) throws SQLException {
@@ -200,70 +331,47 @@ public class SearchPage {
      */
     @FXML
     public void download() {
-        String path;
+        Character delimiter;
+        System.out.println(cacheM.getFormat());
+        delimiter = cacheM.getFormat();
+//        if(!delimiterChooser.getText().isEmpty()){
+//            delimiter = delimiterChooser.getText().charAt(0);
+//        }else{
+//            delimiter = ‘,’;
+//        }
 
-        JFileChooser chooser = new JFileChooser();
-        String choosertitle = "Select a destination";
 
-        chooser.setCurrentDirectory(new java.io.File("."));
-        chooser.setDialogTitle(choosertitle);
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        //Select the extentions we allow for the files
+        //Actually get the folder
+        directoryChooser.setInitialDirectory(null);
 
-        chooser.setAcceptAllFileFilterUsed(false);
+        File folder = directoryChooser.showDialog(null);
+        String filePath = folder + "/Save-Results.csv";
+        File file = new File(filePath);
 
-        int r = chooser.showSaveDialog(null);
+        try {
+            FileWriter searchResults = new FileWriter(file);
 
-        if (r == JFileChooser.APPROVE_OPTION) {
-            path = chooser.getSelectedFile().getAbsolutePath();
+            CSVWriter writer = new CSVWriter(searchResults,
+                    delimiter,
+                    CSVWriter.NO_QUOTE_CHARACTER,
+                    CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                    CSVWriter.DEFAULT_LINE_END);
 
-            try {
-                System.out.println(path);
-                PrintWriter writer = new PrintWriter(path + "/" + "search-results.csv", "UTF-8");
+            List<String[]> data = new ArrayList<String[]>();
+            data.add(new String[]{"FANCIFUL NAME","COMPANY NAME","ALCOHOL TYPE","ALCOHOL TYPE2","PH LEVEL","ALCOHOL PERCENT","YEAR"});
 
-                char delimi = cacheM.getFormat();
-
-                writer.println("sep=" + delimi);
-                writer.println("FANCIFUL NAME" + delimi +
-                        "COMPANY NAME" + delimi +
-                        "ALCOHOL TYPE" + delimi +
-                        "ALCOHOL TYPE2" + delimi +
-                        "PH LEVEL" + delimi +
-                        "ALCOHOL PERCENT" + delimi +
-                        "YEAR");
-
-                int row = approvedResults.getRow();
-                if (approvedResults.first()) {
-
-                    do {
-                        //holder variable to hold the type of alcohol for printing
-                        String alcoholType = approvedResults.getString("PRODUCTTYPE");
-
-                        writer.println(approvedResults.getString("FANCIFULNAME") + delimi +
-                                approvedResults.getString("BRANDNAME") + delimi +
-                                alcoholType + delimi + alcoholType + delimi +
-                                approvedResults.getString("PHLEVEL") + delimi +
-                                approvedResults.getString("ALCOHOLPERCENT") + delimi +
-                                approvedResults.getString("VINTAGEYEAR"));
-                    }
-                    while (approvedResults.next());
-                }
-
-                writer.close();
-
-                approvedResults.absolute(row);
-
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found.");
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
-                System.out.println("Unsupported encoding exception.");
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            for(SearchResult s : srArr) {
+                String alcoholType = s.getProductType();
+                data.add(new String[]{s.getFancifulName(), s.getCompanyName(), s.getAlcoholType(), alcoholType, s.getPhLevel(), s.getAlcohol(), s.getYear()});
             }
-        } else {
-            System.out.println("User cancelled the operation");
-            System.out.println(cacheM.getFormat());
+            writer.writeAll(data);
+
+            writer.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

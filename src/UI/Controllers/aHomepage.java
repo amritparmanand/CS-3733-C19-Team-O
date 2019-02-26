@@ -1,11 +1,14 @@
 package UI.Controllers;
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,10 +22,18 @@ public class aHomepage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public aHomepage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+    }
+
+    @FXML public void initialize(){
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAHomePage();
     }
 
     @FXML

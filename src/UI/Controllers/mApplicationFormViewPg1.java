@@ -1,8 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.PDF;
+import Datatypes.*;
 import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
@@ -11,13 +9,17 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import java.lang.System;
 
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.time.Year;
@@ -53,6 +55,8 @@ public class mApplicationFormViewPg1 {
     @FXML private JFXButton saveDraft;
     @FXML private Label serialMessage;
     @FXML private JFXButton savePDF;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public mApplicationFormViewPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -63,6 +67,123 @@ public class mApplicationFormViewPg1 {
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         cacheM.setForm(form);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMViewForm();
+
+        repID.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpRepID();}
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        brewerNO.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpBrewerNO();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+
+        serialNumber.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpSerialNumber();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        alcoholPercentage.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpAlcoholPercentage();}
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().sayWierdBeerPercentage();
+                }
+            }
+        });
+
+        fancifulName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpFancifulName();}
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().sayFancifulName();
+                }
+            }
+        });
+
+        brandName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                {cacheM.getAlcy().sayMHelpBrandName(); }
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().sayBrandName();
+                }
+            }
+        });
+        phLevel.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                {cacheM.getAlcy().sayMHelppHLevel(); }
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().saypHLevel();
+                }
+            }
+        });
+
+        vintageYear.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpVintageYear();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);

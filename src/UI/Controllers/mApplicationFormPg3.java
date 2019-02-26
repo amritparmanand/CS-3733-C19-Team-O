@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Datatypes.PDF;
@@ -8,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,6 +21,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -46,11 +50,15 @@ public class mApplicationFormPg3 {
     @FXML private JFXButton pdfButton;
     @FXML private VBox commentVBox;
     @FXML private JFXTextArea aComment;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+
 
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM,Form form) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.form = form;
+        aComment = new JFXTextArea();
     }
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -60,22 +68,27 @@ public class mApplicationFormPg3 {
 
     @SuppressWarnings("Duplicates") @FXML public void initialize() {
 
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMForm();
+
         aComment.setText(form.getCommentString());
 
-        if(form.getCommentString() == ""){
-            commentVBox.setVisible(false);
-        }
-        image = form.getLabel();
-        certificateOfApproval.setSelected(form.getCertificateOfApproval());
-        certificateOfExemption.setSelected(form.getCertificateOfExemption());
-        DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
-        resubmission.setSelected(form.getResubmission());
-        onlyState.setText(form.parseGarbage(form.getOnlyState()));
+            if (form.getCommentString() == "") {
+                commentVBox.setVisible(false);
+            }
+            image = form.getLabel();
 
-        if(form.getTtbID() != 0)
-            resubmission.setSelected(true);
+            certificateOfApproval.setSelected(form.getCertificateOfApproval());
+            certificateOfExemption.setSelected(form.getCertificateOfExemption());
+            DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
+            resubmission.setSelected(form.getResubmission());
+            onlyState.setText(form.parseGarbage(form.getOnlyState()));
+
+            if (form.getTtbID() != 0)
+                resubmission.setSelected(true);
             ttbID.setText(String.valueOf(form.getTtbID()));
-        bottleCapacity.setText(form.getBottleCapacity());
+            bottleCapacity.setText(form.getBottleCapacity());
 
         if(form.getLabel().getLabelImage() != null)
             imagePreview.setImage(form.getLabel().getLabelImage());
@@ -118,35 +131,34 @@ public class mApplicationFormPg3 {
         }
 
 
-            if(!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
+            if (!certificateOfExemption.isSelected() && !certificateOfApproval.isSelected() &&
                     !DistinctiveLiquor.isSelected() && !resubmission.isSelected()) {
                 errorLabel.setText("Please select a type of application.");
             }
-           // Form form = cacheM.getForm();
+            // Form form = cacheM.getForm();
 
             form.setCertificateOfApproval(certificateOfApproval.isSelected());
             form.setCertificateOfExemption(certificateOfExemption.isSelected());
-            if(certificateOfExemption.isSelected()) {
-                if (!onlyState.getText().isEmpty() && !form.getOnlyState().contains(cacheM.getStyle())){
-                        form.setOnlyState(onlyState.getText());
+            if (certificateOfExemption.isSelected()) {
+                if (!onlyState.getText().isEmpty() && !form.getOnlyState().contains(cacheM.getStyle())) {
+                    form.setOnlyState(onlyState.getText());
                 }
-            }
-            else {
+            } else {
                 form.setOnlyState("");
             }
             form.setDistinctiveLiquor(DistinctiveLiquor.isSelected());
-            if(DistinctiveLiquor.isSelected()) {
+            if (DistinctiveLiquor.isSelected()) {
                 if (!bottleCapacity.getText().isEmpty()) {
-                    if(!form.getBottleCapacity().contains(cacheM.getStyle())){
+                    if (!form.getBottleCapacity().contains(cacheM.getStyle())) {
                         form.setBottleCapacity(bottleCapacity.getText());
                     }
                 }
-            }else {
+            } else {
                 form.setBottleCapacity("");
             }
             form.setResubmission(resubmission.isSelected());
             System.out.println(form.getResubmission());
-            if(!resubmission.isSelected())
+            if (!resubmission.isSelected())
                 form.setTtbID(0);
             else
                 form.setTtbID(Integer.parseInt(ttbID.getText()));

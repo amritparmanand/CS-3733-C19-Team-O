@@ -2,6 +2,7 @@ package UI.Controllers;
 
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.*;
@@ -9,8 +10,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
@@ -57,8 +62,15 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextArea Q7Comment;
     @FXML private JFXTextField receiver;
     @FXML private JFXTextField TTBID;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
-    @SuppressWarnings("Duplicates") @FXML public void initialize(){
+    @SuppressWarnings("Duplicates")
+    @FXML public void initialize(){
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
+
         Q1Comment.setText(comments.getComment1());
         Q2Comment.setText(comments.getComment2());
         Q3Comment.setText(comments.getComment3());
@@ -67,6 +79,76 @@ public class aApplicationFormPg1 {
         Q6Comment.setText(comments.getComment6());
         Q7Comment.setText(comments.getComment7());
         cacheM.setForm(form);
+
+        repID.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpRepID();}
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        brewerNO.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpBrewerNO();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        alcoholPercentage.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpAlcoholPercentage();}
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().sayWierdBeerPercentage();
+                }
+            }
+        });
+
+        phLevel.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                {cacheM.getAlcy().sayMHelppHLevel(); }
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().saypHLevel();
+                }
+            }
+        });
+
+        vintageYear.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpVintageYear();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
 
         System.out.println(form.getProductSource());
         switch(form.parseGarbage(form.getProductSource())){
@@ -107,9 +189,9 @@ public class aApplicationFormPg1 {
         System.out.println(form.getBeerWineSpirit());
         switch(form.parseGarbage(form.getBeerWineSpirit())){
             case "WINE":
-                wine2.setSelected(true);
-                wine2.setOpacity(1);
-                wine2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
+                wine.setSelected(true);
+                wine.setOpacity(1);
+                wine.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "SPIRITS":
                 spirits2.setSelected(true);
@@ -156,9 +238,9 @@ public class aApplicationFormPg1 {
             vintageYear.setStyle(form.parseStyle(form.getVintageYear()));
         }
 
-        wine2.setDisable(true);
-        spirits2.setDisable(true);
-        beer2.setDisable(true);
+        wine.setDisable(true);
+        spirits.setDisable(true);
+        malt.setDisable(true);
 
         System.out.println("starting");
     }
@@ -189,6 +271,12 @@ public class aApplicationFormPg1 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg2.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg2(sceneM, cacheM, form,comments));
 
+    }
+
+    @FXML
+    public void searchPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
     }
 
     @FXML

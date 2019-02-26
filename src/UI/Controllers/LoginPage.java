@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Manufacturer;
 import Managers.*;
 
@@ -22,9 +23,11 @@ import java.io.InputStream;
 import java.sql.Statement;
 import java.util.EventListener;
 
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class LoginPage implements SerialPortDataListener {
@@ -57,6 +60,8 @@ public class LoginPage implements SerialPortDataListener {
     private Button about;
     @FXML
     private Button pdf;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
 
 
@@ -68,6 +73,9 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML
     public void initialize() {
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayLogin();
         programChip.setVisible(false);
         if (ports.length > 0) {
             this.serialPort = ports[ports.length - 1];

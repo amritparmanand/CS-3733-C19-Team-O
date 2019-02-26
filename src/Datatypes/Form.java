@@ -1,5 +1,6 @@
 package Datatypes;
 
+import Managers.SearchManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -475,7 +476,7 @@ public class Form {
         PreparedStatement prepStmt = connection.prepareStatement(Apps1);
         ResultSet seqVal;
         try {
-            seqVal = connection.prepareStatement("values (next value for appIDSequence)").executeQuery();
+            seqVal = connection.prepareStatement("SELECT nextval('appidsequence')").executeQuery();
             seqVal.next();
             prepStmt.setInt(1, seqVal.getInt(1));
             prepStmt.setInt(2,formID);
@@ -512,7 +513,7 @@ public class Form {
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
         ResultSet seqVal;
         try {
-            seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
+            seqVal = connection.prepareStatement("SELECT nextval('formidsequence')").executeQuery();
             seqVal.next();
             this.setFormID(seqVal.getInt(1));
             prepStmt.setInt(1, seqVal.getInt(1));
@@ -620,18 +621,17 @@ public class Form {
      * @throws SQLException
      */
     public ResultSet getApprovedApplications(Connection conn, String condition, String type) throws SQLException{
-        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT," +
-                "VINTAGEYEAR FROM APPLICATIONS JOIN FORMS " +
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, APPLICATIONS.TTBID, SERIALNUMBER " +
+                "FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
-                "WHERE APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
+                "WHERE " +
+                "APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
 
-        System.out.println(retrieve);
-        PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.CONCUR_UPDATABLE, ResultSet.TYPE_SCROLL_INSENSITIVE);
         ps.setString(1, "%"+condition+"%");
         ps.setString(2, "%"+condition+"%");
 
-        ResultSet rset = ps.executeQuery();
-        return rset;
+        return ps.executeQuery();
     }
 
     public String getFormStatus(Connection connection){

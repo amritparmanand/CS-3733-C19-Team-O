@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
 import Datatypes.PDF;
@@ -10,6 +11,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,6 +24,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -50,6 +54,8 @@ public class mApplicationFormPg4 {
     @FXML private JFXButton pdfButton;
     @FXML private VBox commentVBox;
     @FXML private JFXTextArea aComment;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
@@ -68,6 +74,23 @@ public class mApplicationFormPg4 {
     @FXML
     public void initialize() {
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMForm();
+
+        dateOfApplication.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpDate();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
 
         if(form.getCommentString() == ""){
             commentVBox.setVisible(false);

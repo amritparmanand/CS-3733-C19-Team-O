@@ -13,6 +13,7 @@ public class Setting {
     private int formLimit = 5; // Default is 5
     private String fuzzy = "hiddenScore";
     private char format = ',';
+    private boolean demonicseance;
 
     private static Setting instance = new Setting();
 
@@ -21,6 +22,7 @@ public class Setting {
     public static Setting getInstance(){
         return instance;
     }
+
 
 
     // Getters and setters
@@ -42,6 +44,6 @@ public class Setting {
     public void setFormat(char format) {
         this.format = format;
     }
-
-
+    public boolean isDemonicseance() { return demonicseance; }
+    public void setDemonicseance(boolean demonicseance) { this.demonicseance = demonicseance; }
 }

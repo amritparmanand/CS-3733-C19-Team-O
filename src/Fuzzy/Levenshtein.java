@@ -67,8 +67,4 @@ public class Levenshtein implements IFuzzy{
         return best;
     }
 
-    @Override
-    public String fuzzy(String filter, String input, Connection conn) {
-        return null;
-    }
 }

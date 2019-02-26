@@ -10,6 +10,7 @@ import java.awt.image.RenderedImage;
 import java.io.*;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.sql.*;
@@ -202,7 +203,7 @@ public class Agent extends Account{
     // As long as there are less than 3 forms in workingForms
     // Query the database to select forms where ttb ID is empty
     // Insert this agent's ID into the selected forms
-    public void assignNewForms(Connection conn, int limit) throws IOException {
+    public void assignNewForms(Connection conn, int limit) throws Exception{
 
 //        if (!hasFetchedForms)
 //            getAssignedForms(conn);
@@ -239,7 +240,7 @@ public class Agent extends Account{
     // Query the database to select forms where the TTB ID matches this agent's id
     // Call formFromResultSet into object and add it into the working Forms of this agent
     @SuppressWarnings("Duplicates")
-    public void getAssignedForms(Connection conn) throws IOException {
+    public void getAssignedForms(Connection conn) throws Exception{
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE" +
                     " APPLICATIONS.TTBID = " + this.getTtbID() + " and APPLICATIONS.STATUS = 'PENDING'";
@@ -276,7 +277,7 @@ public class Agent extends Account{
      * @param connection
      */
     @SuppressWarnings("Duplicates")
-    public void getReviewedForms(Connection connection) throws IOException{
+    public void getReviewedForms(Connection connection) throws Exception{
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
                     "APPLICATIONS.TTBID = " + this.getTtbID()+ " and (APPLICATIONS.STATUS = 'APPROVED' or APPLICATIONS.STATUS = 'DENIED')";
@@ -475,7 +476,6 @@ public class Agent extends Account{
             percy.setLabelImage(new Image(picture.getBinaryStream()));
             f.setLabel(percy);
         }
-
         return f;
     }
 

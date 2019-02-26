@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Datatypes.PDF;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -32,6 +34,8 @@ public class mApplicationFormViewPg3 {
     @FXML private JFXCheckBox resubmission;
     @FXML private ImageView imagePreview;
     @FXML private Label errorLabel;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public mApplicationFormViewPg3(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -41,6 +45,9 @@ public class mApplicationFormViewPg3 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMViewForm();
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());

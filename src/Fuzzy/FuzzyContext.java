@@ -19,8 +19,4 @@ public class FuzzyContext {
     public String fuzzy(String input, Connection conn){
         return f.fuzzy(input, conn);
     }
-
-    public String fuzzy(String filter, String input, Connection conn){
-        return f.fuzzy(input, conn);
-    }
 }

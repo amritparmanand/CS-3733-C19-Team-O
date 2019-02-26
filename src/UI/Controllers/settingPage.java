@@ -1,13 +1,17 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Datatypes.Setting;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -30,10 +34,32 @@ public class settingPage {
     @FXML private JFXRadioButton Damerau;
     @FXML private JFXTextField formLimit;
     @FXML private JFXTextField delimiter;
+    @FXML private JFXToggleButton enableAlcy;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+
+    @FXML public void initialize(){
+        Alcy alcy = cacheM.getAlcy();
+        if(alcy.isDemonicSeance()){
+            enableAlcy.setSelected(true);
+        }
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.saySettings();
+    }
+
+    @FXML public void banishAlcy(){
+        if(!enableAlcy.isSelected()){
+            cacheM.getAlcy().saySettingsBye();
+            cacheM.getAlcy().setDemonicSeance(false);
+        }else {
+            cacheM.getAlcy().saySettingsRelief();
+        }
+    }
 
     @FXML public void confirm() throws IOException {
         // Initialize the instance of the Singleton class
         Setting object = Setting.getInstance();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
 
         // Set fuzzy
         if(SQL.isSelected()){
@@ -65,6 +91,13 @@ public class settingPage {
             object.setFormat(delimiter.getText().charAt(0));
         }
 
+        if(enableAlcy.isSelected()){
+            object.setDemonicseance(true);
+        }
+        else {
+            object.setDemonicseance(false);
+        }
+
         System.out.println("Settings: ");
         cacheM.setFormLimit(object.getFormLimit());
         System.out.println("form limit: " + object.getFormLimit());
@@ -72,9 +105,23 @@ public class settingPage {
         System.out.println("fuzzy algorithm: " + object.getFuzzy());
         cacheM.setFormat(object.getFormat());
         System.out.println("download format: " + object.getFormat());
+        cacheM.getAlcy().setDemonicSeance(object.isDemonicseance());
+        System.out.println("Demonic Seance: " + object.isDemonicseance());
 
         System.out.println("Settings completed!");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
         sceneM.changeScene(loader, new startPage(sceneM, cacheM));
+    }
+
+    @FXML
+    public void search() throws IOException {
+        // Search
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
+        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+    }
+
+    @FXML
+    public void alcyHover(){
+        cacheM.getAlcy().saySettingsHover();
     }
 }

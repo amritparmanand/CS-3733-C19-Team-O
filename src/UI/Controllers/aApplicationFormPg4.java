@@ -2,6 +2,7 @@ package UI.Controllers;
 
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
@@ -10,8 +11,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 //import org.springframework.cglib.core.Local;
 
 import java.io.IOException;
@@ -46,15 +51,50 @@ public class aApplicationFormPg4 {
     @FXML private JFXTextField receiver;
     @FXML private JFXDatePicker dateIssued;
     @FXML private JFXTextField signature;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     @SuppressWarnings("Duplicates") @FXML public void initialize () {
         //load all the comments for this page
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
         Q16Comment.setText(comments.getComment16());
         Q17Comment.setText(comments.getComment17());
         Q18Comment.setText(comments.getComment18());
         Q19Comment.setText(comments.getComment19());
 
         Form form = this.form;
+
+        printName.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpCompanyName();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+
+
+        dateOfApplication.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpDate();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
         if(!form.getDateOfApplication().isEmpty()){
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));

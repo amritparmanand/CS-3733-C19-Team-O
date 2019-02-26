@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
 import Datatypes.PDF;
@@ -10,9 +11,11 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -43,6 +46,8 @@ public class mApplicationFormViewPg2 {
     @FXML private JFXTextField appellation;
     @FXML private JFXTextField phoneNumber;
     @FXML private JFXTextField email;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public mApplicationFormViewPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -52,7 +57,9 @@ public class mApplicationFormViewPg2 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
-
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayMViewForm();
         printName.setText(form.getPrintName());
         printName.setEditable(false);
         mailAddress.setText(form.getMailingAddress());
