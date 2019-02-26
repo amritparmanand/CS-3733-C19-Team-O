@@ -60,6 +60,8 @@ public class Scores {
     @FXML private ImageView highStandards;
     @FXML private ImageView denied;
     @FXML private ImageView itsAllWrong;
+    @FXML private ImageView aNewFriend;
+    @FXML private ImageView inquisitive;
 
     /**
      * @author Clay Oshiro-Leavitt & Trevor Dowd
@@ -186,6 +188,14 @@ public class Scores {
             Image image = new Image("UI/Icons/SoftEngAchieveColor/4.png");
                  strikeThree.setImage(image);
         }
+       // if (){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/17.png");
+            inquisitive.setImage(image);
+       // }
+      //  if (){
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/18.png");
+            aNewFriend.setImage(image);
+       // }
 
 
     }
