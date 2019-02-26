@@ -37,7 +37,9 @@ public class aApplicationFormPg3 {
     private Form form;
     private Comments comments;
     boolean parsedImage = false;
-
+    String matchStyle = "-fx-text-fill: #32CD32;";
+    String mismatchStyle = "-fx-text-fill: #FF8C00;";
+    String fontSize = "-fx-font-size: 15;";
     public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -189,9 +191,11 @@ public class aApplicationFormPg3 {
                         if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
                             System.out.println("bottle capacity MATCHED");
                             volMatch.setText("✔");
+                            volMatch.setStyle(matchStyle);
                         } else {
                             System.out.println("bottle capacity NO MATCH");
                             volMatch.setText("X");
+                            volMatch.setStyle(mismatchStyle);
                         }
                     } else if (result.contains("mL")) {
                         System.out.println("bottle capacity DETECTED");
@@ -207,7 +211,10 @@ public class aApplicationFormPg3 {
                         if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
                             System.out.println("bottle capacity MATCHED");
                             volMatch.setText("✔");
+                            volMatch.setStyle(matchStyle);
                         } else {
+                            volMatch.setText("X");
+                            volMatch.setStyle(mismatchStyle);
                             System.out.println("bottle capacity NO MATCH");
                         }
                     } else if (result.contains("mL")) {
@@ -227,11 +234,14 @@ public class aApplicationFormPg3 {
                         if (form.parseGarbage(form.getBottleCapacity()).equals(capacity)) {
                             System.out.println("bottle capacity MATCHED");
                             volMatch.setText("✔");
+                            volMatch.setStyle(matchStyle);
                         } else {
                             System.out.println("bottle capacity NO MATCH");
                             volMatch.setText("X");
+                            volMatch.setStyle(mismatchStyle);
                         }
                     } else {
+                        volMatch.setStyle(fontSize);
                         System.out.println("bottle capacity NOT DETECTED");
                         volMatch.setText("Alcohol Volume Not Found");
                     }
@@ -253,16 +263,20 @@ public class aApplicationFormPg3 {
                         if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage1)) {
                             System.out.println("alcohol percentage MATCHED");
                             alcPerc.setText("✔");
+                            alcPerc.setStyle(matchStyle);
 
                         } else if (form.parseGarbage(form.getAlcoholPercent()).equals(percentage2)) {
                             System.out.println("alcohol percentage MATCHED");
                             alcPerc.setText("✔");
+                            alcPerc.setStyle(matchStyle);
                         } else {
                             System.out.println("alcohol percentage NO MATCH");
                             alcPerc.setText("X");
+                            alcPerc.setStyle(mismatchStyle);
                         }
                     } else {
                         System.out.println("alcohol percentage NOT DETECTED");
+                        alcPerc.setStyle(fontSize);
                         alcPerc.setText("Alcohol Percentage Not Found");
                     }
                     System.out.println("\n");
@@ -283,21 +297,29 @@ public class aApplicationFormPg3 {
                         if (form.parseGarbage(form.getAppellation()).equals(appellation)) {
                             System.out.println("appellation MATCHED");
                             appellationMatch.setText("✔");
+                            appellationMatch.setStyle(matchStyle);
                         } else {
                             System.out.println("appellation NO MATCH");
+                            appellationMatch.setText("X");
+                            appellationMatch.setStyle(mismatchStyle);
                         }
                     } else {
                         System.out.println("appellation NOT DETECTED");
+                        appellationMatch.setStyle(fontSize);
                         appellationMatch.setText("Appellation Not Found");
                     }
                     System.out.println("\n");
                 }
                 else
                 {
+                    appellationMatch.setStyle(fontSize);
                     appellationMatch.setText("Appellation Not Entered");
                 }
             } catch (TesseractException e) {
                 System.err.println(e.getMessage());
+                appellationMatch.setStyle(fontSize);
+                volMatch.setText(fontSize);
+                alcPerc.setText(fontSize);
                 appellationMatch.setText("Appellation Not Found");
                 volMatch.setText("Alcohol Volume Not Found");
                 alcPerc.setText("Alcohol Percentage Not Found");

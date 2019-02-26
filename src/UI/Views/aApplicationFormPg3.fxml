@@ -254,8 +254,8 @@
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="41.0" prefWidth="601.0">
                                              <children>
-                                                <Label fx:id="alcPercLabel" text="Alcohol Percentage" />
-                                                <Label fx:id="alcPerc">
+                                                <Label fx:id="alcPercLabel" style="-fx-font-size: 15;" text="Alcohol Percentage" />
+                                                <Label fx:id="alcPerc" style="-fx-font-size: 25;">
                                                    <HBox.margin>
                                                       <Insets left="20.0" />
                                                    </HBox.margin>
@@ -264,8 +264,8 @@
                                           </HBox>
                                           <HBox alignment="CENTER" prefHeight="35.0" prefWidth="601.0">
                                              <children>
-                                                <Label fx:id="volMatchLabel" text="Bottle Capacity" />
-                                                <Label fx:id="volMatch">
+                                                <Label fx:id="volMatchLabel" style="-fx-font-size: 15;" text="Bottle Capacity" />
+                                                <Label fx:id="volMatch" style="-fx-font-size: 25;">
                                                    <HBox.margin>
                                                       <Insets left="20.0" />
                                                    </HBox.margin>
@@ -274,8 +274,8 @@
                                           </HBox>
                                           <HBox alignment="CENTER" prefHeight="26.0" prefWidth="601.0">
                                              <children>
-                                                <Label fx:id="appellationMatchLabel" text="Appellation" />
-                                                <Label fx:id="appellationMatch">
+                                                <Label fx:id="appellationMatchLabel" style="-fx-font-size: 15;" text="Appellation" />
+                                                <Label fx:id="appellationMatch" style="-fx-font-size: 25;">
                                                    <HBox.margin>
                                                       <Insets left="20.0" />
                                                    </HBox.margin>
