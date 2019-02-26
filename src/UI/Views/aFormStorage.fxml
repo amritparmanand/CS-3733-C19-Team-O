@@ -46,7 +46,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0" styleClass="toolbar">
                      <children>
-                        <Label fx:id="score" />
+                        <Label fx:id="achievement" />
                         <JFXButton fx:id="getFormsButton" onMousePressed="#assignNewForms" text="+ Get Forms">
                            <styleClass>
                               <String fx:value="h1" />
