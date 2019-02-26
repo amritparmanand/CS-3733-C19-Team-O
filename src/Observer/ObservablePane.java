@@ -1,6 +1,7 @@
 package Observer;
 
 ;
+import Datatypes.SearchResult;
 import Managers.SceneManager;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.event.EventHandler;
@@ -19,6 +20,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ObservablePane implements IObservable {
     private Pane self;
@@ -59,7 +61,7 @@ public class ObservablePane implements IObservable {
             public void handle(MouseEvent me) {}});
     }
 
-    public void update(ResultSet rs) throws SQLException {
+    public void update(SearchResult sr) throws SQLException {
 
         Node vbox = this.self.getChildren().get(0);
 
@@ -68,12 +70,12 @@ public class ObservablePane implements IObservable {
             Node bName = ((VBox) vbox).getChildren().get(2);
             Node aType = ((VBox) vbox).getChildren().get(3);
 
-            fancy = rs.getString("FANCIFULNAME");
-            brand = rs.getString("BRANDNAME");
-            type = rs.getString("PRODUCTTYPE");
-            alcPercent = rs.getString("ALCOHOLPERCENT");
-            phLevel = rs.getString("PHLEVEL");
-            year = rs.getString("VINTAGEYEAR");
+            fancy = sr.getFancifulName();
+            brand = sr.getCompanyName();
+            type = sr.getAlcoholType();
+            alcPercent = sr.getAlcohol();
+            phLevel = sr.getPhLevel();
+            year = sr.getYear();
             ((Label) fName).setText(fancy);
             ((Label) bName).setText(brand);
             ((Label) aType).setText(type);

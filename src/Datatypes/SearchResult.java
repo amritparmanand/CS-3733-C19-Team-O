@@ -19,6 +19,13 @@ public class SearchResult {
     private String year;
     private String productType;
 
+    //sam's filtering stuff
+    private String approvedDate;
+    private String TTBID;
+    private String SerialNum;
+    private String BrewerNum;
+
+
     public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel,
                         String alcohol, String year, String productType) {
         this.fancifulName = fancifulName;
@@ -28,7 +35,38 @@ public class SearchResult {
         this.alcohol = alcohol;
         this.year = year;
         this.productType = productType;
+    }
 
+    public String getApprovedDate() {
+        return approvedDate;
+    }
+
+    public String getTTBID() {
+        return TTBID;
+    }
+
+    public String getSerialNum() {
+        return SerialNum;
+    }
+
+    public String getBrewerNum() {
+        return BrewerNum;
+    }
+
+    public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel, String alcohol, String year, String productType, String approvedDate, String TTBID, String serialNum, String brewerNum) {
+        this.fancifulName = fancifulName;
+        this.companyName = companyName;
+        this.alcoholType = alcoholType;
+        this.phLevel = phLevel;
+        this.alcohol = alcohol;
+        this.year = year;
+        this.productType = productType;
+
+
+        this.approvedDate = approvedDate;
+        this.TTBID = TTBID;
+        SerialNum = serialNum;
+        BrewerNum = brewerNum;
     }
 
     public SearchResult() {

@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
-import org.apache.commons.collections4.functors.FalsePredicate;
 
 /**
  * @author Robert Rinearson & Percy Jiang

@@ -40,30 +40,28 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer">
                      <children>
-                        <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer">
+                        <TextField fx:id="searchBox" prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">
                            <HBox.margin>
-                              <Insets left="450.0" />
+                              <Insets left="20.0" top="5.0" />
                            </HBox.margin>
-                           <children>
-                              <TextField fx:id="searchBox" prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                           </children>
-                        </HBox>
-                        <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Button>
+                        </TextField>
                      </children>
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets left="450.0" />
                      </HBox.margin>
                   </HBox>
+                  <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <JFXButton onMousePressed="#popupAdvanced" styleClass="searchButtonStyle" text="ADVANCED SETTINGS">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
                </children></HBox>
             <HBox prefHeight="600.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                <children>
