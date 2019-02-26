@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
@@ -68,6 +70,77 @@ public class aApplicationFormPg1 {
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayAForm();
+
+        repID.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpRepID();}
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        brewerNO.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpBrewerNO();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
+        alcoholPercentage.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayAHelpAlcoholPercentage();}
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().sayWierdBeerPercentage();
+                }
+            }
+        });
+
+        phLevel.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                {cacheM.getAlcy().sayMHelppHLevel(); }
+                else
+                {
+                    //saveDraft();
+                    cacheM.getAlcy().saypHLevel();
+                }
+            }
+        });
+
+        vintageYear.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpVintageYear();}
+                else
+                {
+                    //saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
+
         Q1Comment.setText(comments.getComment1());
         Q2Comment.setText(comments.getComment2());
         Q3Comment.setText(comments.getComment3());

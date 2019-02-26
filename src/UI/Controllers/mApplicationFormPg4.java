@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -75,6 +77,20 @@ public class mApplicationFormPg4 {
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayMForm();
+
+        dateOfApplication.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayMHelpDate();}
+                else
+                {
+                    saveDraft();
+                    //cacheM.getAlcy().sayGreeting();
+                }
+            }
+        });
 
         if(form.getCommentString() == ""){
             commentVBox.setVisible(false);
