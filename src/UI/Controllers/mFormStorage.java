@@ -82,9 +82,7 @@ public class mFormStorage {
         }
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        if(!manAcc.getHasFetchedForms())
-            manAcc.setAssignedForms(cacheM.getDbM().getConnection());
-
+        manAcc.setAssignedForms(cacheM.getDbM().getConnection());
         ArrayList<Form> populatedForms = (manAcc.getAssignedForms());
 
         for (Form form : populatedForms) {

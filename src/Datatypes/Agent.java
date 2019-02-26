@@ -205,12 +205,15 @@ public class Agent extends Account{
     // Insert this agent's ID into the selected forms
     public void assignNewForms(Connection conn, int limit) throws Exception{
 
-//        if (!hasFetchedForms)
-//            getAssignedForms(conn);
-
         System.out.println("working forms size:"+workingForms.size());
         System.out.println("limit:"+limit);
-        if (this.workingForms.size() < limit) {
+        if(limit == workingForms.size()){
+            System.out.println("limit is reached!");
+        }
+
+        if (this.workingForms.size() <= limit) {
+            newForms.clear();
+
             try {
                 String unassignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID " +
                         "WHERE APPLICATIONS.TTBID IS NULL";
@@ -219,7 +222,7 @@ public class Agent extends Account{
                 ResultSet rs = stmt.executeQuery(unassignedForms);
 
 
-                while (rs.next() && this.workingForms.size() < limit) {
+                while (rs.next() && this.workingForms.size() <= limit) {
                     String insertingAgentID = "UPDATE APPLICATIONS SET TTBID = " + this.getTtbID() + " WHERE formID in (";
                     insertingAgentID = insertingAgentID.concat(rs.getLong("FORMID") + ")");
                     this.newForms.add(formFromResultSet(rs));
@@ -229,7 +232,6 @@ public class Agent extends Account{
                 }
 
                 stmt.close();
-                this.hasFetchedForms = true;
             } catch (SQLException e) {
                 if (!e.getSQLState().equals("X0Y32"))
                     e.printStackTrace();
@@ -241,6 +243,8 @@ public class Agent extends Account{
     // Call formFromResultSet into object and add it into the working Forms of this agent
     @SuppressWarnings("Duplicates")
     public void getAssignedForms(Connection conn) throws Exception{
+
+        workingForms.clear();
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE" +
                     " APPLICATIONS.TTBID = " + this.getTtbID() + " and APPLICATIONS.STATUS = 'PENDING'";
@@ -252,7 +256,6 @@ public class Agent extends Account{
                 workingForms.add(formFromResultSet(rs));
             }
             ps.close();
-            this.gotCurrentForms = true;
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
@@ -278,6 +281,7 @@ public class Agent extends Account{
      */
     @SuppressWarnings("Duplicates")
     public void getReviewedForms(Connection connection) throws Exception{
+        reviewedForms.clear();
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID WHERE " +
                     "APPLICATIONS.TTBID = " + this.getTtbID()+ " and (APPLICATIONS.STATUS = 'APPROVED' or APPLICATIONS.STATUS = 'DENIED')";
@@ -289,7 +293,6 @@ public class Agent extends Account{
                 reviewedForms.add(initReviewedForm(rs));
             }
             ps.close();
-            this.gotOldForms = true;
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();

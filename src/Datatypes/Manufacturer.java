@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class Manufacturer extends Account {
     private int repID;
     private ArrayList<Form> workingForms = new ArrayList<>();
-    private boolean hasFetchedForms = false;
     private String companyName;
 
     public Manufacturer(String username, String password, String fullName, String email, String phone, int repID, String companyName) {
@@ -64,17 +63,13 @@ public class Manufacturer extends Account {
     public String getCompanyName() {
         return companyName;
     }
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-    public boolean getHasFetchedForms() {
-        return hasFetchedForms;
-    }
 
     // Query the database to select forms where the TTB ID matches this agent's id
     // Call formFromResultSet into object and add it into the working Forms of this agent
     @SuppressWarnings("Duplicates")
     public void setAssignedForms(Connection conn) {
+        workingForms.clear();
+
         try {
             String assignedForms = "SELECT * FROM APPLICATIONS JOIN FORMS ON FORMS.FORMID = APPLICATIONS.FORMID" +
                     " WHERE APPLICATIONS.REPID ="+ this.repID;
@@ -86,7 +81,6 @@ public class Manufacturer extends Account {
                 workingForms.add(formFromResultSet(rs));
             }
             ps.close();
-            this.hasFetchedForms = true;
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
@@ -165,18 +159,6 @@ public class Manufacturer extends Account {
         }
 
         return f;
-    }
-
-    public void submitForm(Connection connection){
-        this.hasFetchedForms = false;
-
-//        String getNum = "update APPLICATIONS set STATUS = 'APPROVED' where REPID = " + this.getRepID();
-//        try {
-//            connection.createStatement().executeQuery(getNum);
-//        } catch (SQLException e) {
-//            if (!e.getSQLState().equals("X0Y32"))
-//                e.printStackTrace();
-//        }
     }
 
     @SuppressWarnings("Duplicates") public int countStatus(Connection connection, String status){
