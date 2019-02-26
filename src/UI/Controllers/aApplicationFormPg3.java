@@ -2,6 +2,7 @@ package UI.Controllers;
 
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
@@ -66,7 +67,9 @@ public class aApplicationFormPg3 {
 
     @SuppressWarnings("Duplicates")
     public void initialize(){
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
         Q14Comment.setText(comments.getComment14());
         Q15Comment.setText(comments.getComment15());
         Form form = cacheM.getForm();

@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Alcy;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
@@ -29,7 +30,9 @@ public class aHomepage {
     }
 
     @FXML public void initialize(){
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAHomePage();
     }
 
     @FXML

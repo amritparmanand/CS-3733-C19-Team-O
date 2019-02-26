@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Manufacturer;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
@@ -67,7 +68,9 @@ public class aRegister {
     @FXML
     public void initialize()
     {
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayRegister();
         if(ttbIDFromChip >= 0)
             ttbID.setText(String.valueOf(ttbIDFromChip));
     }

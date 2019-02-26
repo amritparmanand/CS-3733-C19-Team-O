@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Manufacturer;
 import Managers.*;
 
@@ -72,7 +73,9 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML
     public void initialize() {
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayLogin();
         programChip.setVisible(false);
         if (ports.length > 0) {
             this.serialPort = ports[ports.length - 1];

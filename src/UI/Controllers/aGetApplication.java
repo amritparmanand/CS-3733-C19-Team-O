@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -49,7 +50,9 @@ public class aGetApplication {
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         loadFormPane.getChildren().clear();
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAHomePage();
 
         if(approved.isSelected()){
             filterA = "APPROVED";

@@ -2,6 +2,7 @@ package UI.Controllers;
 
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
@@ -57,7 +58,9 @@ public class aApplicationFormPg2 {
 
 
     @FXML public void initialize() {
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
         Q8Comment.setText(comments.getComment8());
         Q8aComment.setText(comments.getComment8a());
         Q9Comment.setText(comments.getComment9());

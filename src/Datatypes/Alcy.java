@@ -36,6 +36,7 @@ public class Alcy {
     final static Image alcyStop1 = new Image("UI/Icons/alcyImages/alcystop-01.png");
     final static Image alcyTransformShort1 = new Image("UI/Icons/alcyImages/alcytransformshort-01.png");
     final static Image alcyTransformTall1 = new Image("UI/Icons/alcyImages/alcytransformtall-01.png");
+    final static Image alcyGun1 = new Image("UI/Icons/alcyImages/alcyglizzy-01.png");
 
     private ImageView imageView;
     private Text alcyLabel;
@@ -134,6 +135,12 @@ public class Alcy {
     @FXML public void stop(){
         resetTimeline();
         actionList.add(alcyStop1);
+        playTimeline();
+    }
+
+    @FXML public void gun(){
+        resetTimeline();
+        actionList.add(alcyGun1);
         playTimeline();
     }
 
@@ -362,7 +369,93 @@ public class Alcy {
         }
     }
 
+    @FXML public void saySettings(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("This is where you can edit all your settings!");
+            happy();
+        }else{
+            alcyLabel.setText("You've got so many options");
+            drunk();
+        }
+    }
 
+    @FXML public void saySettingsHover(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("DONT TOUCH THAT!");
+            gun();
+        }else{
+            alcyLabel.setText("IF YOU TOUCH THAT I WILL HAUNT YOUR DREAMS FOR THE REST OF ETERNITY!");
+            gun();
+        }
+    }
 
+    @FXML public void saySettingsBye(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Oh... Ok... well, bye, I guess...");
+            sad();
+        }else{
+            alcyLabel.setText("I guess you dont need me anymore...");
+            sad();
+        }
+    }
 
+    @FXML public void saySettingsRelief(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Woohoo! I'm not going away, baby!");
+            sad();
+        }else{
+            alcyLabel.setText("I knew I was helpful!");
+            sad();
+        }
+    }
+
+    /** ALCY HELPFUL TIPS **/
+
+    //1
+    @FXML public void sayHelpRepID(){
+        alcyLabel.setText("Include a third party representative ID Number if your application will be submitted by a third party representative, "+ cacheM.getAcct().getFullName()+".");
+        happy();
+    }
+
+    @FXML public void sayHelpBrewerNO(){
+        alcyLabel.setText("This should look something like BW- or TPWBH- or DSP- number. Importers must enter the TTB basic permit number and brewers must enter the brewer’s notice number.");
+        happy();
+    }
+
+    @FXML public void sayHelpProductSource(){
+        alcyLabel.setText("Tell me the source of the product by checking the appropriate box, ok?");
+        happy();
+    }
+
+    @FXML public void sayHelpSerialNumber(){
+        alcyLabel.setText("You must assign a sequential serial number beginning with the last two digits of the current calendar year to each application and its duplicate, not to exceed 6\n" +
+                "characters; e.g., 12-1, 12-2, etc.");
+        happy();
+    }
+
+    @FXML public void sayHelpBrandName(){
+        alcyLabel.setText("Hey! Enter the name of the bottler, packer, or importer here, pal.");
+        happy();
+    }
+
+    @FXML public void sayHelpFancifulName(){
+        alcyLabel.setText("Enter the name this drink is sold under!" +
+                "applicable.");
+        happy();
+    }
+
+    @FXML public void sayHelpCompanyName(){
+        alcyLabel.setText("Indicate your company name and address exactly as they appear on your plant registry, basic permit, or brewer’s notice.");
+        happy();
+    }
+
+    @FXML public void sayHelpMailingAddress(){
+        alcyLabel.setText("Indicate your company name and address exactly as they appear on your plant registry, basic permit, or brewer’s notice.");
+        happy();
+    }
 }
+

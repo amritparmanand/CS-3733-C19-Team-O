@@ -2,6 +2,7 @@ package UI.Controllers;
 
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.Comments;
 import Datatypes.Form;
 import Managers.CacheManager;
@@ -53,7 +54,9 @@ public class aApplicationFormPg4 {
 
     @SuppressWarnings("Duplicates") @FXML public void initialize () {
         //load all the comments for this page
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
         Q16Comment.setText(comments.getComment16());
         Q17Comment.setText(comments.getComment17());
         Q18Comment.setText(comments.getComment18());
