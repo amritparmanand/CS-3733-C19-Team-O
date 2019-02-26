@@ -48,7 +48,7 @@ public class aGetApplication {
     private boolean noFilter = false;
 
     @SuppressWarnings("Duplicates")
-    @FXML public void initialize(){
+    @FXML public void initialize() throws Exception{
         loadFormPane.getChildren().clear();
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);

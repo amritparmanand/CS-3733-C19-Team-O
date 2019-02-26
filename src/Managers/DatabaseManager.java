@@ -44,11 +44,9 @@ public class DatabaseManager {
         Connection connection = null;
         Statement stmt = null;
         try {
-            connection = DriverManager.getConnection("jdbc:derby:ttbDB;create=true");
-            CallableStatement cs = connection.prepareCall
-                    ("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.language.sequence.preallocator', '1')");
-            cs.execute();
-            cs.close();
+            connection = DriverManager.getConnection(
+                    "jdbc:postgresql://softeng.c1tjqfdh5koe.us-east-2.rds.amazonaws.com:5432/softeng",
+                    "ogopogo", "ogopog0!");
             stmt = connection.createStatement();
         }
         catch(SQLException e){
@@ -230,7 +228,7 @@ public class DatabaseManager {
 
         String mDefault = "insert into REPRESENTATIVES values (1, 'manu', '" + mPassword + "', 'Manufacturer Example'," +
                 " 'Manufacturer', 'manu@manu.com', '1234567890')";
-        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb')";
+        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'Agent Example', 'ttb@ttb.gov', '1234567898')";
         try {
             this.stmt.execute(mDefault);
             this.stmt.execute(aDefault);
