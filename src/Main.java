@@ -22,7 +22,7 @@ public class Main extends Application {
 
 //        dbM.generateTables();
 //        dbM.createSequences();
-        dbM.insertDefault();
+//        dbM.insertDefault();
 //        if(dbM.isFormsEmpty())
 //            dbM.generateTablesForms();
 //        else if(!dbM.isFormsEmpty())
