@@ -41,7 +41,7 @@ public class aFormStorage {
     @FXML private Text alcyLabel;
     private ArrayList<Form> repeated = new ArrayList<>();
 
-    @SuppressWarnings("Duplicates") @FXML public void initialize(){
+    @SuppressWarnings("Duplicates") @FXML public void initialize() throws Exception{
         Agent A = (Agent) cacheM.getAcct();
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         if(!A.isGotCurrentForms()){
@@ -112,7 +112,7 @@ public class aFormStorage {
 
     @SuppressWarnings("Duplicates")
     @FXML
-    public void assignNewForms() throws IOException {
+    public void assignNewForms() throws IOException, Exception{
 
         int limit = cacheM.getFormLimit();
 

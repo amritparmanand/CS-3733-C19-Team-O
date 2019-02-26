@@ -465,7 +465,7 @@ public class Form {
         PreparedStatement prepStmt = connection.prepareStatement(Apps1);
         ResultSet seqVal;
         try {
-            seqVal = connection.prepareStatement("values (next value for appIDSequence)").executeQuery();
+            seqVal = connection.prepareStatement("SELECT nextval('appidsequence')").executeQuery();
             seqVal.next();
             prepStmt.setInt(1, seqVal.getInt(1));
             prepStmt.setInt(2,formID);
@@ -502,7 +502,7 @@ public class Form {
         PreparedStatement prepStmt = connection.prepareStatement(Forms1);
         ResultSet seqVal;
         try {
-            seqVal = connection.prepareStatement("values (next value for FormIDSequence)").executeQuery();
+            seqVal = connection.prepareStatement("SELECT nextval('formidsequence')").executeQuery();
             seqVal.next();
             this.setFormID(seqVal.getInt(1));
             prepStmt.setInt(1, seqVal.getInt(1));
