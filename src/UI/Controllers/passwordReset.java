@@ -56,13 +56,14 @@ public class passwordReset {
      */
     @FXML
     public void sendResetEmail() throws SQLException, java.io.IOException {
-        /*
+
         String getData = "SELECT EMAIL FROM ? WHERE EMAIL = ? AND ? = ?";
         PreparedStatement ps = cacheM.getDbM().getConnection().prepareStatement(getData);
         ps.setString(1, a.isSelected() ? "AGENTS":"REPRESENTATIVES");
         ps.setString(2, email.getText());
         ps.setString(3, a.isSelected() ? "TTBID":"REPID");
         ps.setString(4, ID.getText());
+        System.out.println(ps.toString());
         ResultSet rs = ps.executeQuery();
 
         if(rs != null){
@@ -70,10 +71,10 @@ public class passwordReset {
                 //too many records
                 System.out.println("Database error");
             }
-            else{*/
+            else{
                 this.send("ttb.database@gmail.com","OnyxOgopogo",email.getText(),"TTB Password Reset",generateEmailBody());
-            //}
-        //}
+            }
+        }
 
         FXMLLoader popLoader = new FXMLLoader(getClass().getResource("/UI/Views/passwordKeyPopup.fxml"));
         sceneM.popWindowLoader(popLoader, new passwordKeyPopup(sceneM, cacheM, ResetKey, email.getText(), a.isSelected(), new Stage()), "Password Key Input");

@@ -56,7 +56,7 @@ public class passwordKeyPopup extends StageContainingScene {
         }
         else{
             keyMessage.setTextFill(Color.RED);
-            keyMessage.setText("Key not valid. Please try again.");
+            keyMessage.setText("Key not valid.");
             System.out.println("The key you entered was not valid. Please double-check your email and try again.");
         }
     }
