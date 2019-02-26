@@ -48,8 +48,9 @@ public class mFormStorage {
     }
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         loadForms.getChildren().clear();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().sayMForm();
 
         String filterA;
         String filterP;

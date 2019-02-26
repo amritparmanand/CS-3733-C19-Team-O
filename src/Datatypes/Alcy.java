@@ -180,18 +180,28 @@ public class Alcy {
     @FXML public void sayWierdBeerPercentage(){
         String percentage = cacheM.getForm().getAlcoholPercent();
         String type = cacheM.getForm().getProductType();
-        if(Float.parseFloat(percentage)>12.5 && type == "MALT"){
-            alcyLabel.setText("Wow, thats a high percentage... Are you sure this is the correct value?");
-            confused();
-        }
-        if(Float.parseFloat(percentage)<12.5 && type == "DISTILLED") {
-            alcyLabel.setText("Wow, you're gonna have to drink a lot of this to get drunk! Are you sure this is the correct value?");
+        if(Float.parseFloat(percentage)<100 && Float.parseFloat(percentage)>0){
+            if(Integer.parseInt(percentage)>12.5 && type == "MALT"){
+                alcyLabel.setText("Wow, thats a high percentage... Are you sure this is the correct value?");
+                confused();
+            }
+            if(Integer.parseInt(percentage)<12.5 && type == "DISTILLED") {
+                alcyLabel.setText("Wow, you're gonna have to drink a lot of this to get drunk! Are you sure this is the correct value?");
+                sassy();
+            }
+            if(Integer.parseInt(percentage)>16 && type == "WINE"){
+                alcyLabel.setText("Wow, thats a high percentage... Are you sure this is a wine?");
+                confused();
+            }
+            else{
+                alcyLabel.setText("Looks good to me!");
+                happy();
+            }
+        }else if(Float.parseFloat(percentage)>100 || Float.parseFloat(percentage)<0){
+            alcyLabel.setText("Your alcohol content cannot defy the laws of physics!");
             sassy();
         }
-        if(Float.parseFloat(percentage)>16 && type == "WINE"){
-            alcyLabel.setText("Wow, thats a high percentage... Are you sure this is a wine?");
-            confused();
-        }
+
     }
 
     @FXML public void sayFancifulName(){
@@ -265,6 +275,17 @@ public class Alcy {
         }else{
             alcyLabel.setText("Nice try, moron!");
             angry();
+        }
+    }
+
+    @FXML public void sayAboutUs(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("I've never seen a more good lookin' bunch o folks!");
+            pointing();
+        }else{
+            alcyLabel.setText("Really? You'd trust these guys with your app?");
+            confused();
         }
     }
 
