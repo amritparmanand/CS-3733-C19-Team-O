@@ -49,7 +49,7 @@
                         </JFXButton>
                         <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left = "20" />
                            </HBox.margin>
                         </JFXButton>
                      </children>

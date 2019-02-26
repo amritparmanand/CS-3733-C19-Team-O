@@ -70,7 +70,13 @@ public class mApplicationFormViewPg1 {
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayMViewForm();
-
+        if(form.getProductType().equals("WINE"))
+        {
+            showWineFields();
+        }else
+        {
+            hideWineFields();
+        }
         repID.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
