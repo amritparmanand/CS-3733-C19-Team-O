@@ -230,7 +230,7 @@ public class Alcy {
     @FXML public void saypHLevel(){
 
         if(Double.parseDouble(cacheM.getForm().getpHLevel())<3) {
-            alcyLabel.setText("What are you drinking acid over here?");
+            alcyLabel.setText("What are you drinking over here, acid?");
             confused();
         }
         if(Double.parseDouble(cacheM.getForm().getpHLevel())>7) {
@@ -483,7 +483,7 @@ public class Alcy {
     }
 
     @FXML public void sayMHelpAlcoholPercentage(){
-        alcyLabel.setText("So what is this thing closer to water or jet fuel?");
+        alcyLabel.setText("So what is this thing closer to, water or jet fuel?");
         confused();
     }
 
