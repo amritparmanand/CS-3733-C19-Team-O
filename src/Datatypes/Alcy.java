@@ -173,15 +173,15 @@ public class Alcy {
     @FXML public void sayWierdBeerPercentage(){
         String percentage = cacheM.getForm().getAlcoholPercent();
         String type = cacheM.getForm().getProductType();
-        if(Integer.parseInt(percentage)>12.5 && type == "MALT"){
+        if(Float.parseFloat(percentage)>12.5 && type == "MALT"){
             alcyLabel.setText("Wow, thats a high percentage... Are you sure this is the correct value?");
             confused();
         }
-        if(Integer.parseInt(percentage)<12.5 && type == "DISTILLED") {
+        if(Float.parseFloat(percentage)<12.5 && type == "DISTILLED") {
             alcyLabel.setText("Wow, you're gonna have to drink a lot of this to get drunk! Are you sure this is the correct value?");
             sassy();
         }
-        if(Integer.parseInt(percentage)>16 && type == "WINE"){
+        if(Float.parseFloat(percentage)>16 && type == "WINE"){
             alcyLabel.setText("Wow, thats a high percentage... Are you sure this is a wine?");
             confused();
         }
