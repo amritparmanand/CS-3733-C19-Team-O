@@ -27,6 +27,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.pdfbox.rendering.PDFRenderer;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -208,6 +209,7 @@ public class mOnePageForm {
         Alcy alcy = cacheM.getAlcy();
         alcy.setImageView(alcyView);
         alcy.start();
+        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect(cacheM.getDbM().getConnection()));
 
 
         switch(form.getProductSource()){

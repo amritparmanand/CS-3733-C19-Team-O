@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 
@@ -41,6 +42,7 @@ public class mApplicationFormViewPg3 {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
+        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect(cacheM.getDbM().getConnection()));
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
