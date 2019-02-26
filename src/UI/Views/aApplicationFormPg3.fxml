@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.aApplicationFormPg3">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.aApplicationFormPg3">
 
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -126,7 +126,7 @@
                   </VBox>
                         <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="800.0">
                             <content>
-                                <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="800.0" styleClass="backPane">
+                                <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="863.0" prefWidth="800.0" styleClass="backPane">
                                     <children>
                                         <Label text="TTB Label Form">
                                             <padding>
@@ -217,7 +217,7 @@
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                             </padding>
                                         </VBox>
-                                        <VBox alignment="CENTER" maxHeight="611.0" prefHeight="611.0" prefWidth="641.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                                        <VBox alignment="CENTER" maxHeight="611.0" prefHeight="423.0" prefWidth="800.0" spacing="10.0" VBox.vgrow="ALWAYS">
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="15. Show Any Information That is Blown, Branded, or Embossed on the Container (e.g., net contents) Only if it Does Not Appear on the Labels Affixed Below. Also, Show Translations of Foreign Language Text Appearing on Labels." wrappingWidth="580.0" />
                                                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="250.0">

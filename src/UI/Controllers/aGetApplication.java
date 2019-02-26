@@ -43,7 +43,7 @@ public class aGetApplication {
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
 
-    @SuppressWarnings("Duplicates") @FXML public void initialize() throws IOException {
+    @SuppressWarnings("Duplicates") @FXML public void initialize() throws Exception {
         loadFormPane.getChildren().clear();
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
