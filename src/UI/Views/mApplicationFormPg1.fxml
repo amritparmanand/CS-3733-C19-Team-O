@@ -49,9 +49,14 @@
                         </Text>
                   <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                      <children>
+                        <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
+                           <HBox.margin>
+                              <Insets left = "20.0"/>
+                           </HBox.margin>
+                        </JFXButton>
                         <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left = "20"/>
                            </HBox.margin>
                         </JFXButton>
                      </children>

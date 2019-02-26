@@ -47,9 +47,14 @@
                         <Insets right="100.0" />
                      </HBox.margin>
                      <children>
+                        <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </JFXButton>
                         <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
                            <HBox.margin>
-                              <Insets left="800.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </JFXButton>
                      </children>

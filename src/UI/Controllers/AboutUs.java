@@ -32,4 +32,8 @@ public class AboutUs{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
         sceneM.changeScene(loader, new startPage(sceneM, cacheM));
     }
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+    }
 }

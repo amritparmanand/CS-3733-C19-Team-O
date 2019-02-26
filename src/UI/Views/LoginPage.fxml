@@ -47,6 +47,11 @@
                               <Insets />
                            </HBox.margin>
                         </JFXButton>
+                        <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </JFXButton>
                      </children>
                      <padding>
                         <Insets right="100.0" />

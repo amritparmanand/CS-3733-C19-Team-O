@@ -31,7 +31,7 @@ public class SceneManager {
     //WARNING: Object isn't a good thing to settle on. We will create a super class later to call here.
     public void changeScene(FXMLLoader loader, Object sceneClass) throws IOException {
         loader.setControllerFactory(c -> sceneClass);
-
+        lastScene = main.getScene();
         Parent root = loader.load();
         main.setScene(new Scene(root));
 //        main.setMaximized(true);
@@ -81,4 +81,8 @@ public class SceneManager {
         stage.showAndWait();
     }
 
+    public Scene getLastScene()
+    {
+        return lastScene;
+    }
 }

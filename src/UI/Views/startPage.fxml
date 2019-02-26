@@ -35,7 +35,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="0.0" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="about" maxWidth="1980.0" onMousePressed="#about" styleClass="searchButtonStyle" text="About">
                            <HBox.margin>
@@ -44,7 +44,12 @@
                         </JFXButton>
                         <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left = "20.0"/>
+                           </HBox.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="logout" onMousePressed="#login" styleClass="searchButtonStyle" text="Login">
+                           <HBox.margin>
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </JFXButton>
                      </children>
