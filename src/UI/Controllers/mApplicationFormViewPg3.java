@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 
@@ -48,6 +49,8 @@ public class mApplicationFormViewPg3 {
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayMViewForm();
+        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect(cacheM.getDbM().getConnection()));
+
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());

@@ -695,5 +695,59 @@ public class Form {
 
         return result;
     }
+    @SuppressWarnings("Duplicates") public ObservableList<String> stateSelect(Connection connection) {
+        ObservableList<String> result = FXCollections.observableArrayList();
+        result.add("AK");
+        result.add("AL");
+        result.add("AR");
+        result.add("AZ");
+        result.add("CA");
+        result.add("CO");
+        result.add("CT");
+        result.add("DE");
+        result.add("FL");
+        result.add("GA");
+        result.add("HI");
+        result.add("IA");
+        result.add("ID");
+        result.add("IL");
+        result.add("IN");
+        result.add("KS");
+        result.add("KY");
+        result.add("LA");
+        result.add("MA");
+        result.add("MD");
+        result.add("ME");
+        result.add("MI");
+        result.add("MN");
+        result.add("MO");
+        result.add("MS");
+        result.add("MT");
+        result.add("NC");
+        result.add("ND");
+        result.add("NE");
+        result.add("NH");
+        result.add("NJ");
+        result.add("NM");
+        result.add("NV");
+        result.add("NY");
+        result.add("OH");
+        result.add("OK");
+        result.add("OR");
+        result.add("PA");
+        result.add("RI");
+        result.add("SC");
+        result.add("SD");
+        result.add("TN");
+        result.add("TX");
+        result.add("UT");
+        result.add("VA");
+        result.add("VT");
+        result.add("WA");
+        result.add("WI");
+        result.add("WV");
+        result.add("WY");
+        return result;
+    }
 
 }
