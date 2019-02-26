@@ -19,6 +19,7 @@ public class aHomepage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
+
     public aHomepage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
@@ -49,6 +50,12 @@ public class aHomepage {
     public void viewReviewed() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aGetApplication.fxml"));
         sceneM.changeScene(loader, new aGetApplication(sceneM, cacheM));
+    }
+
+    @FXML
+    public void scores() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/Scores.fxml"));
+        sceneM.changeScene(loader, new Scores(sceneM, cacheM));
     }
 
 }

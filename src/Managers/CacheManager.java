@@ -1,6 +1,7 @@
 package Managers;
 
 import Datatypes.Account;
+import Datatypes.Agent;
 import Datatypes.Alcy;
 import Datatypes.Form;
 import Datatypes.SearchResult;
@@ -96,10 +97,12 @@ public class CacheManager {
         System.out.println(form.getFormID());
         System.out.println(form.getSignature());
         System.out.println(form.getDateIssued());
+        ((Agent) this.getAcct()).setScore(((Agent) this.getAcct()).getScore() + 5);
         form.approve(conn);
 
     }
     public void denyForm(Connection conn) throws Exception{
+        ((Agent) this.getAcct()).setScore(((Agent) this.getAcct()).getScore() + 5);
         form.deny(conn);
     }
     public void insertForm(Connection connection) throws Exception {

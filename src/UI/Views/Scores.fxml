@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.settingPage">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1800.0" styleClass="navheader">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/TTB-logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="625.0" prefWidth="1280.0">
+               <children>
+                  <HBox fx:id="ID" alignment="CENTER" prefHeight="300.0" prefWidth="951.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="332.0" prefWidth="500.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="300.0" text="Your Profile" textAlignment="CENTER" />
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="50.0" prefWidth="162.0" text="Current Score:" textAlignment="CENTER" />
+                                    <Label fx:id="score" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets top="-15.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label text="Number of Forms Approved:" />
+                                    <Label fx:id="approved" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Number of Forms Denied:" />
+                                    <Label fx:id="numDenied" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Number of Forms Passed:" />
+                                    <Label fx:id="passed" />
+                                 </children>
+                              </HBox>
+                              <JFXButton fx:id="back" onMousePressed="#back" styleClass="buttonStyle" text="Back" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Leaderboard" />
+                              <FlowPane fx:id="loadScores" prefHeight="200.0" prefWidth="200.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <TilePane alignment="TOP_CENTER" maxWidth="2000.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="rookie" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="gettingStarted" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="seasonedPro" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pleasantMood" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/10.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="yesMan" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/11.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="goodVibrations" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/12.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="denied" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/14.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="highStandards" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/13.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="itsAllWrong" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/15.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="passingTheBuck" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/7.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="expertProcrastination" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/8.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="expertDelegation" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/9.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="535.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveColor/16.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="threePointer" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="inquisitive" fitHeight="150.0" fitWidth="200.0" layoutX="760.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/17.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="backFromTheDead" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="aNewFriend" fitHeight="150.0" fitWidth="200.0" layoutX="985.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/18.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="strikeThree" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/SoftEngAchieveBW/6.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </TilePane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
