@@ -7,6 +7,7 @@ import javax.security.auth.Subject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.sql.*;
 import java.util.Date;
@@ -287,7 +288,9 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void approve(Connection conn) {
+    public void approve(Connection conn) throws IOException {
+        ProcessBuilder pb = new ProcessBuilder("python","src\\Vector\\vectorDanceApproval.py");
+        Process p = pb.start();
         System.out.println("in Form Approve");
         String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, DATEREJECTED = null, STATUS = 'APPROVED' , DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
                 + this.formID;

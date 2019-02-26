@@ -9,6 +9,7 @@ import Fuzzy.FuzzyContext;
 import javafx.scene.image.ImageView;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,7 +93,7 @@ public class CacheManager {
 
     // Facade stuff
     // Form
-    public void approveForm(Connection conn){
+    public void approveForm(Connection conn) throws IOException {
         System.out.println("cManager approve Form");
         System.out.println(form.getFormID());
         System.out.println(form.getSignature());
