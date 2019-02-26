@@ -19,7 +19,8 @@ public class LabelImage {
         this.labelFile = null;
         this.image = null;
     }
-//    Image selecting method
+
+    // Image selecting method
     public File getFile(){
         //Create a file chooser
         FileChooser fileChooser = new FileChooser();
