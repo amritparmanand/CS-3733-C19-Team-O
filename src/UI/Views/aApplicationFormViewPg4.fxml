@@ -68,7 +68,7 @@
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                  <children>
                                     <JFXButton fx:id="previous" onMouseClicked="#back" styleClass="buttonStyle" text="Previous Page" />
-                                    <JFXButton fx:id="next1" disable="true" styleClass="buttonStyle" text="Next Page" />
+                                    <JFXButton fx:id="next1" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
                               <Label fx:id="saveDraftMessage" />
