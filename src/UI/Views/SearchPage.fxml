@@ -48,23 +48,23 @@
                         </TextField>
                      </children>
                      <HBox.margin>
-                        <Insets left="450.0" />
+                        <Insets left="600.0" />
                      </HBox.margin>
                   </HBox>
                   <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="20.0" />
                      </HBox.margin>
                   </Button>
                   <JFXButton onMousePressed="#popupAdvanced" styleClass="searchButtonStyle" text="ADVANCED SETTINGS">
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="50.0" />
                      </HBox.margin>
                   </JFXButton>
                </children></HBox>
             <HBox prefHeight="600.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
+                  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="925.0" prefWidth="318.0" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox prefHeight="50.0" prefWidth="200.0">
                            <children>
@@ -157,11 +157,11 @@
                            </VBox.margin></Button>
                      </children>
                   </VBox>
-                  <ScrollPane fx:id="scroll" fitToWidth="true" hbarPolicy="NEVER" prefHeight="900.0" prefWidth="1200.0" vbarPolicy="NEVER">
+                  <ScrollPane fx:id="scroll" fitToWidth="true" hbarPolicy="NEVER" prefHeight="900.0" prefWidth="1200.0" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="997.0">
                            <children>
-                              <FlowPane fx:id="searchResults" maxHeight="600.0" prefHeight="600.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <FlowPane fx:id="searchResults" alignment="CENTER" columnHalignment="CENTER" maxHeight="600.0" prefHeight="600.0" prefWidth="1080.0" prefWrapLength="0.0" rowValignment="TOP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -170,8 +170,8 @@
             </HBox>
          </children>
       </VBox>
-      <Label fx:id="searchSuggest" layoutX="175.0" layoutY="-7.0" onMousePressed="#searchSuggest" prefHeight="49.0" prefWidth="187.0" style="-fx-font-weight: bold; -fx-text-fill: blue; -fx-font-style: italic;" translateX="925.0" translateY="680.0" />
-      <Label fx:id="didYouMean" layoutX="264.0" layoutY="3.0" prefHeight="49.0" prefWidth="108.0" translateX="700.0" translateY="670.0" />
+      <Label fx:id="searchSuggest" layoutX="465.0" layoutY="252.0" onMousePressed="#searchSuggest" prefHeight="49.0" prefWidth="187.0" style="-fx-font-weight: bold; -fx-text-fill: blue; -fx-font-style: italic;" translateX="925.0" translateY="680.0" />
+      <Label fx:id="didYouMean" layoutX="554.0" layoutY="262.0" prefHeight="49.0" prefWidth="108.0" translateX="700.0" translateY="670.0" />
       <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">
          <children>
             <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">

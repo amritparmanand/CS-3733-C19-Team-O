@@ -75,7 +75,7 @@ public class SearchPage {
         cacheM.getAlcy().saySearchResult();
         ObservablePane op = null;
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 24; i++) {
             try {
                 Pane pane = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                 op = new ObservablePane(pane, searchResults, sceneM);
