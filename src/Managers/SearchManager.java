@@ -4,6 +4,7 @@ import Datatypes.SearchResult;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 
 public class SearchManager {
@@ -198,8 +199,18 @@ public class SearchManager {
             }
 
             //date check
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/uuuu");
-            LocalDate recordDate = LocalDate.parse(sr.getApprovedDate(), formatter);
+            LocalDate recordDate = null;
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/uuuu");
+                recordDate = LocalDate.parse(sr.getApprovedDate(), formatter);
+            } catch (DateTimeParseException e) {
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+                    recordDate = LocalDate.parse(sr.getApprovedDate(), formatter);
+                } catch (DateTimeParseException f) {
+
+                }
+            }
             if (exists(getFromDate())) {
                 //System.out.println("FROM DATE EXISTS");
                 if (recordDate.compareTo(getFromDate()) < 0)
@@ -218,7 +229,8 @@ public class SearchManager {
             }
 
             //receivedCodeCheck
-            System.out.println(sr.getFormID().substring(5, 8));
+            System.out.println(sr.getFormID());
+//            System.out.println(sr.getFormID().substring(5, 8));
             switch(sr.getFormID().substring(5, 8)) {
                 case "000":
                     if(!receivedCode0)
