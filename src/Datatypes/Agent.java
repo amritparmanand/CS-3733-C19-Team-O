@@ -424,18 +424,32 @@ public class Agent extends Account{
         f.setCommentString(rs.getString("comments"));
 
         // Deal with image
-        Blob picture = rs.getBlob("labelImage");
-        if (picture != null) {
+//        Blob picture = rs.getBlob("labelImage");
+//        if (picture != null) {
+//
+//            BufferedImage is = ImageIO.read(picture.getBinaryStream());
+//            File outputFile = new File("src/Tess4J/images/Storing"+System.currentTimeMillis()+".jpg");
+//            ImageIO.write(is, "JPG", outputFile);
+//            System.out.println("Storing called");
+//
+//            LabelImage percy = new LabelImage();
+//            percy.setLabelImage(new Image(picture.getBinaryStream()));
+//            percy.setLabelFile(new File(outputFile.toString()));
+//            f.setLabel(percy);
+//        }
 
-            BufferedImage is = ImageIO.read(picture.getBinaryStream());
-            File outputFile = new File("src/Tess4J/images/Storing"+System.currentTimeMillis()+".jpg");
-            ImageIO.write(is, "JPG", outputFile);
-            System.out.println("Storing called");
+        // Not Derby
+        byte[] pic = rs.getBytes("labelImage");
+        if(pic != null){
 
-            LabelImage percy = new LabelImage();
-            percy.setLabelImage(new Image(picture.getBinaryStream()));
-            percy.setLabelFile(new File(outputFile.toString()));
-            f.setLabel(percy);
+            String tempName = "src/Tess4J/images/Storing"+System.currentTimeMillis()+".jpg";
+            FileOutputStream os = new FileOutputStream(tempName);
+            os.write(pic);
+            os.close();
+            File jimbus = new File(tempName);
+
+            f.getLabel().setLabelFile(jimbus);
+            f.getLabel().setLabelImage(new Image(f.getLabel().getLabelFile().toURI().toString()));
         }
 
         return f;
