@@ -79,7 +79,8 @@ public class ObservablePane implements IObservable {
             year = sr.getYear();
             if(sr.getLabelImage().getLabelImage() != null) {
                 ((ImageView) imgView).setImage(sr.getLabelImage().getLabelImage());
-            }
+            }else
+                ((ImageView) imgView).setImage(null);
             ((Label) fName).setText(fancy);
             ((Label) bName).setText(brand);
             ((Label) aType).setText(type);

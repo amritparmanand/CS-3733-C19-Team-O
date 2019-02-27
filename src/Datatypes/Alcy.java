@@ -162,7 +162,7 @@ public class Alcy {
             alcyLabel.setText("Howdy, "+ cacheM.getAcct().getFullName()+"! I'm Alcy the Beer Can!");
             happy();
         }else{
-            alcyLabel.setText("Hey, " + cacheM.getAcct().getFullName()+". I'm Alcy AKA Schmizzed");
+            alcyLabel.setText("Hey, " + cacheM.getAcct().getFullName()+". I'm Alcy, AKA Schmizzed");
             drunk();
         }
     }

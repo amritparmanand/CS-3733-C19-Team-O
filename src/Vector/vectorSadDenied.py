@@ -28,6 +28,7 @@ import anki_vector
 def main():
     args = anki_vector.util.parse_command_args()
     with anki_vector.Robot(args.serial) as robot:
+        robot.behavior.set_eye_color(1, 0.99)
         robot.behavior.drive_off_charger()
         #print("List all animation names:")
         #anim_names = robot.anim.anim_list
@@ -37,7 +38,6 @@ def main():
         animation = 'anim_driving_upset_loop_02'
         print("Playing animation by name: " + animation)
         robot.anim.play_animation(animation)
-
         robot.say_text("Form Denied");
         robot.motors.set_lift_motor(7.0)
         time.sleep(.05)

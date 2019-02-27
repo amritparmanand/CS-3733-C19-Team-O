@@ -28,6 +28,7 @@ import anki_vector
 def main():
     args = anki_vector.util.parse_command_args()
     with anki_vector.Robot(args.serial) as robot:
+        robot.behavior.set_eye_color(.3, 0.99)
         robot.behavior.drive_off_charger()
         print("List all animation names:")
         #anim_names = robot.anim.anim_list

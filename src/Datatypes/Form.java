@@ -350,6 +350,8 @@ public class Form {
     }
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) throws Exception{
+        ProcessBuilder pb = new ProcessBuilder("python3","src/Vector/vectorSadDenied.py");
+        Process p = pb.start();
         String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED', COMMENTS = '"+ comments.generateComments() + "' WHERE FORMID ="+ this.formID;
                try {
             PreparedStatement ps = conn.prepareStatement(SQL);
