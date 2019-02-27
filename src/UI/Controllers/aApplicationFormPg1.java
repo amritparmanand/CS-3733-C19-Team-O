@@ -191,14 +191,14 @@ public class aApplicationFormPg1 extends Controller {
                 wine.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "SPIRITS":
-                spirits2.setSelected(true);
-                spirits2.setOpacity(1);
-                spirits2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
+                spirits.setSelected(true);
+                spirits.setOpacity(1);
+                spirits.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "BEER":
-                beer2.setSelected(true);
-                beer2.setOpacity(1);
-                beer2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
+                malt.setSelected(true);
+                malt.setOpacity(1);
+                malt.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
         }
       
