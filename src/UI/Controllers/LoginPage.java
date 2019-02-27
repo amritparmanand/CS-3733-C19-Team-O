@@ -85,7 +85,7 @@ public class LoginPage extends Controller implements SerialPortDataListener {
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
                 if (newPropertyValue)
-                { cacheM.getAlcy().sayWrongPassword();}
+                { cacheM.getAlcy().sayHelpPassword();}
                 else
                 {
                     cacheM.getAlcy().sassy();
@@ -98,13 +98,29 @@ public class LoginPage extends Controller implements SerialPortDataListener {
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
             {
                 if (newPropertyValue)
-                { cacheM.getAlcy().sayWrongPassword();}
+                { cacheM.getAlcy().sayHelpMAccount();}
                 else
                 {
-                    cacheM.getAlcy().sassy();
+                    cacheM.getAlcy().drunk();
                 }
             }
         });
+
+        a.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayHelpAAccount();}
+                else
+                {
+                    cacheM.getAlcy().drunk();
+                }
+            }
+        });
+
+        
+
 
         programChip.setVisible(false);
         if (ports.length > 0) {
