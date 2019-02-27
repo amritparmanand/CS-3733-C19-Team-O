@@ -623,11 +623,44 @@ public class Form {
      * @throws SQLException
      */
     public ResultSet getApprovedApplications(Connection conn, String condition, String type) throws SQLException{
-        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, ONLYSTATE, FORMS.FORMID, APPLICATIONS.TTBID, SERIALNUMBER, labelimage " +
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, " +
+                "VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, ONLYSTATE, FORMS.FORMID, APPLICATIONS.TTBID, SERIALNUMBER, labelimage " +
                 "FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
                 "WHERE " +
                 "APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
+
+        PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.CONCUR_UPDATABLE, ResultSet.TYPE_SCROLL_INSENSITIVE);
+        ps.setString(1, "%"+condition+"%");
+        ps.setString(2, "%"+condition+"%");
+
+        return ps.executeQuery();
+    }
+
+    public ResultSet percyState(Connection conn, String condition, String type, String state) throws SQLException{
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, " +
+                "VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, ONLYSTATE, FORMS.FORMID, APPLICATIONS.TTBID, SERIALNUMBER, labelimage " +
+                "FROM APPLICATIONS JOIN FORMS " +
+                "ON FORMS.FORMID = APPLICATIONS.FORMID " +
+                "WHERE " + "(forms.onlyState = " + state + ") and "+
+                "APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
+        System.out.println(retrieve);
+
+        PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.CONCUR_UPDATABLE, ResultSet.TYPE_SCROLL_INSENSITIVE);
+        ps.setString(1, "%"+condition+"%");
+        ps.setString(2, "%"+condition+"%");
+
+        return ps.executeQuery();
+    }
+
+    public ResultSet percyFilter(Connection conn, String condition, String type, int from, int to) throws SQLException{
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, " +
+                "VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, ONLYSTATE, FORMS.FORMID, APPLICATIONS.TTBID, SERIALNUMBER, labelimage " +
+                "FROM APPLICATIONS JOIN FORMS " +
+                "ON FORMS.FORMID = APPLICATIONS.FORMID " +
+                "WHERE " + "(applications.repid > " + from + ") and (applications.repid < " + to + ") and " +
+                "APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
+        System.out.println(retrieve);
 
         PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.CONCUR_UPDATABLE, ResultSet.TYPE_SCROLL_INSENSITIVE);
         ps.setString(1, "%"+condition+"%");

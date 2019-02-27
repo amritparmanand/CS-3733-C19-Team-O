@@ -185,7 +185,7 @@ public class mApplicationFormPg2 extends Controller {
         mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
         formula.setText(form.parseGarbage(form.getFormula()));
         grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
-        appellation.setText(form.getAppellation());
+        appellation.setText(form.parseGarbage(form.getAppellation()));
         if(!form.getPhoneNumber().equals(""))
             phoneNumber.setText(form.parseGarbage(form.getPhoneNumber()));
         else

@@ -60,6 +60,7 @@ public class SearchPage extends Controller {
     private SearchManager searchM;
 
     private AdvancedSearchPage advancedSearchPage;
+    private PercyAdvanceSearch percyAdvanceSearch;
     private settingPage settingPage;
 
     String oldSearch = "";
@@ -75,6 +76,7 @@ public class SearchPage extends Controller {
     @FXML
     public void initialize() throws SQLException {
         advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM);
+        percyAdvanceSearch = new PercyAdvanceSearch(sceneM, cacheM);
         TextFields.bindAutoCompletion(searchBox, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         cacheM.getAlcy().saySearchResult();
@@ -138,10 +140,9 @@ public class SearchPage extends Controller {
 
     @FXML
     public void popupAdvanced() throws IOException {
-        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AdvancedSearchPage.fxml"));
-        //advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, new Stage());
-        sceneM.popWindowLoader(loader, advancedSearchPage, "Advanced Search");
+        percyAdvanceSearch = new PercyAdvanceSearch(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/percyAdvanceSearch.fxml"));
+        sceneM.popWindowLoader(loader, percyAdvanceSearch, "Advanced Search");
     }
 
     @FXML public void settings() throws IOException {
@@ -214,7 +215,8 @@ public class SearchPage extends Controller {
         if (!type.equals("TRUE"))
             type = type.substring(0, type.length() - 18) + ")";
 
-        ResultSet approvedResults = getApprovedApplications(oldSearch, type);
+        ResultSet approvedResults;
+        approvedResults = getApprovedApplications(oldSearch, type);
         this.searchM = advancedSearchPage.transferSearchManager();
 //        System.out.println("SEARCH ACTIVE? " + searchM.isActive + " " + oldSearch);
 
@@ -281,7 +283,16 @@ public class SearchPage extends Controller {
 
 
     public ResultSet getApprovedApplications(String condition, String type) throws SQLException {
-        return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type);
+        if (!cacheM.isFilter()) {
+            return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type);
+        } else if(cacheM.isFilter()){
+            System.out.println("running percy filter");
+            return cacheM.getForm().percyFilter(cacheM.getDbM().getConnection(), condition, type, cacheM.getFromTTB(), cacheM.getToTTB());
+        }else if(cacheM.isFilter2()){
+            return cacheM.getForm().percyState(cacheM.getDbM().getConnection(), condition, type, cacheM.getSearchState());
+        }else{
+            return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type);
+        }
     }
 
     /**

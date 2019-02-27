@@ -108,6 +108,8 @@ public class AdvancedSearchPage extends StageContainingScene {
 
     @FXML
     public void applySearchSettings() {
+
+
         Integer tempBrandFancyEither = null;
         if(brandName.isSelected()) tempBrandFancyEither = 1;
         if(fancyName.isSelected()) tempBrandFancyEither = 2;

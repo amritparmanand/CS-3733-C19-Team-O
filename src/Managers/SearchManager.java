@@ -198,24 +198,24 @@ public class SearchManager {
             }
 
             //date check
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/uuuu");
-            LocalDate recordDate = LocalDate.parse(sr.getApprovedDate(), formatter);
-            if (exists(getFromDate())) {
-                //System.out.println("FROM DATE EXISTS");
-                if (recordDate.compareTo(getFromDate()) < 0)
-                    invalidateRecord = true;
-            }
-            if (exists(getToDate())) {
-                //System.out.println("TO DATE EXISTS");
-                if (recordDate.compareTo(getToDate()) > 0)
-                    invalidateRecord = true;
-            }
-
-            //origin check
-            if (exists(getOriginState())) {
-                if(!sr.getOrigin().equals(getOriginState()))
-                    invalidateRecord = true;
-            }
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/uuuu");
+//            LocalDate recordDate = LocalDate.parse(sr.getApprovedDate(), formatter);
+//            if (exists(getFromDate())) {
+//                //System.out.println("FROM DATE EXISTS");
+//                if (recordDate.compareTo(getFromDate()) < 0)
+//                    invalidateRecord = true;
+//            }
+//            if (exists(getToDate())) {
+//                //System.out.println("TO DATE EXISTS");
+//                if (recordDate.compareTo(getToDate()) > 0)
+//                    invalidateRecord = true;
+//            }
+//
+//            //origin check
+//            if (exists(getOriginState())) {
+//                if(!sr.getOrigin().equals(getOriginState()))
+//                    invalidateRecord = true;
+//            }
 
             //receivedCodeCheck
             System.out.println(sr.getFormID().substring(5, 8));

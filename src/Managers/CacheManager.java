@@ -30,6 +30,11 @@ public class CacheManager {
     private String search = "";
     private String style = "-fx-background-color: #ff9395;";
     private Alcy alcy = new Alcy(this);
+    private int fromTTB = 0;
+    private int toTTB = 100;
+    private boolean filter = false;
+    private boolean filter2 = false;
+    private String searchState = "";
 
 
     public CacheManager(DatabaseManager dbM) {
@@ -38,6 +43,48 @@ public class CacheManager {
     }
 
     // Getters and Setters
+
+
+    public String getSearchState() {
+        return searchState;
+    }
+
+    public void setSearchState(String searchState) {
+        this.searchState = searchState;
+    }
+
+    public boolean isFilter2() {
+        return filter2;
+    }
+
+    public void setFilter2(boolean filter2) {
+        this.filter2 = filter2;
+    }
+
+    public boolean isFilter() {
+        return filter;
+    }
+
+    public void setFilter(boolean filter) {
+        this.filter = filter;
+    }
+
+    public int getFromTTB() {
+        return fromTTB;
+    }
+
+    public void setFromTTB(int fromTTB) {
+        this.fromTTB = fromTTB;
+    }
+
+    public int getToTTB() {
+        return toTTB;
+    }
+
+    public void setToTTB(int toTTB) {
+        this.toTTB = toTTB;
+    }
+
     public DatabaseManager getDbM() {
         return dbM;
     }
