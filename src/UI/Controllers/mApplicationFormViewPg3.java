@@ -49,7 +49,6 @@ public class mApplicationFormViewPg3 {
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayMViewForm();
-        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect(cacheM.getDbM().getConnection()));
 
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());

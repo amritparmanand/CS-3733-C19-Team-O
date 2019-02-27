@@ -178,11 +178,6 @@ public class aFormStorage {
         ArrayList<Form> populatedForms = A.getNewForms();
 
         for (Form form : populatedForms) {
-
-//            if (!repeated.contains(form)) {
-//                System.out.println("adding repeated failed");
-//
-//            }
             Pane formResult;
             try {
                 formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
@@ -226,9 +221,6 @@ public class aFormStorage {
                     });
 
                 }
-
-//                repeated.add(form);
-//                A.getWorkingForms().add(form);
             } catch (IOException e) {
                 e.printStackTrace();
             }

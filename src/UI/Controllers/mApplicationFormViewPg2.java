@@ -96,7 +96,7 @@ public class mApplicationFormViewPg2 {
     @FXML public void previousPage() throws IOException {
 //        multiThreadWaitFor.onShutDown();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormViewPg3(sceneM, cacheM,form));
+        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM,form));
     }
 
     @FXML public void goToHomePage() throws IOException {

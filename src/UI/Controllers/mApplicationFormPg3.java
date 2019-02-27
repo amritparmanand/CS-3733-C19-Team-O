@@ -24,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 
@@ -84,6 +85,7 @@ public class mApplicationFormPg3 {
             DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
             resubmission.setSelected(form.getResubmission());
             onlyState.setText(form.parseGarbage(form.getOnlyState()));
+            TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect());
 
             if (form.getTtbID() != 0)
                 resubmission.setSelected(true);

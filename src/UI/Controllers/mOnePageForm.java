@@ -339,7 +339,7 @@ public class mOnePageForm {
         Alcy alcy = cacheM.getAlcy();
         alcy.setImageView(alcyView);
         alcy.start();
-        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect(cacheM.getDbM().getConnection()));
+        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect());
 
         switch(form.getProductSource()){
             case "DOMESTIC":

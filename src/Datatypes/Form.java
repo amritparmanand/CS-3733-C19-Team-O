@@ -694,7 +694,8 @@ public class Form {
 
         return result;
     }
-    @SuppressWarnings("Duplicates") public ObservableList<String> stateSelect(Connection connection) {
+
+    @SuppressWarnings("Duplicates") public ObservableList<String> stateSelect() {
         ObservableList<String> result = FXCollections.observableArrayList();
         result.add("AK");
         result.add("AL");
