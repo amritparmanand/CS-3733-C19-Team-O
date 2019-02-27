@@ -42,7 +42,6 @@ public class Scores {
 
     }
     @FXML private FlowPane loadScores;
-
     @FXML private Label score;
     @FXML private Label approved;
     @FXML private Label numDenied;
@@ -67,6 +66,7 @@ public class Scores {
     @FXML private ImageView inquisitive;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    @FXML private JFXButton logout;
 
     /**
      * @author Clay Oshiro-Leavitt & Trevor Dowd
@@ -208,10 +208,19 @@ public class Scores {
     }
     @FXML
     public void back() throws IOException {
-
         agents.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
         sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
+
+    }
+
+    @FXML
+    public void logout() throws IOException {
+        agents.clear();
+        Agent A = (Agent) cacheM.getAcct();
+        A.deleteLabels();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
+        sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
     }
 }

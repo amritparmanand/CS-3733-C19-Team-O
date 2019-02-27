@@ -17,6 +17,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  * @author Clay Oshiro-Leavitt
@@ -284,10 +285,15 @@ public class aApplicationFormPg1 extends Controller {
 
     @FXML
     public void acceptForm() throws IOException {
-        cacheM.approveForm(cacheM.getDbM().getConnection());
-        Agent A = (Agent) cacheM.getAcct();
-        A.approveOrDeny(form);
-        goToHomePage();
+        if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+            cacheM.approveForm(cacheM.getDbM().getConnection());
+            Agent A = (Agent) cacheM.getAcct();
+            A.approveOrDeny(form);
+            goToHomePage();
+        }else{
+            System.out.println("invalid signature or date");
+        }
     }
 
     @FXML
@@ -300,11 +306,16 @@ public class aApplicationFormPg1 extends Controller {
         comments.setComment6(Q6Comment.getText());
         comments.setComment7(Q7Comment.getText());
         cacheM.getForm().setComments(comments);
-        System.out.println(comments.generateComments());
+        if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+            System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
         goToHomePage();
+        }else{
+            System.out.println("invalid signature or date");
+        }
     }
 
     @FXML public void passForm() throws IOException{

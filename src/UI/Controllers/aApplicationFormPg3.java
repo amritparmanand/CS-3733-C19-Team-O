@@ -348,10 +348,15 @@ public class aApplicationFormPg3 extends Controller {
     }
     @FXML
     public void acceptForm() throws IOException {
-        cacheM.approveForm(cacheM.getDbM().getConnection());
+        if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+            cacheM.approveForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
         goToHomePage();
+        }else{
+            System.out.println("invalid signature or date");
+        }
     }
 
 
@@ -360,11 +365,16 @@ public class aApplicationFormPg3 extends Controller {
         comments.setComment14(Q14Comment.getText());
         comments.setComment15(Q15Comment.getText());
         cacheM.getForm().setComments(comments);
-        System.out.println(comments.generateComments());
+            if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+                System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
         goToHomePage();
+            }else{
+                System.out.println("invalid signature or date");
+            }
     }
 
     @FXML public void passForm() throws IOException{
