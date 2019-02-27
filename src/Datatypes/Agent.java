@@ -392,6 +392,55 @@ public class Agent extends Account{
         }
     }
 
+    public int countStatus(Connection connection, String status){
+        int result = 0;
+
+        String getNum = "SELECT count(APPID) as c FROM APPLICATIONS where STATUS = '" + status +"' and REPID = " + this.getTtbID();
+        try {
+            ResultSet rset = connection.createStatement().executeQuery(getNum);
+            while(rset.next())
+                result = rset.getInt("c");
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    /**
+     * @author Percy
+     * @version It 4
+     * @param connection
+     */
+    public void calculateScorePercy(Connection connection){
+        System.out.println("percy calculate score");
+
+        numberApproved = countStatus(connection, "APPROVED");
+        numberDenied = countStatus(connection, "DENIED");
+        numberProcessed = numberApproved + numberDenied;
+
+        score = numberProcessed * 5;
+        System.out.println(score);
+
+        try {
+            String percy = "update agents set score = " + score + ", " +
+                    "numberapproved = " + numberApproved + ", " +
+                    "numberdenied = " + numberDenied + ", " +
+                    "numberpassed = " + numberPassed + ", " +
+                    "numberprocessed = " + numberProcessed + "," +
+                    "where ttbid = " + this.ttbID;
+            PreparedStatement updatePercy = connection.prepareStatement(percy);
+            updatePercy.executeUpdate();
+            updatePercy.close();
+
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+    }
+
+
     private Form formFromResultSet(ResultSet rs) throws SQLException, IOException {
         Form f = new Form();
         f.setFormID(rs.getLong("formID"));

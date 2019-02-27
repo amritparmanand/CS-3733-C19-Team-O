@@ -78,7 +78,7 @@ public class Scores {
     @FXML public void initialize() {
         Connection connection = cacheM.getDbM().getConnection();
         Agent A = (Agent) cacheM.getAcct();
-        A.calculateScore(connection);
+        A.calculateScorePercy(connection);
         A.rankAgents(connection);
         score.setText(Integer.toString(A.getScore()));
         approved.setText(Integer.toString(A.getNumberApproved()));
