@@ -44,9 +44,14 @@
                   </Text>
                   <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="1920.0" HBox.hgrow="ALWAYS">
                      <children>
+                        <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
+                           <HBox.margin>
+                              <Insets left = "20.0"/>
+                           </HBox.margin>
+                        </JFXButton>
                         <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
                            <HBox.margin>
-                              <Insets left="800.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </JFXButton>
                      </children>
@@ -68,7 +73,7 @@
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                  <children>
                                     <JFXButton fx:id="previous" onMouseClicked="#previousPage" styleClass="buttonStyle" text="Previous Page" />
-                                    <JFXButton fx:id="next1" disable="true" onMousePressed="#nextPage" styleClass="buttonStyle" text="Next Page" />
+                                    <JFXButton fx:id="next1" disable="true"  styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
                               <Label fx:id="saveDraftMessage" />

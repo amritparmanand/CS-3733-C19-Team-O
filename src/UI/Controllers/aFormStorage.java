@@ -45,10 +45,7 @@ public class aFormStorage {
     @SuppressWarnings("Duplicates") @FXML public void initialize() throws Exception {
         A = (Agent) cacheM.getAcct();
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
-
-        if(!A.isGotCurrentForms()){
-            A.getAssignedForms(cacheM.getDbM().getConnection());
-        }
+        A.getAssignedForms(cacheM.getDbM().getConnection());
         ArrayList<Form> populatedForms = A.getWorkingForms();
 
         for (Form form : populatedForms) {
@@ -148,11 +145,6 @@ public class aFormStorage {
         if (A.getNumberPassed() == 10000){
             achievement.setText("Achievement: Expert Delegation Unlocked!");
         }
-
-        // reviewed a form that was previously denied
-        if (A.isGotOldForms()==false){
-            achievement.setText("Achievement: Back From The Dead Unlocked!");
-        }
         // processed 3 forms in a row
         if (A.getRowAD() == 3){
             achievement.setText("Achievement: Three Pointer Unlocked!");
@@ -182,65 +174,55 @@ public class aFormStorage {
 
         int limit = cacheM.getFormLimit();
 
-        if (!A.isHasFetchedForms()) {
-            A.assignNewForms(cacheM.getDbM().getConnection(), limit);
-        }
-
+        A.assignNewForms(cacheM.getDbM().getConnection(), limit);
         ArrayList<Form> populatedForms = A.getNewForms();
 
         for (Form form : populatedForms) {
+            Pane formResult;
+            try {
+                formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
+                Node vbox = formResult.getChildren().get(0);
+                if (vbox instanceof VBox) {
+                    Node imgView = ((VBox) vbox).getChildren().get(0);
+                    Node fName = ((VBox) vbox).getChildren().get(1);
+                    Node bName = ((VBox) vbox).getChildren().get(2);
+                    Node aType = ((VBox) vbox).getChildren().get(3);
 
-            if (!repeated.contains(form)) {
-                System.out.println("adding repeated failed");
-                Pane formResult;
-                try {
-                    formResult = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
-                    Node vbox = formResult.getChildren().get(0);
-                    if (vbox instanceof VBox) {
-                        Node imgView = ((VBox) vbox).getChildren().get(0);
-                        Node fName = ((VBox) vbox).getChildren().get(1);
-                        Node bName = ((VBox) vbox).getChildren().get(2);
-                        Node aType = ((VBox) vbox).getChildren().get(3);
-
-                        if (form.getLabel().getLabelImage() != null) {
-                            ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
-                            ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
-                            ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
-                            switch (form.parseGarbage(form.getProductType())) {
-                                case "WINE":
-                                    ((Label) aType).setText("Wine");
-                                    break;
-                                case "DISTILLED":
-                                    ((Label) aType).setText("Distilled Beverage");
-                                    break;
-                                case "MALT":
-                                    ((Label) aType).setText("Malt Beverage");
-                                    break;
-                            }
-
-
+                    if (form.getLabel().getLabelImage() != null) {
+                        ((ImageView) imgView).setImage(form.getLabel().getLabelImage());
+                        ((Label) fName).setText(form.parseGarbage(form.getFancifulName()));
+                        ((Label) bName).setText(form.parseGarbage(form.getBrandName()));
+                        switch (form.parseGarbage(form.getProductType())) {
+                            case "WINE":
+                                ((Label) aType).setText("Wine");
+                                break;
+                            case "DISTILLED":
+                                ((Label) aType).setText("Distilled Beverage");
+                                break;
+                            case "MALT":
+                                ((Label) aType).setText("Malt Beverage");
+                                break;
                         }
-                        loadForms.getChildren().add(formResult);
-                        formResult.setId("Alcoholbox");
 
-                        formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-                                try {
-                                    aApplicationFormControl(form);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
 
                     }
+                    loadForms.getChildren().add(formResult);
+                    formResult.setId("Alcoholbox");
 
-                    repeated.add(form);
-                    A.getWorkingForms().add(form);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    formResult.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            try {
+                                aApplicationFormControl(form);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -250,6 +232,9 @@ public class aFormStorage {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
-
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+    }
 
 }

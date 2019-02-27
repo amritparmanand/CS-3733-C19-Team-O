@@ -254,6 +254,9 @@ public class LoginPage implements SerialPortDataListener {
         }
     }
 
-
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+    }
 
 }

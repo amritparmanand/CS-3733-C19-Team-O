@@ -75,12 +75,8 @@ public class aGetApplication {
         }
 
         Agent A = (Agent) cacheM.getAcct();
-
-        if(!A.isGotOldForms()){
-            ((Agent) cacheM.getAcct()).getReviewedForms(cacheM.getDbM().getConnection());
-        }
-
-        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getReviewedForms();
+        A.getReviewedForms(cacheM.getDbM().getConnection());
+        ArrayList<Form> populatedForms = A.getReviewedForms();
 
         for (Form form : populatedForms) {
             if (form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterA) ||
@@ -144,8 +140,6 @@ public class aGetApplication {
                 }
             }
         }
-
-        cacheM.setAcct(A);
     }
 
     @FXML
@@ -165,5 +159,9 @@ public class aGetApplication {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
+    }
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
     }
 }

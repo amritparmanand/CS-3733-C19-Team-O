@@ -72,6 +72,7 @@ public class SearchPage {
         advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM);
         TextFields.bindAutoCompletion(searchBox, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().saySearchResult();
         ObservablePane op = null;
 
         for (int i = 0; i < 15; i++) {

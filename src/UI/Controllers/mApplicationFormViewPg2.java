@@ -95,7 +95,8 @@ public class mApplicationFormViewPg2 {
     }
     @FXML public void previousPage() throws IOException {
 //        multiThreadWaitFor.onShutDown();
-        sceneM.backScene();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
+        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM,form));
     }
 
     @FXML public void goToHomePage() throws IOException {
@@ -115,5 +116,8 @@ public class mApplicationFormViewPg2 {
         PDF pdf = new PDF();
         pdf.savePDF(cacheM.getForm());
     }
-
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+    }
 }

@@ -339,7 +339,7 @@ public class mOnePageForm {
         Alcy alcy = cacheM.getAlcy();
         alcy.setImageView(alcyView);
         alcy.start();
-        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect(cacheM.getDbM().getConnection()));
+        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect());
 
         switch(form.getProductSource()){
             case "DOMESTIC":
@@ -752,6 +752,7 @@ public class mOnePageForm {
 
         if (!validFormEmail(email.getText().trim()) || !validFormPhone(phoneNumber.getText().trim())) {
             System.out.println("Unable to submit. Invalid fields entered");
+            cacheM.getAlcy().saySubmitFormError("pop");
         }
         else {
             System.out.println("save Draft executed");
@@ -766,9 +767,6 @@ public class mOnePageForm {
             }catch(SQLException e){
                 e.printStackTrace();
             }
-
-            Manufacturer M = (Manufacturer) cacheM.getAcct();
-            M.submitForm(cacheM.getDbM().getConnection());
 
             Form cleanForm = new Form();
             cacheM.setForm(cleanForm);
@@ -871,5 +869,8 @@ public class mOnePageForm {
     }
 
 
-
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+    }
 }

@@ -30,9 +30,16 @@ public class SceneManager {
 
     //WARNING: Object isn't a good thing to settle on. We will create a super class later to call here.
     public void changeScene(FXMLLoader loader, Object sceneClass) throws IOException {
+
         loader.setControllerFactory(c -> sceneClass);
 
+        lastScene = main.getScene();
+//        if(lastScene != null){
+//                lastScene.setUserData(loader);
+//        }
+
         Parent root = loader.load();
+
         main.setScene(new Scene(root));
 //        main.setMaximized(true);
         main.show();
@@ -41,7 +48,9 @@ public class SceneManager {
     //title changing overload
     public void changeScene(FXMLLoader loader, Object sceneClass, String title) throws IOException {
         lastScene = main.getScene();
-
+//        if(lastScene != null){
+//            lastScene.setUserData(loader);
+//        }
         loader.setControllerFactory(c -> sceneClass);
 
         Parent root = loader.load();
@@ -51,7 +60,11 @@ public class SceneManager {
         main.show();
     }
 
-    public void backScene() {
+    public void backScene() throws IOException {
+//        FXMLLoader loader = (FXMLLoader) lastScene.getUserData();
+//
+//        System.out.println(lastScene);
+//        Parent root = loader.load();
         main.setScene(lastScene);
         main.show();
     }
@@ -82,4 +95,8 @@ public class SceneManager {
         stage.showAndWait();
     }
 
+    public Scene getLastScene()
+    {
+        return lastScene;
+    }
 }

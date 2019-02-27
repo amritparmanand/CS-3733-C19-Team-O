@@ -38,15 +38,20 @@
                      <children>
                         <JFXButton fx:id="scores" onMousePressed="#scores" styleClass="searchButtonStyle" text="Scores">
                            <HBox.margin>
-                              <Insets right="50.0" />
+                              <Insets right="20.0" />
                            </HBox.margin></JFXButton>
+                         <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
+                             <HBox.margin>
+                                 <Insets />
+                             </HBox.margin>
+                         </JFXButton>
                         <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="20.0"/>
                            </HBox.margin></JFXButton>
                      </children>
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets left="20.0" right="100.0" />
                      </HBox.margin>
                   </HBox>
                     </children></HBox>

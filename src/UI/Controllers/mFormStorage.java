@@ -48,8 +48,9 @@ public class mFormStorage {
     }
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         loadForms.getChildren().clear();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().sayMForm();
 
         String filterA;
         String filterP;
@@ -81,9 +82,7 @@ public class mFormStorage {
         }
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        if(!manAcc.getHasFetchedForms())
-            manAcc.setAssignedForms(cacheM.getDbM().getConnection());
-
+        manAcc.setAssignedForms(cacheM.getDbM().getConnection());
         ArrayList<Form> populatedForms = (manAcc.getAssignedForms());
 
         for (Form form : populatedForms) {
@@ -181,5 +180,8 @@ public class mFormStorage {
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
 
-
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+    }
 }

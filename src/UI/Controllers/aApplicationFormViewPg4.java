@@ -111,4 +111,8 @@ public class aApplicationFormViewPg4 {
         PDF pdf = new PDF();
         pdf.savePDF(cacheM.getForm());
     }
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+    }
 }
