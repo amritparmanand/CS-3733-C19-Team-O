@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.time.LocalDate;
 
@@ -47,6 +48,8 @@ public class AdvancedSearchPage extends StageContainingScene {
     JFXTextField toSerial;
     @FXML
     JFXTextField brewerNumber;
+    @FXML
+    JFXTextField stateCode;
 
 
     public AdvancedSearchPage(SceneManager sceneM, CacheManager cacheM, SearchManager searchM) {
@@ -58,6 +61,7 @@ public class AdvancedSearchPage extends StageContainingScene {
 
     @FXML
     public void initialize() {
+        TextFields.bindAutoCompletion(stateCode, cacheM.getForm().stateSelect());
         //populate Lmao
         if(searchM.exists(searchM.getBrandFancyEither())) {
             switch (searchM.getBrandFancyEither()) {
@@ -75,7 +79,13 @@ public class AdvancedSearchPage extends StageContainingScene {
             }
         }
 
+        if(searchM.exists(searchM.getOriginState()))
+            this.stateCode.setText(searchM.getOriginState());
 
+        this.receivedCode000.setSelected(searchM.getReceivedCode0());
+        this.receivedCode001.setSelected(searchM.getReceivedCode1());
+        this.receivedCode002.setSelected(searchM.getReceivedCode2());
+        this.receivedCode003.setSelected(searchM.getReceivedCode3());
 
         if(searchM.exists(searchM.getFromDate()))
             this.fromDate.setValue(searchM.getFromDate());
@@ -98,16 +108,6 @@ public class AdvancedSearchPage extends StageContainingScene {
 
     @FXML
     public void applySearchSettings() {
-        Integer tempCode = 0;
-        if (receivedCode000.isSelected())
-            tempCode += 1;
-        if (receivedCode001.isSelected())
-            tempCode += 10;
-        if (receivedCode002.isSelected())
-            tempCode += 100;
-        if (receivedCode003.isSelected())
-            tempCode += 1000;
-
         Integer tempBrandFancyEither = null;
         if(brandName.isSelected()) tempBrandFancyEither = 1;
         if(fancyName.isSelected()) tempBrandFancyEither = 2;
@@ -116,15 +116,18 @@ public class AdvancedSearchPage extends StageContainingScene {
         this.searchM.setFromDate(fromDate.getValue());
         this.searchM.setToDate(toDate.getValue());
         this.searchM.setBrandFancyEither(tempBrandFancyEither);
-        this.searchM.setOriginState(null);
-        this.searchM.setReceivedCode(tempCode);
+        this.searchM.setOriginState(getNullableText(stateCode));
+        this.searchM.setReceivedCode0(receivedCode000.isSelected());
+        this.searchM.setReceivedCode1(receivedCode001.isSelected());
+        this.searchM.setReceivedCode2(receivedCode002.isSelected());
+        this.searchM.setReceivedCode3(receivedCode003.isSelected());
         this.searchM.setFromTTB(getNullableText(fromTTB));
         this.searchM.setToTTB(getNullableText(toTTB));
         this.searchM.setFromSerial(getNullableText(fromSerial));
         this.searchM.setToSerial(getNullableText(toSerial));
         this.searchM.setBrewerNumber(getNullableText(brewerNumber));
-        this.searchM.isActive = true;
 
+        this.searchM.isActive = true;
         super.getStage().close();
     }
 
@@ -141,19 +144,21 @@ public class AdvancedSearchPage extends StageContainingScene {
 
     @FXML
     public void clearSettings() {
-        System.out.println("ADSD");
         searchM.setFromDate(null);
         searchM.setToDate(null);
         searchM.setBrandFancyEither(null);
         searchM.setOriginState(null);
-        searchM.setReceivedCode(null);
+        searchM.setReceivedCode0(true);
+        searchM.setReceivedCode1(true);
+        searchM.setReceivedCode2(true);
+        searchM.setReceivedCode3(true);
         searchM.setFromTTB(null);
         searchM.setToTTB(null);
         searchM.setFromSerial(null);
         searchM.setToSerial(null);
         searchM.setBrewerNumber(null);
-        searchM.isActive = true;
 
+        searchM.isActive = false;
         super.getStage().close();
     }
 }

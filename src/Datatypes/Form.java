@@ -290,7 +290,7 @@ public class Form {
 
     @SuppressWarnings("Duplicates")
     public void approve(Connection conn) throws IOException {
-        ProcessBuilder pb = new ProcessBuilder("src/Vector/python.exe","src/Vector/vectorDanceApproval.py");
+        ProcessBuilder pb = new ProcessBuilder("python3","src/Vector/vectorDanceApproval.py");
         Process p = pb.start();
         System.out.println("in Form Approve");
         String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, DATEREJECTED = null, STATUS = 'APPROVED' , " +
@@ -349,7 +349,7 @@ public class Form {
     }
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) throws Exception{
-        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED', COMMENTS = '"+ comments.generateComments() + "' WHERE FORMID ="+ this.formID;
+        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED', COMMENTS = '"+ comments.generateComments() + "' WHERE FORMID ="+ this.formID;
                try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
@@ -620,7 +620,7 @@ public class Form {
      * @throws SQLException
      */
     public ResultSet getApprovedApplications(Connection conn, String condition, String type) throws SQLException{
-        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, APPLICATIONS.TTBID, SERIALNUMBER " +
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, ONLYSTATE, FORMS.FORMID, APPLICATIONS.TTBID, SERIALNUMBER, labelimage " +
                 "FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
                 "WHERE " +

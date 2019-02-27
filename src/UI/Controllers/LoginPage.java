@@ -119,7 +119,31 @@ public class LoginPage extends Controller implements SerialPortDataListener {
             }
         });
 
-        
+        username.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayHelpUsername();}
+                else
+                {
+                    cacheM.getAlcy().drunk();
+                }
+            }
+        });
+
+        id.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayHelpLoginID();}
+                else
+                {
+                    cacheM.getAlcy().drunk();
+                }
+            }
+        });
 
 
         programChip.setVisible(false);

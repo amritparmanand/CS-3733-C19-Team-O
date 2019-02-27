@@ -491,6 +491,50 @@ public class Alcy {
         }
     }
 
+    @FXML public void sayHelpLoginID(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("ID, sir.");
+            confused();
+        }else{
+            alcyLabel.setText("License and registration, please.");
+            sassy();
+        }
+    }
+
+    @FXML public void sayHelpFullName(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Your FULL LEGAL NAME. We are the government, so we know");
+            confused();
+        }else{
+            alcyLabel.setText("First and Last name please!");
+            happy();
+        }
+    }
+
+    @FXML public void sayFullName(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Wow thats a cool name, I guess...");
+            sassy();
+        }else{
+            alcyLabel.setText("Have I heard of you before?");
+            confused();
+        }
+    }
+
+    @FXML public void sayHelpEmail(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Put in your email where you want your password reset to be sent when you forget your password.");
+            sassy();
+        }else{
+            alcyLabel.setText("You're gonna need this for your password reset.");
+            sassy();
+        }
+    }
+
     /** ALCY HELPFUL TIPS **/
 
     //1
