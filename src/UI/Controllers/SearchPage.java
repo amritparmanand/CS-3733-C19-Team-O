@@ -69,7 +69,7 @@ public class SearchPage {
 
     @FXML
     public void initialize() throws SQLException {
-        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM, new Stage());
+        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM);
         TextFields.bindAutoCompletion(searchBox, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         cacheM.getAlcy().saySearchResult();
@@ -133,7 +133,7 @@ public class SearchPage {
 
     @FXML
     public void popupAdvanced() throws IOException {
-        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM, new Stage());
+        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AdvancedSearchPage.fxml"));
         //advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, new Stage());
         sceneM.popWindowLoader(loader, advancedSearchPage, "Advanced Search");
