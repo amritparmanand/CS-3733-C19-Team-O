@@ -141,7 +141,7 @@ public class SearchPage {
 
 
     @FXML
-    public void back() throws IOException {
+    public void back() throws Exception{
         //sceneM.backScene();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
         sceneM.changeScene(loader, new startPage(sceneM, cacheM));

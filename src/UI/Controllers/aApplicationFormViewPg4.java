@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Controller;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
 import Datatypes.PDF;
@@ -22,7 +23,7 @@ import java.time.format.DateTimeFormatter;
  * @version It 2
  * Controller for mApplicationFormPg4 of UI
  */
-public class aApplicationFormViewPg4 {
+public class aApplicationFormViewPg4 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -113,6 +114,6 @@ public class aApplicationFormViewPg4 {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

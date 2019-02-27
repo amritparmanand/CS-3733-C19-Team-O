@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Agent;
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.NumberAssigned;
+import Datatypes.*;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
@@ -30,7 +27,7 @@ import java.util.ArrayList;
  * @version It 3
  * Controller for mFormStorage of UI
  */
-public class mFormStorage {
+public class mFormStorage extends Controller {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
@@ -182,6 +179,6 @@ public class mFormStorage {
 
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

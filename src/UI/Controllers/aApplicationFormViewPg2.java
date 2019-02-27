@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Controller;
 import Datatypes.Form;
 import Datatypes.Manufacturer;
 import Datatypes.PDF;
@@ -21,7 +22,7 @@ import java.io.IOException;
  * @version It 2
  * Controller for mApplicationFormPg2 of UI
  */
-public class aApplicationFormViewPg2 {
+public class aApplicationFormViewPg2 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private String phoneNumberString;
@@ -111,6 +112,6 @@ public class aApplicationFormViewPg2 {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

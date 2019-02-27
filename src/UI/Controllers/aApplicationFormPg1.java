@@ -1,10 +1,7 @@
 package UI.Controllers;
 
 
-import Datatypes.Agent;
-import Datatypes.Alcy;
-import Datatypes.Comments;
-import Datatypes.Form;
+import Datatypes.*;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
@@ -26,7 +23,7 @@ import java.sql.SQLException;
  * @version It 2
  * Controller for aApplicationFormPg1 of UI
  */
-public class aApplicationFormPg1 {
+public class aApplicationFormPg1 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -328,7 +325,7 @@ public class aApplicationFormPg1 {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }
 

@@ -40,7 +40,7 @@ import java.util.ArrayList;
  * @version It3
  * application form in one page
  */
-public class mOnePageForm {
+public class mOnePageForm extends Controller{
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -871,6 +871,6 @@ public class mOnePageForm {
 
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

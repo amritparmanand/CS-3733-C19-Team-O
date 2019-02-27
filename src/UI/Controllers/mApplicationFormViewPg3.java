@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Alcy;
-import Datatypes.Form;
-import Datatypes.LabelImage;
-import Datatypes.PDF;
+import Datatypes.*;
 import Managers.*;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
@@ -21,7 +18,7 @@ import java.io.IOException;
  * @version It 2
  * Controller for mApplicationFormPg3 of UI
  */
-public class mApplicationFormViewPg3 {
+public class mApplicationFormViewPg3 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private LabelImage image = new LabelImage();
@@ -126,6 +123,6 @@ public class mApplicationFormViewPg3 {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

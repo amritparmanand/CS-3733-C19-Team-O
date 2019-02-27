@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Alcy;
+import Datatypes.Controller;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
  * @version It 3
  * Controller for aGetApplication of UI
  */
-public class aGetApplication {
+public class aGetApplication extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
@@ -43,7 +44,7 @@ public class aGetApplication {
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
 
-    @SuppressWarnings("Duplicates") @FXML public void initialize() throws Exception {
+    @SuppressWarnings("Duplicates") @FXML public void initialize() {
         loadFormPane.getChildren().clear();
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
@@ -75,7 +76,11 @@ public class aGetApplication {
         }
 
         Agent A = (Agent) cacheM.getAcct();
-        A.getReviewedForms(cacheM.getDbM().getConnection());
+        try {
+            A.getReviewedForms(cacheM.getDbM().getConnection());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ArrayList<Form> populatedForms = A.getReviewedForms();
 
         for (Form form : populatedForms) {
@@ -162,6 +167,6 @@ public class aGetApplication {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

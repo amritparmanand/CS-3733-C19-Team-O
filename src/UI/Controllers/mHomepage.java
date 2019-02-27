@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Controller;
 import Datatypes.Manufacturer;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
@@ -16,7 +17,7 @@ import java.io.IOException;
  * @version It 1
  * Controller for mHomePage of UI
  */
-public class mHomepage {
+public class mHomepage extends Controller {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
@@ -68,6 +69,6 @@ public class mHomepage {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

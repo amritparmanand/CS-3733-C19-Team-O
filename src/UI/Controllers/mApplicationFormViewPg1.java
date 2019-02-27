@@ -30,7 +30,7 @@ import java.util.Calendar;
  * @version It 2
  * Controller for mApplicationFormPg1 of UI
  */
-public class mApplicationFormViewPg1 {
+public class mApplicationFormViewPg1 extends Controller{
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -295,7 +295,7 @@ public class mApplicationFormViewPg1 {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 
 }

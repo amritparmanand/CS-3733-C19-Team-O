@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Controller;
 import Datatypes.Form;
 import Datatypes.LabelImage;
 import Datatypes.PDF;
@@ -18,7 +19,7 @@ import java.io.IOException;
  * @version It 2
  * Controller for mApplicationFormPg3 of UI
  */
-public class aApplicationFormViewPg3 {
+public class aApplicationFormViewPg3 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private LabelImage image = new LabelImage();
@@ -117,6 +118,6 @@ public class aApplicationFormViewPg3 {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

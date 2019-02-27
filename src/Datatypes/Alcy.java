@@ -65,8 +65,19 @@ public class Alcy {
         actionList.clear();
         this.setImageView(alcyView);
         this.setAlcyLabel(alcyLabel);
-        if(!this.isDemonicSeance())
+        System.out.println(this.isDemonicSeance());
+        if (!this.isDemonicSeance()){
             alcyLabel.getParent().setVisible(false);
+             alcyView.getParent().setVisible(false);
+         }
+        else {
+            alcyLabel.getParent().setVisible(true);
+            alcyView.getParent().setVisible(true);
+        }
+
+        resetTimeline();
+        sayWelcome();
+
     }
     @FXML
     public void resetTimeline(){

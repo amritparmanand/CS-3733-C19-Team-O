@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Alcy;
+import Datatypes.Controller;
 import Datatypes.Setting;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -23,10 +24,12 @@ import java.io.IOException;
 public class settingPage {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private Controller controller;
 
-    public settingPage(SceneManager sceneM, CacheManager cacheM) {
+    public settingPage(SceneManager sceneM, CacheManager cacheM, Controller controller) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+        this.controller = controller;
     }
 
     @FXML private JFXRadioButton SQL;
@@ -110,6 +113,9 @@ public class settingPage {
 
         System.out.println("Settings completed!");
         System.out.println(sceneM.getLastScene().toString());
+        controller.initialize();
+
+
         sceneM.backScene();
     }
 

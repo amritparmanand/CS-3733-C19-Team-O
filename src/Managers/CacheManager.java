@@ -31,6 +31,7 @@ public class CacheManager {
     private String style = "-fx-background-color: #ff9395;";
     private Alcy alcy = new Alcy(this);
 
+
     public CacheManager(DatabaseManager dbM) {
         this.dbM = dbM;
         this.form = new Form();

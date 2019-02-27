@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Alcy;
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.PDF;
+import Datatypes.*;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
@@ -38,7 +35,7 @@ import java.time.format.DateTimeFormatter;
  * @version It 2
  * Controller for mApplicationFormPg4 of UI
  */
-public class mApplicationFormPg4 {
+public class mApplicationFormPg4 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -192,6 +189,6 @@ public class mApplicationFormPg4 {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

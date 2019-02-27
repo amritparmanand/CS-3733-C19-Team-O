@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Alcy;
+import Datatypes.Controller;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXTextField;
@@ -18,13 +19,14 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Collection;
 
-public class startPage {
+public class startPage extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
     public startPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+
 
     }
 
@@ -37,6 +39,7 @@ public class startPage {
         TextFields.bindAutoCompletion(search, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         cacheM.getAlcy().sayWelcome();
+        System.out.println("here");
 
     }
     
@@ -59,7 +62,8 @@ public class startPage {
 
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 
 }

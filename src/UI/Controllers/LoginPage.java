@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Alcy;
+import Datatypes.Controller;
 import Datatypes.Manufacturer;
 import Managers.*;
 
@@ -32,7 +33,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class LoginPage implements SerialPortDataListener {
+public class LoginPage extends Controller implements SerialPortDataListener {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private BCryptPasswordEncoder passwordDecoder = new BCryptPasswordEncoder();
@@ -285,7 +286,7 @@ public class LoginPage implements SerialPortDataListener {
 
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 
 }

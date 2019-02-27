@@ -1,10 +1,7 @@
 package UI.Controllers;
 
 
-import Datatypes.Agent;
-import Datatypes.Alcy;
-import Datatypes.Comments;
-import Datatypes.Form;
+import Datatypes.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
@@ -25,7 +22,7 @@ import java.sql.SQLException;
  * @version It 2
  * Controller for aApplicationFormPg2 of UI
  */
-public class aApplicationFormPg2 {
+public class aApplicationFormPg2 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -271,6 +268,6 @@ public class aApplicationFormPg2 {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }

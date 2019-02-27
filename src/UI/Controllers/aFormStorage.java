@@ -2,6 +2,7 @@ package UI.Controllers;
 
 
 import Datatypes.Agent;
+import Datatypes.Controller;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
  * Controller for aFormStorage of UI
  * @since It 1
  */
-public class aFormStorage {
+public class aFormStorage extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
@@ -39,7 +40,7 @@ public class aFormStorage {
     }
 
     @FXML private FlowPane loadForms;
-   // @FXML private Label achievement;
+    @FXML private Label achievement;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
     private ArrayList<Form> repeated = new ArrayList<>();

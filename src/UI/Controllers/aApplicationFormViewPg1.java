@@ -1,8 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.PDF;
+import Datatypes.*;
 import Datatypes.ProgressBar;
 import Managers.*;
 import UI.MultiThreadWaitFor;
@@ -28,7 +26,7 @@ import java.util.Calendar;
  * @version It 2
  * Controller for mApplicationFormPg1 of UI
  */
-public class aApplicationFormViewPg1 {
+public class aApplicationFormViewPg1 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -63,6 +61,7 @@ public class aApplicationFormViewPg1 {
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         cacheM.setForm(form);
+
         switch(form.getProductSource()){
             case "DOMESTIC":
                 domestic.setSelected(true);
@@ -169,7 +168,7 @@ public class aApplicationFormViewPg1 {
 
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }
 

@@ -1,6 +1,8 @@
 package Managers;
 
+import Datatypes.Controller;
 import Datatypes.StageContainingScene;
+import UI.Controllers.aApplicationFormPg1;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,11 +24,17 @@ public class SceneManager {
     private Stage main;
 
     private Scene lastScene;
+    private Parent lastRoot;
 
-    public SceneManager(Stage main) {
+//    private FXMLLoader preloaded;
+//    private Parent preRoot;
+    public SceneManager(Stage main)  {
         this.main = main;
+
 //        main.setMaximized(true);
     }
+
+
 
     //WARNING: Object isn't a good thing to settle on. We will create a super class later to call here.
     public void changeScene(FXMLLoader loader, Object sceneClass) throws IOException {
@@ -39,7 +47,7 @@ public class SceneManager {
 //        }
 
         Parent root = loader.load();
-
+        lastRoot = root;
         main.setScene(new Scene(root));
 //        main.setMaximized(true);
         main.show();
@@ -54,7 +62,7 @@ public class SceneManager {
         loader.setControllerFactory(c -> sceneClass);
 
         Parent root = loader.load();
-
+        lastRoot = root;
         main.setScene(new Scene(root));
         main.setTitle(title);
         main.show();
@@ -99,4 +107,6 @@ public class SceneManager {
     {
         return lastScene;
     }
+
+
 }

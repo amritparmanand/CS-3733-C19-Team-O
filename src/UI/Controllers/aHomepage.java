@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Alcy;
+import Datatypes.Controller;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import java.sql.SQLException;
  * @version It 1
  * Controller for aHomepage of UI
  */
-public class aHomepage {
+public class aHomepage extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
@@ -70,6 +71,6 @@ public class aHomepage {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }
