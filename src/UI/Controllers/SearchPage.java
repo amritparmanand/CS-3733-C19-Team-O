@@ -216,7 +216,7 @@ public class SearchPage extends Controller {
 
         ResultSet approvedResults = getApprovedApplications(oldSearch, type);
         this.searchM = advancedSearchPage.transferSearchManager();
-        System.out.println("SEARCH ACTIVE? " + searchM.isActive + " " + oldSearch);
+//        System.out.println("SEARCH ACTIVE? " + searchM.isActive + " " + oldSearch);
 
         srArr = linkedListify(approvedResults);
         if (searchM.isActive) {
@@ -225,9 +225,9 @@ public class SearchPage extends Controller {
 
         searchTether.setSrArray(srArr);
 
-        for (int i = 0; i < srArr.size(); i++) {
-            System.out.println(srArr.get(i).getCompanyName());
-        }
+//        for (int i = 0; i < srArr.size(); i++) {
+//            System.out.println(srArr.get(i).getCompanyName());
+//        }
         searchTether.setBools(beerCheck.isSelected(), wineCheck.isSelected(), liquorCheck.isSelected());
         searchTether.notifyObservers(0, next);
 
@@ -248,7 +248,7 @@ public class SearchPage extends Controller {
                     File jimbus = new File("temp.png");
                     lbl.setLabelFile(jimbus);
                     lbl.setLabelImage(new Image(lbl.getLabelFile().toURI().toString()));
-                    System.out.println("aaa");
+//                    System.out.println("aaa");
                     jimbus.delete();
                 }
             }
@@ -292,7 +292,7 @@ public class SearchPage extends Controller {
     @FXML
     public void download() {
         Character delimiter;
-        System.out.println(cacheM.getFormat());
+//        System.out.println(cacheM.getFormat());
         delimiter = cacheM.getFormat();
 //        if(!delimiterChooser.getText().isEmpty()){
 //            delimiter = delimiterChooser.getText().charAt(0);
