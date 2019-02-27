@@ -240,10 +240,10 @@ public class mApplicationFormPg2 extends Controller {
             System.out.println("invalid email");
         }
 
-        if (!cacheM.getForm().getBeerWineSpirit().equals("WINE")) {
-            form.setGrapeVarietal("");
-            form.setAppellation("");
-        }
+//        if (!cacheM.getForm().getBeerWineSpirit().equals("WINE")) {
+//            form.setGrapeVarietal("");
+//            form.setAppellation("");
+//        }
 
 
         //I think this call is extraneous
