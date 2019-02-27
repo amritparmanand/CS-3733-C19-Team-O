@@ -620,7 +620,7 @@ public class Form {
      * @throws SQLException
      */
     public ResultSet getApprovedApplications(Connection conn, String condition, String type) throws SQLException{
-        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, APPLICATIONS.TTBID, SERIALNUMBER " +
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, ONLYSTATE, FORMS.FORMID, APPLICATIONS.TTBID, SERIALNUMBER " +
                 "FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
                 "WHERE " +

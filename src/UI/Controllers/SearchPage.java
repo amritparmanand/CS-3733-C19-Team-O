@@ -161,7 +161,7 @@ public class SearchPage {
         pageNum.setText("0");
         previous.setDisable(true);
 
-        if (searchBox.getText().equals(oldSearch) || searchBox.getText().isEmpty())
+        if ((searchBox.getText().equals(oldSearch) && !searchM.isActive) || searchBox.getText().isEmpty())
             return;
 
         oldSearch = searchBox.getText();
@@ -209,7 +209,7 @@ public class SearchPage {
 
         srArr = linkedListify(approvedResults);
         if (searchM.isActive) {
-            srArr = filter(srArr, searchM);
+            srArr = searchM.filter(srArr, oldSearch);
         }
 
         searchTether.setSrArray(srArr);
@@ -237,89 +237,14 @@ public class SearchPage {
                     rs.getString("DATEAPPROVED"),
                     rs.getString("TTBID"),
                     rs.getString("SERIALNUMBER"),
-                    rs.getString("BREWERNUMBER")));
+                    rs.getString("BREWERNUMBER"),
+                    rs.getString("ONLYSTATE"),
+                    rs.getLong("FORMID")));
         }
-
         return srArr;
     }
 
-    public LinkedList<SearchResult> filter(LinkedList<SearchResult> approvedResults, SearchManager searchManager) {
-        LinkedList<SearchResult> filtered = new LinkedList<>();
 
-        for (int i = 0; i < approvedResults.size(); i++) {
-            SearchResult sr = approvedResults.get(i);
-            boolean invalidateRecord = false;
-
-            //date check
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/uuuu");
-            LocalDate recordDate = LocalDate.parse(sr.getApprovedDate(), formatter);
-            if (searchManager.exists(searchManager.getFromDate())) {
-                //System.out.println("FROM DATE EXISTS");
-                if (recordDate.compareTo(searchManager.getFromDate()) < 0)
-                    invalidateRecord = true;
-            }
-            if (searchManager.exists(searchManager.getToDate())) {
-                //System.out.println("TO DATE EXISTS");
-                if (recordDate.compareTo(searchManager.getToDate()) > 0)
-                    invalidateRecord = true;
-            }
-
-            //productName Check
-            if (searchManager.exists(searchManager.getBrandFancyEither())) {
-                //System.out.println("NAME AND BRAND EXIST");
-                switch (searchManager.getBrandFancyEither()) {
-                    case 3:
-                        break;
-                    case 2:
-                        if (!sr.getFancifulName().toLowerCase().contains(oldSearch.toLowerCase()))
-                            invalidateRecord = true;
-                        break;
-                    case 1:
-                        if (!sr.getCompanyName().toLowerCase().contains(oldSearch.toLowerCase()))
-                            invalidateRecord = true;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            //ttbID range
-            int recordTTBID = Integer.parseInt(sr.getTTBID());
-            if (searchManager.exists(searchManager.getFromTTB())) {
-                //System.out.println("FROM TTB EXISTS");
-                if (recordTTBID < Integer.parseInt(searchManager.getFromTTB()))
-                    invalidateRecord = true;
-            }
-            if (searchManager.exists(searchManager.getToTTB())) {
-                //System.out.println("TO TTB EXISTS");
-                if (recordTTBID > Integer.parseInt(searchManager.getToTTB()))
-                    invalidateRecord = true;
-            }
-
-            //serialNumber range
-            if (searchManager.exists(searchManager.getFromSerial())) {
-                //System.out.println("FROM SERIAL EXISTS");
-                if (sr.getSerialNum().compareTo(searchManager.getFromSerial()) < 0)
-                    invalidateRecord = true;
-            }
-            if (searchManager.exists(searchManager.getToSerial())) {
-                //System.out.println("TO SERIAL EXISTS");
-                if (sr.getSerialNum().compareTo(searchManager.getToSerial()) > 0)
-                    invalidateRecord = true;
-            }
-
-            //brewerNumber exact
-            if (searchManager.exists(searchManager.getBrewerNumber())) {
-                //System.out.println("BREWER NUMBER EXISTS");
-                if (!sr.getBrewerNum().toLowerCase().equals(searchManager.getBrewerNumber().toLowerCase()))
-                    invalidateRecord = true;
-            }
-
-            if (!invalidateRecord)
-                filtered.add(sr);
-        }
-        return filtered;
-    }
 
     public ResultSet getApprovedApplications(String condition, String type) throws SQLException {
         return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type);
