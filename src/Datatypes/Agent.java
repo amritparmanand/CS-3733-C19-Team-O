@@ -175,7 +175,7 @@ public class Agent extends Account{
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
         try {
-            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, score, numberPassed, numberApproved, numberDenied, numberProcessed) " +
+            String createManufacturer = "INSERT INTO Agents (ttbid, username, password, fullname, email, phone, numberPassed, numberApproved, numberDenied, numberProcessed, score) " +
                     "VALUES(?,?,?,?,?,?,?,?,?,?, ?)";
 
             PreparedStatement prepStmt = conn.prepareStatement(createManufacturer);
