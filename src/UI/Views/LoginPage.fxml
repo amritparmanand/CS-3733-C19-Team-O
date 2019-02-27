@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -16,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.LoginPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.LoginPage">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -49,7 +48,7 @@
                         </JFXButton>
                         <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
                            <HBox.margin>
-                              <Insets left = "20" />
+                              <Insets left="20" />
                            </HBox.margin>
                         </JFXButton>
                      </children>
@@ -104,20 +103,7 @@
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </JFXPasswordField>
-                              <HBox prefHeight="48.0" prefWidth="346.0">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <JFXCheckBox text="Remember Me" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <JFXButton styleClass="searchButtonStyle" text="Forgot password?" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
+                              <HBox prefHeight="48.0" prefWidth="346.0" />
                               <JFXButton fx:id="login" disable="true" onAction="#validateButton" onMousePressed="#login" prefHeight="40.0" prefWidth="350.0" text="Login">
                                  <styleClass>
                                     <String fx:value="buttonStyle" />
