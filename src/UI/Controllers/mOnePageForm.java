@@ -752,6 +752,7 @@ public class mOnePageForm {
 
         if (!validFormEmail(email.getText().trim()) || !validFormPhone(phoneNumber.getText().trim())) {
             System.out.println("Unable to submit. Invalid fields entered");
+            cacheM.getAlcy().saySubmitFormError("pop");
         }
         else {
             System.out.println("save Draft executed");
