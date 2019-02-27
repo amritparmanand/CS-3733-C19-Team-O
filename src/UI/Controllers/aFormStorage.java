@@ -30,19 +30,22 @@ public class aFormStorage {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
+
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
 
     @FXML private FlowPane loadForms;
-    @FXML private Label achievement;
+   // @FXML private Label achievement;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
     private ArrayList<Form> repeated = new ArrayList<>();
     private Agent A;
+    private achievementPage achievement;
 
     @SuppressWarnings("Duplicates") @FXML public void initialize() throws Exception {
+     //   achievement.setText("");
         A = (Agent) cacheM.getAcct();
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         A.getAssignedForms(cacheM.getDbM().getConnection());
@@ -97,62 +100,72 @@ public class aFormStorage {
         }
         int numberOfForms = A.getNumberProcessed();
 
+        achievement = new achievementPage(sceneM, cacheM);
         // processed 1+ forms
         if (numberOfForms == 1){
-            achievement.setText("Achievement: The Rookie Unlocked!");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/achievementPage1.fxml"));
+            //advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, new Stage());
+            sceneM.popWindowLoader(loader, achievement, "Achievement");
+
+
+
+
+//            achievement.setText("Achievement: The Rookie Unlocked!");
         }
         // processed 100+ forms
         if (numberOfForms == 100){
-            achievement.setText("Achievement: Getting Started Unlocked!");
+
+            //achievement.setText("Achievement: Getting Started Unlocked!");
         }
         // processed 10000+ forms
         if (numberOfForms == 10000){
-            achievement.setText("Achievement: Seasoned Pro Unlocked!");
+            //achievement.setText("Achievement: Seasoned Pro Unlocked!");
         }
         // approved 1+ forms
         if (A.getNumberApproved() == 1){
-            achievement.setText("Achievement: Pleasant Mood Unlocked!");
+          //  achievement.setText("Achievement: Pleasant Mood Unlocked!");
         }
         // approved 100+ forms
         if (A.getNumberApproved() == 100){
-            achievement.setText("Achievement: Yes Man Unlocked!");
+        //    achievement.setText("Achievement: Yes Man Unlocked!");
         }
         // approved 10000+ forms
         if (A.getNumberApproved() == 10000){
-            achievement.setText("Achievement: Good Vibrations Unlocked!");
+        //    achievement.setText("Achievement: Good Vibrations Unlocked!");
         }
         // denied 1+ forms
         if (A.getNumberDenied() == 1){
-            achievement.setText("Achievement: Denied Unlocked!");
+        //    achievement.setText("Achievement: Denied Unlocked!");
         }
         // denied 100+ forms
         if (A.getNumberDenied() == 100){
-            achievement.setText("Achievement: High Standards Unlocked!");
+        //    achievement.setText("Achievement: High Standards Unlocked!");
         }
         // denied 10000+ forms
         if (A.getNumberDenied() == 10000){
-            achievement.setText("Achievement: It's All Wrong Unlocked!");
+        //    achievement.setText("Achievement: It's All Wrong Unlocked!");
         }
         // passed 1+ forms to another agent
         if (A.getNumberPassed() == 1){
-            achievement.setText("Achievement: Passing The Buck Unlocked!");
+        //    achievement.setText("Achievement: Passing The Buck Unlocked!");
         }
         // passed 100+ forms to another agent
         if (A.getNumberPassed() == 100){
-            achievement.setText("Achievement: Expert Procrastination Unlocked!");
+        //    achievement.setText("Achievement: Expert Procrastination Unlocked!");
         }
         // passed 10000+ forms to another agent
         if (A.getNumberPassed() == 10000){
-            achievement.setText("Achievement: Expert Delegation Unlocked!");
+        //    achievement.setText("Achievement: Expert Delegation Unlocked!");
         }
         // processed 3 forms in a row
         if (A.getRowAD() == 3){
-            achievement.setText("Achievement: Three Pointer Unlocked!");
+        //    achievement.setText("Achievement: Three Pointer Unlocked!");
         }
 
         // passed three forms in a row
         if (A.getRowP()  == 3){
-            achievement.setText("Achievement: Strike Three Unlocked!");
+         //   achievement.setText("Achievement: Strike Three Unlocked!");
         }
     }
 

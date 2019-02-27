@@ -90,15 +90,6 @@
                                  </VBox.margin></JFXButton>
                            </children>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="940.0" prefWidth="307.0">
-                           <children>
-                              <Label alignment="CENTER" style="-fx-font-size: 24;" text="Leaderboard">
-                                 <VBox.margin>
-                                    <Insets bottom="20.0" top="20.0" />
-                                 </VBox.margin></Label>
-                              <FlowPane fx:id="loadScores" alignment="TOP_CENTER" prefHeight="882.0" prefWidth="357.0" />
-                           </children>
-                        </VBox>
                         <TilePane alignment="TOP_CENTER" maxWidth="1600.0" prefHeight="940.0" prefWidth="904.0" styleClass="toolbar">
                            <children>
                               <ImageView fx:id="rookie" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -193,6 +184,15 @@
                               </ImageView>
                            </children>
                         </TilePane>
+                        <VBox alignment="TOP_CENTER" prefHeight="940.0" prefWidth="307.0">
+                           <children>
+                              <Label alignment="CENTER" style="-fx-font-size: 24;" text="Leaderboard">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="20.0" />
+                                 </VBox.margin></Label>
+                              <FlowPane fx:id="loadScores" alignment="TOP_CENTER" prefHeight="882.0" prefWidth="357.0" />
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
