@@ -17,9 +17,6 @@ public class AboutUs extends StageContainingScene {
     private SceneManager sceneM;
     private CacheManager cacheM;
 
-    @FXML private ImageView alcyView;
-    @FXML private Text alcyLabel;
-
     public AboutUs(SceneManager sceneM, CacheManager cacheM) {
         super();
         this.sceneM = sceneM;
