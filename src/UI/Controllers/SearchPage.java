@@ -80,7 +80,7 @@ public class SearchPage extends Controller {
         cacheM.getAlcy().saySearchResult();
         ObservablePane op = null;
 
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < 20; i++) {
             try {
                 Pane pane = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                 op = new ObservablePane(pane, searchResults, sceneM);
