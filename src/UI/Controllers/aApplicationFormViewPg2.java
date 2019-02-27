@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Controller;
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.PDF;
+import Datatypes.*;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
@@ -11,9 +8,11 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -44,6 +43,8 @@ public class aApplicationFormViewPg2 extends Controller {
     @FXML private JFXTextField appellation;
     @FXML private JFXTextField phoneNumber;
     @FXML private JFXTextField email;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     public aApplicationFormViewPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -53,6 +54,10 @@ public class aApplicationFormViewPg2 extends Controller {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
+
 
         printName.setText(form.getPrintName());
         printName.setEditable(false);

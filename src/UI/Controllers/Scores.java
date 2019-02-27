@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Agent;
+import Datatypes.Alcy;
 import Datatypes.agentScore;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -17,6 +18,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
 import java.io.FileInputStream;
 
 import java.io.IOException;
@@ -62,6 +65,8 @@ public class Scores {
     @FXML private ImageView itsAllWrong;
     @FXML private ImageView aNewFriend;
     @FXML private ImageView inquisitive;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
 
     /**
      * @author Clay Oshiro-Leavitt & Trevor Dowd
@@ -81,6 +86,10 @@ public class Scores {
         passed.setText(Integer.toString(A.getNumberPassed()));
 
         agents = ((Agent) cacheM.getAcct()).getAgentPlaces();
+
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAScores();
 
         for (agentScore agent : agents) {
             Pane leaderBoard;

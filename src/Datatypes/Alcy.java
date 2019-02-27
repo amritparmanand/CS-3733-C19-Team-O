@@ -445,6 +445,17 @@ public class Alcy {
         }
     }
 
+    @FXML public void sayAScores(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Look at all this," + cacheM.getAcct().getFullName() +"! Here's your homepage! Here's where you can view all your accolades!");
+            happy();
+        }else{
+            alcyLabel.setText("Hmmmm... Looks like someone could be doin' a bit better, don'tcha think, "+ cacheM.getAcct().getFullName()+"?");
+            confused();
+        }
+    }
+
     /**ALCY NON FORM HELP **/
 
     @FXML public void sayHelpMAccount(){
