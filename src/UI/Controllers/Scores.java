@@ -91,7 +91,7 @@ public class Scores {
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayAScores();
 
-        for (agentScore agent : agents) {
+        for(int i : A.rankScore(connection)){
             Pane leaderBoard;
 
             try {
@@ -102,14 +102,12 @@ public class Scores {
                     Node uName = ((HBox) hbox).getChildren().get(0);
                     Node score = ((HBox) hbox).getChildren().get(1);
 
-                    ((Label) uName).setText(agent.getAgentName());
-                    System.out.println(agent.getAgentScore());
-                    ((Label) score).setText(Integer.toString(agent.getAgentScore()));
+                    ((Label) uName).setText(A.getNameFromScore(connection, i));
+                    ((Label) score).setText(Integer.toString(i));
 
                 }
 
-                    System.out.println(agent.getAgentName() + " not in leaderboard. Adding.");
-                    loadScores.getChildren().add(leaderBoard);
+                loadScores.getChildren().add(leaderBoard);
 
 
             } catch (IOException e) {
@@ -117,6 +115,33 @@ public class Scores {
 
             }
         }
+
+//        for (agentScore agent : agents) {
+//            Pane leaderBoard;
+//
+//            try {
+//                leaderBoard = FXMLLoader.load(getClass().getResource("/UI/Views/leaderboard.fxml"));
+//                Node hbox = leaderBoard.getChildren().get(0);
+//                if (hbox instanceof HBox) {
+//
+//                    Node uName = ((HBox) hbox).getChildren().get(0);
+//                    Node score = ((HBox) hbox).getChildren().get(1);
+//
+//                    ((Label) uName).setText(agent.getAgentName());
+//                    System.out.println(agent.getAgentScore());
+//                    ((Label) score).setText(Integer.toString(agent.getAgentScore()));
+//
+//                }
+//
+//                    System.out.println(agent.getAgentName() + " not in leaderboard. Adding.");
+//                    loadScores.getChildren().add(leaderBoard);
+//
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//
+//            }
+//        }
 
         // checking for achievements being unlocked
         int numberOfForms = A.getNumberProcessed();

@@ -171,6 +171,7 @@ public class Agent extends Account{
     public int getRowAD(){return rowAD;}
     public int getRowP(){return rowP;}
 
+
     // Parse an agent object into database
     @SuppressWarnings("Duplicates")
     public void register(Connection conn) {
@@ -408,6 +409,22 @@ public class Agent extends Account{
         return result;
     }
 
+    public String getNameFromScore(Connection connection, int score){
+        String result = "";
+
+        String getName = "SELECT username FROM agents where score = " + score;
+        try {
+            ResultSet rset = connection.createStatement().executeQuery(getName);
+            while(rset.next())
+                result = rset.getString("username");
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        return result;
+    }
+
     /**
      * @author Percy
      * @version It 4
@@ -428,7 +445,7 @@ public class Agent extends Account{
                     "numberapproved = " + numberApproved + ", " +
                     "numberdenied = " + numberDenied + ", " +
                     "numberpassed = " + numberPassed + ", " +
-                    "numberprocessed = " + numberProcessed + "," +
+                    "numberprocessed = " + numberProcessed +
                     "where ttbid = " + this.ttbID;
             PreparedStatement updatePercy = connection.prepareStatement(percy);
             updatePercy.executeUpdate();
@@ -438,6 +455,24 @@ public class Agent extends Account{
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
+    }
+
+    public ArrayList<Integer> rankScore(Connection connection){
+        System.out.println(" percy rank score");
+
+        ArrayList<Integer> result = new ArrayList<>();
+
+        String getNum = "SELECT score FROM agents order by score desc ";
+        try {
+            ResultSet rset = connection.createStatement().executeQuery(getNum);
+            while(rset.next())
+                result.add(rset.getInt("score"));
+        } catch (SQLException e) {
+            if (!e.getSQLState().equals("X0Y32"))
+                e.printStackTrace();
+        }
+
+        return result;
     }
 
 
