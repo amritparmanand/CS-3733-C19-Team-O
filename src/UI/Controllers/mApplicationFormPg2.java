@@ -240,7 +240,7 @@ public class mApplicationFormPg2 extends Controller {
             System.out.println("invalid email");
         }
 
-        if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
+        if (!cacheM.getForm().getBeerWineSpirit().equals("WINE")) {
             form.setGrapeVarietal("");
             form.setAppellation("");
         }
@@ -290,7 +290,7 @@ public class mApplicationFormPg2 extends Controller {
             form.setGrapeVarietal(grapes.getText() + cacheM.getStyle());
         }
         if(!appellation.getText().equals(form.getAppellation()) && !appellation.getText().contains(cacheM.getStyle())) {
-            form.setAlcoholPercent(appellation.getText() + cacheM.getStyle());
+            form.setAppellation(appellation.getText() + cacheM.getStyle());
         }
         if(!phoneNumber.getText().equals(form.getPhoneNumber()) && !phoneNumber.getText().contains(cacheM.getStyle())) {
             form.setPhoneNumber(phoneNumber.getText() + cacheM.getStyle());
