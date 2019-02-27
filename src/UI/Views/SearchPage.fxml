@@ -13,10 +13,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.SearchPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.161-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.SearchPage">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="toolbar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -40,9 +39,9 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Text>
-                  <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchfield">
+                  <HBox maxHeight="35.0" prefHeight="50.0" prefWidth="300.0" styleClass="searchContainer">
                      <children>
-                        <TextField fx:id="searchBox" prefHeight="28.0" prefWidth="277.0" promptText="Search COLA" styleClass="searchfield">
+                        <TextField fx:id="searchBox" prefHeight="26.0" prefWidth="259.0" promptText="Search COLA" styleClass="searchfield">
                            <HBox.margin>
                               <Insets left="20.0" top="5.0" />
                            </HBox.margin>
@@ -52,17 +51,12 @@
                         <Insets left="520.0" />
                      </HBox.margin>
                   </HBox>
-                  <JFXButton maxHeight="35.0" maxWidth="76.0" minWidth="40.0" onMousePressed="#search" prefHeight="20.0" prefWidth="76.0" styleClass="searchButtonStyle" text="Go!">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton onMousePressed="#popupAdvanced" styleClass="searchButtonStyle" text="SEARCH SETTINGS">
+                  <JFXButton fx:id="search" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
+                  <JFXButton onMousePressed="#popupAdvanced" styleClass="searchButtonStyle" text="SEARCH SETTINGS">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

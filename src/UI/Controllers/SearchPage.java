@@ -60,7 +60,6 @@ public class SearchPage extends Controller {
     private SearchManager searchM;
 
     private AdvancedSearchPage advancedSearchPage;
-    private PercyAdvanceSearch percyAdvanceSearch;
     private settingPage settingPage;
 
     String oldSearch = "";
@@ -76,7 +75,6 @@ public class SearchPage extends Controller {
     @FXML
     public void initialize() throws SQLException {
         advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM);
-        percyAdvanceSearch = new PercyAdvanceSearch(sceneM, cacheM);
         TextFields.bindAutoCompletion(searchBox, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         cacheM.getAlcy().saySearchResult();
@@ -135,17 +133,21 @@ public class SearchPage extends Controller {
     private Label didYouMean;
     @FXML
     private Label pageNum;
-    @FXML private ImageView alcyView;
-    @FXML private Text alcyLabel;
+    @FXML
+    private ImageView alcyView;
+    @FXML
+    private Text alcyLabel;
 
     @FXML
     public void popupAdvanced() throws IOException {
-        percyAdvanceSearch = new PercyAdvanceSearch(sceneM, cacheM);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/percyAdvanceSearch.fxml"));
-        sceneM.popWindowLoader(loader, percyAdvanceSearch, "Advanced Search");
+
+        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AdvancedSearchPage.fxml"));
+        sceneM.popWindowLoader(loader, advancedSearchPage, "Advanced Search");
     }
 
-    @FXML public void settings() throws IOException {
+    @FXML
+    public void settings() throws IOException {
         settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
         sceneM.popWindowLoader(loader, settingPage, "Setting");
@@ -153,7 +155,7 @@ public class SearchPage extends Controller {
 
 
     @FXML
-    public void back() throws Exception{
+    public void back() throws Exception {
         //sceneM.backScene();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
         sceneM.changeScene(loader, new startPage(sceneM, cacheM));
@@ -173,7 +175,7 @@ public class SearchPage extends Controller {
         pageNum.setText("0");
         previous.setDisable(true);
 
-        if ((searchBox.getText().equals(oldSearch) && !searchM.isActive) || searchBox.getText().isEmpty())
+        if (searchBox.getText().isEmpty())
             return;
 
         oldSearch = searchBox.getText();
@@ -241,7 +243,7 @@ public class SearchPage extends Controller {
             //String fancifulName, String companyName, String alcoholType, String phLevel,
             //                        String alcohol, String year, String productType
             LabelImage lbl = new LabelImage();
-            try{
+            try {
                 byte[] picture = rs.getBytes("labelImage");
                 FileOutputStream os = new FileOutputStream("temp.png");
                 if (picture != null) {
@@ -253,10 +255,9 @@ public class SearchPage extends Controller {
 //                    System.out.println("aaa");
                     jimbus.delete();
                 }
-            }
-            catch(FileNotFoundException e){
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             srArr.add(new SearchResult(
@@ -271,28 +272,16 @@ public class SearchPage extends Controller {
                     rs.getString("TTBID"),
                     rs.getString("SERIALNUMBER"),
                     rs.getString("BREWERNUMBER"),
+                    rs.getString("ONLYSTATE"),
+                    rs.getLong("FORMID"),
                     lbl));
-
-//                    rs.getString("ONLYSTATE"),
-//                    rs.getLong("FORMID")));
-//>>>>>>> 8d9855889f2086348f68a8e583cf79e66f01578d
         }
         return srArr;
     }
 
 
-
     public ResultSet getApprovedApplications(String condition, String type) throws SQLException {
-        if (!cacheM.isFilter()) {
-            return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type);
-        } else if(cacheM.isFilter()){
-            System.out.println("running percy filter");
-            return cacheM.getForm().percyFilter(cacheM.getDbM().getConnection(), condition, type, cacheM.getFromTTB(), cacheM.getToTTB());
-        }else if(cacheM.isFilter2()){
-            return cacheM.getForm().percyState(cacheM.getDbM().getConnection(), condition, type, cacheM.getSearchState());
-        }else{
-            return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type);
-        }
+        return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type);
     }
 
     /**
@@ -318,7 +307,7 @@ public class SearchPage extends Controller {
         directoryChooser.setInitialDirectory(null);
 
         File folder = directoryChooser.showDialog(null);
-        if(folder == null){
+        if (folder == null) {
             return;
         }
         String filePath = folder + "/Save-Results.csv";
@@ -334,10 +323,10 @@ public class SearchPage extends Controller {
                     CSVWriter.DEFAULT_LINE_END);
 
             List<String[]> data = new ArrayList<String[]>();
-            data.add(new String[]{"FANCIFUL NAME","COMPANY NAME","ALCOHOL TYPE","ALCOHOL TYPE2","PH LEVEL","ALCOHOL PERCENT","YEAR"});
+            data.add(new String[]{"FANCIFUL NAME", "COMPANY NAME", "ALCOHOL TYPE", "ALCOHOL TYPE2", "PH LEVEL", "ALCOHOL PERCENT", "YEAR"});
 
             if (srArr != null) {
-                for(SearchResult s : srArr) {
+                for (SearchResult s : srArr) {
                     String alcoholType = s.getProductType();
                     data.add(new String[]{s.getFancifulName(), s.getCompanyName(), s.getAlcoholType(), alcoholType, s.getPhLevel(), s.getAlcohol(), s.getYear()});
                 }
@@ -347,8 +336,7 @@ public class SearchPage extends Controller {
             writer.writeAll(data);
 
             writer.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -381,6 +369,4 @@ public class SearchPage extends Controller {
         else
             previous.setDisable(false);
     }
-
-
 }

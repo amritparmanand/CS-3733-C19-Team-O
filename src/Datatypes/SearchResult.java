@@ -2,6 +2,7 @@ package Datatypes;
 
 import Observer.IObservable;
 
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -72,7 +73,7 @@ public class SearchResult {
         this.labelImage = labelImage;
     }
 
-    public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel, String alcohol, String year, String productType, String approvedDate, String TTBID, String serialNum, String brewerNum, LabelImage labelImage) {
+    public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel, String alcohol, String year, String productType, String approvedDate, String TTBID, String serialNum, String brewerNum, String origin, Long formID, LabelImage labelImage) {
 
         this.fancifulName = fancifulName;
         this.companyName = companyName;
@@ -88,8 +89,8 @@ public class SearchResult {
 
         this.SerialNum = serialNum;
         this.BrewerNum = brewerNum;
-//        this.origin = origin;
-//        this.formID = formID.toString();
+        this.origin = origin;
+        this.formID = formID.toString();
         this.labelImage = labelImage;
 
     }
