@@ -38,7 +38,7 @@
                      <children>
                         <JFXButton fx:id="scores" onMousePressed="#scores" styleClass="searchButtonStyle" text="Scores">
                            <HBox.margin>
-                              <Insets right="50.0" />
+                              <Insets right="20.0" />
                            </HBox.margin></JFXButton>
                          <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
                              <HBox.margin>
