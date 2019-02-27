@@ -1,8 +1,7 @@
 package Datatypes;
 
 public abstract class Controller {
-    public void initialize()
-    {
+    public void initialize() throws Exception {
 
     }
 }

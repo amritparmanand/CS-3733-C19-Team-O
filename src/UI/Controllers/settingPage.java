@@ -113,7 +113,11 @@ public class settingPage {
 
         System.out.println("Settings completed!");
         System.out.println(sceneM.getLastScene().toString());
-        controller.initialize();
+        try {
+            controller.initialize();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         sceneM.backScene();

@@ -1,3 +1,4 @@
+import Datatypes.Agent;
 import Managers.*;
 
 import UI.Controllers.LoginPage;
@@ -37,6 +38,13 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/startPage.fxml"));
         sceneM.changeScene(loader, new startPage(sceneM, cacheM), "UI");
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                Agent A = (Agent) cacheM.getAcct();
+                A.deleteLabels();
+            }
+        }));
     }
 
 

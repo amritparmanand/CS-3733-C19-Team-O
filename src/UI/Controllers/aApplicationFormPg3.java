@@ -144,7 +144,7 @@ public class aApplicationFormPg3 extends Controller {
 
             // The Tesseract
             ITesseract instance = new Tesseract();
-            instance.setDatapath("src/Tess4J.tessdata");
+            instance.setDatapath("src/Tess4J/tessdata");
             instance.setLanguage("eng");
             try {
                 String result = instance.doOCR(output);

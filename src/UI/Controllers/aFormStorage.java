@@ -40,7 +40,6 @@ public class aFormStorage extends Controller {
     }
 
     @FXML private FlowPane loadForms;
-    @FXML private Label achievement;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
     private ArrayList<Form> repeated = new ArrayList<>();
@@ -54,7 +53,12 @@ public class aFormStorage extends Controller {
         //   achievement.setText("");
         A = (Agent) cacheM.getAcct();
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
-        A.getAssignedForms(cacheM.getDbM().getConnection());
+        try {
+            A.getAssignedForms(cacheM.getDbM().getConnection());
+        }catch (Exception e)
+        {
+
+        }
         ArrayList<Form> populatedForms = A.getWorkingForms();
 
         for (Form form : populatedForms) {
@@ -330,7 +334,7 @@ public class aFormStorage extends Controller {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM, this));
     }
 
 }
