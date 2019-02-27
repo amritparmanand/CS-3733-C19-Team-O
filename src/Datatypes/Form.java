@@ -338,6 +338,7 @@ public class Form {
                 " WHERE FORMID =" + this.formID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQLClearGarbage);
+            System.out.println(SQLClearGarbage);
 
             ps.executeUpdate();
 

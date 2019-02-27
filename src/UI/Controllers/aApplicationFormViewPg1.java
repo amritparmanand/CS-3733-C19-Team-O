@@ -12,10 +12,12 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import java.lang.System;
 
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.time.Year;
@@ -51,6 +53,9 @@ public class aApplicationFormViewPg1 extends Controller {
     @FXML private JFXButton saveDraft;
     @FXML private Label serialMessage;
     @FXML private JFXButton savePDF;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
     public aApplicationFormViewPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -61,6 +66,10 @@ public class aApplicationFormViewPg1 extends Controller {
     @SuppressWarnings("Duplicates")
     @FXML public void initialize(){
         cacheM.setForm(form);
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
+
 
         switch(form.getProductSource()){
             case "DOMESTIC":
@@ -167,8 +176,9 @@ public class aApplicationFormViewPg1 extends Controller {
     }
 
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 }
 

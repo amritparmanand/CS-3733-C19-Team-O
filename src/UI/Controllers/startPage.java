@@ -22,6 +22,7 @@ import java.util.Collection;
 public class startPage extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private settingPage settingPage;
 
     public startPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -61,9 +62,9 @@ public class startPage extends Controller {
     }
 
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 
 }

@@ -60,6 +60,7 @@ public class SearchPage extends Controller {
     private SearchManager searchM;
 
     private AdvancedSearchPage advancedSearchPage;
+    private settingPage settingPage;
 
     String oldSearch = "";
     LinkedList<SearchResult> srArr;
@@ -141,6 +142,12 @@ public class SearchPage extends Controller {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AdvancedSearchPage.fxml"));
         //advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, new Stage());
         sceneM.popWindowLoader(loader, advancedSearchPage, "Advanced Search");
+    }
+
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 
 
@@ -300,6 +307,9 @@ public class SearchPage extends Controller {
         directoryChooser.setInitialDirectory(null);
 
         File folder = directoryChooser.showDialog(null);
+        if(folder == null){
+            return;
+        }
         String filePath = folder + "/Save-Results.csv";
         File file = new File(filePath);
 
@@ -315,9 +325,13 @@ public class SearchPage extends Controller {
             List<String[]> data = new ArrayList<String[]>();
             data.add(new String[]{"FANCIFUL NAME","COMPANY NAME","ALCOHOL TYPE","ALCOHOL TYPE2","PH LEVEL","ALCOHOL PERCENT","YEAR"});
 
-            for(SearchResult s : srArr) {
-                String alcoholType = s.getProductType();
-                data.add(new String[]{s.getFancifulName(), s.getCompanyName(), s.getAlcoholType(), alcoholType, s.getPhLevel(), s.getAlcohol(), s.getYear()});
+            if (srArr != null) {
+                for(SearchResult s : srArr) {
+                    String alcoholType = s.getProductType();
+                    data.add(new String[]{s.getFancifulName(), s.getCompanyName(), s.getAlcoholType(), alcoholType, s.getPhLevel(), s.getAlcohol(), s.getYear()});
+                }
+            } else {
+                System.out.println("no search result");
             }
             writer.writeAll(data);
 
@@ -326,6 +340,7 @@ public class SearchPage extends Controller {
         catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @FXML
@@ -356,9 +371,5 @@ public class SearchPage extends Controller {
             previous.setDisable(false);
     }
 
-    @FXML public void settings() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
 
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
-    }
 }

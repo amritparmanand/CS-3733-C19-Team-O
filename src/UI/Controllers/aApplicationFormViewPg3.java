@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Controller;
-import Datatypes.Form;
-import Datatypes.LabelImage;
-import Datatypes.PDF;
+import Datatypes.*;
 import Managers.*;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
@@ -11,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -33,6 +31,9 @@ public class aApplicationFormViewPg3 extends Controller {
     @FXML private JFXCheckBox resubmission;
     @FXML private ImageView imagePreview;
     @FXML private Label errorLabel;
+    @FXML private ImageView alcyView;
+    @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
     public aApplicationFormViewPg3(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -42,6 +43,10 @@ public class aApplicationFormViewPg3 extends Controller {
 
     @SuppressWarnings("Duplicates")
     @FXML public void initialize() {
+        Alcy alcy = cacheM.getAlcy();
+        alcy.summonAlcy(alcyView, alcyLabel);
+        alcy.sayAForm();
+
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
@@ -117,7 +122,8 @@ public class aApplicationFormViewPg3 extends Controller {
         pdf.savePDF(cacheM.getForm());
     }
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 }

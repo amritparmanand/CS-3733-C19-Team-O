@@ -65,8 +65,7 @@ public class LoginPage extends Controller implements SerialPortDataListener {
     private Button pdf;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
-
-
+    private settingPage settingPage;
 
 
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
@@ -325,8 +324,9 @@ public class LoginPage extends Controller implements SerialPortDataListener {
     }
 
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 
 }

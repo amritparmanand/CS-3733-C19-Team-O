@@ -222,10 +222,15 @@ public class aApplicationFormPg2 extends Controller {
 
     @FXML
     public void acceptForm() throws IOException {
-        cacheM.approveForm(cacheM.getDbM().getConnection());
+        if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+            cacheM.approveForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
         goToHomePage();
+    }else{
+        System.out.println("invalid signature or date");
+    }
     }
 
     @FXML
@@ -244,10 +249,15 @@ public class aApplicationFormPg2 extends Controller {
         comments.setComment11(Q11Comment.getText());
         comments.setComment12(Q12Comment.getText());
         comments.setComment13(Q13Comment.getText());
-        System.out.println(comments.generateComments());
+        if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+            System.out.println(comments.generateComments());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
         goToHomePage();
+    }else{
+        System.out.println("invalid signature or date");
+        }
     }
 
     @FXML public void passForm() throws IOException{
@@ -268,6 +278,6 @@ public class aApplicationFormPg2 extends Controller {
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
     }
 }

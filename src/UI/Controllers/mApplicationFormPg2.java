@@ -57,6 +57,7 @@ public class mApplicationFormPg2 extends Controller {
     @FXML private JFXTextArea aComment;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -375,7 +376,8 @@ public class mApplicationFormPg2 extends Controller {
         pdf.savePDF(form);
     }
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 }

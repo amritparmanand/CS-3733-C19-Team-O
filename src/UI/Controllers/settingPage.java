@@ -3,6 +3,7 @@ package UI.Controllers;
 import Datatypes.Alcy;
 import Datatypes.Controller;
 import Datatypes.Setting;
+import Datatypes.StageContainingScene;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
@@ -21,15 +22,14 @@ import java.io.IOException;
  * @version It3
  * Setting page that con be only accessed once
  */
-public class settingPage {
+public class settingPage extends StageContainingScene {
     private SceneManager sceneM;
     private CacheManager cacheM;
-    private Controller controller;
 
-    public settingPage(SceneManager sceneM, CacheManager cacheM, Controller controller) {
+    public settingPage(SceneManager sceneM, CacheManager cacheM) {
+        super();
         this.sceneM = sceneM;
         this.cacheM = cacheM;
-        this.controller = controller;
     }
 
     @FXML private JFXRadioButton SQL;
@@ -53,9 +53,22 @@ public class settingPage {
     @FXML public void banishAlcy(){
         if(!enableAlcy.isSelected()){
             cacheM.getAlcy().saySettingsBye();
+            cacheM.getAlcy().sad();
             cacheM.getAlcy().setDemonicSeance(false);
         }else {
             cacheM.getAlcy().saySettingsRelief();
+            cacheM.getAlcy().happy();
+
+        }
+    }
+
+    @FXML public void alcySad(){
+        //on mouse exit he get sad
+        if(!enableAlcy.isSelected()) {
+            cacheM.getAlcy().saySettingsBye();
+        }else {
+            cacheM.getAlcy().saySettingsRelief();
+            cacheM.getAlcy().happy();
         }
     }
 
@@ -111,23 +124,7 @@ public class settingPage {
         cacheM.getAlcy().setDemonicSeance(object.isDemonicseance());
         System.out.println("Demonic Seance: " + object.isDemonicseance());
 
-        System.out.println("Settings completed!");
-        System.out.println(sceneM.getLastScene().toString());
-        try {
-            controller.initialize();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        sceneM.backScene();
-    }
-
-    @FXML
-    public void search() throws IOException {
-        // Search
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
-        sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+        super.getStage().close();
     }
 
     @FXML

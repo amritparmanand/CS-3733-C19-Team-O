@@ -438,10 +438,21 @@ public class Alcy {
         double random = Math.random();
         if(random>.5){
             alcyLabel.setText("Woohoo! I'm not going away, baby!");
-            sad();
+            happy();
         }else{
             alcyLabel.setText("I knew I was helpful!");
-            sad();
+            happy();
+        }
+    }
+
+    @FXML public void sayAScores(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Look at all this," + cacheM.getAcct().getFullName() +"! Here's your homepage! Here's where you can view all your accolades!");
+            happy();
+        }else{
+            alcyLabel.setText("Hmmmm... Looks like someone could be doin' a bit better, don'tcha think, "+ cacheM.getAcct().getFullName()+"?");
+            confused();
         }
     }
 

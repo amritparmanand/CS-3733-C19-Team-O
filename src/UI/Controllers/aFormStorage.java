@@ -32,6 +32,7 @@ import java.util.ArrayList;
 public class aFormStorage extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private settingPage settingPage;
 
 
     public aFormStorage(SceneManager sceneM, CacheManager cacheM) {
@@ -188,8 +189,9 @@ public class aFormStorage extends Controller {
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM, this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 
 }

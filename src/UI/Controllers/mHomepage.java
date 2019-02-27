@@ -21,6 +21,7 @@ public class mHomepage extends Controller {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private settingPage settingPage;
 
     public mHomepage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -68,7 +69,8 @@ public class mHomepage extends Controller {
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
     }
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 }
