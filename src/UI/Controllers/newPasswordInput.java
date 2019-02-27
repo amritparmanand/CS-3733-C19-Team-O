@@ -26,23 +26,24 @@ public class newPasswordInput extends StageContainingScene {
     @FXML private JFXButton reset;
     @FXML private Label passwordMessage;
 
+
     public newPasswordInput(SceneManager sceneM, CacheManager cacheM, String email, Boolean Agent, Stage stage) {
         super(stage);
         this.sceneM = sceneM;
         this.cacheM = cacheM;
         this.email = email;
         this.Agent = Agent;
+
     }
 
     @FXML
     public void reset() throws SQLException{
         if (password.getText().equals(confirmP.getText())){
             System.out.println("Updating password please hold");
-            String setData = "UPDATE ? SET PASSWORD = ? WHERE EMAIL = ?";
+            String setData = "UPDATE " + (Agent ? "AGENTS ":"REPRESENTATIVES ")+ "SET PASSWORD = ? WHERE EMAIL = ?";
             PreparedStatement ps = cacheM.getDbM().getConnection().prepareStatement(setData);
-            ps.setString(1, Agent ? "AGENTS":"REPRESENTATIVES");
-            ps.setString(2, confirmP.getText());
-            ps.setString(3, email);
+            ps.setString(1, this.getEncryptor().encode(confirmP.getText()));
+            ps.setString(2, email);
             System.out.println(ps.toString());
             ps.executeUpdate();
             System.out.println("Password reset! Please login to continue");
@@ -53,5 +54,6 @@ public class newPasswordInput extends StageContainingScene {
             passwordMessage.setText("Passwords do not match.");
         }
     }
+    public BCryptPasswordEncoder getEncryptor(){return passwordEncoder;}
 
 }

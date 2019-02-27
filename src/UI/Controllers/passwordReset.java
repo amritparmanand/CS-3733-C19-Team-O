@@ -25,6 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Random;
+
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
@@ -38,15 +39,21 @@ public class passwordReset {
     private CacheManager cacheM;
     private String ResetKey;
 
-    @FXML private JFXTextField email;
-    @FXML private JFXTextField ID;
-    @FXML private JFXRadioButton m;
-    @FXML private JFXRadioButton a;
-    @FXML private Label emailMessage;
-    @FXML private JFXButton go;
+    @FXML
+    private JFXTextField email;
+    @FXML
+    private JFXTextField ID;
+    @FXML
+    private JFXRadioButton m;
+    @FXML
+    private JFXRadioButton a;
+    @FXML
+    private Label emailMessage;
+    @FXML
+    private JFXButton go;
 
 
-    public passwordReset(SceneManager sceneM, CacheManager cacheM){
+    public passwordReset(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
     }
@@ -57,23 +64,15 @@ public class passwordReset {
     @FXML
     public void sendResetEmail() throws SQLException, java.io.IOException {
 
-        String getData = "SELECT EMAIL FROM ? WHERE EMAIL = ? AND ? = ?";
-        PreparedStatement ps = cacheM.getDbM().getConnection().prepareStatement(getData);
-        ps.setString(1, a.isSelected() ? "AGENTS":"REPRESENTATIVES");
-        ps.setString(2, email.getText());
-        ps.setString(3, a.isSelected() ? "TTBID":"REPID");
-        ps.setString(4, ID.getText());
-        System.out.println(ps.toString());
+        String getData = "SELECT COUNT(*) AS rowCount FROM " + (a.isSelected() ? "AGENTS" : "REPRESENTATIVES") + " WHERE EMAIL = ? AND " + (a.isSelected() ? "TTBID" : "REPID") + " = ?";
+        PreparedStatement ps = cacheM.getDbM().getConnection().prepareStatement(getData, ResultSet.TYPE_SCROLL_INSENSITIVE);
+        ps.setString(1, email.getText());
+        ps.setString(2, ID.getText());
         ResultSet rs = ps.executeQuery();
-
-        if(rs != null){
-            if(rs.next()) {
-                //too many records
-                System.out.println("Database error");
-            }
-            else{
-                this.send("ttb.database@gmail.com","OnyxOgopogo",email.getText(),"TTB Password Reset",generateEmailBody());
-            }
+        rs.next();
+        if (rs.getInt("rowCount") == 1) {
+            System.out.println("Trying to email");
+            this.send("ttb.database@gmail.com", "OnyxOgopogo", email.getText(), "TTB Password Reset", generateEmailBody());
         }
 
         FXMLLoader popLoader = new FXMLLoader(getClass().getResource("/UI/Views/passwordKeyPopup.fxml"));
@@ -85,9 +84,10 @@ public class passwordReset {
 
     /**
      * Generates the body of the email
+     *
      * @return the email body
      */
-    private String generateEmailBody(){
+    private String generateEmailBody() {
         String Body = "Hello TTB Database User," + "\n";
         Body += "A password reset was requested on your account, if this was not you, please ignore this email." + "\n";
         Body += "Your password reset key is: ";
@@ -98,9 +98,10 @@ public class passwordReset {
 
     /**
      * Generates a random key and saves it to the page
+     *
      * @return a random alpha numeric 5 character string
      */
-    private String randomKeyGenerator(){
+    private String randomKeyGenerator() {
         String key = "";
         Random r = new Random();
 
@@ -114,13 +115,14 @@ public class passwordReset {
 
     /**
      * Sends the email, takes in email information
+     *
      * @param from
      * @param password
      * @param to
      * @param sub
      * @param msg
      */
-    private static void send(String from,String password,String to,String sub,String msg) {
+    private static void send(String from, String password, String to, String sub, String msg) {
         //Get properties object
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -150,6 +152,7 @@ public class passwordReset {
         }
 
     }
+
     @FXML
     public void validateButton() {
         if (m.isSelected() || a.isSelected()) {
@@ -163,7 +166,9 @@ public class passwordReset {
             go.setDisable(true);
         }
     }
-    @FXML public void back() throws IOException {
+
+    @FXML
+    public void back() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, cacheM));
     }
