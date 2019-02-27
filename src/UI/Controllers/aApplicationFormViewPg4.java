@@ -44,6 +44,7 @@ public class aApplicationFormViewPg4 extends Controller {
 
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
     public aApplicationFormViewPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
 
@@ -120,7 +121,8 @@ public class aApplicationFormViewPg4 extends Controller {
         pdf.savePDF(cacheM.getForm());
     }
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 }

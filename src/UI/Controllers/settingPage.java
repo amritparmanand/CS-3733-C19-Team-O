@@ -124,15 +124,6 @@ public class settingPage extends StageContainingScene {
         cacheM.getAlcy().setDemonicSeance(object.isDemonicseance());
         System.out.println("Demonic Seance: " + object.isDemonicseance());
 
-//        System.out.println("Settings completed!");
-//        System.out.println(sceneM.getLastScene().toString());
-//        try {
-//            controller.initialize();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
-
         super.getStage().close();
     }
 

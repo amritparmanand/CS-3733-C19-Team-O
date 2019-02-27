@@ -31,6 +31,7 @@ public class aApplicationFormPg4 extends Controller {
     private CacheManager cacheM;
     private Form form;
     private Comments comments;
+    private settingPage settingPage;
 
     public aApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
@@ -187,7 +188,8 @@ public class aApplicationFormPg4 extends Controller {
 
     }
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 }

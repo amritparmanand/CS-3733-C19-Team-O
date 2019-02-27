@@ -34,6 +34,7 @@ public class aHomepage extends Controller {
     private String message;
     private Image image;
     @FXML private FlowPane achievement;
+    private settingPage settingPage;
 
     public aHomepage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -205,8 +206,9 @@ public class aHomepage extends Controller {
         achievement.getChildren().clear();
     }
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
         achievement.getChildren().clear();
     }
 }
