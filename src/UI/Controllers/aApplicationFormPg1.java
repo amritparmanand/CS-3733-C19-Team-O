@@ -29,7 +29,8 @@ public class aApplicationFormPg1 extends Controller {
     private CacheManager cacheM;
     private Form form;
     private Comments comments = new Comments();
-
+    private settingPage settingPage;
+    
     @FXML private JFXButton acceptForm;
     @FXML private JFXButton denyForm;
     @FXML private JFXButton saveDraft;
@@ -335,8 +336,9 @@ public class aApplicationFormPg1 extends Controller {
 
     }
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 }
 
