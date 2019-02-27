@@ -40,6 +40,7 @@ public class aApplicationFormPg3 extends Controller {
     private String matchStyle = "-fx-text-fill: #32CD32;";
     private String mismatchStyle = "-fx-text-fill: #FF8C00;";
     private String fontSize = "-fx-font-size: 15;";
+    private settingPage settingPage;
 
     public aApplicationFormPg3(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;

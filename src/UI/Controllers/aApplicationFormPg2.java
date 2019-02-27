@@ -27,6 +27,7 @@ public class aApplicationFormPg2 extends Controller {
     private CacheManager cacheM;
     private Form form;
     private Comments comments;
+    private settingPage settingPage;
 
     public aApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
