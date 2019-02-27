@@ -7,7 +7,12 @@ import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -25,6 +30,11 @@ public class aHomepage extends Controller {
 
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    private Agent A;
+    private String message;
+    private Image image;
+    //  private achievementPage achievement;
+    @FXML private FlowPane achievement;
 
     public aHomepage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -32,9 +42,160 @@ public class aHomepage extends Controller {
     }
 
     @FXML public void initialize(){
+        A = (Agent) cacheM.getAcct();
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayAHomePage();
+        int numberOfForms = A.getNumberProcessed();
+
+        System.out.println(numberOfForms);
+//        achievement = new achievementPage(sceneM, cacheM);
+
+        // processed 1+ forms
+        int achievementAwarded = 0;
+        if (numberOfForms == 1) {
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/1.png");
+            message = "The Rookie";
+            achievementAwarded = 1;
+
+//            achievement.setText("Achievement: The Rookie Unlocked!");
+        }
+        // processed 100+ forms
+        if (numberOfForms == 100) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/2.png");
+            message = "Getting Started";
+            achievementAwarded = 1;
+
+            //achievement.setText("Achievement: Getting Started Unlocked!");
+        }
+        // processed 10000+ forms
+        if (numberOfForms == 10000) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/3.png");
+            message = "Seasoned Pro";
+            achievementAwarded = 1;
+
+            //achievement.setText("Achievement: Seasoned Pro Unlocked!");
+        }
+        // approved 1+ forms
+        if (A.getNumberApproved() == 1) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/10.png");
+            message = "Pleasant Mood";
+            achievementAwarded = 1;
+
+            //  achievement.setText("Achievement: Pleasant Mood Unlocked!");
+        }
+        // approved 100+ forms
+        if (A.getNumberApproved() == 100) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/11.png");
+            message = "Yes Man";
+            achievementAwarded = 1;
+
+            //    achievement.setText("Achievement: Yes Man Unlocked!");
+        }
+        // approved 10000+ forms
+        if (A.getNumberApproved() == 10000) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/12.png");
+            message = "Good Vibrations";
+            achievementAwarded = 1;
+
+            //    achievement.setText("Achievement: Good Vibrations Unlocked!");
+        }
+        // denied 1+ forms
+        if (A.getNumberDenied() == 1) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/14.png");
+            message = "Denied";
+            achievementAwarded = 1;
+
+            //    achievement.setText("Achievement: Denied Unlocked!");
+        }
+        // denied 100+ forms
+        if (A.getNumberDenied() == 100) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/13.png");
+            message = "High Standards";
+            achievementAwarded = 1;
+
+            //    achievement.setText("Achievement: High Standards Unlocked!");
+        }
+        // denied 10000+ forms
+        if (A.getNumberDenied() == 10000) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/15.png");
+            message = "It's All Wrong";
+            achievementAwarded = 1;
+
+            //    achievement.setText("Achievement: It's All Wrong Unlocked!");
+        }
+        // passed 1+ forms to another agent
+        if (A.getNumberPassed() == 1) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/7.png");
+            message = "Passing The Buck";
+            achievementAwarded = 1;
+
+            //    achievement.setText("Achievement: Passing The Buck Unlocked!");
+        }
+        // passed 100+ forms to another agent
+        if (A.getNumberPassed() == 100) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/8.png");
+            message = "Expert Procrastination";
+            achievementAwarded = 1;
+
+            //    achievement.setText("Achievement: Expert Procrastination Unlocked!");
+        }
+        // passed 10000+ forms to another agent
+        if (A.getNumberPassed() == 10000) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/9.png");
+            message = "Expert Delegation";
+            achievementAwarded = 1;
+
+            //    achievement.setText("Achievement: Expert Delegation Unlocked!");
+        }
+        // processed 3 forms in a row
+        if (A.getRowAD() == 3) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/6.png");
+            message = "Three Pointer";
+            achievementAwarded = 1;
+
+            //    achievement.setText("Achievement: Three Pointer Unlocked!");
+        }
+
+        // passed three forms in a row
+        if (A.getRowP() == 3) {
+            image = new Image("UI/Icons/SoftEngAchieveColor/4.png");
+            message = "Strike Three";
+            achievementAwarded = 1;
+
+            //   achievement.setText("Achievement: Strike Three Unlocked!");
+        }
+
+        Pane achievementDisplay;
+
+
+        if (achievementAwarded == 1) {
+            System.out.println("in");
+            try {
+                achievementDisplay = FXMLLoader.load(getClass().getResource("/UI/Views/achievementPage.fxml"));
+                Node vbox = achievementDisplay.getChildren().get(0);
+                if (vbox instanceof VBox) {
+
+                    Node achImg = ((VBox) vbox).getChildren().get(1);
+                    Node tag = ((VBox) vbox).getChildren().get(2);
+
+                    ((ImageView) achImg).setImage(image);
+
+                    //    System.out.println(agent.getAgentScore());
+                    ((Label) tag).setText(message);
+                    System.out.println(message);
+
+                }
+
+                //     System.out.println(agent.getAgentName() + " not in leaderboard. Adding.");
+                achievement.getChildren().add(achievementDisplay);
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+        }
     }
 
     @FXML

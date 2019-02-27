@@ -109,57 +109,57 @@
                               </ImageView>
                               <ImageView fx:id="pleasantMood" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/10.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/11.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="yesMan" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/11.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/12.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="goodVibrations" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/12.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/13.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="denied" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/14.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/15.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="highStandards" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/13.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/14.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="itsAllWrong" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/15.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/16.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="passingTheBuck" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/7.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/8.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="expertProcrastination" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/8.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/9.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="expertDelegation" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/9.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/10.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="threePointer" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/4.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/5.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="strikeThree" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/6.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/7.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="inquisitive" fitHeight="150.0" fitWidth="200.0" layoutX="760.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
@@ -169,7 +169,7 @@
                               </ImageView>
                               <ImageView fx:id="backFromTheDead" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/5.png" />
+                                    <Image url="@../Icons/SoftEngAchieveBW/6.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="aNewFriend" fitHeight="150.0" fitWidth="200.0" layoutX="985.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
