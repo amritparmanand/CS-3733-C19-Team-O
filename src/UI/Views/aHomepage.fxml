@@ -97,7 +97,10 @@
                   <Insets />
                </VBox.margin>
                 </HBox>
-            <FlowPane fx:id="achievement" alignment="TOP_RIGHT" maxWidth="200.0" prefHeight="177.0" prefWidth="200.0" />
+            <FlowPane fx:id="achievement" alignment="TOP_RIGHT" maxWidth="200.0" prefHeight="177.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin></FlowPane>
             </children>
         </VBox>
         <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0">

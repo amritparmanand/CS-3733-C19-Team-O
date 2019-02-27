@@ -172,6 +172,7 @@ public class aHomepage extends Controller {
     public void search() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/SearchPage.fxml"));
         sceneM.changeScene(loader, new SearchPage(sceneM, cacheM));
+        achievement.getChildren().clear();
     }
 
     @FXML
@@ -180,28 +181,32 @@ public class aHomepage extends Controller {
         A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
-
+        achievement.getChildren().clear();
     }
 
     @FXML
     public void getApp() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aFormStorage.fxml"));
         sceneM.changeScene(loader, new aFormStorage(sceneM, cacheM));
+        achievement.getChildren().clear();
     }
 
     @FXML
     public void viewReviewed() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aGetApplication.fxml"));
         sceneM.changeScene(loader, new aGetApplication(sceneM, cacheM));
+        achievement.getChildren().clear();
     }
 
     @FXML
     public void scores() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/Scores.fxml"));
         sceneM.changeScene(loader, new Scores(sceneM, cacheM));
+        achievement.getChildren().clear();
     }
     @FXML public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
         sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
+        achievement.getChildren().clear();
     }
 }
