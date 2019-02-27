@@ -51,7 +51,7 @@ public class Scores {
     @FXML private ImageView gettingStarted;
     @FXML private ImageView seasonedPro;
     @FXML private ImageView threePointer;
-    @FXML private ImageView backFromTheDead;
+ //   @FXML private ImageView backFromTheDead;
     @FXML private ImageView strikeThree;
     @FXML private ImageView passingTheBuck;
     @FXML private ImageView expertProcrastination;
@@ -207,11 +207,11 @@ public class Scores {
                  expertDelegation.setImage(image);
         }
 
-        // reviewed a form that was previously denied
-        if (A.isGotOldForms()==false){
-            Image image = new Image("UI/Icons/SoftEngAchieveColor/5.png");
-                 backFromTheDead.setImage(image);
-        }
+//        // reviewed a form that was previously denied
+//        if (A.isGotOldForms()==false){
+//            Image image = new Image("UI/Icons/SoftEngAchieveColor/5.png");
+//                 backFromTheDead.setImage(image);
+//        }
         // processed 3 forms in a row
         if (A.getRowAD() > 2){
             Image image = new Image("UI/Icons/SoftEngAchieveColor/4.png");

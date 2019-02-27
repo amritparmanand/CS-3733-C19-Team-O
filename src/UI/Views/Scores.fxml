@@ -59,7 +59,7 @@
                                  </VBox.margin></Label>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <Label minWidth="180.0" prefHeight="50.0" prefWidth="162.0" style="-fx-font-size: 16;" text="Current Score:" textAlignment="CENTER">
+                                    <Label minWidth="210.0" prefHeight="50.0" prefWidth="162.0" style="-fx-font-size: 16;" text="Current Score:" textAlignment="CENTER">
                                        <HBox.margin>
                                           <Insets left="50.0" />
                                        </HBox.margin></Label>
@@ -71,13 +71,13 @@
                                     <Insets left="50.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Label minWidth="180.0" style="-fx-font-size: 16;" text="Number of Forms Approved:" />
+                                    <Label minWidth="210.0" style="-fx-font-size: 16;" text="Number of Forms Approved:" />
                                     <Label fx:id="approved" alignment="CENTER_RIGHT" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="604.0">
                                  <children>
-                                    <Label minWidth="180.0" style="-fx-font-size: 16;" text="Number of Forms Denied:" />
+                                    <Label minWidth="210.0" style="-fx-font-size: 16;" text="Number of Forms Denied:" />
                                     <Label fx:id="numDenied" alignment="CENTER_RIGHT" style="-fx-font-size: 16;" />
                                  </children>
                                  <VBox.margin>
@@ -86,7 +86,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <Label minWidth="180.0" style="-fx-font-size: 16;" text="Number of Forms Passed:" />
+                                    <Label minWidth="210.0" style="-fx-font-size: 16;" text="Number of Forms Passed:" />
                                     <Label fx:id="passed" alignment="CENTER_RIGHT" style="-fx-font-size: 16;" />
                                  </children>
                                  <VBox.margin>
@@ -177,11 +177,6 @@
                               <ImageView fx:id="inquisitive" fitHeight="150.0" fitWidth="200.0" layoutX="760.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icons/SoftEngAchieveBW/17.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="backFromTheDead" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Icons/SoftEngAchieveBW/6.png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="aNewFriend" fitHeight="150.0" fitWidth="200.0" layoutX="985.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">

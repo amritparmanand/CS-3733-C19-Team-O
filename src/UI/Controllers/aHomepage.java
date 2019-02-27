@@ -141,7 +141,7 @@ public class aHomepage extends Controller {
 
 
         if (achievementAwarded == 1) {
-            System.out.println("in");
+      //      System.out.println("in");
             try {
                 achievementDisplay = FXMLLoader.load(getClass().getResource("/UI/Views/achievementPage.fxml"));
                 Node vbox = achievementDisplay.getChildren().get(0);
