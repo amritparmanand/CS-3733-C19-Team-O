@@ -180,24 +180,21 @@ public class Scores {
         }
         // processed 3 forms in a row
         if (A.getRowAD() > 2){
-            Image image = new Image("UI/Icons/SoftEngAchieveColor/6.png");
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/4.png");
                  threePointer.setImage(image);
         }
 
         // passed three forms in a row
         if (A.getRowP() > 2){
-            Image image = new Image("UI/Icons/SoftEngAchieveColor/4.png");
+            Image image = new Image("UI/Icons/SoftEngAchieveColor/6.png");
                  strikeThree.setImage(image);
         }
-       // if (){
+
             Image image2 = new Image("UI/Icons/SoftEngAchieveColor/17.png");
             inquisitive.setImage(image2);
-       // }
-      //  if (){
+
             Image image3 = new Image("UI/Icons/SoftEngAchieveColor/18.png");
             aNewFriend.setImage(image3);
-       // }
-
 
     }
     @FXML
