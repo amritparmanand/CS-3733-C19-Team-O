@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.Controller;
 import Datatypes.SearchResult;
 import Fuzzy.*;
 import Managers.CacheManager;
@@ -50,7 +51,7 @@ import java.util.List;
  * @version It 3
  * Controller for SearchPage of UI
  */
-public class SearchPage {
+public class SearchPage extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private SearchManager searchM;
@@ -327,5 +328,11 @@ public class SearchPage {
             previous.setDisable(true);
         else
             previous.setDisable(false);
+    }
+
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM,this));
     }
 }
