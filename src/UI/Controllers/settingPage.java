@@ -53,9 +53,22 @@ public class settingPage {
     @FXML public void banishAlcy(){
         if(!enableAlcy.isSelected()){
             cacheM.getAlcy().saySettingsBye();
+            cacheM.getAlcy().sad();
             cacheM.getAlcy().setDemonicSeance(false);
         }else {
             cacheM.getAlcy().saySettingsRelief();
+            cacheM.getAlcy().happy();
+
+        }
+    }
+
+    @FXML public void alcySad(){
+        //on mouse exit he get sad
+        if(!enableAlcy.isSelected()) {
+            cacheM.getAlcy().saySettingsBye();
+        }else {
+            cacheM.getAlcy().saySettingsRelief();
+            cacheM.getAlcy().happy();
         }
     }
 
