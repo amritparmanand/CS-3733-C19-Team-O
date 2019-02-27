@@ -274,6 +274,9 @@ public class SearchPage extends Controller {
         directoryChooser.setInitialDirectory(null);
 
         File folder = directoryChooser.showDialog(null);
+        if(folder == null){
+            return;
+        }
         String filePath = folder + "/Save-Results.csv";
         File file = new File(filePath);
 
@@ -300,6 +303,7 @@ public class SearchPage extends Controller {
         catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @FXML
