@@ -39,7 +39,7 @@ public class SearchTether {
         int cursor = page * 15;
         next.setDisable(false);
         for(IObservable child : children) {
-            System.out.println(child);
+//            System.out.println(child);
             if(cursor < resultLen) {
                 child.update(srArray.get(cursor));
                 cursor++;

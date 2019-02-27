@@ -35,7 +35,7 @@ public class ObservablePane implements IObservable {
 
     public ObservablePane(Pane self, FlowPane searchResults, SceneManager sceneManager) {
         this.self = self;
-        System.out.println(self);
+//        System.out.println(self);
         searchResults.getChildren().add(this.self);
         this.sceneManager = sceneManager;
     }
