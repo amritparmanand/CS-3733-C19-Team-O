@@ -48,15 +48,20 @@
                         </TextField>
                      </children>
                      <HBox.margin>
-                        <Insets left="600.0" />
+                        <Insets left="520.0" />
                      </HBox.margin>
                   </HBox>
-                  <Button fx:id="search" mnemonicParsing="false" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
+                  <JFXButton fx:id="search" onMousePressed="#search" styleClass="searchButtonStyle" text="Search">
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="30.0" />
                      </HBox.margin>
-                  </Button>
-                  <JFXButton onMousePressed="#popupAdvanced" styleClass="searchButtonStyle" text="ADVANCED SETTINGS">
+                  </JFXButton>
+                  <JFXButton onMousePressed="#popupAdvanced" styleClass="searchButtonStyle" text="SEARCH SETTINGS">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
