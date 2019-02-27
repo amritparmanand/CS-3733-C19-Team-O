@@ -44,11 +44,9 @@ public class DatabaseManager {
         Connection connection = null;
         Statement stmt = null;
         try {
-            connection = DriverManager.getConnection("jdbc:derby:ttbDB;create=true");
-//            CallableStatement cs = connection.prepareCall
-//                    ("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY(tessdata, '1')");
-//            cs.execute();
-//            cs.close();
+            connection = DriverManager.getConnection(
+                    "jdbc:postgresql://softeng.c1tjqfdh5koe.us-east-2.rds.amazonaws.com:5432/softeng",
+                    "ogopogo", "ogopog0!");
             stmt = connection.createStatement();
         }
         catch(SQLException e){
