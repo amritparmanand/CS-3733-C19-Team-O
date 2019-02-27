@@ -66,6 +66,7 @@ public class ObservablePane implements IObservable {
         Node vbox = this.self.getChildren().get(0);
 
         if (vbox instanceof VBox) {
+            Node imgView = ((VBox) vbox).getChildren().get(0);
             Node fName = ((VBox) vbox).getChildren().get(1);
             Node bName = ((VBox) vbox).getChildren().get(2);
             Node aType = ((VBox) vbox).getChildren().get(3);
@@ -76,6 +77,8 @@ public class ObservablePane implements IObservable {
             alcPercent = sr.getAlcohol();
             phLevel = sr.getPhLevel();
             year = sr.getYear();
+            if(sr.getLabelImage().getLabelImage() != null)
+                ((ImageView) imgView).setImage(sr.getLabelImage().getLabelImage());
             ((Label) fName).setText(fancy);
             ((Label) bName).setText(brand);
             ((Label) aType).setText(type);

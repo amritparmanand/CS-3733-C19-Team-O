@@ -1,5 +1,6 @@
 package UI.Controllers;
 
+import Datatypes.LabelImage;
 import Datatypes.SearchResult;
 import Fuzzy.*;
 import Managers.CacheManager;
@@ -22,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -227,7 +229,24 @@ public class SearchPage {
         while (rs.next()) {
             //String fancifulName, String companyName, String alcoholType, String phLevel,
             //                        String alcohol, String year, String productType
-            srArr.add(new SearchResult(rs.getString("FANCIFULNAME"),
+            LabelImage lbl = new LabelImage();
+            try{byte[] picture = rs.getBytes("labelImage");
+            FileOutputStream os = new FileOutputStream("temp.png");
+            if (picture != null) {
+                os.write(picture);
+                os.close();
+                File jimbus = new File("temp.png");
+                lbl.setLabelFile(jimbus);
+                lbl.setLabelImage(new Image(lbl.getLabelFile().toURI().toString()));
+                jimbus.delete();
+            }}
+            catch(FileNotFoundException e){
+                e.printStackTrace();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            srArr.add(new SearchResult(
+                    rs.getString("FANCIFULNAME"),
                     rs.getString("BRANDNAME"),
                     rs.getString("PRODUCTTYPE"),
                     rs.getString("PHLEVEL"),
@@ -237,7 +256,8 @@ public class SearchPage {
                     rs.getString("DATEAPPROVED"),
                     rs.getString("TTBID"),
                     rs.getString("SERIALNUMBER"),
-                    rs.getString("BREWERNUMBER")));
+                    rs.getString("BREWERNUMBER"),
+                    lbl));
         }
 
         return srArr;

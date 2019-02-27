@@ -18,6 +18,7 @@ public class SearchResult {
     private String alcohol;
     private String year;
     private String productType;
+    private LabelImage labelImage;
 
     //sam's filtering stuff
     private String approvedDate;
@@ -53,7 +54,15 @@ public class SearchResult {
         return BrewerNum;
     }
 
-    public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel, String alcohol, String year, String productType, String approvedDate, String TTBID, String serialNum, String brewerNum) {
+    public LabelImage getLabelImage() {
+        return labelImage;
+    }
+
+    public void setLabelImage(LabelImage labelImage) {
+        this.labelImage = labelImage;
+    }
+
+    public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel, String alcohol, String year, String productType, String approvedDate, String TTBID, String serialNum, String brewerNum, LabelImage labelImage) {
         this.fancifulName = fancifulName;
         this.companyName = companyName;
         this.alcoholType = alcoholType;
@@ -67,6 +76,8 @@ public class SearchResult {
         this.TTBID = TTBID;
         SerialNum = serialNum;
         BrewerNum = brewerNum;
+
+        this.labelImage = labelImage;
     }
 
     public SearchResult() {
