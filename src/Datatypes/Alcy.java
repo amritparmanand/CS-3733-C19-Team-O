@@ -434,6 +434,52 @@ public class Alcy {
         }
     }
 
+    /**ALCY NON FORM HELP **/
+
+    @FXML public void sayHelpMAccount(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Oh! You're here to dive first into government bureaucracy, Mr. or Mrs. Manufacturer!");
+            happy();
+        }else{
+            alcyLabel.setText("Wow! My friend the manufacturer, I hope the government isn't shut down so we can process your labels!");
+            happy();
+        }
+    }
+
+    @FXML public void sayHelpAAccount(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Hello, agent! Let's start processing forms! Yay!");
+            happy();
+        }else{
+            alcyLabel.setText("Welcome, agent! I'm ready to join you in some fun paperwork!");
+            sassy();
+        }
+    }
+
+    @FXML public void sayHelpUsername(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Put in your username!");
+            happy();
+        }else{
+            alcyLabel.setText("Enter your username now!");
+            happy();
+        }
+    }
+
+    @FXML public void sayHelpPassword(){
+        double random = Math.random();
+        if(random>.5){
+            alcyLabel.setText("Pshh, I know your password, it isn't THAT secure");
+            confused();
+        }else{
+            alcyLabel.setText("Wow, you couldn't think of anything better...");
+            sassy();
+        }
+    }
+
     /** ALCY HELPFUL TIPS **/
 
     //1
