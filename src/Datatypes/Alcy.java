@@ -438,10 +438,10 @@ public class Alcy {
         double random = Math.random();
         if(random>.5){
             alcyLabel.setText("Woohoo! I'm not going away, baby!");
-            sad();
+            happy();
         }else{
             alcyLabel.setText("I knew I was helpful!");
-            sad();
+            happy();
         }
     }
 
