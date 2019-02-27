@@ -95,7 +95,7 @@ public class mApplicationFormPg4 extends Controller {
         aComment.setText(form.getCommentString());
 
         if(!form.getPrintName().equals(""))
-            applicantNamePrint.setText(form.getPrintName());
+            applicantNamePrint.setText(form.parseGarbage(form.getPrintName()));
         else
             applicantNamePrint.setText(manAcc.getFullName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
@@ -178,7 +178,7 @@ public class mApplicationFormPg4 extends Controller {
     public void onePage() throws IOException {
         saveDraft();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
-        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM,form));
+        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM , form));
     }
 
 
