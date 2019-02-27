@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,422 +10,407 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AboutUs">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="800.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.161-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AboutUs">
 
     <children>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox alignment="TOP_CENTER" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
-                    <children>
-                        <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../Icons/TTB-logo.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets left="100.0" />
-                            </HBox.margin>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB" translateY="10.0">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" translateY="15.0" wrappingWidth="140.0">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                        </Text>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="873.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1920.0" styleClass="navheader">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/TTB-logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Back">
+                        <JFXButton fx:id="close" maxWidth="1980.0" onMousePressed="#close" styleClass="searchButtonStyle" text="CLOSE">
                            <HBox.margin>
-                              <Insets left="10.0" right="20.0" />
+                              <Insets />
                            </HBox.margin>
                         </JFXButton>
                      </children>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
                   </HBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" />
-                    </children>
+               </children>
             </HBox>
                 <HBox alignment="CENTER" prefHeight="869.0" prefWidth="1280.0">
                     <children>
-                  <ScrollPane prefHeight="660.0" prefWidth="697.0">
-                     <padding>
-                        <Insets left="10.0" right="10.0" top="5.0" />
-                     </padding>
-                     <content>
-                        <VBox alignment="CENTER" prefHeight="1061.0" prefWidth="663.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="457.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="42.0" prefWidth="663.0">
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Label styleClass="h1" text="About Team O:" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="799.0" prefWidth="663.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="457.0">
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/rob.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Robert Rinearson" />
-                                                            <Label text="Project Manager" />
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/sam.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Sam Silver" />
-                                                            <Label text="Assistant Lead Developer" />
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/clay.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Clay Oshiro-Leavitt" />
-                                                            <Label text="Test Engineer" />
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/trevor.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Trevor Dowd" />
-                                                            <Label text="Product Owner" />
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/harry.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Harrison James" />
-                                                            <Label text="Software Developer" />
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/wong.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Dr. Wilson Wong" />
-                                                            <Label text="Software Engineering Professor" wrapText="true" />
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/rob.gif" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="200.0" prefWidth="457.0">
+                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Amrit Parmanand" />
-                                                            <Label text="Lead Developer" />
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/amrit.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="50.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Percy Jiang" />
-                                                            <Label text="Assistant Lead Developer" />
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/percy.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Jonathan Luna" />
-                                                            <Label text="Documentation Analyst" />
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/jon.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Sriranjani Kalimani" />
-                                                            <Label text="Scrum Master" />
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/sri.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Gabriel Entov" />
-                                                            <Label text="Software Developer" />
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/gabe.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
-                                             <children>
-                                                <HBox alignment="TOP_RIGHT" prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
-                                                   <children>
-                                                      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <Label styleClass="h2" text="Bailey Sostek" />
-                                                            <Label text="Team Coach" />
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
-                                                         <children>
-                                                            <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@aboutUsPictures/bailey.gif" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="12.0" />
-                                             </VBox.margin>
-                                          </VBox>
+                                          <Label styleClass="h2" text="Robert Rinearson" />
+                                          <Label text="Project Manager" />
                                        </children>
                                     </VBox>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="146.0" prefWidth="663.0">
-                                 <VBox.margin>
-                                    <Insets top="12.0" />
-                                 </VBox.margin>
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@aboutUsPictures/logo.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="TOP_CENTER" prefHeight="76.0" prefWidth="663.0">
-                                 <children>
-                                    <Label styleClass="h1" text="The Onyx Ogopogos">
-                                       <HBox.margin>
-                                          <Insets top="10.0" />
-                                       </HBox.margin></Label>
                                  </children>
                               </HBox>
                            </children>
                         </VBox>
-                     </content>
-                  </ScrollPane>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/sam.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Sam Silver" />
+                                          <Label text="Assistant Lead Developer" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/clay.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Clay Oshiro-Leavitt" />
+                                          <Label text="Test Engineer" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/trevor.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Trevor Dowd" />
+                                          <Label text="Product Owner" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/harry.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Harrison James" />
+                                          <Label text="Software Developer" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/wong.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Dr. Wilson Wong" />
+                                          <Label text="Software Engineering Professor" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="457.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Amrit Parmanand" />
+                                          <Label text="Lead Developer" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/amrit.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Percy Jiang" />
+                                          <Label text="Assistant Lead Developer" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/percy.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Jonathan Luna" />
+                                          <Label text="Documentation Analyst" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/jon.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Sriranjani Kalimani" />
+                                          <Label text="Scrum Master" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/sri.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Gabriel Entov" />
+                                          <Label text="Software Developer" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/gabe.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="95.0" prefWidth="327.0">
+                           <children>
+                              <HBox alignment="TOP_RIGHT" prefHeight="115.0" prefWidth="401.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="h2" text="Bailey Sostek" />
+                                          <Label text="Team Coach" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="180.0" prefWidth="114.0" style="-fx-border-radius: 50000;" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <ImageView fitHeight="117.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@aboutUsPictures/bailey.gif" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="-200.0" top="20.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="852.0" prefWidth="339.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@aboutUsPictures/alcyhappy-01.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="h1" text="Alcy" />
+                              <Label styleClass="h1" text="The Beer Can" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="100.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@aboutUsPictures/logo.png" />
+                                 </image>
+                              </ImageView>
+                              <Label style="-fx-font-size: 20;" styleClass="h1" text="The Onyx Ogopogos" />
+                           </children>
+                           <padding>
+                              <Insets top="200.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
                     </children>
                 </HBox>
             </children>
         </VBox>
-       <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="1289.6" AnchorPane.topAnchor="485.0">
-          <children>
-             <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
-                <children>
-                   <HBox alignment="BOTTOM_LEFT" styleClass="alcyLabel">
-                      <children>
-                         <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
-                      </children>
-                      <padding>
-                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                      </padding>
-                   </HBox>
-                </children>
-             </VBox>
-             <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
-          </children>
-       </VBox>
     </children>
 </AnchorPane>

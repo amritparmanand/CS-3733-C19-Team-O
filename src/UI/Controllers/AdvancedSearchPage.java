@@ -49,8 +49,8 @@ public class AdvancedSearchPage extends StageContainingScene {
     JFXTextField brewerNumber;
 
 
-    public AdvancedSearchPage(SceneManager sceneM, CacheManager cacheM, SearchManager searchM, Stage stage) {
-        super(stage);
+    public AdvancedSearchPage(SceneManager sceneM, CacheManager cacheM, SearchManager searchM) {
+        super();
         this.searchM = searchM;
         this.sceneM = sceneM;
         this.cacheM = cacheM;

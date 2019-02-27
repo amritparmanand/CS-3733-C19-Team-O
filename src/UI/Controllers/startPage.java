@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.awt.*;
@@ -53,7 +54,7 @@ public class startPage {
 
     @FXML public void about() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
-        sceneM.changeScene(loader, new AboutUs(sceneM, cacheM));
+        sceneM.popWindowLoader(loader, new AboutUs(sceneM, cacheM), "About Us");
     }
 
     @FXML public void settings() throws IOException {
