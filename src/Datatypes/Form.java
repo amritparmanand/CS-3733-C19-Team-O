@@ -685,7 +685,7 @@ public class Form {
     @SuppressWarnings("Duplicates") public ObservableList<String> autoSearch(Connection connection){
         ObservableList<String> result = FXCollections.observableArrayList();
 
-        String getID = "SELECT distinct BRANDNAME, FANCIFULNAME FROM FORMS";
+        String getID = "SELECT distinct BRANDNAME FROM FORMS";
         try {
             ResultSet rset = connection.createStatement().executeQuery(getID);
             while(rset.next())
