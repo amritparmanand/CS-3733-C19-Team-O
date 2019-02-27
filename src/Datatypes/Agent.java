@@ -409,14 +409,16 @@ public class Agent extends Account{
         return result;
     }
 
+    ArrayList<String> repeated = new ArrayList<>();
     public String getNameFromScore(Connection connection, int score){
         String result = "";
 
         String getName = "SELECT username FROM agents where score = " + score;
         try {
             ResultSet rset = connection.createStatement().executeQuery(getName);
-            while(rset.next())
+            while(rset.next()){
                 result = rset.getString("username");
+            }
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
@@ -462,7 +464,7 @@ public class Agent extends Account{
 
         ArrayList<Integer> result = new ArrayList<>();
 
-        String getNum = "SELECT score FROM agents order by score desc ";
+        String getNum = "SELECT score FROM agents where not (score = 0) order by score desc ";
         try {
             ResultSet rset = connection.createStatement().executeQuery(getNum);
             while(rset.next())
