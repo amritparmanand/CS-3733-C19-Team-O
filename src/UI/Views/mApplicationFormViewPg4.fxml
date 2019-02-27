@@ -46,7 +46,7 @@
                      <children>
                         <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
                            <HBox.margin>
-                              <Insets left = "20.0"/>
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </JFXButton>
                         <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
@@ -63,17 +63,14 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
+                  <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0" styleClass="toolbar">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                                  <children>
                                     <JFXButton fx:id="previous" onMouseClicked="#previousPage" styleClass="buttonStyle" text="Previous Page" />
-                                    <JFXButton fx:id="next1" disable="true"  styleClass="buttonStyle" text="Next Page" />
+                                    <JFXButton fx:id="next1" disable="true" styleClass="buttonStyle" text="Next Page" />
                                  </children>
                               </HBox>
                               <Label fx:id="saveDraftMessage" />
@@ -87,7 +84,7 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="800.0" HBox.hgrow="ALWAYS">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="800.0" styleClass="backPane" HBox.hgrow="ALWAYS">
                      <content>
                         <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="800.0" styleClass="backPane">
                            <children>

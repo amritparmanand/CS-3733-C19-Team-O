@@ -48,7 +48,7 @@
                      <children>
                         <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
                            <HBox.margin>
-                              <Insets left = "20.0"/>
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </JFXButton>
                         <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
@@ -86,7 +86,7 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="800.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="800.0" styleClass="backPane">
                      <content>
                         <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" styleClass="backPane">
                            <children>
