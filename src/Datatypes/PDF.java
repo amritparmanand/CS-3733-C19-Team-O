@@ -196,10 +196,12 @@ public class PDF {
             pdf.appendText("X", 398,668, 10);
             pdf.appendText(Integer.toString(form.getTtbID()), 437, 658, 10);
         }
-
-        if(form.getLabel().getLabelFile() != null)
-            pdf.appendImage(form.getLabel().getLabelFile().getPath(), 200, 66, 200, 200);
-
+        try {
+            if (form.getLabel().getLabelFile() != null)
+                pdf.appendImage(form.getLabel().getLabelFile().getPath(), 200, 66, 200, 200);
+        }catch(Exception e){
+            System.out.println("Image file not found");
+        }
         pdf.appendText(form.getDateOfApplication(), 24, 500, 10);
         //pdf.appendText(applicantSig.getText(), 138, 500, 10);
         pdf.appendText(form.getApplicantName(), 366, 500, 10);
