@@ -189,28 +189,30 @@ public class Alcy {
     }
 
     @FXML public void sayWierdBeerPercentage(){
-        String percentage = cacheM.getForm().getAlcoholPercent();
-        String type = cacheM.getForm().getProductType();
-        if(Float.parseFloat(percentage)<100 && Float.parseFloat(percentage)>0){
-            if(Integer.parseInt(percentage)>12.5 && type == "MALT"){
-                alcyLabel.setText("Wow, thats a high percentage... Are you sure this is the correct value?");
-                confused();
-            }
-            if(Integer.parseInt(percentage)<12.5 && type == "DISTILLED") {
-                alcyLabel.setText("Wow, you're gonna have to drink a lot of this to get drunk! Are you sure this is the correct value?");
+        if (!cacheM.getForm().getAlcoholPercent().isEmpty()) {
+            String percentage = cacheM.getForm().parseGarbage(cacheM.getForm().getAlcoholPercent());
+            String type = cacheM.getForm().parseGarbage(cacheM.getForm().getProductType());
+            if(Float.parseFloat(percentage)<100 && Float.parseFloat(percentage)>0){
+                if(Float.parseFloat(percentage)>12.5 && type == "MALT"){
+                    alcyLabel.setText("Wow, thats a high percentage... Are you sure this is the correct value?");
+                    confused();
+                }
+                if(Float.parseFloat(percentage)<12.5 && type == "DISTILLED") {
+                    alcyLabel.setText("Wow, you're gonna have to drink a lot of this to get drunk! Are you sure this is the correct value?");
+                    sassy();
+                }
+                if(Float.parseFloat(percentage)>16 && type == "WINE"){
+                    alcyLabel.setText("Wow, thats a high percentage... Are you sure this is a wine?");
+                    confused();
+                }
+                else{
+                    alcyLabel.setText("Looks good to me!");
+                    happy();
+                }
+            }else if(Float.parseFloat(percentage)>100 || Float.parseFloat(percentage)<0){
+                alcyLabel.setText("Your alcohol content cannot defy the laws of physics!");
                 sassy();
             }
-            if(Integer.parseInt(percentage)>16 && type == "WINE"){
-                alcyLabel.setText("Wow, thats a high percentage... Are you sure this is a wine?");
-                confused();
-            }
-            else{
-                alcyLabel.setText("Looks good to me!");
-                happy();
-            }
-        }else if(Float.parseFloat(percentage)>100 || Float.parseFloat(percentage)<0){
-            alcyLabel.setText("Your alcohol content cannot defy the laws of physics!");
-            sassy();
         }
 
     }
@@ -218,10 +220,10 @@ public class Alcy {
     @FXML public void sayFancifulName(){
         double random = Math.random();
         if(random>.5){
-            alcyLabel.setText("Mmm, I'd love to knock back a "+cacheM.getForm().getFancifulName()+" right about now!");
+            alcyLabel.setText("Mmm, I'd love to knock back a "+cacheM.getForm().parseGarbage(cacheM.getForm().getFancifulName())+" right about now!");
             drunk();
         }else{
-            alcyLabel.setText(cacheM.getForm().getFancifulName()+" is a REAAAAAL doozy!");
+            alcyLabel.setText(cacheM.getForm().parseGarbage(cacheM.getForm().getFancifulName())+" is a REAAAAAL doozy!");
             pointing();
         }
     }
@@ -229,10 +231,10 @@ public class Alcy {
     @FXML public void sayBrandName(){
         double random = Math.random();
         if(random>.5){
-            alcyLabel.setText("I've heard "+cacheM.getForm().getBrandName()+" makes some good stuff!");
+            alcyLabel.setText("I've heard "+cacheM.getForm().parseGarbage(cacheM.getForm().getBrandName())+" makes some good stuff!");
             happy();
         }else{
-            alcyLabel.setText("I love "+cacheM.getForm().getBrandName()+"! They always get me wasted!");
+            alcyLabel.setText("I love "+cacheM.getForm().parseGarbage(cacheM.getForm().getBrandName())+"! They always get me wasted!");
             happy();
         }
     }
@@ -240,29 +242,31 @@ public class Alcy {
     @FXML public void sayMailingAddress(){
         double random = Math.random();
         if(random>.5){
-            alcyLabel.setText("I've heard "+cacheM.getForm().getMailingAddress()+" is nice this time of year.");
+            alcyLabel.setText("I've heard "+cacheM.getForm().parseGarbage(cacheM.getForm().getMailingAddress())+" is nice this time of year.");
             sassy();
         }else{
-            alcyLabel.setText("Oh, I've been to a couple of wicked keggers in "+cacheM.getForm().getMailingAddress()+"!");
+            alcyLabel.setText("Oh, I've been to a couple of wicked keggers in "+cacheM.getForm().parseGarbage(cacheM.getForm().getMailingAddress())+"!");
             drunk();
         }
     }
 
     @FXML public void saypHLevel(){
 
-        if(Double.parseDouble(cacheM.getForm().getpHLevel())<3) {
-            alcyLabel.setText("What are you drinking over here, acid?");
-            confused();
-        }
-        if(Double.parseDouble(cacheM.getForm().getpHLevel())>7) {
-            alcyLabel.setText("Are you drinking dish soap?");
-            confused();
+        if (!cacheM.getForm().getpHLevel().isEmpty()) {
+            if(Double.parseDouble(cacheM.getForm().parseGarbage(cacheM.getForm().getpHLevel()))<3) {
+                alcyLabel.setText("What are you drinking over here, acid?");
+                confused();
+            }
+            if(Double.parseDouble(cacheM.getForm().parseGarbage(cacheM.getForm().getpHLevel()))>7) {
+                alcyLabel.setText("Are you drinking dish soap?");
+                confused();
+            }
         }
     }
 
     @FXML public void sayPhoneNumber(){
         double random = Math.random();
-        String number = cacheM.getForm().getPhoneNumber();
+        String number = cacheM.getForm().parseGarbage(cacheM.getForm().getPhoneNumber());
         if(number.length()<10){
             alcyLabel.setText("What, is this the number you give to the creeps at the club?");
             confused();
@@ -347,10 +351,10 @@ public class Alcy {
     @FXML public void sayMHomePage(){
         double random = Math.random();
         if(random>.5){
-            alcyLabel.setText("Welcome, " + cacheM.getAcct().getFullName() +"! Here's your homepage! This is where you can fill out new forms and view your past ones!");
+            alcyLabel.setText("Welcome, " + cacheM.getForm().parseGarbage(cacheM.getAcct().getFullName()) +"! Here's your homepage! This is where you can fill out new forms and view your past ones!");
             drunk();
         }else{
-            alcyLabel.setText("Ahhh... What a good looking homepage, don't ya think, "+ cacheM.getAcct().getFullName()+"?");
+            alcyLabel.setText("Ahhh... What a good looking homepage, don't ya think, "+ cacheM.getForm().parseGarbage(cacheM.getAcct().getFullName())+"?");
             drunk();
         }
     }
@@ -358,10 +362,10 @@ public class Alcy {
     @FXML public void sayAHomePage(){
         double random = Math.random();
         if(random>.5){
-            alcyLabel.setText("Welcome, " + cacheM.getAcct().getFullName()+ ". Get back to work now!");
+            alcyLabel.setText("Welcome, " + cacheM.getForm().parseGarbage(cacheM.getAcct().getFullName())+ ". Get back to work now!");
             happy();
         }else{
-            alcyLabel.setText("Do you think the govermnent pays enough for you to sit around doing nothing, "+cacheM.getAcct().getFullName()+"?!");
+            alcyLabel.setText("Do you think the govermnent pays enough for you to sit around doing nothing, "+cacheM.getForm().parseGarbage(cacheM.getAcct().getFullName())+"?!");
             drunk();
         }
     }
@@ -383,7 +387,7 @@ public class Alcy {
             alcyLabel.setText("Jeez Louis, what'd you do wrong now!");
             confused();
         }if(random<.3){
-            alcyLabel.setText("Ahh... "+cacheM.getForm().getFancifulName()+"... I watched you fill this out wrong... Oops...");
+            alcyLabel.setText("Ahh... "+cacheM.getForm().parseGarbage(cacheM.getForm().getFancifulName())+"... I watched you fill this out wrong... Oops...");
         }else{
             alcyLabel.setText("Can't even file paperwork correctly, huh?");
             sassy();
@@ -393,10 +397,10 @@ public class Alcy {
     @FXML public void sayAForm(){
         double random = Math.random();
         if(random>.5){
-            alcyLabel.setText("Man, reading these things will kill ya faster than the stuff thats on em! "+ cacheM.getForm().getFancifulName()+" does sound pretty deadly, however...");
+            alcyLabel.setText("Man, reading these things will kill ya faster than the stuff thats on em! "+ cacheM.getForm().parseGarbage(cacheM.getForm().getFancifulName())+" does sound pretty deadly, however...");
             sad();
         }else{
-            alcyLabel.setText("Oh man! I can't wait for "+cacheM.getForm().getBrandName()+"'s newest hit!");
+            alcyLabel.setText("Oh man! I can't wait for "+cacheM.getForm().parseGarbage(cacheM.getForm().getBrandName())+"'s newest hit!");
             happy();
         }
     }
@@ -448,10 +452,10 @@ public class Alcy {
     @FXML public void sayAScores(){
         double random = Math.random();
         if(random>.5){
-            alcyLabel.setText("Look at all this," + cacheM.getAcct().getFullName() +"! Here's your homepage! Here's where you can view all your accolades!");
+            alcyLabel.setText("Look at all this," + cacheM.getForm().parseGarbage(cacheM.getAcct().getFullName()) +"! Here's your homepage! Here's where you can view all your accolades!");
             happy();
         }else{
-            alcyLabel.setText("Hmmmm... Looks like someone could be doin' a bit better, don'tcha think, "+ cacheM.getAcct().getFullName()+"?");
+            alcyLabel.setText("Hmmmm... Looks like someone could be doin' a bit better, don'tcha think, "+ cacheM.getForm().parseGarbage(cacheM.getAcct().getFullName())+"?");
             confused();
         }
     }
@@ -550,7 +554,7 @@ public class Alcy {
 
     //1
     @FXML public void sayMHelpRepID(){
-        alcyLabel.setText("Include a third party representative ID Number if your application will be submitted by a third party representative, "+ cacheM.getAcct().getFullName()+".");
+        alcyLabel.setText("Include a third party representative ID Number if your application will be submitted by a third party representative, "+ cacheM.getForm().parseGarbage(cacheM.getAcct().getFullName())+".");
         happy();
     }
 
@@ -637,7 +641,7 @@ public class Alcy {
     /**AGENT**/
 
     @FXML public void sayAHelpRepID(){
-        alcyLabel.setText("Include a third party representative ID Number if your application will be submitted by a third party representative, "+ cacheM.getAcct().getFullName()+".");
+        alcyLabel.setText("Include a third party representative ID Number if your application will be submitted by a third party representative, "+ cacheM.getForm().parseGarbage(cacheM.getAcct().getFullName())+".");
         happy();
     }
 

@@ -290,8 +290,8 @@ public class Form {
 
     @SuppressWarnings("Duplicates")
     public void approve(Connection conn) throws IOException {
-        ProcessBuilder pb = new ProcessBuilder("python3","src/Vector/vectorDanceApproval.py");
-        Process p = pb.start();
+//        ProcessBuilder pb = new ProcessBuilder("python3","src/Vector/vectorDanceApproval.py");
+//        Process p = pb.start();
         System.out.println("in Form Approve");
         String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, DATEREJECTED = null, STATUS = 'APPROVED' , " +
                 "DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
@@ -350,8 +350,8 @@ public class Form {
     }
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) throws Exception{
-        ProcessBuilder pb = new ProcessBuilder("python3","src/Vector/vectorSadDenied.py");
-        Process p = pb.start();
+//        ProcessBuilder pb = new ProcessBuilder("python3","src/Vector/vectorSadDenied.py");
+//        Process p = pb.start();
         String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED', COMMENTS = '"+ comments.generateComments() + "' WHERE FORMID ="+ this.formID;
                try {
             PreparedStatement ps = conn.prepareStatement(SQL);
