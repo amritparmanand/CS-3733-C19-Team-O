@@ -208,7 +208,7 @@ public class SearchManager {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
                     recordDate = LocalDate.parse(sr.getApprovedDate(), formatter);
                 } catch (DateTimeParseException f) {
-
+                    System.out.println("invalid date");
                 }
             }
             if (exists(getFromDate())) {
@@ -229,25 +229,29 @@ public class SearchManager {
             }
 
             //receivedCodeCheck
-            System.out.println(sr.getFormID());
+//            System.out.println(sr.getFormID());
 //            System.out.println(sr.getFormID().substring(5, 8));
-            switch(sr.getFormID().substring(5, 8)) {
-                case "000":
-                    if(!receivedCode0)
-                        invalidateRecord = true;
-                    break;
-                case "001":
-                    if(!receivedCode1)
-                        invalidateRecord = true;
-                    break;
-                case "002":
-                    if(!receivedCode2)
-                        invalidateRecord = true;
-                    break;
-                case "003":
-                    if(!receivedCode3)
-                        invalidateRecord = true;
-                    break;
+            try {
+                switch (sr.getFormID().substring(5, 8)) {
+                    case "000":
+                        if (!receivedCode0)
+                            invalidateRecord = true;
+                        break;
+                    case "001":
+                        if (!receivedCode1)
+                            invalidateRecord = true;
+                        break;
+                    case "002":
+                        if (!receivedCode2)
+                            invalidateRecord = true;
+                        break;
+                    case "003":
+                        if (!receivedCode3)
+                            invalidateRecord = true;
+                        break;
+                }
+            }catch (Exception e){
+                System.out.println("soupemn");
             }
 
             //ttbID range

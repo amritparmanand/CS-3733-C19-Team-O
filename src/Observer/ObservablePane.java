@@ -70,7 +70,7 @@ public class ObservablePane implements IObservable {
             Node fName = ((VBox) vbox).getChildren().get(1);
             Node bName = ((VBox) vbox).getChildren().get(2);
             Node aType = ((VBox) vbox).getChildren().get(3);
-
+            ((ImageView) imgView).setImage(null);
             fancy = sr.getFancifulName();
             brand = sr.getCompanyName();
             type = sr.getAlcoholType();
