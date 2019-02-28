@@ -396,7 +396,7 @@ public class Agent extends Account{
     public int countStatus(Connection connection, String status){
         int result = 0;
 
-        String getNum = "SELECT count(APPID) as c FROM APPLICATIONS where STATUS = '" + status +"' and REPID = " + this.getTtbID();
+        String getNum = "SELECT count(APPID) as c FROM APPLICATIONS where STATUS = '" + status +"' and TTBID = " + this.getTtbID();
         try {
             ResultSet rset = connection.createStatement().executeQuery(getNum);
             while(rset.next())
