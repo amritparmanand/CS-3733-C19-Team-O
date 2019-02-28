@@ -7,7 +7,6 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.161-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AdvancedSearchPage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/8.0.161-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.AdvancedSearchPage">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -66,7 +65,10 @@
                                     </JFXRadioButton>
                                  </children>
                               </HBox>
-                              <Label alignment="CENTER" prefHeight="31.0" prefWidth="300.0" text="Date Completed" textAlignment="CENTER" />
+                              <Label alignment="CENTER" prefHeight="31.0" prefWidth="300.0" text="Date Completed" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin></Label>
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets />
@@ -82,44 +84,54 @@
                                     <JFXDatePicker fx:id="toDate" />
                                  </children>
                               </HBox>
-                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Origin" textAlignment="CENTER">
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="35.0" prefWidth="87.0" text="Origin" textAlignment="CENTER" />
+                                    <JFXTextField fx:id="stateCode" prefHeight="28.0" prefWidth="50.0" />
+                                 </children>
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
-                              </Label>
-                              <ScrollPane maxWidth="450.0" prefHeight="200.0" prefWidth="724.0">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                </content>
-                              </ScrollPane>
+                              </HBox>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Received Code" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
                               </Label>
                               <HBox alignment="CENTER" prefHeight="36.0" prefWidth="1051.0">
                                  <children>
-                                    <JFXCheckBox fx:id="receivedCode000" text="000 - FRONT DESK (PAPER)" />
-                                    <JFXCheckBox fx:id="receivedCode001" text="001 - ELECTRONIC SUBMISSION">
-                                       <HBox.margin>
-                                          <Insets left="30.0" />
-                                       </HBox.margin>
-                                    </JFXCheckBox>
-                                    <JFXCheckBox fx:id="receivedCode002" text="002 - MAIL (PAPER)">
-                                       <HBox.margin>
-                                          <Insets left="30.0" />
-                                       </HBox.margin>
-                                    </JFXCheckBox>
-                                    <JFXCheckBox fx:id="receivedCode003" text="003 - OVERNIGHT (PAPER)">
-                                       <HBox.margin>
-                                          <Insets left="30.0" />
-                                       </HBox.margin>
-                                    </JFXCheckBox>
+                                    <VBox>
+                                       <children>
+                                          <HBox>
+                                             <children>
+                                                <JFXCheckBox fx:id="receivedCode000" text="000 - FRONT DESK (PAPER)" />
+                                                <JFXCheckBox fx:id="receivedCode001" text="001 - ELECTRONIC SUBMISSION">
+                                                   <HBox.margin>
+                                                      <Insets left="51.0" />
+                                                   </HBox.margin>
+                                                </JFXCheckBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox>
+                                             <children>
+                                                <JFXCheckBox fx:id="receivedCode002" text="002 - MAIL (PAPER)" />
+                                                <JFXCheckBox fx:id="receivedCode003" text="003 - OVERNIGHT (PAPER)">
+                                                   <HBox.margin>
+                                                      <Insets left="100.0" />
+                                                   </HBox.margin>
+                                                </JFXCheckBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
                                  </children>
                               </HBox>
                               <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="TTB ID:" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
                               </Label>
                               <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1051.0">
@@ -157,7 +169,7 @@
                                     </JFXTextField>
                                  </children>
                               </HBox>
-                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Plant Registry/Basic Permit/Brewer's No:" textAlignment="CENTER">
+                              <Label alignment="CENTER" prefHeight="35.0" prefWidth="385.0" text="Brewer Number:" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -170,12 +182,12 @@
                                  <children>
                                     <JFXButton onMousePressed="#applySearchSettings" styleClass="buttonStyle" text="OK!">
                                        <HBox.margin>
-                                          <Insets left="430.0" />
+                                          <Insets left="330.0" />
                                        </HBox.margin>
                                     </JFXButton>
                                     <JFXButton onMousePressed="#clearSettings" styleClass="buttonStyle" text="CLEAR">
                                        <HBox.margin>
-                                          <Insets left="350.0" />
+                                          <Insets left="200.0" />
                                        </HBox.margin>
                                     </JFXButton>
                                  </children>

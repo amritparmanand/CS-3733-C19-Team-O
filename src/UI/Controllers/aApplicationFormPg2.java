@@ -1,10 +1,7 @@
 package UI.Controllers;
 
 
-import Datatypes.Agent;
-import Datatypes.Alcy;
-import Datatypes.Comments;
-import Datatypes.Form;
+import Datatypes.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
@@ -25,11 +22,12 @@ import java.sql.SQLException;
  * @version It 2
  * Controller for aApplicationFormPg2 of UI
  */
-public class aApplicationFormPg2 {
+public class aApplicationFormPg2 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
     private Comments comments;
+    private settingPage settingPage;
 
     public aApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
@@ -157,7 +155,6 @@ public class aApplicationFormPg2 {
         Q11Comment.setText(comments.getComment11());
         Q12Comment.setText(comments.getComment12());
         Q13Comment.setText(comments.getComment13());
-//        Form form = this.form;
 
         applicantName.setText(form.parseGarbage(form.getApplicantName()));
         applicantName.setStyle(form.parseStyle(form.getApplicantName()));
@@ -226,10 +223,15 @@ public class aApplicationFormPg2 {
 
     @FXML
     public void acceptForm() throws IOException {
-        cacheM.approveForm(cacheM.getDbM().getConnection());
+        if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+            cacheM.approveForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
         goToHomePage();
+    }else{
+        System.out.println("invalid signature or date");
+    }
     }
 
     @FXML
@@ -248,27 +250,35 @@ public class aApplicationFormPg2 {
         comments.setComment11(Q11Comment.getText());
         comments.setComment12(Q12Comment.getText());
         comments.setComment13(Q13Comment.getText());
-        System.out.println(comments.generateComments());
+        if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+            System.out.println(comments.generateComments());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
         goToHomePage();
+    }else{
+        System.out.println("invalid signature or date");
+        }
     }
 
-    @FXML
-    public void saveDraft() throws IOException{
-
-    }
     @FXML public void passForm() throws IOException{
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
-        Agent A = (Agent) cacheM.getAcct();
-        A.pass(form);
-        goToHomePage();
+        if (cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText())) {
+            Agent A = (Agent) cacheM.getAcct();
+            A.pass(form);
+            goToHomePage();
+        }
     }
 
     @FXML
     public void logout() throws IOException {
+        Agent A = (Agent) cacheM.getAcct();
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
+    }
+    @FXML public void settings() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
     }
 }

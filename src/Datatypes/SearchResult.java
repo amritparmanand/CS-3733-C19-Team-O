@@ -2,6 +2,7 @@ package Datatypes;
 
 import Observer.IObservable;
 
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -18,12 +19,15 @@ public class SearchResult {
     private String alcohol;
     private String year;
     private String productType;
+    private LabelImage labelImage;
 
     //sam's filtering stuff
     private String approvedDate;
     private String TTBID;
     private String SerialNum;
     private String BrewerNum;
+    private String origin;
+    private String formID;
 
 
     public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel,
@@ -53,7 +57,24 @@ public class SearchResult {
         return BrewerNum;
     }
 
-    public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel, String alcohol, String year, String productType, String approvedDate, String TTBID, String serialNum, String brewerNum) {
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public LabelImage getLabelImage() {
+        return labelImage;
+    }
+
+    public void setLabelImage(LabelImage labelImage) {
+        this.labelImage = labelImage;
+    }
+
+    public SearchResult(String fancifulName, String companyName, String alcoholType, String phLevel, String alcohol, String year, String productType, String approvedDate, String TTBID, String serialNum, String brewerNum, String origin, Long formID, LabelImage labelImage) {
+
         this.fancifulName = fancifulName;
         this.companyName = companyName;
         this.alcoholType = alcoholType;
@@ -65,10 +86,16 @@ public class SearchResult {
 
         this.approvedDate = approvedDate;
         this.TTBID = TTBID;
-        SerialNum = serialNum;
-        BrewerNum = brewerNum;
+
+        this.SerialNum = serialNum;
+        this.BrewerNum = brewerNum;
+        this.origin = origin;
+        this.formID = formID.toString();
+        this.labelImage = labelImage;
+
     }
 
+    @Deprecated
     public SearchResult() {
         this.fancifulName = null;
         this.companyName = null;
@@ -78,6 +105,14 @@ public class SearchResult {
         this.year = null;
         this.productType = null;
 
+    }
+
+    public String getFormID() {
+        return formID;
+    }
+
+    public void setFormID(String formID) {
+        this.formID = formID;
     }
 
     public String getFancifulName() {

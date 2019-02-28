@@ -8,6 +8,7 @@ import javax.security.auth.Subject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.sql.*;
 import java.util.Date;
@@ -288,12 +289,16 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void approve(Connection conn) {
+    public void approve(Connection conn) throws IOException {
+//        ProcessBuilder pb = new ProcessBuilder("python3","src/Vector/vectorDanceApproval.py");
+//        Process p = pb.start();
         System.out.println("in Form Approve");
-        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, DATEREJECTED = null, STATUS = 'APPROVED' , DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
+        String SQL = "UPDATE APPLICATIONS SET DATEAPPROVED = CURRENT_DATE, DATEREJECTED = null, STATUS = 'APPROVED' , " +
+                "DATEISSUED ='" + this.dateIssued + "', SIGNATURE ='" + this.signature + "' WHERE FORMID ="
                 + this.formID;
+
         System.out.println(SQL);
-        try {
+                try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
             ps.executeUpdate();
@@ -330,10 +335,10 @@ public class Form {
                 ", ALCOHOLPERCENT = '" + this.parseGarbage(this.getAlcoholPercent()) + "'" +
                 ", VINTAGEYEAR = '" + this.parseGarbage(this.getVintageYear()) + "'" +
 
-                " WHERE FORMID ="
-                + this.formID;
+                " WHERE FORMID =" + this.formID;
         try {
             PreparedStatement ps = conn.prepareStatement(SQLClearGarbage);
+            System.out.println(SQLClearGarbage);
 
             ps.executeUpdate();
 
@@ -345,14 +350,16 @@ public class Form {
     }
     @SuppressWarnings("Duplicates")
     public void deny(Connection conn) throws Exception{
-        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE,STATUS = 'DENIED', COMMENTS = '"+ comments.generateComments() + "' WHERE FORMID ="+ this.formID;
-        try {
+//        ProcessBuilder pb = new ProcessBuilder("python3","src/Vector/vectorSadDenied.py");
+//        Process p = pb.start();
+        String SQL = "UPDATE APPLICATIONS SET DATEREJECTED = CURRENT_DATE, STATUS = 'DENIED', COMMENTS = '"+ comments.generateComments() + "' WHERE FORMID ="+ this.formID;
+               try {
             PreparedStatement ps = conn.prepareStatement(SQL);
 
             ps.executeUpdate();
 
             ps.close();
-        } catch (SQLException e) {
+               } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
@@ -416,7 +423,7 @@ public class Form {
     }
 
     @SuppressWarnings("Duplicates")
-    public void passForm(Connection connection, long formID, String username){
+    public boolean passForm(Connection connection, long formID, String username){
         //take in a username of an Agent, query the agent table for the ID, the rest is the same
         int id = 0;
         String getID = "SELECT TTBID FROM AGENTS WHERE USERNAME = '" + username + "'";
@@ -429,27 +436,32 @@ public class Form {
                 e.printStackTrace();
         }
 
-        String s = "UPDATE APPLICATIONS SET TTBID = " + id + " WHERE FORMID = " + formID;
-        try {
-            PreparedStatement ps = connection.prepareStatement(s);
-            ps.executeUpdate();
+        if (id != 0) {
+            String s = "UPDATE APPLICATIONS SET TTBID = " + id + " WHERE FORMID = " + formID;
+            try {
+                PreparedStatement ps = connection.prepareStatement(s);
+                ps.executeUpdate();
 
-            ps.close();
-        } catch (SQLException e) {
-            if (!e.getSQLState().equals("X0Y32"))
-                e.printStackTrace();
+                ps.close();
+            } catch (SQLException e) {
+                if (!e.getSQLState().equals("X0Y32"))
+                    e.printStackTrace();
+            }
+            return true;
+        } else {
+            System.out.println("agent not found");
+            return false;
         }
     }
 
     public boolean isValid(){
-        if(brewerNumber == "" || productSource == "" || serialNumber == "" || productType == "" || brandName == "" ||
-        applicantName == "" || alcoholPercent == "" || phoneNumber == "" || emailAddress == ""  ||
-        dateOfApplication == "" || printName == "") {
-
+        if(brewerNumber.isEmpty() || productSource.isEmpty() || serialNumber.isEmpty() || productType.isEmpty() || brandName.isEmpty() ||
+        applicantName.isEmpty() || alcoholPercent.isEmpty() || phoneNumber.isEmpty() || emailAddress.isEmpty() ||
+        dateOfApplication.isEmpty() || printName.isEmpty()) {
             return false;
-        }
-        else
+        } else {
             return true;
+        }
     }
 
     /**
@@ -611,11 +623,44 @@ public class Form {
      * @throws SQLException
      */
     public ResultSet getApprovedApplications(Connection conn, String condition, String type) throws SQLException{
-        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, APPLICATIONS.TTBID, SERIALNUMBER " +
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, " +
+                "VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, ONLYSTATE, FORMS.FORMID, APPLICATIONS.TTBID, SERIALNUMBER, labelimage " +
                 "FROM APPLICATIONS JOIN FORMS " +
                 "ON FORMS.FORMID = APPLICATIONS.FORMID " +
                 "WHERE " +
                 "APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
+
+        PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.CONCUR_UPDATABLE, ResultSet.TYPE_SCROLL_INSENSITIVE);
+        ps.setString(1, "%"+condition+"%");
+        ps.setString(2, "%"+condition+"%");
+
+        return ps.executeQuery();
+    }
+
+    public ResultSet percyState(Connection conn, String condition, String type, String state) throws SQLException{
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, " +
+                "VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, ONLYSTATE, FORMS.FORMID, APPLICATIONS.TTBID, SERIALNUMBER, labelimage " +
+                "FROM APPLICATIONS JOIN FORMS " +
+                "ON FORMS.FORMID = APPLICATIONS.FORMID " +
+                "WHERE " + "(forms.onlyState = " + state + ") and "+
+                "APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
+        System.out.println(retrieve);
+
+        PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.CONCUR_UPDATABLE, ResultSet.TYPE_SCROLL_INSENSITIVE);
+        ps.setString(1, "%"+condition+"%");
+        ps.setString(2, "%"+condition+"%");
+
+        return ps.executeQuery();
+    }
+
+    public ResultSet percyFilter(Connection conn, String condition, String type, int from, int to) throws SQLException{
+        String retrieve = "SELECT FANCIFULNAME, BRANDNAME, PRODUCTTYPE, PHLEVEL, ALCOHOLPERCENT, " +
+                "VINTAGEYEAR, DATEAPPROVED, BREWERNUMBER, ONLYSTATE, FORMS.FORMID, APPLICATIONS.TTBID, SERIALNUMBER, labelimage " +
+                "FROM APPLICATIONS JOIN FORMS " +
+                "ON FORMS.FORMID = APPLICATIONS.FORMID " +
+                "WHERE " + "(applications.repid > " + from + ") and (applications.repid < " + to + ") and " +
+                "APPLICATIONS.STATUS='APPROVED' AND ((UPPER(FANCIFULNAME) LIKE UPPER(?)) OR (UPPER(BRANDNAME) LIKE UPPER(?))) AND " + type;
+        System.out.println(retrieve);
 
         PreparedStatement ps = conn.prepareStatement(retrieve, ResultSet.CONCUR_UPDATABLE, ResultSet.TYPE_SCROLL_INSENSITIVE);
         ps.setString(1, "%"+condition+"%");
@@ -673,7 +718,7 @@ public class Form {
     @SuppressWarnings("Duplicates") public ObservableList<String> autoSearch(Connection connection){
         ObservableList<String> result = FXCollections.observableArrayList();
 
-        String getID = "SELECT distinct BRANDNAME, FANCIFULNAME FROM FORMS";
+        String getID = "SELECT distinct BRANDNAME FROM FORMS";
         try {
             ResultSet rset = connection.createStatement().executeQuery(getID);
             while(rset.next())
@@ -683,6 +728,61 @@ public class Form {
                 e.printStackTrace();
         }
 
+        return result;
+    }
+
+    @SuppressWarnings("Duplicates") public ObservableList<String> stateSelect() {
+        ObservableList<String> result = FXCollections.observableArrayList();
+        result.add("AK");
+        result.add("AL");
+        result.add("AR");
+        result.add("AZ");
+        result.add("CA");
+        result.add("CO");
+        result.add("CT");
+        result.add("DE");
+        result.add("FL");
+        result.add("GA");
+        result.add("HI");
+        result.add("IA");
+        result.add("ID");
+        result.add("IL");
+        result.add("IN");
+        result.add("KS");
+        result.add("KY");
+        result.add("LA");
+        result.add("MA");
+        result.add("MD");
+        result.add("ME");
+        result.add("MI");
+        result.add("MN");
+        result.add("MO");
+        result.add("MS");
+        result.add("MT");
+        result.add("NC");
+        result.add("ND");
+        result.add("NE");
+        result.add("NH");
+        result.add("NJ");
+        result.add("NM");
+        result.add("NV");
+        result.add("NY");
+        result.add("OH");
+        result.add("OK");
+        result.add("OR");
+        result.add("PA");
+        result.add("RI");
+        result.add("SC");
+        result.add("SD");
+        result.add("TN");
+        result.add("TX");
+        result.add("UT");
+        result.add("VA");
+        result.add("VT");
+        result.add("WA");
+        result.add("WI");
+        result.add("WV");
+        result.add("WY");
         return result;
     }
 

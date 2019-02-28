@@ -17,7 +17,7 @@ import java.util.Objects;
 
 /**
  * @author Amrit Parmanand & Percy
- * @version It 2
+ * @version It 4
  * @since It 1
  * Manages the database, handles accessing and inserting data
  */
@@ -154,7 +154,12 @@ public class DatabaseManager {
                 "password varchar(65), " +
                 "fullName varchar(50),	" +
                 "email varchar(100),	" +
-                "phone varchar(40))";
+                "phone varchar(40),     " +
+                "score int, " +
+                "numberApproved int, " +
+                "numberDenied int, " +
+                "numberPassed int," +
+                "numberProcessed int)";
         String createForms = "create table Forms(" +
                 "formID bigint   constraint Forms_pk primary key, " +
                 "repID varchar (20), " +
@@ -165,12 +170,12 @@ public class DatabaseManager {
                 "brandName varchar(100),    " +
                 "fancifulName varchar(100), " +
                 "applicantName varchar(200),   " +
-                "mailingAddress varchar(120), " +
+                "mailingAddress varchar(250), " +
                 "formula varchar(120), " +
                 "grapeVarietal varchar(200),    " +
                 "appellation varchar(200), " +
                 "phoneNumber varchar(120), " +
-                "emailAddress varchar(120), " +
+                "emailAddress varchar(250), " +
                 "certificateOfApproval BOOLEAN," +   //begin new
                 "certificateOfExemption BOOLEAN," +
                 "onlyState varchar(100)," +
@@ -203,9 +208,9 @@ public class DatabaseManager {
         }
     }
     public void createSequences(){
-        String repSequence = "create sequence repIDSequence as int start with 800 increment by 1";
-        String formSequence = "create sequence formIDSequence as int start with 800 increment by 1";
-        String appSequence = "create sequence appIDSequence as int start with 800 increment by 1";
+        String repSequence = "create sequence repIDSequence as int start with 100 increment by 1";
+        String formSequence = "create sequence formIDSequence as int start with 100 increment by 1";
+        String appSequence = "create sequence appIDSequence as int start with 100 increment by 1";
 
         try {
             this.stmt.execute(repSequence);
@@ -228,7 +233,7 @@ public class DatabaseManager {
 
         String mDefault = "insert into REPRESENTATIVES values (1, 'manu', '" + mPassword + "', 'Manufacturer Example'," +
                 " 'Manufacturer', 'manu@manu.com', '1234567890')";
-        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'Agent Example', 'ttb@ttb.gov', '1234567898')";
+        String aDefault = "insert into AGENTS values (1, 'ttb', '" + aPassword + "', 'ttb', 'ttb', 'ttb', 0, 0, 0, 0, 0)";
         try {
             this.stmt.execute(mDefault);
             this.stmt.execute(aDefault);
@@ -237,6 +242,7 @@ public class DatabaseManager {
                 e.printStackTrace();
         }
     }
+
     public boolean isFormsEmpty() throws SQLException{
         ResultSet rs = stmt.executeQuery("SELECT * from FORMS");
 
@@ -264,7 +270,8 @@ public class DatabaseManager {
             // Create an object of filereader
             // class with CSV file as a parameter.
             ClassLoader classLoader = getClass().getClassLoader();
-            FileReader filereader = new FileReader(new File("src/Resources/forPresentation.csv"));
+//            FileReader filereader = new FileReader(new File("src/Resources/forPresentation.csv"));
+            FileReader filereader = new FileReader(new File("src/Resources/ttb2006-2008separate.csv"));
 
             // create csvReader object passing
             // file reader as a parameter
@@ -280,11 +287,10 @@ public class DatabaseManager {
                 String output = "(";
                 int counter = 0;
                 for (int i = 0; i < nextRecord.length; i++) {
-
+//                    System.out.println(output);
                     String[] splitRecord = nextRecord[i].split("!");
 
                     for (int j = 0; j < splitRecord.length; j++) {
-
 
                         if (counter == 0) {
                             output += splitRecord[j] + ",'";
@@ -308,7 +314,7 @@ public class DatabaseManager {
                         }
                             else {
                             output += splitRecord[j] + "','";
-                            if (output.charAt(1) != '1' && output.charAt(1) != '2' && output.charAt(1) != '3') {
+                            if (output.charAt(1) != '1' && output.charAt(1) != '2' && output.charAt(1) != '3'&& output.charAt(1) != '6'&& output.charAt(1) != '7'&& output.charAt(1) != '8') {
                                 break;
                             }
                         }
@@ -339,6 +345,7 @@ public class DatabaseManager {
 
 
                 }
+
                 if (numOfOutput == 1000) {
                     System.out.println(numOfSqlExecute);
                     if (numOfSqlExecute == 0) {
@@ -490,6 +497,11 @@ public class DatabaseManager {
         String fname = "";
         String email = "";
         String phone = "";
+        int score = 0;
+        int numberApproved = 0;
+        int numberDenied = 0;
+        int numberPassed = 0;
+        int numberProcessed = 0;
         try {
             String getData = "select * from AGENTS where TTBID = " + id;
             ResultSet result = this.getStmt().executeQuery(getData);
@@ -499,12 +511,18 @@ public class DatabaseManager {
                 fname = result.getString("fullName");
                 email = result.getString("email");
                 phone = result.getString("phone");
+                score = result.getInt("score");
+                numberApproved = result.getInt("numberApproved");
+                numberDenied = result.getInt("numberDenied");
+                numberPassed = result.getInt("numberPassed");
+                numberProcessed = result.getInt("numberProcessed");
             }
         } catch (SQLException e) {
             if (!e.getSQLState().equals("X0Y32"))
                 e.printStackTrace();
         }
-        Agent a = new Agent(uname,pword,fname,email,phone,id);
+        Agent a = new Agent(uname,pword,fname,email,phone,id,score, numberApproved, numberDenied, numberPassed, numberProcessed);
         return a;
     }
+
 }

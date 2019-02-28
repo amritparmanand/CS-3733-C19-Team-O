@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Agent;
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.NumberAssigned;
+import Datatypes.*;
 import Managers.CacheManager;
 import Managers.DatabaseManager;
 import Managers.SceneManager;
@@ -30,7 +27,7 @@ import java.util.ArrayList;
  * @version It 3
  * Controller for mFormStorage of UI
  */
-public class mFormStorage {
+public class mFormStorage extends Controller {
 
     private SceneManager sceneM;
     private CacheManager cacheM;
@@ -41,11 +38,7 @@ public class mFormStorage {
     @FXML private FlowPane loadForms;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
-
-    private String filterA = "";
-    private String filterP = "";
-    private String filterD = "";
-    private boolean noFilter = false;
+    private settingPage settingPage;
 
     public mFormStorage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -53,41 +46,41 @@ public class mFormStorage {
     }
 
     @SuppressWarnings("Duplicates") @FXML public void initialize(){
-        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         loadForms.getChildren().clear();
+        cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().sayMForm();
+
+        String filterA;
+        String filterP;
+        String filterD;
+        boolean noFilter;
 
         if(approved.isSelected()){
             filterA = "APPROVED";
-        }
-        else{
+        } else{
             filterA = "no";
         }
 
         if(pending.isSelected()){
             filterP = "PENDING";
-        }
-        else{
+        } else{
             filterP = "no";
         }
 
         if(denied.isSelected()){
             filterD = "DENIED";
-        }
-        else{
+        } else{
             filterD = "no";
         }
 
         if(!approved.isSelected() && !pending.isSelected() && !denied.isSelected()){
             noFilter = true;
-        }
-        else{
+        } else{
             noFilter = false;
         }
 
         Manufacturer manAcc = (Manufacturer) cacheM.getAcct();
-        if(!manAcc.getHasFetchedForms())
-            manAcc.setAssignedForms(cacheM.getDbM().getConnection());
-
+        manAcc.setAssignedForms(cacheM.getDbM().getConnection());
         ArrayList<Form> populatedForms = (manAcc.getAssignedForms());
 
         for (Form form : populatedForms) {
@@ -185,5 +178,9 @@ public class mFormStorage {
         sceneM.changeScene(loader, new mHomepage(sceneM, cacheM));
     }
 
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 }

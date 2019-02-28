@@ -1,3 +1,4 @@
+import Datatypes.Agent;
 import Managers.*;
 
 import UI.Controllers.LoginPage;
@@ -20,23 +21,9 @@ public class Main extends Application {
         //middleman
         cacheM = new CacheManager(dbM);
 
-//        dbM.generateTables();
-//        dbM.createSequences();
-//        dbM.insertDefault();
-//        if(dbM.isFormsEmpty())
-//            dbM.generateTablesForms();
-//        else if(!dbM.isFormsEmpty())
-//            System.out.println("Forms are populated!");
-//
-//        if(dbM.isAppsEmpty())
-//            dbM.generateTablesApplication();
-//        else if(!dbM.isAppsEmpty())
-//            System.out.println("Apps are populated");
-
-
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UI/Views/startPage.fxml"));
         sceneM.changeScene(loader, new startPage(sceneM, cacheM), "UI");
+
     }
 
 

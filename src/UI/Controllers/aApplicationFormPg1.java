@@ -1,10 +1,7 @@
 package UI.Controllers;
 
 
-import Datatypes.Agent;
-import Datatypes.Alcy;
-import Datatypes.Comments;
-import Datatypes.Form;
+import Datatypes.*;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
@@ -20,18 +17,20 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  * @author Clay Oshiro-Leavitt
  * @version It 2
  * Controller for aApplicationFormPg1 of UI
  */
-public class aApplicationFormPg1 {
+public class aApplicationFormPg1 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
     private Comments comments = new Comments();
-
+    private settingPage settingPage;
+    
     @FXML private JFXButton acceptForm;
     @FXML private JFXButton denyForm;
     @FXML private JFXButton saveDraft;
@@ -47,7 +46,7 @@ public class aApplicationFormPg1 {
     @FXML private JFXTextField serialNO;
     @FXML private JFXTextField brand;
     @FXML private JFXTextField fanciful;
-//    @FXML private JFXRadioButton wine2;
+    @FXML private JFXRadioButton wine2;
     @FXML private JFXRadioButton spirits2;
     @FXML private JFXRadioButton beer2;
     @FXML private JFXTextField alcoholPercentage;
@@ -194,14 +193,14 @@ public class aApplicationFormPg1 {
                 wine.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "SPIRITS":
-                spirits2.setSelected(true);
-                spirits2.setOpacity(1);
-                spirits2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
+                spirits.setSelected(true);
+                spirits.setOpacity(1);
+                spirits.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
             case "BEER":
-                beer2.setSelected(true);
-                beer2.setOpacity(1);
-                beer2.setStyle(form.parseStyle(form.getBeerWineSpirit()));
+                malt.setSelected(true);
+                malt.setOpacity(1);
+                malt.setStyle(form.parseStyle(form.getBeerWineSpirit()));
                 break;
         }
       
@@ -287,10 +286,15 @@ public class aApplicationFormPg1 {
 
     @FXML
     public void acceptForm() throws IOException {
-        cacheM.approveForm(cacheM.getDbM().getConnection());
-        Agent A = (Agent) cacheM.getAcct();
-        A.approveOrDeny(form);
-        goToHomePage();
+        if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+            cacheM.approveForm(cacheM.getDbM().getConnection());
+            Agent A = (Agent) cacheM.getAcct();
+            A.approveOrDeny(form);
+            goToHomePage();
+        }else{
+            System.out.println("invalid signature or date");
+        }
     }
 
     @FXML
@@ -303,26 +307,38 @@ public class aApplicationFormPg1 {
         comments.setComment6(Q6Comment.getText());
         comments.setComment7(Q7Comment.getText());
         cacheM.getForm().setComments(comments);
-        System.out.println(comments.generateComments());
+        if (!form.getSignature().isEmpty() && !form.getDateIssued().isEmpty()) {
+
+            System.out.println(comments.generateComments());
         cacheM.denyForm(cacheM.getDbM().getConnection());
         Agent A = (Agent) cacheM.getAcct();
         A.approveOrDeny(form);
         goToHomePage();
+        }else{
+            System.out.println("invalid signature or date");
+        }
     }
 
     @FXML public void passForm() throws IOException{
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
-        Agent A = (Agent) cacheM.getAcct();
-        A.pass(form);
-        goToHomePage();
+        if(cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText())){
+            Agent A = (Agent) cacheM.getAcct();
+            A.pass(form);
+            goToHomePage();
+        }
     }
 
     @FXML
     public void logout() throws IOException {
+        Agent A = (Agent) cacheM.getAcct();
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
     }
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 }
 

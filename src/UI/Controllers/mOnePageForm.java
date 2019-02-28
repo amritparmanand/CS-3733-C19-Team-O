@@ -27,6 +27,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.pdfbox.rendering.PDFRenderer;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -39,11 +40,12 @@ import java.util.ArrayList;
  * @version It3
  * application form in one page
  */
-public class mOnePageForm {
+public class mOnePageForm extends Controller{
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
     private ProgressBar progressBar;
+    private settingPage settingPage;
 
     public mOnePageForm(SceneManager sceneM, CacheManager cacheM, Form form){
         this.sceneM = sceneM;
@@ -338,7 +340,7 @@ public class mOnePageForm {
         Alcy alcy = cacheM.getAlcy();
         alcy.setImageView(alcyView);
         alcy.start();
-
+        TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect());
 
         switch(form.getProductSource()){
             case "DOMESTIC":
@@ -427,6 +429,7 @@ public class mOnePageForm {
             dateOfApplication.setValue(LocalDate.parse(form.getDateOfApplication(), formatter));
         }
     }
+
     @FXML
     public void onePage() throws IOException {
         saveDraft();
@@ -652,14 +655,6 @@ public class mOnePageForm {
             form.setAppellation("");
         }
 
-
-        //I think this call is extraneous
-//        if (!validFormEmail(formEmail) || !validFormPhone(phoneNumberString)) {
-//            System.out.println("Unable to save. Invalid fields entered");
-//            saveDraftMessage.setTextFill(Color.RED);
-//            saveDraftMessage.setText("Unable to save. Invalid phone and/or email");
-//        }
-        //       else {
         if (!phoneNumber.getText().isEmpty() && !form.getPhoneNumber().contains(cacheM.getStyle())) {
             form.setPhoneNumber(phoneNumberString);
         }
@@ -758,12 +753,18 @@ public class mOnePageForm {
 
         if (!validFormEmail(email.getText().trim()) || !validFormPhone(phoneNumber.getText().trim())) {
             System.out.println("Unable to submit. Invalid fields entered");
+            cacheM.getAlcy().saySubmitFormError("pop");
         }
         else {
             System.out.println("save Draft executed");
 
             try{
-                cacheM.insertForm(cacheM.getDbM().getConnection());
+                System.out.println(form.getResubmission());
+                if(form.getResubmission()){
+                    form.resubmitForm(cacheM.getDbM().getConnection());
+                } else{
+                    form.insertForm(cacheM.getDbM().getConnection());
+                }
             }catch(SQLException e){
                 e.printStackTrace();
             }
@@ -869,5 +870,9 @@ public class mOnePageForm {
     }
 
 
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 }

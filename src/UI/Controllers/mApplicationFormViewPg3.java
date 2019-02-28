@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Alcy;
-import Datatypes.Form;
-import Datatypes.LabelImage;
-import Datatypes.PDF;
+import Datatypes.*;
 import Managers.*;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
@@ -12,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 
@@ -20,7 +18,7 @@ import java.io.IOException;
  * @version It 2
  * Controller for mApplicationFormPg3 of UI
  */
-public class mApplicationFormViewPg3 {
+public class mApplicationFormViewPg3 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private LabelImage image = new LabelImage();
@@ -36,6 +34,7 @@ public class mApplicationFormViewPg3 {
     @FXML private Label errorLabel;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
     public mApplicationFormViewPg3(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -48,6 +47,7 @@ public class mApplicationFormViewPg3 {
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayMViewForm();
+
         certificateOfApproval.setSelected(form.getCertificateOfApproval());
         certificateOfExemption.setSelected(form.getCertificateOfExemption());
         DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
@@ -122,5 +122,9 @@ public class mApplicationFormViewPg3 {
         PDF pdf = new PDF();
         pdf.savePDF(cacheM.getForm());
     }
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 }

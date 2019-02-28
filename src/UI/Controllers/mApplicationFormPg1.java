@@ -35,7 +35,7 @@ import java.util.Calendar;
  * @version It 2
  * Controller for mApplicationFormPg1 of UI
  */
-public class mApplicationFormPg1 {
+public class mApplicationFormPg1 extends Controller{
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -83,6 +83,7 @@ public class mApplicationFormPg1 {
 
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
     public mApplicationFormPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -496,6 +497,10 @@ public class mApplicationFormPg1 {
         pdf.savePDF(form);
     }
 
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 
 }

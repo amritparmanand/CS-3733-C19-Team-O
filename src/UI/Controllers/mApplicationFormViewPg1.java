@@ -30,7 +30,7 @@ import java.util.Calendar;
  * @version It 2
  * Controller for mApplicationFormPg1 of UI
  */
-public class mApplicationFormViewPg1 {
+public class mApplicationFormViewPg1 extends Controller{
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -57,6 +57,7 @@ public class mApplicationFormViewPg1 {
     @FXML private JFXButton savePDF;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
     public mApplicationFormViewPg1(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -70,7 +71,13 @@ public class mApplicationFormViewPg1 {
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayMViewForm();
-
+        if(form.getProductType().equals("WINE"))
+        {
+            showWineFields();
+        }else
+        {
+            hideWineFields();
+        }
         repID.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
@@ -287,7 +294,11 @@ public class mApplicationFormViewPg1 {
         PDF pdf = new PDF();
         pdf.savePDF(cacheM.getForm());
     }
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 
 }
 

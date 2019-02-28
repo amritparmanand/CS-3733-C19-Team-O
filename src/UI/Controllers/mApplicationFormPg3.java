@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Alcy;
-import Datatypes.Form;
-import Datatypes.LabelImage;
-import Datatypes.PDF;
+import Datatypes.*;
 import Managers.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -24,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 
@@ -32,7 +30,7 @@ import java.io.IOException;
  * @version It 3
  * Controller for mApplicationFormPg3 of UI
  */
-public class mApplicationFormPg3 {
+public class mApplicationFormPg3 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private LabelImage image = new LabelImage();
@@ -52,6 +50,7 @@ public class mApplicationFormPg3 {
     @FXML private JFXTextArea aComment;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
 
     public mApplicationFormPg3(SceneManager sceneM, CacheManager cacheM,Form form) {
@@ -84,6 +83,7 @@ public class mApplicationFormPg3 {
             DistinctiveLiquor.setSelected(form.getDistinctiveLiquor());
             resubmission.setSelected(form.getResubmission());
             onlyState.setText(form.parseGarbage(form.getOnlyState()));
+            TextFields.bindAutoCompletion(onlyState, cacheM.getForm().stateSelect());
 
             if (form.getTtbID() != 0)
                 resubmission.setSelected(true);
@@ -226,5 +226,9 @@ public class mApplicationFormPg3 {
         pdf.savePDF(form);
     }
 
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 }

@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Alcy;
+import Datatypes.Controller;
 import Datatypes.Manufacturer;
 import Managers.*;
 
@@ -10,6 +11,8 @@ import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +33,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class LoginPage implements SerialPortDataListener {
+public class LoginPage extends Controller implements SerialPortDataListener {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private BCryptPasswordEncoder passwordDecoder = new BCryptPasswordEncoder();
@@ -62,8 +65,7 @@ public class LoginPage implements SerialPortDataListener {
     private Button pdf;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
-
-
+    private settingPage settingPage;
 
 
     public LoginPage(SceneManager sceneM, CacheManager cacheM) {
@@ -76,6 +78,73 @@ public class LoginPage implements SerialPortDataListener {
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayLogin();
+
+        password.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayHelpPassword();}
+                else
+                {
+                    cacheM.getAlcy().sassy();
+                }
+            }
+        });
+
+        m.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayHelpMAccount();}
+                else
+                {
+                    cacheM.getAlcy().drunk();
+                }
+            }
+        });
+
+        a.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayHelpAAccount();}
+                else
+                {
+                    cacheM.getAlcy().drunk();
+                }
+            }
+        });
+
+        username.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayHelpUsername();}
+                else
+                {
+                    cacheM.getAlcy().drunk();
+                }
+            }
+        });
+
+        id.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+            {
+                if (newPropertyValue)
+                { cacheM.getAlcy().sayHelpLoginID();}
+                else
+                {
+                    cacheM.getAlcy().drunk();
+                }
+            }
+        });
+
+
         programChip.setVisible(false);
         if (ports.length > 0) {
             this.serialPort = ports[ports.length - 1];
@@ -204,6 +273,7 @@ public class LoginPage implements SerialPortDataListener {
             if (uname.equals(username.getText()) && passwordDecoder.matches(password.getText(), hashedPassword)) {
                 cacheM.setAcct(cacheM.getDbM().aCreate(theID));
                 System.out.println("Login Successful!");
+                //System.out.println("My score: ";
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
                 sceneM.changeScene(loader, new aHomepage(sceneM, cacheM));
             } else {
@@ -253,6 +323,10 @@ public class LoginPage implements SerialPortDataListener {
         }
     }
 
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 
 }

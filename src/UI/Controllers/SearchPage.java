@@ -1,5 +1,8 @@
 package UI.Controllers;
 
+
+import Datatypes.LabelImage;
+import Datatypes.Controller;
 import Datatypes.SearchResult;
 import Fuzzy.*;
 import Managers.CacheManager;
@@ -22,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
@@ -50,12 +54,13 @@ import java.util.List;
  * @version It 3
  * Controller for SearchPage of UI
  */
-public class SearchPage {
+public class SearchPage extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private SearchManager searchM;
 
     private AdvancedSearchPage advancedSearchPage;
+    private settingPage settingPage;
 
     String oldSearch = "";
     LinkedList<SearchResult> srArr;
@@ -69,12 +74,13 @@ public class SearchPage {
 
     @FXML
     public void initialize() throws SQLException {
-        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM, new Stage());
+        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM);
         TextFields.bindAutoCompletion(searchBox, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
+        cacheM.getAlcy().saySearchResult();
         ObservablePane op = null;
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 24; i++) {
             try {
                 Pane pane = FXMLLoader.load(getClass().getResource("/UI/Views/alcBox.fxml"));
                 op = new ObservablePane(pane, searchResults, sceneM);
@@ -127,20 +133,29 @@ public class SearchPage {
     private Label didYouMean;
     @FXML
     private Label pageNum;
-    @FXML private ImageView alcyView;
-    @FXML private Text alcyLabel;
+    @FXML
+    private ImageView alcyView;
+    @FXML
+    private Text alcyLabel;
 
     @FXML
     public void popupAdvanced() throws IOException {
-        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM, new Stage());
+
+        advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, searchM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AdvancedSearchPage.fxml"));
-        //advancedSearchPage = new AdvancedSearchPage(sceneM, cacheM, new Stage());
         sceneM.popWindowLoader(loader, advancedSearchPage, "Advanced Search");
+    }
+
+    @FXML
+    public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 
 
     @FXML
-    public void back() throws IOException {
+    public void back() throws Exception {
         //sceneM.backScene();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/startPage.fxml"));
         sceneM.changeScene(loader, new startPage(sceneM, cacheM));
@@ -160,7 +175,7 @@ public class SearchPage {
         pageNum.setText("0");
         previous.setDisable(true);
 
-        if (searchBox.getText() == oldSearch)
+        if (searchBox.getText().isEmpty())
             return;
 
         oldSearch = searchBox.getText();
@@ -202,20 +217,21 @@ public class SearchPage {
         if (!type.equals("TRUE"))
             type = type.substring(0, type.length() - 18) + ")";
 
-        ResultSet approvedResults = getApprovedApplications(oldSearch, type);
+        ResultSet approvedResults;
+        approvedResults = getApprovedApplications(oldSearch, type);
         this.searchM = advancedSearchPage.transferSearchManager();
-        System.out.println("SEARCH ACTIVE? " + searchM.isActive + " " + oldSearch);
+//        System.out.println("SEARCH ACTIVE? " + searchM.isActive + " " + oldSearch);
 
         srArr = linkedListify(approvedResults);
         if (searchM.isActive) {
-            srArr = filter(srArr, searchM);
+            srArr = searchM.filter(srArr, oldSearch);
         }
 
         searchTether.setSrArray(srArr);
 
-        for (int i = 0; i < srArr.size(); i++) {
-            System.out.println(srArr.get(i).getCompanyName());
-        }
+//        for (int i = 0; i < srArr.size(); i++) {
+//            System.out.println(srArr.get(i).getCompanyName());
+//        }
         searchTether.setBools(beerCheck.isSelected(), wineCheck.isSelected(), liquorCheck.isSelected());
         searchTether.notifyObservers(0, next);
 
@@ -226,7 +242,26 @@ public class SearchPage {
         while (rs.next()) {
             //String fancifulName, String companyName, String alcoholType, String phLevel,
             //                        String alcohol, String year, String productType
-            srArr.add(new SearchResult(rs.getString("FANCIFULNAME"),
+            LabelImage lbl = new LabelImage();
+            try {
+                byte[] picture = rs.getBytes("labelImage");
+                FileOutputStream os = new FileOutputStream("temp.png");
+                if (picture != null) {
+                    os.write(picture);
+                    os.close();
+                    File jimbus = new File("temp.png");
+                    lbl.setLabelFile(jimbus);
+                    lbl.setLabelImage(new Image(lbl.getLabelFile().toURI().toString()));
+//                    System.out.println("aaa");
+                    jimbus.delete();
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            srArr.add(new SearchResult(
+                    rs.getString("FANCIFULNAME"),
                     rs.getString("BRANDNAME"),
                     rs.getString("PRODUCTTYPE"),
                     rs.getString("PHLEVEL"),
@@ -236,89 +271,14 @@ public class SearchPage {
                     rs.getString("DATEAPPROVED"),
                     rs.getString("TTBID"),
                     rs.getString("SERIALNUMBER"),
-                    rs.getString("BREWERNUMBER")));
+                    rs.getString("BREWERNUMBER"),
+                    rs.getString("ONLYSTATE"),
+                    rs.getLong("FORMID"),
+                    lbl));
         }
-
         return srArr;
     }
 
-    public LinkedList<SearchResult> filter(LinkedList<SearchResult> approvedResults, SearchManager searchManager) {
-        LinkedList<SearchResult> filtered = new LinkedList<>();
-
-        for (int i = 0; i < approvedResults.size(); i++) {
-            SearchResult sr = approvedResults.get(i);
-            boolean invalidateRecord = false;
-
-            //date check
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/uuuu");
-            LocalDate recordDate = LocalDate.parse(sr.getApprovedDate(), formatter);
-            if (searchManager.exists(searchManager.getFromDate())) {
-                System.out.println("FROM DATE EXISTS");
-                if (recordDate.compareTo(searchManager.getFromDate()) < 0)
-                    invalidateRecord = true;
-            }
-            if (searchManager.exists(searchManager.getToDate())) {
-                System.out.println("TO DATE EXISTS");
-                if (recordDate.compareTo(searchManager.getToDate()) > 0)
-                    invalidateRecord = true;
-            }
-
-            //productName Check
-            if (searchManager.exists(searchManager.getBrandFancyEither())) {
-                //System.out.println("NAME AND BRAND EXIST");
-                switch (searchManager.getBrandFancyEither()) {
-                    case 3:
-                        break;
-                    case 2:
-                        if (!sr.getFancifulName().toLowerCase().contains(oldSearch.toLowerCase()))
-                            invalidateRecord = true;
-                        break;
-                    case 1:
-                        if (!sr.getCompanyName().toLowerCase().contains(oldSearch.toLowerCase()))
-                            invalidateRecord = true;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            //ttbID range
-            int recordTTBID = Integer.parseInt(sr.getTTBID());
-            if (searchManager.exists(searchManager.getFromTTB())) {
-                System.out.println("FROM TTB EXISTS");
-                if (recordTTBID < Integer.parseInt(searchManager.getFromTTB()))
-                    invalidateRecord = true;
-            }
-            if (searchManager.exists(searchManager.getToTTB())) {
-                System.out.println("TO TTB EXISTS");
-                if (recordTTBID > Integer.parseInt(searchManager.getToTTB()))
-                    invalidateRecord = true;
-            }
-
-            //serialNumber range
-            if (searchManager.exists(searchManager.getFromSerial())) {
-                System.out.println("FROM SERIAL EXISTS");
-                if (sr.getSerialNum().compareTo(searchManager.getFromSerial()) < 0)
-                    invalidateRecord = true;
-            }
-            if (searchManager.exists(searchManager.getToSerial())) {
-                System.out.println("TO SERIAL EXISTS");
-                if (sr.getSerialNum().compareTo(searchManager.getToSerial()) > 0)
-                    invalidateRecord = true;
-            }
-
-            //brewerNumber exact
-            if (searchManager.exists(searchManager.getBrewerNumber())) {
-                System.out.println("BREWER NUMBER EXISTS");
-                if (!sr.getBrewerNum().toLowerCase().equals(searchManager.getBrewerNumber().toLowerCase()))
-                    invalidateRecord = true;
-            }
-
-            if (!invalidateRecord)
-                filtered.add(sr);
-        }
-        return filtered;
-    }
 
     public ResultSet getApprovedApplications(String condition, String type) throws SQLException {
         return cacheM.getApprovedApplications(cacheM.getDbM().getConnection(), condition, type);
@@ -332,7 +292,7 @@ public class SearchPage {
     @FXML
     public void download() {
         Character delimiter;
-        System.out.println(cacheM.getFormat());
+//        System.out.println(cacheM.getFormat());
         delimiter = cacheM.getFormat();
 //        if(!delimiterChooser.getText().isEmpty()){
 //            delimiter = delimiterChooser.getText().charAt(0);
@@ -347,6 +307,9 @@ public class SearchPage {
         directoryChooser.setInitialDirectory(null);
 
         File folder = directoryChooser.showDialog(null);
+        if (folder == null) {
+            return;
+        }
         String filePath = folder + "/Save-Results.csv";
         File file = new File(filePath);
 
@@ -360,19 +323,23 @@ public class SearchPage {
                     CSVWriter.DEFAULT_LINE_END);
 
             List<String[]> data = new ArrayList<String[]>();
-            data.add(new String[]{"FANCIFUL NAME","COMPANY NAME","ALCOHOL TYPE","ALCOHOL TYPE2","PH LEVEL","ALCOHOL PERCENT","YEAR"});
+            data.add(new String[]{"FANCIFUL NAME", "COMPANY NAME", "ALCOHOL TYPE", "ALCOHOL TYPE2", "PH LEVEL", "ALCOHOL PERCENT", "YEAR"});
 
-            for(SearchResult s : srArr) {
-                String alcoholType = s.getProductType();
-                data.add(new String[]{s.getFancifulName(), s.getCompanyName(), s.getAlcoholType(), alcoholType, s.getPhLevel(), s.getAlcohol(), s.getYear()});
+            if (srArr != null) {
+                for (SearchResult s : srArr) {
+                    String alcoholType = s.getProductType();
+                    data.add(new String[]{s.getFancifulName(), s.getCompanyName(), s.getAlcoholType(), alcoholType, s.getPhLevel(), s.getAlcohol(), s.getYear()});
+                }
+            } else {
+                System.out.println("no search result");
             }
             writer.writeAll(data);
 
             writer.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @FXML

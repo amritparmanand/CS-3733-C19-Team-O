@@ -2,6 +2,7 @@ package UI.Controllers;
 
 import Datatypes.Agent;
 import Datatypes.Alcy;
+import Datatypes.Controller;
 import Datatypes.Form;
 import Managers.CacheManager;
 import Managers.SceneManager;
@@ -28,9 +29,10 @@ import java.util.ArrayList;
  * @version It 3
  * Controller for aGetApplication of UI
  */
-public class aGetApplication {
+public class aGetApplication extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private settingPage settingPage;
 
     public aGetApplication(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
@@ -43,16 +45,15 @@ public class aGetApplication {
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
 
-    private String filterA = "";
-    private String filterD = "";
-    private boolean noFilter = false;
-
-    @SuppressWarnings("Duplicates")
-    @FXML public void initialize() throws Exception{
+    @SuppressWarnings("Duplicates") @FXML public void initialize() {
         loadFormPane.getChildren().clear();
         Alcy alcy = cacheM.getAlcy();
         alcy.summonAlcy(alcyView, alcyLabel);
         alcy.sayAHomePage();
+
+        String filterA;
+        String filterD;
+        boolean noFilter;
 
         if(approved.isSelected()){
             filterA = "APPROVED";
@@ -76,12 +77,12 @@ public class aGetApplication {
         }
 
         Agent A = (Agent) cacheM.getAcct();
-
-        if(!A.isGotOldForms()){
-            ((Agent) cacheM.getAcct()).getReviewedForms(cacheM.getDbM().getConnection());
+        try {
+            A.getReviewedForms(cacheM.getDbM().getConnection());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        ArrayList<Form> populatedForms = ((Agent) cacheM.getAcct()).getReviewedForms();
+        ArrayList<Form> populatedForms = A.getReviewedForms();
 
         for (Form form : populatedForms) {
             if (form.getFormStatus(cacheM.getDbM().getConnection()).equals(filterA) ||
@@ -145,8 +146,6 @@ public class aGetApplication {
                 }
             }
         }
-
-        cacheM.setAcct(A);
     }
 
     @FXML
@@ -157,8 +156,8 @@ public class aGetApplication {
 
     @FXML
     public void aApplicationFormControl(Form form) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mApplicationFormViewPg1.fxml"));
-        sceneM.changeScene(loader, new mApplicationFormViewPg1(sceneM, cacheM, form));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormViewPg1.fxml"));
+        sceneM.changeScene(loader, new aApplicationFormViewPg1(sceneM, cacheM, form));
     }
 
     @FXML
@@ -166,5 +165,10 @@ public class aGetApplication {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
+    }
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 }

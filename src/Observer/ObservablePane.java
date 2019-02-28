@@ -35,7 +35,7 @@ public class ObservablePane implements IObservable {
 
     public ObservablePane(Pane self, FlowPane searchResults, SceneManager sceneManager) {
         this.self = self;
-        System.out.println(self);
+//        System.out.println(self);
         searchResults.getChildren().add(this.self);
         this.sceneManager = sceneManager;
     }
@@ -66,16 +66,21 @@ public class ObservablePane implements IObservable {
         Node vbox = this.self.getChildren().get(0);
 
         if (vbox instanceof VBox) {
+            Node imgView = ((VBox) vbox).getChildren().get(0);
             Node fName = ((VBox) vbox).getChildren().get(1);
             Node bName = ((VBox) vbox).getChildren().get(2);
             Node aType = ((VBox) vbox).getChildren().get(3);
-
+            ((ImageView) imgView).setImage(null);
             fancy = sr.getFancifulName();
             brand = sr.getCompanyName();
             type = sr.getAlcoholType();
             alcPercent = sr.getAlcohol();
             phLevel = sr.getPhLevel();
             year = sr.getYear();
+            if(sr.getLabelImage().getLabelImage() != null) {
+                ((ImageView) imgView).setImage(sr.getLabelImage().getLabelImage());
+            }else
+                ((ImageView) imgView).setImage(null);
             ((Label) fName).setText(fancy);
             ((Label) bName).setText(brand);
             ((Label) aType).setText(type);
@@ -102,7 +107,8 @@ public class ObservablePane implements IObservable {
                         if (hbox instanceof HBox) {
                             Node labelImage = ((HBox) hbox).getChildren().get(1); //image
                             if (labelImage instanceof ImageView) {
-
+                                if(sr.getLabelImage().getLabelImage() != null)
+                                    ((ImageView) labelImage).setImage(sr.getLabelImage().getLabelImage());
                             }
                             Node vbox3 = ((HBox) hbox).getChildren().get(0);
                             if (vbox3 instanceof VBox) {

@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Alcy;
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.PDF;
+import Datatypes.*;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
@@ -35,7 +32,7 @@ import java.io.IOException;
  * @version It 2
  * Controller for mApplicationFormPg2 of UI
  */
-public class mApplicationFormPg2 {
+public class mApplicationFormPg2 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private String phoneNumberString;
@@ -60,6 +57,7 @@ public class mApplicationFormPg2 {
     @FXML private JFXTextArea aComment;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
     public mApplicationFormPg2(SceneManager sceneM, CacheManager cacheM, Form form) {
         this.sceneM = sceneM;
@@ -187,7 +185,7 @@ public class mApplicationFormPg2 {
         mailAddress.setText(form.parseGarbage(form.getMailingAddress()));
         formula.setText(form.parseGarbage(form.getFormula()));
         grapes.setText(form.parseGarbage(form.getGrapeVarietal()));
-        appellation.setText(form.getAppellation());
+        appellation.setText(form.parseGarbage(form.getAppellation()));
         if(!form.getPhoneNumber().equals(""))
             phoneNumber.setText(form.parseGarbage(form.getPhoneNumber()));
         else
@@ -242,10 +240,10 @@ public class mApplicationFormPg2 {
             System.out.println("invalid email");
         }
 
-        if (cacheM.getForm().getBeerWineSpirit() != "WINE") {
-            form.setGrapeVarietal("");
-            form.setAppellation("");
-        }
+//        if (!cacheM.getForm().getBeerWineSpirit().equals("WINE")) {
+//            form.setGrapeVarietal("");
+//            form.setAppellation("");
+//        }
 
 
         //I think this call is extraneous
@@ -292,7 +290,7 @@ public class mApplicationFormPg2 {
             form.setGrapeVarietal(grapes.getText() + cacheM.getStyle());
         }
         if(!appellation.getText().equals(form.getAppellation()) && !appellation.getText().contains(cacheM.getStyle())) {
-            form.setAlcoholPercent(appellation.getText() + cacheM.getStyle());
+            form.setAppellation(appellation.getText() + cacheM.getStyle());
         }
         if(!phoneNumber.getText().equals(form.getPhoneNumber()) && !phoneNumber.getText().contains(cacheM.getStyle())) {
             form.setPhoneNumber(phoneNumber.getText() + cacheM.getStyle());
@@ -377,5 +375,9 @@ public class mApplicationFormPg2 {
         PDF pdf = new PDF();
         pdf.savePDF(form);
     }
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 }

@@ -1,10 +1,7 @@
 package UI.Controllers;
 
 
-import Datatypes.Agent;
-import Datatypes.Alcy;
-import Datatypes.Comments;
-import Datatypes.Form;
+import Datatypes.*;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXButton;
@@ -29,11 +26,12 @@ import java.time.format.DateTimeFormatter;
  * @version It 2
  * Controller for aApplicationFormPg4 of UI
  */
-public class aApplicationFormPg4 {
+public class aApplicationFormPg4 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
     private Comments comments;
+    private settingPage settingPage;
 
     public aApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form, Comments comments) {
         this.sceneM = sceneM;
@@ -127,6 +125,7 @@ public class aApplicationFormPg4 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aApplicationFormPg3.fxml"));
         sceneM.changeScene(loader, new aApplicationFormPg3(sceneM, cacheM, form,comments));
     }
+
     @FXML
     public void goToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/aHomepage.fxml"));
@@ -146,6 +145,7 @@ public class aApplicationFormPg4 {
         } else {
             System.out.println("invalid signature or date");
         }
+
         goToHomePage();
     }
 
@@ -164,28 +164,32 @@ public class aApplicationFormPg4 {
             cacheM.denyForm(cacheM.getDbM().getConnection());
             Agent A = (Agent) cacheM.getAcct();
             A.approveOrDeny(form);
+
             goToHomePage();
         } else {
             System.out.println("invalid signature or date");
         }
     }
 
-    @FXML
-    public void saveDraft() throws IOException{
-    }
-
-
     @FXML public void passForm() throws IOException{
-        cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText());
-        Agent A = (Agent) cacheM.getAcct();
-        A.pass(form);
-        goToHomePage();
+        if (cacheM.passForm(cacheM.getDbM().getConnection(),cacheM.getForm().getFormID(), receiver.getText())) {
+            Agent A = (Agent) cacheM.getAcct();
+            A.pass(form);
+            goToHomePage();
+        }
     }
 
     @FXML
     public void logout() throws IOException {
+        Agent A = (Agent) cacheM.getAcct();
+        A.deleteLabels();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/LoginPage.fxml"));
         sceneM.changeScene(loader, new LoginPage(sceneM, new CacheManager(this.cacheM.getDbM())));
 
+    }
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 }

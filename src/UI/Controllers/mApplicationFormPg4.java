@@ -1,9 +1,6 @@
 package UI.Controllers;
 
-import Datatypes.Alcy;
-import Datatypes.Form;
-import Datatypes.Manufacturer;
-import Datatypes.PDF;
+import Datatypes.*;
 import Managers.*;
 import UI.MultiThreadWaitFor;
 import UI.callableFunction;
@@ -38,7 +35,7 @@ import java.time.format.DateTimeFormatter;
  * @version It 2
  * Controller for mApplicationFormPg4 of UI
  */
-public class mApplicationFormPg4 {
+public class mApplicationFormPg4 extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
     private Form form;
@@ -56,6 +53,7 @@ public class mApplicationFormPg4 {
     @FXML private JFXTextArea aComment;
     @FXML private ImageView alcyView;
     @FXML private Text alcyLabel;
+    private settingPage settingPage;
 
 
     public mApplicationFormPg4(SceneManager sceneM, CacheManager cacheM, Form form) {
@@ -98,7 +96,7 @@ public class mApplicationFormPg4 {
         aComment.setText(form.getCommentString());
 
         if(!form.getPrintName().equals(""))
-            applicantNamePrint.setText(form.getPrintName());
+            applicantNamePrint.setText(form.parseGarbage(form.getPrintName()));
         else
             applicantNamePrint.setText(manAcc.getFullName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
@@ -139,16 +137,12 @@ public class mApplicationFormPg4 {
             System.out.println(form.getResubmission());
             if(form.getResubmission()){
                 form.resubmitForm(cacheM.getDbM().getConnection());
-            }
-            else{
+            } else{
                 form.insertForm(cacheM.getDbM().getConnection());
             }
         }catch(SQLException e){
             e.printStackTrace();
         }
-
-        Manufacturer M = (Manufacturer) cacheM.getAcct();
-        M.submitForm();
 
         Form cleanForm = new Form();
         cacheM.setForm(cleanForm);
@@ -185,7 +179,7 @@ public class mApplicationFormPg4 {
     public void onePage() throws IOException {
         saveDraft();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/mOnePageForm.fxml"));
-        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM,form));
+        sceneM.changeScene(loader, new mOnePageForm(sceneM, cacheM , form));
     }
 
 
@@ -194,5 +188,9 @@ public class mApplicationFormPg4 {
         PDF pdf = new PDF();
         pdf.savePDF(form);
     }
-
+    @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
+    }
 }

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" styleClass="backPane" stylesheets="@../style/ui-mockup-stylesheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controllers.mApplicationFormViewPg4">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" styleClass="navheader">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/TTB-logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbtitle" text="TTB">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttbsubtitle" text="Alcohol and Tobacco Tax and Trade Bureau" wrappingWidth="140.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                     <children>
+                        <JFXButton onMouseReleased="#settings" styleClass="searchButtonStyle" text="Settings">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="logout" onMousePressed="#logout" styleClass="searchButtonStyle" text="Logout">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="toolbar" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="10.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                 <children>
+                                    <JFXButton fx:id="previous" onMouseClicked="#previousPage" styleClass="buttonStyle" text="Previous Page" />
+                                    <JFXButton fx:id="next1" disable="true" styleClass="buttonStyle" text="Next Page" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="saveDraftMessage" />
+                              <JFXButton fx:id="pdfButton" onAction="#savePDF" styleClass="changeColorButton" text="Display PDF" />
+                              <Button fx:id="back" mnemonicParsing="false" onMousePressed="#goToHomePage" styleClass="changeColorButton" text="Back to homepage">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0">
+                     <content>
+                        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" styleClass="backPane">
+                           <children>
+                              <Label text="TTB Label Form- APPLICANT'S CERTIFICATION">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="labeltext" />
+                                    <String fx:value="h1" />
+                                 </styleClass>
+                              </Label>
+                              <Label styleClass="h2" text="Page 4">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                              <Separator prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" />
+                                 </padding>
+                              </Separator>
+                              <TextFlow prefWidth="200.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labeltext" text="Under the penalties of perjury, I declare: that all statements appearing on this application are true and correct to the best of my knowledge and belief; and , that the representations on the labels attached to this form, including supplemental documents, truly and correctly represent the content of the containers to which these labels will be applied. I also certify that i have read, understood, and complied with the conditions and instructions which are attatched to an original TTB F 5100.31, Certificate/Exemption of Label/Bottle Approval. I consent to the return of processed applications in the manner indicated on this application and set forth in the applicable instructions." wrappingWidth="580.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </VBox.margin>
+                              </TextFlow>
+                              <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label text="16. Date of Application" />
+                                    <JFXDatePicker fx:id="dateOfApplication" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label text="18. Print Name of Applicant or Authorized Agent" />
+                                    <JFXTextField fx:id="applicantNamePrint" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="74.0" prefWidth="640.0" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="400.0">
+                     <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="100.0" layoutY="419.0" prefHeight="400.0" prefWidth="200.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="1289.6" AnchorPane.topAnchor="485.0">
+         <children>
+            <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox alignment="BOTTOM_LEFT" styleClass="alcyLabel">
+                     <children>
+                        <Text fx:id="alcyLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alcyLabel" text="Text" textAlignment="CENTER" wrappingWidth="200.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fx:id="alcyView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" x="100.0" y="600.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

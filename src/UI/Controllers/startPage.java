@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Datatypes.Alcy;
+import Datatypes.Controller;
 import Managers.CacheManager;
 import Managers.SceneManager;
 import com.jfoenix.controls.JFXTextField;
@@ -11,19 +12,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.awt.*;
 import java.io.IOException;
 import java.util.Collection;
 
-public class startPage {
+public class startPage extends Controller {
     private SceneManager sceneM;
     private CacheManager cacheM;
+    private settingPage settingPage;
 
     public startPage(SceneManager sceneM, CacheManager cacheM) {
         this.sceneM = sceneM;
         this.cacheM = cacheM;
+
 
     }
 
@@ -36,6 +40,7 @@ public class startPage {
         TextFields.bindAutoCompletion(search, cacheM.getForm().autoSearch(cacheM.getDbM().getConnection()));
         cacheM.getAlcy().summonAlcy(alcyView, alcyLabel);
         cacheM.getAlcy().sayWelcome();
+        System.out.println("here");
 
     }
     
@@ -53,12 +58,13 @@ public class startPage {
 
     @FXML public void about() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/AboutUs.fxml"));
-        sceneM.changeScene(loader, new AboutUs(sceneM, cacheM));
+        sceneM.popWindowLoader(loader, new AboutUs(sceneM, cacheM), "About Us");
     }
 
     @FXML public void settings() throws IOException {
+        settingPage = new settingPage(sceneM, cacheM);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/Views/settingPage.fxml"));
-        sceneM.changeScene(loader, new settingPage(sceneM, cacheM));
+        sceneM.popWindowLoader(loader, settingPage, "Setting");
     }
 
 }
