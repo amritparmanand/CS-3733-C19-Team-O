@@ -44,9 +44,7 @@ public class DatabaseManager {
         Connection connection = null;
         Statement stmt = null;
         try {
-            connection = DriverManager.getConnection(
-                    "jdbc:postgresql://softeng.c1tjqfdh5koe.us-east-2.rds.amazonaws.com:5432/softeng",
-                    "ogopogo", "ogopog0!");
+            connection = DriverManager.getConnection();
             stmt = connection.createStatement();
         }
         catch(SQLException e){
